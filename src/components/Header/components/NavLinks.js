@@ -2,15 +2,20 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "gatsby";
 import { Typography } from "@material-ui/core";
+import { spacing } from '../../../styles/mixins'
 
 const Nav = styled.nav`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
+  ${ spacing('ml', 2) };
+  z-index: 50;
 
   & a {
+    display: block;
     text-decoration: none;
-    color: initial;
+    color: inherit;
   }
 
 `;
@@ -19,19 +24,21 @@ const NavLinks = () => {
   return (
     <Nav>
 
-      <Link to="/articles">
-        <Typography variant="body1">
-          Articles
+      <Link to="/works">
+        <Typography variant="h6">
+          Works
         </Typography>
       </Link>
-      <Link to="/timeline">
-        <Typography variant="body1">
-          Timeline
+
+      <Link to="/experiments">
+        <Typography variant="h6">
+          Experiments
         </Typography>
       </Link>
-      <Link to="/">
-        <Typography variant="body1">
-          About
+
+      <Link to="/blog">
+        <Typography variant="h6">
+          Blog
         </Typography>
       </Link>
 

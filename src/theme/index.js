@@ -1,42 +1,23 @@
-import { createMuiTheme, responsiveFontSizes } from "@material-ui/core"
-import createBreakpoints from "@material-ui/core/styles/createBreakpoints"
-import {
-  SofiaProBold,
-  SofiaProLight,
-  SofiaProNormal,
-   SofiaProSemiBold,
-  SofiaProSoftBold,
-  SofiaProSoftLight,
-  SofiaProSoftRegular
-} from "./fonts"
-
-const breakpoints = createBreakpoints({});
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core'
+import createBreakpoints from '@material-ui/core/styles/createBreakpoints'
+import { darkColor, mainColor } from '../styles/variables/colors'
 
 let theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 576,
+      md: 768,
+      lg: 1025,
+      xl: 1200,
+      xxl: 1900,
+    },
+  },
 
   overrides: {
+
     MuiCssBaseline: {
       '@global': {
-
-        '@font-face': [ SofiaProLight, SofiaProBold, SofiaProNormal, SofiaProSemiBold,
-          SofiaProSoftBold, SofiaProSoftRegular, SofiaProSoftLight,  ],
-
-        html: {
-          fontSize: 'calc(1vw + 0.6em)',
-        },
-
-        [breakpoints.down('sm')]: {
-          html: {
-            fontSize: 'calc(1vw + .85em)',
-          },
-        },
-
-        [breakpoints.up('xl')]: {
-          ':root': {
-            fontSize: '1.325em !important',
-          },
-        },
-
 
       }
     },
@@ -45,25 +26,33 @@ let theme = createMuiTheme({
       root: {
         paddingLeft: '1.5rem',
         paddingRight: '1.5rem',
-      }
+      },
     },
   },
 
   typography: {
-
-    fontFamily: [
-      "Sofia Pro Soft, sans-serif",
-    ].join(','),
+    fontFamily: ['Sofia Pro, sans-serif'].join(','),
 
     h1: {
       fontFamily: 'Poppins, sans-serif',
-      fontWeight: "bolder",
-      fontSize: '3.3rem'
+      fontWeight: 'bolder',
+      // fontSize: '3.3rem',
+    },
+
+    body1: {
+      fontSize: '1.2rem'
     }
-  }
+
+  },
+
+  spacing: 10,
+
+  palette: {
+    primary: { main: darkColor },
+    secondary: { main: mainColor },
+  },
 })
 
-export default responsiveFontSizes(theme)
-
-
-
+export default responsiveFontSizes(theme, {
+  breakpoints: ['sm', 'md', 'lg', 'xl'],
+})
