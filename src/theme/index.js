@@ -1,5 +1,4 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core'
-import createBreakpoints from '@material-ui/core/styles/createBreakpoints'
 import { darkColor, mainColor } from '../styles/variables/colors'
 
 let theme = createMuiTheme({
@@ -15,11 +14,8 @@ let theme = createMuiTheme({
   },
 
   overrides: {
-
     MuiCssBaseline: {
-      '@global': {
-
-      }
+      '@global': {},
     },
 
     MuiContainer: {
@@ -40,9 +36,8 @@ let theme = createMuiTheme({
     },
 
     body1: {
-      fontSize: '1.2rem'
-    }
-
+      fontSize: '1.2rem',
+    },
   },
 
   spacing: 10,

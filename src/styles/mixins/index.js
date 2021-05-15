@@ -6,7 +6,22 @@ export function Flexi({ align = 'center', justify = 'center' }) {
     align-items: ${align};
     justify-content: ${justify};
   `
+};
+
+export function gridColWidth( from = 1, to = 65 )  {
+  return css`
+    grid-column-start: ${from};
+    grid-column-end: ${to};
+  `
 }
+
+export function gridify(){
+  return css`
+    display: grid;
+    grid-template-columns: repeat(64, calc(100% / 64));
+  `
+}
+
 
 export const shadow = depth => {
   return css`
@@ -79,6 +94,16 @@ export const smallUp = (content) => {
   return css`
     ${({ theme }) => css`
       ${theme.breakpoints.up('sm')} {
+        ${content}
+      }
+    `}
+  `
+}
+
+export const  smallDown = (content) => {
+  return css`
+    ${({ theme }) => css`
+      ${theme.breakpoints.down('sm')} {
         ${content}
       }
     `}

@@ -5,7 +5,7 @@ const Footer = () => {
   return <div>
 
     <Typography variant='h1' >
-      Footer
+
     </Typography>
 
   </div>

@@ -53,7 +53,7 @@ const Page = styled.div`
   align-items: end;
 
   &::after{
-    content: 'asdfasfdasdf';
+    content: '';
     position: absolute;;
     //left: 10%;
     //right: 15%;
@@ -73,9 +73,9 @@ const Page = styled.div`
 `
 
 const Main = styled.main`
+  width: 100%;
   position: relative;
   display: block;
-  padding-top: 10rem;
   margin: 0 auto;
   flex: 1;
 `
