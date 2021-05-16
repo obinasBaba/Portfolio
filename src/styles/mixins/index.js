@@ -90,6 +90,12 @@ export const heightWidth = (key, value) => {
   `
 }
 
+export const gridMultiplayer = ( key, value ) => {
+  return css`
+    ${key}: 100vw / 64 * ${value};
+  `
+}
+
 export const smallUp = (content) => {
   return css`
     ${({ theme }) => css`

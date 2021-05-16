@@ -6,6 +6,8 @@ export const responsiveVar = css`
     --title: 1; // for title font-size
     --text: 1; // for regular text which size less than 20px font-size
     --size: 1; // for element width, height
+    --column-width: 100vw / 64; // column width
+ 
 
     @media screen and (max-width: 1025px) {
       --title: 0.9;

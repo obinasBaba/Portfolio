@@ -55,8 +55,6 @@ const Page = styled.div`
   &::after{
     content: '';
     position: absolute;;
-    //left: 10%;
-    //right: 15%;
     width: 100%;
     max-width: 1185px;
     top: -390px;

@@ -1,33 +1,44 @@
-import React, { useRef } from 'react'
-import { Typography } from '@material-ui/core'
+import React from 'react'
 import styled from 'styled-components'
 import Title from './Title'
 import { useRecentDesignAssets } from '../../../hooks/queries/useRecentDesignAssets'
 import { spacing } from '../../../styles/mixins'
-import { useSpring, animated } from 'react-spring'
-
+import useHomeWorksAssets from '../../../hooks/queries/useHomeWorksAssets'
+import Items from './items'
+import ScrollGallery from '../../../components/ScrollGallery/ScrollGallery'
 
 const RecentDesignWrapper = styled.div`
   border: thin solid crimson;
-  ${spacing( 'pt', 10 )}
-  ${spacing( 'pb', 10 )}
+  ${spacing('mb', 20)}
 `
 
 const WorksPage = () => {
 
-  const n = useRef(0);
   const { circledText, dribbleRed } = useRecentDesignAssets();
+  const {
+    Art,
+    eScooter,
+    Web,
+    Hommy,
+    Investments,
+    Lazy,
+    Starbank,
+    Teampoint,
+    Travel,
+    Tude,
+    Realty,
+    North,
+  } = useHomeWorksAssets();
 
-  const styles = useSpring({
-    loop: { reverse: true },
-    from: { x: 0 },
-    to: { x: 180 },
-    config: {
-      friction: 5,
-    }
-  })
+  const imageList = [
+    [Web],
+    [Investments, Travel, Starbank],
+    [eScooter],
+    [Art, Lazy, Teampoint],
+    [North],
+    [Realty, Hommy, Tude],
+  ];
 
-  console.log(styles)
 
   return (
     <RecentDesignWrapper>
@@ -35,14 +46,11 @@ const WorksPage = () => {
       <Title circledText={ circledText.publicURL }
              dribbleRed={ dribbleRed.publicURL } />
 
-      <animated.div style={{
-        margin: '0 auto',
-        width: 89,
-        height: 80,
-        backgroundColor: '#5e83a8',
-        borderRadius: 16,
-        ...styles
-      }} />
+      <ScrollGallery step={4}>
+        {imageList.map(item => {
+          return <Items images={item} key={item[0].name} />;
+        })}
+      </ScrollGallery>
 
     </RecentDesignWrapper>
   )

@@ -19,26 +19,23 @@ function HideOnScroll(props) {
   // Note that you normally won't need to set the window ref as useScrollTrigger
   // will default to window.
   // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({ target: window ? window() : undefined })
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+    threshold: 50,
+  })
 
   return (
-    <Slide appear={false} direction="down" in={!trigger}>
+    <Slide appear={false} direction="down" in={!trigger}  >
       {children}
     </Slide>
   )
 }
 
-HideOnScroll.propTypes = {
-  children: PropTypes.element.isRequired,
-  window: PropTypes.func,
-}
-
-const AppBarWrapper = styled.div`
+const NavContainer = styled.div`
   position: fixed;
   z-index: 999;
   top: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
   padding: 2rem 2rem 1.3rem;
   ${transition};
 
@@ -61,31 +58,32 @@ const AppBarWrapper = styled.div`
   `)};
 `
 
-const SliderToolBar = styled.nav`
+const ToolBarWrapper = styled.nav`
+  margin: 0 auto;
+  max-width: 1600px;
   display: flex;
-  ${spacing('gap', 1.5)};
-  //gap: 1.5rem;
   justify-content: flex-end;
   align-items: center;
+
+  & > :nth-child(2n) {
+    ${spacing('mr', 2)};
+  }
 `
 
 function AppNavBar(props) {
-  const theme = useTheme()
-  const media = useMediaQuery(theme.breakpoints.up('xl'))
 
   return (
     <React.Fragment>
       <HideOnScroll {...props}>
-        <AppBarWrapper>
-          <SliderToolBar>
+        <NavContainer>
+          <ToolBarWrapper>
+
             <LogoAndSocial />
-
             <ContactBtn />
+            <NavBtn />
 
-           <NavBtn />
-
-          </SliderToolBar>
-        </AppBarWrapper>
+          </ToolBarWrapper>
+        </NavContainer>
       </HideOnScroll>
     </React.Fragment>
   )

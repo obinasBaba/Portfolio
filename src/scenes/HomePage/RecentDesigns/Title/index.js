@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { Container, Typography } from '@material-ui/core'
-import { heightWidth, largeUp } from '../../../../styles/mixins'
+import { heightWidth, largeUp, spacing } from '../../../../styles/mixins'
 
 const TitleContainer = styled(Container)`
   display: flex;
   flex-flow: column;
   align-items: center;
+/*@include hl-margin(bottom, 100px);
+@include hl-padding(top, 75px);*/
+  
+  ${ spacing( 'mb', 10 )};
+  ${ spacing( 'pt', 7.5 ) };
 `
 
 const LogoLink = styled.a`
