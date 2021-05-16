@@ -79,14 +79,14 @@ export const  spacing = (key, value) => {
   }
 
   return css`
-    ${ propKey }: calc( ${ value * 10 }px * var( --indent ) )
+    ${ propKey }: calc( ${ value * 10 }px * var( --indent ) );
   `;
 
 };
 
 export const heightWidth = (key, value) => {
   return css`
-    ${key}: calc( ${ value * 10 }px * var( --size ) )
+    ${key}: calc( ${ value * 10 }px * var( --size ) );
   `
 }
 

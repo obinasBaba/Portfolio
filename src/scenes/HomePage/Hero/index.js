@@ -1,20 +1,15 @@
 import React from 'react'
-import { Container, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import H from './H.inline.svg'
-import styled, { css } from 'styled-components'
-import useHeroAssets from '../../../hooks/queries/useHeroAssets'
 import { StaticImage } from 'gatsby-plugin-image'
-import { gridColWidth, gridify, largeUp, smallUp } from '../../../styles/mixins'
 import useHeaderAssets from '../../../hooks/queries/useHeaderAssets'
 import {
-  HeroContainer, SvgEffect,
+  HeroContainer,
+  SvgEffect,
   SvgWithTxt,
   TextContainer,
   TextWrapper,
 } from './components'
-
-
-
 
 const Hero = () => {
 
