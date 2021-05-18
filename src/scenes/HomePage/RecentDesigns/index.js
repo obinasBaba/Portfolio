@@ -12,7 +12,7 @@ const RecentDesignWrapper = styled.div`
   ${spacing('mb', 20)}
 `
 
-const WorksPage = () => {
+const RecentWorks = () => {
 
   const { circledText, dribbleRed } = useRecentDesignAssets();
   const {
@@ -56,4 +56,4 @@ const WorksPage = () => {
   )
 }
 
-export default WorksPage;
+export default RecentWorks;

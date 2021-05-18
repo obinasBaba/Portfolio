@@ -14,7 +14,6 @@ const Text = styled(Typography)`
     #f9d6ac 41.89%,
     #fbfefc 96.77%
   );
-
   // this one fixes gradient text line breaks safari bug: https://zellwk.com/blog/multi-line-gradient-links/
   -webkit-box-decoration-break: clone;
 `
@@ -23,7 +22,6 @@ const IndexPage = () => {
   return (
     <>
         <HomePage/>
-
     </>
   )
 }

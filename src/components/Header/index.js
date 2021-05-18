@@ -1,8 +1,8 @@
 import React from 'react'
-import AppNavBar from './AppNavBar'
+import NavBar from './NavBar'
 
 const Header = ({ isGradient }) => {
-  return <AppNavBar isHeader={isGradient} />
+  return <NavBar isHeader={isGradient} />
 }
 
 export default Header

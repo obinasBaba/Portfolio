@@ -1,33 +1,31 @@
 import React from 'react'
-import { Divider, SvgIcon } from '@material-ui/core'
+import { Divider } from '@material-ui/core'
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/all'
 import styled from 'styled-components'
-import { ReactSVG } from 'react-svg'
 import useHeaderAssets from '../../../hooks/queries/useHeaderAssets'
 import { Link } from 'gatsby'
 import { heightWidth, spacing } from '../../../styles/mixins'
+import { ReactSVG } from 'react-svg'
 
 const Logo = styled.div`
   margin-right: auto;
   fill: white; //todo gradient
   z-index: 50;
   display: flex;
-  ${ spacing('gap',  1) };
+  ${spacing('gap', 1)}; //todo polifill
   align-items: center;
   justify-content: center;
 
-  & > :first-child{
+  & > :first-child {
     ${heightWidth('max-width', 6)};
-    
-    & svg{
-      fill: 
+
+    & svg {
     }
   }
-  
-  & > :nth-child( n+2 ){
-    ${ heightWidth('font-size', 2) };
+
+  & > :nth-child(n + 2) {
+    ${heightWidth('font-size', 2)};
   }
-  
 `
 
 const DividerLine = styled( Divider )`

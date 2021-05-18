@@ -22,6 +22,7 @@ let theme = createMuiTheme({
       root: {
         paddingLeft: '1.5rem',
         paddingRight: '1.5rem',
+
       },
     },
   },

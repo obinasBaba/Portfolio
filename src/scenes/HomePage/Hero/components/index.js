@@ -10,26 +10,26 @@ import H from '../H.inline.svg'
 
 export const HeroContainer = styled(Container)`
   position: relative;
-  min-height: 100vh;
-  display: grid;
   align-content: center;
   grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+  border: thin solid red;
   ${gridify()};
 
   & > .hero-pic {
     display: none;
     grid-row: 1/2;
     border-radius: 1rem;
+    max-width: 300px;
     
     ${gridColWidth(40, 65)};
     
+    ${smallUp(css`
+      display: block;
+    `)};
+
     ${largeUp(css`
       ${gridColWidth(42, 60)};
-      margin-top: 3rem;
-    `)};
-    
-    ${smallUp(css`
-      display: initial;
     `)};
   }
 `

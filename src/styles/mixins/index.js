@@ -130,7 +130,17 @@ export const largeUp = content => {
   return css`
     ${({ theme }) => css`
       ${theme.breakpoints.up('lg')} {
-        ${content}
+        ${content};
+      }
+    `}
+  `
+}
+
+export const largeDown = content => {
+  return css`
+    ${({ theme }) => css`
+      ${theme.breakpoints.down('lg')} {
+        ${content};
       }
     `}
   `

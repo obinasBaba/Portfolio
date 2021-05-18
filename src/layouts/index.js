@@ -71,11 +71,8 @@ const Page = styled.div`
 `
 
 const Main = styled.main`
-  width: 100%;
-  position: relative;
-  display: block;
-  margin: 0 auto;
   flex: 1;
+  border: thick dashed salmon;
 `
 
 export default function TopLayout({ children }) {

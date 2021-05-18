@@ -70,7 +70,7 @@ const ToolBarWrapper = styled.nav`
   }
 `
 
-function AppNavBar(props) {
+function NavBar(props) {
 
   return (
     <React.Fragment>
@@ -89,4 +89,4 @@ function AppNavBar(props) {
   )
 }
 
-export default AppNavBar
+export default NavBar

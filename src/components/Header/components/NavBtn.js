@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import { heightWidth, spacing } from '../../../styles/mixins'
 
@@ -35,7 +35,7 @@ const Btn = styled.button`
 
 const Bars = styled.span`
   position: absolute;
-  height: 0.15px;
+  height: 1px;
   left: 0;
   right: 0;
   width: 40%;
@@ -53,7 +53,7 @@ const Bars = styled.span`
     transform: translateX(-50%);
     display: block;
     border-radius: 3px;
-    height: 0.15px;
+    height: 1px;
     width: 70%;
     background: #fff;
     transition: all 0.3s;
@@ -92,9 +92,12 @@ const HiddenText = styled.p`
 `
 
 const NavBtn = () => {
+
+  const [open, setOpen] = useState(false);
+
   return (
-    <Btn>
-      <Bars/>
+    <Btn onClick={ () => setOpen(!open) } >
+      <Bars opened={open} />
       <HiddenText> Menu </HiddenText>
     </Btn>
   )
