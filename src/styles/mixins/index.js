@@ -6,22 +6,21 @@ export function Flexi({ align = 'center', justify = 'center' }) {
     align-items: ${align};
     justify-content: ${justify};
   `
-};
+}
 
-export function gridColWidth( from = 1, to = 65 )  {
+export function gridColWidth(from = 1, to = 65) {
   return css`
     grid-column-start: ${from};
     grid-column-end: ${to};
   `
 }
 
-export function gridify(){
+export function gridify() {
   return css`
     display: grid;
     grid-template-columns: repeat(64, calc(100% / 64));
   `
 }
-
 
 export const shadow = depth => {
   return css`
@@ -35,8 +34,9 @@ export const shadow = depth => {
   `
 }
 
-export const  spacing = (key, value) => {
-  let propKey
+export const spacing = (key, value) => {
+  let propKey;
+  let temp;
 
   switch (key) {
     case 'mt':
@@ -51,7 +51,7 @@ export const  spacing = (key, value) => {
     case 'ml':
       propKey = 'margin-left'
       break
-    case 'margin':
+    case 'm':
       propKey = 'margin'
       break
 
@@ -67,9 +67,22 @@ export const  spacing = (key, value) => {
     case 'pl':
       propKey = 'padding-left'
       break
-    case 'padding':
+    case 'p':
       propKey = 'padding'
       break
+    case 'ph':
+      propKey = 'padding'
+      temp = value * 10
+      return css`
+        ${propKey}: 0 calc(${value}px * var(--indent));
+      `
+
+    case 'pv':
+      propKey = 'padding'
+      temp = value * 10;
+      return css`
+        ${propKey}: calc(${value}px * var(--indent)) 0;
+      `
 
     case 'br':
       propKey = 'border-radius'
@@ -79,24 +92,23 @@ export const  spacing = (key, value) => {
   }
 
   return css`
-    ${ propKey }: calc( ${ value * 10 }px * var( --indent ) );
-  `;
-
-};
-
-export const heightWidth = (key, value) => {
-  return css`
-    ${key}: calc( ${ value * 10 }px * var( --size ) );
+    ${propKey}: calc(${value * 10}px * var(--indent));
   `
 }
 
-export const gridMultiplayer = ( key, value ) => {
+export const heightWidth = (key, value) => {
+  return css`
+    ${key}: calc(${value * 10}px * var(--size));
+  `
+}
+
+export const gridMultiplayer = (key, value) => {
   return css`
     ${key}: 100vw / 64 * ${value};
   `
 }
 
-export const smallUp = (content) => {
+export const smallUp = content => {
   return css`
     ${({ theme }) => css`
       ${theme.breakpoints.up('sm')} {
@@ -106,7 +118,7 @@ export const smallUp = (content) => {
   `
 }
 
-export const  smallDown = (content) => {
+export const smallDown = content => {
   return css`
     ${({ theme }) => css`
       ${theme.breakpoints.down('sm')} {
@@ -136,10 +148,20 @@ export const largeUp = content => {
   `
 }
 
-export const largeDown = content => {
+export const xLargeDown = content => {
   return css`
     ${({ theme }) => css`
-      ${theme.breakpoints.down('lg')} {
+      ${theme.breakpoints.down('xl')} {
+        ${content};
+      }
+    `}
+  `
+}
+
+export const xLargeUp = content => {
+  return css`
+    ${({ theme }) => css`
+      ${theme.breakpoints.up('xl')} {
         ${content};
       }
     `}

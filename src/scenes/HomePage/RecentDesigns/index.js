@@ -8,7 +8,7 @@ import Items from './items'
 import ScrollGallery from '../../../components/ScrollGallery/ScrollGallery'
 
 const RecentDesignWrapper = styled.div`
-  border: thin solid crimson;
+  //border: thin solid crimson;
   ${spacing('mb', 20)}
 `
 

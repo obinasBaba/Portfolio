@@ -72,7 +72,6 @@ const Page = styled.div`
 
 const Main = styled.main`
   flex: 1;
-  border: thick dashed salmon;
 `
 
 export default function TopLayout({ children }) {

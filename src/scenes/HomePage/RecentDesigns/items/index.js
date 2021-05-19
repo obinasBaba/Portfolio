@@ -56,8 +56,9 @@ const Items = ( { images } ) => {
   return (
     <ImageWrapper>
       {
-        images.map( imgData =>
+        images.map( (imgData, index) =>
           <GatsbyImage alt={imgData.name}
+                       key={ index }
                        className={'image'}
                        image={ getImage( imgData ) }/> )
 

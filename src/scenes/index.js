@@ -15,26 +15,33 @@ const HomePageContainer = styled.div`
   ` ) };
 `
 
-const SectionWrapper = styled( Container ) `
+let StyledSectionWrapper = styled( Container ) `
   max-width: 1600px;
 `
 
+const SectionWrapper = ( {children} ) => {
+  return(
+    <StyledSectionWrapper disableGutters={true}
+                    maxWidth={false}
+                    fixed={false}
+                    component={'section'}>{children}</StyledSectionWrapper>
+  );
+}
 
-const HomePage = () => {
+const HomePage = (  ) => {
   return (
     <HomePageContainer>
 
-      <SectionWrapper disableGutters={true}
-                 maxWidth={false}
-                 fixed={false}
-                 component={'section'} >
+      <SectionWrapper >
         <Hero/>
-
       </SectionWrapper>
 
       <RecentWorks/>
 
-      <Projects/>
+      <SectionWrapper >
+        <Projects/>
+      </SectionWrapper>
+
 
     </HomePageContainer>
   )

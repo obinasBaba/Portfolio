@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useSpring, animated } from 'react-spring';
-import PropTypes from 'prop-types';
-import { springDebounce } from '../../helpers';
+import React from 'react'
 import styled from 'styled-components'
+import {
+  motion,
+  useSpring,
+  useTransform,
+  useViewportScroll,
+} from 'framer-motion'
 
-const AnimatedDiv = styled( animated.div )`
+const AnimatedDiv = styled(motion.div)`
   display: flex;
   align-items: center;
   list-style-type: none;
@@ -13,35 +16,17 @@ const AnimatedDiv = styled( animated.div )`
 `
 
 const Gallery = ({ children, step }) => {
+  const { scrollYProgress } = useViewportScroll()
 
-  const [scrollY, setScrollY] = useState(0);
+  const mapped = useTransform(scrollYProgress, [0, 1], [-1, -500])
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', springDebounce(handleScroll));
-    return () =>
-      window.removeEventListener('scroll', springDebounce(handleScroll));
-  }, [springDebounce]);
+  const x = useSpring(mapped, {
+    mass: 0.5,
+    damping: 10,
+    stiffness: 50,
+  })
 
-  const [{ springscrollY }, springsetScrollY] = useSpring(() => ({
-    springscrollY: 0,
-  }));
-  const STEP = step;
-  springsetScrollY({ springscrollY: scrollY });
-  const interpHeader = springscrollY.interpolate(
-    o => `translateX(-${o / STEP}px)`
-  );
+  return <AnimatedDiv style={{ x: x }}>{children}</AnimatedDiv>
+}
 
-  return (
-    <AnimatedDiv  style={{ transform: interpHeader }}>
-      {children}
-    </AnimatedDiv>
-  );
-};
-
-Gallery.propTypes = {
-  step: PropTypes.number,
-  children: PropTypes.array,
-};
-
-export default Gallery;
+export default Gallery

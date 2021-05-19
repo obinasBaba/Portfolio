@@ -13,7 +13,6 @@ export const HeroContainer = styled(Container)`
   align-content: center;
   grid-template-columns: 1fr 1fr;
   min-height: 80vh;
-  border: thin solid red;
   ${gridify()};
 
   & > .hero-pic {

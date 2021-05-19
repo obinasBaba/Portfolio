@@ -8,9 +8,7 @@ export const homeWorksBigImage = graphql`
         placeholder: BLURRED
         webpOptions: { quality: 100 }
       )
-      fluid(maxWidth: 775, quality: 100) {
-        ...GatsbyImageSharpFluid_withWebp
-      }
+    
     }
   }
 `
@@ -23,9 +21,7 @@ export const homeWorksMiddleImage = graphql`
         placeholder: BLURRED
         webpOptions: { quality: 100 }
       )
-      fluid(maxWidth: 500, quality: 100) {
-        ...GatsbyImageSharpFluid_withWebp
-      }
+     
     }
   }
 `
@@ -38,9 +34,7 @@ export const homeWorksSmallImage = graphql`
         placeholder: BLURRED
         webpOptions: { quality: 100 }
       )
-      fluid(maxWidth: 238, quality: 100) {
-        ...GatsbyImageSharpFluid_withWebp
-      }
+   
     }
   }
 `
