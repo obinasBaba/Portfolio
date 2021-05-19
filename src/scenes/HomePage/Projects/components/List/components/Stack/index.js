@@ -1,12 +1,12 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import {
-  gridColWidth, heightWidth,
+  gridColWidth,
+  heightWidth,
   largeUp,
   mediumUp,
   spacing,
 } from '../../../../../../../styles/mixins'
-import { ReactSVG } from 'react-svg'
 
 const StackList = styled.ul`
   display: flex;
@@ -45,8 +45,6 @@ const StackUsed = ({ reversed, items }) => {
   return (
     <StackList reversed={reversed}>
       {items.map(({ publicURL }) => {
-
-        console.log(publicURL, 'public url -------')
 
         return (
           <li key={publicURL}>

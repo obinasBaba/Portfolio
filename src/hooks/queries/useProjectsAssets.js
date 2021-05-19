@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 export const projectsPreview = graphql`
   fragment projectsPreview on File {
     childImageSharp {
-      gatsbyImageData(quality: 100, formats: [AUTO, WEBP, AVIF])
+      gatsbyImageData(quality: 100, formats: [AUTO, WEBP, AVIF], placeholder: BLURRED)
     }
   }
 `

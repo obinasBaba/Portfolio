@@ -1,14 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import useScrollTrigger from '@material-ui/core/useScrollTrigger'
 import Slide from '@material-ui/core/Slide'
 import styled, { css } from 'styled-components'
 import LogoAndSocial from './components/LogoAndSocial'
-import { useMediaQuery, useTheme } from '@material-ui/core'
 import NavBtn from './components/NavBtn'
 import ContactBtn from './components/ContactBtn'
 import { mediumUp, spacing } from '../../styles/mixins'
-import NavLinks from './components/NavLinks'
 
 const transition = css`
   transition: all 0.3s;

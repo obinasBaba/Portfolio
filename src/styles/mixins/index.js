@@ -74,14 +74,14 @@ export const spacing = (key, value) => {
       propKey = 'padding'
       temp = value * 10
       return css`
-        ${propKey}: 0 calc(${value}px * var(--indent));
+        ${propKey}: 0 calc(${temp}px * var(--indent));
       `
 
     case 'pv':
       propKey = 'padding'
       temp = value * 10;
       return css`
-        ${propKey}: calc(${value}px * var(--indent)) 0;
+        ${propKey}: calc(${temp}px * var(--indent)) 0;
       `
 
     case 'br':

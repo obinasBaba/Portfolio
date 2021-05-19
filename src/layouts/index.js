@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -11,9 +11,8 @@ import theme from '../theme'
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import '../styles/fontFace.css';
+import '../styles/fontFace.css'
 import { responsiveVar } from '../styles/commons'
-
 
 const GlobalStyle = createGlobalStyle`
   
@@ -74,6 +73,17 @@ const Main = styled.main`
   flex: 1;
 `
 
+const VersionNo = styled.div`
+  position: fixed;
+  font-weight: 300;
+  line-height: 1.6em;
+  letter-spacing: 0.5px;
+  color: gray;
+  bottom: 3rem;
+  text-shadow: 0.1em 0.1em 0.3em #000;
+  right: 4rem;
+`
+
 export default function TopLayout({ children }) {
   return (
     <React.Fragment>
@@ -99,6 +109,10 @@ export default function TopLayout({ children }) {
             <footer>
               <Footer />
             </footer>
+
+            <VersionNo>
+              v0.1
+            </VersionNo>
 
           </Page>
         </ThemeProvider>

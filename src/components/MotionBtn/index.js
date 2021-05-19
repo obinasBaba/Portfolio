@@ -94,9 +94,9 @@ const MotionBtn = ({ text = 'CASE-STUDY', ...props }) => {
             rx="1"
           />
           <path
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             d="M15 10l5-5-5-5"
           />
         </g>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
-import { heightWidth, spacing } from '../../../styles/mixins'
+import { heightWidth } from '../../../styles/mixins'
 
-const headerTransition = 'all .3s'
+// const headerTransition = 'all .3s'
 
 const Btn = styled.button`
   ${heightWidth('height', 6)};

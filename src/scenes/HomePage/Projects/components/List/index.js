@@ -28,10 +28,11 @@ const ProjectList = ({
   node,
 }) => {
 
+
   const items = [
     {
       id: 0,
-      link: 'https://www.behance.net/gallery/65940547/Primary-Smart-Bedding-Website',
+      link: '/',
       linkTitle: 'Case Study',
       preview: preview1,
       tags: 'UX, UI, Illustrations, Icons',
@@ -42,7 +43,7 @@ const ProjectList = ({
     },
     {
       id: 1,
-      link: 'https://www.behance.net/gallery/66754531/Mobalytics-Game-Analytics-Platform-Website',
+      link: '/',
       linkTitle: 'Case Study',
       preview: preview3,
       tags: 'Analytics, UX, UI, Icons, Front-end',
@@ -72,6 +73,7 @@ const ProjectList = ({
 
           const { id, partners, ...sceneProps } = item;
           const isReversed = !((index % 2) === 0)
+
 
           return (
             <ProjectGrid key={id}>

@@ -8,6 +8,7 @@ const Projects = () => {
   const { auth, kklLuzern, udemy, ...listAssets } = useProjectsAssets()
   const othersAssets = { auth, kklLuzern, udemy }
 
+
   return (
     <>
       <Typography variant="h1" align='center'>Projects</Typography>
