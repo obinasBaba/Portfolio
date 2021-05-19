@@ -6,7 +6,7 @@ import {
   largeUp,
   mediumUp,
   spacing,
-} from '../../../../../../../styles/mixins'
+} from '../../../../../../styles/mixins'
 
 const StackList = styled.ul`
   display: flex;

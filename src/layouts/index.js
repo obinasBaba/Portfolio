@@ -75,6 +75,7 @@ const Main = styled.main`
 
 const VersionNo = styled.div`
   position: fixed;
+  z-index: 9999;
   font-weight: 300;
   line-height: 1.6em;
   letter-spacing: 0.5px;

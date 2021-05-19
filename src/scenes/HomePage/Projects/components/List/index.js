@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { gridify, spacing } from '../../../../../styles/mixins'
-import ProjectScene from './components/ProjectScene'
-import StackUsed from './components/Stack'
-
+import StackUsed from './components/StackUsed'
+import ProjectImage from './components/ProjectImage'
+import ProjectDescription from './components/ProjectDescription'
 
 const ProjectGrid = styled.div`
   ${ gridify };
@@ -32,7 +32,7 @@ const ProjectList = ({
   const items = [
     {
       id: 0,
-      link: '/',
+      link: '/portfolio/project-1',
       linkTitle: 'Case Study',
       preview: preview1,
       tags: 'UX, UI, Illustrations, Icons',
@@ -43,7 +43,7 @@ const ProjectList = ({
     },
     {
       id: 1,
-      link: '/',
+      link: '/portfolio/project-2',
       linkTitle: 'Case Study',
       preview: preview3,
       tags: 'Analytics, UX, UI, Icons, Front-end',
@@ -54,8 +54,7 @@ const ProjectList = ({
     },
     {
       id: 2,
-      link:
-        'https://www.behance.net/gallery/70303073/Glance-Clock-First-Smart-Clock',
+      link: '/portfolio/project-3',
       linkTitle: 'coming soon',
       preview: preview1,
       tags: 'Analytics, UX, UI, Front-end',
@@ -71,15 +70,18 @@ const ProjectList = ({
       {
         items.map( (item, index) => {
 
-          const { id, partners, ...sceneProps } = item;
-          const isReversed = !((index % 2) === 0)
+          const { id, partners, tags, preview, alt, link, title,  } = item;
+          const reversed = !((index % 2) === 0)
 
 
           return (
             <ProjectGrid key={id}>
 
-              <ProjectScene {...sceneProps} reversed={isReversed} />
-              <StackUsed items={partners} reversed={isReversed} />
+              <ProjectImage reversed={reversed} link={link} alt={alt} title={title} preview={preview} />
+
+              <ProjectDescription reversed={reversed} title={title} tags={tags} />
+
+              <StackUsed items={partners} reversed={reversed} />
 
             </ProjectGrid>
           )
