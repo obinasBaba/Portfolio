@@ -5,13 +5,14 @@ import {
   mediumUp,
   spacing,
 } from '../../../../../../styles/mixins'
-import { Link } from 'gatsby'
+import { Link, useScrollRestoration } from 'gatsby'
 import { Typography } from '@material-ui/core'
 import MotionBtn from '../../../../../../components/MotionBtn'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, useIsPresent } from 'framer-motion'
+import {motion} from 'framer-motion';
 
 
-const ProjectDesc = styled.div`
+const ProjectDesc = styled(motion.div)`
   display: flex;
   flex-flow: column;
   z-index: 10;
@@ -53,29 +54,37 @@ const Tags = styled(Typography)`
 `
 
 
-const ProjectDescription = ( {children, reversed, tags, title} ) => {
-  return (
-    <AnimatePresence>
+const ProjectDescription = ( {children, reversed, tags, title,} ) => {
 
-      <ProjectDesc reversed={reversed}>
+
+  return (
+      <ProjectDesc reversed={reversed}
+                   exit={{
+                     opacity: 0,
+                     transition: {
+                       duration: 1,
+                     }
+                   }}
+      >
         <Tags variant={'subtitle2'}> {tags} </Tags>
 
-        <Link to="/">
-          <Typography
-            variant={'h3'}
-            style={{
-              lineHeight: '1.25em',
-              fontWeight: 700,
-            }}
-          >
-            {title}
-          </Typography>
-        </Link>
+        <motion.div>
+          <Link to="/">
+            <Typography
+              variant={'h3'}
+              style={{
+                lineHeight: '1.25em',
+                fontWeight: 700,
+              }}
+            >
+              {title}
+            </Typography>
+          </Link>
+        </motion.div>
 
         <MotionBtn text="Case-Study" />
       </ProjectDesc>
 
-    </AnimatePresence>
   )
 }
 

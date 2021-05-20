@@ -1,7 +1,12 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { LinkWrapper, List, ListItem, OthersContainer } from './components'
-import Title from '../../../RecentDesigns/Title'
+import {
+  LinkWrapper,
+  List,
+  ListItem,
+  OthersContainer,
+  Title,
+} from './components'
 
 const Others = ({ auth, kklLuzern, udemy }) => {
   return (

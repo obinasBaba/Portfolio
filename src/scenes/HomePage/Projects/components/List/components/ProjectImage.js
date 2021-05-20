@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import {
   gridColWidth,
@@ -82,7 +82,7 @@ const div1_Variants = {
     scale: .9,
     transition: {
       ...transition,
-      delayChildren: .01
+      // delayChildren: .01
     }
   }
 }
@@ -93,7 +93,7 @@ const div2_Variants = {
   },
 
   hover: (o) => ({
-    x: o.reversed ? -60 : 60,
+    x: o.reversed ? -30 : 30,
     transition: {
       ...transition,
       duration: .6,
@@ -102,6 +102,9 @@ const div2_Variants = {
 };
 
 const ProjectImage = ({ reversed, alt, link, preview, title }) => {
+
+  const [ hoverNow, setHoverNow ] = useState( false );
+
   return (
     <ProjectImg reversed={reversed}
                 variants={containerVariants}
@@ -122,7 +125,7 @@ const ProjectImage = ({ reversed, alt, link, preview, title }) => {
 
         >
 
-          <Link to={link}>
+          <Link to={link}  >
             <GatsbyImage
               alt={alt}
               key={title}

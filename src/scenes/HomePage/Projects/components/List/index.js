@@ -75,11 +75,11 @@ const ProjectList = ({
 
 
           return (
-            <ProjectGrid key={id}>
+            <ProjectGrid key={index} >
 
               <ProjectImage reversed={reversed} link={link} alt={alt} title={title} preview={preview} />
 
-              <ProjectDescription reversed={reversed} title={title} tags={tags} />
+              <ProjectDescription  reversed={reversed} title={title} tags={tags} />
 
               <StackUsed items={partners} reversed={reversed} />
 
