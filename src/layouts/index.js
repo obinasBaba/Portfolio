@@ -13,7 +13,12 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import '../styles/fontFace.css'
 import { AnimatePresence, motion } from 'framer-motion';
-import { GlobalStyle, Page, VersionNo } from '../components/layoutComponents'
+import {
+  GlobalStyle,
+  Main,
+  Page,
+  VersionNo,
+} from '../components/layoutComponents'
 
 
 
@@ -37,17 +42,17 @@ export default function TopLayout({ children }) {
           <Page>
             <Header />
 
-            <motion.div css={css` flex: 1 `}
+            <Main
                         animate='animate'
                         initial='initial'
                         exit='exit'
             >
 
-              <AnimatePresence exitBeforeEnter={true}>
+              {/*<AnimatePresence exitBeforeEnter={true}>*/}
                 { children }
-              </AnimatePresence>
+              {/*</AnimatePresence>*/}
 
-            </motion.div>
+            </Main>
 
             <footer>
               <Footer />

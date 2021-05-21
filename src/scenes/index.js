@@ -5,6 +5,7 @@ import { largeUp, spacing } from '../styles/mixins'
 import styled, { css } from 'styled-components'
 import { Container } from '@material-ui/core'
 import Projects from './HomePage/Projects'
+import Experiments from './HomePage/Experiments'
 
 const HomePageContainer = styled.div`
   
@@ -42,6 +43,7 @@ const HomePage = (  ) => {
         <Projects/>
       </SectionWrapper>
 
+      <Experiments />
 
     </HomePageContainer>
   )

@@ -11,7 +11,6 @@ import { motion } from 'framer-motion'
 export const OthersContainer = styled(motion.div)`
   ${gridify()};
   ${spacing('mt', 14)};
-  ${spacing('mb', 14)}; //todo remove this
   align-items: center;
 `
 

@@ -1,18 +1,21 @@
 import styled, { createGlobalStyle } from 'styled-components'
 import { responsiveVar } from '../../styles/commons'
+import {motion} from 'framer-motion';
 
 export const GlobalStyle = createGlobalStyle`
-  
-  ${responsiveVar};
-  
-  html{
+
+  ${ responsiveVar }
+
+  ;
+
+  html {
     --dark: #02021e;
     -webkit-font-smoothing: antialiased;
 
     --sofia-soft: 'Sofia Pro Soft', sans-serif;
     --sofia-pro: 'Sofia Pro', sans-serif;
-    --font-gramatika: 'Gramatika', sans-serif;
-    
+    --gramatika: 'Gramatika', sans-serif;
+
   }
 
   a {
@@ -21,7 +24,7 @@ export const GlobalStyle = createGlobalStyle`
     color: inherit;
   }
 
-  body{
+  body {
     //overflow-x: hidden;
     position: relative;
     color: #fff;
@@ -56,8 +59,25 @@ export const Page = styled.div`
 
 `
 
-export const Main = styled.main`
+export const Main = styled( motion.main )`
   flex: 1;
+  position: relative;
+
+  &::after, &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20%;
+    width: 2px;
+    z-index: -999;
+    box-shadow: inset 1px 1px 42px 31.25px rgba(50, 52, 77, 0.04);
+  }
+
+  &::before {
+    left: initial;
+    right: 20%;
+  }
 `
 
 export const VersionNo = styled.div`
