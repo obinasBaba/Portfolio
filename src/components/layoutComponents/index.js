@@ -4,13 +4,20 @@ import {motion} from 'framer-motion';
 
 export const GlobalStyle = createGlobalStyle`
 
-  ${ responsiveVar }
+  ${ responsiveVar }  ;
 
-  ;
+  html,
+  body,
+  #___gatsby,
+  #gatsby-focus-wrapper {
+    //height: 100%;
+  }
 
   html {
     --dark: #02021e;
     -webkit-font-smoothing: antialiased;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
 
     --sofia-soft: 'Sofia Pro Soft', sans-serif;
     --sofia-pro: 'Sofia Pro', sans-serif;
@@ -26,6 +33,10 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     //overflow-x: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    
+    margin: 0;
     position: relative;
     color: #fff;
     background: var(--dark);

@@ -12,13 +12,19 @@ const TitleContainer = styled.header`
 
 
 
-const TitleWithSub = () => {
+const Headline = ( {title, subtitle} ) => {
   return (
     <TitleContainer >
-      <GradientText variant='h1' noWrap={true} > Web is fun </GradientText>
-      <GradientText color='textSecondary' align='right' variant={'body2'} noWrap={true}> Experiments & Open Source </GradientText>
+      <GradientText variant='h1' noWrap={true} >
+        {title}
+      </GradientText>
+
+      <GradientText color='textSecondary' align='right' variant={'body2'} noWrap={true}>
+        {subtitle}
+      </GradientText>
+
     </TitleContainer>
   )
 }
 
-export default TitleWithSub
+export default Headline

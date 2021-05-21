@@ -12,7 +12,7 @@ const AnimatedDiv = styled(motion.div)`
   align-items: center;
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  
 `
 
 const Gallery = ({ children, step }) => {

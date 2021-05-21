@@ -4,12 +4,12 @@ import Title from './Title'
 import { useRecentDesignAssets } from '../../../hooks/queries/useRecentDesignAssets'
 import { spacing } from '../../../styles/mixins'
 import useHomeWorksAssets from '../../../hooks/queries/useHomeWorksAssets'
-import Items from './items'
+import DesignImage from './items'
 import ScrollGallery from '../../../components/ScrollGallery/ScrollGallery'
 
 const RecentDesignWrapper = styled.div`
-  //border: thin solid crimson;
-  ${spacing('mb', 20)}
+  ${spacing('mb', 16)};
+  
 `
 
 const RecentWorks = () => {
@@ -48,7 +48,7 @@ const RecentWorks = () => {
 
       <ScrollGallery step={4}>
         {imageList.map(item => {
-          return <Items images={item} key={item[0].name} />;
+          return <DesignImage images={item} key={item[0].name} />;
         })}
       </ScrollGallery>
 

@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import { Typography } from '@material-ui/core'
-import { AnimatePresence } from 'framer-motion'
 import { motion } from 'framer-motion'
 import { css } from 'styled-components'
-import { Link, useScrollRestoration } from 'gatsby'
+import { Link } from 'gatsby'
 
 const Project = ({ pageContext }) => {
   // const scrollRes = useScrollRestoration('project-page')

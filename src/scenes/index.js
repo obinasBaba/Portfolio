@@ -8,7 +8,11 @@ import Projects from './HomePage/Projects'
 import Experiments from './HomePage/Experiments'
 
 const HomePageContainer = styled.div`
-  
+  //width: 5400px;
+
+  //margin-left: auto;
+
+
   ${ spacing( 'pt', 20 ) };
   
   ${ largeUp( css`
@@ -18,6 +22,8 @@ const HomePageContainer = styled.div`
 
 let StyledSectionWrapper = styled( Container ) `
   max-width: 1600px;
+  margin: 0 auto;
+
 `
 
 const SectionWrapper = ( {children} ) => {
@@ -43,7 +49,10 @@ const HomePage = (  ) => {
         <Projects/>
       </SectionWrapper>
 
-      <Experiments />
+      <SectionWrapper >
+        <Experiments />
+      </SectionWrapper>
+
 
     </HomePageContainer>
   )

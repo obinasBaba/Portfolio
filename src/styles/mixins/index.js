@@ -71,17 +71,17 @@ export const spacing = (key, value) => {
       propKey = 'padding'
       break
     case 'ph':
-      propKey = 'padding'
       temp = value * 10
       return css`
-        ${propKey}: 0 calc(${temp}px * var(--indent));
+        padding-right: calc(${temp}px * var(--indent));
+        padding-left: calc(${temp}px * var(--indent));
       `
 
     case 'pv':
-      propKey = 'padding'
       temp = value * 10;
       return css`
-        ${propKey}: calc(${temp}px * var(--indent)) 0;
+        padding-top: calc(${temp}px * var(--indent));
+        padding-bottom: calc(${temp}px * var(--indent));
       `
 
     case 'br':
