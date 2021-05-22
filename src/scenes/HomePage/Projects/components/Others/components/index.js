@@ -1,17 +1,20 @@
 import styled, { css } from 'styled-components'
 import { Typography } from '@material-ui/core'
 import {
-  gridColWidth, gridify, heightWidth,
+  gridColWidth,
+  gridify,
+  heightWidth,
   largeUp,
-  mediumUp, spacing,
+  mediumUp,
+  spacing,
 } from '../../../../../../styles/mixins'
 import { motion } from 'framer-motion'
-
 
 export const OthersContainer = styled(motion.div)`
   ${gridify()};
   ${spacing('mt', 14)};
   align-items: center;
+  background-color: ${ ({theme}) => theme.palette.primary.main };
 `
 
 

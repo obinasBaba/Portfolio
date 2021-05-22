@@ -3,12 +3,11 @@ import { useExperimentAssets } from '../../../../../hooks/queries/useExperimentA
 import Item from './Item'
 import styled, { css } from 'styled-components'
 import { mediumUp } from '../../../../../styles/mixins'
-import ScrollGallery
-  from '../../../../../components/ScrollGallery/ScrollGallery'
 
 export const Track = styled.section`
   width: 100%;
   position: relative;
+  //overflow: hidden;
   
   display: flex;
   align-items: center;
@@ -23,8 +22,7 @@ const ExperimentTrack = () => {
   const { exp1, exp2, exp3, exp4 } = useExperimentAssets()
 
   return (
-
-
+    
     <Track>
 
       {[exp1, exp2, exp3, exp4].map(({ publicURL }, index) => (

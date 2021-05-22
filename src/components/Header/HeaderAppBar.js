@@ -38,13 +38,16 @@ const NavContainer = styled.div`
 
   &::after {
     content: '';
+    display: ${ ( {isGradient} ) => isGradient ? 'block' : 'none'  };
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     ${transition};
-    background: linear-gradient(0deg, rgba(2, 2, 30, 0.0001) 0%, #02021e 98%);
+    background: ${ ({ isWhite }) => isWhite ?
+            'linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 98%)' 
+            : 'linear-gradient(0deg, rgba(2, 2, 30, 0.0001) 0%, #02021e 98%)' } ;  
   }
 
   ${mediumUp(css`
@@ -67,12 +70,14 @@ const ToolBarWrapper = styled.nav`
   }
 `
 
-function NavBar(props) {
+function HeaderAppBar({  isGradient, isWhite }) {
+
+  console.log('isGradient: ', isGradient)
 
   return (
-    <React.Fragment>
-      <HideOnScroll {...props}>
-        <NavContainer>
+    <>
+      <HideOnScroll >
+        <NavContainer isGradient={isGradient} isWhite={isWhite} >
           <ToolBarWrapper>
 
             <LogoAndSocial />
@@ -82,8 +87,8 @@ function NavBar(props) {
           </ToolBarWrapper>
         </NavContainer>
       </HideOnScroll>
-    </React.Fragment>
+    </>
   )
 }
 
-export default NavBar
+export default HeaderAppBar

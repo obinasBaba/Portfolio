@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -19,10 +19,16 @@ import {
   Page,
   VersionNo,
 } from '../components/layoutComponents'
+import {HeaderGradientContext} from '../contexts'
 
 
 
 export default function TopLayout({ children }) {
+
+  const [isHeaderGradient, setIHeaderGradient] = useState(true);
+
+  console.log(isHeaderGradient, ': headerG')
+
   return (
     <React.Fragment>
       <Helmet>
@@ -32,6 +38,9 @@ export default function TopLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;500;900&family=Poppins:wght@100;900&display=swap"
           rel="stylesheet"
         />
+        <link rel="preconnect" href="https://fonts.gstatic.com"/>
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap"
+              rel="stylesheet"/>
       </Helmet>
 
       <StyledThemeProvider theme={theme}>
@@ -39,30 +48,35 @@ export default function TopLayout({ children }) {
           <GlobalStyle />
           <CssBaseline />
 
-          <Page>
-            <Header />
+          <HeaderGradientContext.Provider value={{ setIHeaderGradient }} >
 
-            <Main
-                        animate='animate'
-                        initial='initial'
-                        exit='exit'
-            >
+            <Page>
+              <Header isGradient={isHeaderGradient} />
 
-              {/*<AnimatePresence exitBeforeEnter={true}>*/}
+              <Main
+                animate='animate'
+                initial='initial'
+                exit='exit'
+              >
+
+                {/*<AnimatePresence exitBeforeEnter={true}>*/}
                 { children }
-              {/*</AnimatePresence>*/}
+                {/*</AnimatePresence>*/}
 
-            </Main>
+              </Main>
 
-            <footer>
-              <Footer />
-            </footer>
+              <footer  >
+                <Footer />
+              </footer>
 
-            <VersionNo>
-              v0.1
-            </VersionNo>
+              <VersionNo>
+                v0.1
+              </VersionNo>
 
-          </Page>
+            </Page>
+
+          </HeaderGradientContext.Provider>
+
         </ThemeProvider>
       </StyledThemeProvider>
     </React.Fragment>

@@ -50,7 +50,8 @@ export const Page = styled.div`
   flex-flow: column;
   overflow: hidden;
   min-height: 100vh;
-  align-items: end;
+  flex-direction: column;
+  
 
   &::after{
     content: '';

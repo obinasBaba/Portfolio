@@ -6,6 +6,7 @@ import styled, { css } from 'styled-components'
 import { Container } from '@material-ui/core'
 import Projects from './HomePage/Projects'
 import Experiments from './HomePage/Experiments'
+import MailUs from './MailUs'
 
 const HomePageContainer = styled.div`
   //width: 5400px;
@@ -51,6 +52,10 @@ const HomePage = (  ) => {
 
       <SectionWrapper >
         <Experiments />
+      </SectionWrapper>
+
+      <SectionWrapper >
+        <MailUs />
       </SectionWrapper>
 
 

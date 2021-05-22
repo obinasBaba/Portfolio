@@ -1,8 +1,3 @@
-import React from 'react'
-import NavBar from './NavBar'
+import HeaderAppBar from './HeaderAppBar';
 
-const Header = ({ isGradient }) => {
-  return <NavBar isHeader={isGradient} />
-}
-
-export default Header
+export default HeaderAppBar;

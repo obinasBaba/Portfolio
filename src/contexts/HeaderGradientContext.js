@@ -1,5 +1,5 @@
 import React from 'react';
 
-const HeaderGradientContext = React.createContext( 'defValue' );
+const HeaderGradientContext = React.createContext( {} );
 
 export default HeaderGradientContext;

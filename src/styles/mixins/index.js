@@ -138,6 +138,16 @@ export const mediumUp = content => {
   `
 }
 
+export const mediumDown = content => {
+  return css`
+    ${({ theme }) => css`
+      ${theme.breakpoints.down('md')} {
+        ${content}
+      }
+    `}
+  `
+}
+
 export const largeUp = content => {
   return css`
     ${({ theme }) => css`

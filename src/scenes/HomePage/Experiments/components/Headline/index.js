@@ -7,14 +7,14 @@ const TitleContainer = styled.header`
   text-align: center;
   margin: 0 auto;
   width: min-content;
-  ${spacing('mb', 10)};
+  ${ ({mb}) => mb ? spacing('mb', mb) : spacing('mb', 0) };
 `
 
 
 
-const Headline = ( {title, subtitle} ) => {
+const Headline = ( {title, subtitle, mb} ) => {
   return (
-    <TitleContainer >
+    <TitleContainer mb={mb} >
       <GradientText variant='h1' noWrap={true} >
         {title}
       </GradientText>

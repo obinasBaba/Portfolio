@@ -10,7 +10,8 @@ export const ExperimentItem = styled.div`
   ${spacing('pb', 3)};
 
   background: rgba(2, 2, 30, 0.3);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  box-shadow:  0 10px 32px 0 rgba(31, 38, 135, 0.37);
+  overflow: hidden;
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
   flex: 1 1 50%;

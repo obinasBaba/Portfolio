@@ -1,6 +1,5 @@
 import React from 'react'
 import useProjectsAssets from '../../../hooks/queries/useProjectsAssets'
-import { Typography } from '@material-ui/core'
 import ProjectList from './components/List'
 import Others from './components/Others'
 import Headline from '../Experiments/components/Headline'
@@ -12,7 +11,7 @@ const Projects = () => {
 
   return (
     <>
-      <Headline title={'projects'} subtitle={'Case-Studs'} />
+      <Headline title={'Projects'} subtitle={'Case-Studs'} />
 
       <ProjectList {...listAssets} />
       <Others {...othersAssets} />

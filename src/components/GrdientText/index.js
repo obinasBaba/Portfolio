@@ -9,7 +9,7 @@ export const GradientText = styled(Typography)`
   -webkit-box-decoration-break: clone;
 
   background-image: linear-gradient(
-          to right,
+          137.81deg,
           #e7a28f 3.52%,
           #f9d6ac 41.89%,
           #fbfefc 96.77%
