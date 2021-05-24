@@ -51,7 +51,7 @@ const ContactBtn = () => {
       <ContactLink>
         <Typography style={{
           fontFamily: 'var(--sofia-soft)',
-          // fontSize: '18px',
+          fontSize: '18px',
           fontWeight: '300',
         }} >
          Contact

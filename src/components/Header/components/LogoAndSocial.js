@@ -1,10 +1,10 @@
 import React from 'react'
 import { Divider } from '@material-ui/core'
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/all'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import useHeaderAssets from '../../../hooks/queries/useHeaderAssets'
 import { Link } from 'gatsby'
-import { heightWidth, spacing } from '../../../styles/mixins'
+import {heightWidth, mediumUp, spacing} from '../../../styles/mixins'
 import { ReactSVG } from 'react-svg'
 
 const Logo = styled.div`
@@ -18,6 +18,11 @@ const Logo = styled.div`
 
   & > :first-child {
     ${heightWidth('max-width', 6)};
+    
+    ${ mediumUp( css`
+      ${heightWidth('max-width', 5)};
+
+    `) };
 
     & svg {
     }
@@ -25,6 +30,11 @@ const Logo = styled.div`
 
   & > :nth-child(n + 2) {
     ${heightWidth('font-size', 2)};
+
+    ${ mediumUp( css`
+      ${heightWidth('font-size', 1.7)};
+
+    `) };
   }
 `
 

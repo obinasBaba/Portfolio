@@ -55,7 +55,7 @@ const MailUsContainer = styled.div`
     right: 0;
     z-index: -2;
     background: rgba(55, 25, 202, 0);
-    backdrop-filter: blur(.6px);
+    backdrop-filter: blur(.7px);
     -webkit-backdrop-filter: blur(4px);
   }
 `
@@ -123,7 +123,7 @@ const MailUs = () => {
 
       <TitleWrapper>
         <Typography variant="h1">
-          Have something <br /> In mind?{' '}
+          Have something <br /> in mind ?
         </Typography>
       </TitleWrapper>
 

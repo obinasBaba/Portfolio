@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import useScrollTrigger from '@material-ui/core/useScrollTrigger'
 import Slide from '@material-ui/core/Slide'
 import styled, { css } from 'styled-components'

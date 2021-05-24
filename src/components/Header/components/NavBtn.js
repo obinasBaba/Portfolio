@@ -53,7 +53,7 @@ const Bars = styled.span`
     transform: translateX(-50%);
     display: block;
     border-radius: 3px;
-    height: 1px;
+    height: 1.2px;
     width: 70%;
     background: #fff;
     transition: all 0.3s;

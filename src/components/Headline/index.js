@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { GradientText } from '../../../../../components/GrdientText'
-import { spacing } from '../../../../../styles/mixins'
+import { GradientText } from '../GrdientText'
+import { spacing } from '../../styles/mixins'
 
 const TitleContainer = styled.header`
   text-align: center;

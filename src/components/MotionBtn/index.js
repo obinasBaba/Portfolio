@@ -16,16 +16,8 @@ const Btn = styled(motion.div)`
   font-weight: 300;
   transition: all 0.3s;
   padding: 0.7rem;
+  z-index: 2;
   ${ spacing( 'margin', 1 ) }
-  
-
-  & > :first-child {
-    ${spacing('mr', 2)};
-  }
-
-  & > :nth-child(2n) {
-    //margin-top: 4.5px;
-  }
 
   &::before {
     content: '';
@@ -35,14 +27,21 @@ const Btn = styled(motion.div)`
     background: #e7a28f;
     border-radius: 100%;
     
-    
     ${ spacing('left', -1) };
-    
+
     width: 50px;
     height: 50px;
     transition: all 0.3s ease;
   }
+  
+  & > :first-child {
+    ${spacing('mr', 1.5)};
+  }
 
+  & > :nth-child(2n) {
+    //margin-top: 4.5px;
+  }
+  
   &:hover {
     transform: translateX(15px);
 

@@ -27,7 +27,6 @@ export default function TopLayout({ children }) {
 
   const [isHeaderGradient, setIHeaderGradient] = useState(true);
 
-  console.log(isHeaderGradient, ': headerG')
 
   return (
     <React.Fragment>

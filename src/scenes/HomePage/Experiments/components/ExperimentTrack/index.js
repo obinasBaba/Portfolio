@@ -7,8 +7,6 @@ import { mediumUp } from '../../../../../styles/mixins'
 export const Track = styled.section`
   width: 100%;
   position: relative;
-  //overflow: hidden;
-  
   display: flex;
   align-items: center;
   flex-flow: wrap;
@@ -16,6 +14,8 @@ export const Track = styled.section`
   ${mediumUp(css`
     flex-flow: nowrap;
   `)};
+  
+  
 `
 
 const ExperimentTrack = () => {

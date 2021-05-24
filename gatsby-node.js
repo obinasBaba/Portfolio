@@ -9,11 +9,14 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const projects = require('./projects')
 
-  projects.forEach((projects, index) => {
+  projects.forEach((project, index) => {
+
+    const nextProj = ( (index + 1) <= projects.length ) ? projects[index + 1] : projects[0]
+
     createPage({
-      path: `/portfolio/${projects.slug}/`,
+      path: `/portfolio/${project.slug}/`,
       component: require.resolve( `./src/templates/Project` ),
-      context: { index},
+      context: { project, nextProj},
     });
   })
 

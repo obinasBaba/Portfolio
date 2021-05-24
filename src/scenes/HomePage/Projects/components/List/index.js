@@ -14,6 +14,7 @@ const ProjectGrid = styled.div`
 
 const ProjectList = ({
   preview1,
+  preview2,
   preview3,
   css3,
   postgres,
@@ -56,7 +57,7 @@ const ProjectList = ({
       id: 2,
       link: '/portfolio/project-3',
       linkTitle: 'coming soon',
-      preview: preview1,
+      preview: preview2,
       tags: 'Analytics, UX, UI, Front-end',
       title: 'smart clock which ease your life',
       alt: 'Glance Clock — First Smart Clock',
@@ -79,7 +80,7 @@ const ProjectList = ({
 
               <ProjectImage reversed={reversed} link={link} alt={alt} title={title} preview={preview} />
 
-              <ProjectDescription  reversed={reversed} title={title} tags={tags} />
+              <ProjectDescription link={link}  reversed={reversed} title={title} tags={tags} />
 
               <StackUsed items={partners} reversed={reversed} />
 

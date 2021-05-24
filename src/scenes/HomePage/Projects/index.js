@@ -2,7 +2,7 @@ import React from 'react'
 import useProjectsAssets from '../../../hooks/queries/useProjectsAssets'
 import ProjectList from './components/List'
 import Others from './components/Others'
-import Headline from '../Experiments/components/Headline'
+import Headline from '../../../components/Headline'
 
 const Projects = () => {
   const { auth, kklLuzern, udemy, ...listAssets } = useProjectsAssets()

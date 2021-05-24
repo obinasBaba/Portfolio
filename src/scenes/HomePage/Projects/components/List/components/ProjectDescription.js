@@ -54,7 +54,7 @@ const Tags = styled(Typography)`
 `
 
 
-const ProjectDescription = ( {children, reversed, tags, title,} ) => {
+const ProjectDescription = ( {link, reversed, tags, title,} ) => {
 
 
   return (
@@ -82,7 +82,7 @@ const ProjectDescription = ( {children, reversed, tags, title,} ) => {
           </Link>
         </motion.div>
 
-        <MotionBtn text="Case-Study" />
+        <MotionBtn text="Case-Study" to={link} />
       </ProjectDesc>
 
   )

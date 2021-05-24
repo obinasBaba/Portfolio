@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import Headline from './components/Headline'
 import { spacing } from '../../../styles/mixins'
 import ExperimentTrack from './components/ExperimentTrack'
+import Headline from '../../../components/Headline'
 
 const ExperimentsContainer = styled.div`
 

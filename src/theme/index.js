@@ -9,7 +9,7 @@ let theme = createMuiTheme({
       md: 768,
       lg: 1025,
       xl: 1200,
-      xxl: 1900,
+      xxl: 1600,
     },
   },
 
