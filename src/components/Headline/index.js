@@ -15,7 +15,7 @@ const TitleContainer = styled.header`
 const Headline = ( {title, subtitle, mb} ) => {
   return (
     <TitleContainer mb={mb} >
-      <GradientText variant='h1' noWrap={true} >
+      <GradientText variant='h1' noWrap={true}  >
         {title}
       </GradientText>
 

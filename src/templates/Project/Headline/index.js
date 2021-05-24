@@ -58,7 +58,7 @@ const Headline = ({ subTitle, title, about, media }) => {
         </li>
       </Role>
 
-      <HeadlineTxt title={title} subtitle={subTitle} mb={6} />
+      <HeadlineTxt  title={title} subtitle={subTitle} mb={6} />
 
       <img src={preview} alt="project pic" />
     </HeadlineContainer>

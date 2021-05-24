@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components'
 import { mediumUp, spacing } from '../../styles/mixins'
 import { Container } from '@material-ui/core'
 import Intro from './Intro'
+import AnalysisPreparation from './AnalysisPreparation'
 
 const ProjectContainer = styled.div`
   ${spacing('pt', 27.4)};
@@ -14,7 +15,7 @@ const ProjectContainer = styled.div`
 `
 
 const ContentSectionWrapper = styled( Container )`
-  background-color: white;
+  background-color: #f3f3f3;
   max-width: 1600px;
   margin: 0 auto;
 
@@ -35,6 +36,9 @@ const Project = ({ pageContext }) => {
                              fixed={false}
                              component={'section'} >
         <Intro/>
+
+        <AnalysisPreparation />
+
 
       </ContentSectionWrapper>
 

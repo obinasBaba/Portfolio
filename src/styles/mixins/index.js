@@ -54,6 +54,12 @@ export const spacing = (key, value) => {
     case 'm':
       propKey = 'margin'
       break
+  case 'mv':
+    temp = value * 10;
+    return css`
+        margin-top: calc(${temp}px * var(--indent));
+        margin-bottom: calc(${temp}px * var(--indent));
+      `
 
     case 'pt':
       propKey = 'padding-top'
@@ -99,6 +105,12 @@ export const spacing = (key, value) => {
 export const heightWidth = (key, value) => {
   return css`
     ${key}: calc(${value * 10}px * var(--size));
+  `
+}
+
+export const text= ( value ) => {
+  return css`
+    font-size: calc(${value * 10}px * var(--size));;
   `
 }
 

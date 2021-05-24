@@ -19,10 +19,6 @@ export const GlobalStyle = createGlobalStyle`
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
 
-    --sofia-soft: 'Sofia Pro Soft', sans-serif;
-    --sofia-pro: 'Sofia Pro', sans-serif;
-    --gramatika: 'Gramatika', sans-serif;
-
   }
 
   a {

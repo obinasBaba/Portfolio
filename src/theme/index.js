@@ -20,8 +20,8 @@ let theme = createMuiTheme({
 
     MuiContainer: {
       root: {
-        paddingLeft: '1.5rem',
-        paddingRight: '1.5rem',
+        // paddingLeft: '1.5rem',
+        // paddingRight: '1.5rem',
 
       },
     },
@@ -31,7 +31,7 @@ let theme = createMuiTheme({
     fontFamily: ['Sofia Pro, sans-serif'].join(','),
 
     h1: {
-      fontFamily: 'Poppins, sans-serif',
+      fontFamily: 'var(--gramatika)',
       fontWeight: 'bolder',
       // fontSize: '3.3rem',
     },

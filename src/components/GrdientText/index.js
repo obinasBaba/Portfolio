@@ -14,4 +14,8 @@ export const GradientText = styled(Typography)`
           #f9d6ac 41.89%,
           #fbfefc 96.77%
   );
+
+  //font-family: var(--gramatika);
+  //font-weight: 900;
+
 `
