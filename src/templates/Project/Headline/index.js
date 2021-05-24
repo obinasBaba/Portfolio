@@ -4,63 +4,48 @@ import styled, { css } from 'styled-components'
 import HeadlineTxt from '../../../components/Headline'
 import { mediumUp, spacing } from '../../../styles/mixins'
 import preview from './preview.jpg'
+import {A, ImgGradient, Q, Role} from './Components'
 
 const HeadlineContainer = styled(Container)`
   display: flex;
   flex-flow: column;
 
   img {
+    width: 100%;
     max-width: 100%;
     max-height: 600px;
-    width: 100%;
     object-fit: cover;
     margin: 0 auto;
   }
 `
 
-const Role = styled.ul`
-  display: flex;
-  align-items: center;
-  text-align: center;
-  flex-flow: column;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
 
-  ${spacing('mb', 5)};
-
-  ${mediumUp(
-    css`
-      flex-flow: row;
-      justify-content: space-evenly;
-    `
-  )};
-`
 
 const Headline = ({ subTitle, title, about, media }) => {
+  const About = [
+    { q: 'Role ', a: ' FrontEnd Developer' },
+    { q: 'Context ', a: ' Design' },
+    { q: 'Period ', a: ' End 2020' },
+  ]
+
   return (
-    <HeadlineContainer maxWidth={'xl'}  >
+    <HeadlineContainer maxWidth={'xl'}>
       <Role>
-        <li>
-          <Typography align="center">
-            Role : <b> FrontEnd developer </b>
-          </Typography>
-        </li>
-        <li>
-          <Typography align="center">
-            Context : <b> Design </b>
-          </Typography>
-        </li>
-        <li>
-          <Typography align="center">
-            Period : <b> End 2019 </b>
-          </Typography>
-        </li>
+        {About.map(({ q, a }) => (
+          <li>
+            <Q > {q} : </Q>
+            <A> { a} </A>
+          </li>
+        ))}
       </Role>
 
-      <HeadlineTxt  title={title} subtitle={subTitle} mb={6} />
+      <HeadlineTxt title={title} subtitle={subTitle} mb={7} />
 
-      <img src={preview} alt="project pic" />
+      <ImgGradient>
+        <img src={preview} alt="project pic" />
+        <div className="overlay"/>
+      </ImgGradient>
+
     </HeadlineContainer>
   )
 }

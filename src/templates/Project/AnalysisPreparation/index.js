@@ -1,14 +1,12 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Container, Divider, Typography } from '@material-ui/core'
-import Headline from '../../../components/Headline'
+import { Container } from '@material-ui/core'
 import { mediumUp, spacing } from '../../../styles/mixins'
-import wireFrame from './wireframe.jpg'
+import wireFrame from './components/wireframe.jpg'
 import Excerpts from './components/Excerpts'
 import Title from './components/Title'
 
 const AnalysisContainer = styled(Container)`
-  //border: thin solid red;
   color: ${({ theme }) => theme.palette.primary.main};
   display: flex;
   flex-flow: column;

@@ -5,6 +5,8 @@ import { mediumUp, spacing } from '../../styles/mixins'
 import { Container } from '@material-ui/core'
 import Intro from './Intro'
 import AnalysisPreparation from './AnalysisPreparation'
+import ColorPalette from './Colors'
+import NextProject from './NextProject'
 
 const ProjectContainer = styled.div`
   ${spacing('pt', 27.4)};
@@ -19,9 +21,8 @@ const ContentSectionWrapper = styled( Container )`
   max-width: 1600px;
   margin: 0 auto;
 
-  ${spacing('mt', -16)};
-  ${spacing('pt', 30)};
-  ${spacing('pb', 15)};
+  ${spacing('mt', -18)};
+  ${spacing('pt', 35)};
 `
 
 const Project = ({ pageContext }) => {
@@ -38,6 +39,11 @@ const Project = ({ pageContext }) => {
         <Intro/>
 
         <AnalysisPreparation />
+
+        <ColorPalette/>
+
+        <NextProject/>
+
 
 
       </ContentSectionWrapper>
