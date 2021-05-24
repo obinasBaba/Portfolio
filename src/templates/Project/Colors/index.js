@@ -7,8 +7,11 @@ const ColorsPaletteFlex = styled.div `
   width: 100%;
   display: flex;
   flex-flow: wrap;
+  z-index: 11;
   justify-content: space-evenly;
   ${ spacing('mt', 17) };
+  ${spacing('pb', 14)};
+
   color: ${ ({theme}) => theme.palette.primary.main };
 `
 
@@ -57,7 +60,7 @@ const ColorPalette = ({ colors, themeColor }) => {
   return (
     <ColorsPaletteFlex maxWidth={false} fixed={true}  >
       {tempColors.map(({ name, hex }) => (
-        <ColorBox themeColor='rgba(255,66,0,0.84)' >
+        <ColorBox themeColor='rgba(255,66,0,0.84)' key={hex} >
           <Color hex={hex} />
           <Typography variant="subtitle2" style={{
             letterSpacing: 1,

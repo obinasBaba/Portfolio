@@ -37,6 +37,8 @@ const Flex = styled.div`
 const BrandingTxt = styled.div`
   //border: thin solid greenyellow;
   flex: 1.3;
+  background-color: #f3f3f3;
+
 `
 
 const WireFrame = styled.div`

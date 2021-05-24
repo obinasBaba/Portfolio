@@ -33,7 +33,6 @@ const NextProjectContainer = styled(Container)`
     backdrop-filter: blur(5px);
   }
 
-  ${spacing('mt', 20)};
   ${spacing('pv', 20)};
   ${spacing('pt', 10)};
   ${spacing('ph', 10)};

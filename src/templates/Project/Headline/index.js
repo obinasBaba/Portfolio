@@ -32,7 +32,7 @@ const Headline = ({ subTitle, title, about, media }) => {
     <HeadlineContainer maxWidth={'xl'}>
       <Role>
         {About.map(({ q, a }) => (
-          <li>
+          <li key={q}>
             <Q > {q} : </Q>
             <A> { a} </A>
           </li>

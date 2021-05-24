@@ -72,7 +72,7 @@ export const Main = styled( motion.main )`
   position: relative;
 
   &::after, &::before {
-    content: '';
+    //content: '';
     position: absolute;
     top: 0;
     bottom: 0;
