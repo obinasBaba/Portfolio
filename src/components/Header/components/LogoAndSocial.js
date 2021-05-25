@@ -29,10 +29,10 @@ const Logo = styled.div`
   }
 
   & > :nth-child(n + 2) {
-    ${heightWidth('font-size', 2)};
+    ${heightWidth('abyssopelagic-size', 2)};
 
     ${ mediumUp( css`
-      ${heightWidth('font-size', 1.7)};
+      ${heightWidth('abyssopelagic-size', 1.7)};
 
     `) };
   }

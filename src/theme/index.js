@@ -31,7 +31,7 @@ let theme = createMuiTheme({
     fontFamily: ['Sofia Pro, sans-serif'].join(','),
 
     h1: {
-      fontFamily: 'var(--gramatika)',
+      fontFamily: 'Poppins Black',
       fontWeight: 'bolder',
       // fontSize: '3.3rem',
     },

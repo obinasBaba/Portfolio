@@ -12,6 +12,10 @@ export const responsiveVar = css`
     --sofia-soft: 'Sofia Pro Soft', sans-serif;
     --sofia-pro: 'Sofia Pro', sans-serif;
     --gramatika: 'Gramatika', sans-serif;
+    --Poppins: 'Gramatika', sans-serif;
+    --abyss: 'abyssopelagic', sans-serif;
+    
+    --thin: thin solid crimson;
  
 
     @media screen and (max-width: 1025px) {

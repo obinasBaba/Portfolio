@@ -5,6 +5,7 @@ import HeadlineTxt from '../../../components/Headline'
 import { mediumUp, spacing } from '../../../styles/mixins'
 import preview from './preview.jpg'
 import {A, ImgGradient, Q, Role} from './Components'
+import {GradientText} from '../../../components/GrdientText'
 
 const HeadlineContainer = styled(Container)`
   display: flex;
@@ -19,7 +20,24 @@ const HeadlineContainer = styled(Container)`
   }
 `
 
+const Title = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
 
+  ${ spacing( 'mb', 7 ) }
+  
+  & > :first-child{
+    line-height: 1.29;
+  }
+  
+  & > :last-child{
+    margin-left: auto;
+    margin-top: -5px;
+  }
+`
 
 const Headline = ({ subTitle, title, about, media }) => {
   const About = [
@@ -39,7 +57,10 @@ const Headline = ({ subTitle, title, about, media }) => {
         ))}
       </Role>
 
-      <HeadlineTxt title={title} subtitle={subTitle} mb={7} />
+      <Title>
+        <GradientText variant='h1'>{title}</GradientText>
+        <Typography >{subTitle}</Typography>
+      </Title>
 
       <ImgGradient>
         <img src={preview} alt="project pic" />

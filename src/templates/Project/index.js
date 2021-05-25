@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import Headline from './Headline'
 import styled, { css } from 'styled-components'
 import { mediumUp, spacing } from '../../styles/mixins'
@@ -7,9 +7,11 @@ import Intro from './Intro'
 import AnalysisPreparation from './AnalysisPreparation'
 import ColorPalette from './Colors'
 import NextProject from './NextProject'
-import {useHeaderIsWhite} from '../../hooks/useHeaderIsWhite'
+import { useHeaderIsWhite } from '../../hooks/useHeaderIsWhite'
+import FontUsed from './FontUsed'
 
 const ProjectContainer = styled.div`
+  max-width: 1600px;
   ${spacing('pt', 27.4)};
 
   ${mediumUp(css`
@@ -17,7 +19,7 @@ const ProjectContainer = styled.div`
   `)};
 `
 
-const ContentSectionWrapper = styled( Container )`
+const ContentSectionWrapper = styled(Container)`
   position: relative;
   background-color: #f3f3f3;
   max-width: 1600px;
@@ -26,21 +28,21 @@ const ContentSectionWrapper = styled( Container )`
 
   ${spacing('mt', -18)};
   ${spacing('pt', 35)};
-  
-  
-  .line{
+  ${spacing('pb', 15)};
+
+  .line {
     position: absolute;
     width: 1px;
     background-color: black;
-    opacity: .04;
+    opacity: 0.04;
     top: 0;
     bottom: 0;
     left: 50%;
     z-index: -1;
-
   }
 
-  &::before, &::after{
+  &::before,
+  &::after {
     content: '';
     font-size: 10rem;
     position: absolute;
@@ -51,48 +53,48 @@ const ContentSectionWrapper = styled( Container )`
     right: 20%;
     background-color: black;
     z-index: -1;
-    opacity: .04;
+    opacity: 0.04;
   }
 
-  &::after{
+  &::after {
     left: 20%;
   }
-  
-  
 `
 
 const Project = ({ pageContext }) => {
-  const { title, subTitle, about, featured_media } = pageContext.project;
-  const ref = React.useRef( null );
+  const { title, subTitle, about, featured_media } = pageContext.project
+  const ref = React.useRef(null)
 
-  useEffect( () => {
-
-
-  }, [ref] )
+  useEffect(() => {}, [ref])
 
   return (
     <ProjectContainer>
-      <Headline title={title} subTitle={subTitle} about={about} media={featured_media}  />
+      <Headline
+        title={title}
+        subTitle={subTitle}
+        about={about}
+        media={featured_media}
+      />
 
-      <ContentSectionWrapper disableGutters={true}
-                             maxWidth={false}
-                             fixed={false}
-                             component={'section'}
-                             ref={ref}>
+      <ContentSectionWrapper
+        disableGutters={true}
+        maxWidth={false}
+        fixed={false}
+        component={'section'}
+        ref={ref}
+      >
+        <div className="line" />
 
-        <div className="line"/>
-
-        <Intro/>
+        <Intro />
 
         <AnalysisPreparation />
 
-        <ColorPalette/>
+        <ColorPalette />
 
+        <FontUsed />
       </ContentSectionWrapper>
 
-      <NextProject/>
-
-
+      <NextProject />
     </ProjectContainer>
   )
 }

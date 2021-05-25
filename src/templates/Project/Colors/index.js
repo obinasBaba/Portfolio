@@ -10,7 +10,6 @@ const ColorsPaletteFlex = styled.div `
   z-index: 11;
   justify-content: space-evenly;
   ${ spacing('mt', 17) };
-  ${spacing('pb', 14)};
 
   color: ${ ({theme}) => theme.palette.primary.main };
 `

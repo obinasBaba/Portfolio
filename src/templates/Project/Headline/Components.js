@@ -28,12 +28,13 @@ export const Role = styled.ul`
 `
 
 export const Q = styled(Typography)`
-  font-family: var(--sofia-pro);
+  //font-family: var(--sofia-pro);
+  color: #d94b19;
   line-height: 120%;
   font-weight: 500;
   max-width: 130px;
   letter-spacing: 1px;
-  
+
 
 `
 
@@ -50,7 +51,7 @@ export const ImgGradient = styled.div`
   position: relative;
 
   .overlay {
-    background-image: linear-gradient(to bottom, rgba(2,2,30,0.76) -50%, rgba(2, 2, 30, 0));
+    background-image: linear-gradient(to bottom, rgb(2,2,30) -50%, rgba(2, 2, 30, 0) 80%);
     z-index: 11;
     position: absolute;
     top: 0;
