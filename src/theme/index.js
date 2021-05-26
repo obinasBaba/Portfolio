@@ -33,6 +33,7 @@ let theme = createMuiTheme({
     h1: {
       fontFamily: 'Poppins Black',
       fontWeight: 'bolder',
+      lineHeight: '1.27'
       // fontSize: '3.3rem',
     },
 

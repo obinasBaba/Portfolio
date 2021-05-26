@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { Container, Typography } from '@material-ui/core'
 import { heightWidth, largeUp, spacing } from '../../../../styles/mixins'
+import Headline from '../../../../components/Headline'
 
 const TitleContainer = styled(Container)`
   display: flex;
@@ -10,7 +11,7 @@ const TitleContainer = styled(Container)`
 /*@include hl-margin(bottom, 100px);
 @include hl-padding(top, 75px);*/
   
-  ${ spacing( 'mb', 10 )};
+  ${ spacing( 'mb', 11 )};
   ${ spacing( 'pt', 7.5 ) };
 `
 
@@ -95,12 +96,14 @@ const Title = ({ dribbleRed, circledText }) => {
         />
       </LogoLink>
 
-      <Typography variant={'h1'} style={{
+    {/*  <Typography variant={'h1'} style={{
         letterSpacing: '-2px',
-        lineHeight: '1.25em',
 
 
-      }}>Recent Works</Typography>
+      }}>Recent Works</Typography>*/}
+
+      <Headline title='Designs' subtitle='Recent Designs' />
+
     </TitleContainer>
   )
 }

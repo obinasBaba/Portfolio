@@ -7,7 +7,6 @@ import Intro from './Intro'
 import AnalysisPreparation from './AnalysisPreparation'
 import ColorPalette from './Colors'
 import NextProject from './NextProject'
-import { useHeaderIsWhite } from '../../hooks/useHeaderIsWhite'
 import FontUsed from './FontUsed'
 
 const ProjectContainer = styled.div`

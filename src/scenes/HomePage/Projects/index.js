@@ -11,8 +11,7 @@ const Projects = () => {
 
   return (
     <>
-      <Headline title={'Projects'} subtitle={'Case-Studs'} />
-
+      <Headline title={'Projects'} subtitle={'Case-Studies'} />
       <ProjectList {...listAssets} />
       <Others {...othersAssets} />
     </>

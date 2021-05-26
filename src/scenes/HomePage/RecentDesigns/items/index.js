@@ -9,17 +9,17 @@ const ImageWrapper = styled.div`
   margin-right: calc( 100vw / 64 * 1 );
 
   ////todo-start - figure this out
-  //-webkit-flex-shrink: 0;
-  //-ms-flex-negative: 0;
-  //flex-shrink: 0;
-  //width: 100%;
-  //height: 100%;
-  //position: relative;
-  //-webkit-transition-property: -webkit-transform;
-  //transition-property: -webkit-transform;
-  //-o-transition-property: transform;
-  //transition-property: transform;
-  //transition-property: transform, -webkit-transform;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  -webkit-transition-property: -webkit-transform;
+  transition-property: -webkit-transform;
+  -o-transition-property: transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
   //todo-end
   
   &.item{

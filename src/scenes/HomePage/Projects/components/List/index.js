@@ -8,7 +8,7 @@ import ProjectDescription from './components/ProjectDescription'
 const ProjectGrid = styled.div`
   ${ gridify };
   
-  ${ spacing( 'mt', 15 ) }
+  ${ spacing( 'mt', 13 ) }
 `
 
 
