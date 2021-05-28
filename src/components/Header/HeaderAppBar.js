@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import useScrollTrigger from '@material-ui/core/useScrollTrigger'
 import Slide from '@material-ui/core/Slide'
-import styled, { css } from 'styled-components'
+import styled, {css} from 'styled-components'
 import LogoAndSocial from './components/LogoAndSocial'
 import NavBtn from './components/NavBtn'
 import ContactBtn from './components/ContactBtn'
-import { mediumUp, spacing } from '../../styles/mixins'
-import { AnimatePresence, motion } from 'framer-motion'
+import {mediumUp, spacing} from '../../styles/mixins'
+import {AnimatePresence, motion} from 'framer-motion'
 import * as PropTypes from 'prop-types'
 import Menu from './components/Menu'
 import {Typography} from '@material-ui/core'
@@ -15,7 +15,7 @@ const transition = css`
   transition: all 0.3s;
 `
 
-function HideOnScroll(props) {
+function HideOnScroll (props) {
   const { children, window } = props
   // Note that you normally won't need to set the window ref as useScrollTrigger
   // will default to window.
@@ -26,7 +26,7 @@ function HideOnScroll(props) {
   })
 
   return (
-    <Slide appear={false} direction="down" in={!trigger} >
+    <Slide appear={false} direction="down" in={!trigger}>
       {children}
     </Slide>
   )
@@ -50,16 +50,20 @@ const NavContainer = styled.div`
     bottom: 0;
     ${transition};
     background: ${({ isWhite }) =>
-      isWhite
-        ? 'linear-gradient(180deg, rgba(243, 243, 243, 1) 0%, rgba(243, 243, 243, 0) 98%)'
-        : 'linear-gradient(0deg, rgba(2, 2, 30, 0.0001) 0%, #02021e 98%)'};
+            isWhite
+                    ? 'linear-gradient(180deg, rgba(243, 243, 243, 1) 0%, rgba(243, 243, 243, 0) 98%)'
+                    : 'linear-gradient(0deg, rgba(2, 2, 30, 0.0001) 0%, #02021e 98%)'};
   }
 
   ${mediumUp(css`
-    ${spacing('pt', 2)};
-    ${spacing('pb', 2)};
-    ${spacing('pl', 8)};
-    ${spacing('pr', 8)};
+    ${spacing('pt',
+            2)};
+    ${spacing('pb',
+            2)};
+    ${spacing('pl',
+            8)};
+    ${spacing('pr',
+            8)};
   `)};
 `
 
@@ -72,28 +76,26 @@ const ToolBarWrapper = styled.nav`
 
 `
 
-
-
-function HeaderAppBar({ isGradient, isWhite }) {
+function HeaderAppBar ({ isGradient, isWhite }) {
   const [menuIsOpen, setMenuIsOpen] = useState(false)
 
   useEffect(() => {
-    if (menuIsOpen) document.body.classList.add('locked')
-    else document.body.classList.remove('locked')
-  }, [menuIsOpen])
+      if ( menuIsOpen ) document.body.classList.add('locked')
+      // else document.body.classList.remove('locked')
+    },
+    [menuIsOpen])
 
-  console.log('rendered')
 
   return (
     <>
 
-      <AnimatePresence >
+      <AnimatePresence>
         {menuIsOpen && <Menu key={menuIsOpen.toString()}
                              toggleMenu={{ setMenuIsOpen, menuIsOpen }} />}
       </AnimatePresence>
 
 
-      <HideOnScroll  >
+      <HideOnScroll>
 
         <NavContainer isGradient={isGradient} isWhite={isWhite}>
 
@@ -102,10 +104,19 @@ function HeaderAppBar({ isGradient, isWhite }) {
             <LogoAndSocial isWhite={isWhite} />
 
             <AnimatePresence>
-              {!menuIsOpen && <ContactBtn isWhite={isWhite} />}
+              {
+                !menuIsOpen && <>
+                  <ContactBtn isWhite={isWhite}
+                              key={menuIsOpen.toString() + 'con'} />
+
+                  <NavBtn isWhite={isWhite}
+                          key={!menuIsOpen.toString() + 'nav'}
+                          toggleMenu={{setMenuIsOpen, menuIsOpen}} />
+                </>
+              }
+
             </AnimatePresence>
 
-            <NavBtn isWhite={isWhite} toggleMenu={{ setMenuIsOpen, menuIsOpen }} />
 
           </ToolBarWrapper>
 

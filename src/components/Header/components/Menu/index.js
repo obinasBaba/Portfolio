@@ -5,8 +5,27 @@ import { motion } from 'framer-motion'
 import NavBtn from '../NavBtn'
 import MotionBtn from '../../../MotionBtn'
 import {largeUp, smallUp, spacing} from '../../../../styles/mixins'
+import {MenuContainer, MenuList, Overlay} from './components'
+import CloseBtn from '../CloseBtn'
 
 const menuVariants = {}
+
+const overlayVariant = {
+  transition: {
+    duration: 0.8,
+    ease: [0.5, 0, 0.75, 0],
+  },
+
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
+}
 
 const menuListVariants = {
   initial: {
@@ -61,71 +80,21 @@ const innerBtnVariant = {
   },
 }
 
-const overlayVariant = {
-  transition: {
-    duration: 0.8,
-    ease: [0.5, 0, 0.75, 0],
-  },
-
+const navBtnVariant = {
   initial: {
     opacity: 0,
   },
   animate: {
     opacity: 1,
+    transition: {
+      delay: .6
+    }
   },
   exit: {
     opacity: 0,
   },
-}
+};
 
-const MenuContainer = styled(motion.div)`
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  z-index: 110;
-  display: flex;
-  justify-content: flex-end;
-`
-
-const MenuList = styled(motion.div)`
-  position: relative;
-  background-color: #02021e;
-  z-index: 130;
-  flex-basis: 80%;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: center;
-  clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
-  ${ spacing('pl', 10) };
-
-${ css`
-    
-    ${ smallUp( css`
-      flex-basis: 62%;
-      
-    ` ) };
-    
-    ${ largeUp( css`
-      flex-basis: 53%;
-    ` ) }
-    
-  ` };
-`
-
-const Overlay = styled(motion.div)`
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  z-index: 120;
-
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px);
-`
 
 const Menu = ({ toggleMenu: { setMenuIsOpen, menuIsOpen } }) => {
   return (
@@ -134,7 +103,16 @@ const Menu = ({ toggleMenu: { setMenuIsOpen, menuIsOpen } }) => {
       initial="initial"
       animate="animate"
       exit="exit"
+
+      onAnimationComplete={(t) => {
+        if ( t === 'exit' )
+          document.body.classList.remove('locked')
+      }}
     >
+
+      <motion.div
+      />
+
       <Overlay
         variants={overlayVariant}
         transition={overlayVariant.transition}
@@ -156,7 +134,11 @@ const Menu = ({ toggleMenu: { setMenuIsOpen, menuIsOpen } }) => {
           )
         )}
 
-        <NavBtn toggleMenu={{ setMenuIsOpen, menuIsOpen }} pos="absolute" />
+        {/*<NavBtn toggleMenu={{ setMenuIsOpen, menuIsOpen }}
+                variants={navBtnVariant}
+                pos="absolute" />*/}
+
+        <CloseBtn  toggleMenu={{ setMenuIsOpen, menuIsOpen }}/>
 
       </MenuList>
 
