@@ -4,7 +4,7 @@ import { Typography } from '@material-ui/core'
 import MotionBtn from '../../components/MotionBtn'
 import { heightWidth, mediumUp, spacing } from '../../styles/mixins'
 import Logo from './logo.svg'
-import { HeaderGradientContext } from '../../contexts'
+import { HeaderContext } from '../../contexts'
 
 const MailUsContainer = styled.div`
   position: relative;
@@ -81,7 +81,7 @@ const MailUs = () => {
   let elPosition = null
 
   const [backgroundParallax, setBackgroundParallax] = useState(null);
-  const { setIHeaderGradient } = useContext(HeaderGradientContext);
+  const { setIHeaderGradient } = useContext(HeaderContext);
 
 
   const moveBackground = () => {

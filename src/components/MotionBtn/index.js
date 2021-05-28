@@ -53,16 +53,25 @@ const Btn = styled(motion.div)`
   }
 `
 
+const tempVar = {
+  initial: {
+    x: 250,
+  },
+}
+
 const MotionBtn = ({
   text = 'CASE-STUDY',
   arrow = true,
   to = '#',
   fontLarge,
   clr,
+  variants={}
 }) => {
   const controls = useAnimation()
 
   return (
+    // <motion.div variants={variants}>
+
     <Link to={to}>
       <Btn
         arrow={arrow}
@@ -121,6 +130,9 @@ const MotionBtn = ({
         )}
       </Btn>
     </Link>
+
+    // </motion.div>
+
   )
 }
 

@@ -63,7 +63,7 @@ const Headline = ({ subTitle, title, about, media }) => {
       </Title>
 
       <ImgGradient>
-        <img src={preview} alt="project pic" />
+        <img src={preview} alt="project pic" loading='eager' />
         <div className="overlay"/>
       </ImgGradient>
 

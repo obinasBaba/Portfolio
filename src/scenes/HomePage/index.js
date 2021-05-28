@@ -1,10 +1,10 @@
 import React from 'react'
-import Hero from './HomePage/Hero'
-import RecentWorks from './HomePage/RecentDesigns'
-import Projects from './HomePage/Projects'
-import Experiments from './HomePage/Experiments'
-import MailUs from './MailUs'
-import {PageContainer, SectionWrapper} from '../components/Container'
+import Hero from './Hero'
+import RecentWorks from './RecentDesigns'
+import Projects from './Projects'
+import Experiments from './Experiments'
+import MailUs from '../MailUs'
+import {PageContainer, SectionWrapper} from '../../components/Container'
 
 const HomePage = (  ) => {
   return (

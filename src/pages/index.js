@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Typography } from '@material-ui/core'
 import styled from 'styled-components'
-import HomePage from '../scenes'
+import HomePage from '../scenes/HomePage'
 
 const Text = styled(Typography)`
   color: tomato;

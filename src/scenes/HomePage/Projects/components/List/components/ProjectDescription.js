@@ -58,18 +58,12 @@ const ProjectDescription = ( {link, reversed, tags, title,} ) => {
 
 
   return (
-      <ProjectDesc reversed={reversed}
-                   exit={{
-                     opacity: 0,
-                     transition: {
-                       duration: 1,
-                     }
-                   }}
-      >
+      <ProjectDesc reversed={reversed}>
+
         <Tags variant={'subtitle2'}> {tags} </Tags>
 
         <motion.div>
-          <Link to="/">
+          <Link to={link}>
             <Typography
               variant={'h3'}
               style={{

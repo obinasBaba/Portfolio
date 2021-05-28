@@ -12,9 +12,21 @@ const Logo = styled.div`
   fill: white; //todo gradient
   z-index: 50;
   display: flex;
-  ${spacing('gap', 1)}; //todo polifill
   align-items: center;
   justify-content: center;
+  
+  & > :not(:first-child){
+    ${ spacing('ml', 1) };
+  }
+  
+  ${ ({isWhite}) => isWhite ? css`
+    & {
+      color: ${ ({theme}) => theme.palette.primary.main };
+      .logoSvg{
+        fill: ${ ({theme}) => theme.palette.primary.main };
+      }
+    }
+  ` : null };
 
   & > :first-child {
     ${heightWidth('max-width', 6)};
@@ -29,35 +41,37 @@ const Logo = styled.div`
   }
 
   & > :nth-child(n + 2) {
-    ${heightWidth('abyssopelagic-size', 2)};
+    ${heightWidth('font-size', 2)};
 
     ${ mediumUp( css`
-      ${heightWidth('abyssopelagic-size', 1.7)};
+      ${heightWidth('font-size', 1.7)};
 
     `) };
   }
 `
 
 const DividerLine = styled( Divider )`
-  ${heightWidth('margin-left', .6)};
-  ${heightWidth('margin-right', .6)};
-  background: rgba( 255, 255, 255, .2 );
   height: 25px;
   align-self: center;
 `
 
-const LogoAndSocial = () => {
+const LogoAndSocial = ( {isWhite} ) => {
   const { logo } = useHeaderAssets()
 
   return (
-    <Logo>
+    <Logo isWhite={isWhite} >
+
       <Link to={'/'}>
-        <ReactSVG src={logo.publicURL} />
+        <ReactSVG className='logoSvg' src={logo.publicURL} />
       </Link>
 
-      <DividerLine orientation="vertical" light={true} flexItem />
-      {/**/}
-      <FaTwitter />
+      <DividerLine  style={{
+        background: `${(isWhite ? '#02021e' : 'rgba( 255, 255, 255, .2 )')}`,
+
+      }} orientation="vertical" light={true} flexItem />
+
+
+      <FaTwitter  />
       <FaGithub />
       <FaLinkedin />
     </Logo>

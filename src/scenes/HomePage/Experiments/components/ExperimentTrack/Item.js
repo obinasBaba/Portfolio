@@ -55,9 +55,9 @@ const ExperimentTitle = styled.div`
   
 `
 
-const Item = ({ key, imgUrl, title }) => {
+const Item = ({  imgUrl, title }) => {
   return (
-    <ExperimentItem>
+    <ExperimentItem  >
       <img src={imgUrl} alt={'boo'} />
 
       <ExperimentTitle >

@@ -27,7 +27,7 @@ const ExperimentTrack = () => {
 
       {[exp1, exp2, exp3, exp4].map(({ publicURL }, index) => (
         <Item
-          key={index}
+          key={publicURL}
           imgUrl={publicURL}
           title={'Experiments & Open Source'}
         />

@@ -1,15 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Headline from './Headline'
 import styled, { css } from 'styled-components'
 import { mediumUp, spacing } from '../../styles/mixins'
-import { Container } from '@material-ui/core'
 import Intro from './Intro'
 import AnalysisPreparation from './AnalysisPreparation'
 import ColorPalette from './Colors'
 import NextProject from './NextProject'
 import FontUsed from './FontUsed'
+import { motion } from 'framer-motion'
 
-const ProjectContainer = styled.div`
+import { useIntersection } from 'react-use'
+import { HeaderContext } from '../../contexts'
+
+const variant = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 1,
+    }
+  },
+}
+
+const ProjectContainer = styled( motion.div )`
   max-width: 1600px;
   ${spacing('pt', 27.4)};
 
@@ -18,9 +33,10 @@ const ProjectContainer = styled.div`
   `)};
 `
 
-const ContentSectionWrapper = styled(Container)`
+const ContentSectionWrapper = styled.section`
   position: relative;
   background-color: #f3f3f3;
+  border: var(--thin);
   max-width: 1600px;
   margin: 0 auto;
   z-index: 1;
@@ -62,12 +78,28 @@ const ContentSectionWrapper = styled(Container)`
 
 const Project = ({ pageContext }) => {
   const { title, subTitle, about, featured_media } = pageContext.project
-  const ref = React.useRef(null)
 
-  useEffect(() => {}, [ref])
+  const targetElement = React.useRef(null)
+  const { setIsWhite } = useContext(HeaderContext);
+
+  const intersection = useIntersection( targetElement, {
+    root: null,
+    rootMargin: '0px',
+    threshold: .2,
+  } )
+
+  useEffect(() => {
+    setIsWhite(  intersection && intersection.isIntersecting )
+
+  }, [intersection])
+
 
   return (
-    <ProjectContainer>
+    <ProjectContainer variants={variant}
+                      initial={'initial'}
+                      animate={'animate'}
+    >
+
       <Headline
         title={title}
         subTitle={subTitle}
@@ -75,13 +107,7 @@ const Project = ({ pageContext }) => {
         media={featured_media}
       />
 
-      <ContentSectionWrapper
-        disableGutters={true}
-        maxWidth={false}
-        fixed={false}
-        component={'section'}
-        ref={ref}
-      >
+      <ContentSectionWrapper ref={targetElement} >
         <div className="line" />
 
         <Intro />
@@ -91,9 +117,11 @@ const Project = ({ pageContext }) => {
         <ColorPalette />
 
         <FontUsed />
+
       </ContentSectionWrapper>
 
       <NextProject />
+
     </ProjectContainer>
   )
 }

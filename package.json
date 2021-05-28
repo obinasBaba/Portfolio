@@ -29,6 +29,7 @@
     "react-icons": "^4.2.0",
     "react-spring": "^9.1.2",
     "react-svg": "^13.0.4",
+    "react-use": "^17.2.4",
     "styled-components": "^5.3.0"
   },
   "devDependencies": {

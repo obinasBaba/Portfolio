@@ -28,7 +28,12 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    //overflow-x: hidden;
+    
+    &.locked{
+      overflow: hidden;
+      height: 100vh;
+    }
+    
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     
@@ -36,6 +41,7 @@ export const GlobalStyle = createGlobalStyle`
     position: relative;
     color: #fff;
     background: var(--dark);
+    
   }
 `
 
@@ -47,6 +53,7 @@ export const Page = styled.div`
   overflow: hidden;
   min-height: 100vh;
   flex-direction: column;
+  
   
 
   &::after{
@@ -70,22 +77,7 @@ export const Page = styled.div`
 export const Main = styled( motion.main )`
   flex: 1;
   position: relative;
-
-  &::after, &::before {
-    //content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 20%;
-    width: 2px;
-    z-index: -999;
-    box-shadow: inset 1px 1px 42px 31.25px rgba(50, 52, 77, 0.04);
-  }
-
-  &::before {
-    left: initial;
-    right: 20%;
-  }
+  
 `
 
 export const VersionNo = styled.div`

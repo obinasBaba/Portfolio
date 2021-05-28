@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import styled, { css } from 'styled-components'
 import {
   gridColWidth,
   mediumUp,
   spacing,
 } from '../../../../../../styles/mixins'
-import { motion } from 'framer-motion'
-import { Link } from 'gatsby'
+import {motion, useAnimation} from 'framer-motion'
+import {Link, navigate} from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 
@@ -65,11 +65,31 @@ const ProjectImg = styled( motion.div )`
 const transition = {
   duration: .6,
   ease: [0.075, 0.82, 0.165, 1],
-
 }
+
+const animateTransition = {
+  duration: 1,
+}
+
 
 const containerVariants = {
 
+  initial: {
+    opacity: 0,
+  },
+
+  animate: {
+    opacity: 1,
+    transition: {
+      ...animateTransition,
+    }
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 1,
+    },
+  },
   hover: {},
 
   transition: {
@@ -92,8 +112,8 @@ const div2_Variants = {
     scale: 1
   },
 
-  hover: (o) => ({
-    x: o.reversed ? -30 : 30,
+  hover: (dynamicData) => ({
+    x: dynamicData.reversed ? -30 : 30,
     transition: {
       ...transition,
       duration: .6,
@@ -103,17 +123,30 @@ const div2_Variants = {
 
 const ProjectImage = ({ reversed, alt, link, preview, title }) => {
 
-  const [ hoverNow, setHoverNow ] = useState( false );
+  const [exit, setExit] = useState(false)
+  const controls = useAnimation();
+
+  useEffect( () => {
+    // controls.start(exit ? 'exit' : 'animate');
+  }, [ exit ] );
+
+
 
   return (
     <ProjectImg reversed={reversed}
                 variants={containerVariants}
                 initial={'initial'}
                 animate={'animate'}
+                onAnimationComplete={ (obj) => {
+                  // if ( obj === 'exit' )
+                  //   navigate(link);
+                }}
+                exit='exit'
                 transition={transition}
                 whileHover='hover'>
 
       <motion.div className="motion-div-1"
+
                   variants={div1_Variants}
                   transition={transition}
       >
@@ -127,6 +160,9 @@ const ProjectImage = ({ reversed, alt, link, preview, title }) => {
 
           <Link to={link}  >
             <GatsbyImage
+              onClick={() => {
+                // setExit( !exit );
+              }}
               alt={alt}
               key={title}
               className={'project-image'}
