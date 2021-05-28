@@ -13,6 +13,7 @@ export const MenuContainer = styled(motion.div)`
 
 export const MenuList = styled(motion.div)`
   position: relative;
+  overflow: hidden;
   background-color: #02021e;
   z-index: 130;
   flex-basis: 80%;
@@ -26,12 +27,12 @@ export const MenuList = styled(motion.div)`
 ${ css`
     
     ${ smallUp( css`
-      flex-basis: 62%;
+      flex-basis: 70%;
       
     ` ) };
     
     ${ largeUp( css`
-      flex-basis: 53%;
+      flex-basis: 63%;
     ` ) }
     
   ` };

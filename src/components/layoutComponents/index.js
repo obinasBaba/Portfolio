@@ -18,18 +18,29 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
-
-    overflow: scroll;
-    overflow-x: hidden;
+    
   }
 
-  ::-webkit-scrollbar {
-    width: 0;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
+  
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #3719ca #1e213d;
   }
-  /* Optional: show position indicator in red */
-  ::-webkit-scrollbar-thumb {
-    background: #FF0000;
+
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #1e213d;
+    border-radius: 50%;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #3719ca;
+    border-radius: 30px;
+    border: 2px solid #3719ca;
   }
 
   a {
@@ -65,8 +76,6 @@ export const Page = styled.div`
   min-height: 100vh;
   flex-direction: column;
   
-  
-
   &::after{
     content: '';
     position: absolute;;

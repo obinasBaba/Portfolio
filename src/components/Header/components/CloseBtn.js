@@ -32,7 +32,9 @@ const svgVariants = {
   },
   exit: {opacity: 0},
   hover: {
-    staggerChildren: .1
+    transition: {
+      staggerChildren: .1
+    }
   }
 }
 
@@ -102,6 +104,7 @@ const CloseBtn = ( { toggleMenu: {setMenuIsOpen, menuIsOpen} } ) => {
                   animate='animate'
                   exit='exit'
                   whileHover='hover'
+
       >
 
         <g id="Group_1" data-name="Group 1" transform="translate(-671 -303)">

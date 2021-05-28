@@ -149,7 +149,7 @@ const NavBtn = ({ isWhite, toggleMenu, pos, variants = {} }) => {
       exit={{
         opacity: 0,
         transition: {
-          delay: 0.2,
+          delay: 0,
         },
       }}
       onClick={() => toggleMenu.setMenuIsOpen(!toggleMenu.menuIsOpen)}
