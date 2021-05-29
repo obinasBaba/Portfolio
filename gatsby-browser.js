@@ -21,8 +21,8 @@ export const shouldUpdateScroll = ({
     setTimeout( () => window.scrollTo(0,0), 1000 )
   }
   else{
-    console.log(location)
-    console.log('delayed')
+    // console.log(location)
+    // console.log('delayed')
     const saved = getSavedScrollPosition(location);
     setTimeout( () => window.scrollTo( ...(saved) ), 1000)
   }

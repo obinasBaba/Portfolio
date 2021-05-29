@@ -20,6 +20,7 @@ const ContactLink = styled.span`
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   ${smallUp(css`
     display: flex;
@@ -47,9 +48,11 @@ const ContactLink = styled.span`
   }
 `
 
-const ContactBtn = ({ isWhite }) => {
+const ContactBtn = ({ isWhite, toggleModal: {setContactIsOpen, contactIsOpen} }) => {
   return (
     <motion.div
+      onClick={ () => setContactIsOpen( !contactIsOpen ) }
+
       style={{
       zIndex: 999,
     }}
@@ -68,28 +71,8 @@ const ContactBtn = ({ isWhite }) => {
     }}
     >
 
-    <Link className={'whiteBtn'} to="/contacts/" style={{ zIndex: 999 }}>
+    {/*<Link className={'whiteBtn'} to="/contacts/" style={{ zIndex: 999 }}>*/}
 
-
-
-      {/*<motion.div initial={{
-        opacity: 0,
-
-                  }}
-                  animate={
-                    {
-                      opacity: 1,
-                    }
-                  }
-                  exit={{
-                    opacity: 0,
-                  }}
-
-                  transition={{
-                    duration: .8,
-                    ease: [1, 0, 0.68, 1],
-                  }}
-      >*/}
         <ContactLink isWhite={isWhite}>
           <Typography
             style={{
@@ -101,9 +84,8 @@ const ContactBtn = ({ isWhite }) => {
             Contact
           </Typography>
         </ContactLink>
-      {/*</motion.div>*/}
 
-    </Link>
+    {/*</Link>*/}
     </motion.div>
 
   )

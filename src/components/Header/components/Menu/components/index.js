@@ -4,8 +4,12 @@ import {largeUp, smallUp, spacing} from '../../../../../styles/mixins'
 
 export const MenuContainer = styled(motion.div)`
   position: fixed;
+  left: 0;
+  right: 0;
   height: 100vh;
   width: 100vw;
+  max-width: 1600px;
+  margin: 0 auto;
   z-index: 110;
   display: flex;
   justify-content: flex-end;
@@ -14,7 +18,7 @@ export const MenuContainer = styled(motion.div)`
 export const MenuList = styled(motion.div)`
   position: relative;
   overflow: hidden;
-  background-color: #02021e;
+  background-color: transparent;
   z-index: 130;
   flex-basis: 80%;
   display: flex;

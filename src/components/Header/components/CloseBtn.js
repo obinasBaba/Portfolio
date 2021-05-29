@@ -49,7 +49,7 @@ const groupVariants = {
   },
   animate: {},
   hover: {
-    fill: '#3719ca',
+    fill: '#32344d',
     // stroke: 'rgba(112, 112, 112, 0)',
     transition: {
       type: 'tween',
@@ -110,7 +110,7 @@ const CloseBtn = ( { toggleMenu: {setMenuIsOpen, menuIsOpen} } ) => {
         <g id="Group_1" data-name="Group 1" transform="translate(-671 -303)">
 
           <motion.g id="Path_4" data-name="Path 4" transform="translate(671 303)"
-                    fill="rgba(55, 22, 202, 0)"
+                    fill="rgba(50,52,77,0)"
                     variants={groupVariants}
                     transition={groupVariants.transition}
           >
