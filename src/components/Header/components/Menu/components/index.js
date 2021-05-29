@@ -20,23 +20,26 @@ export const MenuList = styled(motion.div)`
   overflow: hidden;
   background-color: transparent;
   z-index: 130;
-  flex-basis: 80%;
+  flex-basis: 90%;
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: center;
   //clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
-  ${ spacing('pl', 10) };
+  ${ spacing('pl', 25) };
 
 ${ css`
     
     ${ smallUp( css`
       flex-basis: 70%;
-      
+      ${ spacing('pl', 15) };
+
     ` ) };
     
     ${ largeUp( css`
       flex-basis: 63%;
+      ${ spacing('pl', 10) };
+
     ` ) }
     
   ` };
