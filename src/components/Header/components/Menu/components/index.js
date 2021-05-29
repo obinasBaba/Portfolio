@@ -25,7 +25,7 @@ export const MenuList = styled(motion.div)`
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+  //clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
   ${ spacing('pl', 10) };
 
 ${ css`

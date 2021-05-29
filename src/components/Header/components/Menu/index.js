@@ -27,22 +27,26 @@ const overlayVariant = {
 const menuListVariants = {
   initial: {
     opacity: 1,
+    x: '100%',
   },
   animate: {
     opacity: 1,
-    clipPath: 'polygon( 0% 0%, 100% 0%, 100% 100%, 0% 100% )',
+    x: 0,
+    // clipPath: 'polygon( 0% 0%, 100% 0%, 100% 100%, 0% 100% )',
     // clipPath: 'polygon( 100% 0%, 100% 0%, 100% 100%, 0% 100% )',
     transition: {
       duration: 0.8,
       ease: [1, 0, 0.68, 1],
       staggerChildren: 0.05,
-      delayChildren: 0.7,
+      delayChildren: 0.8,
     },
   },
   exit: {
     opacity: 1,
-    clipPath: 'polygon( 100% 0%, 100% 0%, 100% 100%, 100% 100% )',
+    // clipPath: 'polygon( 100% 0%, 100% 0%, 100% 100%, 100% 100% )',
+    x: 900,
     transition: {
+      delay: .2,
       duration: 0.8,
       ease: [1, 0, 0.68, 1],
       staggerChildren: 0.06,
@@ -121,9 +125,9 @@ const logoVariants = {
     // filter: 'blur(5px)',
     opacity: 0,
     scale: 0.9,
-    rotate: '20deg',
+    rotate: '30deg',
     transition: {
-      delay: 0.0,
+      delay: 0,
       duration: 0.6,
       ease: [1, 0, 0.68, 1],
       // staggerChildren: 0.06,
