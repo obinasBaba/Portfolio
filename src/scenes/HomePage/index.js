@@ -4,31 +4,32 @@ import RecentWorks from './RecentDesigns'
 import Projects from './Projects'
 import Experiments from './Experiments'
 import MailUs from '../MailUs'
-import {PageContainer, SectionWrapper} from '../../components/Container'
+import { PageContainer, SectionWrapper } from '../../components/Container'
+import ExitStateProvider from '../../contexts/ExitStateContext'
+import { Main } from '../../components/layoutComponents'
 
-const HomePage = (  ) => {
+const HomePage = () => {
   return (
     <PageContainer>
-
-      <SectionWrapper >
-        <Hero/>
+      <SectionWrapper>
+        <Hero />
       </SectionWrapper>
 
-      <RecentWorks/>
+      <RecentWorks />
 
-      <SectionWrapper >
-        <Projects/>
-      </SectionWrapper>
+      <ExitStateProvider>
+        <SectionWrapper>
+          <Projects />
+        </SectionWrapper>
+      </ExitStateProvider>
 
-      <SectionWrapper >
+      <SectionWrapper>
         <Experiments />
       </SectionWrapper>
 
-      <SectionWrapper >
+      <SectionWrapper>
         <MailUs />
       </SectionWrapper>
-
-
     </PageContainer>
   )
 }

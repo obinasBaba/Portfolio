@@ -3,12 +3,12 @@ import { Container, Typography } from '@material-ui/core'
 import styled, { css } from 'styled-components'
 import { heightWidth, largeUp, mediumUp, spacing } from '../../../styles/mixins'
 import MotionBtn from '../../../components/MotionBtn'
-import Logo from './logoEffect.svg'
+import Logo from './vigoza-logo.svg'
 
 const IntroContainer = styled(Container)`
   position: relative;
-  background-color: #973c22;
-  //color: ${({ theme }) => theme.palette.primary.main};
+  background-color: ${({ themeCrl }) => themeCrl};
+  color: ${({ color }) => color && color};
   width: 100%;
   display: flex;
   justify-content: center;
@@ -17,17 +17,18 @@ const IntroContainer = styled(Container)`
   text-align: center;
   ${spacing('pv', 10)};
   ${spacing('mb', 10)};
+  overflow: hidden;
 
-  &::after{
+  &::after {
     content: url(${Logo});
     position: absolute;
     display: block;
     bottom: -35%;
     left: 5%;
     z-index: 11;
-    opacity: .1;
-  } 
-  
+    opacity: 0.1;
+  }
+
   ${mediumUp(css`
     ${spacing('pv', 4)};
   `)};
@@ -35,13 +36,10 @@ const IntroContainer = styled(Container)`
   & > :not(:first-child) {
     ${heightWidth('margin-top', 3)};
   }
-  
-  
-  
 `
 
-const Description = styled( Typography )`
-  max-width: 45ch;
+const Description = styled(Typography)`
+  max-width: 47ch;
   font-family: var(--sofia-pro);
   font-weight: 300;
   line-height: 160%;
@@ -49,25 +47,24 @@ const Description = styled( Typography )`
   opacity: 0.7;
 `
 
-const Title = styled( Typography )`
-  
-`
 
-const Intro = () => {
+const Intro = ({ intro }) => {
+  const { desc, themeColor, title, siteLink, logoUrl, color, imageData } = intro
+
   return (
-    <IntroContainer maxWidth={false} fixed={false} component={'section'}>
+    <IntroContainer
+      themeCrl={themeColor}
+      logoUrl={logoUrl}
+      color={color}
+      maxWidth={false}
+      fixed={false}
+      component={'section'}
+    >
+      <Typography variant={'h1'}>{title}</Typography>
 
-      <Typography variant={'h1'}>The Project</Typography>
+      <Description>{desc}</Description>
 
-      <Description>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
-        aperiam beatae, consectetur deserunt explicabo nemo, non pariatur sit
-        ut, velit vero voluptates? Amet dicta eos et maiores quam sunt voluptas.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, quas.
-      </Description>
-
-      <MotionBtn text={'Visit Website'} />
-
+      <MotionBtn text={'Visit Website'} to={siteLink} />
     </IntroContainer>
   )
 }

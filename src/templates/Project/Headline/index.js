@@ -1,53 +1,28 @@
 import React from 'react'
-import { Container, Typography } from '@material-ui/core'
-import styled, { css } from 'styled-components'
-import HeadlineTxt from '../../../components/Headline'
-import { mediumUp, spacing } from '../../../styles/mixins'
-import preview from './preview.jpg'
-import {A, ImgGradient, Q, Role} from './Components'
-import {GradientText} from '../../../components/GrdientText'
-
-const HeadlineContainer = styled(Container)`
-  display: flex;
-  flex-flow: column;
-
-  img {
-    width: 100%;
-    max-width: 100%;
-    max-height: 600px;
-    object-fit: cover;
-    margin: 0 auto;
-  }
-`
-
-const Title = styled.div`
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
-
-  ${ spacing( 'mb', 7 ) }
-  
-  & > :first-child{
-    line-height: 1.29;
-  }
-  
-  & > :last-child{
-    margin-left: auto;
-    margin-top: -5px;
-  }
-`
+import { A, HeadlineContainer, ImgGradient, Q, Role, Title } from './Components'
+import { GradientText } from '../../../components/GrdientText'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import {motion} from 'framer-motion'
 
 const Headline = ({ subTitle, title, about, media }) => {
+
+
+  const { role, context, period } = about;
+
+
   const About = [
-    { q: 'Role ', a: ' FrontEnd Developer' },
-    { q: 'Context ', a: ' Design' },
-    { q: 'Period ', a: ' End 2020' },
-  ]
+    { q: 'Role ', a: role },
+    { q: 'Context ', a: context },
+    { q: 'Period ', a: period },
+  ];
 
   return (
-    <HeadlineContainer maxWidth={'xl'}>
+    <HeadlineContainer maxWidth={'xl'}
+                       disableGutters={false}
+    >
+
+
+
       <Role>
         {About.map(({ q, a }) => (
           <li key={q}>
@@ -57,15 +32,29 @@ const Headline = ({ subTitle, title, about, media }) => {
         ))}
       </Role>
 
-      <Title>
-        <GradientText variant='h1'>{title}</GradientText>
-        <Typography >{subTitle}</Typography>
-      </Title>
+
 
       <ImgGradient>
-        <img src={preview} alt="project pic" loading='eager' />
-        <div className="overlay"/>
+
+
+
+        <GatsbyImage image={getImage( media )}
+                     alt="project pic"
+                     objectFit='cover'
+                     loading='eager'  />
+
+
+        <Title>
+          <GradientText variant='h1'>{title}</GradientText>
+          <GradientText  >{subTitle}</GradientText>
+        </Title>
+
+        <motion.div className="overlay"
+
+        />
+
       </ImgGradient>
+
 
     </HeadlineContainer>
   )

@@ -220,7 +220,9 @@ const Menu = ({ toggleMenu: { setMenuIsOpen, menuIsOpen } }) => {
           </svg>
         </LogoBg>
 
-        <CloseBtn toggleMenu={{ setMenuIsOpen, menuIsOpen }} />
+        <CloseBtn toggler={setMenuIsOpen} state={menuIsOpen} />
+
+
       </MenuList>
     </MenuContainer>
   )

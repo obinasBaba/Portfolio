@@ -4,8 +4,9 @@ import { gridify, spacing } from '../../../../../styles/mixins'
 import StackUsed from './components/StackUsed'
 import ProjectImage from './components/ProjectImage'
 import ProjectDescription from './components/ProjectDescription'
+import {motion} from 'framer-motion'
 
-const ProjectGrid = styled.div`
+const ProjectGrid = styled( motion.div )`
   ${ gridify };
   
   ${ spacing( 'mt', 13 ) }
@@ -37,7 +38,7 @@ const ProjectList = ({
       linkTitle: 'Case Study',
       preview: preview1,
       tags: 'UX, UI, Illustrations, Icons',
-      title: 'bedding cutting price for 50%',
+      title: 'Digital Creative Agency.',
       alt: 'Primary Smart Bedding Website',
       imgTitle: 'Primary Smart Bedding Website',
       partners: [react, pwa, mongo, javascript],
@@ -46,9 +47,9 @@ const ProjectList = ({
       id: 1,
       link: '/portfolio/project-2',
       linkTitle: 'Case Study',
-      preview: preview3,
+      preview: preview2,
       tags: 'Analytics, UX, UI, Icons, Front-end',
-      title: 'Game wins Disrupt & Raise $2.6M',
+      title: 'Simplistic Beauty And Hair Space.',
       alt: 'Mobalytics. Game Analytics Platform Website',
       imgTitle: 'Mobalytics. Game Analytics Platform Website',
       partners: [node, angular, typescript, sql],
@@ -57,7 +58,7 @@ const ProjectList = ({
       id: 2,
       link: '/portfolio/project-3',
       linkTitle: 'coming soon',
-      preview: preview2,
+      preview: preview3,
       tags: 'Analytics, UX, UI, Front-end',
       title: 'smart clock which ease your life',
       alt: 'Glance Clock — First Smart Clock',
@@ -65,6 +66,7 @@ const ProjectList = ({
       partners: [postgres, vue, javascript, css3],
     },
   ];
+  const topVariant = {};
 
   return (
     <>
@@ -76,9 +78,25 @@ const ProjectList = ({
 
 
           return (
-            <ProjectGrid key={index} >
+            <ProjectGrid key={index + tags.toString()}
+                         variants={topVariant}
+                         initial='initial'
+                         whileHover='hover'
+                         animate='animate'
+                         exit='exit' >
 
-              <ProjectImage reversed={reversed} link={link} alt={alt} title={title} preview={preview} />
+           {/*   <motion.div initial='initial'
+                          variants={topVariant}
+                          whileHover='hover'
+                          animate='animate'
+                          exit='exit'
+
+              />*/}
+
+              <ProjectImage reversed={reversed}
+                            link={link}
+                            alt={alt} title={title}
+                            preview={preview} />
 
               <ProjectDescription link={link}  reversed={reversed} title={title} tags={tags} />
 

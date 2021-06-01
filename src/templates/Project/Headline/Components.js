@@ -1,8 +1,9 @@
 import styled, {css} from 'styled-components'
 import {mediumUp, spacing} from '../../../styles/mixins'
-import {Typography} from '@material-ui/core'
+import {Container, Typography} from '@material-ui/core'
+import {motion} from 'framer-motion'
 
-export const Role = styled.ul`
+export const Role = styled( motion.ul )`
   display: flex;
   align-items: center;
   text-align: center;
@@ -10,8 +11,10 @@ export const Role = styled.ul`
   list-style-type: none;
   padding: 0;
   margin: 0;
+  //display: none;
+  //visibility: hidden;
 
-  ${spacing('mb', 5)};
+  ${spacing('mb', 7)};
 
   ${mediumUp(
   css`
@@ -25,6 +28,20 @@ export const Role = styled.ul`
     align-items: center;
     justify-content: center;
   }
+`
+
+export const HeadlineContainer = styled( motion.div )`
+  display: flex;
+  flex-flow: column;
+  max-width: 1200px;
+  margin: 0 auto;
+  border: thick solid yellow;
+  ${ spacing('ph', 3) };
+ 
+  
+  ${ mediumUp( css`
+    ${ spacing('ph', 1) };
+  ` ) }
 `
 
 export const Q = styled(Typography)`
@@ -45,18 +62,61 @@ export const A = styled( Typography )`
   padding-left: 7px;
 `
 
-export const ImgGradient = styled.div`
+export const ImgGradient = styled( motion.div )`
   width: 100%;
   z-index: 11;
   position: relative;
+  box-shadow: 0 5px 20px 10px rgba( 0 0 0 / 15%);
+  transition: all .3s;
+  border: thick solid red;
+  //transform: translateY( -200px ) scale(.7) ;
+  
+  img{
+    min-height: 300px;
+  }
 
   .overlay {
-    background-image: linear-gradient(to bottom, rgb(2,2,30) -50%, rgba(2, 2, 30, 0) 80%);
-    z-index: 11;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    transition: all 1s;
+    background-image: linear-gradient(to bottom, 
+      rgba(50,52,77,0.89) -40%,
+    rgba(2, 2, 30, 0) 80%);
+    
+    z-index: 12;
+    //backdrop-filter: blur(2px);
+  }
+
+`
+
+export const Title = styled(motion.div)`
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-90%) translateX(-50%);
+  z-index: 13;
+
+
+  ${spacing('mb',
+          9)}
+  & > :first-child {
+    line-height: 1.29;
+    ${ spacing('letter-spacing', 3) };
+    text-transform: uppercase;
+  }
+
+  & > :last-child {
+    margin-left: auto;
+    margin-top: -5px;
+    font-weight: 400;
   }
 `

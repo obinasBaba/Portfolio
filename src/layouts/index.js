@@ -17,6 +17,7 @@ import {
   VersionNo,
 } from '../components/layoutComponents'
 import { HeaderContext } from '../contexts'
+import ExitStateProvider from '../contexts/ExitStateContext'
 
 export default function TopLayout({ children }) {
   const [isHeaderGradient, setIHeaderGradient] = useState(true)
@@ -30,10 +31,6 @@ export default function TopLayout({ children }) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;500;900&family=Poppins:wght@100;900&display=swap"
-          rel="stylesheet"
-        />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap"
@@ -55,10 +52,9 @@ export default function TopLayout({ children }) {
 
 
                 <Main>
-                  <AnimatePresence exitBeforeEnter={true}>
-
-                  {children}
-                  </AnimatePresence>
+                  {/*<ExitStateProvider >*/}
+                    {children}
+                  {/*</ExitStateProvider>*/}
                 </Main>
 
                 <footer>

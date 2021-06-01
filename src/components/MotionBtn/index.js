@@ -65,7 +65,8 @@ const MotionBtn = ({
   to = '#',
   fontLarge,
   clr,
-  variants={}
+  variants={},
+  external=false,
 }) => {
   const controls = useAnimation()
 

@@ -7,7 +7,7 @@ const ColorsPaletteFlex = styled.div `
   width: 100%;
   display: flex;
   flex-flow: wrap;
-  z-index: 11;
+  //z-index: 111;
   justify-content: space-evenly;
   ${ spacing('mt', 17) };
 
@@ -20,6 +20,7 @@ const ColorBox = styled.div`
   align-items: center;
   justify-content: center;
   ${spacing('ph', 1)};
+  //border: thin solid red;
 
 
   & > :last-child {
@@ -33,7 +34,8 @@ const ColorBox = styled.div`
 
   &:hover > :last-child {
     color: ${({ themeColor }) => themeColor};
-    text-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.52);
+    text-shadow: 0em 0.1em 0.3em rgba(0, 0, 0, 0.52);
+    //display: none;
   }
 
 `
@@ -43,7 +45,7 @@ const Color = styled.div`
   background-color: ${({ hex }) => hex};
   width: clamp(130px, 15vw, 160px);
   height: clamp(130px, 15vw, 160px);
-  box-shadow: 0 5px 20px 0 rgba(0 0 0 / 33%);
+  box-shadow: 0 5px 10px 0 rgba(0 0 0 / 33%);
   transition: all .3s;
 `
 

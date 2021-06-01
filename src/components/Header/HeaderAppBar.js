@@ -82,8 +82,6 @@ function HeaderAppBar({ isGradient, isWhite }) {
 
   useEffect( () => {
 
-
-
     if ( contactIsOpen ) {
       document.body.classList.add('locked');
     }
@@ -106,6 +104,7 @@ function HeaderAppBar({ isGradient, isWhite }) {
         )}
 
         {contactIsOpen && <ContactMe toggleModal={{ setContactIsOpen, contactIsOpen }} />}
+
       </AnimatePresence>
 
       <HideOnScroll>

@@ -94,9 +94,9 @@ const path2Variants = {
   }
 }
 
-const CloseBtn = ( { toggleMenu: {setMenuIsOpen, menuIsOpen} } ) => {
+const CloseBtn = ( { toggler, state} ) => {
   return (
-    <CloseContainer onClick={ () => setMenuIsOpen( !menuIsOpen ) } >
+    <CloseContainer onClick={ () => toggler( !state ) } >
 
       <motion.svg xmlns="http://www.w3.org/2000/svg"
                   width="100%" height="100%"

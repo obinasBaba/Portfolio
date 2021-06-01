@@ -15,17 +15,18 @@ export const shouldUpdateScroll = ({
   getSavedScrollPosition,
 }) => {
 
-  if ( location.action === 'PUSH' )
+  /*if ( location.action === 'PUSH' )
   {
     console.log('push delayed')
     setTimeout( () => window.scrollTo(0,0), 1000 )
   }
   else{
-    // console.log(location)
     // console.log('delayed')
     const saved = getSavedScrollPosition(location);
+    console.log(location, '-- Location')
+    console.log(saved, '-- Saved')
     setTimeout( () => window.scrollTo( ...(saved) ), 1000)
-  }
+  }*/
 
-  return false
+  return true
 }
