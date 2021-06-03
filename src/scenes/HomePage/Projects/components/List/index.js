@@ -5,11 +5,19 @@ import StackUsed from './components/StackUsed'
 import ProjectImage from './components/ProjectImage'
 import ProjectDescription from './components/ProjectDescription'
 import {motion} from 'framer-motion'
+import ReactFullpage from '@fullpage/react-fullpage'
+import {Typography} from '@material-ui/core'
+import Others from '../Others'
+import Headline from '../../../../../components/Headline'
 
 const ProjectGrid = styled( motion.div )`
   ${ gridify };
   
-  ${ spacing( 'mt', 13 ) }
+  ${ spacing( 'pt', 7 ) }
+
+  border: thick solid red;
+  min-height: 100vh;
+  //scroll-snap-align: start;
 `
 
 
@@ -28,6 +36,8 @@ const ProjectList = ({
   react,
   angular,
   node,
+  othersAssets,
+
 }) => {
 
 
@@ -66,7 +76,17 @@ const ProjectList = ({
       partners: [postgres, vue, javascript, css3],
     },
   ];
-  const topVariant = {};
+  const topVariant = {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+      transition: {
+        duration: 1,
+      }
+    },
+  };
 
   return (
     <>
@@ -78,20 +98,15 @@ const ProjectList = ({
 
 
           return (
+
+            <div className='section' key={link} >
+
             <ProjectGrid key={index + tags.toString()}
                          variants={topVariant}
                          initial='initial'
                          whileHover='hover'
                          animate='animate'
                          exit='exit' >
-
-           {/*   <motion.div initial='initial'
-                          variants={topVariant}
-                          whileHover='hover'
-                          animate='animate'
-                          exit='exit'
-
-              />*/}
 
               <ProjectImage reversed={reversed}
                             link={link}
@@ -103,11 +118,22 @@ const ProjectList = ({
               <StackUsed items={partners} reversed={reversed} />
 
             </ProjectGrid>
+
+            </div>
+
           )
         })
       }
+
+       <div className="section"  >
+        <Others {...othersAssets} />
+      </div>
+
+
     </>
   )
+
+
 }
 
 export default ProjectList

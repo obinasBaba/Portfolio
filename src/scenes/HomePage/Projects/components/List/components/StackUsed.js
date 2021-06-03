@@ -17,7 +17,7 @@ const StackList = styled.ul`
   align-items: center;
   list-style-type: none;
   padding: 0;
-  ${spacing('mt', 3)};
+  ${spacing('mt', 1)};
 
   ${mediumUp(css`
     grid-row: 2;
@@ -37,7 +37,7 @@ const StackList = styled.ul`
     width: auto;
     margin: 0 auto;
 
-    ${ heightWidth('height', 4) };
+    ${ heightWidth('height', 3) };
   }
 `
 

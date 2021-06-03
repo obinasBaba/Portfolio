@@ -22,7 +22,8 @@ export const SectionWrapper = ({
   maxWidth = false,
   fixed = false,
   component = 'section',
-  bg = 'transparent'
+  bg = 'transparent',
+  idName='',
 }) => {
   return (
     <StyledSectionWrapper
@@ -30,7 +31,7 @@ export const SectionWrapper = ({
       maxWidth={maxWidth}
       fixed={fixed}
       component={component}
-
+      id={idName}
       style={{
         background: `${ bg ? bg : 'initial' }`
       }}

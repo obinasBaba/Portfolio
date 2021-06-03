@@ -40,7 +40,7 @@ const RecentWorks = () => {
 
 
   return (
-    <RecentDesignWrapper>
+    <RecentDesignWrapper id='#design' >
 
       <Title circledText={ circledText.publicURL }
              dribbleRed={ dribbleRed.publicURL } />

@@ -1,6 +1,6 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React, {useContext, useEffect, useRef, useState} from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 import {
   gridColWidth,
@@ -17,7 +17,6 @@ const ProjectImg = styled(motion.div)`
   padding: 0;
   cursor: pointer;
   position: relative;
-  //border: thick solid red;
 
   ${mediumUp(css`
     ${({ reversed }) =>
@@ -28,19 +27,17 @@ const ProjectImg = styled(motion.div)`
 
   .outer-div {
     background: ${({ theme }) => theme.palette.secondary.main};
-    //border: thick solid yellow;
-
-    ${spacing('pt', 6)};
-    ${spacing('pb', 7)};
+    ${spacing('pt', 1)};
+    ${spacing('pb', 1)};
 
     ${({ reversed }) =>
-            reversed
-                    ? css`
+      reversed
+        ? css`
             ${spacing('pl', 9)};
             ${spacing('pr', 1)};
             justify-content: flex-end;
           `
-                    : css`
+        : css`
             ${spacing('pr', 9)};
             ${spacing('pl', 1)};
           `};
@@ -54,8 +51,8 @@ const ProjectImg = styled(motion.div)`
     align-items: center;
     //border: thick solid green;
   }
-  
-  .inner-img-wrapper{
+
+  .inner-img-wrapper {
     position: relative;
   }
 `
@@ -65,128 +62,39 @@ const transition = {
   ease: [0.075, 0.82, 0.165, 1],
 }
 
-const animateTransition = {
-  duration: 1,
-}
-
 const containerVariants = {
-  initial: {
-    // opacity: 0,
-  },
 
-  animate: {
-    opacity: 1,
-    transition: {
-      duration: 2
-    },
-  },
-  exit: {
-    // opacity: 0,
-  },
-  hover: {},
-
-  transition: {
-    delayChildren: 3.5,
-  },
 }
 
 const outerDivWrapper = {
-  initial: {
-    // scale: 1,
-  },
-  hover: {
-    scale: 0.94,
-    transition: {
-      ...transition,
-    },
-  },
-  exit: {
-    // x: -1400,
-  }
-}
 
-const innerScale = {
-  hover: {
-    // scale: .96,
-    // transition: {
-    //   delay: .1,
-    //   duration: 1.2,
-    //   ease: [0.075, 0.82, 0.165, 1],
-    // }
-
-
-    // top: '100px',
-    // left: '50px',
-
-    transition: {
-        delay: .1,
-        duration: .8,
-        ease: [0.075, 0.82, 0.165, 1],
-      }
-
-  },
 }
 
 const innerDivWrapper = {
-  initial: {
-    // scale: 1,
-    // x: 0,
 
-  },
-
-  hover: dynamicData => ({
-    // x: dynamicData.reversed ? -20 : 20,
-    // scale: '1.2',
-
-    transition: {
-      duration: 0.8,
-      ease: [0.075, 0.82, 0.165, 1],
-    }
-  }),
-
-  exit: {
-    position: 'fixed',
-    scale: .9,
-    x: '50%',
-    transition: {
-      duration: 1,
-    }
-  }
 }
 
 const ProjectImage = ({ reversed, alt, link, preview, title }) => {
-  // const { exit, toggle } = useContext(ExitStateContext)
-  // let exit = useRef(null);
-  const [exit, setExit] = useState(false)
-  const controls = useAnimation()
 
-  useEffect(() => {
-    controls.start(exit ? 'exit' : 'animate')
-    console.log(' sdlfjs ',exit)
-  }, [exit])
+  const { show } = useContext(ExitStateContext)
+  const controls = useAnimation()
 
   return (
     <ProjectImg
       reversed={reversed}
       variants={containerVariants}
       transition={transition}
-      animate={controls}
-      initial='initial'
-      whileHover='hover'
-      onAnimationComplete={ (type) => {
-        if ( type === 'exit' ) {
-          console.log(link)
-          // navigate(link)
-          // controls.set('animate');
-        }
-      } }
-
+      animate={'animate'}
+      exit='exit'
+      initial="initial"
+      whileHover="hover"
+      custom={show}
     >
       <motion.div
-
         className="outer-div"
         variants={outerDivWrapper}
         transition={transition}
+
       >
         <motion.div
           className="inner-div"
@@ -194,31 +102,18 @@ const ProjectImage = ({ reversed, alt, link, preview, title }) => {
           transition={transition}
           custom={{ reversed }}
         >
-          {/*<Link to={link}  >*/}
-          <motion.div variants={innerScale}
-                      className='inner-img-wrapper'
-                      transition={{
-                        ...transition,
-                        duration: 1.2,
-
-                      }}
-
-          >
-
-          <GatsbyImage
-            onClick={() => {
-              setExit( !exit )
-              console.log(exit);
-            }}
-            alt={alt}
-            key={title}
-            className={'project-image'}
-            image={getImage(preview)}
-          />
-          {/*</Link>*/}
-
-          </motion.div>
-
+          <Link to={link}  >
+            <GatsbyImage
+              onClick={() => {
+                // setExit(!exit)
+                // console.log(exit)
+              }}
+              alt={alt}
+              key={title}
+              className={'project-image'}
+              image={getImage(preview)}
+            />
+            </Link>
         </motion.div>
       </motion.div>
     </ProjectImg>

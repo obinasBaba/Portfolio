@@ -2,33 +2,18 @@ import React, {useEffect} from 'react'
 import {useState} from 'react'
 
 
-export const ExitStateContext = React.createContext({});
+export const ExitStateContext = React.createContext(false);
 
 
 const ExitStateProvider = ( {children} ) => {
 
-  const [exit, toggle] = useState(false);
+  const [show, setShow] = useState(false);
 
-  useEffect( () => {
-    // setTimeout(() => {
-    //   toggle( !exit );
-      // console.log('unmounted state', exit)
-    // }, 1500);
-    // return () => toggle(false);
-
-  }, [exit] )
-
-  // const toggle = ( state ) => {
-  //   setExit(state);
-  //   setTimeout( () => {
-  //     setExit( !state );
-  //   }, 1000)
-  // }
 
   return (
     <ExitStateContext.Provider value={{
-      exit,
-      toggle
+      show,
+      setShow
     }} >
 
       {children}

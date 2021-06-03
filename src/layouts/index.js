@@ -52,9 +52,11 @@ export default function TopLayout({ children }) {
 
 
                 <Main>
-                  {/*<ExitStateProvider >*/}
-                    {children}
-                  {/*</ExitStateProvider>*/}
+                    <ExitStateProvider>
+                      <AnimatePresence exitBeforeEnter={true} >
+                      {children}
+                      </AnimatePresence>
+                    </ExitStateProvider>
                 </Main>
 
                 <footer>
