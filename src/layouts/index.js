@@ -18,6 +18,7 @@ import {
 } from '../components/layoutComponents'
 import { HeaderContext } from '../contexts'
 import ExitStateProvider from '../contexts/ExitStateContext'
+import BackgroundStars from '../components/BackgroundStars'
 
 export default function TopLayout({ children }) {
   const [isHeaderGradient, setIHeaderGradient] = useState(true)
@@ -44,28 +45,25 @@ export default function TopLayout({ children }) {
           <CssBaseline />
 
           <HeaderContext.Provider value={{ setIHeaderGradient, setIsWhite }}>
+            <Page >
+              <Header isGradient={isHeaderGradient}
+                      isWhite={isWhite} />
 
-              <Page>
+              <Main  >
+                <BackgroundStars  />
+                <ExitStateProvider>
+                  <AnimatePresence exitBeforeEnter={true}>
+                    {children}
+                  </AnimatePresence>
+                </ExitStateProvider>
+              </Main>
 
+              <footer>
+                <Footer />
+              </footer>
 
-                  <Header isGradient={isHeaderGradient} isWhite={isWhite} />
-
-
-                <Main>
-                    <ExitStateProvider>
-                      <AnimatePresence exitBeforeEnter={true} >
-                      {children}
-                      </AnimatePresence>
-                    </ExitStateProvider>
-                </Main>
-
-                <footer>
-                  <Footer />
-                </footer>
-
-                <VersionNo>v0.1</VersionNo>
-              </Page>
-
+              <VersionNo>v0.1</VersionNo>
+            </Page>
           </HeaderContext.Provider>
         </ThemeProvider>
       </StyledThemeProvider>
