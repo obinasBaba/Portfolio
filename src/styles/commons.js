@@ -45,3 +45,24 @@ export const responsiveVar = css`
     }
   }
 `
+
+export const fpNav = css`
+  
+  
+  
+  #fp-nav{
+    //border: thin solid red;
+    left: 40px !important;
+
+
+    .fp-left{
+    }
+    
+    a{
+      span{
+        background: aliceblue !important;
+        //width: 24px !important;
+      }
+    }
+  }
+`

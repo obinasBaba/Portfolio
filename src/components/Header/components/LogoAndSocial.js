@@ -32,7 +32,7 @@ const Logo = styled.div`
     ${heightWidth('max-width', 6)};
     
     ${ mediumUp( css`
-      ${heightWidth('max-width', 5)};
+      ${heightWidth('max-width', 4.2)};
 
     `) };
 
@@ -44,7 +44,7 @@ const Logo = styled.div`
     ${heightWidth('font-size', 2)};
 
     ${ mediumUp( css`
-      ${heightWidth('font-size', 1.7)};
+      ${heightWidth('font-size', 1.5)};
 
     `) };
   }

@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 import {
-  gridColWidth,
+  gridColWidth, largeUp,
   mediumUp,
   spacing,
 } from '../../../../../../styles/mixins'
@@ -18,30 +18,52 @@ const ProjectImg = styled(motion.div)`
   cursor: pointer;
   position: relative;
 
-  ${mediumUp(css`
-    ${({ reversed }) =>
-      reversed ? gridColWidth(24, 65) : gridColWidth(1, 42)};
-    grid-row: 1;
-    //margin-right: 0;
-  `)};
+  &::after{
+    content: '02';
+    display: none;
+    position: absolute;
+    font-size: 9rem;
+    font-family: Poppins Black,serif;
+    font-weight: 900;
+    bottom: 2%;
+    right: -5%;
+    
+    ${ largeUp( css`
+      display: block;
+    ` ) };
+  }
+  
+  img{
+    ${ largeUp( css`
+      min-height: 400px;
+    ` ) };
+  }
 
   .outer-div {
     background: ${({ theme }) => theme.palette.secondary.main};
-    ${spacing('pt', 1)};
-    ${spacing('pb', 1)};
-
-    ${({ reversed }) =>
-      reversed
-        ? css`
-            ${spacing('pl', 9)};
-            ${spacing('pr', 1)};
-            justify-content: flex-end;
-          `
-        : css`
-            ${spacing('pr', 9)};
-            ${spacing('pl', 1)};
-          `};
+    ${spacing('p', 1)};
   }
+
+  ${mediumUp(css`
+    grid-row: 1;
+    ${({ reversed }) => reversed ? gridColWidth(19, 59) : gridColWidth(6, 46)};
+  `)};
+  
+  ${ largeUp( css`
+    .outer-div {
+      ${({ reversed }) =>
+              reversed
+                      ? css`
+              ${spacing('pl', 9)};
+              justify-content: flex-end;
+            `
+                      : css`
+              ${spacing('pr', 9)};
+            `};
+    }
+  ` ) };
+
+  
 
   .inner-div {
     z-index: 999;
@@ -51,10 +73,6 @@ const ProjectImg = styled(motion.div)`
     align-items: center;
     //border: thick solid green;
   }
-
-  .inner-img-wrapper {
-    position: relative;
-  }
 `
 
 const transition = {
@@ -62,20 +80,13 @@ const transition = {
   ease: [0.075, 0.82, 0.165, 1],
 }
 
-const containerVariants = {
+const containerVariants = {}
 
-}
+const outerDivWrapper = {}
 
-const outerDivWrapper = {
-
-}
-
-const innerDivWrapper = {
-
-}
+const innerDivWrapper = {}
 
 const ProjectImage = ({ reversed, alt, link, preview, title }) => {
-
   const { show } = useContext(ExitStateContext)
   const controls = useAnimation()
 
@@ -85,7 +96,7 @@ const ProjectImage = ({ reversed, alt, link, preview, title }) => {
       variants={containerVariants}
       transition={transition}
       animate={'animate'}
-      exit='exit'
+      exit="exit"
       initial="initial"
       whileHover="hover"
       custom={show}
@@ -94,7 +105,6 @@ const ProjectImage = ({ reversed, alt, link, preview, title }) => {
         className="outer-div"
         variants={outerDivWrapper}
         transition={transition}
-
       >
         <motion.div
           className="inner-div"
@@ -102,7 +112,7 @@ const ProjectImage = ({ reversed, alt, link, preview, title }) => {
           transition={transition}
           custom={{ reversed }}
         >
-          <Link to={link}  >
+          <Link to={link}>
             <GatsbyImage
               onClick={() => {
                 // setExit(!exit)
@@ -113,7 +123,7 @@ const ProjectImage = ({ reversed, alt, link, preview, title }) => {
               className={'project-image'}
               image={getImage(preview)}
             />
-            </Link>
+          </Link>
         </motion.div>
       </motion.div>
     </ProjectImg>

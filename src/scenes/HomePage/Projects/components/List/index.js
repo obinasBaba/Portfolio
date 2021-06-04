@@ -1,30 +1,33 @@
 import React from 'react'
-import styled from 'styled-components'
-import { gridify, spacing } from '../../../../../styles/mixins'
+import styled, { css } from 'styled-components'
+import { gridify, smallUp, spacing } from '../../../../../styles/mixins'
 import StackUsed from './components/StackUsed'
 import ProjectImage from './components/ProjectImage'
 import ProjectDescription from './components/ProjectDescription'
-import {motion} from 'framer-motion'
-import ReactFullpage from '@fullpage/react-fullpage'
-import {Typography} from '@material-ui/core'
+import { motion } from 'framer-motion'
 import Others from '../Others'
-import Headline from '../../../../../components/Headline'
 
 const ProjectGrid = styled( motion.div )`
   ${ gridify };
+  // ${ spacing( 'pt', 2 ) };
   
-  ${ spacing( 'pt', 7 ) }
-
-  border: thick solid red;
+  ${ smallUp( css`
+    ${spacing('pt', 3)};
+    // ${spacing('p', 4)};
+  ` ) };
+  
+  align-content: center;
+  position: relative;
   min-height: 100vh;
   //scroll-snap-align: start;
+  
 `
 
 
 const ProjectList = ({
   preview1,
   preview2,
-  preview3,
+  // preview3,
   css3,
   postgres,
   sql,
@@ -59,7 +62,7 @@ const ProjectList = ({
       linkTitle: 'Case Study',
       preview: preview2,
       tags: 'Analytics, UX, UI, Icons, Front-end',
-      title: 'Simplistic Beauty And Hair Space.',
+      title: 'Beauty And Hair Space.',
       alt: 'Mobalytics. Game Analytics Platform Website',
       imgTitle: 'Mobalytics. Game Analytics Platform Website',
       partners: [node, angular, typescript, sql],
@@ -68,9 +71,9 @@ const ProjectList = ({
       id: 2,
       link: '/portfolio/project-3',
       linkTitle: 'coming soon',
-      preview: preview3,
+      preview: preview1,
       tags: 'Analytics, UX, UI, Front-end',
-      title: 'smart clock which ease your life',
+      title: 'smart clock ',
       alt: 'Glance Clock — First Smart Clock',
       imgTitle: 'Glance Clock — First Smart Clock',
       partners: [postgres, vue, javascript, css3],
@@ -108,14 +111,14 @@ const ProjectList = ({
                          animate='animate'
                          exit='exit' >
 
-              <ProjectImage reversed={reversed}
+              <ProjectImage reversed={true}
                             link={link}
                             alt={alt} title={title}
                             preview={preview} />
 
-              <ProjectDescription link={link}  reversed={reversed} title={title} tags={tags} />
+              <ProjectDescription link={link}  reversed={true} title={title} tags={tags} />
 
-              <StackUsed items={partners} reversed={reversed} />
+              <StackUsed items={partners} reversed={true} />
 
             </ProjectGrid>
 

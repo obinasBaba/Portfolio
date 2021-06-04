@@ -1,10 +1,11 @@
 import styled, { createGlobalStyle } from 'styled-components'
-import { responsiveVar } from '../../styles/commons'
+import {fpNav, responsiveVar} from '../../styles/commons'
 import {motion} from 'framer-motion';
 
 export const GlobalStyle = createGlobalStyle`
 
   ${ responsiveVar }  ;
+  ${ fpNav }  ;
 
   html,
   body,

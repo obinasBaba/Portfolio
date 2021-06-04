@@ -1,84 +1,85 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import {
-  gridColWidth, largeUp,
-  mediumUp,
+  gridColWidth,
+  largeUp,
+  mediumUp, smallUp,
   spacing,
 } from '../../../../../../styles/mixins'
 import { Link, useScrollRestoration } from 'gatsby'
 import { Typography } from '@material-ui/core'
 import MotionBtn from '../../../../../../components/MotionBtn'
 import { AnimatePresence, useIsPresent } from 'framer-motion'
-import {motion} from 'framer-motion';
-
+import { motion } from 'framer-motion'
 
 const ProjectDesc = styled(motion.div)`
   display: flex;
   flex-flow: column;
   z-index: 10;
   grid-row: 3;
+  //border: thin solid yellow;
 
-
+  ${gridColWidth(8, 58)}
+  ${spacing('pt', 6)};
+  ${spacing('pb', 6)};
+  
   & > * + * {
     ${spacing('mt', 2)}
   }
 
-  ${gridColWidth(8, 58)}
-  ${spacing('pt', 3)};
-  ${spacing('pb', 6)};
+  ${ smallUp( css`
+    ${spacing('pt', 0)};
+  ` ) };
 
 
   ${mediumUp(css`
-    ${({ reversed }) =>
-  reversed ? gridColWidth(4, 28) : gridColWidth(39, 62)};
+    grid-row: 1;
+    //border: thin solid red;
+    ${({ reversed }) => reversed ? gridColWidth(4, 28) : gridColWidth(39, 58)};
     ${spacing('pb', 0)};
 
-    grid-row: 1;
   `)};
 
   ${largeUp(css`
-    ${({ reversed }) => reversed ? gridColWidth(8, 28) : gridColWidth(39, 58)};
+    ${({ reversed }) => reversed ? gridColWidth(8, 30) : gridColWidth(39, 60)};
     ${spacing('pt', 6)};
 
   `)};
-  
+
   & > :last-child { //motion-btn
     ${spacing('mt', 4.5)};
 `
 
 const Tags = styled(Typography)`
+  display: none;
   font-weight: 300;
   line-height: 1.6em;
   letter-spacing: 0.5px;
   color: #b3afaf;
+  
+  ${ largeUp( css`
+    display: initial;
+  ` ) };
+  
+`
+const Title = styled(Typography)`
+  //line-height: 1.25em;
+  font-weight: 700;
 `
 
-
-const ProjectDescription = ( {link, reversed, tags, title,} ) => {
-
-
+const ProjectDescription = ({ link, reversed, tags, title }) => {
   return (
-      <ProjectDesc reversed={reversed}>
+    <ProjectDesc reversed={reversed}>
+      <Tags variant={'subtitle2'}> {tags} </Tags>
 
-        <Tags variant={'subtitle2'}> {tags} </Tags>
+      <motion.div>
+        <Link to={link}>
+          <Title variant={'h2'}>{title}</Title>
+        </Link>
+      </motion.div>
 
-        <motion.div>
-          <Link to={link}>
-            <Typography
-              variant={'h3'}
-              style={{
-                lineHeight: '1.25em',
-                fontWeight: 700,
-              }}
-            >
-              {title}
-            </Typography>
-          </Link>
-        </motion.div>
-
-        <MotionBtn text="Case-Study" to={link} />
-      </ProjectDesc>
-
+      <MotionBtn text="Case-Study" to={link} />
+    </ProjectDesc>
   )
 }
 

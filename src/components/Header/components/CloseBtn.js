@@ -15,7 +15,7 @@ const CloseContainer = styled( motion.div )`
   
   ${mediumUp(css`
     ${spacing('top', 2)};
-    ${spacing('right', 8)};
+    ${spacing('right', 6.5)};
   `)};
   
   
@@ -96,7 +96,7 @@ const path2Variants = {
 
 const CloseBtn = ( { toggler, state} ) => {
   return (
-    <CloseContainer onClick={ () => toggler( !state ) } >
+    <CloseContainer onClick={ () => toggler && toggler( !state ) } >
 
       <motion.svg xmlns="http://www.w3.org/2000/svg"
                   width="100%" height="100%"

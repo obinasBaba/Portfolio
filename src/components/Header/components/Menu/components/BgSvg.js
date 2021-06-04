@@ -31,8 +31,8 @@ const BackgroundSvg = () => {
 
   useEffect( () => {
 
-    console.log('lg : ', lgMatch )
-    console.log('md : ', mdMatch )
+    // console.log('lg : ', lgMatch )
+    // console.log('md : ', mdMatch )
 
     if ( mdMatch && !lgMatch )
       setVb( md );

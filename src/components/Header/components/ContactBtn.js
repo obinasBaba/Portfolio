@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import styled, { css } from 'styled-components'
 import { Typography } from '@material-ui/core'
-import {heightWidth, smallUp, spacing} from '../../../styles/mixins'
+import {heightWidth, mediumUp, smallUp, spacing} from '../../../styles/mixins'
 import { motion } from 'framer-motion'
 
 const ContactLink = styled.span`
@@ -22,7 +22,7 @@ const ContactLink = styled.span`
   align-items: center;
   cursor: pointer;
 
-  ${smallUp(css`
+  ${mediumUp(css`
     display: flex;
   `)};
   

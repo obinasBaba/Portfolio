@@ -7,49 +7,52 @@ import {
   mediumUp,
   spacing,
 } from '../../../../../../styles/mixins'
+import {ReactSVG} from 'react-svg'
 
 const StackList = styled.ul`
-  display: flex;
   grid-row: 2;
-  ${ gridColWidth(3, 30) };
-
+  display: flex;
   justify-content: space-between;
   align-items: center;
   list-style-type: none;
   padding: 0;
+  
+  ${gridColWidth(3, 30)};
   ${spacing('mt', 1)};
 
   ${mediumUp(css`
     grid-row: 2;
     display: flex;
 
-    ${ ({reversed}) => reversed ? gridColWidth(30, 59) : gridColWidth(3, 30)};
+    ${({ reversed }) =>
+      reversed ? gridColWidth(40, 59) : gridColWidth(6, 20)};
   `)};
+  
+  ${ largeUp( css`
 
-  ${largeUp(css`
-    ${ ({reversed}) => reversed ? gridColWidth(30, 59) : gridColWidth(3, 30)};
-  `)};
-
-
+    ${({ reversed }) =>
+            reversed ? gridColWidth(19, 35) : gridColWidth(6, 20)};
+  ` ) };
+  
 
   img {
     display: block;
     width: auto;
     margin: 0 auto;
-
-    ${ heightWidth('height', 3) };
+    object-fit: cover;
+    ${heightWidth('width', 3)};
+    ${heightWidth('height', 3)};
   }
+  
 `
 
 const StackUsed = ({ reversed, items }) => {
   return (
     <StackList reversed={reversed}>
       {items.map(({ publicURL }) => {
-
         return (
           <li key={publicURL}>
             <img src={publicURL} alt="stack logo" loading={'lazy'} />
-            {/*<ReactSVG src={publicURL} />*/}
           </li>
         )
       })}

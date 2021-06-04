@@ -22,6 +22,10 @@ const overlayVariant = {
   },
   exit: {
     opacity: 0,
+    transition: {
+      duration: 1.1,
+      ease: [0.5, 0, 0.75, 0],
+    },
   },
 }
 
