@@ -114,6 +114,12 @@ export const text= ( value ) => {
   `
 }
 
+export const title= ( value ) => {
+  return css`
+    font-size: calc(${value}rem * var(--title));;
+  `
+}
+
 export const gridMultiplayer = (key, value) => {
   return css`
     ${key}: 100vw / 64 * ${value};

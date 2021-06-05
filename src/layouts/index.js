@@ -21,7 +21,7 @@ import ExitStateProvider from '../contexts/ExitStateContext'
 import BackgroundStars from '../components/BackgroundStars'
 
 export default function TopLayout({ children }) {
-  const [isHeaderGradient, setIHeaderGradient] = useState(true)
+  const [isHeaderGradient, setIHeaderGradient] = useState(false)
   const [isWhite, setIsWhite] = useState(false)
 
   return (

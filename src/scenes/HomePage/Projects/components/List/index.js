@@ -12,7 +12,7 @@ const ProjectGrid = styled( motion.div )`
   // ${ spacing( 'pt', 2 ) };
   
   ${ smallUp( css`
-    ${spacing('pt', 3)};
+    ${spacing('pt', 4)};
     // ${spacing('p', 4)};
   ` ) };
   
@@ -22,6 +22,7 @@ const ProjectGrid = styled( motion.div )`
   //scroll-snap-align: start;
   
 `
+
 
 
 const ProjectList = ({
@@ -113,6 +114,7 @@ const ProjectList = ({
               <ProjectImage reversed={true}
                             link={link}
                             alt={alt} title={title}
+                            index={index}
                             preview={preview} />
 
               <ProjectDescription link={link}  reversed={true} title={title} tags={tags} />

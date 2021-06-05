@@ -14,6 +14,7 @@ import { SectionWrapper } from '../components/Container'
 import { heightWidth, mediumUp, spacing } from '../styles/mixins'
 import ReturnBtn from '../components/ReturnBtn'
 import {Tags} from '../scenes/HomePage/Projects/components/List/components/ProjectDescription'
+import {useHeaderIsWhite} from '../hooks/useHeaderIsWhite'
 
 const Scroll = styled.div`
   position: fixed;
@@ -42,7 +43,9 @@ const ScrollTxt = styled( Typography )`
 const IndexPage = () => {
   const { show, setShow } = useContext(ExitStateContext)
   let navPos = ''
-  const match = useMediaQuery(theme => theme.breakpoints.up('sm'))
+  const match = useMediaQuery(theme => theme.breakpoints.up('sm'));
+
+
 
   const { auth, kklLuzern, udemy, ...listAssets } = useProjectsAssets()
   const othersAssets = { auth, kklLuzern, udemy }
