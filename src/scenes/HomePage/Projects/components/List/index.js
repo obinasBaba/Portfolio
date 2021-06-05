@@ -107,7 +107,6 @@ const ProjectList = ({
             <ProjectGrid key={index + tags.toString()}
                          variants={topVariant}
                          initial='initial'
-                         whileHover='hover'
                          animate='animate'
                          exit='exit' >
 

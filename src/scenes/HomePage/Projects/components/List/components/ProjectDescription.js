@@ -17,7 +17,8 @@ const ProjectDesc = styled(motion.div)`
   flex-flow: column;
   z-index: 10;
   grid-row: 3;
-  //border: thin solid yellow;
+  overflow: hidden;
+  border: thin solid yellow;
 
   ${gridColWidth(8, 58)}
   ${spacing('pt', 6)};
@@ -30,7 +31,6 @@ const ProjectDesc = styled(motion.div)`
   ${ smallUp( css`
     ${spacing('pt', 0)};
   ` ) };
-
 
   ${mediumUp(css`
     grid-row: 1;
@@ -50,7 +50,7 @@ const ProjectDesc = styled(motion.div)`
     ${spacing('mt', 4.5)};
 `
 
-const Tags = styled(Typography)`
+export const Tags = styled(Typography)`
   display: none;
   font-weight: 300;
   line-height: 1.6em;
@@ -62,23 +62,53 @@ const Tags = styled(Typography)`
   ` ) };
   
 `
+
 const Title = styled(Typography)`
   //line-height: 1.25em;
   font-weight: 700;
 `
 
+const top = {
+  animate: {
+    transition: {
+      delay: 1,
+      when: 'beforeChildren',
+      staggerChildren: .2,
+      delayChildren: 1,
+    }
+  }
+}
+
+const titleVariants = {
+  initial: {
+    x: '-100%'
+  },
+  animate: {
+    x: '0%',
+  }
+}
+
 const ProjectDescription = ({ link, reversed, tags, title }) => {
   return (
-    <ProjectDesc reversed={reversed}>
-      <Tags variant={'subtitle2'}> {tags} </Tags>
 
-      <motion.div>
+    <ProjectDesc reversed={reversed}
+                 variants={top}
+                 animate='animate'
+                 initial='initial'
+    >
+      <motion.div variants={titleVariants} >
+        <Tags variant={'subtitle2'}> {tags} </Tags>
+      </motion.div>
+
+      <motion.div variants={titleVariants} >
         <Link to={link}>
           <Title variant={'h2'}>{title}</Title>
         </Link>
       </motion.div>
 
-      <MotionBtn text="Case-Study" to={link} />
+      <motion.div variants={titleVariants}>
+        <MotionBtn text="Case-Study" to={link} />
+      </motion.div>
     </ProjectDesc>
   )
 }
