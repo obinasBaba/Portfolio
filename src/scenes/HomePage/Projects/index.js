@@ -1,13 +1,8 @@
-import React, {useContext, useEffect, useState} from 'react'
-import useProjectsAssets from '../../../hooks/queries/useProjectsAssets'
-import ProjectList from './components/List'
-import Others from './components/Others'
+import React, { useContext, useEffect } from 'react'
 import Headline from '../../../components/Headline'
 import 'fullpage.js/vendors/scrolloverflow'
-import ReactFullpage from '@fullpage/react-fullpage'
-import { Typography } from '@material-ui/core'
-import { AnimatePresence, motion } from 'framer-motion'
-import {ExitStateContext} from '../../../contexts/ExitStateContext'
+import { motion } from 'framer-motion'
+import { ExitStateContext } from '../../../contexts/ExitStateContext'
 
 const v = {
   initial: {

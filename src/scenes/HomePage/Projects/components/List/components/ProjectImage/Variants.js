@@ -1,5 +1,5 @@
 export const transition = {
-  duration: 1,
+  duration: 1.2,
   ease: [0.76, 0, 0.24, 1],
   // repeat: Infinity,
   // repeatType: 'mirror',
@@ -16,7 +16,7 @@ export const containerVariants = {
     transition: {
       duration: 1.5,
       ease: [.33, 1, .68, 1],
-      delay: .3
+      delay: .5
     }
   }
 }
@@ -27,8 +27,8 @@ export const imgOverVariants = {
   initial: {},
   animate: {
     transition: {
-      delayChildren: 1.3,
-      staggerChildren: .14,
+      delayChildren: 0.2,
+      staggerChildren: .2,
       staggerDirection: -1,
     }
   }
@@ -37,18 +37,10 @@ export const imgOverVariants = {
 export const imgCover = {
   initial: {x: 0},
   animate: {
-    x: '-110%',
-
+    x: '110%',
   }
 };
 
-export const imgCover2 = {
-  initial: {x: 0},
-  animate: {
-    x: '-110%',
-
-  }
-};
 
 export const effectVariant = {
   initial: {
@@ -57,7 +49,9 @@ export const effectVariant = {
   animate: {
     y: 0,
     transition: {
-      delay: 2.3
+      duration: 1,
+      ease: [.65, 0, 0.35, 1],
+      delay: 1.3
     }
   }
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { Container, Typography } from '@material-ui/core'
 import BG from './preview-1.png'
-import { heightWidth, mediumUp, spacing } from '../../../styles/mixins'
+import {  mediumUp, spacing } from '../../../styles/mixins'
 import MotionBtn from '../../../components/MotionBtn'
 
 const NextProjectContainer = styled(Container)`

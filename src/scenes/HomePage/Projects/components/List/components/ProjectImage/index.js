@@ -1,38 +1,30 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import styled, { css } from 'styled-components'
-import {
-  gridColWidth,
-  largeUp,
-  mediumUp,
-  spacing,
-} from '../../../../../../../styles/mixins'
+import React, { useContext } from 'react'
 import { motion, useAnimation } from 'framer-motion'
-import { Link, navigate } from 'gatsby'
+import { Link } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { ExitStateContext } from '../../../../../../../contexts/ExitStateContext'
 import {
   containerVariants,
   effectVariant,
-  transition,
   imgCover,
-  imgCover2,
   imgOverVariants,
   outerDivWrapper,
+  transition,
 } from './Variants'
 import { OverflowWrapper, ProjectImg } from './Components'
 
-const ProjectImage = ({ reversed, alt, link, preview, title, index }) => {
+const ProjectImage = ({ reversed, alt, link, preview, title, index, controller }) => {
   const { show } = useContext(ExitStateContext)
-  const controls = useAnimation()
+
 
   return (
     <ProjectImg
       reversed={reversed}
       variants={containerVariants}
       transition={transition}
-      animate={controls}
+      animate={controller}
       exit="exit"
       initial="initial"
       whileHover="hover"
@@ -62,7 +54,7 @@ const ProjectImage = ({ reversed, alt, link, preview, title, index }) => {
 
         <motion.div
           className="image-cover cover-2"
-          variants={imgCover2}
+          variants={imgCover}
           transition={transition}
         />
       </motion.div>

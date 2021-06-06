@@ -1,29 +1,25 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styled, { css } from 'styled-components'
 import { gridify, smallUp, spacing } from '../../../../../styles/mixins'
 import StackUsed from './components/StackUsed'
 import ProjectImage from './components/ProjectImage'
 import ProjectDescription from './components/ProjectDescription'
-import { motion } from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
 import Others from '../Others'
 
-const ProjectGrid = styled( motion.div )`
-  ${ gridify };
-  // ${ spacing( 'pt', 2 ) };
-  
-  ${ smallUp( css`
+const ProjectGrid = styled(motion.div)`
+  ${gridify};
+  // ${spacing('pt', 2)};
+
+  ${smallUp(css`
     ${spacing('pt', 4)};
     // ${spacing('p', 4)};
-  ` ) };
-  
+  `)};
+
   align-content: center;
   position: relative;
   min-height: 100vh;
-  //scroll-snap-align: start;
-  
 `
-
-
 
 const ProjectList = ({
   preview1,
@@ -41,10 +37,8 @@ const ProjectList = ({
   angular,
   node,
   othersAssets,
-
+  controllers,
 }) => {
-
-
   const items = [
     {
       id: 0,
@@ -79,7 +73,7 @@ const ProjectList = ({
       imgTitle: 'Glance Clock — First Smart Clock',
       partners: [postgres, vue, javascript, css3],
     },
-  ];
+  ]
   const topVariant = {
     initial: {
       opacity: 0,
@@ -88,56 +82,98 @@ const ProjectList = ({
       opacity: 1,
       transition: {
         duration: 1,
-      }
+      },
     },
-  };
+  }
+
+  useEffect( () => {
+    console.log('rendered--', controllers)
+  }, [] )
+
+  const controller = [
+    {
+      imgController: useAnimation(),
+      descController: useAnimation(),
+      stackController: useAnimation(),
+    },
+    {
+      imgController : useAnimation(),
+      descController : useAnimation(),
+      stackController : useAnimation()
+    },
+    {
+      imgController : useAnimation(),
+      descController : useAnimation(),
+      stackController : useAnimation()
+    }
+  ];
+
+  controller.forEach( (obj, i) => {
+    const { imgController, descController, stackController } = obj;
+
+    const controllerFn =  value => {
+       imgController.start(value)
+       descController.start(value)
+      stackController.start(value)
+    }
+
+    controllers.push(controllerFn);
+
+
+  } )
 
   return (
     <>
-      {
-        items.map( (item, index) => {
+      {items.map((item, index) => {
 
-          const { id, partners, tags, preview, alt, link, title,  } = item;
-          const reversed = !((index % 2) === 0)
+        const { imgController, descController, stackController } = controller[index];
 
 
-          return (
+        const { id, partners, tags, preview, alt, link, title } = item
 
-            <div className='section' key={link} >
+        return (
+          <div className="section" key={link}>
+            <ProjectGrid
+              key={index + tags.toString()}
+              variants={topVariant}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <ProjectImage
+                reversed={true}
+                link={link}
+                alt={alt}
+                title={title}
+                index={index}
+                controller={imgController}
+                preview={preview}
+              />
 
-            <ProjectGrid key={index + tags.toString()}
-                         variants={topVariant}
-                         initial='initial'
-                         animate='animate'
-                         exit='exit' >
+              <ProjectDescription
+                link={link}
+                reversed={true}
+                controller={descController}
+                title={title}
+                index={index}
+                tags={tags}
+              />
 
-              <ProjectImage reversed={true}
-                            link={link}
-                            alt={alt} title={title}
-                            index={index}
-                            preview={preview} />
-
-              <ProjectDescription link={link}  reversed={true} title={title} tags={tags} />
-
-              <StackUsed items={partners} reversed={true} />
-
+              <StackUsed
+                items={partners}
+                controller={stackController}
+                reversed={true}
+              />
             </ProjectGrid>
+          </div>
+        )
+      })}
 
-            </div>
-
-          )
-        })
-      }
-
-       <div className="section"  >
+      <div className="section">
         <Others {...othersAssets} />
       </div>
-
-
     </>
   )
-
-
 }
 
 export default ProjectList

@@ -1,40 +1,37 @@
-import React, { useEffect } from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import MotionBtn from '../../../../../../../components/MotionBtn'
-import { motion } from 'framer-motion'
-import baffle from 'baffle/src/baffle'
+import {motion, useAnimation} from 'framer-motion'
 import {descTxtVariants, transition, letterVariant, titleVariant, top} from './Variants'
 import {ProjectDesc, Tags, OverflowWrapper, Title} from './Components'
+import {ExitStateContext} from '../../../../../../../contexts/ExitStateContext'
+import baffle from 'baffle'
 
-const ProjectDescription = ({ link, reversed, tags, title }) => {
+const ProjectDescription = ({ link, reversed, tags, title, controller, index }) => {
+
+  let b = baffle(document.querySelectorAll(`.baffled-${index}`), {
+    characters: '▒█▓▒░<>/',
+  });
+
+
   useEffect(() => {
-    let b = baffle(document.querySelectorAll('.baffled'), {
+    baffle(document.querySelectorAll(`.baffled-${index}`), {
       characters: '▒█▓▒░<>/',
-    })
-
-    setTimeout(() => {
-      b.once();
-      setTimeout( () => {
-        b.start().reveal(1300, 1300)
-      }, 200)
-    }, 0)
-
-    return () => {
-      b.stop()
-    }
+    }).start().reveal(4000,1000);
   }, [])
 
   return (
     <ProjectDesc
       reversed={reversed}
       variants={top}
-      animate="animate"
+      animate={controller}
       initial="initial"
     >
       <OverflowWrapper>
-        <motion.div variants={descTxtVariants}>
-          <Tags className="baffled" variant={'subtitle2'}>
-            {' '}
-            {tags}{' '}
+        <motion.div variants={descTxtVariants}
+                    custom={b}>
+
+          <Tags className={` forI baffled-` + index} variant={'subtitle2'}>
+            {tags}
           </Tags>
         </motion.div>
       </OverflowWrapper>

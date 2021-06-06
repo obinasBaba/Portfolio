@@ -1,20 +1,19 @@
 // noinspection ConstantConditionalExpressionJS
 
 import * as React from 'react'
+import { useContext } from 'react'
 import { Typography, useMediaQuery } from '@material-ui/core'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import HomePage from '../scenes/HomePage'
 import ReactFullpage from '@fullpage/react-fullpage'
-import { useContext, useEffect, useState } from 'react'
 import { ExitStateContext } from '../contexts/ExitStateContext'
 import ProjectList from '../scenes/HomePage/Projects/components/List'
 import useProjectsAssets from '../hooks/queries/useProjectsAssets'
 import { AnimatePresence, motion } from 'framer-motion'
 import { SectionWrapper } from '../components/Container'
-import { heightWidth, mediumUp, spacing } from '../styles/mixins'
+import { heightWidth } from '../styles/mixins'
 import ReturnBtn from '../components/ReturnBtn'
-import {Tags} from '../scenes/HomePage/Projects/components/List/components/ProjectDescription'
-import {useHeaderIsWhite} from '../hooks/useHeaderIsWhite'
+import { Tags } from '../scenes/HomePage/Projects/components/List/components/ProjectDescription'
 
 const Scroll = styled.div`
   position: fixed;
@@ -41,10 +40,9 @@ const ScrollTxt = styled( Typography )`
 `
 
 const IndexPage = () => {
-  const { show, setShow } = useContext(ExitStateContext)
-  let navPos = ''
-  const match = useMediaQuery(theme => theme.breakpoints.up('sm'));
+  const { show, setShow, setActiveIndex } = useContext(ExitStateContext)
 
+  const controllers = [];
 
 
   const { auth, kklLuzern, udemy, ...listAssets } = useProjectsAssets()
@@ -84,9 +82,6 @@ const IndexPage = () => {
           </g>
         </motion.svg>
 
-
-
-
         <ScrollTxt variant={'subtitle2'} > SCROLL </ScrollTxt>
 
 
@@ -97,7 +92,7 @@ const IndexPage = () => {
           key={'full'}
           easingcss3="cubic-bezier(0.645, 0.045, 0.355, 1)"
           scrollingSpeed="1e3"
-          anchors={['top', 'reile', 'abb', 'con']}
+          anchors={['one', 'two', 'three', 'four']}
           navigation={true}
           navigationPosition="left"
           dragAnAndMove={true}
@@ -106,23 +101,46 @@ const IndexPage = () => {
           autoScrolling={true}
           fitToSection={true}
           fixedElements={'#FIXED_'}
-          onLeave={(index, nextIndex, direction) => {
-            console.log('OnLeave ------- ', index, nextIndex, direction)
-            // return false;
+          onLeave={( origin, dist, dir)  => {
+
+            console.log('after-Leave ------', origin, dist, dir);
+
+
+            if ( dist.isLast )
+            {
+              controllers[origin.index]('initial');
+              return true;
+            }
+
+            controllers[origin.index]('initial');
+            controllers[dist.index]('animate');
+
+
           }}
-          afterLoad={(anchor, index) => {
-            console.log('afterLoad -------', anchor, index)
-            console.log(
-              '*******************************************************'
-            )
+          afterLoad={( origin, dist, dir ) => {
+            if ( dist.isLast )
+              return true;
+            //
+            if ( dir === null ) //isFirst
+              return controllers[dist.index]('animate')
+
+            // controllers[index - 1]('initial')
+
+
+            console.log('afterLoad -------', origin, dist, dir)
+            console.log('*******************************************************')
+
           }}
           afterRender={i => {
-            console.log('afterRender ------- ', i)
+            console.log('afterRender ------- ', i);
+            console.log(controllers, '--controlers')
           }}
           render={({ state, fullpageApi }) => {
             return (
               <SectionWrapper>
-                <ProjectList {...listAssets} othersAssets={othersAssets} />
+                <ProjectList {...listAssets}
+                             controllers={controllers}
+                             othersAssets={othersAssets} />
               </SectionWrapper>
             )
           }}

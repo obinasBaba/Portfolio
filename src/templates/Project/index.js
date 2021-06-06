@@ -1,17 +1,14 @@
 import React, { useContext, useEffect } from 'react'
 import Headline from './Headline'
-import styled, { css } from 'styled-components'
-import { mediumUp, spacing } from '../../styles/mixins'
 import Intro from './Intro'
 import AnalysisPreparation from './AnalysisPreparation'
 import ColorPalette from './Colors'
 import NextProject from './NextProject'
 import FontUsed from './FontUsed'
-import { motion } from 'framer-motion'
 
 import { useIntersection } from 'react-use'
 import { HeaderContext } from '../../contexts'
-import {ContentSectionWrapper, ProjectContainer} from './components'
+import { ContentSectionWrapper, ProjectContainer } from './components'
 
 const variant = {
   initial: {
