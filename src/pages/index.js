@@ -16,10 +16,13 @@ import ReturnBtn from '../components/ReturnBtn'
 import { Tags } from '../scenes/HomePage/Projects/components/List/components/ProjectDescription'
 
 const Scroll = styled.div`
+  
   position: fixed;
   cursor: pointer;
-  left: 30px;
-  bottom: 10%;
+  //left: 30px;
+  right: 17px;
+  //bottom: 4%;
+  bottom: 2%;
   //border: thin solid red;
   
   display: grid;
@@ -51,7 +54,7 @@ const IndexPage = () => {
   return (
     <AnimatePresence>
 
-      {true && <ReturnBtn key='return' onClick={() => setShow(false)} />}
+      {show && <ReturnBtn key='return' onClick={() => setShow(false)} />}
 
       <Scroll key='scroll'>
 
@@ -87,7 +90,7 @@ const IndexPage = () => {
 
       </Scroll>
 
-      {true ? (
+      {show ? (
         <ReactFullpage
           key={'full'}
           easingcss3="cubic-bezier(0.645, 0.045, 0.355, 1)"

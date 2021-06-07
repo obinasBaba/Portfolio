@@ -56,8 +56,8 @@ const NavContainer = styled.div`
   }
 
   ${mediumUp(css`
-    ${spacing('pv', 2)};
-    ${spacing('ph', 6.5)};
+    ${spacing('pv', 1.5)};
+    ${spacing('ph', 5)};
   `)};
 `
 

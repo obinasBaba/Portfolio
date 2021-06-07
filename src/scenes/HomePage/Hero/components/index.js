@@ -1,55 +1,79 @@
-import styled, { css } from 'styled-components'
-import { Container } from '@material-ui/core'
+import styled, {css} from 'styled-components'
 import {
-  gridColWidth,
-  gridify,
-  largeUp,
+  heightWidth,
+  smallDown,
   smallUp,
+  spacing,
 } from '../../../../styles/mixins'
-import H from '../H.inline.svg'
 
-export const HeroContainer = styled(Container)`
+export const HeroContainer = styled.div`
   position: relative;
-  align-content: center;
-  grid-template-columns: 1fr 1fr;
-  min-height: 80vh;
-  ${gridify()};
-
-  & > .hero-pic {
-    display: none;
-    grid-row: 1/2;
-    border-radius: 1rem;
-    max-width: 300px;
-    
-    ${gridColWidth(40, 65)};
-    
-    ${smallUp(css`
-      display: block;
-    `)};
-
-    ${largeUp(css`
-      ${gridColWidth(42, 60)};
-    `)};
-  }
+  height: 100vh;
+  width: 100vw;
 `
 
 export const TextContainer = styled.div`
-  z-index: 99;
-  grid-row: 1/2;
-  display: grid;
-  align-items: center;
-  align-content: center; 
-  grid-gap: 1rem;
-  ${ gridColWidth(  ) };
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+  //border: thin solid red;
   
-  ${ smallUp( css`
-    ${ gridColWidth(1, 46) };
+  ${spacing('pl', 6)};
+  ${spacing('pb', 17)};
 
-  `)};
+
+  ${ smallUp( css`
+    ${spacing('pb', 0)};
+    ${spacing('pl', 12)}; //smallDown
+    justify-content: center; //smallDown
+
+  ` ) };
   
+
   & > h2 {
     margin-left: 15px;
+    font-weight: bolder;
   }
+  
+  .job{
+    ${spacing('mt', 5)};
+    margin-left: 15px;
+    ${ heightWidth( 'letter-spacing', .2 ) };
+  }
+  
+}
+`
+
+export const Lines = styled.div`
+  position: relative;
+  height: 4px;
+  border-radius: 100px;
+  background-image: linear-gradient(
+          137.81deg,
+          #e7a28f 13.52%,
+          #f9d6ac 41.89%,
+          #fbfefc 110.77%
+  );
+  
+  ${ spacing( 'width', 10 ) };
+  ${spacing('mt', 5)};
+  margin-left: 15px;
+
+
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: inherit;
+    border-radius: 100px;
+    margin-top: .7rem;
+    top: 0;
+    left: 62%;
 `
 
 export const SvgWithTxt = styled.div`
@@ -57,41 +81,17 @@ export const SvgWithTxt = styled.div`
   justify-content: start;
   align-items: center;
 
+
   svg {
     fill: white;
-    margin-right: -33px;
-    max-width: 200px;
+    ${ spacing( 'mr', -4 ) };
+    ${ spacing( 'max-width', 20 ) };
   }
-`
 
-export const TextWrapper = styled.div`
-  display: flex;
-  flex-flow: column;
-  
-  & > :nth-child(1){
-    display: block;
-    flex: 1;
-   
-    @media (max-width: 576px ){
-      font-size: clamp( 56px, 18.3vw, 100px );
+  .enok {
+    @media (max-width: 576px) {
+      //font-size: clamp(56px, 18.3vw, 100px);
+      font-size: clamp(30px, 16vw, 100px);
     }
-    
   }
-  
-  & > :nth-child(2){
-    margin-left: auto;
-    margin-right: 30px;
-    margin-top: -10px;
-  }
-`;
-
-export const SvgEffect = styled( H )`
-  position: absolute;
-  width: 500px;
-  fill: ${(( { theme }) => theme.palette.secondary.main )};
-  opacity: .1;
-  transform: translateX( 45vw );
-  ${ smallUp( css`
-    display: none;
-  ` ) };
 `
