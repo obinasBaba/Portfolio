@@ -90,7 +90,6 @@ export const SvgWithTxt = styled.div`
 
   .enok {
     @media (max-width: 576px) {
-      //font-size: clamp(56px, 18.3vw, 100px);
       font-size: clamp(30px, 16vw, 100px);
     }
   }
