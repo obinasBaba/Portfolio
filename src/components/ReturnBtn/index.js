@@ -8,6 +8,7 @@ const ExitBtn = styled.div`
   cursor: pointer;
   left: 30px;
   top: 20%;
+  z-index: 999;
 
   ${heightWidth('height', 6)};
   ${heightWidth('width', 6)};

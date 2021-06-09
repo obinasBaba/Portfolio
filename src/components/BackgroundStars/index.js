@@ -38,7 +38,21 @@ const BackgroundStars = () => {
   const yScrollSmall = useTransform(yScrollBig, latest => latest / 1.5)
 
 
-  useEffect( () => calc(mouse.elX, mouse.elY), [mouse] )
+  useEffect( () => calc(mouse.elX, mouse.elY), [mouse] );
+
+  useEffect(() => {
+    const hideScrollBar = () => {
+      setTimeout(() => {
+
+      }, 2500)
+    }
+
+      return () => {
+
+      }
+    },
+    [])
+  
 
   return (
     <Galaxy ref={target}>

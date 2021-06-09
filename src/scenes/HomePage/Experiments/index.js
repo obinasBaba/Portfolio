@@ -6,7 +6,7 @@ import Headline from '../../../components/Headline'
 
 const ExperimentsContainer = styled.div`
 
-  ${ spacing( 'mt', 20 ) };
+  // ${ spacing( 'mt', 20 ) };
   text-align: center;
   position: relative;
 `

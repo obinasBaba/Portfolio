@@ -143,10 +143,12 @@ export default function TopLayout({ children }) {
                   </div>
                 </MoonBg>
                 <BackgroundStars  />
+
                 <ExitStateProvider>
                   <AnimatePresence exitBeforeEnter={true}>
                     {children}
                   </AnimatePresence>
+
                 </ExitStateProvider>
               </Main>
 
