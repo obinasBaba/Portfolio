@@ -11,6 +11,7 @@ export const ContentSectionWrapper = styled.section`
   background-color: #f3f3f3;
   border: .1px solid #f3f3f3;  /// fix this wierd bug
   z-index: 1;
+  color: #02021e;
 
   // ${spacing('pv', 0)};
   ${spacing('pb', 15)};

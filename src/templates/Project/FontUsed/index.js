@@ -17,6 +17,7 @@ const FontSample = styled.div`
     ${ spacing('mt', 2) };
     letter-spacing: 10px;
     font-weight: bolder;
+    ${ spacing('font-size', 3.2) };
   }
 
   h4{
@@ -24,11 +25,11 @@ const FontSample = styled.div`
   }
   
   &:first-child{
-    font-family: 'abyssopelagic';
+    font-family: 'abyssopelagic',serif;
   }
   
   &:last-child *{
-    font-family: Poppins, sans-serif;
+    font-family: "Inconsolata Black",serif;
     font-weight: 900;
     font-style: normal;
   }
@@ -45,7 +46,7 @@ const FontUsed = () => {
       </FontSample>
 
       <FontSample>
-        <Typography variant='h4' noWrap > Poppins </Typography>
+        <Typography variant='h4' noWrap > Inconsolata </Typography>
         <Typography variant='h6' noWrap> abcdefghijkl </Typography>
         <Typography variant='h6' noWrap> mnopqrstuvwx </Typography>
         <Typography variant='h6' noWrap> yz1234567890 </Typography>

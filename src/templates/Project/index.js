@@ -10,6 +10,8 @@ import { useIntersection } from 'react-use'
 import { HeaderContext } from '../../contexts'
 import { ContentSectionWrapper, ProjectContainer } from './components'
 import MetaTxt from './MetaTxt'
+import Concept from './Concept'
+import Development from './Development'
 
 const variant = {
   initial: {
@@ -71,8 +73,6 @@ const Project = ({ pageContext }) => {
 
         <MetaTxt  />
 
-
-
         <Intro intro={intro} />
 
         <AnalysisPreparation />
@@ -80,6 +80,10 @@ const Project = ({ pageContext }) => {
         <ColorPalette />
 
         <FontUsed />
+
+        <Concept  />
+
+        <Development />
 
       </ContentSectionWrapper>
 

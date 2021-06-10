@@ -29,6 +29,7 @@ const Technology = styled( Typography )`
 const Title = styled( Typography )`
   position: relative;
   font-weight: bold;
+  //font-family: var(--sofia-soft);
   ${ spacing('mb', 6) };
   
   &::after{
@@ -52,13 +53,11 @@ const Title = styled( Typography )`
 
 const Description = styled( Typography )`
   max-width: 45ch;
-  font-family: var(--sofia-pro);
-  font-weight: 300;
   line-height: 160%;
-  letter-spacing: 0.5px;
-  opacity: 0.7;
+  //opacity: 0.7;
   margin: 0;
   position: relative;
+  
   ${ spacing( 'mb', 8 ) };
   
   &::after{
