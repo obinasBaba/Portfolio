@@ -3,6 +3,8 @@ import { A, HeadlineContainer, ImgGradient, Q, Role, Title } from './Components'
 import { GradientText } from '../../../components/GrdientText'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import {motion} from 'framer-motion'
+import MotionBtn from '../../../components/MotionBtn'
+import {Lines} from '../../../scenes/HomePage/Hero/components'
 
 const Headline = ({ subTitle, title, about, media }) => {
 
@@ -10,11 +12,7 @@ const Headline = ({ subTitle, title, about, media }) => {
   const { role, context, period } = about;
 
 
-  const About = [
-    { q: 'Role ', a: role },
-    { q: 'Context ', a: context },
-    { q: 'Period ', a: period },
-  ];
+
 
   return (
     <HeadlineContainer maxWidth={'xl'}
@@ -22,16 +20,12 @@ const Headline = ({ subTitle, title, about, media }) => {
     >
 
 
-
-      <Role>
-        {About.map(({ q, a }) => (
-          <li key={q}>
-            <Q > {q} : </Q>
-            <A> { a} </A>
-          </li>
-        ))}
-      </Role>
-
+      <Title>
+        <h1>Creative Digital Agency</h1>
+        <Lines />
+        {/*<h3 className='type'>WebApp</h3>*/}
+        <MotionBtn text='Visit Site' />
+      </Title>
 
 
       <ImgGradient>
@@ -43,15 +37,7 @@ const Headline = ({ subTitle, title, about, media }) => {
                      objectFit='cover'
                      loading='eager'  />
 
-
-        <Title>
-          <GradientText variant='h1'>{title}</GradientText>
-          <GradientText  >{subTitle}</GradientText>
-        </Title>
-
-        <motion.div className="overlay"
-
-        />
+        <motion.div className="overlay"/>
 
       </ImgGradient>
 

@@ -28,18 +28,7 @@ const TitleContainer = styled.header`
 const Headline = ( {title, subtitle, mb, showProjects} ) => {
 
   const targetElement = React.useRef(null)
-  // const intersection = useIntersection( targetElement, {
-  //   root: null,
-  //   rootMargin: '0px',
-  //   threshold: 1,
-  // } )
 
-  /*useEffect( () => {
-    console.log('intersection-change ******  ', intersection)
-
-   setAuto && setAuto(intersection && intersection.isIntersecting);
-
-  }, [intersection] )*/
 
   return (
     <TitleContainer mb={mb} ref={targetElement} >

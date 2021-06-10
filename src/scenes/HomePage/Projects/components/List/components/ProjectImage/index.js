@@ -30,20 +30,23 @@ const ProjectImage = ({ reversed, alt, link, preview, title, index, controller }
       whileHover="hover"
       custom={show}
     >
+      <Link to={link}>
+
       <motion.div
         className="outer-div"
         variants={outerDivWrapper}
         transition={transition}
       >
-        <Link to={link}>
           <GatsbyImage
             alt={alt}
             key={title}
             className={'project-image'}
             image={getImage(preview)}
           />
-        </Link>
       </motion.div>
+
+      </Link>
+
 
       <motion.div className="image-over" variants={imgOverVariants}>
         <motion.div
@@ -69,6 +72,7 @@ const ProjectImage = ({ reversed, alt, link, preview, title, index, controller }
           0{index + 1}
         </motion.div>
       </OverflowWrapper>
+
     </ProjectImg>
   )
 }

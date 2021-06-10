@@ -4,10 +4,10 @@ import {mediumUp, spacing} from '../../styles/mixins'
 
 export const ProjectContainer = styled( motion.div )`
   max-width: 1600px;
-  ${spacing('pt', 27.4)};
+  // ${spacing('pt', 27.4)};
 
   ${mediumUp(css`
-    ${spacing('pt', 17)};
+    // ${spacing('pt', 17)};
   `)};
 `
 
@@ -17,10 +17,10 @@ export const ContentSectionWrapper = styled.section`
   border: var(--thin);
   max-width: 1600px;
   margin: 0 auto;
-  z-index: 1;
+  //z-index: 1;
 
-  ${spacing('mt', -18)}; 
-  ${spacing('pt', 35)};
+  // ${spacing('mt', -18)}; 
+  // ${spacing('pt', 35)};
   ${spacing('pb', 15)};
 
   .line {

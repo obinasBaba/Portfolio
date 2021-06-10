@@ -9,6 +9,7 @@ import FontUsed from './FontUsed'
 import { useIntersection } from 'react-use'
 import { HeaderContext } from '../../contexts'
 import { ContentSectionWrapper, ProjectContainer } from './components'
+import MetaTxt from './MetaTxt'
 
 const variant = {
   initial: {
@@ -67,6 +68,10 @@ const Project = ({ pageContext }) => {
 
       <ContentSectionWrapper ref={targetElement} >
         <div className="line" />
+
+        <MetaTxt  />
+
+
 
         <Intro intro={intro} />
 

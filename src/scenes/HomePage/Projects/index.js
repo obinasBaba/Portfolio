@@ -2,17 +2,22 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import 'fullpage.js/vendors/scrolloverflow'
 import { ExitStateContext } from '../../../contexts/ExitStateContext'
 import styled from 'styled-components'
-import { heightWidth } from '../../../styles/mixins'
+import {heightWidth, spacing} from '../../../styles/mixins'
 import Cursor from './cursor'
 import {motion, useMotionValue, useSpring} from 'framer-motion'
 import { distance, getMousePos, lerp } from '../../../helpers/utils'
 import {useMouse} from 'react-use'
+import {useScrollRestoration} from 'gatsby'
+import Headline from '../../../components/Headline'
 
 const ProjectContainer = styled.div`
-  height: 100vh;
+  //height: 200vh;
   display: flex;
+  flex-flow: column;
   align-items: center;
   justify-content: center;
+  //border: thin solid red;
+  ${ spacing( 'mb', 10 ) };
 
   .hover-target {
     cursor: pointer;
@@ -26,9 +31,10 @@ const ProjectContainer = styled.div`
     //border: thin solid green;
 
     ${heightWidth('height', 50)};
-    ${heightWidth('width', 70)};
+    ${heightWidth('width', 75)};
     
     .btn-border {
+      will-change: transform;
       position: absolute;
       display: flex;
       align-items: center;
@@ -37,17 +43,8 @@ const ProjectContainer = styled.div`
       width: 250px;
       //border: 2px solid #02021e;
       border-radius: 50%;
-      background: linear-gradient(
-              258.52deg,
-                #3719ca -132.34%,
-              rgba(55, 25, 202, 0) 22.57%
-      ),
-      linear-gradient(
-              283.68deg,
-              rgba(235, 174, 149, 0) 45.54%,
-              rgba(235, 174, 149, 0.19) 130.68%
-      ),
-      linear-gradient(3.27deg, #02021e 13.68%, #262147 142.62%);
+      background: linear-gradient( to top left, red, yellow );
+
       box-shadow: 70px 120px 150px -30px rgba(2, 2, 30, 0.6);
       //transition: transform .5s;
       
@@ -96,24 +93,11 @@ const ProjectContainer = styled.div`
 
 const top = {}
 
-const outer = {
-  initial: {
-    x: '-50%',
-    y: '-50%',
-  },
-  hover(xy) {
-
-  },
-}
-
-const inner = {
-  initial: {
-    x: '-50%',
-    y: '-50%',
-  },
-}
 
 const Projects = () => {
+
+  const magnetRestoration = useScrollRestoration('magnet');
+
 
   const { show, setShow } = useContext(ExitStateContext);
   const [hover, setHover] = useState(false)
@@ -171,42 +155,60 @@ const Projects = () => {
   }, [])
 
   return (
-    <ProjectContainer>
-      <motion.div
-        ref={ref}
-        variants={top}
-        initial="initial"
-        animate="animate"
-        whileHover="hover"
-        className='hover-target'
-        onHoverStart={() => {
-          setHover(true)
-          hoverValue.set(1)
-        }}
-        onHoverEnd={() => {
-          setHover(false)
-          hoverValue.set(0)
-          xPos.set(0)
-          yPos.set(0)
+    <motion.div
+      exit={{
+        opacity: 0,
+        transition: {
+          duration: 2,
+        }
+      }}
+    >
 
-        }}
-      >
-        <motion.div className="btn-border outer-border"
-                    style={{ x: x2, y: y2 }}
-                    onClick={ () => console.log('show') }
-        />
+      <ProjectContainer>
 
-        <motion.div className="btn-border inner-border"
-                    style={{ x, y }}
-                    onClick={ () => setShow(true) }
+        <Headline title={'Projects'}
+                  mb={5}
+                  subtitle={'Case Studies'}  />
 
+        <motion.div
+          {...magnetRestoration}
+          id={'projects'}
+          ref={ref}
+          variants={top}
+          initial="initial"
+          animate="animate"
+          whileHover="hover"
+          className='hover-target'
+          onHoverStart={() => {
+            setHover(true)
+            hoverValue.set(1)
+          }}
+          onHoverEnd={() => {
+            setHover(false)
+            hoverValue.set(0)
+            xPos.set(0)
+            yPos.set(0)
+
+          }}
         >
-          All Projects(12)
+          <motion.div className="btn-border outer-border"
+                      style={{ x: x2, y: y2 }}
+                      onClick={ () => console.log('show') }
+          />
+
+          <motion.div className="btn-border inner-border"
+                      style={{ x, y }}
+                      onClick={ () => setShow(true) }
+
+          >
+            All Projects(12)
+          </motion.div>
+
         </motion.div>
 
-      </motion.div>
+      </ProjectContainer>
 
-    </ProjectContainer>
+    </motion.div>
   )
 }
 

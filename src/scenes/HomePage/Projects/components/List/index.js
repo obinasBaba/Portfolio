@@ -85,10 +85,7 @@ const ProjectList = ({
       },
     },
   }
-
-  useEffect( () => {
-    console.log('rendered--', controllers)
-  }, [] )
+ 
 
   const controller = [
     {

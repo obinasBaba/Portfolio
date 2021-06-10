@@ -1,7 +1,7 @@
 // noinspection ConstantConditionalExpressionJS
 
 import * as React from 'react'
-import { useContext } from 'react'
+import {useContext, useEffect} from 'react'
 import { Typography, useMediaQuery } from '@material-ui/core'
 import styled from 'styled-components'
 import HomePage from '../scenes/HomePage'
@@ -39,18 +39,23 @@ const ScrollTxt = styled( Typography )`
 `
 
 const IndexPage = () => {
-  const { show, setShow } = useContext(ExitStateContext)
+  const { show, setShow, setMoon } = useContext(ExitStateContext)
 
   const controllers = [];
-
-
   const { auth, kklLuzern, udemy, ...listAssets } = useProjectsAssets()
   const othersAssets = { auth, kklLuzern, udemy }
 
-  return (
-    <AnimatePresence>
+  useEffect(() => {
 
-      {show && <ReturnBtn key='return' onClick={() => setShow(false)} />}
+    // setMoon(false)
+
+    }, [ ])
+  
+
+  return (
+    <AnimatePresence exitBeforeEnter>
+
+      {show && <ReturnBtn key='return' onClick={() => {setShow(false)}} />}
 
 
       {show && <Scroll key='scroll'   >
@@ -105,7 +110,6 @@ const IndexPage = () => {
           fitToSection={true}
           fixedElements={'#FIXED_'}
           onLeave={( origin, dist, dir)  => {
-            // console.log('after-Leave ------', origin, dist, dir);
             if ( dist.isLast ) {
               controllers[origin.index]('initial');
               return true;
@@ -119,16 +123,12 @@ const IndexPage = () => {
 
             if ( dir === null ) //isFirst
               return controllers[dist.index]('animate')
-
-            // console.log('afterLoad -------', origin, dist, dir)
-            // console.log('*******************************************************')
-
           }}
-          afterRender={i => {
-            console.log('afterRender ------- ', i);
-            console.log(controllers, '--controlers')
-          }}
+
           render={({ state }) => {
+
+            setMoon(false)
+
             return (
               <SectionWrapper>
                 <ProjectList {...listAssets}
@@ -140,7 +140,18 @@ const IndexPage = () => {
         />
 
        :
-        <motion.div key={'home'} exit={{ x: 200 }}>
+
+        <motion.div key={'home'}
+                    initial={{
+                      opacity: 0,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      transition: {
+                        duration: 2,
+                      }
+                    }}
+        >
           <HomePage />
         </motion.div>
 

@@ -7,8 +7,16 @@ import Logo from './vigoza-logo.svg'
 
 const IntroContainer = styled(Container)`
   position: relative;
-  background-color: ${({ themeCrl }) => themeCrl};
-  color: ${({ color }) => color && color};
+  //background-color: ${({ themeCrl }) => themeCrl};
+  background-image: linear-gradient(
+          137.81deg,
+          #e7a28f 3.52%,
+          #f9d6ac 41.89%,
+          #fbfefc 96.77%
+  );
+  
+   color: #02021e;
+  
   width: 100%;
   display: flex;
   justify-content: center;
@@ -29,12 +37,30 @@ const IntroContainer = styled(Container)`
     opacity: 0.1;
   }
 
+  & > :not(:first-child) {
+    ${heightWidth('margin-top', 3)};
+  }
+
   ${mediumUp(css`
     ${spacing('pv', 4)};
   `)};
+  
+  ${ largeUp( css`
+    
+    
+  ` ) };
 
-  & > :not(:first-child) {
-    ${heightWidth('margin-top', 3)};
+  
+  
+  .desc{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    
+    & > :not(:first-child) {
+      ${heightWidth('margin-top', 3)};
+    }
   }
 `
 
@@ -62,9 +88,12 @@ const Intro = ({ intro }) => {
     >
       <Typography variant={'h1'}>{title}</Typography>
 
-      <Description>{desc}</Description>
+      <div className='desc' >
+        <Description>{desc}</Description>
 
-      <MotionBtn text={'Visit Website'} to={siteLink} />
+        {/*<MotionBtn text={'Visit Website'} to={siteLink} />*/}
+      </div>
+
     </IntroContainer>
   )
 }

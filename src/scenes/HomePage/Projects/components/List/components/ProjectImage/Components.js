@@ -11,7 +11,6 @@ export const ProjectImg = styled(motion.div)`
   padding: 0;
   cursor: pointer;
   position: relative;
-  will-change: transform;
   height: 100%;
 
   &:hover > .outer-div {
@@ -49,6 +48,8 @@ export const ProjectImg = styled(motion.div)`
   .outer-div {
     background: ${({ theme }) => theme.palette.secondary.main};
     transition: transform 1.2s cubic-bezier(0.075, 0.82, 0.005, 1);
+    pointer-events: none;
+    
 
     ${spacing('p', 1)};
     ${largeUp(css`

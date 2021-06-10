@@ -29,6 +29,8 @@ export const responsiveVar = css`
       --indent-high: 0.6;
       --title: 0.8;
       --size: 0.8;
+      --text: 0.8;
+
     }
     @media screen and (max-width: 576px) {
       --indent: 0.5;

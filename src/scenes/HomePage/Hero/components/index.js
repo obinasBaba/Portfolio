@@ -59,7 +59,7 @@ export const Lines = styled.div`
   
   ${ spacing( 'width', 10 ) };
   ${spacing('mt', 5)};
-  margin-left: 15px;
+  //margin-left: 15px;
 
 
 
@@ -71,9 +71,9 @@ export const Lines = styled.div`
     height: 100%;
     background-image: inherit;
     border-radius: 100px;
-    margin-top: .7rem;
+    margin-top: 1.2rem;
     top: 0;
-    left: 62%;
+    left: 50%;
 `
 
 export const SvgWithTxt = styled.div`

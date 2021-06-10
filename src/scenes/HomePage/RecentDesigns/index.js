@@ -8,7 +8,7 @@ import DesignImage from './items'
 import ScrollGallery from '../../../components/ScrollGallery/ScrollGallery'
 
 const RecentDesignWrapper = styled.div`
-  // ${spacing('mb', 16)};
+  ${spacing('mb', 13)};
 `
 
 const RecentWorks = () => {

@@ -8,11 +8,14 @@ export const ExitStateContext = React.createContext(false);
 const ExitStateProvider = ( {children} ) => {
 
   const [show, setShow] = useState(false);
+  const [moon, setMoon] = useState(true);
 
   return (
     <ExitStateContext.Provider value={{
       show,
       setShow,
+      moon,
+      setMoon,
     }} >
 
       {children}

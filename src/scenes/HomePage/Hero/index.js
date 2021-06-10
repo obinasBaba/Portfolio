@@ -5,14 +5,7 @@ import useHeaderAssets from '../../../hooks/queries/useHeaderAssets'
 import { HeroContainer, Lines, SvgWithTxt, TextContainer } from './components'
 import styled from 'styled-components'
 
-const BG = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0
-  
-  //height: 400px;
-  //width: 500px;
-`
+
 
 const Hero = () => {
 

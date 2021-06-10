@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
 import Hero from './Hero'
 import RecentWorks from './RecentDesigns'
 import Projects from './Projects'
@@ -6,6 +6,7 @@ import Experiments from './Experiments'
 import MailUs from '../MailUs'
 import { PageContainer, SectionWrapper } from '../../components/Container'
 import styled from 'styled-components'
+import {ExitStateContext} from '../../contexts/ExitStateContext'
 
 const ProjectSectionWrapper = styled( SectionWrapper )`
   border: thick solid red;
@@ -15,19 +16,35 @@ const ProjectSectionWrapper = styled( SectionWrapper )`
 
 
 const HomePage = () => {
+
+  const {setMoon} = useContext( ExitStateContext );
+
+  useEffect(() => {
+
+    // let a = document.createElement('a')
+    // a.href = 'http://localhost:8000/#projects';
+    // document.body.append(a)
+    // a.click();
+    //
+    // setTimeout( () => {
+    //   document.body.removeChild(a)
+    // }, 400 )
+    //
+    // setMoon(true)
+
+  }, [ ])
+
   return (
-    <PageContainer>
+    < >
       <SectionWrapper>
         <Hero />
       </SectionWrapper>
 
       <RecentWorks />
 
-      {/*<ExitStateProvider>*/}
         <SectionWrapper>
           <Projects />
         </SectionWrapper>
-      {/*</ExitStateProvider>*/}
 
       <SectionWrapper>
         <Experiments />
@@ -36,7 +53,7 @@ const HomePage = () => {
       <SectionWrapper>
         <MailUs />
       </SectionWrapper>
-    </PageContainer>
+    </ >
   )
 }
 

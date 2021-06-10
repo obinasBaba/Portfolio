@@ -1,78 +1,46 @@
 import styled, {css} from 'styled-components'
-import {mediumUp, spacing} from '../../../styles/mixins'
+import {
+  gridColWidth,
+  gridify,
+  largeUp,
+  mediumUp, smallUp,
+  spacing, title,
+} from '../../../styles/mixins'
 import {Container, Typography} from '@material-ui/core'
 import {motion} from 'framer-motion'
 
-export const Role = styled( motion.ul )`
-  display: flex;
-  align-items: center;
-  text-align: center;
-  flex-flow: column;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  //display: none;
-  //visibility: hidden;
-
-  ${spacing('mb', 7)};
-
-  ${mediumUp(
-  css`
-      flex-flow: row;
-      justify-content: space-evenly;
-    `
-)};
-  
-  li{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-`
 
 export const HeadlineContainer = styled( motion.div )`
-  display: flex;
-  flex-flow: column;
-  max-width: 1200px;
-  margin: 0 auto;
-  border: thick solid yellow;
-  ${ spacing('ph', 3) };
- 
+  height: 100vh;
+  width: 99.9vw;
+  //border: thick solid yellow;
+  background: #02021e;
   
-  ${ mediumUp( css`
-    ${ spacing('ph', 1) };
-  ` ) }
+  ${gridify};
+  align-content: center;
+  align-items: center;
+  
 `
 
-export const Q = styled(Typography)`
-  //font-family: var(--sofia-pro);
-  color: #d94b19;
-  line-height: 120%;
-  font-weight: 500;
-  max-width: 130px;
-  letter-spacing: 1px;
 
-
-`
-
-export const A = styled( Typography )`
-  line-height: 160%;
-  letter-spacing: 0.5px;
-  opacity: 0.7;
-  padding-left: 7px;
-`
 
 export const ImgGradient = styled( motion.div )`
-  width: 100%;
-  z-index: 11;
+  ${gridColWidth()}; //mobile-first
   position: relative;
-  box-shadow: 0 5px 20px 10px rgba( 0 0 0 / 15%);
-  transition: all .3s;
-  border: thick solid red;
-  //transform: translateY( -200px ) scale(.7) ;
+  filter: blur(5px);
+
+
+  ${mediumUp(css`
+    grid-row: 1;
+    ${ gridColWidth(25, 65)};
+    
+  `)};
   
-  img{
-    min-height: 300px;
+  img {
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    object-fit: cover;
   }
 
   .overlay {
@@ -81,42 +49,68 @@ export const ImgGradient = styled( motion.div )`
     left: 0;
     right: 0;
     bottom: 0;
-    transition: all 1s;
-    background-image: linear-gradient(to bottom, 
-      rgba(50,52,77,0.89) -40%,
-    rgba(2, 2, 30, 0) 80%);
-    
-    z-index: 12;
-    //backdrop-filter: blur(2px);
+    background: rgba(55, 25, 202, 0.45);
+    mix-blend-mode: soft-light;
+    backdrop-filter: blur(5px);
+    //filter: blur(15px);
   }
 
 `
+
 
 export const Title = styled(motion.div)`
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
+  display: flex;
+  flex-flow: column;
+  z-index: 10;
+  grid-row: 3;
+  overflow: hidden;
+  align-items: flex-start;
   justify-content: center;
-  align-self: center;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateY(-90%) translateX(-50%);
-  z-index: 13;
-
-
-  ${spacing('mb',
-          9)}
-  & > :first-child {
-    line-height: 1.29;
-    ${ spacing('letter-spacing', 3) };
-    text-transform: uppercase;
+  //border: thin solid red;
+  //border: thick solid red;
+  
+  & > * {
+    margin: 0;
+    padding: 0;
   }
 
-  & > :last-child {
-    margin-left: auto;
-    margin-top: -5px;
-    font-weight: 400;
+  ${gridColWidth(8, 32)}
+
+  & > * + * {
+    ${spacing('mt', 3)}
   }
+
+  ${smallUp(css`
+    ${spacing('pt', 0)};
+  `)};
+
+  ${mediumUp(css`
+    grid-row: 1;
+    //border: thin solid red;
+    ${gridColWidth(4, 48)};
+  `)};
+
+  ${largeUp(css`
+    ${gridColWidth(7, 37)};
+  `)};
+
+
+  h1{
+    font-family: "Poppins Black",serif;
+    font-weight: 700;
+    margin: 0;
+    ${ title(4.35) };
+    line-height: 1.3;
+    letter-spacing: 3px;
+    //border: thin solid green;
+    overflow: hidden;
+  }
+  
+  .type{
+    font-weight: 500;
+    letter-spacing: 2px;
+    
+  }
+  
 `
+
