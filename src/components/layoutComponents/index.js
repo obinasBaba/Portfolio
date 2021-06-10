@@ -68,6 +68,12 @@ export const GlobalStyle = createGlobalStyle`
     //background: var(--dark);
     
   }
+  
+  .abyssopelagic{
+    font-family: Abyssopelagic,serif;
+    
+  }
+  
 `
 
 export const Page = styled.div`

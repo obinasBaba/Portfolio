@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { Container } from '@material-ui/core'
 import { mediumUp, spacing } from '../../../styles/mixins'
-import wireFrame from './components/wireframe.jpg'
+import wireFrame from './components/photo_2021-06-10_05-58-23.jpg'
 import Excerpts from './components/Excerpts'
 import Title from './components/Title'
 
@@ -45,12 +45,22 @@ const WireFrame = styled.div`
   flex: 1;
   display: flex;
   justify-content: end;
+  transition: transform .3s;
+
+  &:hover{
+    //box-shadow: 0 0px 15px 0px;
+    transform: scale(1.01);
+  }
 
   img {
     width: 100%;
     max-height: 500px;
     object-fit: cover;
     margin-left: auto;
+
+    box-shadow: 0 5px 20px 0 rgb( 0 0 0 / 53%);
+    
+    
   }
 `
 

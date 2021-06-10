@@ -21,10 +21,10 @@ const Headline = ({ subTitle, title, about, media }) => {
 
 
       <Title>
-        <h1>Creative Digital Agency</h1>
+        <h1 className='title' >Creative Digital Agency</h1>
         <Lines />
-        {/*<h3 className='type'>WebApp</h3>*/}
-        <MotionBtn text='Visit Site' />
+        <h2 className='type'>WebApp</h2>
+        <MotionBtn margin={false}  text='Visit Site' />
       </Title>
 
 

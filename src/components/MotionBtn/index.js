@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typography } from '@material-ui/core'
 import { motion, useAnimation } from 'framer-motion'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import { spacing } from '../../styles/mixins'
 import { Link } from 'gatsby'
 
@@ -18,7 +18,10 @@ const Btn = styled(motion.div)`
   padding: 0.7rem;
   z-index: 2;
 
-  ${spacing('margin', 1)}
+  ${spacing('m', 1)};
+
+  ${ ( {margin} ) => margin ? '' : spacing('mv', 0) };
+
   &::before {
     content: '';
     z-index: -1;
@@ -65,8 +68,9 @@ const MotionBtn = ({
   to = '#',
   fontLarge,
   clr,
-  variants={},
-  external=false,
+  variants = {},
+  external = false,
+  margin = true,
 }) => {
   const controls = useAnimation()
 
@@ -75,6 +79,7 @@ const MotionBtn = ({
 
     <Link to={to}>
       <Btn
+        margin={margin}
         arrow={arrow}
         clr={clr}
         onHoverEnd={() => {
@@ -102,9 +107,7 @@ const MotionBtn = ({
         </Typography>
 
         {arrow && (
-          <div style={{
-
-          }} >
+          <div style={{}}>
             <motion.svg
               width="21"
               animate={controls}
@@ -133,7 +136,6 @@ const MotionBtn = ({
     </Link>
 
     // </motion.div>
-
   )
 }
 

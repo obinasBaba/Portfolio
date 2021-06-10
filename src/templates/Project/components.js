@@ -4,23 +4,15 @@ import {mediumUp, spacing} from '../../styles/mixins'
 
 export const ProjectContainer = styled( motion.div )`
   max-width: 1600px;
-  // ${spacing('pt', 27.4)};
-
-  ${mediumUp(css`
-    // ${spacing('pt', 17)};
-  `)};
 `
 
 export const ContentSectionWrapper = styled.section`
-  position: relative;
+  //position: relative;
   background-color: #f3f3f3;
-  border: var(--thin);
-  max-width: 1600px;
-  margin: 0 auto;
-  //z-index: 1;
+  border: .1px solid #f3f3f3;  /// fix this wierd bug
+  z-index: 1;
 
-  // ${spacing('mt', -18)}; 
-  // ${spacing('pt', 35)};
+  // ${spacing('pv', 0)};
   ${spacing('pb', 15)};
 
   .line {
@@ -31,7 +23,7 @@ export const ContentSectionWrapper = styled.section`
     top: 0;
     bottom: 0;
     left: 50%;
-    z-index: -1;
+    z-index: 2;
   }
 
   &::before,
@@ -45,7 +37,7 @@ export const ContentSectionWrapper = styled.section`
     width: 1px;
     right: 20%;
     background-color: black;
-    z-index: -1;
+    z-index: 2;
     opacity: 0.04;
   }
 

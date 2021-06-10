@@ -16,6 +16,15 @@ const FontSample = styled.div`
   & > :not( :first-child ){
     ${ spacing('mt', 2) };
     letter-spacing: 10px;
+    font-weight: bolder;
+  }
+
+  h4{
+    letter-spacing: 6px;
+  }
+  
+  &:first-child{
+    font-family: 'abyssopelagic';
   }
   
   &:last-child *{
@@ -28,11 +37,11 @@ const FontSample = styled.div`
 const FontUsed = () => {
   return (
     <FontContainer maxWidth={'xl'} fixed={true} >
-      <FontSample>
-        <Typography variant='h4' noWrap > Abyssopelagic </Typography>
-        <Typography variant='h6' noWrap> abcdefghijkl </Typography>
-        <Typography variant='h6' noWrap> mnopqrstuvwx </Typography>
-        <Typography variant='h6' noWrap> yz1234567890 </Typography>
+      <FontSample className='abyssopelagic'  >
+        <Typography variant='h4' noWrap className='abyssopelagic' > Abyssopelagic </Typography>
+        <Typography variant='h6' noWrap className='abyssopelagic'> abcdefghijkl </Typography>
+        <Typography variant='h6' noWrap className='abyssopelagic'> mnopqrstuvwx </Typography>
+        <Typography variant='h6' noWrap className='abyssopelagic'> yz1234567890 </Typography>
       </FontSample>
 
       <FontSample>

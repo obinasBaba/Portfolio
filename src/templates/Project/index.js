@@ -83,7 +83,7 @@ const Project = ({ pageContext }) => {
 
       </ContentSectionWrapper>
 
-      <NextProject />
+      {/*<NextProject />*/}
 
     </ProjectContainer>
   )

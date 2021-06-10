@@ -1,7 +1,7 @@
 import styled, {css} from 'styled-components'
 import {
   gridColWidth,
-  gridify,
+  gridify, heightWidth,
   largeUp,
   mediumUp, smallUp,
   spacing, title,
@@ -12,8 +12,7 @@ import {motion} from 'framer-motion'
 
 export const HeadlineContainer = styled( motion.div )`
   height: 100vh;
-  width: 99.9vw;
-  //border: thick solid yellow;
+  width: 100vw;
   background: #02021e;
   
   ${gridify};
@@ -61,13 +60,12 @@ export const ImgGradient = styled( motion.div )`
 export const Title = styled(motion.div)`
   display: flex;
   flex-flow: column;
-  z-index: 10;
+  z-index: 1;
   grid-row: 3;
   overflow: hidden;
   align-items: flex-start;
   justify-content: center;
   //border: thin solid red;
-  //border: thick solid red;
   
   & > * {
     margin: 0;
@@ -77,7 +75,7 @@ export const Title = styled(motion.div)`
   ${gridColWidth(8, 32)}
 
   & > * + * {
-    ${spacing('mt', 3)}
+    ${spacing('mt', 4)}
   }
 
   ${smallUp(css`
@@ -91,11 +89,11 @@ export const Title = styled(motion.div)`
   `)};
 
   ${largeUp(css`
-    ${gridColWidth(7, 37)};
+    ${gridColWidth(8, 40)};
   `)};
 
 
-  h1{
+  & .title{
     font-family: "Poppins Black",serif;
     font-weight: 700;
     margin: 0;
@@ -108,7 +106,10 @@ export const Title = styled(motion.div)`
   
   .type{
     font-weight: 500;
-    letter-spacing: 2px;
+    letter-spacing: 2.3px;
+    
+    ${spacing('mt', 5)}
+    // ${ heightWidth('font-size', 3) };
     
   }
   

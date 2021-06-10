@@ -57,9 +57,9 @@ export const Lines = styled.div`
           #fbfefc 110.77%
   );
   
-  ${ spacing( 'width', 10 ) };
+  ${ spacing( 'width', 9 ) };
   ${spacing('mt', 5)};
-  //margin-left: 15px;
+  margin-left: 15px;
 
 
 
