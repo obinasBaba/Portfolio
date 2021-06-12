@@ -53,15 +53,14 @@ const IndexPage = () => {
   
 
   return (
-    <AnimatePresence exitBeforeEnter>
+    < >
 
       {show && <ReturnBtn key='return' onClick={() => {setShow(false)}} />}
 
 
       {show && <Scroll key='scroll'   >
 
-        <motion.svg xmlns="http://www.w3.org/2000/svg"
-                    width="26.091" height="43.103" viewBox="0 0 26.091 43.103">
+        <motion.svg xmlns="http://www.w3.org/2000/svg" width="26.091" height="43.103" viewBox="0 0 26.091 43.103">
           <g id="Group_17" data-name="Group 17" transform="translate(-50.955 -692.897)">
             <g id="Rectangle_42" data-name="Rectangle 42" transform="translate(51 693)" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1">
               <rect width="26" height="43" rx="13" stroke="none"/>
@@ -88,8 +87,7 @@ const IndexPage = () => {
           </g>
         </motion.svg>
 
-        <ScrollTxt variant={'subtitle2'}
-                   onClick={() => console.log('exit')}
+        <ScrollTxt variant={'subtitle2'} onClick={() => console.log('exit')}
         > SCROLL </ScrollTxt>
 
 
@@ -100,7 +98,7 @@ const IndexPage = () => {
           key={'full'}
           easingcss3="cubic-bezier(0.645, 0.045, 0.355, 1)"
           scrollingSpeed="1e3"
-          anchors={['one', 'two', 'three', 'four']}
+          // anchors={['one', 'two', 'three', 'four']}
           navigation={true}
           navigationPosition="left"
           dragAnAndMove={true}
@@ -111,18 +109,18 @@ const IndexPage = () => {
           fixedElements={'#FIXED_'}
           onLeave={( origin, dist, dir)  => {
             if ( dist.isLast ) {
-              controllers[origin.index]('initial');
+              controllers[origin.index]('initial1');
               return true;
             }
-            controllers[origin.index]('initial');
-            controllers[dist.index]('animate');
+            controllers[origin.index]('initial1');
+            controllers[dist.index]('animate1');
           }}
           afterLoad={( origin, dist, dir ) => {
             if ( dist.isLast )
               return true;
 
             if ( dir === null ) //isFirst
-              return controllers[dist.index]('animate')
+              return controllers[dist.index]('animate1')
           }}
 
           render={({ state }) => {
@@ -158,7 +156,7 @@ const IndexPage = () => {
 
       }
 
-    </AnimatePresence>
+    </ >
   )
 }
 

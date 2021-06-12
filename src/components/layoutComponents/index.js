@@ -54,6 +54,8 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     
+    //overflow-x: hidden;
+    
     &.locked{
       overflow: hidden;
       height: 100vh;
@@ -77,7 +79,7 @@ export const GlobalStyle = createGlobalStyle`
 `
 
 export const Page = styled.div`
-  
+  height: 100%;
   position: relative;
   display: flex;
   flex-flow: column;
@@ -106,7 +108,7 @@ export const Page = styled.div`
 export const Main = styled( motion.main )`
   flex: 1;
   position: relative;
-  
+
 `
 
 export const VersionNo = styled.div`

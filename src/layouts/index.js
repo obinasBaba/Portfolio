@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, { useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -9,19 +9,19 @@ import theme from '../theme'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import '../styles/fontFace.css'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, AnimateSharedLayout } from 'framer-motion'
 import { GlobalStyle, Main, Page } from '../components/layoutComponents'
 import { HeaderContext } from '../contexts'
-import ExitStateProvider, {ExitStateContext} from '../contexts/ExitStateContext'
+import ExitStateProvider, {
+  ExitStateContext,
+} from '../contexts/ExitStateContext'
 import BackgroundStars from '../components/BackgroundStars'
 import Moon from './Components/Moon'
-import {SkyColor} from './Components/SkyColor'
-
+import { SkyColor } from './Components/SkyColor'
 
 export default function TopLayout({ children }) {
   const [isHeaderGradient, setIHeaderGradient] = useState(false)
-  const [isWhite, setIsWhite] = useState(false);
-
+  const [isWhite, setIsWhite] = useState(false)
 
   return (
     <React.Fragment>
@@ -44,22 +44,24 @@ export default function TopLayout({ children }) {
           <CssBaseline />
 
           <HeaderContext.Provider value={{ setIHeaderGradient, setIsWhite }}>
-            <Page >
-              <Header isGradient={false}
-                      isWhite={isWhite} />
+            <Page>
+              <Header isGradient={false} isWhite={isWhite} />
+
 
               <Main  >
                 <SkyColor/>
                 <Moon />
 
 
-                <BackgroundStars  />
+                <BackgroundStars />
 
                 <ExitStateProvider>
-                  <AnimatePresence exitBeforeEnter={true}>
 
-                    {children}
-                  </AnimatePresence>
+                  <AnimateSharedLayout  type='crossfade'>
+                    <AnimatePresence exitBeforeEnter initial={true}   >
+                      {children}
+                    </AnimatePresence>
+                  </AnimateSharedLayout>
 
                 </ExitStateProvider>
               </Main>

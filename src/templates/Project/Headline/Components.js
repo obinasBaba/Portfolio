@@ -13,10 +13,11 @@ import {motion} from 'framer-motion'
 export const HeadlineContainer = styled( motion.div )`
   height: 100vh;
   width: 100vw;
-  background: #02021e;
+  position: relative;
+  //background: #02021e;
   
   ${gridify};
-  align-content: center;
+  //align-content: center;
   align-items: center;
   
 `
@@ -26,7 +27,10 @@ export const HeadlineContainer = styled( motion.div )`
 export const ImgGradient = styled( motion.div )`
   ${gridColWidth()}; //mobile-first
   position: relative;
-  filter: blur(5px);
+  //filter: blur(5px);
+  //border: thick solid red;
+  align-self: stretch;
+  max-height: 100vh;
 
 
   ${mediumUp(css`
@@ -38,11 +42,17 @@ export const ImgGradient = styled( motion.div )`
   img {
     height: 100%;
     width: 100%;
-    min-height: 100vh;
     object-fit: cover;
+    
+  }
+  
+  .project-img{
+    width: 100%;
+    height: 100%;
   }
 
   .overlay {
+    display: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -56,8 +66,8 @@ export const ImgGradient = styled( motion.div )`
 
 `
 
-
 export const Title = styled(motion.div)`
+  
   display: flex;
   flex-flow: column;
   z-index: 1;
@@ -65,7 +75,9 @@ export const Title = styled(motion.div)`
   overflow: hidden;
   align-items: flex-start;
   justify-content: center;
-  //border: thin solid red;
+  //display: inline-block;
+
+  //border: thin solid yellow;
   
   & > * {
     margin: 0;
@@ -93,15 +105,13 @@ export const Title = styled(motion.div)`
   `)};
 
 
-  & .title{
+  & .pro-title{
     font-family: "Poppins Black",serif;
     font-weight: 700;
     margin: 0;
     ${ title(4.35) };
     line-height: 1.3;
     letter-spacing: 3px;
-    //border: thin solid green;
-    overflow: hidden;
   }
   
   .type{

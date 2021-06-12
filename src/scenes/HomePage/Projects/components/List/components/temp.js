@@ -212,7 +212,7 @@ Barba.Dispatcher.on("newPageReady", function() {
     new Parallax($(".js-parallax-moon").get(0)),
       new Parallax($(".js-parallax-moonlight").get(0)),
       new Parallax($(".js-parallax-star").get(0));
-  isSp && $(".page-top").height($(window).height()),
+  isSp && $(".page-descTopVariant").height($(window).height()),
     ga("send", "pageview", window.location.pathname.replace(/^\/?/, "/") + window.location.search)
 }),
   $(function() {
@@ -272,7 +272,7 @@ var underLayer = Barba.BaseView.extend({
           $(window).scrollTop() + $(window).height() > $(this).offset().top && $(this).addClass("in")
         })
       }),
-    isSp && $(".page-top").height($(window).height()),
+    isSp && $(".page-descTopVariant").height($(window).height()),
       console.log(isSp)
   },
   onEnterCompleted: function() {
@@ -430,7 +430,7 @@ var PageTransitionTop = Barba.BaseTransition.extend({
             resolve()
           }
         }).add({
-          targets: ".page-top .image",
+          targets: ".page-descTopVariant .image",
           width: [imageBig.width, image.width],
           height: [imageBig.height, image.height],
           marginRight: [0, image.marginRight],

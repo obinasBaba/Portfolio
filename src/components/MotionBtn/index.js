@@ -21,6 +21,10 @@ const Btn = styled(motion.div)`
   ${spacing('m', 1)};
 
   ${ ( {margin} ) => margin ? '' : spacing('mv', 0) };
+  
+  svg{
+    //margin-top: 10px;
+  }
 
   &::before {
     content: '';
@@ -28,7 +32,7 @@ const Btn = styled(motion.div)`
     position: absolute;
     display: block;
     background: ${({ clr }) => (clr ? clr : '#e7a28f')};
-    border-radius: 100%;
+    border-radius: 50%;
 
     ${spacing('left', -1)};
 
@@ -71,17 +75,21 @@ const MotionBtn = ({
   variants = {},
   external = false,
   margin = true,
+  layoutId = false
 }) => {
   const controls = useAnimation()
 
   return (
-    // <motion.div variants={variants}>
+    <motion.div layoutId={layoutId}>
 
     <Link to={to}>
       <Btn
         margin={margin}
         arrow={arrow}
         clr={clr}
+        onTap={() => {
+          controls.stop()
+        }}
         onHoverEnd={() => {
           controls.set({ x: 0 })
           controls.stop()
@@ -90,7 +98,8 @@ const MotionBtn = ({
           controls.start({
             x: [0, 15, 0],
             transition: {
-              yoyo: Infinity,
+              repeat: Infinity,
+              repeatType: 'mirror',
             },
           })
         }}
@@ -107,7 +116,7 @@ const MotionBtn = ({
         </Typography>
 
         {arrow && (
-          <div style={{}}>
+
             <motion.svg
               width="21"
               animate={controls}
@@ -130,12 +139,12 @@ const MotionBtn = ({
                 />
               </g>
             </motion.svg>
-          </div>
+
         )}
       </Btn>
     </Link>
 
-    // </motion.div>
+     </motion.div>
   )
 }
 

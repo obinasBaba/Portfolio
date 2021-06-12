@@ -36,7 +36,7 @@ const Btn = styled(motion.button)`
       right: 2rem;
 
       ${mediumUp(css`
-        ${spacing('top', 2)};
+        ${spacing('descTopVariant', 2)};
         ${spacing('right', 8)};
       `)};
     `};

@@ -48,7 +48,7 @@ Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cl
 
 ## 🧐 What's inside?
 
-A quick look at the top-level files and directories you'll see in a Gatsby project.
+A quick look at the descTopVariant-level files and directories you'll see in a Gatsby project.
 
     .
     ├── node_modules

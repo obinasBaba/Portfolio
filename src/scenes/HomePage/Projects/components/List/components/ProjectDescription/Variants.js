@@ -5,8 +5,9 @@ export const transition = {
   ease: [0.6, 0.01, 0, 0.9],
 }
 
-export const top = {
-  animate: {
+export const descTopVariant = {
+
+  animate1: {
     transition: {
       staggerChildren: 0.4,
       delayChildren: 0.2,
@@ -14,14 +15,14 @@ export const top = {
   },
 }
 
-export const descTxtVariants = {
-  initial: {
+export const btnTxtVariants = {
+  initial1: {
     y: '120%',
   },
-  animate(b) {
+  animate1(b) {
 
     setTimeout(() => {
-      b && b.start().reveal(1000, 1000)
+      b && b.start().reveal(700, 700)
     }, 1000)
 
     return {
@@ -35,19 +36,54 @@ export const descTxtVariants = {
   },
 }
 
+export const descTxtVariants = {
+  initial1: {
+    y: '120%',
+  },
+  animate1(b) {
+
+    setTimeout(() => {
+      b && b.start().reveal(700, 700)
+    }, 1000)
+
+    return {
+      y: '0%',
+      transition: {
+        ease: [0.6, 0.01, 0, 0.9],
+        duration: 1,
+        delay: 1,
+      },
+    }
+  },
+
+  exit: {
+    y: '120%',
+  },
+}
+
 export const titleVariant = {
-  animate: {
+  initial1: {
     transition: {
       staggerChildren: 0.02,
     },
   },
+  animate1: {
+    transition: {
+      staggerChildren: 0.02,
+    },
+  },
+  exit: {
+    transition: {
+      staggerChildren: 0.014
+    }
+  }
 }
 
 export const letterVariant = {
-  initial: {
+  initial1: {
     y: '200%',
   },
-  animate: {
+  animate1: {
     y: 0,
   },
 }

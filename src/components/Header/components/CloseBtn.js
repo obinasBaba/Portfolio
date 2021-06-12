@@ -14,7 +14,7 @@ const CloseContainer = styled( motion.div )`
   ${heightWidth('width', 6)};
   
   ${mediumUp(css`
-    ${spacing('top', 2)};
+    ${spacing('descTopVariant', 2)};
     ${spacing('right', 6.5)};
   `)};
   

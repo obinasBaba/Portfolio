@@ -1,50 +1,61 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext, useEffect, useRef} from 'react'
 import Hero from './Hero'
 import RecentWorks from './RecentDesigns'
 import Projects from './Projects'
 import Experiments from './Experiments'
 import MailUs from '../MailUs'
-import { PageContainer, SectionWrapper } from '../../components/Container'
+import {PageContainer, SectionWrapper} from '../../components/Container'
 import styled from 'styled-components'
 import {ExitStateContext} from '../../contexts/ExitStateContext'
+import {Typography} from '@material-ui/core'
+import Moon from '../../layouts/Components/Moon'
 
-const ProjectSectionWrapper = styled( SectionWrapper )`
+const ProjectSectionWrapper = styled(SectionWrapper)`
   border: thick solid red;
   display: none;
 `
 
-
-
 const HomePage = () => {
 
-  const {setMoon} = useContext( ExitStateContext );
+  const { setMoon, moon } = useContext(ExitStateContext)
+  const target = useRef(null);
+
 
   useEffect(() => {
+
+
 
     // let a = document.createElement('a')
     // a.href = 'http://localhost:8000/#projects';
     // document.body.append(a)
     // a.click();
     //
-    // setTimeout( () => {
-    //   document.body.removeChild(a)
-    // }, 400 )
-    //
-    // setMoon(true)
+    setTimeout( () => {
+      if (!moon) {
+        let i = document.body.querySelector('.pro-click')
+        // i && i.click()
+      }
+      setMoon(true)
 
-  }, [ ])
+      // document.body.removeChild(a)
+    }, 1100 )
+    //
+  },
+    [])
 
   return (
     < >
+
       <SectionWrapper>
         <Hero />
+
       </SectionWrapper>
 
       <RecentWorks />
 
-        <SectionWrapper>
-          <Projects />
-        </SectionWrapper>
+      <SectionWrapper>
+        <Projects />
+      </SectionWrapper>
 
       <SectionWrapper>
         <Experiments />
@@ -52,7 +63,14 @@ const HomePage = () => {
 
       <SectionWrapper>
         <MailUs />
+
       </SectionWrapper>
+
+      <a style={{
+        position: 'fixed',
+      }} ref={target} href={'#proSec'} className='pro-click' />
+
+
     </ >
   )
 }

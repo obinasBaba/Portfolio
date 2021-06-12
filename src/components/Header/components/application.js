@@ -1441,7 +1441,7 @@ typeof global ? global : this || window;
             V.indexOf('Firefox'), (/MSIE ([0-9]{1,}[\.0-9]{0,})/.exec(V) ||
             /Trident\/.*rv:([0-9]{1,}[\.0-9]{0,})/.exec(V)) &&
           (m = parseFloat(RegExp.$1)), !!e &&
-          (e.style.cssText = 'top:1px;opacity:.55;', /^0.55/.test(e.style.opacity))
+          (e.style.cssText = 'descTopVariant:1px;opacity:.55;', /^0.55/.test(e.style.opacity))
         }(), U = function(t) {
           return x.test('string' == typeof t
             ? t

@@ -6,14 +6,15 @@ import { Link } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { ExitStateContext } from '../../../../../../../contexts/ExitStateContext'
 import {
-  containerVariants,
+  imgContainerVariant,
   effectVariant,
   imgCover,
-  imgOverVariants,
+  imgOverVariants, innerDivWrapperVariants,
   outerDivWrapper,
   transition,
 } from './Variants'
 import { OverflowWrapper, ProjectImg } from './Components'
+import reile from './preview-111.jpg';
 
 const ProjectImage = ({ reversed, alt, link, preview, title, index, controller }) => {
   const { show } = useContext(ExitStateContext)
@@ -22,12 +23,12 @@ const ProjectImage = ({ reversed, alt, link, preview, title, index, controller }
   return (
     <ProjectImg
       reversed={reversed}
-      variants={containerVariants}
+      variants={imgContainerVariant}
       transition={transition}
       animate={controller}
-      exit="exit"
-      initial="initial"
-      whileHover="hover"
+      initial='initial'
+      exit='exit'
+
       custom={show}
     >
       <Link to={link}>
@@ -36,31 +37,44 @@ const ProjectImage = ({ reversed, alt, link, preview, title, index, controller }
         className="outer-div"
         variants={outerDivWrapper}
         transition={transition}
+
       >
-          <GatsbyImage
-            alt={alt}
-            key={title}
-            className={'project-image'}
-            image={getImage(preview)}
-          />
+          <motion.div  className='inner-div'
+                       variants={innerDivWrapperVariants}
+                       transition={transition}
+                       layoutId={`out-wra ${index}`}
+          >
+            <GatsbyImage
+              alt={alt}
+              key={title}
+              className='project-image'
+              image={getImage(preview)}
+            />
+
+            {/*<img  src={reile}  />*/}
+
+            <motion.div className="image-over"
+                        variants={imgOverVariants}>
+
+              <motion.div
+                className="image-cover cover-1"
+                variants={imgCover}
+                transition={transition}
+              />
+
+              <motion.div
+                className="image-cover cover-2"
+                variants={imgCover}
+                transition={transition}
+              />
+            </motion.div>
+
+
+          </motion.div>
+
       </motion.div>
 
       </Link>
-
-
-      <motion.div className="image-over" variants={imgOverVariants}>
-        <motion.div
-          className="image-cover cover-1"
-          variants={imgCover}
-          transition={transition}
-        />
-
-        <motion.div
-          className="image-cover cover-2"
-          variants={imgCover}
-          transition={transition}
-        />
-      </motion.div>
 
       <OverflowWrapper>
         <motion.div

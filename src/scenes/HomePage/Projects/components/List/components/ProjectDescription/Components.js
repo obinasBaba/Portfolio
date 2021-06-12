@@ -12,7 +12,8 @@ export const ProjectDesc = styled(motion.div)`
   flex-flow: column;
   z-index: 10;
   grid-row: 3;
-  overflow: hidden;
+  //overflow: hidden;
+  //border: thin solid red;
 
   ${gridColWidth(8, 58)}
   ${spacing('pt', 6)};
@@ -35,8 +36,7 @@ export const ProjectDesc = styled(motion.div)`
   `)};
 
   ${largeUp(css`
-    ${({ reversed }) =>
-  reversed ? gridColWidth(10, 31) : gridColWidth(39, 60)};
+    ${ gridColWidth(10, 33)};
     ${spacing('pt', 6)};
   `)};
 
@@ -64,11 +64,13 @@ export const Title = styled(motion.h1)`
   ${spacing('mt', 2)}
   font-size: 3.75rem;
   ${ title(3.35) };
-  line-height: 1.2; 
+  line-height: 1.31; 
   //border: thin solid green;
+  letter-spacing: 2px;
   overflow: hidden;
   
   .letter{
+    font-family: "Poppins Black",serif;
     display: inline-block;
     //border: thin solid tomato;
   }
@@ -79,6 +81,6 @@ export const Title = styled(motion.h1)`
 `
 
 export const OverflowWrapper = styled( motion.div )`
-  //border: thin solid red;
   overflow: hidden;
+  width: max-content;
 `

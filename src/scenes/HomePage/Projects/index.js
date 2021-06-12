@@ -11,13 +11,13 @@ import {useScrollRestoration} from 'gatsby'
 import Headline from '../../../components/Headline'
 
 const ProjectContainer = styled.div`
-  //height: 200vh;
+   
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: center;
   //border: thin solid red;
-  ${ spacing( 'mb', 10 ) };
+  ${ spacing( 'mb', 8 ) };
 
   .hover-target {
     cursor: pointer;
@@ -100,10 +100,8 @@ const Projects = () => {
 
 
   const { show, setShow } = useContext(ExitStateContext);
-  const [hover, setHover] = useState(false)
   const hoverValue = useMotionValue(0);
 
-  const getHover = () => hover
 
   const ref = useRef(null);
   const xPos = useMotionValue(0);
@@ -125,7 +123,7 @@ const Projects = () => {
 
   const y2 = useSpring(yPos, {
     mass: 2.4, damping: 12, stiffness: 30,
-    // restDelta: 1,
+    //    restDelta: 1,
   })
 
   let rect;
@@ -133,16 +131,17 @@ const Projects = () => {
   let mouse = {x: 0, y: 0};
   let mouseMoveHandler = (ev) => {
     // console.log('event: ', ev.clientX, ev.clientY)
-    mouse = getMousePos(ev);
-    let x = (mouse.x + window.scrollX - (rect.left + rect.width/2)) * .4;
-    let y = (mouse.y  - (  rect.height / 2));
-    y = y < 0 ? y * .7 : y * .25
 
     if ( hoverValue.get() === 1 ){
+      mouse = getMousePos(ev);
+      let x = (mouse.x + window.scrollX - (rect.left + rect.width/2)) * .4;
+      let y = (mouse.y  - (  rect.height / 2));
+      y = y < 0 ? y * .7 : y * .25;
+
       xPos.set(x)
       yPos.set(y);
     }
-    // console.log('x: ',xPos.get() , 'y: ', yPos.get())
+    // console.log(`client: x :${mouse.x} - y: ${mouse.y}`, '----- x: ',x , 'y: ', y)
   }
 
   useEffect(() => {
@@ -156,23 +155,18 @@ const Projects = () => {
 
   return (
     <motion.div
-      exit={{
-        opacity: 0,
-        transition: {
-          duration: 2,
-        }
-      }}
+      id={'proSec'}
+      {...magnetRestoration}
     >
 
       <ProjectContainer>
 
         <Headline title={'Projects'}
-                  mb={5}
+                  mb={3}
                   subtitle={'Case Studies'}  />
 
         <motion.div
-          {...magnetRestoration}
-          id={'projects'}
+
           ref={ref}
           variants={top}
           initial="initial"
@@ -180,11 +174,9 @@ const Projects = () => {
           whileHover="hover"
           className='hover-target'
           onHoverStart={() => {
-            setHover(true)
             hoverValue.set(1)
           }}
           onHoverEnd={() => {
-            setHover(false)
             hoverValue.set(0)
             xPos.set(0)
             yPos.set(0)
@@ -193,7 +185,7 @@ const Projects = () => {
         >
           <motion.div className="btn-border outer-border"
                       style={{ x: x2, y: y2 }}
-                      onClick={ () => console.log('show') }
+
           />
 
           <motion.div className="btn-border inner-border"

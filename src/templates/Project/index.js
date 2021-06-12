@@ -12,23 +12,11 @@ import { ContentSectionWrapper, ProjectContainer } from './components'
 import MetaTxt from './MetaTxt'
 import Concept from './Concept'
 import Development from './Development'
+import ReturnBtn from '../../components/ReturnBtn'
 
-const variant = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-    transition: {
-      duration: 1,
-    }
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      duration: 1,
-    }
-  }
+const topVariant = {
+
+
 }
 
 
@@ -54,12 +42,14 @@ const Project = ({ pageContext }) => {
 
 
   return (
-    <ProjectContainer variants={variant}
-                      initial={'initial'}
-                      animate={'animate'}
+    <ProjectContainer variants={topVariant}
+                      initial='initial'
+                      animate='animate'
                       exit='exit'
 
     >
+
+
 
       <Headline
         title={title}
@@ -88,6 +78,9 @@ const Project = ({ pageContext }) => {
       </ContentSectionWrapper>
 
       {/*<NextProject />*/}
+
+      <ReturnBtn key='return' />
+
 
     </ProjectContainer>
   )

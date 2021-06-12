@@ -11,8 +11,11 @@ const MoonBg = styled.div`
   height: 100vh;
   width: 100%;
   z-index: -100;
+  //border: thick solid red;
 
   .moonlight{
+    //border: thick solid yellow;
+
     position: absolute;
     margin: auto;
     height: 1185px;
@@ -34,7 +37,7 @@ const MoonBg = styled.div`
     svg{
       //display: none;
       #Moon{
-        display: ${ ({moon}) => moon ? 'initial' : 'none' };
+        //display: ${ ({moon}) => moon ? 'initial' : 'none' };
       }
     }
   }
