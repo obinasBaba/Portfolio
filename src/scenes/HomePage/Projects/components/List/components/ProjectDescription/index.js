@@ -32,21 +32,21 @@ const ProjectDescription = ({ link, reversed, tags, title, controller, index }) 
       variants={descTopVariant}
       animate={controller}
       initial="initial"
-      exit='exit'
+      exit="exit"
     >
       <OverflowWrapper>
-        <motion.div variants={descTxtVariants}
-                    custom={b}>
-
+        <motion.div variants={descTxtVariants} custom={b}>
           <Tags className={` forI baffled-` + index} variant={'subtitle2'}>
             {tags}
           </Tags>
         </motion.div>
       </OverflowWrapper>
 
-      <Title variants={titleVariant}
-             transition={transition}
-             layoutId={`title ${index}`} >
+      <Title
+        variants={titleVariant}
+        transition={transition}
+        layoutId={`title ${index}`}
+      >
         {Array.from(title).map((c, i) =>
           c === ' ' ? (
             ' '
@@ -62,21 +62,11 @@ const ProjectDescription = ({ link, reversed, tags, title, controller, index }) 
         )}
       </Title>
 
-
-
-
-      <OverflowWrapper
-        layoutId={`btn-${index}`}
-        transition={transition}>
-
-        <motion.div variants={btnTxtVariants}
-                    transition={transition}>
-
-          <MotionBtn text="Case-Study" to={link} margin={false}   />
-
+      <OverflowWrapper layoutId={`btn-${index}`} transition={transition}>
+        <motion.div variants={btnTxtVariants} transition={transition}>
+          <MotionBtn text="Case-Study" to={link} margin={false} />
         </motion.div>
       </OverflowWrapper>
-
     </ProjectDesc>
   )
 }

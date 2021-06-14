@@ -37,7 +37,7 @@ const MoonBg = styled.div`
     svg{
       //display: none;
       #Moon{
-        //display: ${ ({moon}) => moon ? 'initial' : 'none' };
+        display: ${ ({moon}) => moon ? 'initial' : 'none' };
       }
     }
   }
@@ -45,7 +45,7 @@ const MoonBg = styled.div`
 
 const Moon = ( ) => {
 
-  const {  moon, setMoon } = useContext( ExitStateContext );
+  const {  moon } = useContext( ExitStateContext );
 
 
   return (

@@ -7,7 +7,7 @@ import Cursor from './cursor'
 import {motion, useMotionValue, useSpring} from 'framer-motion'
 import { distance, getMousePos, lerp } from '../../../helpers/utils'
 import {useMouse} from 'react-use'
-import {useScrollRestoration} from 'gatsby'
+import {Link, navigate, useScrollRestoration} from 'gatsby'
 import Headline from '../../../components/Headline'
 
 const ProjectContainer = styled.div`
@@ -99,7 +99,6 @@ const Projects = () => {
   const magnetRestoration = useScrollRestoration('magnet');
 
 
-  const { show, setShow } = useContext(ExitStateContext);
   const hoverValue = useMotionValue(0);
 
 
@@ -156,7 +155,7 @@ const Projects = () => {
   return (
     <motion.div
       id={'proSec'}
-      {...magnetRestoration}
+      {...magnetRestoration }
     >
 
       <ProjectContainer>
@@ -183,18 +182,21 @@ const Projects = () => {
 
           }}
         >
-          <motion.div className="btn-border outer-border"
-                      style={{ x: x2, y: y2 }}
+          {/*<Link to={'/projects'}>*/}
+            <motion.div className="btn-border outer-border"
+                        style={{ x: x2, y: y2 }}
 
-          />
+            />
 
-          <motion.div className="btn-border inner-border"
-                      style={{ x, y }}
-                      onClick={ () => setShow(true) }
 
-          >
-            All Projects(12)
-          </motion.div>
+            <motion.div className="btn-border inner-border"
+                        style={{ x, y }}
+                        onClick={ () => navigate('/projects') }
+
+            >
+              All Projects(12)
+            </motion.div>
+          {/*</Link>*/}
 
         </motion.div>
 

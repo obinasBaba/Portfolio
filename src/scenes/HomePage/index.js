@@ -23,25 +23,8 @@ const HomePage = () => {
 
   useEffect(() => {
 
-
-
-    // let a = document.createElement('a')
-    // a.href = 'http://localhost:8000/#projects';
-    // document.body.append(a)
-    // a.click();
-    //
-    setTimeout( () => {
-      if (!moon) {
-        let i = document.body.querySelector('.pro-click')
-        // i && i.click()
-      }
-      setMoon(true)
-
-      // document.body.removeChild(a)
-    }, 1100 )
-    //
-  },
-    [])
+    setMoon(true)
+  }, [])
 
   return (
     < >

@@ -79,7 +79,9 @@ const Project = ({ pageContext }) => {
 
       {/*<NextProject />*/}
 
-      <ReturnBtn key='return' />
+      <ReturnBtn key='return' onClick={() => {
+        window.history.back();
+      }} />
 
 
     </ProjectContainer>

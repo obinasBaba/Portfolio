@@ -58,6 +58,11 @@ export const descTxtVariants = {
 
   exit: {
     y: '120%',
+    transition: {
+      ease: [0.6, 0.01, 0, 0.9],
+      duration: 1,
+
+    },
   },
 }
 

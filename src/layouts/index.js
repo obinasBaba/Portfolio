@@ -43,36 +43,36 @@ export default function TopLayout({ children }) {
           <GlobalStyle />
           <CssBaseline />
 
-          <HeaderContext.Provider value={{ setIHeaderGradient, setIsWhite }}>
-            <Page>
-              <Header isGradient={false} isWhite={isWhite} />
+          <ExitStateProvider>
 
+            <HeaderContext.Provider value={{ setIHeaderGradient, setIsWhite }}>
+              <Page>
+                <Header isGradient={false} isWhite={isWhite} />
 
-              <Main  >
-                <SkyColor/>
-                <Moon />
+                <Main>
+                  <SkyColor />
 
+                  <Moon />
 
-                <BackgroundStars />
+                  <BackgroundStars />
 
-                <ExitStateProvider>
-
-                  <AnimateSharedLayout  type='crossfade'>
-                    <AnimatePresence exitBeforeEnter initial={true}   >
+                  <AnimatePresence>
+                    <AnimateSharedLayout type="crossfade">
                       {children}
-                    </AnimatePresence>
-                  </AnimateSharedLayout>
+                    </AnimateSharedLayout>
+                  </AnimatePresence>
+                </Main>
 
-                </ExitStateProvider>
-              </Main>
+                <footer>
+                  <Footer />
+                </footer>
 
-              <footer>
-                <Footer />
-              </footer>
+                {/*<VersionNo>v0.1</VersionNo>*/}
+              </Page>
+            </HeaderContext.Provider>
+          </ExitStateProvider>
 
-              {/*<VersionNo>v0.1</VersionNo>*/}
-            </Page>
-          </HeaderContext.Provider>
+
         </ThemeProvider>
       </StyledThemeProvider>
     </React.Fragment>

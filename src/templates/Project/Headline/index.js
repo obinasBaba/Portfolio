@@ -11,6 +11,10 @@ const transition = {
   duration: 1,
 }
 
+
+//this is a comment
+
+
 const headLine = {
   /*initial: {
     background: 'transparent',
@@ -92,7 +96,7 @@ const bgVariant = {
     opacity: 0,
     transition: {
       ease: [0.6, 0.01, 0, 0.9],
-      duration: .2,
+      duration: 1,
     },
   },
 }
