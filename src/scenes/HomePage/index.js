@@ -9,6 +9,7 @@ import styled from 'styled-components'
 import {ExitStateContext} from '../../contexts/ExitStateContext'
 import {Typography} from '@material-ui/core'
 import Moon from '../../layouts/Components/Moon'
+import BlogPosts from './BlogPosts'
 
 const ProjectSectionWrapper = styled(SectionWrapper)`
   border: thick solid red;
@@ -38,6 +39,10 @@ const HomePage = () => {
 
       <SectionWrapper>
         <Projects />
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <BlogPosts/>
       </SectionWrapper>
 
       <SectionWrapper>
