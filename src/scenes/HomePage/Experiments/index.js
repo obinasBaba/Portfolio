@@ -5,7 +5,9 @@ import ExperimentTrack from './components/ExperimentTrack'
 import Headline from '../../../components/Headline'
 
 const ExperimentsContainer = styled.div`
-
+  max-width: 100%;
+  overflow: hidden;
+  
   // ${ spacing( 'mt', 20 ) };
   text-align: center;
   position: relative;

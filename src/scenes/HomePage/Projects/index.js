@@ -1,23 +1,52 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import 'fullpage.js/vendors/scrolloverflow'
-import { ExitStateContext } from '../../../contexts/ExitStateContext'
 import styled from 'styled-components'
-import {heightWidth, spacing} from '../../../styles/mixins'
-import Cursor from './cursor'
-import {motion, useMotionValue, useSpring} from 'framer-motion'
-import { distance, getMousePos, lerp } from '../../../helpers/utils'
-import {useMouse} from 'react-use'
-import {Link, navigate, useScrollRestoration} from 'gatsby'
+import {gridMultiplayer, heightWidth, spacing} from '../../../styles/mixins'
+import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { getMousePos } from '../../../helpers/utils'
+import { navigate, useScrollRestoration } from 'gatsby'
 import Headline from '../../../components/Headline'
 
 const ProjectContainer = styled.div`
-   
+  max-width: 100%;
+  overflow: hidden;
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: center;
   //border: thin solid red;
   ${ spacing( 'mb', 8 ) };
+
+  &::before {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    right: 10%;
+    background: linear-gradient(
+            37.98deg,
+            rgba(16, 8, 74, 0) 16.94%,
+            #83a4ff 87.08%
+    );
+    
+    ${ heightWidth('width', 4) };
+    ${ heightWidth('height', 4) };
+    ${ gridMultiplayer('right', 10) };
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    left: 10%;
+    border-radius: 50%;
+    background: linear-gradient(
+            36.99deg,
+            rgba(1, 1, 18, 0) 27.49%,
+            #262147 78.93%
+    );
+    
+    ${ heightWidth('width', 10) };
+    ${ heightWidth('height', 10) };
+  }
 
   .hover-target {
     cursor: pointer;
@@ -34,7 +63,6 @@ const ProjectContainer = styled.div`
     ${heightWidth('width', 75)};
     
     .btn-border {
-      will-change: transform;
       position: absolute;
       display: flex;
       align-items: center;
@@ -46,7 +74,6 @@ const ProjectContainer = styled.div`
       background: linear-gradient( to top left, red, yellow );
 
       box-shadow: 70px 120px 150px -30px rgba(2, 2, 30, 0.6);
-      //transition: transform .5s;
       
       &:last-child{
         background: linear-gradient(

@@ -25,6 +25,7 @@ const FooterContainer = styled.div`
   padding-left: 15px;
   max-width: 90rem;
   width: 100%;
+  background-color: #3719ca;
   @media screen and (min-width: 768px) {
     padding-right: 4.28rem;
     padding-left: 4.28rem;
@@ -114,7 +115,7 @@ const Love = styled.div`
   
 `
 
-const Footer = () => {
+const Footer = ( {color} ) => {
   return (
     <FooterContainer>
       <Love>With Love from <b>henok</b></Love>

@@ -8,8 +8,9 @@ const MoonBg = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  height: 100vh;
+  height: 1185px;;
   width: 100%;
+  overflow: hidden;
   z-index: -100;
   //border: thick solid red;
 
@@ -30,7 +31,9 @@ const MoonBg = styled.div`
       transform: translateX(0%); 
       right: 0;
       width: 147%;
-      top: 0;
+      //top: 0;
+      top: -45%;
+
 
     ` ) };
     

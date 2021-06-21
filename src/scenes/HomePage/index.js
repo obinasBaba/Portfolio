@@ -10,10 +10,18 @@ import {ExitStateContext} from '../../contexts/ExitStateContext'
 import {Typography} from '@material-ui/core'
 import Moon from '../../layouts/Components/Moon'
 import BlogPosts from './BlogPosts'
+import MyProcess from './MyProcess'
 
 const ProjectSectionWrapper = styled(SectionWrapper)`
   border: thick solid red;
   display: none;
+`
+
+const RecentWorkWrapper = styled.section`
+  max-width: 100vw;
+  overflow: hidden;
+  width: 100%;
+  //display: none;
 `
 
 const HomePage = () => {
@@ -35,7 +43,9 @@ const HomePage = () => {
 
       </SectionWrapper>
 
-      <RecentWorks />
+      <RecentWorkWrapper>
+        <RecentWorks />
+      </RecentWorkWrapper>
 
       <SectionWrapper>
         <Projects />
@@ -45,21 +55,23 @@ const HomePage = () => {
         <BlogPosts/>
       </SectionWrapper>
 
+
       <SectionWrapper>
         <Experiments />
       </SectionWrapper>
 
+      {/*<SectionWrapper>*/}
+      {/*  <MyProcess/>*/}
+      {/*</SectionWrapper>*/}
+
+
       <SectionWrapper>
         <MailUs />
-
       </SectionWrapper>
 
-      <a style={{
-        position: 'fixed',
-      }} ref={target} href={'#proSec'} className='pro-click' />
 
 
-    </ >
+    </>
   )
 }
 

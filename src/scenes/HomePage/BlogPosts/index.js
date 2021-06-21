@@ -11,6 +11,9 @@ import Info from './components/Info'
 import Previews from './components/Previews'
 
 const PostsContainer = styled.section`
+  max-width: 100%;
+  overflow: hidden;
+  
   ${spacing('mt', 20)};
   ${spacing('mb', 15)};
   ${gridify()};
@@ -28,7 +31,7 @@ const PostsContainer = styled.section`
   }
   
   & main{
-    ${gridColWidth(28, 59)};
+    ${gridColWidth(34, 58)};
 
     ${mediumDown(css`
       ${gridColWidth(28, 61)};

@@ -90,10 +90,14 @@ const Desc = styled.div`
 const Tag = styled(Typography)`
   font-family: var(--gramatika);
   font-weight: 600;
-  margin-bottom: 0.7em;
+  ${ text(1) };
+  letter-spacing: 1px;
+
+
   color: lightgray;
   opacity: 0.5;
   text-transform: uppercase;
+  
 `
 
 const Title = styled(Typography)`
@@ -115,7 +119,7 @@ const Item = ({ media, tag, title }) => {
       </ImageBox>
 
       <Desc>
-        <Tag variant='subtitle2' >#{tag}</Tag>
+        <Tag variant='body2' >#{tag}</Tag>
         <Title variant='h6' > {title} </Title>
       </Desc>
     </PreviewContainer>

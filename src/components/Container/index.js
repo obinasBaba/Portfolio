@@ -14,6 +14,8 @@ export const PageContainer = styled.div`
 let StyledSectionWrapper = styled(Container)`
   max-width: 1600px;
   margin: 0 auto;
+  //width: 100%;
+  //overflow: hidden;
 `
 
 export const SectionWrapper = ({

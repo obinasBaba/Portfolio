@@ -9,7 +9,8 @@ import {
 export const HeroContainer = styled.div`
   position: relative;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
+  overflow: hidden;
 `
 
 export const TextContainer = styled.div`

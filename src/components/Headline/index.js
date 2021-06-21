@@ -27,11 +27,10 @@ const TitleContainer = styled.header`
 
 const Headline = ( {title, subtitle, mb, showProjects} ) => {
 
-  const targetElement = React.useRef(null)
 
 
   return (
-    <TitleContainer mb={mb} ref={targetElement} >
+    <TitleContainer mb={mb}  >
       <GradientText variant='h1'
                     onClick={ () => showProjects && showProjects(true) }
                     noWrap={true}  >

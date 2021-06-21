@@ -14,6 +14,7 @@ const MailUsContainer = styled.div`
   justify-content: center;
   text-align: center;
   height: calc(100vh - 142px);
+  overflow: hidden;
 
   box-sizing: border-box;
 
