@@ -60,9 +60,9 @@ const HomePage = () => {
         <Experiments />
       </SectionWrapper>
 
-      {/*<SectionWrapper>*/}
-      {/*  <MyProcess/>*/}
-      {/*</SectionWrapper>*/}
+      <SectionWrapper>
+        <MyProcess/>
+      </SectionWrapper>
 
 
       <SectionWrapper>

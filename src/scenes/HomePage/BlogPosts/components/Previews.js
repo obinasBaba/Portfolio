@@ -21,7 +21,7 @@ const Previews = ( {media} ) => {
       tag: ['PWA', 'React'],
     },{
       media: p3,
-      title: 'how to check the website before releasing it?',
+      title: 'how to check the website befor releasing it?',
       tag: ['PWA', "Js"],
     },
   ]

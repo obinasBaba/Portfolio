@@ -16,6 +16,7 @@ let StyledSectionWrapper = styled(Container)`
   margin: 0 auto;
   //width: 100%;
   //overflow: hidden;
+  //position: relative;
 `
 
 export const SectionWrapper = ({
