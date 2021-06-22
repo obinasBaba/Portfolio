@@ -1,42 +1,31 @@
 import React from 'react'
 import { Typography } from '@material-ui/core'
 import H from './H.inline.svg'
-import useHeaderAssets from '../../../hooks/queries/useHeaderAssets'
 import { HeroContainer, Lines, SvgWithTxt, TextContainer } from './components'
-import styled from 'styled-components'
-
-
 
 const Hero = () => {
-
-  const { logo } = useHeaderAssets();
+  // const { logo } = useHeaderAssets();
 
   return (
     <>
-      <HeroContainer  >
-
-
+      <HeroContainer>
         <TextContainer>
-
           <Typography variant="h2"> hi, I'm </Typography>
 
           <SvgWithTxt>
             <H />
-            <Typography className='enok' variant="h1">enok</Typography>
+            <Typography className="enok" variant="h1">
+              enok
+            </Typography>
           </SvgWithTxt>
 
-          <Lines/>
+          <Lines />
 
-          <Typography variant='h5' className='job'>
-            Web developer / <br/>
+          <Typography variant="h5" className="job">
+            Web developer / <br />
             markup engineer.
           </Typography>
-
         </TextContainer>
-
-
-
-
       </HeroContainer>
     </>
   )

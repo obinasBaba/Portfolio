@@ -1,16 +1,15 @@
-import React, {useContext, useEffect, useState} from 'react'
-import MotionBtn from '../../../../../../../components/MotionBtn'
-import {motion, useAnimation} from 'framer-motion'
+import React, { useEffect } from 'react'
+import MotionBtn from '../../../../components/MotionBtn'
+import { motion } from 'framer-motion'
 import {
+  btnTxtVariants,
+  descTopVariant,
   descTxtVariants,
-  transition,
   letterVariant,
   titleVariant,
-  descTopVariant,
-  btnTxtVariants,
+  transition,
 } from './Variants'
-import {ProjectDesc, Tags, OverflowWrapper, Title} from './Components'
-import {AppStateContext} from '../../../../../../../contexts/AppStateContext'
+import { OverflowWrapper, ProjectDesc, Tags, Title } from './components'
 import baffle from 'baffle'
 
 const ProjectDescription = ({ link, reversed, tags, title, controller, index }) => {

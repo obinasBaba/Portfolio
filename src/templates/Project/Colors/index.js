@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { spacing } from '../../../styles/mixins'
-import {Container, Typography} from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 
 const ColorsPaletteFlex = styled.div `
   width: 100%;

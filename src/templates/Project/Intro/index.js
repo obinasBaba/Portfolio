@@ -2,21 +2,20 @@ import React from 'react'
 import { Container, Typography } from '@material-ui/core'
 import styled, { css } from 'styled-components'
 import { heightWidth, largeUp, mediumUp, spacing } from '../../../styles/mixins'
-import MotionBtn from '../../../components/MotionBtn'
 import Logo from './vigoza-logo.svg'
 
 const IntroContainer = styled(Container)`
   position: relative;
   //background-color: ${({ themeCrl }) => themeCrl};
   background-image: linear-gradient(
-          137.81deg,
-          #e7a28f 3.52%,
-          #f9d6ac 41.89%,
-          #fbfefc 96.77%
+    137.81deg,
+    #e7a28f 3.52%,
+    #f9d6ac 41.89%,
+    #fbfefc 96.77%
   );
-  
-   color: #02021e;
-  
+
+  color: #02021e;
+
   width: 100%;
   display: flex;
   justify-content: center;
@@ -44,20 +43,15 @@ const IntroContainer = styled(Container)`
   ${mediumUp(css`
     ${spacing('pv', 4)};
   `)};
-  
-  ${ largeUp( css`
-    
-    
-  ` ) };
 
-  
-  
-  .desc{
+  ${largeUp(css``)};
+
+  .desc {
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: center;
-    
+
     & > :not(:first-child) {
       ${heightWidth('margin-descTopVariant', 3)};
     }
@@ -75,7 +69,7 @@ const Description = styled(Typography)`
 
 
 const Intro = ({ intro }) => {
-  const { desc, themeColor, title, siteLink, logoUrl, color, imageData } = intro
+  const { desc, themeColor, title, logoUrl, color } = intro
 
   return (
     <IntroContainer

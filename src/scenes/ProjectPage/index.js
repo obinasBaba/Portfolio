@@ -1,13 +1,14 @@
-import React, {useEffect} from 'react'
-import styled, { css } from 'styled-components'
-import { gridify, smallUp, spacing } from '../../../../../styles/mixins'
-import StackUsed from './components/StackUsed'
+import React from 'react'
+import useProjectsAssets from '../../hooks/queries/useProjectsAssets'
+import { motion, useAnimation } from 'framer-motion'
+import Others from './components/Others'
 import ProjectImage from './components/ProjectImage'
 import ProjectDescription from './components/ProjectDescription'
-import { motion, useAnimation } from 'framer-motion'
-import Others from '../Others'
+import StackUsed from './components/StackUsed'
+import styled, { css } from 'styled-components'
+import { gridify, smallUp, spacing } from '../../styles/mixins'
 
-const ProjectGrid = styled(motion.div)`
+const ProjectContainerGrid = styled(motion.div)`
   ${gridify};
   // ${spacing('pt', 2)};
 
@@ -21,24 +22,29 @@ const ProjectGrid = styled(motion.div)`
   min-height: 100vh;
 `
 
-const ProjectList = ({
-  preview1,
-  preview2,
-  // preview3,
-  css3,
-  postgres,
-  sql,
-  typescript,
-  javascript,
-  mongo,
-  vue,
-  pwa,
-  react,
-  angular,
-  node,
-  othersAssets,
-  controllers,
-}) => {
+const topVariant = {}
+
+
+const ProjectPage = ({ controllers }) => {
+  const { auth, kklLuzern, udemy, ...listAssets } = useProjectsAssets()
+  const othersAssets = { auth, kklLuzern, udemy }
+  const {
+    preview1,
+    preview2,
+    // preview3,
+    css3,
+    postgres,
+    sql,
+    typescript,
+    javascript,
+    mongo,
+    vue,
+    pwa,
+    react,
+    angular,
+    node,
+  } = listAssets
+
   const items = [
     {
       id: 0,
@@ -74,35 +80,31 @@ const ProjectList = ({
       partners: [postgres, vue, javascript, css3],
     },
   ]
-  const topVariant = {
 
-  }
- 
-
-  const controller = [
+  const controllerArr = [  //this doesn't look good but ...
     {
       imgController: useAnimation(),
       descController: useAnimation(),
       stackController: useAnimation(),
     },
     {
-      imgController : useAnimation(),
-      descController : useAnimation(),
-      stackController : useAnimation()
+      imgController: useAnimation(),
+      descController: useAnimation(),
+      stackController: useAnimation(),
     },
     {
-      imgController : useAnimation(),
-      descController : useAnimation(),
-      stackController : useAnimation()
-    }
+      imgController: useAnimation(),
+      descController: useAnimation(),
+      stackController: useAnimation(),
+    },
   ];
 
-  controller.forEach( (obj, i) => {
-    const { imgController, descController, stackController } = obj;
+  controllerArr.forEach( (controller, i) => {
+    const { imgController, descController, stackController } = controller;
 
     const controllerFn =  value => {
-       imgController.start(value)
-       descController.start(value)
+      imgController.start(value)
+      descController.start(value)
       stackController.start(value)
     }
 
@@ -114,16 +116,12 @@ const ProjectList = ({
   return (
     <>
       {items.map((item, index) => {
-
-        const { imgController, descController, stackController } = controller[index];
-
-
-        const { id, partners, tags, preview, alt, link, title } = item
+        const { imgController, descController, stackController } = controllerArr[index]
+        const { partners, tags, preview, alt, link, title } = item;
 
         return (
           <div className="section" key={link}>
-            <ProjectGrid
-              key={index + tags.toString()}
+            <ProjectContainerGrid
               variants={topVariant}
               initial="initial"
               animate="animate"
@@ -153,7 +151,7 @@ const ProjectList = ({
                 controller={stackController}
                 reversed={true}
               />
-            </ProjectGrid>
+            </ProjectContainerGrid>
           </div>
         )
       })}
@@ -165,4 +163,4 @@ const ProjectList = ({
   )
 }
 
-export default ProjectList
+export default ProjectPage

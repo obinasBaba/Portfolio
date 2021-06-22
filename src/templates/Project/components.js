@@ -1,8 +1,8 @@
-import styled, {css} from 'styled-components'
-import {motion} from 'framer-motion'
-import {mediumUp, spacing} from '../../styles/mixins'
+import styled from 'styled-components'
+import { motion } from 'framer-motion'
+import { spacing } from '../../styles/mixins'
 
-export const ProjectContainer = styled( motion.div )`
+export const ProjectContainer = styled(motion.div)`
   max-width: 1600px;
 `
 

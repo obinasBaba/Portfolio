@@ -6,8 +6,8 @@ import {
   heightWidth,
   largeUp,
   mediumUp,
-  spacing,
-} from '../../../../../../styles/mixins'
+  spacing
+} from '../../../../../styles/mixins'
 import { motion } from 'framer-motion'
 
 export const OthersContainer = styled(motion.div)`

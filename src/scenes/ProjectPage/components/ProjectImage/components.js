@@ -4,8 +4,8 @@ import {
   gridColWidth,
   largeUp,
   mediumUp,
-  spacing,
-} from '../../../../../../../styles/mixins'
+  spacing
+} from '../../../../styles/mixins'
 
 export const ProjectImg = styled(motion.div)`
   ${gridColWidth()}; //mobile-first

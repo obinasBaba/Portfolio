@@ -3,7 +3,6 @@ import Headline from './Headline'
 import Intro from './Intro'
 import AnalysisPreparation from './AnalysisPreparation'
 import ColorPalette from './Colors'
-import NextProject from './NextProject'
 import FontUsed from './FontUsed'
 
 import { useIntersection } from 'react-use'
@@ -22,7 +21,7 @@ const topVariant = {
 
 
 const Project = ({ pageContext }) => {
-  const { title, subTitle, about, featured_media, intro } = pageContext.project
+  const { title, subTitle, about,  intro } = pageContext.project
   const { headlineImg } = pageContext.imageData;
 
 

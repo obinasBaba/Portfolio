@@ -6,8 +6,8 @@ import {
   largeUp,
   mediumUp,
   spacing,
-} from '../../../../../../styles/mixins';
-import {motion, useAnimation} from 'framer-motion'
+} from '../../../../styles/mixins'
+import { motion } from 'framer-motion'
 
 const StackList = styled(motion.ul)`
   grid-row: 2;
@@ -41,8 +41,8 @@ const StackList = styled(motion.ul)`
     width: auto;
     margin: 0 auto;
     object-fit: cover;
-    ${heightWidth('width', 3)};
-    ${heightWidth('height', 3)};
+    ${heightWidth('width', 2.5)};
+    ${heightWidth('height', 2.5)};
   }
   
 `
@@ -53,7 +53,7 @@ const transition = {
 }
 
 const listVariant = {
-  animate: {
+  animate1: {
     transition: {
       staggerChildren: .1,
       delayChildren: 1.5,
@@ -62,10 +62,10 @@ const listVariant = {
 };
 
 const itemVariant = {
-  initial: {
+  initial1: {
     y: '130%'
   },
-  animate: {
+  animate1: {
     y: 0
   }
 }
@@ -84,7 +84,7 @@ const StackUsed = ({ reversed, items, controller }) => {
           <motion.li transition={transition}
                      variants={itemVariant}
                      key={publicURL}>
-            <img src={publicURL} alt="stack logo" loading={'lazy'} />
+            <img src={publicURL} alt="stack logo"   />
           </motion.li>
         )
       })}

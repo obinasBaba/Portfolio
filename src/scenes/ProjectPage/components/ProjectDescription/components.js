@@ -4,7 +4,7 @@ import {
   gridColWidth, largeUp, mediumUp,
   smallUp,
   spacing, title,
-} from '../../../../../../../styles/mixins'
+} from '../../../../styles/mixins'
 import {Typography} from '@material-ui/core'
 
 export const ProjectDesc = styled(motion.div)`

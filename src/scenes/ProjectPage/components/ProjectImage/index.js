@@ -1,24 +1,31 @@
 // noinspection JSIgnoredPromiseFromCall
 
 import React, { useContext } from 'react'
-import { motion, useAnimation } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Link } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import { AppStateContext } from '../../../../../../../contexts/AppStateContext'
 import {
-  imgContainerVariant,
   effectVariant,
+  imgContainerVariant,
   imgCover,
-  imgOverVariants, innerDivWrapperVariants,
+  imgOverVariants,
+  innerDivWrapperVariants,
   outerDivWrapper,
   transition,
 } from './Variants'
-import { OverflowWrapper, ProjectImg } from './Components'
-import reile from './preview-111.jpg';
+import { OverflowWrapper, ProjectImg } from './components'
+import {AppStateContext} from '../../../../contexts/AppStateContext'
 
-const ProjectImage = ({ reversed, alt, link, preview, title, index, controller }) => {
+const ProjectImage = ({
+  reversed,
+  alt,
+  link,
+  preview,
+  title,
+  index,
+  controller,
+}) => {
   const { show } = useContext(AppStateContext)
-
 
   return (
     <ProjectImg
@@ -26,36 +33,32 @@ const ProjectImage = ({ reversed, alt, link, preview, title, index, controller }
       variants={imgContainerVariant}
       transition={transition}
       animate={controller}
-      initial='initial'
-      exit='exit'
-
+      initial="initial"
+      exit="exit"
       custom={show}
     >
       <Link to={link}>
-
-      <motion.div
-        className="outer-div"
-        variants={outerDivWrapper}
-        transition={transition}
-
-      >
-          <motion.div  className='inner-div'
-                       variants={innerDivWrapperVariants}
-                       transition={transition}
-                       layoutId={`out-wra ${index}`}
+        <motion.div
+          className="outer-div"
+          variants={outerDivWrapper}
+          transition={transition}
+        >
+          <motion.div
+            className="inner-div"
+            variants={innerDivWrapperVariants}
+            transition={transition}
+            layoutId={`out-wra ${index}`}
           >
             <GatsbyImage
               alt={alt}
               key={title}
-              className='project-image'
+              className="project-image"
               image={getImage(preview)}
             />
 
             {/*<img  src={reile}  />*/}
 
-            <motion.div className="image-over"
-                        variants={imgOverVariants}>
-
+            <motion.div className="image-over" variants={imgOverVariants}>
               <motion.div
                 className="image-cover cover-1"
                 variants={imgCover}
@@ -68,12 +71,8 @@ const ProjectImage = ({ reversed, alt, link, preview, title, index, controller }
                 transition={transition}
               />
             </motion.div>
-
-
           </motion.div>
-
-      </motion.div>
-
+        </motion.div>
       </Link>
 
       <OverflowWrapper>
@@ -86,7 +85,6 @@ const ProjectImage = ({ reversed, alt, link, preview, title, index, controller }
           0{index + 1}
         </motion.div>
       </OverflowWrapper>
-
     </ProjectImg>
   )
 }
