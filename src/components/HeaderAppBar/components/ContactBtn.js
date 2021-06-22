@@ -1,27 +1,27 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import styled, { css } from 'styled-components'
 import { Typography } from '@material-ui/core'
-import {heightWidth, mediumUp, smallUp, spacing} from '../../../styles/mixins'
+import {heightWidth, mediumUp, spacing, text} from '../../../styles/mixins'
 import { motion } from 'framer-motion'
 
-const ContactLink = styled.span`
+const StyledContactBtn = styled.span`
   z-index: 50;
   display: none;
   font-family: var(--sofia-soft);
-  font-size: 18px;
   font-weight: 300;
   transition: all 0.3s;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 100px;
   text-decoration: none;
   color: ${({ isWhite }) => (isWhite ? '#02021e' : '#fff')};
-  letter-spacing: 0.5px;
+  letter-spacing: calc(1px * var(--indent));
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 
+  ${ text(1.1) };
+  
   ${mediumUp(css`
     display: flex;
   `)};
@@ -48,10 +48,13 @@ const ContactLink = styled.span`
   }
 `
 
-const ContactBtn = ({ isWhite, toggleModal: {setContactIsOpen, contactIsOpen} }) => {
+const ContactBtn = ({ isWhite, setContactModal, isContactOpen }) => {
+
+
+
   return (
     <motion.div
-      onClick={ () => setContactIsOpen( !contactIsOpen ) }
+      onClick={ () => setContactModal( !isContactOpen ) }
 
       style={{
       zIndex: 999,
@@ -73,17 +76,11 @@ const ContactBtn = ({ isWhite, toggleModal: {setContactIsOpen, contactIsOpen} })
 
     {/*<Link className={'whiteBtn'} to="/contacts/" style={{ zIndex: 999 }}>*/}
 
-        <ContactLink isWhite={isWhite}>
-          <Typography
-            style={{
-              fontFamily: 'var(--sofia-soft)',
-              fontSize: '18px',
-              fontWeight: '300',
-            }}
-          >
+        <StyledContactBtn isWhite={isWhite}>
+          {/*<Typography className='contact-txt' >*/}
             Contact
-          </Typography>
-        </ContactLink>
+          {/*</Typography>*/}
+        </StyledContactBtn>
 
     {/*</Link>*/}
     </motion.div>

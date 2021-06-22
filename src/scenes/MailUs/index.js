@@ -4,7 +4,7 @@ import { Typography } from '@material-ui/core'
 import MotionBtn from '../../components/MotionBtn'
 import { heightWidth, mediumUp, spacing } from '../../styles/mixins'
 import Logo from './logo.svg'
-import { HeaderContext } from '../../contexts'
+import {AppStateContext} from '../../contexts/AppStateContext'
 
 const MailUsContainer = styled.div`
   position: relative;
@@ -82,7 +82,7 @@ const MailUs = () => {
   let elPosition = null
 
   const [backgroundParallax, setBackgroundParallax] = useState(null);
-  const { setIHeaderGradient } = useContext(HeaderContext);
+  const { setHeaderGradient } = useContext( AppStateContext );
 
 
   const moveBackground = () => {
@@ -108,8 +108,8 @@ const MailUs = () => {
     function removeGradient(MailUsRef) {
       const el = MailUsRef.current.getBoundingClientRect().top;
       return el < 120
-        ? setIHeaderGradient(false)
-        : setIHeaderGradient(true);
+        ? setHeaderGradient(false)
+        : setHeaderGradient(true);
     }
 
     let removeGradientOnScroll = removeGradient(elRef);

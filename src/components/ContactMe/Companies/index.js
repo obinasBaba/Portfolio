@@ -1,11 +1,10 @@
 import React from 'react'
-import styled, {css} from 'styled-components'
-import {smallDown, spacing} from '../../../../../styles/mixins'
-import { Typography } from '@material-ui/core'
-import R from './react-native.svg';
-import J from './javascript.svg';
-import N from './nodejs.svg';
-import C from './css3.svg';
+import styled, { css } from 'styled-components'
+import { smallDown, spacing } from '../../../styles/mixins'
+import R from './react-native.svg'
+import J from './javascript.svg'
+import N from './nodejs.svg'
+import C from './css3.svg'
 
 const List = styled.ul`
   margin: 0;

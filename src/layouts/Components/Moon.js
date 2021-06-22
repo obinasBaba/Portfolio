@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import {smallUp} from '../../styles/mixins'
 import styled, {css} from 'styled-components'
-import {ExitStateContext} from '../../contexts/ExitStateContext'
+import {AppStateContext} from '../../contexts/AppStateContext'
 
 const MoonBg = styled.div`
   position: absolute;
@@ -48,7 +48,7 @@ const MoonBg = styled.div`
 
 const Moon = ( ) => {
 
-  const {  moon } = useContext( ExitStateContext );
+  const {  moon } = useContext( AppStateContext );
 
 
   return (

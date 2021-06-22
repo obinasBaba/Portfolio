@@ -6,7 +6,7 @@ import Experiments from './Experiments'
 import MailUs from '../MailUs'
 import {PageContainer, SectionWrapper} from '../../components/Container'
 import styled from 'styled-components'
-import {ExitStateContext} from '../../contexts/ExitStateContext'
+import {AppStateContext} from '../../contexts/AppStateContext'
 import {Typography} from '@material-ui/core'
 import Moon from '../../layouts/Components/Moon'
 import BlogPosts from './BlogPosts'
@@ -26,7 +26,7 @@ const RecentWorkWrapper = styled.section`
 
 const HomePage = () => {
 
-  const { setMoon, moon } = useContext(ExitStateContext)
+  const { setMoon, moon } = useContext(AppStateContext)
   const target = useRef(null);
 
 
@@ -65,9 +65,9 @@ const HomePage = () => {
       </SectionWrapper>
 
 
-      <SectionWrapper>
+      {/*<SectionWrapper>*/}
         <MailUs />
-      </SectionWrapper>
+      {/*</SectionWrapper>*/}
 
 
 

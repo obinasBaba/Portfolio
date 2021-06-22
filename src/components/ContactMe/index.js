@@ -1,9 +1,9 @@
-import React from 'react'
-import styled, {css} from 'styled-components'
+import React, {useEffect} from 'react'
+import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
 import { Typography } from '@material-ui/core'
-import CloseBtn from '../CloseBtn'
-import {mediumUp, smallUp, spacing, text} from '../../../../styles/mixins'
+// import CloseBtn from './Companies/'
+import { mediumUp, smallUp, spacing, text } from '../../styles/mixins'
 import Companies from './Companies'
 
 const ContactContainer = styled(motion.section)`
@@ -129,7 +129,7 @@ const Title = styled( Typography )`
 `
 
 const Description = styled( Typography )`
-  max-width: 43ch;
+  //max-width: 43ch;
   font-family: var(--sofia-pro);
   font-weight: lighter;
   line-height: 160%;
@@ -138,6 +138,7 @@ const Description = styled( Typography )`
   margin: 0;
   position: relative;
   ${ spacing( 'mb', 4 ) };
+  ${ text(1.1) };
   
   &::after{
     //content: '';
@@ -164,10 +165,25 @@ const AboutEffect = styled( Typography )`
   user-select: none;
 `
 
-const ContactMe = ({ toggleModal: { setContactIsOpen, contactIsOpen } }) => {
+const ContactMe = ({ toggleModal: { setContactModal, isContactOpen } }) => {
 
   const technologies = ['Interactive Web developer'];
 
+  useEffect(() => {
+    const closeModal = ( key ) => {
+      if ( key.key === 'Escape' )
+        setContactModal(!isContactOpen)
+    };
+
+    window.addEventListener('keyup', closeModal)
+
+      return () => {
+        window.removeEventListener('keyup', closeModal)
+      }
+    },
+    [])
+  
+  
   return (
     <ContactContainer>
       <BgSvgEffect>
@@ -188,7 +204,7 @@ const ContactMe = ({ toggleModal: { setContactIsOpen, contactIsOpen } }) => {
         </svg>
       </BgSvgEffect>
 
-      <StarsSvgEffect>
+     {/* <StarsSvgEffect>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="138.869"
@@ -223,7 +239,7 @@ const ContactMe = ({ toggleModal: { setContactIsOpen, contactIsOpen } }) => {
             />
           </g>
         </svg>
-      </StarsSvgEffect>
+      </StarsSvgEffect>*/}
 
       <AboutHalf>
 
@@ -245,7 +261,8 @@ const ContactMe = ({ toggleModal: { setContactIsOpen, contactIsOpen } }) => {
 
       <FormHalf>
 
-        <CloseBtn toggler={setContactIsOpen} state={setContactIsOpen} />
+        {/*<CloseBtn toggler={setContactIsOpen} state={setContactIsOpen} />*/}
+
         <Title afterColor='#f1d7ce'  variant="h4"> Let's talk. </Title>
         <Typography variant='body2' > New projects, freelance inquiry or even a coffee. </Typography>
 

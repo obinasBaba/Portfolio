@@ -10,7 +10,7 @@ import {
   btnTxtVariants,
 } from './Variants'
 import {ProjectDesc, Tags, OverflowWrapper, Title} from './Components'
-import {ExitStateContext} from '../../../../../../../contexts/ExitStateContext'
+import {AppStateContext} from '../../../../../../../contexts/AppStateContext'
 import baffle from 'baffle'
 
 const ProjectDescription = ({ link, reversed, tags, title, controller, index }) => {

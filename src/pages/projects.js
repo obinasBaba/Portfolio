@@ -8,7 +8,7 @@ import {motion} from 'framer-motion'
 import {SectionWrapper} from '../components/Container'
 import ProjectList from '../scenes/HomePage/Projects/components/List'
 import ReactFullpage from '@fullpage/react-fullpage'
-import {ExitStateContext} from '../contexts/ExitStateContext'
+import {AppStateContext} from '../contexts/AppStateContext'
 import {Link, navigate} from 'gatsby'
 
 const Scroll = styled.div`
@@ -37,7 +37,7 @@ const ScrollTxt = styled( Typography )`
 
 const Projects = () => {
 
-  const { show, setShow, setMoon } = useContext(ExitStateContext)
+  const { show, setShow, setMoon } = useContext(AppStateContext)
 
   const controllers = [];
   const { auth, kklLuzern, udemy, ...listAssets } = useProjectsAssets()

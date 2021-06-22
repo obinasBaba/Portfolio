@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import useScrollTrigger from '@material-ui/core/useScrollTrigger'
 import Slide from '@material-ui/core/Slide'
 import styled, { css } from 'styled-components'
@@ -8,8 +8,8 @@ import ContactBtn from './components/ContactBtn'
 import { mediumUp, spacing } from '../../styles/mixins'
 import { AnimatePresence } from 'framer-motion'
 import Menu from './components/Menu'
-import ContactMe from './components/ContactMe'
-import ReturnBtn from '../ReturnBtn'
+import {AppStateContext} from '../../contexts/AppStateContext'
+import ContactMe from '../ContactMe'
 
 const transition = css`
   transition: all 0.3s;
@@ -69,28 +69,21 @@ const ToolBarWrapper = styled.nav`
   align-items: center;
 `
 
-function HeaderAppBar({ isGradient, isWhite }) {
-  const [menuIsOpen, setMenuIsOpen] = useState(false)
-  const [contactIsOpen, setContactIsOpen] = useState(false)
+function HeaderAppBar({}) {
+
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const {
+    isWhite,
+    isHeaderGradient,
+    isContactOpen,
+    setContactModal,
+  } = useContext(AppStateContext)
 
   useEffect(() => {
-    if (menuIsOpen) document.body.classList.add('locked');
+    if (menuIsOpen) document.body.classList.add('locked')
 
-    return () => document.body.classList.remove('locked');
-  }, [menuIsOpen]);
-
-  useEffect( () => {
-
-    if ( contactIsOpen ) {
-      document.body.classList.add('locked');
-    }
-    else
-      document.body.classList.remove('locked');
-    
-    return () => document.body.classList.remove('contact-lock')
-  }, [contactIsOpen])
-
-  
+    return () => document.body.classList.remove('locked')
+  }, [menuIsOpen])
 
   return (
     <>
@@ -102,12 +95,12 @@ function HeaderAppBar({ isGradient, isWhite }) {
           />
         )}
 
-        {contactIsOpen && <ContactMe toggleModal={{ setContactIsOpen, contactIsOpen }} />}
+        {isContactOpen && <ContactMe toggleModal={{ setContactModal, isContactOpen }} />}
 
       </AnimatePresence>
 
       <HideOnScroll>
-        <NavContainer isGradient={isGradient} isWhite={isWhite}>
+        <NavContainer isGradient={isHeaderGradient} isWhite={isWhite}>
           <ToolBarWrapper>
             <LogoAndSocial isWhite={isWhite} />
 
@@ -117,7 +110,8 @@ function HeaderAppBar({ isGradient, isWhite }) {
                   <ContactBtn
                     isWhite={isWhite}
                     key={menuIsOpen.toString() + 'con'}
-                    toggleModal={{ setContactIsOpen, contactIsOpen }}
+                    isContactOpen={isContactOpen}
+                    setContactModal={setContactModal}
                   />
 
                   <NavBtn

@@ -55,10 +55,10 @@ export const spacing = (key, value) => {
       propKey = 'margin'
       break
   case 'mv':
-    temp = value * 10;
+    temp = (value * 10) / 16;
     return css`
-        margin-top: calc(${temp}px * var(--indent));
-        margin-bottom: calc(${temp}px * var(--indent));
+        margin-top: calc(${temp}rem * var(--indent));
+        margin-bottom: calc(${temp}rem * var(--indent));
       `
 
     case 'pt':
@@ -77,17 +77,17 @@ export const spacing = (key, value) => {
       propKey = 'padding'
       break
     case 'ph':
-      temp = value * 10
+      temp = (value * 10) / 16
       return css`
-        padding-right: calc(${temp}px * var(--indent));
-        padding-left: calc(${temp}px * var(--indent));
+        padding-right: calc(${temp}rem * var(--indent));
+        padding-left: calc(${temp}rem * var(--indent));
       `
 
     case 'pv':
-      temp = value * 10;
+      temp = (value * 10) / 16;
       return css`
-        padding-top: calc(${temp}px * var(--indent));
-        padding-bottom: calc(${temp}px * var(--indent));
+        padding-top: calc(${temp}rem * var(--indent));
+        padding-bottom: calc(${temp}rem * var(--indent));
       `
 
     case 'br':
@@ -98,22 +98,24 @@ export const spacing = (key, value) => {
   }
 
   return css`
-    ${propKey}: calc(${value * 10}px * var(--indent));
+    ${propKey}: calc(${(value * 10) / 16}rem * var(--indent));
   `
 }
 
 export const heightWidth = (key, value) => {
   return css`
-    ${key}: calc(${value * 10}px * var(--size));
+    ${key}: calc(${(value * 10) / 16}rem * var(--size));
   `
 }
 
+//value should be in 'rem'
 export const text= ( value ) => {
   return css`
-    font-size: calc(${value * 10}px * var(--size));;
+    font-size: calc(${value}rem * var(--text));;
   `
 }
 
+//value should be in 'rem'
 export const title= ( value ) => {
   return css`
     font-size: calc(${value}rem * var(--title));;

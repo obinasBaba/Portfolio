@@ -9,6 +9,7 @@ export const responsiveVar = css`
     --size: 1; // for element width, height
     --column-width: 100vw / 64; // column width
     
+    //fonts
     --sofia-soft: 'Sofia Pro Soft', sans-serif;
     --sofia-pro: 'Sofia Pro', sans-serif;
     --gramatika: 'Gramatika', sans-serif;

@@ -4,7 +4,7 @@ import React, { useContext } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { Link } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import { ExitStateContext } from '../../../../../../../contexts/ExitStateContext'
+import { AppStateContext } from '../../../../../../../contexts/AppStateContext'
 import {
   imgContainerVariant,
   effectVariant,
@@ -17,7 +17,7 @@ import { OverflowWrapper, ProjectImg } from './Components'
 import reile from './preview-111.jpg';
 
 const ProjectImage = ({ reversed, alt, link, preview, title, index, controller }) => {
-  const { show } = useContext(ExitStateContext)
+  const { show } = useContext(AppStateContext)
 
 
   return (

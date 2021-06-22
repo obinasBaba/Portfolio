@@ -1,28 +1,21 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider } from '@material-ui/core/styles'
-import styled, { ThemeProvider as StyledThemeProvider } from 'styled-components'
+import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import theme from '../theme'
-
-import Header from '../components/Header'
 import Footer from '../components/Footer'
 import '../styles/fontFace.css'
 import { AnimatePresence, AnimateSharedLayout } from 'framer-motion'
-import { GlobalStyle, Main, Page } from '../components/layoutComponents'
-import { HeaderContext } from '../contexts'
-import ExitStateProvider, {
-  ExitStateContext,
-} from '../contexts/ExitStateContext'
+import { GlobalStyle, Main, Page } from './layoutComponents/index'
+import AppStateProvider from '../contexts/AppStateContext'
 import BackgroundStars from '../components/BackgroundStars'
 import Moon from './Components/Moon'
 import { SkyColor } from './Components/SkyColor'
+import HeaderAppBar from '../components/HeaderAppBar'
 
 export default function TopLayout({ children }) {
-  const [isHeaderGradient, setIHeaderGradient] = useState(false)
-  const [isWhite, setIsWhite] = useState(false)
-
   return (
     <React.Fragment>
       <Helmet>
@@ -43,36 +36,31 @@ export default function TopLayout({ children }) {
           <GlobalStyle />
           <CssBaseline />
 
-          <ExitStateProvider>
+          <AppStateProvider>
+            <Page>
+              <HeaderAppBar />
 
-            <HeaderContext.Provider value={{ setIHeaderGradient, setIsWhite }}>
-              <Page>
-                <Header isGradient={false} isWhite={isWhite} />
+              <Main>
+                <SkyColor />
 
-                <Main>
-                  <SkyColor />
+                <Moon />
 
-                  <Moon />
+                <BackgroundStars />
 
-                  <BackgroundStars />
+                <AnimatePresence>
+                  <AnimateSharedLayout type="crossfade">
+                    {children}
+                  </AnimateSharedLayout>
+                </AnimatePresence>
+              </Main>
 
-                  <AnimatePresence>
-                    <AnimateSharedLayout type="crossfade">
-                      {children}
-                    </AnimateSharedLayout>
-                  </AnimatePresence>
-                </Main>
+              <footer>
+                <Footer />
+              </footer>
 
-                <footer>
-                  <Footer />
-                </footer>
-
-                {/*<VersionNo>v0.1</VersionNo>*/}
-              </Page>
-            </HeaderContext.Provider>
-          </ExitStateProvider>
-
-
+              {/*<VersionNo>v0.1</VersionNo>*/}
+            </Page>
+          </AppStateProvider>
         </ThemeProvider>
       </StyledThemeProvider>
     </React.Fragment>
