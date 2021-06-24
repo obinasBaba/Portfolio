@@ -22,7 +22,7 @@ const ProjectDescription = ({ link, reversed, tags, title, controller, index }) 
   useEffect(() => {
     baffle(document.querySelectorAll(`.baffled-${index}`), {
       characters: '▒█▓▒░<>/',
-    }).start().reveal(4000,1000);
+    }).start().reveal(700, 700);
   }, [])
 
   return (
@@ -32,10 +32,16 @@ const ProjectDescription = ({ link, reversed, tags, title, controller, index }) 
       animate={controller}
       initial="initial"
       exit="exit"
+
     >
       <OverflowWrapper>
-        <motion.div variants={descTxtVariants} custom={b}>
-          <Tags className={` forI baffled-` + index} variant={'subtitle2'}>
+        <motion.div variants={descTxtVariants}
+                    custom={b}>
+
+          <Tags className={`baffled-` + index}
+                layoutId={`tags ${index}`}
+
+                variant={'subtitle2'}>
             {tags}
           </Tags>
         </motion.div>
@@ -51,6 +57,7 @@ const ProjectDescription = ({ link, reversed, tags, title, controller, index }) 
             ' '
           ) : (
             <motion.span
+              key={c + i}
               className="letter"
               variants={letterVariant}
               transition={transition}
@@ -61,8 +68,10 @@ const ProjectDescription = ({ link, reversed, tags, title, controller, index }) 
         )}
       </Title>
 
-      <OverflowWrapper layoutId={`btn-${index}`} transition={transition}>
-        <motion.div variants={btnTxtVariants} transition={transition}>
+      <OverflowWrapper transition={transition}
+                       layoutId={`btn-${index}`}
+                       >
+        <motion.div className='btn-wrapper' variants={btnTxtVariants} transition={transition}>
           <MotionBtn text="Case-Study" to={link} margin={false} />
         </motion.div>
       </OverflowWrapper>

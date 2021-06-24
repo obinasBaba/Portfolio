@@ -29,6 +29,8 @@ let theme = createMuiTheme({
 
   typography: {
     fontFamily: ['Sofia Pro, sans-serif'].join(','),
+    // fontFamily: 'Raleway, sans-serif',
+
 
     h1: {
       fontFamily: 'Poppins Black',

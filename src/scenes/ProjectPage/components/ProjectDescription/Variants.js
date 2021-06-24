@@ -7,7 +7,7 @@ export const transition = {
 
 export const descTopVariant = {
 
-  animate1: {
+  animateFp: {
     transition: {
       staggerChildren: 0.4,
       delayChildren: 0.2,
@@ -16,10 +16,10 @@ export const descTopVariant = {
 }
 
 export const btnTxtVariants = {
-  initial1: {
+  initialFp: {
     y: '120%',
   },
-  animate1(b) {
+  animateFp(b) {
 
     setTimeout(() => {
       b && b.start().reveal(700, 700)
@@ -37,10 +37,10 @@ export const btnTxtVariants = {
 }
 
 export const descTxtVariants = {
-  initial1: {
+  initialFp: {
     y: '120%',
   },
-  animate1(b) {
+  animateFp(b) {
 
     setTimeout(() => {
       b && b.start().reveal(700, 700)
@@ -56,39 +56,49 @@ export const descTxtVariants = {
     }
   },
 
-  exit: {
+ /* exit: {
     y: '120%',
     transition: {
       ease: [0.6, 0.01, 0, 0.9],
       duration: 1,
 
     },
-  },
+  },*/
 }
 
 export const titleVariant = {
-  initial1: {
+  initialFp: {
     transition: {
       staggerChildren: 0.02,
     },
   },
-  animate1: {
+  animateFp: {
     transition: {
       staggerChildren: 0.02,
     },
   },
+  exitFp: {
+    transition: {
+      staggerChildren: 0.01,
+      staggerDirection: -1
+    },
+  },
+
   exit: {
     transition: {
       staggerChildren: 0.014
     }
-  }
+  },
 }
 
 export const letterVariant = {
-  initial1: {
+  initialFp: {
     y: '200%',
   },
-  animate1: {
+  animateFp: {
     y: 0,
   },
+  exitFp: {
+    y: '200%'
+  }
 }

@@ -8,7 +8,7 @@ import {
 } from '../../../styles/mixins'
 import {Container, Typography} from '@material-ui/core'
 import {motion} from 'framer-motion'
-
+import img from './preview-111.jpg'
 
 export const HeadlineContainer = styled( motion.div )`
   height: 100vh;
@@ -43,12 +43,16 @@ export const ImgGradient = styled( motion.div )`
     height: 100%;
     width: 100%;
     object-fit: cover;
-    
+    transition: opacity 0s !important;
+
   }
   
-  .project-img{
+  .project-image{
     width: 100%;
     height: 100%;
+
+    transition: opacity 0s !important;
+
   }
 
   .overlay {
@@ -66,7 +70,7 @@ export const ImgGradient = styled( motion.div )`
 
 `
 
-export const Title = styled(motion.div)`
+export const MetaTexts = styled(motion.div)`
   
   display: flex;
   flex-flow: column;
@@ -101,7 +105,7 @@ export const Title = styled(motion.div)`
   `)};
 
   ${largeUp(css`
-    ${gridColWidth(8, 40)};
+    ${gridColWidth(8, 37)};
   `)};
 
 
@@ -111,7 +115,8 @@ export const Title = styled(motion.div)`
     margin: 0;
     ${ title(4.35) };
     line-height: 1.3;
-    letter-spacing: 3px;
+    letter-spacing: 2.6px;
+    //border: thin solid rebeccapurple;
   }
   
   .type{

@@ -218,7 +218,7 @@ const Projects = () => {
 
             <motion.div className="btn-border inner-border"
                         style={{ x, y }}
-                        onClick={ () => navigate('/projects') }
+                        onClick={ () => navigate('/projects#one') }
 
             >
               All Projects(12)

@@ -16,6 +16,8 @@ import {
 import { OverflowWrapper, ProjectImg } from './components'
 import {AppStateContext} from '../../../../contexts/AppStateContext'
 
+import img from './preview-111.jpg'
+
 const ProjectImage = ({
   reversed,
   alt,
@@ -56,9 +58,10 @@ const ProjectImage = ({
               image={getImage(preview)}
             />
 
-            {/*<img  src={reile}  />*/}
+            {/*<motion.img  src={img}  />*/}
 
-            <motion.div className="image-over" variants={imgOverVariants}>
+            <motion.div className="image-over"
+                        variants={imgOverVariants}>
               <motion.div
                 className="image-cover cover-1"
                 variants={imgCover}

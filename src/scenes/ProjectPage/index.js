@@ -127,6 +127,8 @@ const ProjectPage = ({ controllers }) => {
               animate="animate"
               exit="exit"
             >
+
+
               <ProjectImage
                 reversed={true}
                 link={link}

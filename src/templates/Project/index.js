@@ -6,12 +6,12 @@ import ColorPalette from './Colors'
 import FontUsed from './FontUsed'
 
 import { useIntersection } from 'react-use'
-import { HeaderContext } from '../../contexts'
 import { ContentSectionWrapper, ProjectContainer } from './components'
 import MetaTxt from './MetaTxt'
 import Concept from './Concept'
 import Development from './Development'
 import ReturnBtn from '../../components/ReturnBtn'
+import {AppStateContext} from '../../contexts/AppStateContext'
 
 const topVariant = {
 
@@ -26,7 +26,7 @@ const Project = ({ pageContext }) => {
 
 
   const targetElement = React.useRef(null)
-  const { setIsWhite } = useContext(HeaderContext);
+  const { setIsWhite } = useContext( AppStateContext );
 
   const intersection = useIntersection( targetElement, {
     root: null,
@@ -45,6 +45,7 @@ const Project = ({ pageContext }) => {
                       initial='initial'
                       animate='animate'
                       exit='exit'
+                      key='pro-container'
 
     >
 

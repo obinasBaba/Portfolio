@@ -6,6 +6,8 @@ import {
   mediumUp,
   spacing
 } from '../../../../styles/mixins'
+import img from './preview-111.jpg'
+
 
 export const ProjectImg = styled(motion.div)`
   ${gridColWidth()}; //mobile-first
@@ -39,10 +41,11 @@ export const ProjectImg = styled(motion.div)`
   .outer-div {
     background: ${({ theme }) => theme.palette.secondary.main};
     z-index: -99;
+    pointer-events: none;
+    position: relative;
     //transition: transform 1.2s cubic-bezier(0.075, 0.82, 0.005, 1);
     //border: thick solid deeppink;
 
-    pointer-events: none;
 
     ${spacing('p', 1)};
 
@@ -58,7 +61,6 @@ export const ProjectImg = styled(motion.div)`
     z-index: 1;
     //border: thick solid yellow;
     max-height: 400px;
-    height: 400px;
     //overflow: hidden;
     
   }
@@ -66,11 +68,14 @@ export const ProjectImg = styled(motion.div)`
   img {
     ${largeUp(css`
       //min-height: 400px;
+      width: 100%;
+      height: 100%;
       //width: 100%;
-      //height: 100%;
-      //width: 100%;
-      //object-fit: cover;
+      object-fit: cover;
       //max-height: 65%;
+
+      transition: opacity 0s !important;
+
 
     `)};
   }
@@ -80,6 +85,8 @@ export const ProjectImg = styled(motion.div)`
     width: 100%;
     padding: 0;
     margin: 0;
+    max-height: 400px;
+
   }
 
   .image-over {
@@ -96,8 +103,8 @@ export const ProjectImg = styled(motion.div)`
       position: absolute;
       top: 0;
       right: 0;
-      width: 100%;
-      height: 100%;
+      left: 0;
+      bottom: 0;
       background: tomato;
       z-index: 1000;
       

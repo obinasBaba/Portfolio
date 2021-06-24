@@ -14,7 +14,6 @@ export const ProjectDesc = styled(motion.div)`
   grid-row: 3;
   //overflow: hidden;
   //border: thin solid red;
-
   ${gridColWidth(8, 58)}
   ${spacing('pt', 6)};
   ${spacing('pb', 6)};
@@ -62,11 +61,10 @@ export const Title = styled(motion.h1)`
   font-weight: 700;
   margin: 0;
   ${spacing('mt', 2)}
-  font-size: 3.75rem;
   ${ title(3.35) };
-  line-height: 1.31; 
+  line-height: 1.3; 
   //border: thin solid green;
-  letter-spacing: 2px;
+  letter-spacing: 2.5px;
   overflow: hidden;
   
   .letter{
@@ -83,4 +81,6 @@ export const Title = styled(motion.h1)`
 export const OverflowWrapper = styled( motion.div )`
   overflow: hidden;
   width: max-content;
+  
+  
 `

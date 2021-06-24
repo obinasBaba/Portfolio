@@ -6,6 +6,7 @@ import ReturnBtn from '../components/ReturnBtn'
 import ReactFullpage from '@fullpage/react-fullpage'
 import { AppStateContext } from '../contexts/AppStateContext'
 import ProjectPage from '../scenes/ProjectPage'
+import {motion} from 'framer-motion'
 
 const Scroll = styled.div`
   position: fixed;
@@ -48,38 +49,51 @@ const Projects = () => {
       />
 
       <ReactFullpage
-        key={'full'}
+        // key={'fullpage'}
         easingcss3="cubic-bezier(0.645, 0.045, 0.355, 1)"
         scrollingSpeed="1e3"
         anchors={['one', 'two', 'three', 'four']}
+        animateAnchor={false}
+        setLockAnchors={false}
+        setRecordHistory={false}
         navigation={true}
         navigationPosition="left"
         dragAnAndMove={true}
-        animateAnchor={false}
         scrollBar={false}
         autoScrolling={true}
         fitToSection={true}
         fixedElements={'#FIXED_'}
         onLeave={(origin, dist, dir) => {
+          // console.log('onLeave ----',)
+
+          if (dist.isFirst) {
+            // console.log(document.location.replace('/projects#two'))
+            // console.log(document.location.replace('/projects#three'))
+          }
+
           if (dist.isLast) {
-            controllers[origin.index]('initial1')
+            controllers[origin.index]('exitFp')
             return true
           }
-          controllers[origin.index]('initial1')
-          controllers[dist.index]('animate1')
+          controllers[origin.index]('exitFp')
+          controllers[dist.index]('animateFp')
         }}
         afterLoad={(origin, dist, dir) => {
+          // console.log('afterLoad ----', dir, origin )
+
           if (dist.isLast) return true
 
           if (dir === null)
-            //isFirst
-            return controllers[dist.index]('animate1')
+            return controllers[dist.index]('animateFp')
         }}
         render={({ state }) => {
+          // console.log('API: ', state)
+
           return <ProjectPage controllers={controllers} />
         }}
       />
     </>
+
   )
 }
 

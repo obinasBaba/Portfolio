@@ -1,6 +1,6 @@
 export const transition = {
   ease: [0.6, 0.01, 0, 0.9],
-  duration: 1,
+  duration: 1.3,
 
   // repeat: Infinity,
   // repeatType: 'mirror',
@@ -13,11 +13,11 @@ export const imgContainerVariant = {
   },
   exit: {},
 
-  initial1: {
+  initialFp: {
     x: '10%',
     scale: .85
   },
-  animate1: {
+  animateFp: {
     x: 0,
     scale: 1,
     transition: {
@@ -25,6 +25,10 @@ export const imgContainerVariant = {
       ease: [.33, 1, .68, 1],
       delay: .5
     }
+  },
+  exitFp: {
+    x: '10%',
+    scale: .85
   }
 }
 
@@ -33,37 +37,61 @@ export const outerDivWrapper = {
 }
 
 export const innerDivWrapperVariants = {
-  exit: {
 
-  },
 }
 
 export const imgOverVariants = {
   initial: {},
   animate: {},
 
-  initial1: {
-    transition: {
-      delayChildren: 0.2,
-      staggerChildren: .17,
-      staggerDirection: 1,
-    }
+  initialFp: {
+
   },
 
-  animate1: {
+  animateFp: {
     transition: {
       delayChildren: 0.2,
       staggerChildren: .17,
       staggerDirection: -1,
     }
+  },
+
+  exitFp: {
+    transition: {
+      delayChildren: 0.2,
+      staggerChildren: .17,
+      staggerDirection: 1,
+    }
   }
 };
 
 export const imgCover = {
-  initial1: {x: 0},
+  initial: {
+    x: '110%'
+  },
+  animate: {
+    x: '110%'
+  },
 
-  animate1: {
-    x: '110%',
+  initialFp(){
+    return{
+      x: '0%'
+    }
+  },
+
+  animateFp() {
+
+    console.log('animateFB in s000000000000000000000000000000')
+
+    return{
+      x: '110%',
+    }
+  },
+  exitFp(){
+    return{
+      x: 0,
+
+    }
   }
 };
 
@@ -75,15 +103,18 @@ export const effectVariant = {
     }
   },
 
-  initial1: {
+  initialFp: {
     y: '100%'
   },
-  animate1: {
+  animateFp: {
     y: 0,
     transition: {
       duration: 1,
       ease: [.65, 0, 0.35, 1],
-      delay: 1.3
+      delay: 1.2
     }
+  },
+  exitFp: {
+    y: '100%'
   }
 }

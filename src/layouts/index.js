@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -7,7 +7,12 @@ import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import theme from '../theme'
 import Footer from '../components/Footer'
 import '../styles/fontFace.css'
-import { AnimatePresence, AnimateSharedLayout } from 'framer-motion'
+import {
+  motion,
+  AnimatePresence,
+  AnimateSharedLayout,
+  usePresence,
+} from 'framer-motion'
 import { GlobalStyle, Main, Page } from './layoutComponents/index'
 import AppStateProvider from '../contexts/AppStateContext'
 import BackgroundStars from '../components/BackgroundStars'
@@ -15,7 +20,7 @@ import Moon from './Components/Moon'
 import { SkyColor } from './Components/SkyColor'
 import HeaderAppBar from '../components/HeaderAppBar'
 
-export default function TopLayout({ children }) {
+export default function TopLayout({ children, path }) {
   return (
     <React.Fragment>
       <Helmet>
@@ -29,6 +34,14 @@ export default function TopLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap"
           rel="stylesheet"
         />
+
+
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
+            <link
+              href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;700;900&display=swap"
+              rel="stylesheet"/>
+
       </Helmet>
 
       <StyledThemeProvider theme={theme}>
@@ -47,11 +60,13 @@ export default function TopLayout({ children }) {
 
                 <BackgroundStars />
 
-                <AnimatePresence>
-                  <AnimateSharedLayout type="crossfade">
-                    {children}
-                  </AnimateSharedLayout>
-                </AnimatePresence>
+                <AnimateSharedLayout type="crossfade">
+                  <AnimatePresence exitBeforeEnter={true} >
+
+                        {children}
+
+                  </AnimatePresence>
+                </AnimateSharedLayout>
               </Main>
 
               <footer>

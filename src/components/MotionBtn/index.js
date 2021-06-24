@@ -17,8 +17,11 @@ const Btn = styled(motion.div)`
   transition: all 0.3s;
   padding: 0.7rem;
   z-index: 2;
+  //border: thin solid red;
 
   ${spacing('m', 1)};
+  margin-right: 1.2rem;
+
 
   ${ ( {margin} ) => margin ? '' : spacing('mv', 0) };
   

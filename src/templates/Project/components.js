@@ -4,6 +4,8 @@ import { spacing } from '../../styles/mixins'
 
 export const ProjectContainer = styled(motion.div)`
   max-width: 1600px;
+  width: 100%;
+  overflow: hidden;
 `
 
 export const ContentSectionWrapper = styled.section`

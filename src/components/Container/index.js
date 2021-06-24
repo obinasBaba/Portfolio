@@ -2,8 +2,9 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { largeUp, spacing } from '../../styles/mixins'
 import { Container } from '@material-ui/core'
+import {motion} from 'framer-motion'
 
-export const PageContainer = styled.div`
+export const PageContainer = styled( motion.div) `
   // ${spacing('pt', 20)};
   //
   ${largeUp(css`

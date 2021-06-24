@@ -53,20 +53,29 @@ const transition = {
 }
 
 const listVariant = {
-  animate1: {
+  animateFp: {
     transition: {
       staggerChildren: .1,
       delayChildren: 1.5,
+    }
+  },
+  exitFb: {
+    transition: {
+      staggerChildren: .1,
+      delayChildren: .5,
     }
   }
 };
 
 const itemVariant = {
-  initial1: {
+  initialFp: {
     y: '130%'
   },
-  animate1: {
+  animateFp: {
     y: 0
+  },
+  exitFp: {
+    y: '130%'
   }
 }
 
