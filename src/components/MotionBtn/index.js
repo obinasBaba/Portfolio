@@ -20,8 +20,9 @@ const Btn = styled(motion.div)`
   //border: thin solid red;
 
   ${spacing('m', 1)};
-  margin-right: 1.2rem;
 
+  ${ ({arrow}) => arrow && spacing('mr', 1.9) };
+  
 
   ${ ( {margin} ) => margin ? '' : spacing('mv', 0) };
   

@@ -53,15 +53,14 @@ const ContactMe = ({ toggleModal: { setContactModal, isContactOpen } }) => {
   
   
   return (
-    <ContactContainer onClick={() => setContactModal(!isContactOpen)} >
+    <ContactContainer  >
 
       <BgEffect/>
-
       <StarEffect pos={{ top: '10%', left: '2%' }} />
       <StarEffect pos={{ bottom: '-3%', left: '1%' }} />
 
       <About />
-      <Contact />
+      <Contact toggleModal={setContactModal} modalState={isContactOpen} />
 
     </ContactContainer>
   )

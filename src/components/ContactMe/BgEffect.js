@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const BgSvgContainer = styled.div`
-  //border: thin solid red;
+  //border: thick solid red;
   position: absolute;
   top: 0;
   right: 0;
@@ -10,6 +10,8 @@ const BgSvgContainer = styled.div`
   opacity: 0.1;
   z-index: 9999;
 
+  pointer-events: none;
+  
   //max-height: 558.156px;
   
 `

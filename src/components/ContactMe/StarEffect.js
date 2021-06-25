@@ -11,6 +11,7 @@ const StarsSvgContainer = styled.div`
   right: ${({pos}) => pos.right};
   opacity: 0.3;
   z-index: 9999;
+  pointer-events: none;
 `
 
 
