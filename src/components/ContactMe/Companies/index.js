@@ -1,53 +1,67 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { smallDown, spacing } from '../../../styles/mixins'
-import R from './react-native.svg'
-import J from './javascript.svg'
-import N from './nodejs.svg'
-import C from './css3.svg'
+import {Css, Js, UiUx, ReactSvg} from './icons'
 
 const List = styled.ul`
-  margin: 0;
+  margin: auto 0;
   padding: 0;
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
   list-style: none;
+  
+  //border: thin solid rebeccapurple;
   color: ${({ theme }) => theme.palette.primary.main};
 
   li {
-    opacity: 0.5;
-    max-width: 50px;
+    //opacity: 0.5;
+
+    // ${spacing('mr', 4)};
+    align-self: center;
     
-    img{
-      max-width: 100%;
+  }
+  
+  & > :first-child{
+    &:hover svg path{
+      fill: #61dafb;
     }
-    
-    ${ smallDown( css`
-      --indent: .7
-
-    ` ) };
-
-    ${spacing('mr', 4)};
-    ${spacing('mb', 5)};
-    
+  }
+  
+  & > :nth-child(2n){
+    &:hover svg path{
+      fill: #26308b;
+    }
+  }
+  
+  & > :nth-child(3n){
+    &:hover svg path{
+      fill: #e43d26;
+    }
+  }
+  
+  & > :nth-child(4n){
+    &:hover svg path{
+      fill: #ecd120;
+    }
   }
 
-  li:last-child {
-    ${spacing('mr', 0)};
-  }
+  
 `
 
 
 
 const Companies = () => {
-  const companies = [ R, J, N , C ]
+  const companies = [ ReactSvg,  UiUx, Css, Js ]
+
+  console.log(Js)
 
   return (
     <List>
-      {companies.map((logo, i) => {
+      {companies.map((Logo, i) => {
         return (
           <li key={i}>
-            <img src={logo} alt={'txt'} />
+            <Logo/>
           </li>
         )
       })}

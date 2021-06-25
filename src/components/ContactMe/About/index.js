@@ -3,22 +3,22 @@ import styled, { css } from 'styled-components'
 import Companies from '../Companies'
 import { Typography } from '@material-ui/core'
 import { mediumUp, smallUp, spacing, text } from '../../../styles/mixins'
+import {motion} from 'framer-motion'
 
-const AboutMetaContainer = styled.div`
+const AboutMetaContainer = styled( motion.div )`
   position: relative;
   overflow: hidden;
-  background-image: linear-gradient(
-    137.81deg,
-    #e7a28f 3.52%,
-    #f9d6ac 41.89%,
-    #fbfefc 96.77%
-  );
+  background-image: linear-gradient(137.81deg, #e7a28f 3.52%, #f9d6ac 41.89%, #fbfefc 96.77%);
   height: 100%;
   flex: 50%;
   z-index: 200;
   color: #02021e;
+  
+  display: flex;
+  flex-flow: column;
 
-  ${spacing('p', 8)};
+  ${spacing('p', 7)};
+  ${spacing('pb', 3)};
 
   &::after {
     z-index: -100;
@@ -35,9 +35,8 @@ const AboutMetaContainer = styled.div`
 
 const MetaSubtitle = styled(Typography)`
   font-weight: 700;
-  opacity: 0.5;
+  opacity: 0.3;
 
-  ${spacing('mt', 1)};
   ${spacing('mb', 1)};
   ${text(1)};
 `
@@ -59,7 +58,7 @@ const Title = styled(Typography)`
   }
 
   ${mediumUp(css`
-    ${spacing('mb', 3)};
+    ${spacing('mb', 2)};
 
     &::after {
       ${spacing('mt', 1)};
@@ -93,9 +92,15 @@ const AboutEffect = styled(Typography)`
   user-select: none;
 `
 
+const aboutContainerVariants = {
+  initial: {},
+  animate: {},
+  exit: {},
+};
+
 const About = () => {
   return (
-    <AboutMetaContainer>
+    <AboutMetaContainer variants={aboutContainerVariants} >
 
       <AboutEffect variant="h1"> About </AboutEffect>
 
@@ -103,7 +108,7 @@ const About = () => {
       <MetaSubtitle variant="h6"> Interactive Web developer </MetaSubtitle>
       <Description>
         I'm Henok, a 22-years-old Ethiopian Freelance Front-end developer.
-        <br />
+        {/*<br />*/}
         I like to resolve design problems, create smart user interface and
         imagine useful interaction, developing rich web experiences & web
         applications.

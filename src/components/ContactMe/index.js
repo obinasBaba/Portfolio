@@ -7,7 +7,7 @@ import BgEffect from './BgEffect'
 import StarEffect from './StarEffect'
 import {spacing} from '../../styles/mixins'
 
-const ContactContainer = styled(motion.section)`
+const ContactContainer = styled( motion.section )`
   position: fixed;
   overflow: hidden;
   background-color: rgba(12, 17, 39, 0.1);
@@ -34,7 +34,11 @@ const ContactContainer = styled(motion.section)`
 `
 
 
-
+const containerVariants = {
+  initial: {},
+  animate: {},
+  exit: {},
+}
 
 const ContactMe = ({ toggleModal: { setContactModal, isContactOpen } }) => {
 
@@ -51,9 +55,12 @@ const ContactMe = ({ toggleModal: { setContactModal, isContactOpen } }) => {
       }
     }, [])
   
-  
   return (
-    <ContactContainer  >
+    <ContactContainer variants={containerVariants}
+                      initial='initial'
+                      animate='animate'
+                      exit='exit'
+    >
 
       <BgEffect/>
       <StarEffect pos={{ top: '10%', left: '2%' }} />
