@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import {motion} from 'framer-motion'
 
-const BgSvgContainer = styled.div`
+const BgSvgContainer = styled( motion.div )`
   //border: thick solid red;
   position: absolute;
   top: 0;
@@ -20,9 +21,29 @@ const BgSvgContainer = styled.div`
   
 `
 
+const bgVariants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: .1,
+    transition: {
+      delay: .4
+    }
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      delay: 0
+    }
+  }
+};
+
 const BgEffect = ({pos}) => {
   return (
-    <BgSvgContainer>
+    <BgSvgContainer variants={bgVariants} >
+
+
       <svg xmlns="http://www.w3.org/2000/svg" width="809" height="643" viewBox="0 0 809 643">
         <defs>
           <clipPath id="clip-path">

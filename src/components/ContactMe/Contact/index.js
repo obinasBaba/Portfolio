@@ -6,6 +6,8 @@ import Form from './Form'
 import CloseBtn from '../../HeaderAppBar/components/CloseBtn'
 import {motion} from 'framer-motion'
 
+
+
 const ContactFormContainer = styled( motion.div )  `
   position: relative;
   background-color: rgb(30, 32, 64);
@@ -16,10 +18,32 @@ const ContactFormContainer = styled( motion.div )  `
   ${spacing('p', 8)};
 `
 
+export const transition = {
+  // duration: 1,
+  ease: [0.6, 0.01, 0, 0.9],
+  opacity: {
+    delay: .3
+  }
+}
+
 const formContainerVariants = {
-  initial: {},
-  animate: {},
-  exit: {},
+  initial: {
+    y: '-110%',
+    opacity: .3,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+  },
+  exit: {
+    y: '-110%',
+    opacity: 0,
+    transition: {
+      opacity: {
+        delay: 0
+      }
+    }
+  },
 };
 
 const Title = styled( Typography )`
@@ -36,12 +60,15 @@ const Title = styled( Typography )`
 
 const Contact = ( { toggleModal, modalState } ) => {
   return (
-    <ContactFormContainer variants={formContainerVariants} >
+    <ContactFormContainer variants={formContainerVariants}
+                          transition={transition}
+    >
 
       <CloseBtn fillCrl={'#f1d7ce'}
                 toggler={toggleModal}
                 state={modalState}
                 pathHoverClr={'#02021e'}
+                svgVariantDelay={1}
                 pathCrl={'#f1d7ce'}/>
 
       <Title variant="h4"> Let's talk. </Title>

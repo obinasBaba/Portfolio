@@ -29,7 +29,7 @@ const AboutMetaContainer = styled( motion.div )`
     right: 0;
     bottom: 0;
     //background-color: rgba(249, 214, 172, 0.1);
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(2px);
   }
 `
 
@@ -92,32 +92,68 @@ const AboutEffect = styled(Typography)`
   user-select: none;
 `
 
+
+export const transition = {
+  // duration: 1,
+  ease: [0.6, 0.01, 0, 0.9],
+  opacity: {
+    delay: .3
+  }
+}
+
 const aboutContainerVariants = {
-  initial: {},
-  animate: {},
-  exit: {},
+  initial: {
+    y: '110%',
+    opacity: .3,
+
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+
+
+  },
+  exit: {
+    y: '110%',
+    opacity: 0,
+    transition: {
+      opacity: {
+        delay: 0
+      }
+    }
+  },
 };
 
 const About = () => {
   return (
-    <AboutMetaContainer variants={aboutContainerVariants} >
+    <AboutMetaContainer variants={aboutContainerVariants}
+                        transition={transition}
+    >
 
       <AboutEffect variant="h1"> About </AboutEffect>
 
       <Title variant="h4"> About Me. </Title>
-      <MetaSubtitle variant="h6"> Interactive Web developer </MetaSubtitle>
-      <Description>
-        I'm Henok, a 22-years-old Ethiopian Freelance Front-end developer.
-        {/*<br />*/}
-        I like to resolve design problems, create smart user interface and
-        imagine useful interaction, developing rich web experiences & web
-        applications.
-        <br />
-        when not working or futzing around with code, I study how to scape from
-        University. Actually for hire.
-      </Description>
+
+
+
+
+        <MetaSubtitle variant="h6"> Interactive Web developer </MetaSubtitle>
+        <Description>
+          I'm Henok, a 22-years-old Ethiopian Freelance Front-end developer.
+          {/*<br />*/}
+          I like to resolve design problems, create smart user interface and
+          imagine useful interaction, developing rich web experiences & web
+          applications.
+          <br />
+          when not working or futzing around with code, I study how to scape from
+          University. Actually for hire.
+        </Description>
+
+
 
       <Companies />
+
+
     </AboutMetaContainer>
   )
 }

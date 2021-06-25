@@ -27,13 +27,17 @@ const CloseContainer = styled( motion.div )`
 
 const svgVariants = {
   initial: {opacity: 0},
-  animate: {
-    opacity: 1,
-    transition: {
-      delay: .6
+
+  animate(custom){
+    return{
+      opacity: 1,
+      transition: {
+        delay: custom.delay
+      }
     }
   },
   exit: {opacity: 0},
+
   hover: {
     transition: {
       staggerChildren: .1
@@ -104,6 +108,7 @@ const path2Variants = {
 const CloseBtn = ( { toggler, state, pos = {},
                       pathCrl = 'rgba(50,52,77,1)',
                       pathHoverClr = 'rgb(232,232,232)',
+                      svgVariantDelay= 1,
                       borderClr, fillCrl = '#32344d'} ) => {
   return (
     <CloseContainer pos={pos} onClick={ () => toggler && toggler( !state ) } >
@@ -112,6 +117,7 @@ const CloseBtn = ( { toggler, state, pos = {},
                   width="100%" height="100%"
                   viewBox="0 0 64 64"
                   fill='red'
+                  custom={{ delay: svgVariantDelay }}
                   variants={svgVariants}
                   initial='initial'
                   animate='animate'

@@ -35,9 +35,23 @@ const ContactContainer = styled( motion.section )`
 
 
 const containerVariants = {
-  initial: {},
-  animate: {},
-  exit: {},
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      when: 'beforeChildren',
+      delayChildren: .1,
+      staggerChildren: .04,
+    }
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      when: 'afterChildren',
+    }
+  },
 }
 
 const ContactMe = ({ toggleModal: { setContactModal, isContactOpen } }) => {
@@ -64,7 +78,7 @@ const ContactMe = ({ toggleModal: { setContactModal, isContactOpen } }) => {
 
       <BgEffect/>
       <StarEffect pos={{ top: '10%', left: '2%' }} />
-      <StarEffect pos={{ bottom: '-3%', left: '1%' }} />
+      <StarEffect pos={{ bottom: '-6%', left: '1%' }} />
 
       <About />
       <Contact toggleModal={setContactModal} modalState={isContactOpen} />

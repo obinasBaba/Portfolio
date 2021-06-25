@@ -23,8 +23,16 @@ const List = styled.ul`
   }
   
   & > :first-child{
-    &:hover svg path{
-      fill: #61dafb;
+    &:hover svg{
+      
+      path:first-child{
+        fill: #00D8FF;
+      }
+      
+      path:not( :first-child ){
+        stroke: #00D8FF;
+      }
+       
     }
   }
   
@@ -35,8 +43,18 @@ const List = styled.ul`
   }
   
   & > :nth-child(3n){
-    &:hover svg path{
-      fill: #e43d26;
+    &:hover svg{
+      
+      path#big-bg{
+        fill: #2062AF;
+        
+      }
+      
+      path#small-bg{
+        fill: #3C9CD7;
+        
+      }
+      
     }
   }
   
@@ -53,8 +71,6 @@ const List = styled.ul`
 
 const Companies = () => {
   const companies = [ ReactSvg,  UiUx, Css, Js ]
-
-  console.log(Js)
 
   return (
     <List>

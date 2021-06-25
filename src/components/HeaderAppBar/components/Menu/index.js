@@ -128,8 +128,13 @@ const logoVariants = {
     opacity: 0,
     scale: 0.9,
     rotate: '30deg',
+
     transition: {
-      delay: 0,
+      opacity: {
+        duration: 1.2
+      },
+
+      delay: .175,
       duration: 0.6,
       ease: [1, 0, 0.68, 1],
       // staggerChildren: 0.06,
@@ -160,6 +165,7 @@ const Menu = ({ toggleMenu: { setMenuIsOpen, menuIsOpen } }) => {
       />
 
       <MenuList variants={menuListVariants} key={3}>
+
         {['Works', 'Recent Designs', 'Blogs', 'Experiments'].map((txt, i) => (
           <motion.div
             key={i}
