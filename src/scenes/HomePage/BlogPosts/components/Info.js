@@ -39,7 +39,7 @@ const InfoTxt = styled.div`
     text-decoration: none;
     letter-spacing: 10px;
 
-    ${ text( 1.4 ) };
+    ${ text( 1 ) };
 
 
     @media screen and (max-width: 768px) {

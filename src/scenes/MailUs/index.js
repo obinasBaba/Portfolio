@@ -18,7 +18,7 @@ const MailUsContainer = styled.div`
 
   box-sizing: border-box;
 
-  ${spacing('mt', 20)};
+  // ${spacing('mt', 20)};
   ${spacing('pt', 15)};
   ${spacing('pb', 10)};
   ${spacing('h', 4)};

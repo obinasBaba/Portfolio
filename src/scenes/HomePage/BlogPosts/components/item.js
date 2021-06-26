@@ -90,10 +90,8 @@ const Desc = styled.div`
 const Tag = styled(Typography)`
   font-family: var(--gramatika);
   font-weight: 600;
-  ${ text(1) };
+  ${ text(.7) };
   letter-spacing: 1px;
-
-
   color: lightgray;
   opacity: 0.5;
   text-transform: uppercase;
@@ -104,7 +102,7 @@ const Title = styled(Typography)`
   font-family: var(--sofia-pro);
   line-height: 1.4em;
   font-weight: 400;
-  ${ text(2.2) };
+  ${ text(1.4) };
 
   a {
     text-decoration: none;
