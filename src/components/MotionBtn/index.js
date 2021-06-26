@@ -79,7 +79,8 @@ const MotionBtn = ({
   variants = {},
   external = false,
   margin = true,
-  layoutId = false
+  layoutId = false,
+  arrowClr = '#fff'
 }) => {
   const controls = useAnimation()
 
@@ -127,7 +128,7 @@ const MotionBtn = ({
               height="12"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g transform="translate(0 1)" fill="white">
+              <g transform="translate(0 1)" fill={arrowClr}>
                 <rect
                   transform="rotate(180 10 5)"
                   y="4"
