@@ -13,8 +13,8 @@ import { processData } from './data'
 import Card from './Card'
 
 const ProcessContainer = styled.div`
-  border: thin dashed red;
-  height: 400vh; 
+  //border: thin dashed red;
+  height: 380vh; 
   overflow: visible;
   position: relative;
   //margin: 10rem 0;
@@ -23,7 +23,7 @@ const ProcessContainer = styled.div`
 
 const ProcessTxt = styled( Typography )`
   position: sticky;
-  top: 3.5rem;
+  top: 3rem;
   //border: thin dashed burlywood;
   margin-bottom: 3rem;
   margin-left: 7rem;
@@ -33,7 +33,7 @@ const ProcessTxt = styled( Typography )`
 `
 
 const ProcessMask = styled(motion.div)`
-  border: thick dashed #89dc14;
+  //border: thick dashed #89dc14;
   margin-top: 4rem;
   padding: 10rem 0 0 17rem;
   top: 4.5rem;
@@ -44,9 +44,11 @@ const ProcessMask = styled(motion.div)`
 
 const ProcessTrack = styled(motion.div)`
   display: flex;
-  border: thin dashed #ec1f30;
-  gap: 10rem;
+  //border: thin dashed #ec1f30;
   width: 210vw;
+  & > :not( :last-child ){
+    margin-right: 11rem;
+  }
 `
 
 
@@ -65,7 +67,7 @@ const MyProcess = () => {
 
   const intersection = useIntersection(maskRef, {
     root: null,
-    rootMargin: `0px 0px -${rootMargin}px 0px`,
+    rootMargin: `100px 0px -${rootMargin}px 0px`,
     threshold: 0,
   });
 

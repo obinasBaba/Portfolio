@@ -1,14 +1,12 @@
-import React, {useContext, useEffect, useRef} from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import Hero from './Hero'
 import RecentWorks from './RecentDesigns'
 import Projects from './Projects'
 import Experiments from './Experiments'
 import MailUs from '../MailUs'
-import {PageContainer, SectionWrapper} from '../../components/Container'
+import { SectionWrapper } from '../../components/Container'
 import styled from 'styled-components'
-import {AppStateContext} from '../../contexts/AppStateContext'
-import {Typography} from '@material-ui/core'
-import Moon from '../../layouts/Components/Moon'
+import { AppStateContext } from '../../contexts/AppStateContext'
 import BlogPosts from './BlogPosts'
 import MyProcess from './MyProcess'
 
@@ -60,9 +58,9 @@ const HomePage = () => {
         <Experiments />
       </SectionWrapper>
 
-      <SectionWrapper>
+      {/*<SectionWrapper>*/}
         <MyProcess/>
-      </SectionWrapper>
+      {/*</SectionWrapper>*/}
 
 
       {/*<SectionWrapper>*/}
