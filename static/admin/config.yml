@@ -1,0 +1,85 @@
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - name: "articles"
+    label: "Articles"
+    folder: "src/cms/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - name: "contentKey"
+        widget: "hidden"
+        default: "blog"
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+      - label: "Tags"
+        label_singular: "Tags"
+        name: "tags"
+        widget: "list"
+        fields:
+          - label: "Tag"
+            name: "tag"
+            widget: "string"
+      - label: "Featured Image"
+        name: "thumbnail"
+        widget: "image"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "src/cms/pageData/index.md"
+        label: "Index Page"
+        name: "index-Page"
+        fields:
+          - name: "contentKey"
+            widget: "hidden"
+            default: "indexPage"
+          - label: "Tagline"
+            name: "tagline"
+            widget: "string"
+          - label: "Hero Image"
+            name: "heroImage"
+            widget: "image"
+      - file: "src/cms/pageData/menu.md"
+        label: "Menu"
+        name: "menu"
+        fields:
+          - name: "contentKey"
+            widget: "hidden"
+            default: "menu"
+          - label: "Title"
+            name: "title"
+            widget: "string"
+          - label: "Categories"
+            label_singular: "Category"
+            name: "categories"
+            widget: "list"
+            fields:
+              - label: "Name"
+                name: "name"
+                widget: "string"
+              - label: "Items"
+                label_singular: "Item"
+                name: "items"
+                widget: "list"
+                fields:
+                  - label: "Name"
+                    name: "name"
+                    widget: "string"
+                  - label: "Description"
+                    name: "description"
+                    widget: "text"
+                  - label: "Price"
+                    name: "price"
+                    widget: "string"

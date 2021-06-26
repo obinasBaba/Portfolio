@@ -1,8 +1,26 @@
 const projects = require('./projects')
+const path = require('path')
+const { createFilePath } = require('gatsby-source-filesystem')
 
+
+// creating 'slug' field for URL string
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions;
+  if (node.internal.type === "MarkdownRemark") {
+    const slug = createFilePath( { node, getNode } );
+
+    createNodeField( {
+      node,
+      name: "slug",
+      value: slug
+    } );
+  }
+};
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
+
+  //data for Project case-study page...
 
   const data = await graphql(`
     query {
@@ -24,11 +42,6 @@ exports.createPages = async ({ graphql, actions }) => {
       }`)
 
   const {preview1, preview2, preview3} = data.data;
-
-  console.log(data)
-  // console.log(preview1, preview2, preview3)
-
-
   const imgData = [preview1, preview2, preview3]
 
   projects.forEach((project, index) => {
@@ -48,4 +61,34 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
+  // end of project page creation
+
+  //creating pages for each blog post markdown file
+  const result = await graphql( `
+    query{
+      allMarkdownRemark(
+         filter: {frontmatter: {contentKey: {eq: "blog"}}}
+      ){
+        edges {
+          node {
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
+  ` );
+
+  //creating pages for all markdown file with content-key of 'blog'
+  result.data.allMarkdownRemark.edges
+    .forEach(({node : {fields: {slug}}}) => {
+      createPage({
+        path: slug,
+        component: path.resolve('./src/templates/blog/blog.js'),
+        context: {
+          slug: slug,
+        }
+      })
+    });
 }
