@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from 'react'
-import ArticleCard from './components/ArticleCard'
+import BlogCard from './components/BlogCard'
 import { graphql, Link } from 'gatsby'
 import styled, { useTheme } from 'styled-components'
 import { useMediaQuery } from '@material-ui/core'
@@ -20,11 +20,12 @@ const BlogListTemplate = ({
 }) => {
 
   const {
-    setMoon,
+    moonLight,
+    setMoonLight
   } = useContext( AppStateContext )
 
   useEffect(() => {
-    setMoon(false);
+    setMoonLight({...moonLight, showMoon: false, position: 'fixed', show: true})
 
   }, [])
 
@@ -45,7 +46,7 @@ const BlogListTemplate = ({
               fields: { slug },
               frontmatter: {
                 title,
-                thumbnail: { publicURL },
+                thumbnail: { publicURL, childImageSharp },
                 date,
               },
             },
@@ -53,12 +54,12 @@ const BlogListTemplate = ({
           index
         ) => {
           return (
-            <ArticleCard
+            <BlogCard
               title={title}
               date={date}
               key={excerpt}
-              featuredMedia={publicURL}
-              body={`${excerpt.substr(0, 190)} ...`}
+              featuredMedia={{publicURL, childImageSharp}}
+              body={`${excerpt.substr(0, 290)} ...`}
               slug={slug}
             />
           )
@@ -70,6 +71,7 @@ const BlogListTemplate = ({
 
         {currentPage < pageCount && <Link to={nextPage}>Next Page</Link>}
       </PageLinks>
+
     </BlogListContainer>
   )
 }

@@ -32,11 +32,16 @@ const ScrollTxt = styled(Typography)`
 `
 
 const Projects = () => {
-  const { show, setShow, setMoon } = useContext(AppStateContext)
   const controllers = []
 
+  const {
+    moonLight,
+    setMoonLight
+  } = useContext( AppStateContext )
+
   useEffect(() => {
-    setMoon(false)
+    setMoonLight({...moonLight, showMoon: false})
+
   }, [])
 
   return (

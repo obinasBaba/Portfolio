@@ -166,14 +166,18 @@ const Menu = ({ toggleMenu: { setMenuIsOpen, menuIsOpen } }) => {
 
       <MenuList variants={menuListVariants} key={3}>
 
-        {['Works', 'Recent Designs', 'Blogs', 'Experiments'].map((txt, i) => (
+        {[{ txt: 'Works', link: '/' },
+          { txt: 'Recent Designs', link: '/' }, { txt: 'Blogs', link: '/blog' },
+          { txt: 'Experiments', link: '/' }].map(({txt, link}, i) => (
           <motion.div
             key={i}
             variants={motionBtnVariant}
             style={{ overflow: 'hidden' }}
+            onClick={() => setMenuIsOpen(!menuIsOpen)}
+
           >
             <motion.div variants={innerBtnVariant}>
-              <MotionBtn arrow={false} text={txt} clr="#32344d" />
+              <MotionBtn arrow={false} text={txt} clr="#32344d" to={link} />
             </motion.div>
           </motion.div>
         ))}

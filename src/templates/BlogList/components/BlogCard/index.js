@@ -1,12 +1,15 @@
 import React from 'react'
+import CardContents from './components/CardContents'
+import Thumbnail from './components/Thumbnail'
+import { motion } from 'framer-motion'
 import styled, { css } from 'styled-components'
 import {
+  heightWidth,
   mediumUp,
   shadow,
   smallUp,
   spacing,
-} from '../../../../../styles/mixins'
-import { motion } from 'framer-motion'
+} from '../../../../styles/mixins'
 
 const StyledBlogCard = styled(motion.div)`
   margin: auto;
@@ -72,15 +75,17 @@ const StyledBlogCard = styled(motion.div)`
     ${spacing('mt', 7)};
   }
 
-  /*${mediumUp(css`
+  ${mediumUp(css`
     flex-direction: row;
-    width: clamp(500px, 75vw, 785px);
+    width: clamp(500px, 78vw, 800px);
+    //height: 450px;
+    ${heightWidth('height', 45)}
     transform: translateX(0);
 
     ${shadow()};
     ${spacing('pv', 3)};
     ${spacing('ml', 1)};
-  `)};*/
+  `)};
 `
 
 const topVariant = {
@@ -94,7 +99,7 @@ const innerVariant = {
     x: 0,
   },
   hover: {
-    x: 1,
+    /*x: 1,
     y: 1,
     scale: 0.99,
     ['box-shadow']: '0 4px 20px 0 rgba(0, 0, 0, 0.12)',
@@ -106,16 +111,19 @@ const innerVariant = {
         type: 'tween',
         duration: 0.05,
       },
-    },
+    },*/
   },
 }
 
-const BlogCard = ({ children, media }) => {
+const BlogCard = ({ date, title, body, slug, featuredMedia: {publicURL, childImageSharp} }) => {
   return (
     <motion.div variants={topVariant} initial="initial" whileHover="hover">
-      <StyledBlogCard variants={innerVariant} media={media}>
-        {children}
+
+      <StyledBlogCard variants={innerVariant} media={publicURL}>
+        <Thumbnail media={childImageSharp} link={slug} />
+        <CardContents overline={date} title={title} body={body} link={slug} />
       </StyledBlogCard>
+
     </motion.div>
   )
 }

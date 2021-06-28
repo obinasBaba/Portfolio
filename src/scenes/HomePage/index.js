@@ -24,14 +24,6 @@ const RecentWorkWrapper = styled.section`
 
 const HomePage = () => {
 
-  const { setMoon, moon } = useContext(AppStateContext)
-  const target = useRef(null);
-
-
-  useEffect(() => {
-
-    setMoon(true)
-  }, [])
 
   return (
     < >

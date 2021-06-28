@@ -14,7 +14,9 @@ export const responsiveVar = css`
     --sofia-pro: 'Sofia Pro', sans-serif;
     --gramatika: 'Gramatika', sans-serif;
     --abyss: 'abyssopelagic', sans-serif;
-    
+    --poppins: 'Poppins Black', sans-serif;
+
+
     --thin: thin solid crimson;
  
 

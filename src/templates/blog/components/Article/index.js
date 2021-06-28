@@ -14,11 +14,12 @@ import { Container } from "@material-ui/core";
 
 const ArticleContainer = styled.div`
   
-  ${ spacing( "pt", 22 ) };
+  ${ spacing( "pt", 5 ) };
   ${ spacing( "pb", 10 ) };
-  ${ spacing( "mt", -16 ) };
+  // ${ spacing( "mt", 3 ) };
 
-  //background-color: #e0e0e0;
+  background-color: white;
+  //border: thick solid palevioletred;
    
  
   color: var(--dark);

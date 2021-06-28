@@ -5,9 +5,11 @@ export const AppStateContext = React.createContext(false)
 
 const AppStateProvider = ( {children} ) => {
 
-  const [show, setShow] = useState(false);
-  const [moon, setMoon] = useState(true);
-  const [moonLight, setMoonLight] = useState(true);
+  const [moonLight, setMoonLight] = useState({
+    showMoon: true,
+    show: true,
+    position: 'absolute',
+  })
 
   const [isWhite, setIsWhite] = useState(false)
   const [isHeaderGradient, setHeaderGradient] = useState(true)
@@ -17,10 +19,7 @@ const AppStateProvider = ( {children} ) => {
 
   return (
     <AppStateContext.Provider value={{
-      show,
-      setShow,
-      moon,
-      setMoon,
+
       moonLight,
       setMoonLight,
       setIsWhite,

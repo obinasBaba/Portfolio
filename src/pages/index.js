@@ -4,10 +4,15 @@ import HomePage from '../scenes/HomePage'
 import { AppStateContext } from '../contexts/AppStateContext'
 
 const IndexPage = () => {
-  const { setMoonLight, moonLight } = useContext(AppStateContext)
+
+  const {
+    moonLight,
+    setMoonLight
+  } = useContext( AppStateContext )
 
   useEffect(() => {
-    setMoonLight(true)
+    setMoonLight({...moonLight, showMoon: true, position: 'absolute'})
+
   }, [])
 
   return (

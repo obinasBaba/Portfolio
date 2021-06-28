@@ -33,6 +33,7 @@ const Heading = styled( Typography )`
 `;
 
 const Excerpt = styled( Typography )`
+  flex: 1;
   color: rgba(0, 0, 0, .7);
   line-height: 1.4;
 
@@ -83,7 +84,7 @@ const ContentWrapper = styled( CardContent )`
 `;
 
 
-const CardContents = ({ overline, title, body, slug, tags }) => {
+const CardContents = ({ overline, title, body, link, tags }) => {
 
   return (
     <ContentWrapper>
@@ -94,7 +95,7 @@ const CardContents = ({ overline, title, body, slug, tags }) => {
         <MetaTxt> #React, #Js </MetaTxt>
       </MetaWrapper>
 
-      <Heading variant="h3"> <Link to={ slug }>{ title }</Link> </Heading>
+      <Heading variant="h3"> <Link to={ link }>{ title }</Link> </Heading>
 
       <Excerpt gutterBottom={ true }>{ body }</Excerpt>
 
