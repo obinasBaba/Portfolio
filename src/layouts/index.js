@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -7,12 +7,7 @@ import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import theme from '../theme'
 import Footer from '../components/Footer'
 import '../styles/fontFace.css'
-import {
-  motion,
-  AnimatePresence,
-  AnimateSharedLayout,
-  usePresence,
-} from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 import { GlobalStyle, Main, Page } from './layoutComponents/index'
 import AppStateProvider from '../contexts/AppStateContext'
 import BackgroundStars from '../components/BackgroundStars'
@@ -60,13 +55,13 @@ export default function TopLayout({ children, path }) {
 
                 <BackgroundStars />
 
-                <AnimateSharedLayout type="crossfade">
-                  <AnimatePresence exitBeforeEnter={true} >
+                {/*<AnimateSharedLayout type="crossfade">*/}
+                  <AnimatePresence exitBeforeEnter custom={{path: 'customPath'}} >
 
                         {children}
 
                   </AnimatePresence>
-                </AnimateSharedLayout>
+                {/*</AnimateSharedLayout>*/}
               </Main>
 
               <footer>

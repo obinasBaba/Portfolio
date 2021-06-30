@@ -12,6 +12,7 @@ import Concept from './Concept'
 import Development from './Development'
 import ReturnBtn from '../../components/ReturnBtn'
 import {AppStateContext} from '../../contexts/AppStateContext'
+import {Link} from 'gatsby'
 
 const topVariant = {
 
@@ -20,10 +21,11 @@ const topVariant = {
 
 
 
-const Project = ({ pageContext }) => {
+const Project = ({ pageContext, location }) => {
   const { title, subTitle, about,  intro } = pageContext.project
   const { headlineImg } = pageContext.imageData;
 
+  // console.log(location)
 
   const targetElement = React.useRef(null)
   const { setIsWhite } = useContext( AppStateContext );
@@ -79,9 +81,9 @@ const Project = ({ pageContext }) => {
 
       {/*<NextProject />*/}
 
-      <ReturnBtn key='return' onClick={() => {
-        window.history.back();
-      }} />
+      <Link to={location.state.path} state={{ path: location.pathname }} >
+        <ReturnBtn key='return'  />
+      </Link>
 
 
     </ProjectContainer>

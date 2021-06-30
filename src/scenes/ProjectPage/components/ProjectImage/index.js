@@ -25,7 +25,7 @@ const ProjectImage = ({
   preview,
   title,
   index,
-  controller,
+  url,
 }) => {
   const { show } = useContext(AppStateContext)
 
@@ -34,34 +34,19 @@ const ProjectImage = ({
       reversed={reversed}
       variants={imgContainerVariant}
       transition={transition}
-      animate={controller}
-      initial="initial"
-      exit="exit"
-      custom={show}
     >
-      <Link to={link}>
-        <motion.div
-          className="outer-div"
-          variants={outerDivWrapper}
-          transition={transition}
-        >
+      <Link to={link} state={{path: url}}>
+
           <motion.div
             className="inner-div"
             variants={innerDivWrapperVariants}
             transition={transition}
-            layoutId={`out-wra ${index}`}
           >
-            <GatsbyImage
-              alt={alt}
-              key={title}
-              className="project-image"
-              image={getImage(preview)}
-            />
 
-            {/*<motion.img  src={img}  />*/}
+            <motion.img  src={img}  />
 
-            <motion.div className="image-over"
-                        variants={imgOverVariants}>
+            <motion.div className="image-over" variants={imgOverVariants}>
+
               <motion.div
                 className="image-cover cover-1"
                 variants={imgCover}
@@ -74,7 +59,7 @@ const ProjectImage = ({
                 transition={transition}
               />
             </motion.div>
-          </motion.div>
+
         </motion.div>
       </Link>
 
@@ -83,7 +68,6 @@ const ProjectImage = ({
           className="effect"
           variants={effectVariant}
           transition={transition}
-          onClick={() => console.log('clicked')}
         >
           0{index + 1}
         </motion.div>

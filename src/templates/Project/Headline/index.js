@@ -57,11 +57,20 @@ const btnVariant = {
 }
 
 const imgVariant = {
-  exit: {
-    transition: {
-      ease: [0.6, 0.01, 0, 0.9],
-      duration: 1,
-    },
+  initial: {
+    height: '400px',
+    ['margin-right']: 'calc(100vw / 64 * 6)',
+
+    padding: 'calc(100vw / 64 * .5)',
+    ['padding-left']: 'calc(100vw / 64 * 4)',
+
+  },
+
+  animate: {
+    height: '100vh',
+    ['margin-right']: 0,
+    padding: 'calc(100vw / 64 * 0)',
+    ['padding-left']: 'calc(100vw / 64 * 0)',
   },
 }
 
@@ -109,23 +118,10 @@ const Headline = ({ subTitle, title, about, media }) => {
       animate="animate"
       exit="exit"
     >
-      <BG variants={bgVariant}
-          transition={transition}
-          layoutId={`bg 0`}
-
-      />
-
-      <motion.div layoutId={`tags 0`}>
-        'tags>
-      </motion.div>
+      <BG variants={bgVariant} transition={transition} />
 
       <MetaTexts variants={descTopVariant} transition={transition}>
-        <motion.h1
-          className="pro-title"
-          variants={titleVariant}
-          transition={transition}
-          layoutId={`title 0`}
-        >
+        <motion.h1 className="pro-title" variants={titleVariant} transition={transition}>
           Digital Creative Agency.
         </motion.h1>
 
@@ -133,32 +129,21 @@ const Headline = ({ subTitle, title, about, media }) => {
 
         <h2 className="type">WebApp</h2>
 
-        <motion.div
-          layoutId={`btn-0`}
-          variants={btnVariant}
-          transition={transition}
-        >
+        <motion.div variants={btnVariant} transition={transition}>
           <MotionBtn margin={false} text="Visit Site" />
         </motion.div>
       </MetaTexts>
 
-      <ImgGradient
-        transition={transition}
-        layoutId={'out-wra 0'}
-        variants={imgVariant}
-      >
-        <GatsbyImage
+      <ImgGradient transition={transition} variants={imgVariant}>
+      {/*  <GatsbyImage
           image={getImage(media)}
           alt="project pic"
           objectFit="cover"
           className="project-image"
           loading="eager"
-        />
-
-        {/* <motion.img src={img}
-                    transition={transition}
-                    variants={imgVariant}
         />*/}
+
+         <motion.img src={img} />
 
         <motion.div className="overlay" />
       </ImgGradient>

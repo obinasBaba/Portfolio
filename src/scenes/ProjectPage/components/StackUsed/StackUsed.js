@@ -30,7 +30,7 @@ const StackList = styled(motion.ul)`
   `)};
   
   ${ largeUp( css`
-
+    display: none;
     ${({ reversed }) =>
             reversed ? gridColWidth(21, 36) : gridColWidth(6, 20)};
   ` ) };

@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React, {useEffect, useRef} from 'react'
 import MotionBtn from '../../../../components/MotionBtn'
 import { motion } from 'framer-motion'
 import {
   btnTxtVariants,
-  descTopVariant,
-  descTxtVariants,
+  containerVariant,
+  tagsVariants,
   letterVariant,
   titleVariant,
   transition,
@@ -12,46 +12,47 @@ import {
 import { OverflowWrapper, ProjectDesc, Tags, Title } from './components'
 import baffle from 'baffle'
 
-const ProjectDescription = ({ link, reversed, tags, title, controller, index }) => {
+const ProjectDescription = ({ link, reversed, tags, title, controller, url, index, location }) => {
+
+  const baf = useRef(null)
 
   let b = baffle(document.querySelectorAll(`.baffled-${index}`), {
     characters: '▒█▓▒░<>/',
   });
 
 
+
   useEffect(() => {
+    baf.current = baffle(document.querySelectorAll(`.baffled-${index}`), {
+      characters: '▒█▓▒░<>/',
+    });
+
     baffle(document.querySelectorAll(`.baffled-${index}`), {
       characters: '▒█▓▒░<>/',
-    }).start().reveal(700, 700);
+    }).start().reveal(1000, 1400);
   }, [])
 
   return (
     <ProjectDesc
       reversed={reversed}
-      variants={descTopVariant}
-      animate={controller}
-      initial="initial"
-      exit="exit"
+      variants={containerVariant}
+      // animate={controller}
+      // initial="initial"
+      // initial={false}
+
+      // exit="exit"
 
     >
       <OverflowWrapper>
-        <motion.div variants={descTxtVariants}
-                    custom={b}>
+        <motion.div variants={tagsVariants} custom={baf.current} transition={transition} >
 
-          <Tags className={`baffled-` + index}
-                layoutId={`tags ${index}`}
-
-                variant={'subtitle2'}>
+          <Tags className={`baffled-` + index} variant={'subtitle2'}>
             {tags}
           </Tags>
         </motion.div>
       </OverflowWrapper>
 
-      <Title
-        variants={titleVariant}
-        transition={transition}
-        layoutId={`title ${index}`}
-      >
+      <Title variants={titleVariant} transition={transition}>
         {Array.from(title).map((c, i) =>
           c === ' ' ? (
             ' '
@@ -68,12 +69,12 @@ const ProjectDescription = ({ link, reversed, tags, title, controller, index }) 
         )}
       </Title>
 
-      <OverflowWrapper transition={transition}
-                       layoutId={`btn-${index}`}
-                       >
+      <OverflowWrapper >
+
         <motion.div className='btn-wrapper' variants={btnTxtVariants} transition={transition}>
-          <MotionBtn text="Case-Study" to={link} margin={false} />
+          <MotionBtn text="Case-Study" to={link} state={{path: url}} margin={false} />
         </motion.div>
+
       </OverflowWrapper>
     </ProjectDesc>
   )

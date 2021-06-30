@@ -29,31 +29,36 @@ export const ImgGradient = styled( motion.div )`
   position: relative;
   //filter: blur(5px);
   //border: thick solid red;
-  align-self: stretch;
-  max-height: 100vh;
+  align-self: center;
+  
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 
 
   ${mediumUp(css`
     grid-row: 1;
-    ${ gridColWidth(25, 65)};
+    ${ gridColWidth(21, 65)};
     
   `)};
-  
+
   img {
-    height: 100%;
     width: 100%;
     object-fit: cover;
-    transition: opacity 0s !important;
-
   }
-  
+
   .project-image{
     width: 100%;
     height: 100%;
+    //height: 100vh;
 
-    transition: opacity 0s !important;
+    //transition: opacity 0s !important;
 
   }
+  
+ 
+  
+  
 
   .overlay {
     display: none;

@@ -1,6 +1,6 @@
 export const transition = {
   ease: [0.6, 0.01, 0, 0.9],
-  duration: 1.3,
+  duration: 1.5,
 
   // repeat: Infinity,
   // repeatType: 'mirror',
@@ -9,8 +9,10 @@ export const transition = {
 export const imgContainerVariant = {
 
   initial: {
-
+    x: '10%',
+    scale: .85
   },
+
   exit: {},
 
   initialFp: {
@@ -23,30 +25,19 @@ export const imgContainerVariant = {
     transition: {
       duration: 1.5,
       ease: [.33, 1, .68, 1],
+      // ease:  [0.6, 0.01, 0, 0.9],
       delay: .5
     }
   },
+
   exitFp: {
     x: '10%',
     scale: .85
   }
 }
 
-export const outerDivWrapper = {
-
-}
-
-export const innerDivWrapperVariants = {
-
-}
 
 export const imgOverVariants = {
-  initial: {},
-  animate: {},
-
-  initialFp: {
-
-  },
 
   animateFp: {
     transition: {
@@ -67,36 +58,28 @@ export const imgOverVariants = {
 
 export const imgCover = {
   initial: {
-    x: '110%'
+    x: '0%'
   },
   animate: {
     x: '110%'
   },
 
-  initialFp(){
-    return{
-      x: '0%'
-    }
+  initialFp:{
+    x: '0%'
   },
-
-  animateFp() {
-
-    console.log('animateFB in s000000000000000000000000000000')
-
-    return{
-      x: '110%',
-    }
+  animateFp: {
+    x: '110%',
   },
-  exitFp(){
-    return{
-      x: 0,
-
-    }
+  exitFp:{
+    x: 0,
   }
 };
 
 
 export const effectVariant = {
+  initial: {
+    y: '100%'
+  },
   exit: {
     transition: {
       duration: 1,

@@ -4,10 +4,9 @@ import {
   gridColWidth,
   largeUp,
   mediumUp,
-  spacing
+  spacing,
 } from '../../../../styles/mixins'
 import img from './preview-111.jpg'
-
 
 export const ProjectImg = styled(motion.div)`
   ${gridColWidth()}; //mobile-first
@@ -15,6 +14,11 @@ export const ProjectImg = styled(motion.div)`
   cursor: pointer;
   position: relative;
   height: 100%;
+  background: ${({ theme }) => theme.palette.secondary.main};
+
+  padding: calc(100vw / 64 * .5);
+  padding-left: calc(100vw / 64 * 4);
+
 
   & .effect {
     color: tomato;
@@ -32,28 +36,15 @@ export const ProjectImg = styled(motion.div)`
 
   ${mediumUp(css`
     grid-row: 1;
-    ${gridColWidth(21, 59)};
-    
+    ${gridColWidth(21, 65)};
+    margin-right: calc(100vw / 64 * 6);;
+
+
   `)};
 
-  
+     
 
-  .outer-div {
-    background: ${({ theme }) => theme.palette.secondary.main};
-    z-index: -99;
-    pointer-events: none;
-    position: relative;
-    //transition: transform 1.2s cubic-bezier(0.075, 0.82, 0.005, 1);
-    //border: thick solid deeppink;
-
-
-    ${spacing('p', 1)};
-
-    ${largeUp(css`
-      ${spacing('pl', 7)};
-      //justify-content: flex-end;
-    `)};
-  }
+ 
 
   .inner-div {
     //display: none;
@@ -61,32 +52,33 @@ export const ProjectImg = styled(motion.div)`
     z-index: 1;
     //border: thick solid yellow;
     max-height: 400px;
-    //overflow: hidden;
-    
-  }
+    overflow: hidden;
+    display: flex;
+    align-items: center;
 
-  img {
-    ${largeUp(css`
-      //min-height: 400px;
+    img {
       width: 100%;
-      height: 100%;
-      //width: 100%;
       object-fit: cover;
-      //max-height: 65%;
+    }
 
-      transition: opacity 0s !important;
+    .project-image {
+      //height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
 
+      img {
+        //min-height: 400px;
+        width: 100%;
+        height: 100%;
+        //height: 100%;
+        //width: 100%;
+        object-fit: cover;
+        //max-height: 65%;
 
-    `)};
-  }
-
-  .project-image{
-    height: 100%;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    max-height: 400px;
-
+        //transition: opacity 0s !important;
+      }
+    }
   }
 
   .image-over {
@@ -107,19 +99,18 @@ export const ProjectImg = styled(motion.div)`
       bottom: 0;
       background: tomato;
       z-index: 1000;
-      
-      &:last-child{
+
+      &:last-child {
         background-image: linear-gradient(
-                137.81deg,
-                #e7a28f 3.52%,
-                #f9d6ac 41.89%,
-                #fbfefc 96.77%
+          137.81deg,
+          #e7a28f 3.52%,
+          #f9d6ac 41.89%,
+          #fbfefc 96.77%
         );
       }
     }
 
     .image-cover:last-child {
-      
     }
   }
 `

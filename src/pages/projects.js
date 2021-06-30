@@ -1,12 +1,18 @@
-import React, { useContext, useEffect } from 'react'
-import styled from 'styled-components'
-import { heightWidth } from '../styles/mixins'
+// noinspection JSIgnoredPromiseFromCall
+
+import React, {useContext, useEffect, useRef, useState} from 'react'
+import styled, { css } from 'styled-components'
+import { gridify, heightWidth, smallUp, spacing } from '../styles/mixins'
 import { Typography } from '@material-ui/core'
 import ReturnBtn from '../components/ReturnBtn'
 import ReactFullpage from '@fullpage/react-fullpage'
 import { AppStateContext } from '../contexts/AppStateContext'
-import ProjectPage from '../scenes/ProjectPage'
-import {motion} from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
+import ProjectImage from '../scenes/ProjectPage/components/ProjectImage'
+import ProjectDescription from '../scenes/ProjectPage/components/ProjectDescription'
+import StackUsed from '../scenes/ProjectPage/components/StackUsed'
+import Others from '../scenes/ProjectPage/components/Others'
+import useProjectsAssets from '../hooks/queries/useProjectsAssets'
 
 const Scroll = styled.div`
   position: fixed;
@@ -31,17 +37,95 @@ const ScrollTxt = styled(Typography)`
   z-index: 999999;
 `
 
-const Projects = () => {
-  const controllers = []
+const ProjectContainerGrid = styled(motion.div)`
+  ${gridify};
+  // ${spacing('pt', 2)};
 
+  ${smallUp(css`
+    // ${spacing('pt', 4)};
+    // ${spacing('p', 4)};
+  `)};
+
+  align-content: center;
+  position: relative;
+  min-height: 100vh;
+`
+
+const topVariant = {}
+
+const Projects = ({ location }) => {
+  const { auth, kklLuzern, udemy, ...listAssets } = useProjectsAssets()
+  const othersAssets = { auth, kklLuzern, udemy }
   const {
-    moonLight,
-    setMoonLight
-  } = useContext( AppStateContext )
+    preview1,
+    preview2,
+    // preview3,
+    css3,
+    postgres,
+    sql,
+    typescript,
+    javascript,
+    mongo,
+    vue,
+    pwa,
+    react,
+    angular,
+    node,
+  } = listAssets
+
+  const items = [
+    {
+      id: 0,
+      link: '/portfolio/project-1',
+      url: '/projects#one',
+      linkTitle: 'Case Study',
+      preview: preview1,
+      tags: 'UX, UI, Illustrations, Icons',
+      title: 'Digital Creative Agency.',
+      alt: 'Primary Smart Bedding Website',
+      imgTitle: 'Primary Smart Bedding Website',
+      partners: [react, pwa, mongo, javascript],
+      controller: useAnimation(),
+    },
+    {
+      id: 1,
+      link: '/portfolio/project-2',
+      url: '/projects#two',
+      linkTitle: 'Case Study',
+      preview: preview2,
+      tags: 'Analytics, UX, UI, Icons, Front-end',
+      title: 'Beauty And Hair Space.',
+      alt: 'Mobalytics. Game Analytics Platform Website',
+      imgTitle: 'Mobalytics. Game Analytics Platform Website',
+      partners: [node, angular, typescript, sql],
+      controller: useAnimation(),
+    },
+    {
+      id: 2,
+      link: '/portfolio/project-3',
+      url: '/projects#three',
+      linkTitle: 'coming soon',
+      preview: preview1,
+      tags: 'Analytics, UX, UI, Front-end',
+      title: 'smart clock ',
+      alt: 'Glance Clock — First Smart Clock',
+      imgTitle: 'Glance Clock — First Smart Clock',
+      partners: [postgres, vue, javascript, css3],
+      controller: useAnimation(),
+    },
+  ]
+
+  const controllers = useRef([useAnimation(), useAnimation(), useAnimation(), useAnimation()])
+
+
+  const { moonLight, setMoonLight } = useContext(AppStateContext);
+  const [ initialVariant, setInitialVariant ] = useState( 'initial' );
+
 
   useEffect(() => {
-    setMoonLight({...moonLight, showMoon: false})
+    setMoonLight({ ...moonLight, showMoon: false })
 
+    console.log(controllers)
   }, [])
 
   return (
@@ -67,38 +151,81 @@ const Projects = () => {
         scrollBar={false}
         autoScrolling={true}
         fitToSection={true}
-        fixedElements={'#FIXED_'}
         onLeave={(origin, dist, dir) => {
-          // console.log('onLeave ----',)
-
-          if (dist.isFirst) {
-            // console.log(document.location.replace('/projects#two'))
-            // console.log(document.location.replace('/projects#three'))
-          }
+          console.log('onLeave ----')
 
           if (dist.isLast) {
-            controllers[origin.index]('exitFp')
+            controllers.current[origin.index].start('exitFp')
             return true
           }
-          controllers[origin.index]('exitFp')
-          controllers[dist.index]('animateFp')
+
+          controllers.current[origin.index].start('exitFp')
+          controllers.current[dist.index].start('animateFp')
         }}
         afterLoad={(origin, dist, dir) => {
-          // console.log('afterLoad ----', dir, origin )
+          console.log('afterLoad ----', dist.index, dir)
 
           if (dist.isLast) return true
 
-          if (dir === null)
-            return controllers[dist.index]('animateFp')
+          // if (dir === null)
+          //   return controllers.forEach(i => i('initialFp'))
         }}
-        render={({ state }) => {
-          // console.log('API: ', state)
+        afterRender={({ index, isLast }) => {
+          console.log('afterRender .------', index, isLast)
+          if (isLast) return
+          // controllers.forEach(i => i('animate'))
 
-          return <ProjectPage controllers={controllers} />
+          controllers.current[index].start('animateFp')
+        }}
+        render={state => {
+          console.log('render -------- ',)
+
+          return (
+            <>
+              {items.map((item, index) => {
+                const { partners, tags, preview, alt, link, title, url } = item
+
+                return (
+                  <div className="section" key={link}>
+                    <ProjectContainerGrid
+                      variants={topVariant}
+                      initial={initialVariant}
+                      animate={controllers.current[index]}
+                      exit="exit"
+                    >
+                      <ProjectImage
+                        reversed={true}
+                        link={link}
+                        alt={alt}
+                        title={title}
+                        index={index}
+                        preview={preview}
+                        url={url}
+                      />
+
+                      <ProjectDescription
+                        link={link}
+                        reversed={true}
+                        title={title}
+                        index={index}
+                        tags={tags}
+                        url={url}
+                      />
+
+                      <StackUsed items={partners} reversed={true} />
+                    </ProjectContainerGrid>
+                  </div>
+                )
+              })}
+
+              <div className="section">
+                <Others {...othersAssets} />
+              </div>
+            </>
+          )
         }}
       />
     </>
-
   )
 }
 

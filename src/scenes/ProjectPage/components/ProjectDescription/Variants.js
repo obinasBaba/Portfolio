@@ -5,73 +5,60 @@ export const transition = {
   ease: [0.6, 0.01, 0, 0.9],
 }
 
-export const descTopVariant = {
+export const containerVariant = {
 
   animateFp: {
     transition: {
-      staggerChildren: 0.4,
+      staggerChildren: 0.5,
       delayChildren: 0.2,
     },
   },
 }
 
 export const btnTxtVariants = {
+  initial :{
+    y: '120%',
+  },
+
   initialFp: {
     y: '120%',
   },
-  animateFp(b) {
-
-    setTimeout(() => {
-      b && b.start().reveal(700, 700)
-    }, 1000)
-
-    return {
-      y: '0%',
-      transition: {
-        ease: [0.6, 0.01, 0, 0.9],
-        duration: 1,
-        delay: 1,
-      },
-    }
+  animateFp: {
+    y: '0%',
   },
+  exitFp: {
+    y: '120%',
+  }
 }
 
-export const descTxtVariants = {
+export const tagsVariants = {
+  initial: {
+    y: '120%',
+  },
+
   initialFp: {
     y: '120%',
   },
   animateFp(b) {
-
     setTimeout(() => {
-      b && b.start().reveal(700, 700)
-    }, 1000)
+      b && b.start().reveal(900, 900)
+    }, 900)
 
     return {
       y: '0%',
       transition: {
-        ease: [0.6, 0.01, 0, 0.9],
-        duration: 1,
         delay: 1,
       },
     }
   },
 
- /* exit: {
+  exitFp:{
     y: '120%',
-    transition: {
-      ease: [0.6, 0.01, 0, 0.9],
-      duration: 1,
-
-    },
-  },*/
+  },
 }
 
 export const titleVariant = {
-  initialFp: {
-    transition: {
-      staggerChildren: 0.02,
-    },
-  },
+
   animateFp: {
     transition: {
       staggerChildren: 0.02,
@@ -92,6 +79,10 @@ export const titleVariant = {
 }
 
 export const letterVariant = {
+  initial: {
+   y: '200%'
+  },
+
   initialFp: {
     y: '200%',
   },

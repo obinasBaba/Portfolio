@@ -37,7 +37,7 @@ const IntroContainer = styled(Container)`
   }
 
   & > :not(:first-child) {
-    ${heightWidth('margin-descTopVariant', 3)};
+    ${heightWidth('margin-containerVariant', 3)};
   }
 
   ${mediumUp(css`
@@ -53,7 +53,7 @@ const IntroContainer = styled(Container)`
     justify-content: center;
 
     & > :not(:first-child) {
-      ${heightWidth('margin-descTopVariant', 3)};
+      ${heightWidth('margin-containerVariant', 3)};
     }
   }
 `

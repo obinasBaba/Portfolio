@@ -74,20 +74,22 @@ const MotionBtn = ({
   text = 'CASE-STUDY',
   arrow = true,
   to = '#',
+  state = {},
   fontLarge,
   clr,
   variants = {},
   external = false,
   margin = true,
   layoutId = false,
-  arrowClr = '#fff'
+  arrowClr = '#fff',
+
 }) => {
   const controls = useAnimation()
 
   return (
     <motion.div layoutId={layoutId}>
 
-    <Link to={to}>
+    <Link to={to} state={state} >
       <Btn
         margin={margin}
         arrow={arrow}
