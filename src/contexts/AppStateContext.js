@@ -15,6 +15,8 @@ const AppStateProvider = ( {children} ) => {
   const [isHeaderGradient, setHeaderGradient] = useState(true)
   const [isContactOpen, setContactModal] = useState(false)
 
+  const [fromCaseStudy, setFromCaseStudy] = useState(false)
+
 
 
   return (
@@ -28,6 +30,7 @@ const AppStateProvider = ( {children} ) => {
       setHeaderGradient,
       isContactOpen,
       setContactModal,
+      fromCaseStudy, setFromCaseStudy
     }} >
 
       {children}

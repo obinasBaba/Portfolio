@@ -1,6 +1,6 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React, { useContext } from 'react'
+import React, {useContext, useState} from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
@@ -9,11 +9,10 @@ import {
   imgContainerVariant,
   imgCover,
   imgOverVariants,
-  innerDivWrapperVariants,
-  outerDivWrapper,
+  innerVariant,
   transition,
 } from './Variants'
-import { OverflowWrapper, ProjectImg } from './components'
+import {InnerWrapper, OverflowWrapper, ProjectImg} from './components'
 import {AppStateContext} from '../../../../contexts/AppStateContext'
 
 import img from './preview-111.jpg'
@@ -29,6 +28,8 @@ const ProjectImage = ({
 }) => {
   const { show } = useContext(AppStateContext)
 
+  const [max, setMax] = useState('400px')
+
   return (
     <ProjectImg
       reversed={reversed}
@@ -37,9 +38,9 @@ const ProjectImage = ({
     >
       <Link to={link} state={{path: url}}>
 
-          <motion.div
+          <InnerWrapper
             className="inner-div"
-            variants={innerDivWrapperVariants}
+            variants={innerVariant}
             transition={transition}
           >
 
@@ -60,7 +61,7 @@ const ProjectImage = ({
               />
             </motion.div>
 
-        </motion.div>
+        </InnerWrapper>
       </Link>
 
       <OverflowWrapper>

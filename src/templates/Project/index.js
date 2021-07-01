@@ -28,7 +28,7 @@ const Project = ({ pageContext, location }) => {
   // console.log(location)
 
   const targetElement = React.useRef(null)
-  const { setIsWhite } = useContext( AppStateContext );
+  const { setIsWhite, fromCaseStudy, setFromCaseStudy } = useContext( AppStateContext );
 
   const intersection = useIntersection( targetElement, {
     root: null,
@@ -38,6 +38,7 @@ const Project = ({ pageContext, location }) => {
 
   useEffect(() => {
     setIsWhite(  intersection && intersection.isIntersecting )
+    setFromCaseStudy(true)
 
   }, [intersection]);
 

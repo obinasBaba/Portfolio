@@ -118,7 +118,9 @@ const Projects = ({ location }) => {
   const controllers = useRef([useAnimation(), useAnimation(), useAnimation(), useAnimation()])
 
 
-  const { moonLight, setMoonLight } = useContext(AppStateContext);
+  const { moonLight, setMoonLight,
+    fromCaseStudy, setFromCaseStudy } = useContext(AppStateContext);
+
   const [ initialVariant, setInitialVariant ] = useState( 'initial' );
 
 
@@ -151,6 +153,7 @@ const Projects = ({ location }) => {
         scrollBar={false}
         autoScrolling={true}
         fitToSection={true}
+
         onLeave={(origin, dist, dir) => {
           console.log('onLeave ----')
 
@@ -172,10 +175,21 @@ const Projects = ({ location }) => {
         }}
         afterRender={({ index, isLast }) => {
           console.log('afterRender .------', index, isLast)
-          if (isLast) return
-          // controllers.forEach(i => i('animate'))
 
-          controllers.current[index].start('animateFp')
+          if ( fromCaseStudy ){
+
+            // controllers.current[index].start('initial2')
+            // controllers.current[index].start('animate')
+            controllers.current[index].start('animateFp')
+            setFromCaseStudy(false)
+          }
+          else
+          {
+            controllers.current[index].start('initialFp')
+              .then(() => {
+                controllers.current[index].start('animateFp')
+              })
+          }
         }}
         render={state => {
           console.log('render -------- ',)
@@ -189,7 +203,7 @@ const Projects = ({ location }) => {
                   <div className="section" key={link}>
                     <ProjectContainerGrid
                       variants={topVariant}
-                      initial={initialVariant}
+                      initial='initial'
                       animate={controllers.current[index]}
                       exit="exit"
                     >

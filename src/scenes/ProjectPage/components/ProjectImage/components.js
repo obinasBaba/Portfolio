@@ -10,15 +10,12 @@ import img from './preview-111.jpg'
 
 export const ProjectImg = styled(motion.div)`
   ${gridColWidth()}; //mobile-first
-  padding: 0;
   cursor: pointer;
   position: relative;
-  height: 100%;
   background: ${({ theme }) => theme.palette.secondary.main};
 
-  padding: calc(100vw / 64 * .5);
+  padding: calc(100vw / 64 * 0.5);
   padding-left: calc(100vw / 64 * 4);
-
 
   & .effect {
     color: tomato;
@@ -29,7 +26,7 @@ export const ProjectImg = styled(motion.div)`
     background-image: linear-gradient(
       137.81deg,
       #e7a28f 3.52%,
-      //#f9d6ac 41.89%,
+      //#f9d6ac 41.89%, 
       #fbfefc 96.77%
     );
   }
@@ -37,48 +34,26 @@ export const ProjectImg = styled(motion.div)`
   ${mediumUp(css`
     grid-row: 1;
     ${gridColWidth(21, 65)};
-    margin-right: calc(100vw / 64 * 6);;
-
-
+    margin-right: calc(100vw / 64 * 6); ;
   `)};
+`
 
-     
 
- 
+export const InnerWrapper = styled(motion.div)`
+  //display: none;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  max-height: 100vh;
+  height: 400px;
+  //border: thin solid red;
 
-  .inner-div {
-    //display: none;
-    position: relative;
-    z-index: 1;
-    //border: thick solid yellow;
-    max-height: 400px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-
-    img {
-      width: 100%;
-      object-fit: cover;
-    }
-
-    .project-image {
-      //height: 100%;
-      width: 100%;
-      padding: 0;
-      margin: 0;
-
-      img {
-        //min-height: 400px;
-        width: 100%;
-        height: 100%;
-        //height: 100%;
-        //width: 100%;
-        object-fit: cover;
-        //max-height: 65%;
-
-        //transition: opacity 0s !important;
-      }
-    }
+  img {
+    width: 100%;
+    object-fit: cover;
   }
 
   .image-over {

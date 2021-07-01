@@ -1,5 +1,10 @@
 import React from 'react'
-import { HeadlineContainer, ImgGradient, MetaTexts } from './Components'
+import {
+  HeadlineContainer,
+  ImageWrapper,
+  InnerWrapper,
+  MetaTexts,
+} from './Components'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { motion } from 'framer-motion'
 import MotionBtn from '../../../components/MotionBtn'
@@ -16,27 +21,14 @@ const transition = {
 //this is a comment
 
 const headLine = {
-  /*initial: {
-    background: 'transparent',
-  },
-  animate: {
-    background: '#02021e',
-    transition: {
-      delay: 4,
-      ease: [0.6, 0.01, 0, 0.9],
-      duration: 2,
-    },
-  },*/
+
 }
 
 const descTopVariant = {}
 
 const titleVariant = {
   exit: {
-    transition: {
-      ease: [0.6, 0.01, 0, 0.9],
-      duration: 1,
-    },
+
   },
 }
 
@@ -49,28 +41,52 @@ const btnVariant = {
   },
 
   exit: {
-    transition: {
-      ease: [0.6, 0.01, 0, 0.9],
-      duration: 1,
-    },
+    opacity: 0,
   },
 }
 
 const imgVariant = {
   initial: {
-    height: '400px',
+    /*height: '400px',
+    ['margin-right']: 'calc(100vw / 64 * 6)',
+
+    padding: 'calc(100vw / 64 * .5)',
+    ['padding-left']: 'calc(100vw / 64 * 4)',*/
+  },
+
+  animate: {
+    /*height: '100vh',
+    ['margin-right']: 0,
+    padding: 'calc(100vw / 64 * 0)',
+    ['padding-left']: 'calc(100vw / 64 * 0)',*/
+  },
+  exit: {
+    // height: '400px',
     ['margin-right']: 'calc(100vw / 64 * 6)',
 
     padding: 'calc(100vw / 64 * .5)',
     ['padding-left']: 'calc(100vw / 64 * 4)',
+  }
+}
 
+const innerVariant = {
+
+  exit: {
+    height: 400,
+
+  }
+}
+
+const bgVariant = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
   },
 
-  animate: {
-    height: '100vh',
-    ['margin-right']: 0,
-    padding: 'calc(100vw / 64 * 0)',
-    ['padding-left']: 'calc(100vw / 64 * 0)',
+  exit: {
+    opacity: 0,
   },
 }
 
@@ -85,26 +101,6 @@ const BG = styled(motion.div)`
   //border: thick solid red;
 `
 
-const bgVariant = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-    transition: {
-      delay: 0.7,
-      ease: [0.6, 0.01, 0, 0.9],
-      duration: 1.5,
-    },
-  },
-  /*exit: {
-    opacity: 0,
-    transition: {
-      ease: [0.6, 0.01, 0, 0.9],
-      duration: 1,
-    },
-  },*/
-}
 
 const Headline = ({ subTitle, title, about, media }) => {
   const { role, context, period } = about
@@ -134,19 +130,16 @@ const Headline = ({ subTitle, title, about, media }) => {
         </motion.div>
       </MetaTexts>
 
-      <ImgGradient transition={transition} variants={imgVariant}>
-      {/*  <GatsbyImage
-          image={getImage(media)}
-          alt="project pic"
-          objectFit="cover"
-          className="project-image"
-          loading="eager"
-        />*/}
+      <ImageWrapper transition={transition} variants={imgVariant}>
 
-         <motion.img src={img} />
+        <InnerWrapper variants={innerVariant}>
+          <motion.img src={img} />
+
+        </InnerWrapper>
+
 
         <motion.div className="overlay" />
-      </ImgGradient>
+      </ImageWrapper>
     </HeadlineContainer>
   )
 }

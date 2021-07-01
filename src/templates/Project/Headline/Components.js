@@ -22,18 +22,40 @@ export const HeadlineContainer = styled( motion.div )`
   
 `
 
-
-
-export const ImgGradient = styled( motion.div )`
-  ${gridColWidth()}; //mobile-first
+export const InnerWrapper = styled(motion.div)`
+  //display: none;
   position: relative;
-  //filter: blur(5px);
+  z-index: 1;
+  width: 100%;
+  
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+
+
+
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+  
+`
+
+export const ImageWrapper = styled( motion.div )`
+  ${gridColWidth()}; //mobile-first
+  background: #3719ca;
+  position: relative;
   //border: thick solid red;
   align-self: center;
   
-  display: flex;
-  align-items: center;
-  overflow: hidden;
+  //display: flex;
+  //align-items: center;
+  //overflow: hidden;
+
+  //margin-right: calc(100vw / 64 * 6); ;
+  //padding: calc(100vw / 64 * 0.5);
+  //padding-left: calc(100vw / 64 * 4);
 
 
   ${mediumUp(css`
@@ -47,18 +69,6 @@ export const ImgGradient = styled( motion.div )`
     object-fit: cover;
   }
 
-  .project-image{
-    width: 100%;
-    height: 100%;
-    //height: 100vh;
-
-    //transition: opacity 0s !important;
-
-  }
-  
- 
-  
-  
 
   .overlay {
     display: none;
@@ -77,7 +87,7 @@ export const ImgGradient = styled( motion.div )`
 
 export const MetaTexts = styled(motion.div)`
   
-  display: flex;
+  display: none;
   flex-flow: column;
   z-index: 1;
   grid-row: 3;
