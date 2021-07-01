@@ -25,16 +25,17 @@ const ProjectImage = ({
   title,
   index,
   url,
+  exit
 }) => {
   const { show } = useContext(AppStateContext)
 
-  const [max, setMax] = useState('400px')
 
   return (
     <ProjectImg
       reversed={reversed}
       variants={imgContainerVariant}
       transition={transition}
+      // custom={{exit: exit}}
     >
       <Link to={link} state={{path: url}}>
 

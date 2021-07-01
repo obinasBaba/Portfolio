@@ -22,29 +22,10 @@ export const HeadlineContainer = styled( motion.div )`
   
 `
 
-export const InnerWrapper = styled(motion.div)`
-  //display: none;
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  height: 100vh;
-
-
-
-  img {
-    width: 100%;
-    object-fit: cover;
-  }
-  
-`
 
 export const ImageWrapper = styled( motion.div )`
   ${gridColWidth()}; //mobile-first
-  background: #3719ca;
+  background: transparent;
   position: relative;
   //border: thick solid red;
   align-self: center;
@@ -84,6 +65,27 @@ export const ImageWrapper = styled( motion.div )`
   }
 
 `
+
+export const InnerWrapper = styled(motion.div)`
+  //display: none;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+
+
+
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+  
+`
+
 
 export const MetaTexts = styled(motion.div)`
   

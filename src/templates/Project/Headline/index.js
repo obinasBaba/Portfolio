@@ -47,33 +47,40 @@ const btnVariant = {
 
 const imgVariant = {
   initial: {
-    /*height: '400px',
     ['margin-right']: 'calc(100vw / 64 * 6)',
-
+    background: 'transparent',
     padding: 'calc(100vw / 64 * .5)',
-    ['padding-left']: 'calc(100vw / 64 * 4)',*/
+    ['padding-left']: 'calc(100vw / 64 * 4)',
   },
 
   animate: {
-    /*height: '100vh',
+    // height: '100vh',
     ['margin-right']: 0,
     padding: 'calc(100vw / 64 * 0)',
-    ['padding-left']: 'calc(100vw / 64 * 0)',*/
+    ['padding-left']: 'calc(100vw / 64 * 0)',
   },
   exit: {
     // height: '400px',
+    background: '#3719ca',
     ['margin-right']: 'calc(100vw / 64 * 6)',
 
     padding: 'calc(100vw / 64 * .5)',
     ['padding-left']: 'calc(100vw / 64 * 4)',
+
+
   }
 }
 
 const innerVariant = {
+  initial: {
+    height: 400
+  },
+  animate: {
+    height: '100vh'
+  },
 
   exit: {
     height: 400,
-
   }
 }
 
@@ -132,7 +139,7 @@ const Headline = ({ subTitle, title, about, media }) => {
 
       <ImageWrapper transition={transition} variants={imgVariant}>
 
-        <InnerWrapper variants={innerVariant}>
+        <InnerWrapper variants={innerVariant} transition={transition}>
           <motion.img src={img} />
 
         </InnerWrapper>

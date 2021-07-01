@@ -35,7 +35,7 @@ export const ProjectDesc = styled(motion.div)`
   `)};
 
   ${largeUp(css`
-    ${ gridColWidth(10, 33)};
+    ${ gridColWidth(10, 35)};
     ${spacing('pt', 6)};
   `)};
 
@@ -63,9 +63,21 @@ export const Title = styled(motion.h1)`
   ${spacing('mt', 2)}
   ${ title(3.35) };
   line-height: 1.3; 
-  //border: thin solid green;
+  //border: thin solid lightblue;
   letter-spacing: 2.5px;
-  overflow: hidden;
+  //overflow: hidden;
+  
+  overflow-wrap: break-word;
+  
+  .word{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    //border: thin solid olivedrab;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: top;
+  }
   
   .letter{
     font-family: "Poppins Black",serif;

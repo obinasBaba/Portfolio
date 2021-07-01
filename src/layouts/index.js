@@ -56,7 +56,7 @@ export default function TopLayout({ children, path }) {
                 <BackgroundStars />
 
                 {/*<AnimateSharedLayout type="crossfade">*/}
-                  <AnimatePresence exitBeforeEnter custom={{path: 'customPath'}} >
+                  <AnimatePresence exitBeforeEnter custom={{path: path}} >
 
                         {children}
 

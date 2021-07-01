@@ -80,16 +80,16 @@ export const titleVariant = {
 
 export const letterVariant = {
   initial: {
-   y: '200%'
+   y: '100%'
   },
 
   initialFp: {
-    y: '200%',
+    y: '100%',
   },
   animateFp: {
     y: 0,
   },
   exitFp: {
-    y: '200%'
+    y: '100%'
   }
 }

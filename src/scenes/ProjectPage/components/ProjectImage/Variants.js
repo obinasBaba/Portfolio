@@ -11,42 +11,37 @@ export const imgContainerVariant = {
   initial: {
     // x: '10%',
     // scale: .85,
-
     x: 0,
     scale: 1,
-    // margin: 0,
-    // padding: 0,
-    // height: 400,
-
-
-
   },
+
   animate: {
-    // ['margin-right']: 'calc(100vw / 64 * 6)',
-    // 'padding': 'calc(100vw / 64 * 0.5)',
-    // ['padding-left']: 'calc(100vw / 64 * 4)'
-
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0,
+    }
   },
-  exit: {
-    padding: 0,
-    margin: 0,
-    // 'padding': 'calc(100vw / 64 * 0)',
-    // ['padding-left']: 'calc(100vw / 64 * 0)',
-    // ['margin-right']: 'calc(100vw / 64 * 0)',
+
+  exit( c ){
+
+    if (c && c.path && c && c.path.startsWith('/portfolio'))
+      return {
+        // padding: 0,
+        // margin: 0,
+      }
 
   },
 
   initialFp: {
     x: '10%',
     scale: .85,
-    // ['margin-right']: 'calc(100vw / 64 * 6)',
-    // 'padding': 'calc(100vw / 64 * 0.5)',
-    // ['padding-left']: 'calc(100vw / 64 * 4)',
 
     transition: {
       duration: 0,
     }
   },
+
   animateFp: {
     x: 0,
     scale: 1,
@@ -64,18 +59,16 @@ export const imgContainerVariant = {
 }
 
 export const innerVariant = {
-  initial: {
-    // ['max-height']: '400px',
-    // height: '100vh'
+  initial: { },
 
-  },
+  animate: {  },
 
-  animate: {
+  exit(c){
 
-  },
-  exit: {
-    // ['max-height']: 'auto',
-    height: '100vh'
+    if ( c && c.path && c.path.startsWith('/portfolio') )
+      return{
+      // height: '100vh'
+    }
   },
 
   initialFp: {

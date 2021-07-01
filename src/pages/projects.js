@@ -120,14 +120,16 @@ const Projects = ({ location }) => {
 
   const { moonLight, setMoonLight,
     fromCaseStudy, setFromCaseStudy } = useContext(AppStateContext);
+  const [exit, setExit] = useState(true)
+  const [exitVariant, setExitVariant] = useState('exit')
 
-  const [ initialVariant, setInitialVariant ] = useState( 'initial' );
+
 
 
   useEffect(() => {
     setMoonLight({ ...moonLight, showMoon: false })
 
-    console.log(controllers)
+    // console.log(controllers)
   }, [])
 
   return (
@@ -135,6 +137,8 @@ const Projects = ({ location }) => {
       <ReturnBtn
         key="return"
         onClick={() => {
+          // setExit(false)
+          // setExitVariant('null')
           window.history.back()
         }}
       />
@@ -170,8 +174,9 @@ const Projects = ({ location }) => {
 
           if (dist.isLast) return true
 
-          // if (dir === null)
-          //   return controllers.forEach(i => i('initialFp'))
+          if (dir === null && !fromCaseStudy)
+            return controllers.current.forEach(c => c.start('initialFp'))
+
         }}
         afterRender={({ index, isLast }) => {
           console.log('afterRender .------', index, isLast)
@@ -192,7 +197,7 @@ const Projects = ({ location }) => {
           }
         }}
         render={state => {
-          console.log('render -------- ',)
+          // console.log('render -------- ',)
 
           return (
             <>
@@ -205,7 +210,7 @@ const Projects = ({ location }) => {
                       variants={topVariant}
                       initial='initial'
                       animate={controllers.current[index]}
-                      exit="exit"
+                      exit={exitVariant}
                     >
                       <ProjectImage
                         reversed={true}
@@ -215,6 +220,7 @@ const Projects = ({ location }) => {
                         index={index}
                         preview={preview}
                         url={url}
+                        exit={exit}
                       />
 
                       <ProjectDescription

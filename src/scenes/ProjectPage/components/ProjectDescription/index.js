@@ -53,20 +53,30 @@ const ProjectDescription = ({ link, reversed, tags, title, controller, url, inde
       </OverflowWrapper>
 
       <Title variants={titleVariant} transition={transition}>
-        {Array.from(title).map((c, i) =>
-          c === ' ' ? (
-            ' '
-          ) : (
-            <motion.span
-              key={c + i}
-              className="letter"
-              variants={letterVariant}
-              transition={transition}
-            >
-              {c}
-            </motion.span>
-          )
-        )}
+        {
+          title.split(' ').map( (word, i) =>
+
+              <motion.span className='word'>
+
+                {
+                  Array.from(word).map((c, i) =>
+
+                      <motion.span
+                        key={c + i}
+                        className="letter"
+                        variants={letterVariant}
+                        transition={transition}
+                      >
+                        {c}
+                      </motion.span>
+
+                  )
+                }&#160;
+
+              </motion.span>
+
+            )
+        }
       </Title>
 
       <OverflowWrapper >
