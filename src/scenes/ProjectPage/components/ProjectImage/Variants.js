@@ -8,18 +8,23 @@ export const transition = {
 
 export const imgContainerVariant = {
 
-  initial: {
-    // x: '10%',
-    // scale: .85,
-    x: 0,
-    scale: 1,
+  initial(c){
+    return {
+      x: '10%',
+      scale: .85,
+      // x: 0,
+      // scale: 1,
+    }
   },
 
-  animate: {
-    x: 0,
-    scale: 1,
-    transition: {
-      duration: 0,
+  animate(c){
+    // console.log('topAnimate',c )
+    return {
+      x: 0,
+      scale: 1,
+      transition: {
+        duration: 0,
+      }
     }
   },
 
@@ -33,7 +38,7 @@ export const imgContainerVariant = {
 
   },
 
-  initialFp: {
+  initialFp: { // equal with initial
     x: '10%',
     scale: .85,
 
@@ -49,7 +54,7 @@ export const imgContainerVariant = {
       duration: 1.5,
       ease: [.33, 1, .68, 1],
       // ease:  [0.6, 0.01, 0, 0.9],
-      delay: .5
+      // delay: .5
     }
   },
   exitFp: {
@@ -103,10 +108,13 @@ export const imgOverVariants = {
 
 export const imgCover = {
   initial: {
-    x: '110%'
+    x: 0
   },
   animate: {
-    x: '110%'
+    x: '110%',
+    transition: {
+      duration: 0,
+    }
   },
 
   initialFp:{

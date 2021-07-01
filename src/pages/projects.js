@@ -7,7 +7,7 @@ import { Typography } from '@material-ui/core'
 import ReturnBtn from '../components/ReturnBtn'
 import ReactFullpage from '@fullpage/react-fullpage'
 import { AppStateContext } from '../contexts/AppStateContext'
-import { motion, useAnimation } from 'framer-motion'
+import {motion, useAnimation, useMotionValue} from 'framer-motion'
 import ProjectImage from '../scenes/ProjectPage/components/ProjectImage'
 import ProjectDescription from '../scenes/ProjectPage/components/ProjectDescription'
 import StackUsed from '../scenes/ProjectPage/components/StackUsed'
@@ -121,13 +121,22 @@ const Projects = ({ location }) => {
   const { moonLight, setMoonLight,
     fromCaseStudy, setFromCaseStudy } = useContext(AppStateContext);
   const [exit, setExit] = useState(true)
-  const [exitVariant, setExitVariant] = useState('exit')
+  const [initialVariant, setInitialVariant] = useState(['animate', 'initial'])
 
+  const moInitial = useMotionValue(fromCaseStudy ? ['initial', 'animate'] : ['animate', 'initial'])
 
 
 
   useEffect(() => {
     setMoonLight({ ...moonLight, showMoon: false })
+
+    console.log(location.state)
+    if ( fromCaseStudy )
+    {
+      setInitialVariant(['initial', 'animate'])
+      moInitial.set(['initial', 'animate'])
+      console.log('after--', moInitial.get())
+    }
 
     // console.log(controllers)
   }, [])
@@ -174,8 +183,8 @@ const Projects = ({ location }) => {
 
           if (dist.isLast) return true
 
-          if (dir === null && !fromCaseStudy)
-            return controllers.current.forEach(c => c.start('initialFp'))
+          // if (dir === null && !fromCaseStudy)
+          //   return controllers.current.forEach(c => c.start('initialFp'))
 
         }}
         afterRender={({ index, isLast }) => {
@@ -185,15 +194,18 @@ const Projects = ({ location }) => {
 
             // controllers.current[index].start('initial2')
             // controllers.current[index].start('animate')
-            controllers.current[index].start('animateFp')
+            //   .then(() => {
+                controllers.current[index].start('animateFp')
+              // })
+
             setFromCaseStudy(false)
           }
           else
           {
-            controllers.current[index].start('initialFp')
-              .then(() => {
+            // controllers.current[index].start('initialFp')
+            //   .then(() => {
                 controllers.current[index].start('animateFp')
-              })
+              // })
           }
         }}
         render={state => {
@@ -208,9 +220,9 @@ const Projects = ({ location }) => {
                   <div className="section" key={link}>
                     <ProjectContainerGrid
                       variants={topVariant}
-                      initial='initial'
+                      initial={moInitial.get()}
                       animate={controllers.current[index]}
-                      exit={exitVariant}
+                      exit={'exit'}
                     >
                       <ProjectImage
                         reversed={true}
