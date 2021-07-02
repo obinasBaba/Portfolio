@@ -234,7 +234,8 @@ const Projects = ({ location }) => {
                         index={index}
                         preview={preview}
                         url={url}
-                        exit={exit}
+                        exit={fromCaseStudy}
+                        items={partners}
                       />
 
                       <ProjectDescription
@@ -244,10 +245,12 @@ const Projects = ({ location }) => {
                         index={index}
                         tags={tags}
                         url={url}
+                        exit={fromCaseStudy}
                         active={ (state.state.initialized && state.state.destination.index)  === index }
                       />
 
-                      <StackUsed items={partners} reversed={true} />
+                      {/*<StackUsed items={partners} reversed={true} />*/}
+
                     </ProjectContainerGrid>
                   </div>
                 )

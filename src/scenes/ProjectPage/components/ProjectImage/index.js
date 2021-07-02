@@ -16,6 +16,7 @@ import {InnerWrapper, OverflowWrapper, ProjectImg} from './components'
 import {AppStateContext} from '../../../../contexts/AppStateContext'
 
 import img from './preview-111.jpg'
+import StackUsed from '../StackUsed'
 
 const ProjectImage = ({
   reversed,
@@ -25,7 +26,8 @@ const ProjectImage = ({
   title,
   index,
   url,
-  exit
+  exit,
+  items
 }) => {
   const { show } = useContext(AppStateContext)
 
@@ -70,10 +72,14 @@ const ProjectImage = ({
           className="effect"
           variants={effectVariant}
           transition={transition}
+          custom={{exit: exit}}
         >
           0{index + 1}
         </motion.div>
       </OverflowWrapper>
+
+      <StackUsed items={items}  custom={{exit: exit}} />
+
     </ProjectImg>
   )
 }

@@ -143,12 +143,15 @@ export const effectVariant = {
   initialFp: {
     y: '100%'
   },
-  animateFp: {
-    y: 0,
-    transition: {
-      duration: 1,
-      ease: [.65, 0, 0.35, 1],
-      delay: 1.2
+  animateFp(c){
+    console.log('effect animateFp', c)
+    return{
+      y: 0,
+      transition: {
+        duration: 1,
+        ease: [.65, 0, 0.35, 1],
+        delay: c.exit ? 0 : 1.2
+      }
     }
   },
   exitFp: {

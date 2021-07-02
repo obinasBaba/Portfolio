@@ -42,15 +42,15 @@ export const tagsVariants = {
     y: '120%',
   },
 
-  animateFp(b) {
+  animateFp(c) {
     setTimeout(() => {
-      b && b.start().reveal(900, 900)
+      c.baffle && c.baffle.start().reveal(900, 900)
     }, 900)
 
     return {
       y: '0%',
       transition: {
-        delay: 1,
+        delay: c.exit ? .5 : 1,
       },
     }
   },

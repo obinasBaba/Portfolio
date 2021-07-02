@@ -10,6 +10,14 @@ import {
 import { motion } from 'framer-motion'
 
 const StackList = styled(motion.ul)`
+  position: absolute;
+  left: 0;
+  top: 100%;
+  & > :not(:first-child){
+    ${spacing('ml', 3)};
+
+  }
+  
   grid-row: 2;
   display: flex;
   justify-content: space-between;
@@ -18,21 +26,20 @@ const StackList = styled(motion.ul)`
   padding: 0;
   overflow: hidden;
   
-  ${gridColWidth(3, 30)};
+  // ${gridColWidth(3, 30)};
   ${spacing('mt', 1)};
 
   ${mediumUp(css`
     grid-row: 2;
     display: flex;
 
-    ${({ reversed }) =>
-      reversed ? gridColWidth(40, 59) : gridColWidth(6, 20)};
+    // ${({ reversed }) => reversed ? gridColWidth(40, 59) : gridColWidth(6, 20)};
   `)};
   
   ${ largeUp( css`
-    display: none;
-    ${({ reversed }) =>
-            reversed ? gridColWidth(21, 36) : gridColWidth(6, 20)};
+    //display: none;
+    ${  gridColWidth(25, 36)} 
+    
   ` ) };
   
 
@@ -53,16 +60,26 @@ const transition = {
 }
 
 const listVariant = {
-  animateFp: {
-    transition: {
-      staggerChildren: .1,
-      delayChildren: 1.5,
+  animateFp(c){
+    return {
+      transition: {
+        staggerChildren: .1,
+        delayChildren: c.exit ? 0 : 1.2
+      }
     }
   },
   exitFb: {
     transition: {
-      staggerChildren: .1,
+      staggerChildren: 1,
       delayChildren: .5,
+    }
+  },
+
+  exit: {
+    transition: {
+      duration: .7,
+      staggerChildren: .06,
+      // delayChildren: .5,
     }
   }
 };
@@ -71,29 +88,40 @@ const itemVariant = {
   initialFp: {
     y: '130%'
   },
+
+  initial: {
+    y: '130%'
+  },
+
   animateFp: {
     y: 0
   },
   exitFp: {
     y: '130%'
+  },
+
+  exit:{
+    y: '130%',
+    transition: {
+      duration: .7
+    }
   }
 }
 
-const StackUsed = ({ reversed, items, controller }) => {
+const StackUsed = ({  items, custom }) => {
 
 
   return (
-    <StackList reversed={reversed}
-               variants={listVariant}
-               initial='initial'
-               animate={controller}
-    >
+    <StackList variants={listVariant} custom={custom}>
+
       {items.map(({ publicURL }) => {
         return (
           <motion.li transition={transition}
                      variants={itemVariant}
+                     custom={custom}
                      key={publicURL}>
-            <img src={publicURL} alt="stack logo"   />
+
+            <img src={publicURL} alt="stack logo" loading={'lazy'}   />
           </motion.li>
         )
       })}
