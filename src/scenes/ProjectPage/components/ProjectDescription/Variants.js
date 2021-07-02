@@ -1,5 +1,3 @@
-import baffle from 'baffle'
-
 export const transition = {
   duration: 1,
   ease: [0.6, 0.01, 0, 0.9],
@@ -18,6 +16,10 @@ export const containerVariant = {
 export const btnTxtVariants = {
   initial :{
     y: '120%',
+  },
+
+  animate: {
+    y: 0
   },
 
   initialFp: {
@@ -39,6 +41,7 @@ export const tagsVariants = {
   initialFp: {
     y: '120%',
   },
+
   animateFp(b) {
     setTimeout(() => {
       b && b.start().reveal(900, 900)
@@ -55,9 +58,23 @@ export const tagsVariants = {
   exitFp:{
     y: '120%',
   },
+
+  exit: {
+    y: '120%',
+    transition: {
+      duration: .7
+    }
+  }
 }
 
 export const titleVariant = {
+
+  animate: {
+    transition: {
+      staggerChildren: 0,
+      duration: 0,
+    },
+  },
 
   animateFp: {
     transition: {
@@ -79,6 +96,14 @@ export const titleVariant = {
 }
 
 export const letterVariant = {
+
+  animate: {
+    y: 0,
+    // transition: {
+    //   duration: 0,
+    // },
+  },
+
   initial: {
    y: '100%'
   },

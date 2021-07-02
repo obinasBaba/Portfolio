@@ -8,24 +8,17 @@ export const transition = {
 
 export const imgContainerVariant = {
 
-  initial(c){
-    return {
-      x: '10%',
-      scale: .85,
-      // x: 0,
-      // scale: 1,
-    }
+  initial: {
+    x: '10%',
+    scale: .85,
   },
 
-  animate(c){
-    // console.log('topAnimate',c )
-    return {
-      x: 0,
-      scale: 1,
-      transition: {
-        duration: 0,
-      }
-    }
+  animate: {
+    x: 0,
+    scale: 1,
+      // transition: {
+      //   duration: 0,
+      // }
   },
 
   exit( c ){
@@ -34,32 +27,39 @@ export const imgContainerVariant = {
       return {
         // padding: 0,
         // margin: 0,
+        // background: 'rgba(55,25,202,0)',
+        // transition: {
+        //   duration: 1
+        // }
       }
 
   },
 
   initialFp: { // equal with initial
-    x: '10%',
-    scale: .85,
+    // x: '10%',
+    // scale: .85,
+    //
+    // transition: {
+    //   duration: 0,
+    // }
+  },
 
-    transition: {
-      duration: 0,
+  animateFp(){
+    return{
+      x: 0,
+      scale: 1,
+      transition: {
+        duration: 1.5,
+        ease: [.33, 1, .68, 1],
+        // ease:  [0.6, 0.01, 0, 0.9],
+        delay: .5
+      }
     }
   },
 
-  animateFp: {
-    x: 0,
-    scale: 1,
-    transition: {
-      duration: 1.5,
-      ease: [.33, 1, .68, 1],
-      // ease:  [0.6, 0.01, 0, 0.9],
-      // delay: .5
-    }
-  },
   exitFp: {
     x: '10%',
-    scale: .85
+    scale: .83
   }
 }
 
@@ -77,10 +77,6 @@ export const innerVariant = {
   },
 
   initialFp: {
-    height: 400,
-    transition: {
-      duration: 0,
-    }
   },
 
 
@@ -140,7 +136,7 @@ export const effectVariant = {
   exit: {
     y: '100%',
     transition: {
-      duration: 1,
+      duration: .7,
     }
   },
 

@@ -1,17 +1,17 @@
-import React from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import {
+  BG,
   HeadlineContainer,
   ImageWrapper,
   InnerWrapper,
   MetaTexts,
+  Tags,
 } from './Components'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { motion } from 'framer-motion'
 import MotionBtn from '../../../components/MotionBtn'
-import { Lines } from '../../../scenes/HomePage/Hero/components'
-import styled from 'styled-components'
 
 import img from './preview-111.jpg'
+import { AppStateContext } from '../../../contexts/AppStateContext'
 
 const transition = {
   ease: [0.6, 0.01, 0, 0.9],
@@ -24,31 +24,51 @@ const headLine = {
 
 }
 
-const descTopVariant = {}
+const metaVariant = {
+  initial: {
+
+  },
+  animate: {
+    margin: 0,
+
+  },
+  exit: {
+    ['margin-left']: 'calc(100vw / 64 * 2)'
+  }
+}
 
 const titleVariant = {
-  exit: {
+  initial: {
 
+  },
+
+  animate: {
+    scale: 1.3,
+    y: -30,
+    originX: 0
+    
+  },
+
+  exit: {
+    scale: 1,
+    y: 0
   },
 }
 
 const btnVariant = {
   initial: {
-    opacity: 0,
   },
   animate: {
-    opacity: 1,
   },
 
   exit: {
-    opacity: 0,
   },
 }
 
 const imgVariant = {
   initial: {
     ['margin-right']: 'calc(100vw / 64 * 6)',
-    background: 'transparent',
+    // background: 'transparent',
     padding: 'calc(100vw / 64 * .5)',
     ['padding-left']: 'calc(100vw / 64 * 4)',
   },
@@ -61,7 +81,7 @@ const imgVariant = {
   },
   exit: {
     // height: '400px',
-    background: '#3719ca',
+    // background: '#3719ca',
     ['margin-right']: 'calc(100vw / 64 * 6)',
 
     padding: 'calc(100vw / 64 * .5)',
@@ -97,20 +117,22 @@ const bgVariant = {
   },
 }
 
-const BG = styled(motion.div)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #02021e;
 
-  //border: thick solid red;
-`
 
 
 const Headline = ({ subTitle, title, about, media }) => {
   const { role, context, period } = about
+
+  let t = 'Digital Creative Agency.'
+
+  const metaRef = useRef(null);
+  const {titleRect, setTitleRect} = useContext(AppStateContext)
+
+
+  useEffect(() => {
+    console.log( titleRect )
+
+  }, [])
 
   return (
     <HeadlineContainer
@@ -123,18 +145,33 @@ const Headline = ({ subTitle, title, about, media }) => {
     >
       <BG variants={bgVariant} transition={transition} />
 
-      <MetaTexts variants={descTopVariant} transition={transition}>
-        <motion.h1 className="pro-title" variants={titleVariant} transition={transition}>
-          Digital Creative Agency.
+      <MetaTexts layout variants={metaVariant} transition={transition} ref={metaRef}>
+
+        <Tags variant={'subtitle2'}> Analytics, UX, UI, Icons, Front-end  </Tags>
+
+        <motion.h1 layout className="pro-title" variants={titleVariant} transition={transition}>
+          {
+            t.split(' ').map( (word, i) =>
+
+              <motion.span className='word'>
+
+                {
+                  word
+                }&#160;
+              </motion.span>
+
+            )
+          }
         </motion.h1>
 
-        <Lines />
+        {/*<Lines />*/}
 
-        <h2 className="type">WebApp</h2>
+
 
         <motion.div variants={btnVariant} transition={transition}>
           <MotionBtn margin={false} text="Visit Site" />
         </motion.div>
+
       </MetaTexts>
 
       <ImageWrapper transition={transition} variants={imgVariant}>

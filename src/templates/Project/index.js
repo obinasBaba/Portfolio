@@ -82,7 +82,8 @@ const Project = ({ pageContext, location }) => {
 
       {/*<NextProject />*/}
 
-      <Link to={location.state.path} state={{ path: location.pathname }} >
+      <Link to={location.state !== null && location.state.path || '/projects'}
+            state={{ path: location.pathname }} >
         <ReturnBtn key='return'  />
       </Link>
 

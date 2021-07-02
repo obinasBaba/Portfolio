@@ -17,7 +17,12 @@ const AppStateProvider = ( {children} ) => {
 
   const [fromCaseStudy, setFromCaseStudy] = useState(false)
 
-
+  const [titleRect, setTitleRect] = useState({
+    x: 0,
+    y: 0,
+    width: 0,
+    height: 0,
+  })
 
   return (
     <AppStateContext.Provider value={{
@@ -30,7 +35,9 @@ const AppStateProvider = ( {children} ) => {
       setHeaderGradient,
       isContactOpen,
       setContactModal,
-      fromCaseStudy, setFromCaseStudy
+      fromCaseStudy, setFromCaseStudy,
+      titleRect, setTitleRect
+
     }} >
 
       {children}

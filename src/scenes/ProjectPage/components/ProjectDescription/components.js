@@ -29,8 +29,7 @@ export const ProjectDesc = styled(motion.div)`
   ${mediumUp(css`
     grid-row: 1;
     //border: thin solid red;
-    ${({ reversed }) =>
-  reversed ? gridColWidth(4, 28) : gridColWidth(39, 58)};
+    gridColWidth(4, 28)
     ${spacing('pb', 0)};
   `)};
 
@@ -41,6 +40,7 @@ export const ProjectDesc = styled(motion.div)`
 
   & > :last-child { //motion-btn
     ${spacing('mt', 4.5)};
+  }
 `
 
 export const Tags = styled(Typography)`
@@ -66,8 +66,11 @@ export const Title = styled(motion.h1)`
   //border: thin solid lightblue;
   letter-spacing: 2.5px;
   //overflow: hidden;
-  
+  font-family: "Poppins Black",serif;
+
+
   overflow-wrap: break-word;
+  //word-spacing: 2px;
   
   .word{
     display: inline-block;
@@ -83,10 +86,7 @@ export const Title = styled(motion.h1)`
     font-family: "Poppins Black",serif;
     display: inline-block;
     //border: thin solid tomato;
-  }
-  
-  .wihtespace{
-    opacity: 0;
+    
   }
 `
 

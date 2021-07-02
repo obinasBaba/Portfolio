@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react'
+import React, {useContext, useEffect, useRef} from 'react'
 import MotionBtn from '../../../../components/MotionBtn'
 import { motion } from 'framer-motion'
 import {
@@ -11,15 +11,33 @@ import {
 } from './Variants'
 import { OverflowWrapper, ProjectDesc, Tags, Title } from './components'
 import baffle from 'baffle'
+import {AppStateContext} from '../../../../contexts/AppStateContext'
 
-const ProjectDescription = ({ link, reversed, tags, title, controller, url, index, location }) => {
+const ProjectDescription = ({ link, reversed, tags, title, url, index, location, active }) => {
 
   const baf = useRef(null)
+  const titleRef = useRef(null)
+  const {titleRect, setTitleRect} = useContext(AppStateContext)
 
-  let b = baffle(document.querySelectorAll(`.baffled-${index}`), {
-    characters: '▒█▓▒░<>/',
-  });
+  /* let b = baffle(document.querySelectorAll(`.baffled-${index}`), {
+     characters: '▒█▓▒░<>/',
+   });*/
 
+
+  useEffect(() => {
+
+    // console.log(index, active)
+    if ( active )
+    {
+      // let r = titleRef.current.getBoundingClientRect();
+      // setTitleRect({ ...titleRect, x: r.x, y: (r.y - window.scrollY), width: r.width, height: r.height })
+    }
+
+    // console.log('scrolled - ',titleRef.current.getBoundingClientRect().y, active, index)
+
+    }, [active])
+  
+  
 
 
   useEffect(() => {
@@ -36,12 +54,6 @@ const ProjectDescription = ({ link, reversed, tags, title, controller, url, inde
     <ProjectDesc
       reversed={reversed}
       variants={containerVariant}
-      // animate={controller}
-      // initial="initial"
-      // initial={false}
-
-      // exit="exit"
-
     >
       <OverflowWrapper>
         <motion.div variants={tagsVariants} custom={baf.current} transition={transition} >
@@ -52,7 +64,7 @@ const ProjectDescription = ({ link, reversed, tags, title, controller, url, inde
         </motion.div>
       </OverflowWrapper>
 
-      <Title variants={titleVariant} transition={transition}>
+      <Title variants={titleVariant} transition={transition} ref={titleRef}>
         {
           title.split(' ').map( (word, i) =>
 

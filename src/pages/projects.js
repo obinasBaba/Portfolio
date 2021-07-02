@@ -47,6 +47,7 @@ const ProjectContainerGrid = styled(motion.div)`
   `)};
 
   align-content: center;
+  align-items: center;
   position: relative;
   min-height: 100vh;
 `
@@ -196,6 +197,7 @@ const Projects = ({ location }) => {
             // controllers.current[index].start('animate')
             //   .then(() => {
                 controllers.current[index].start('animateFp')
+            controllers.current.forEach((c, i) => i !== index && c.start('initial'))
               // })
 
             setFromCaseStudy(false)
@@ -209,7 +211,7 @@ const Projects = ({ location }) => {
           }
         }}
         render={state => {
-          // console.log('render -------- ',)
+          // console.log('render -------- ', state)
 
           return (
             <>
@@ -242,6 +244,7 @@ const Projects = ({ location }) => {
                         index={index}
                         tags={tags}
                         url={url}
+                        active={ (state.state.initialized && state.state.destination.index)  === index }
                       />
 
                       <StackUsed items={partners} reversed={true} />

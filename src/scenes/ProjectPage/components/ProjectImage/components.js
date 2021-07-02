@@ -33,7 +33,7 @@ export const ProjectImg = styled(motion.div)`
 
   ${mediumUp(css`
     grid-row: 1;
-    ${gridColWidth(21, 65)};
+    ${gridColWidth(25, 65)};
     margin-right: calc(100vw / 64 * 6); ;
   `)};
 `
@@ -47,9 +47,8 @@ export const InnerWrapper = styled(motion.div)`
   overflow: hidden;
   display: flex;
   align-items: center;
-  max-height: 100vh;
-  height: 400px;
-  //border: thin solid red;
+  max-height: 400px;
+  //height: 400px;
 
   img {
     width: 100%;
