@@ -14,6 +14,8 @@ import two from './img/1.jpg'
 import three from './img/4.jpg'
 import four from './img/5.jpg'
 import {useIntersection} from 'react-use'
+import {distance, getMousePos, lerp, track} from './util'
+import Item from './components/Item'
 
 const svgVariant = {}
 
@@ -28,7 +30,7 @@ const imgVariants = {
   hover(c){
     console.log('hover', c)
     return{
-      opacity: c.hover() ? 1 : 0,
+      opacity: c.hovering() ? 1 : 0,
     }
   },
 
@@ -79,9 +81,6 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
     threshold: 1,
   });
 
-  // let winsize;
-  // const calcWinsize = () => winsize = {width: window.innerWidth, height: window.innerHeight};
-  // calcWinsize();
 
   const titles = ['Watchbox', 'Insurance Landing-page', 'Following Filmore', 'Kayam' ]
   const svgController = useAnimation();
@@ -107,21 +106,6 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
     track();
 
     }, [intersection])
-
-  const lerp = (a,b,n) => (1 - n) * a + n * b;
-
-  const distance = (x1,x2,y1,y2) => {
-    let a = x1 - x2;
-    let b = y1 - y2;
-    return Math.hypot(a,b);
-  };
-
-
-  const getMousePos = (e) => {
-
-    return { x : e.clientX, y : e.clientY }
-  }
-
 
   const track = () => {
     lastMousePos.current.translation.x =
@@ -156,8 +140,9 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
     feDisplacementMapEl.current.scale.baseVal = dmScale.current;
 
     // if ( intersection && intersection.isIntersecting )
-      requestAnimationFrame(() => track());
+    requestAnimationFrame(() => track());
   }
+
 
   return (
     <>
@@ -179,71 +164,44 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
                                filterUnits="userSpaceOnUse" />
           </filter>
           <g filter="url(#distortionFilter)">
-            <motion.image custom={{ hover: () =>  hoverIndex.get() === 0 }}
+            <motion.image custom={{ hovering: () =>  hoverIndex.get() === 0 }}
                           variants={imgVariants}  className="distort__img" x="50" y="50" xlinkHref={one} height="350" width="250"  />
 
-            <motion.image custom={{ hover: () => hoverIndex.get() === 1 }}
+            <motion.image custom={{ hovering: () => hoverIndex.get() === 1 }}
                           variants={imgVariants} className="distort__img" x="50" y="50" xlinkHref={two} height="350" width="250" />
 
-            <motion.image custom={{ hover: () => hoverIndex.get() === 2 }}
+            <motion.image custom={{ hovering: () => hoverIndex.get() === 2 }}
                           variants={imgVariants} className="distort__img" x="50" y="50" xlinkHref={three} height="350" width="250" />
 
-            <motion.image custom={{ hover: () => hoverIndex.get() === 3 }}
+            <motion.image custom={{ hovering: () => hoverIndex.get() === 3 }}
                           variants={imgVariants} className="distort__img" x="50" y="50" xlinkHref={four} height="350" width="250" />
           </g>
         </motion.svg>
 
 
-        <Title variant={'h1'} align="center">
-          And  others
-        </Title>
+
 
         <List variants={{}}
               initial='initial'
               animate='animate'
               exit='exit'
-              whileHover={'hover'}
+              whileHover='hover'
               onHoverEnd={(  ) => {
-
                 svgController.start('hoverEnd')
               }}
         >
 
-          <ListItem variants={listItemVariant} custom={0}
-                    onHoverStart={(  ) => {
-                      hoverIndex.set(0)
-                      svgController.start('hover')
-                    }}
-          >
-            <motion.h1 variant={'h2'} hover > Most </motion.h1>
-          </ListItem>
+          {
+            titles.map((word, index) => {
+              let onHoverStart = () => {
+                hoverIndex.set(index)
+                svgController.start('hover')
+              }
 
-          <ListItem variants={listItemVariant} custom={0} animate={itemController}
-                    onHoverStart={(  ) => {
-                      hoverIndex.set(1)
-                      svgController.start('hover')
-                    }}
-          >
-            <motion.h1 variant={'h2'}> Recent </motion.h1>
-          </ListItem>
-
-          <ListItem variants={listItemVariant} custom={0} animate={itemController}
-                    onHoverStart={(  ) => {
-                      hoverIndex.set(2)
-                      svgController.start('hover')
-                    }}
-          >
-            <motion.h1 variant={'h2'}> Most </motion.h1>
-          </ListItem>
-
-          <ListItem variants={listItemVariant} custom={0} animate={itemController}
-                    onHoverStart={(  ) => {
-                      hoverIndex.set(3)
-                      svgController.start('hover')
-                    }}
-          >
-            <motion.h1 variant={'h2'}> Bruises </motion.h1>
-          </ListItem>
+              return <Item title={word} onHoverStart={onHoverStart}
+                           customData={{ hovering: () => hoverIndex.get() === index }}  />
+            })
+          }
 
         </List>
       </OthersContainer>

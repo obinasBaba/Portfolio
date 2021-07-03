@@ -125,6 +125,7 @@ const Projects = ({ location }) => {
   const [initialVariant, setInitialVariant] = useState(['animate', 'initial'])
 
   const moInitial = useMotionValue(fromCaseStudy ? ['initial', 'animate'] : ['animate', 'initial'])
+  const moDir = useMotionValue('');
 
   const [activeIndex, setActiveIndex ]= useState(0);
 
@@ -172,6 +173,7 @@ const Projects = ({ location }) => {
 
         onLeave={(origin, dist, dir) => {
           // console.log('onLeave ----')
+          moDir.set(dir)
           setActiveIndex(dist.index)
 
           if (dist.isLast) {
@@ -231,6 +233,7 @@ const Projects = ({ location }) => {
                         url={url}
                         exit={fromCaseStudy}
                         items={partners}
+                        custom={{dir: moDir.get()}}
                       />
 
                       <ProjectDescription

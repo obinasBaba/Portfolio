@@ -27,7 +27,8 @@ const ProjectImage = ({
   index,
   url,
   exit,
-  items
+  items,
+  custom
 }) => {
   const { show } = useContext(AppStateContext)
 
@@ -37,7 +38,7 @@ const ProjectImage = ({
       reversed={reversed}
       variants={imgContainerVariant}
       transition={transition}
-      // custom={{exit: exit}}
+      custom={custom}
     >
       <Link to={link} state={{path: url}}>
 

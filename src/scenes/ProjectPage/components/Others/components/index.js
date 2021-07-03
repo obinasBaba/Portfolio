@@ -76,6 +76,9 @@ export const ListItem = styled( motion.li )`
   h1{
     ${ text(2.4) };
 
+    span{
+      display: inline-block;
+    }
   }
 
 `

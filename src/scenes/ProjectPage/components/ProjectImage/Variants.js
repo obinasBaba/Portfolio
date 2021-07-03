@@ -44,22 +44,30 @@ export const imgContainerVariant = {
     // }
   },
 
-  animateFp(){
+  animateFp(c){
     return{
       x: 0,
       scale: 1,
+      skewX: [null, c.dir === 'up' ? -3 : 3  , 0],
       transition: {
-        duration: 1.5,
-        ease: [.33, 1, .68, 1],
-        // ease:  [0.6, 0.01, 0, 0.9],
-        delay: .5
+        skewX: {
+          duration: 1,
+          times: [0, .5, 1]
+        },
+        default: {
+          duration: 1.5,
+          ease: [.33, 1, .68, 1],
+          // ease:  [0.6, 0.01, 0, 0.9],
+          delay: .5
+        }
       }
     }
   },
 
   exitFp: {
     x: '10%',
-    scale: .83
+    scale: .83,
+
   }
 }
 
@@ -126,7 +134,6 @@ export const imgCover = {
     x: 0,
   }
 };
-
 
 export const effectVariant = {
   initial: {
