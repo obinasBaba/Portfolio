@@ -15,6 +15,20 @@
 }
 
 @font-face {
+    font-family: 'raisonne';
+    src: local('raisonne'), local('raisonne'),
+    url('../assets/fonts/Raisonne/raisonne.eot'),
+    url('../assets/fonts/Raisonne/raisonne.eot?#iefix') format('embedded-opentype'),
+    url('../assets/fonts/Raisonne/raisonne.woff2') format('woff2'),
+    url('../assets/fonts/Raisonne/raisonne.woff') format('woff'),
+    url('../assets/fonts/Raisonne/raisonne.ttf') format('truetype'),
+    url('../assets/fonts/Raisonne/raisonne.svg#raisonne') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
     font-family: 'Poppins Thin';
     src: local('Poppins Thin'), local('PoppinsThin'),
     url('../assets/fonts/Poppins/poppins-v15-latin-100.woff2') format('woff2'),

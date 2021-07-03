@@ -144,7 +144,7 @@ export const effectVariant = {
     y: '100%'
   },
   animateFp(c){
-    console.log('effect animateFp', c)
+    // console.log('effect animateFp', c)
     return{
       y: 0,
       transition: {

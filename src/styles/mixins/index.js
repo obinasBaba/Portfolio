@@ -60,6 +60,12 @@ export const spacing = (key, value) => {
         margin-top: calc(${temp}rem * var(--indent));
         margin-bottom: calc(${temp}rem * var(--indent));
       `
+  case 'mh':
+    temp = (value * 10) / 16
+    return css`
+        margin-right: calc(${temp}rem * var(--indent));
+        margin-left: calc(${temp}rem * var(--indent));
+      `
 
     case 'pt':
       propKey = 'padding-top'

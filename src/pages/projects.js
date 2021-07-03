@@ -126,6 +126,8 @@ const Projects = ({ location }) => {
 
   const moInitial = useMotionValue(fromCaseStudy ? ['initial', 'animate'] : ['animate', 'initial'])
 
+  const [activeIndex, setActiveIndex ]= useState(0);
+
 
 
   useEffect(() => {
@@ -169,7 +171,8 @@ const Projects = ({ location }) => {
         fitToSection={true}
 
         onLeave={(origin, dist, dir) => {
-          console.log('onLeave ----')
+          // console.log('onLeave ----')
+          setActiveIndex(dist.index)
 
           if (dist.isLast) {
             controllers.current[origin.index].start('exitFp')
@@ -180,7 +183,7 @@ const Projects = ({ location }) => {
           controllers.current[dist.index].start('animateFp')
         }}
         afterLoad={(origin, dist, dir) => {
-          console.log('afterLoad ----', dist.index, dir)
+          // console.log('afterLoad ----', dist.index, dir)
 
           if (dist.isLast) return true
 
@@ -189,25 +192,17 @@ const Projects = ({ location }) => {
 
         }}
         afterRender={({ index, isLast }) => {
-          console.log('afterRender .------', index, isLast)
+          // console.log('afterRender .------', index, isLast)
+          setActiveIndex(index)
+
+          controllers.current[index].start('animateFp')
+
 
           if ( fromCaseStudy ){
 
-            // controllers.current[index].start('initial2')
-            // controllers.current[index].start('animate')
-            //   .then(() => {
-                controllers.current[index].start('animateFp')
             controllers.current.forEach((c, i) => i !== index && c.start('initial'))
-              // })
 
             setFromCaseStudy(false)
-          }
-          else
-          {
-            // controllers.current[index].start('initialFp')
-            //   .then(() => {
-                controllers.current[index].start('animateFp')
-              // })
           }
         }}
         render={state => {
@@ -257,7 +252,7 @@ const Projects = ({ location }) => {
               })}
 
               <div className="section">
-                <Others {...othersAssets} />
+                <Others {...othersAssets} active={ activeIndex } />
               </div>
             </>
           )
