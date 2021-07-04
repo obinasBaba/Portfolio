@@ -45,15 +45,17 @@ export const imgContainerVariant = {
   },
 
   animateFp(c){
+
+
     return{
       x: 0,
       scale: 1,
-      skewX: [null, c.dir === 'up' ? -3 : 3  , 0],
+      // skewX: [null, c.dir === null ? 0 : c.dir === 'up' ? -3 : 3  , 0],
       transition: {
-        skewX: {
-          duration: 1,
-          times: [0, .5, 1]
-        },
+        // skewX: {
+        //   duration: 1,
+        //   times: [0, .5, 1]
+        // },
         default: {
           duration: 1.5,
           ease: [.33, 1, .68, 1],

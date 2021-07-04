@@ -8,16 +8,17 @@ const ExperimentsContainer = styled.div`
   max-width: 100%;
   overflow: hidden;
   
-  // ${ spacing( 'mt', 20 ) };
+  ${ spacing( 'mt', 20 ) };
   text-align: center;
   position: relative;
+  
 `
 
 const Experiments = () => {
   return (
     <ExperimentsContainer>
 
-      <Headline title={' Web is fun'} subtitle={'Experiments & Open Source'}  mb={13} />
+      <Headline title={' Web is fun'} subtitle={'Experiments & Open Source'}  mb={4} />
 
       <ExperimentTrack />
 

@@ -1,23 +1,15 @@
-import React, {useEffect, useRef} from 'react'
-import { Link } from 'gatsby'
-import {
-  List,
-  ListItem,
-  OthersContainer,
-  Title,
-} from './components'
-import { Typography } from '@material-ui/core'
-import {motionValue, motion, useAnimation, useMotionValue} from 'framer-motion'
+import React, { useEffect, useRef } from 'react'
+import { List, OthersContainer, Title } from './components'
+import { motion, useAnimation, useMotionValue } from 'framer-motion'
 
 import one from './img/2.jpg'
 import two from './img/1.jpg'
 import three from './img/4.jpg'
 import four from './img/5.jpg'
-import {useIntersection} from 'react-use'
-import {distance, getMousePos, lerp, track} from './util'
+import { useIntersection } from 'react-use'
+import { distance, getMousePos, lerp } from './util'
 import Item from './components/Item'
 
-const svgVariant = {}
 
 const imgVariants = {
   initial: {
@@ -28,7 +20,6 @@ const imgVariants = {
   exit: {},
 
   hover(c){
-    console.log('hover', c)
     return{
       opacity: c.hovering() ? 1 : 0,
     }
@@ -43,28 +34,11 @@ const imgVariants = {
   }
 }
 
-const listItemVariant = {
-  initial: {},
-  animate: {},
-  exit: {},
-  hover(c){
-
-  },
-  hoverEnd: {}
-}
-
-const listVariant = {
-  initial: {},
-  animate: {},
-  exit: {},
-  hover: {},
-  hoverEnd: {}
-}
-
 
 
 const Others = ({ auth, kklLuzern, udemy, active }) => {
 
+  const cancelId = useRef(null)
   const dmScale = useRef( 0);
   const current = useRef( -1);
   const containerRef = useRef(null)
@@ -82,28 +56,34 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
   });
 
 
-  const titles = ['Watchbox', 'Insurance Landing-page', 'Following Filmore', 'Kayam' ]
+  const titles = ['Watchbox', 'Landing-page', 'Following Filmore', 'Kayam' ]
   const svgController = useAnimation();
-  const itemController = useAnimation();
   const hoverIndex = useMotionValue(-1);
 
+  useEffect(() => {
+    feDisplacementMapEl.current = svgRef.current.querySelector('feDisplacementMap')
+    svgRect.current = svgRef.current.getBoundingClientRect()
 
+    }, [])
+  
 
   useEffect(() => {
 
     // window.addEventListener('resize', calcWinsize);
 
-    feDisplacementMapEl.current = svgRef.current.querySelector('feDisplacementMap')
-    svgRect.current = svgRef.current.getBoundingClientRect()
-
-    window.addEventListener('mousemove', ev => {
-
-
+    let trackMousePos = ev => {
       if ( mousePos.current )
         mousePos.current = getMousePos(ev)
-    });
+    }
 
-    track();
+    window.addEventListener('mousemove', trackMousePos);
+
+    if ( intersection && !intersection.isIntersecting )
+      cancelAnimationFrame(cancelId.current)
+    else
+      track();
+
+    return () => window.removeEventListener('mousemove', trackMousePos)
 
     }, [intersection])
 
@@ -123,7 +103,7 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
     // console.log('x:', svgRef.current.getBoundingClientRect().x, 'y: ',
     //   svgRef.current.getBoundingClientRect().y)
 
-
+    console.log('running : ', cancelId.current)
 
     // Scale goes from 0 to 100 for mouseDistance values between 0 to 100
     lastMousePos.current.displacement.x =
@@ -140,7 +120,7 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
     feDisplacementMapEl.current.scale.baseVal = dmScale.current;
 
     // if ( intersection && intersection.isIntersecting )
-    requestAnimationFrame(() => track());
+    cancelId.current = requestAnimationFrame(() => track());
   }
 
 
@@ -178,7 +158,9 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
           </g>
         </motion.svg>
 
-
+        <Title variant='h2'>
+          And Others
+        </Title>
 
 
         <List variants={{}}

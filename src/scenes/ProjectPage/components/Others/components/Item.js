@@ -1,6 +1,9 @@
 import React from 'react'
-import {ListItem} from './index'
-import {motion, useAnimation} from 'framer-motion'
+import { ListItem } from './index'
+import { useAnimation } from 'framer-motion'
+import styled from 'styled-components'
+import { text } from '../../../../../styles/mixins'
+import { GradientText } from '../../../../../components/GrdientText'
 
 const itemVariant = {
   initial: {},
@@ -40,6 +43,21 @@ const letterVariant = {
   hoverEnd: {}
 };
 
+const Tags = styled.div`
+  display: flex;
+  align-items: center;
+  //flex-flow: column;
+  gap: 1rem;
+  ${ text(.7) };
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 0;
+`
+
+const DescTxt = styled.p`
+  //font-weight: 300;
+`
+
 const Item = ( { onHoverStart, title, customData} ) => {
 
   const itemController = useAnimation();
@@ -49,22 +67,24 @@ const Item = ( { onHoverStart, title, customData} ) => {
     <ListItem variants={itemVariant}
               animate={itemController}
               onHoverStart={() => {
-
                 onHoverStart();
-
-                if ( customData.hovering() )
-                  itemController.start('hover')
-
               }}
     >
-      <motion.h1 variants={titleVariant} >
-        {
-          Array.from(title)
-            .map((letter, index) =>
-              <motion.span variants={letterVariant}>{letter}</motion.span>
-            )
-        }
-      </motion.h1>
+      <GradientText variant='h3' className='title' >
+        {title}
+      </GradientText>
+      <Tags>
+        <p>Identity</p>
+        <p>Cms</p>
+        <p>Prototyping</p>
+        <p>System</p>
+      </Tags>
+
+      <DescTxt>
+        a fairly unique movie streaming service that intends to cover the niche of rather
+        uncoventional treasures.
+      </DescTxt>
+
     </ListItem>
   )
 }

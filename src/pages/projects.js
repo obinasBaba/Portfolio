@@ -1,56 +1,24 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React, {useContext, useEffect, useRef, useState} from 'react'
-import styled, { css } from 'styled-components'
-import { gridify, heightWidth, smallUp, spacing } from '../styles/mixins'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import styled from 'styled-components'
+import { heightWidth } from '../styles/mixins'
 import { Typography } from '@material-ui/core'
 import ReturnBtn from '../components/ReturnBtn'
 import ReactFullpage from '@fullpage/react-fullpage'
 import { AppStateContext } from '../contexts/AppStateContext'
-import {motion, useAnimation, useMotionValue} from 'framer-motion'
-import ProjectImage from '../scenes/ProjectPage/components/ProjectImage'
-import ProjectDescription from '../scenes/ProjectPage/components/ProjectDescription'
-import StackUsed from '../scenes/ProjectPage/components/StackUsed'
-import Others from '../scenes/ProjectPage/components/Others'
+import { useAnimation, useMotionValue } from 'framer-motion'
 import useProjectsAssets from '../hooks/queries/useProjectsAssets'
-
-const Scroll = styled.div`
-  position: fixed;
-  cursor: pointer;
-  left: 17px;
-  bottom: 2%;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-items: center;
-  grid-gap: 0.6rem;
-
-  // ${heightWidth('height', 6)};
-  // ${heightWidth('width', 6)};
-`
-
-const ScrollTxt = styled(Typography)`
-  font-weight: 300;
-  line-height: 1.6em;
-  letter-spacing: 3px;
-  color: #b3afaf;
-  z-index: 999999;
-`
-
-const ProjectContainerGrid = styled(motion.div)`
-  ${gridify};
-  // ${spacing('pt', 2)};
-
-  ${smallUp(css`
-    // ${spacing('pt', 4)};
-    // ${spacing('p', 4)};
-  `)};
-
-  align-content: center;
-  align-items: center;
-  position: relative;
-  min-height: 100vh;
-`
+import NavDots from '../scenes/ProjectPage/components/NavDots'
+import { motion } from 'framer-motion'
+import {
+  Others,
+  ProjectContainerGrid,
+  ProjectDescription,
+  ProjectImage,
+} from '../scenes/ProjectPage'
+import ScrollDown from '../scenes/ProjectPage/components/SideBarTools/ScrollDown'
+import SideBarTools from '../scenes/ProjectPage/components/SideBarTools'
 
 const topVariant = {}
 
@@ -116,45 +84,43 @@ const Projects = ({ location }) => {
     },
   ]
 
-  const controllers = useRef([useAnimation(), useAnimation(), useAnimation(), useAnimation()])
+  const controllers = useRef([
+    useAnimation(),
+    useAnimation(),
+    useAnimation(),
+    useAnimation(),
+  ])
+  const setActiveNavDot = useRef(null)
 
+  const {
+    moonLight,
+    setMoonLight,
+    fromCaseStudy,
+    setFromCaseStudy,
+  } = useContext(AppStateContext)
 
-  const { moonLight, setMoonLight,
-    fromCaseStudy, setFromCaseStudy } = useContext(AppStateContext);
-  const [exit, setExit] = useState(true)
-  const [initialVariant, setInitialVariant] = useState(['animate', 'initial'])
+  const moInitial = useMotionValue(
+    fromCaseStudy ? ['initial', 'animate'] : ['animate', 'initial']
+  )
+  const moDir = useMotionValue('')
 
-  const moInitial = useMotionValue(fromCaseStudy ? ['initial', 'animate'] : ['animate', 'initial'])
-  const moDir = useMotionValue('');
-
-  const [activeIndex, setActiveIndex ]= useState(0);
-
-
+  const [activeIndex, setActiveIndex] = useState(0)
 
   useEffect(() => {
     setMoonLight({ ...moonLight, showMoon: false })
 
-    console.log(location.state)
-    if ( fromCaseStudy )
-    {
-      setInitialVariant(['initial', 'animate'])
-      moInitial.set(['initial', 'animate'])
-      console.log('after--', moInitial.get())
-    }
-
-    // console.log(controllers)
+    // console.log(location.state)
+    console.log(activeIndex)
   }, [])
 
   return (
     <>
-      <ReturnBtn
-        key="return"
-        onClick={() => {
-          // setExit(false)
-          // setExitVariant('null')
-          window.history.back()
-        }}
-      />
+
+      <ReturnBtn onClick={() => window.history.back()} />
+
+      <NavDots ref={setActiveNavDot}  />
+
+      <ScrollDown activeIndex={activeIndex}  />
 
       <ReactFullpage
         // key={'fullpage'}
@@ -164,15 +130,18 @@ const Projects = ({ location }) => {
         animateAnchor={false}
         setLockAnchors={false}
         setRecordHistory={false}
-        navigation={true}
-        navigationPosition="left"
+        // navigation={true}
+        // navigationPosition="left"
         dragAnAndMove={true}
         scrollBar={false}
         autoScrolling={true}
         fitToSection={true}
-
         onLeave={(origin, dist, dir) => {
           // console.log('onLeave ----')
+
+          if (setActiveNavDot.current && setActiveNavDot.current.setAnchors)
+            setActiveNavDot.current.setAnchors(dist.index)
+
           moDir.set(dir)
           setActiveIndex(dist.index)
 
@@ -187,22 +156,25 @@ const Projects = ({ location }) => {
         afterLoad={(origin, dist, dir) => {
           // console.log('afterLoad ----', dist.index, dir)
 
+          if (dir === null && !fromCaseStudy)
+            controllers.current.forEach((c, i) => c.start('initial'))
+
           if (dist.isLast) return true
 
           // if (dir === null && !fromCaseStudy)
           //   return controllers.current.forEach(c => c.start('initialFp'))
-
         }}
         afterRender={({ index, isLast }) => {
           // console.log('afterRender .------', index, isLast)
+          // setAnchors.current.setAnchors(index)
           setActiveIndex(index)
 
           controllers.current[index].start('animateFp')
 
-
-          if ( fromCaseStudy ){
-
-            controllers.current.forEach((c, i) => i !== index && c.start('initial'))
+          if (fromCaseStudy) {
+            controllers.current.forEach(
+              (c, i) => i !== index && c.start('initial')
+            )
 
             setFromCaseStudy(false)
           }
@@ -233,7 +205,7 @@ const Projects = ({ location }) => {
                         url={url}
                         exit={fromCaseStudy}
                         items={partners}
-                        custom={{dir: moDir.get()}}
+                        custom={{ dir: moDir.get() }}
                       />
 
                       <ProjectDescription
@@ -244,18 +216,20 @@ const Projects = ({ location }) => {
                         tags={tags}
                         url={url}
                         exit={fromCaseStudy}
-                        active={ (state.state.initialized && state.state.destination.index)  === index }
+                        active={
+                          (state.state.initialized &&
+                            state.state.destination.index) === index
+                        }
                       />
 
                       {/*<StackUsed items={partners} reversed={true} />*/}
-
                     </ProjectContainerGrid>
                   </div>
                 )
               })}
 
               <div className="section">
-                <Others {...othersAssets} active={ activeIndex } />
+                <Others {...othersAssets} active={activeIndex} />
               </div>
             </>
           )

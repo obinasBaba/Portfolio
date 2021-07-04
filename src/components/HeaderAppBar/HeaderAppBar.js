@@ -100,7 +100,7 @@ function HeaderAppBar({}) {
       </AnimatePresence>
 
       <HideOnScroll>
-        <NavContainer isGradient={isHeaderGradient} isWhite={isWhite}>
+        <NavContainer isGradient={false} isWhite={isWhite}>
           <ToolBarWrapper>
             <LogoAndSocial isWhite={isWhite} />
 

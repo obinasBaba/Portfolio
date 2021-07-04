@@ -7,8 +7,8 @@ import { motion } from 'framer-motion'
 const StyledContactBtn = styled.span`
   z-index: 50;
   display: none;
-  font-family: var(--sofia-soft);
-  font-weight: 300;
+  //font-family: var(--sofia-soft);
+  font-weight: lighter;
   transition: all 0.3s;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 100px;
@@ -77,7 +77,7 @@ const ContactBtn = ({ isWhite, setContactModal, isContactOpen }) => {
     {/*<Link className={'whiteBtn'} to="/contacts/" style={{ zIndex: 999 }}>*/}
 
         <StyledContactBtn isWhite={isWhite}>
-          {/*<Typography className='contact-txt' >*/}
+          {/*<Typography variant='subtitle1' className='contact-txt' >*/}
             Contact
           {/*</Typography>*/}
         </StyledContactBtn>

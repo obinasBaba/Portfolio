@@ -2,16 +2,14 @@ import styled, { css } from 'styled-components'
 import {
   gridColWidth,
   gridify,
-  heightWidth,
   largeUp,
   mediumUp,
   smallUp,
   spacing,
   title,
 } from '../../../styles/mixins'
-import { Container, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import { motion } from 'framer-motion'
-import img from './preview-111.jpg'
 
 export const HeadlineContainer = styled(motion.div)`
   height: 100vh;

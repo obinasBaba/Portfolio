@@ -25,7 +25,7 @@ const InfoTxt = styled.div`
     left: -80%;
     z-index: -1;
 
-    ${ heightWidth('width', 56) };
+    ${ heightWidth('width', 57) };
     ${ heightWidth('height', 56) };
   }
   
@@ -33,7 +33,7 @@ const InfoTxt = styled.div`
     position: relative;
     margin-right: -10px;
     color: white;
-    font-weight: 600;
+    font-weight: lighter;
     line-height: 1.4em;
     text-transform: uppercase;
     text-decoration: none;
@@ -51,7 +51,8 @@ const InfoTxt = styled.div`
 
 const Title = styled.div`
   line-height: 1.35;
-  font-family: var(--gramatika);
+  //font-family: var(--gramatika);
+  //letter-spacing: 1px;
   font-weight: 900;
   
   ${ title( 2 ) };
@@ -63,7 +64,7 @@ const Info = () => {
     <InfoTxt>
 
       <Title >
-        My articles help me to chronicle ideas &amp; solutions
+        My Articles help me to chronicle ideas &amp; solutions
         to problems that we face when building great web products.
       </Title>
 

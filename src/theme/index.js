@@ -28,12 +28,13 @@ let theme = createMuiTheme({
   },
 
   typography: {
-    fontFamily: ['raisonne'].join(','),
+    fontFamily: ['Elianto-Regular'].join(','),
     // fontFamily: 'Raleway, sans-serif',
 
 
+
     h1: {
-      // fontFamily: 'Poppins Black',
+      fontFamily: 'Poppins Black',
       fontWeight: 'bolder',
       lineHeight: '1.27'
       // fontSize: '3.3rem',

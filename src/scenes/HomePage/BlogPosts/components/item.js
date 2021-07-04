@@ -69,6 +69,7 @@ const ImageBox = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
 `
 
@@ -88,8 +89,8 @@ const Desc = styled.div`
 `
 
 const Tag = styled(Typography)`
-  font-family: var(--gramatika);
-  font-weight: 600;
+  //font-family: var(--gramatika);
+  font-weight: lighter;
   ${ text(.7) };
   letter-spacing: 1px;
   color: lightgray;
@@ -99,10 +100,10 @@ const Tag = styled(Typography)`
 `
 
 const Title = styled(Typography)`
-  font-family: var(--sofia-pro);
+  //font-family: var(--sofia-pro);
   line-height: 1.4em;
-  font-weight: 400;
-  ${ text(1.4) };
+  font-weight: lighter;
+  ${ text(1.25) };
 
   a {
     text-decoration: none;

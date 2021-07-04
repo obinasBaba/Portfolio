@@ -92,6 +92,10 @@ const Love = styled.div`
   line-height: 1.56em;
   top: 50%;
   transform: translateY(-50%);
+  
+  span{
+    font-size: 28px;
+  }
 
   b {
     font-weight: 700;
@@ -118,7 +122,7 @@ const Love = styled.div`
 const Footer = ( {color} ) => {
   return (
     <FooterContainer>
-      <Love>With Love from <b>henok</b></Love>
+      <Love>Made With <span className='heart-icon'>&#9825;</span> by <b>henok</b></Love>
 
       <Social>
         <li>

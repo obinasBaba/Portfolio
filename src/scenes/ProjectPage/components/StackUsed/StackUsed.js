@@ -11,7 +11,7 @@ import { motion } from 'framer-motion'
 
 const StackList = styled(motion.ul)`
   position: absolute;
-  left: 0;
+  left: 5%;
   top: 100%;
   & > :not(:first-child){
     ${spacing('ml', 3)};
