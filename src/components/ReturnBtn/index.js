@@ -1,21 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
-import { heightWidth } from '../../styles/mixins'
+import {heightWidth, spacing} from '../../styles/mixins'
 import { motion } from 'framer-motion'
 
 const ExitBtn = styled( motion.div )`
   //border: thin solid crimson;
   position: fixed;
   cursor: pointer;
-  left: 30px;
-  top: 20%;
+  ${ spacing('ml', 3.1) };
+  top: 16%;
+  z-index: 999;
 
   ${heightWidth('height', 6)};
   ${heightWidth('width', 6)};
   
-  svg * {
-    //transition: all .2s ease-out;
-  }
 `
 
 const transition = {

@@ -1,30 +1,30 @@
 import React from 'react'
 import styled from 'styled-components'
-import {spacing} from '../../../../styles/mixins'
-import ReturnBtn from '../../../../components/ReturnBtn'
-import ScrollDown from './ScrollDown'
-import NavDots from '../NavDots'
+import { spacing } from '../../../../styles/mixins'
+import { motion } from 'framer-motion'
 
-const SideBarToolsContainer = styled.aside`
+const SideBarToolsContainer = styled( motion.aside )`
   position: fixed;
-  transform: translateY(-40%);
+  transform: translateY(-43%);
   top: 50%;
   left: 0;
+  
   display: flex;
   flex-flow: column;
   justify-content: center;
-  gap: 3.5rem;
+  align-items: center;
+  gap: 3rem;
   
-  //border: thin solid red;
   
-  ${ spacing('ml', 4) };
+  border: thin solid red;
+  
+  ${ spacing('ml', 3.5) };
 `
 
-const SideBarTools = ( {returnOnCLick, navRef} ) => {
+const SideBarTools = ( { children } ) => {
   return (
-    <SideBarToolsContainer>
-
-
+    <SideBarToolsContainer >
+      {children}
 
     </SideBarToolsContainer>
   )

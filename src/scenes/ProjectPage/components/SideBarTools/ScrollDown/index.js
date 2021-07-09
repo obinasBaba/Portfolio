@@ -1,28 +1,22 @@
 import React from 'react'
 import {AnimatePresence, motion} from 'framer-motion'
 import styled from 'styled-components'
-import {heightWidth, text} from '../../../../../styles/mixins'
+import {heightWidth, spacing, text} from '../../../../../styles/mixins'
 import {Typography} from '@material-ui/core'
 
 const ScrollDownContainer = styled( motion.div )`
   position: fixed;
+  left: 0;
+  ${ spacing('ml', 2.1) };
+
+  bottom: 4%;
   cursor: pointer;
-  left: 17px;
-  bottom: 2%;
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-items: center;
   grid-gap: 0.6rem;
 
-  // ${heightWidth('height', 6)};
-  // ${heightWidth('width', 6)};
-  
-  svg{
-    #Rectangle_43{
-      //transform: translate(62px, 713px);
-    }
-  }
 `
 
 const ScrollTxt = styled(Typography)`
@@ -88,11 +82,11 @@ const thumbVariant = {
   },
 }
 
-const ScrollDown = ( {activeIndex} ) => {
+const ScrollDown = ( {hidden} ) => {
   return (
     <AnimatePresence>
       {
-        activeIndex === 0 && <ScrollDownContainer  variants={parentVariant}
+        !hidden && <ScrollDownContainer  variants={parentVariant}
                                                    initial='initial'
                                                    animate='animate'
                                                    exit='exit'

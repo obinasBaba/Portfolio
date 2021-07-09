@@ -116,11 +116,9 @@ const Projects = ({ location }) => {
   return (
     <>
 
-      <ReturnBtn onClick={() => window.history.back()} />
-
-      <NavDots ref={setActiveNavDot}  />
-
-      <ScrollDown activeIndex={activeIndex}  />
+        <ReturnBtn onClick={() => window.history.back()} />
+        <NavDots ref={setActiveNavDot}  />
+        <ScrollDown hidden={activeIndex !== 0}  />
 
       <ReactFullpage
         // key={'fullpage'}
