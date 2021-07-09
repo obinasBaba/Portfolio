@@ -7,13 +7,12 @@ import { AppStateContext } from '../contexts/AppStateContext'
 import { useAnimation, useMotionValue } from 'framer-motion'
 import useProjectsAssets from '../hooks/queries/useProjectsAssets'
 import NavDots from '../scenes/ProjectPage/components/NavDots'
+import ScrollDown from '../scenes/ProjectPage/components/SideBarTools/ScrollDown'
 import {
   Others,
   ProjectContainerGrid,
-  ProjectDescription,
-  ProjectImage,
+  ProjectDescription, ProjectImage,
 } from '../scenes/ProjectPage'
-import ScrollDown from '../scenes/ProjectPage/components/SideBarTools/ScrollDown'
 
 const topVariant = {}
 

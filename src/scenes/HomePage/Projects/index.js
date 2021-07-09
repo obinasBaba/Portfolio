@@ -1,10 +1,9 @@
 import React, { useEffect, useRef } from 'react'
-import 'fullpage.js/vendors/scrolloverflow'
 import styled from 'styled-components'
 import {gridMultiplayer, heightWidth, spacing} from '../../../styles/mixins'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { getMousePos } from '../../../helpers/utils'
-import { navigate, useScrollRestoration } from 'gatsby'
+import { navigate } from 'gatsby'
 import Headline from '../../../components/Headline'
 
 const ProjectContainer = styled.div`
@@ -123,9 +122,6 @@ const top = {}
 
 const Projects = () => {
 
-  const magnetRestoration = useScrollRestoration('magnet');
-
-
   const hoverValue = useMotionValue(0);
 
 
@@ -182,7 +178,6 @@ const Projects = () => {
   return (
     <motion.div
       id={'proSec'}
-      {...magnetRestoration }
     >
 
       <ProjectContainer>

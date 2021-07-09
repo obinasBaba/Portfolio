@@ -47,13 +47,13 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
   const svgRef = useRef(null)
   const svgRect = useRef({width: 0, height: 0})
 
-  const mousePos = useRef({x: window ? window.innerHeight/2 : 0,
-    y: window ? window.innerWidth/2 : 0})
+  const mousePos = useRef({x:  0,
+    y:   0})
 
   const lastMousePos = useRef({
     translation: {
-      x: window ? window.innerWidth/2 : 0,
-      y: window ? window.innerHeight/2 : 0
+      x:  0,
+      y:   0
     },
 
     displacement: { x: 0, y: 0 },
