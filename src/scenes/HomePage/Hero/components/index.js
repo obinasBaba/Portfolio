@@ -1,10 +1,5 @@
-import styled, {css} from 'styled-components'
-import {
-  heightWidth,
-  smallDown,
-  smallUp,
-  spacing,
-} from '../../../../styles/mixins'
+import styled, { css } from 'styled-components'
+import { heightWidth, smallUp, spacing } from '../../../../styles/mixins'
 
 export const HeroContainer = styled.div`
   position: relative;

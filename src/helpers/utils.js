@@ -14,11 +14,11 @@ export function scrollHandler(ref, callback) {
   };
 }
 
-export function useEffectScroll(ref, func) {
+/*export function useEffectScroll(ref, func) {
   const handler = scrollHandler(ref.current, func);
   window.addEventListener('scroll', handler);
   return () => window.removeEventListener('scroll', handler);
-}
+}*/
 
 export default isValidEmail;
 
@@ -26,7 +26,7 @@ export default isValidEmail;
 export const lerp = (a, b, n) => (1 - n) * a + n * b;
 
 export const calcWinsize = () => {
-  return {width: window.innerWidth, height: window.innerHeight};
+  return {width: window ? window.innerWidth : 0, height: window ? window.innerHeight : 0};
 };
 
 // Gets the mouse position

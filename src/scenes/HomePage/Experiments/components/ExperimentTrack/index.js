@@ -25,7 +25,7 @@ const ExperimentTrack = () => {
     
     <Track>
 
-      {[exp1, exp2, exp3, exp4].map(({ publicURL }, index) => (
+      {[exp1, exp2, exp3, exp4].map(({ publicURL }) => (
         <Item
           key={publicURL}
           imgUrl={publicURL}

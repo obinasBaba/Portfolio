@@ -5,9 +5,9 @@ import {
   heightWidth,
   largeUp,
   mediumUp,
-  spacing, text,
+  spacing,
+  text,
 } from '../../../../styles/mixins'
-import { Link } from 'gatsby'
 import { Typography } from '@material-ui/core'
 
 const PreviewContainer = styled.div`
@@ -89,7 +89,6 @@ const Desc = styled.div`
 `
 
 const Tag = styled(Typography)`
-  //font-family: var(--gramatika);
   font-weight: lighter;
   ${ text(.7) };
   letter-spacing: 1px;
@@ -100,7 +99,6 @@ const Tag = styled(Typography)`
 `
 
 const Title = styled(Typography)`
-  //font-family: var(--sofia-pro);
   line-height: 1.4em;
   font-weight: lighter;
   ${ text(1.25) };

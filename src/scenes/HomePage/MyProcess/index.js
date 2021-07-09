@@ -72,7 +72,7 @@ const MyProcess = () => {
   });
 
 
-  const background = useMotionValue('#6797c7')
+  // const background = useMotionValue('#6797c7')
   const intersected = useMotionValue(false);
 
   const yBeforeIntersection = useMotionValue(0);
@@ -107,7 +107,7 @@ const MyProcess = () => {
     setRootMargin(rootMargin);
 
     const ff = () => {
-      console.log('root', style.top, window.innerHeight)
+      // console.log('root', style.top, window.innerHeight)
       console.log(containerRef.current.getBoundingClientRect())
       // console.log('scroll: ', scroll.get())
 
@@ -152,7 +152,7 @@ const MyProcess = () => {
         <ProcessTrack  style={{ x }}  >
 
           {
-            processData.map(( {no, title, txt, icon}, index ) =>
+            processData.map(( {no, title, txt, icon} ) =>
               <Card no={no} title={title} txt={txt} Icon={icon}  />
             )
 

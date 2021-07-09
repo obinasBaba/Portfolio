@@ -7,7 +7,7 @@ import Item from './item'
 
 
 
-const Previews = ( {media} ) => {
+const Previews = (  ) => {
 
   const items = [
     {

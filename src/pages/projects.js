@@ -1,16 +1,12 @@
 // noinspection JSIgnoredPromiseFromCall
 
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import styled from 'styled-components'
-import { heightWidth } from '../styles/mixins'
-import { Typography } from '@material-ui/core'
 import ReturnBtn from '../components/ReturnBtn'
 import ReactFullpage from '@fullpage/react-fullpage'
 import { AppStateContext } from '../contexts/AppStateContext'
 import { useAnimation, useMotionValue } from 'framer-motion'
 import useProjectsAssets from '../hooks/queries/useProjectsAssets'
 import NavDots from '../scenes/ProjectPage/components/NavDots'
-import { motion } from 'framer-motion'
 import {
   Others,
   ProjectContainerGrid,
@@ -18,7 +14,6 @@ import {
   ProjectImage,
 } from '../scenes/ProjectPage'
 import ScrollDown from '../scenes/ProjectPage/components/SideBarTools/ScrollDown'
-import SideBarTools from '../scenes/ProjectPage/components/SideBarTools'
 
 const topVariant = {}
 
@@ -115,13 +110,15 @@ const Projects = ({ location }) => {
 
   return (
     <>
-
-        <ReturnBtn onClick={() => window.history.back()} />
-        <NavDots ref={setActiveNavDot}  />
-        <ScrollDown hidden={activeIndex !== 0}  />
+      <ReturnBtn
+        onClick={() => {
+          // window.history.back()
+        }}
+      />
+      <NavDots ref={setActiveNavDot} />
+      <ScrollDown hidden={activeIndex !== 0} />
 
       <ReactFullpage
-        // key={'fullpage'}
         easingcss3="cubic-bezier(0.645, 0.045, 0.355, 1)"
         scrollingSpeed="1e3"
         anchors={['one', 'two', 'three', 'four']}
@@ -220,7 +217,6 @@ const Projects = ({ location }) => {
                         }
                       />
 
-                      {/*<StackUsed items={partners} reversed={true} />*/}
                     </ProjectContainerGrid>
                   </div>
                 )

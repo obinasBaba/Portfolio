@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React from 'react'
 import Hero from './Hero'
 import RecentWorks from './RecentDesigns'
 import Projects from './Projects'
@@ -6,14 +6,8 @@ import Experiments from './Experiments'
 import MailUs from '../MailUs'
 import { SectionWrapper } from '../../components/Container'
 import styled from 'styled-components'
-import { AppStateContext } from '../../contexts/AppStateContext'
 import BlogPosts from './BlogPosts'
 import MyProcess from './MyProcess'
-
-const ProjectSectionWrapper = styled(SectionWrapper)`
-  border: thick solid red;
-  display: none;
-`
 
 const RecentWorkWrapper = styled.section`
   max-width: 100vw;

@@ -1,4 +1,4 @@
-import {Launch, Build, Design, Call}  from './icons'
+import { Build, Call, Launch } from './icons'
 
 export const processData = [
   {
@@ -8,7 +8,7 @@ export const processData = [
               get to know you. Before i can properly design your
               good-looking website, i need to understand you,
               you pain-points, and you audience.`,
-    icon: Call
+    icon: Call,
   },
   {
     no: '02',
@@ -18,8 +18,7 @@ export const processData = [
               specific needs, all while accurately representing your
               brand and keeping things aesthetically pleasing and useable
               for you purpose.`,
-    icon: Build
-
+    icon: Build,
   },
   {
     no: '03',
@@ -27,7 +26,7 @@ export const processData = [
     txt: `Once you're happy with the designs, i will proceed to building them
               making sure everyting is optimised to follow modern web practices,
               such as speed, security and reliability.`,
-    icon: Build
+    icon: Build,
   },
 
   {
@@ -37,7 +36,6 @@ export const processData = [
               alongside your approval, it's time to launch your
               website. in this phase i will also provide same traning videos
               on how you can add content to your website so you can do it yourself.`,
-    icon: Launch
+    icon: Launch,
   },
-
-];
+]

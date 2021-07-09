@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import {spacing, text} from '../../../styles/mixins'
-import {Call} from './icons'
-import {Typography} from '@material-ui/core'
+import { spacing, text } from '../../../styles/mixins'
+import { Typography } from '@material-ui/core'
 
 const StyledCard = styled.div`
   position: relative;

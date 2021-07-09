@@ -159,9 +159,6 @@ const Category = styled.div`
   
 `;
 
-const imageBoxVariants = {
-
-}
 
 
 const HeadLine = ({ categories, title, imgData, date, tags, thumbnail }) => {

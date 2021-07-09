@@ -17,7 +17,7 @@
     <feComposite operator='in' in='color' in2='inverse' result='shadow'/>
 
     <!-- Put shadow over original object -->
-    <feComposite operator='over' in='shadow' in2='SourceGraphic'/>
+    <feComposite  in='shadow' in2='SourceGraphic'/>
   </filter>
 
 

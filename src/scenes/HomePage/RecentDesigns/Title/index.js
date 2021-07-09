@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
-import { Container, Typography } from '@material-ui/core'
+import { Container } from '@material-ui/core'
 import { heightWidth, largeUp, spacing } from '../../../../styles/mixins'
 import Headline from '../../../../components/Headline'
 

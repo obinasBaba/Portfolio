@@ -1,15 +1,8 @@
 import React, { useEffect, useRef } from 'react'
-import styled from 'styled-components'
-import {
-  motion,
-  useSpring,
-  useTransform,
-  useViewportScroll,
-} from 'framer-motion'
-import { Typography } from '@material-ui/core'
+import { useSpring, useTransform, useViewportScroll } from 'framer-motion'
 import useBackgroundsAssets from '../../hooks/queries/useBackgroundsAssets'
 import { Galaxy, Layer, Wrapper } from './components'
-import { useMap, useMouse, useScroll, useWindowScroll } from 'react-use'
+import { useMouse } from 'react-use'
 
 const BackgroundStars = () => {
   const { starsBig, starsSmall, starsBigOld, starsSmallOld } = useBackgroundsAssets()
@@ -39,20 +32,6 @@ const BackgroundStars = () => {
 
 
   useEffect( () => calc(mouse.elX, mouse.elY), [mouse] );
-
-  useEffect(() => {
-    const hideScrollBar = () => {
-      setTimeout(() => {
-
-      }, 2500)
-    }
-
-      return () => {
-
-      }
-    },
-    [])
-  
 
   return (
     <Galaxy ref={target}>

@@ -38,6 +38,7 @@ const imgVariants = {
 
 const Others = ({ auth, kklLuzern, udemy, active }) => {
 
+
   const cancelId = useRef(null)
   const dmScale = useRef( 0);
   const current = useRef( -1);
@@ -45,9 +46,16 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
   const feDisplacementMapEl = useRef(null)
   const svgRef = useRef(null)
   const svgRect = useRef({width: 0, height: 0})
-  const mousePos = useRef({x: window.innerHeight/2, y: window.innerWidth/2})
+
+  const mousePos = useRef({x: window ? window.innerHeight/2 : 0,
+    y: window ? window.innerWidth/2 : 0})
+
   const lastMousePos = useRef({
-    translation: { x: window.innerWidth/2, y: window.innerHeight/2},
+    translation: {
+      x: window ? window.innerWidth/2 : 0,
+      y: window ? window.innerHeight/2 : 0
+    },
+
     displacement: { x: 0, y: 0 },
   })
 
@@ -68,8 +76,6 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
   
 
   useEffect(() => {
-
-    // window.addEventListener('resize', calcWinsize);
 
     let trackMousePos = ev => {
       if ( mousePos.current )
@@ -97,8 +103,8 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
     // console.log('x:', lastMousePos.current.translation.x, 'y: ', lastMousePos.current.translation.y)
 
     svgRef.current.style.transform =
-      `translateX(${(lastMousePos.current.translation.x-window.innerWidth/2 )}px)
-       translateY(${lastMousePos.current.translation.y -window.innerHeight/2}px)`;
+      `translateX(${(lastMousePos.current.translation.x-window ? window.innerWidth/2 : 0 )}px)
+       translateY(${lastMousePos.current.translation.y -window ? window.innerWidth/2 : 0}px)`;
 
     // console.log('x:', svgRef.current.getBoundingClientRect().x, 'y: ',
     //   svgRef.current.getBoundingClientRect().y)

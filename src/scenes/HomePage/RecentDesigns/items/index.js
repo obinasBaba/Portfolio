@@ -10,7 +10,6 @@ const ImageWrapper = styled.div`
 
   ////todo-start - figure this out
   -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
   flex-shrink: 0;
   width: 100%;
   height: 100%;
@@ -18,8 +17,6 @@ const ImageWrapper = styled.div`
   -webkit-transition-property: -webkit-transform;
   transition-property: -webkit-transform;
   -o-transition-property: transform;
-  transition-property: transform;
-  transition-property: transform, -webkit-transform;
   //todo-end
   
   &.item{
