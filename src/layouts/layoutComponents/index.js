@@ -20,6 +20,7 @@ export const GlobalStyle = createGlobalStyle`
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     
+    cursor: none;
   }
 
   
@@ -79,31 +80,31 @@ export const GlobalStyle = createGlobalStyle`
 `
 
 export const Page = styled.div`
-  //height: 100%;
   position: relative;
   display: flex;
   flex-flow: column;
-  //overflow: hidden;
-  //min-height: 100vh;
   flex-direction: column;
-  //max-width: 100vw;
-  
-  /*&::after{
-    content: '';
-    position: absolute;;
-    width: 100%;
-    max-width: 1185px;
-    top: -390px;
-    z-index: -999;
-    opacity: 0.4;
-    height: 1076px;
-    transform: translateY(-30%);
-    background: radial-gradient(
-            41.38% 40.85% at 56.08% 46.24%,
-            #3719ca 0%,
-            rgba(55, 25, 202, 0) 100% );
-  }*/
 
+  .circle-cursor {
+    position: fixed;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    &--outer {
+      width: 100vw;
+      height: 100vh;
+      z-index: 12000;
+    }
+    &--inner {
+      width: 5px;
+      height: 5px;
+      left: -2.5px;
+      top: -2.5px;
+      border-radius: 50%;
+      z-index: 11000;
+      background: crimson;
+    }
+  }
 `
 
 export const Main = styled( motion.main )`

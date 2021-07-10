@@ -15,6 +15,7 @@ import Moon from './Components/Moon'
 import { SkyColor } from './Components/SkyColor'
 import HeaderAppBar from '../components/HeaderAppBar'
 import MailUs from '../scenes/MailUs'
+import Cursor from './Cursor'
 
 export default function TopLayout({ children, path }) {
   return (
@@ -70,6 +71,8 @@ export default function TopLayout({ children, path }) {
               </footer>
 
               {/*<VersionNo>v0.1</VersionNo>*/}
+
+              <Cursor />
             </Page>
           </AppStateProvider>
         </ThemeProvider>

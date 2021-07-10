@@ -1,17 +1,17 @@
 function isValidEmail(email) {
-  const regexp = new RegExp(/[^@]+@[^.]+\..+/g);
-  return regexp.test(email);
+  const regexp = new RegExp(/[^@]+@[^.]+\..+/g)
+  return regexp.test(email)
 }
 
 // this function takes an element on at the time of finding which callback will be returned
 export function scrollHandler(ref, callback) {
-  return function() {
-    const pos = ref.getBoundingClientRect();
+  return function () {
+    const pos = ref.getBoundingClientRect()
     if (pos.y <= 0 && -pos.y < pos.height) {
-      return callback(true);
+      return callback(true)
     }
-    callback(false);
-  };
+    callback(false)
+  }
 }
 
 /*export function useEffectScroll(ref, func) {
@@ -20,29 +20,35 @@ export function scrollHandler(ref, callback) {
   return () => window.removeEventListener('scroll', handler);
 }*/
 
-export default isValidEmail;
+export default isValidEmail
 
 // Linear interpolation
-export const lerp = (a, b, n) => (1 - n) * a + n * b;
+export const lerp = (a, b, n) => (1 - n) * a + n * b
 
 export const calcWinsize = () => {
-  return {width: window ? window.innerWidth : 0, height: window ? window.innerHeight : 0};
-};
+  return {
+    width: window ? window.innerWidth : 0,
+    height: window ? window.innerHeight : 0,
+  }
+}
 
 // Gets the mouse position
 export const getMousePos = e => {
-
   // console.log(e.clientX, e.clientY)
 
   return {
-    x : e.clientX,
-    y : e.clientY
-  };
-};
+    x: e.clientX,
+    y: e.clientY,
+  }
+}
 
-export const distance = (x1,y1,x2,y2) => {
-  var a = x1 - x2;
-  var b = y1 - y2;
+export const distance = (x1, y1, x2, y2) => {
+  var a = x1 - x2
+  var b = y1 - y2
 
-  return Math.hypot(a,b);
+  return Math.hypot(a, b)
+}
+
+export const map = (value, in_min, in_max, out_min, out_max) => {
+  return ((value - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
 }
