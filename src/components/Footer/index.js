@@ -6,7 +6,7 @@ import {
   largeUp,
   mediumDown,
   mediumUp,
-  spacing,
+  spacing, text,
 } from '../../styles/mixins'
 
 import Dribbble from '../../assets/images/brands/dribbble.inline.svg'
@@ -19,23 +19,28 @@ const FooterContainer = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   flex-direction: column;
-  margin: 0 auto;
   padding-right: 15px;
   padding-left: 15px;
   max-width: 90rem;
   width: 100%;
   //background-color: #3719ca;
+  //border: thin solid red;
+
+  ${largeUp(css`
+    flex-direction: row;
+  `)};
+  
   @media screen and (min-width: 768px) {
     padding-right: 4.28rem;
     padding-left: 4.28rem;
   }
 
   ${spacing('pv', 4)};
+  // ${spacing('mt', 2)};
 
-  ${largeUp(css`
-    flex-direction: row;
-  `)};
+  
 `
 
 const Social = styled.ul`
@@ -44,8 +49,8 @@ const Social = styled.ul`
   justify-content: center;
   align-items: center;
   list-style-type: none;
-  margin: 0 auto;
   padding: 0;
+  margin: 0;
   z-index: 10;
 
   li {
@@ -84,15 +89,12 @@ const Social = styled.ul`
 `
 
 const Love = styled.div`
-  position: absolute;
-  left: calc(var(--size) * 50px);
-  
   font-weight: 300;
+  line-height: 0;
   letter-spacing: 1.2px;
-  line-height: 1.56em;
-  top: 50%;
-  transform: translateY(-50%);
-  
+  ${ text(.7) };
+
+
   span{
     font-size: 28px;
   }
@@ -117,6 +119,23 @@ const Love = styled.div`
     transform: translateY(0);
   ` ) };
   
+`
+
+const Copy = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .2rem;
+  ${ text(.74) };
+
+
+  span{
+    
+    font-family: var(--gramatika);
+    font-weight: 300;
+    ${ text(1) };
+    
+  }
 `
 
 const Footer = ( {color} ) => {
@@ -167,6 +186,12 @@ const Footer = ( {color} ) => {
           </a>
         </li>
       </Social>
+
+      <Copy>
+        <span>&copy;</span> 2021 Henzzo.io
+      </Copy>
+
+
     </FooterContainer>
   )
 }

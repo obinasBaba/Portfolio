@@ -2,9 +2,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { Typography } from '@material-ui/core'
 import MotionBtn from '../../components/MotionBtn'
-import { heightWidth, mediumUp, spacing } from '../../styles/mixins'
+import {heightWidth, mediumUp, spacing, text} from '../../styles/mixins'
 import Logo from './logo.svg'
 import {AppStateContext} from '../../contexts/AppStateContext'
+import {GradientText} from '../../components/GrdientText'
+import Footer from '../../components/Footer'
+import FooterMeta from './FooterMeta'
 
 const MailUsContainer = styled.div`
   position: relative;
@@ -13,28 +16,17 @@ const MailUsContainer = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-  height: calc(100vh - 142px);
+  //height: calc(100vh - 142px);
   overflow: hidden;
-
   box-sizing: border-box;
 
-  // ${spacing('mt', 20)};
   ${spacing('pt', 15)};
-  ${spacing('pb', 10)};
   ${spacing('h', 4)};
-
-  ${mediumUp(css`
-    /*height: calc(100vh - (var(--coef-indent) * 120px));*/
-  `)};
-
-  & > :not(:first-child) {
-    ${spacing('mt', 2)};
-  }
 
   &::after {
     content: '';
     position: absolute;
-    top: 55%;
+    top: 60%;
     left: 50%;
     border-radius: 50%;
     //box-shadow: 70px 120px 150px -30px rgba(2, 2, 30, 0.6);
@@ -42,23 +34,12 @@ const MailUsContainer = styled.div`
     z-index: -3;
     transition: all 1s;
     background-image: url(${Logo});
-
-    ${heightWidth('width', 40)};
-    ${heightWidth('height', 40)};
+    background-repeat: no-repeat;
+    filter: blur(10px);
+    ${heightWidth('width', 70)};
+    ${heightWidth('height', 70)};
   }
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: -2;
-    background: rgba(55, 25, 202, 0);
-    backdrop-filter: blur(.7px);
-    -webkit-backdrop-filter: blur(4px);
-  }
 `
 
 const Background = styled.span`
@@ -70,11 +51,23 @@ const Background = styled.span`
   right: 0;
   z-index: -11;
   height: calc(100% + (var(--indent) * 1000px));
-  background: linear-gradient(0deg, rgba(55, 25, 202, 0.74), rgba(55, 25, 202, 0.87)),
-  linear-gradient(89.64deg, #3719ca 0.16%, #241563 99.8%);
+  background: linear-gradient(0deg, #1e213d, #02021e);
 `
 
-const TitleWrapper = styled.div``
+const TitleWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  
+  .title{
+
+    font-weight: 900;
+    
+    // ${ text(5) };
+  }
+`
 
 const MailUs = () => {
   const elRef = React.useRef(null)
@@ -123,12 +116,15 @@ const MailUs = () => {
       <Background style={backgroundParallax} />
 
       <TitleWrapper>
-        <Typography variant="h1">
-          Have something <br /> in mind ?
-        </Typography>
+        <GradientText variant='h1' className='title' >
+          Ready To Create <br /> Your Star ?</GradientText>
+        <MotionBtn text={'Contact Me'} arrow fontLarge />
       </TitleWrapper>
 
-      <MotionBtn text={'Contact Me'} arrow fontLarge />
+      <FooterMeta/>
+
+      <Footer/>
+
     </MailUsContainer>
   )
 }

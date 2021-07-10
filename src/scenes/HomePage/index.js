@@ -50,7 +50,7 @@ const HomePage = () => {
 
 
       {/*<SectionWrapper>*/}
-        <MailUs />
+      {/*  <MailUs />*/}
       {/*</SectionWrapper>*/}
 
 
