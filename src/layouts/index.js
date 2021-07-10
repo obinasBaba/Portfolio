@@ -5,7 +5,6 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider } from '@material-ui/core/styles'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import theme from '../theme'
-import Footer from '../components/Footer'
 import '../styles/fontFace.css'
 import { AnimatePresence } from 'framer-motion'
 import { GlobalStyle, Main, Page } from './layoutComponents/index'
@@ -15,7 +14,17 @@ import Moon from './Components/Moon'
 import { SkyColor } from './Components/SkyColor'
 import HeaderAppBar from '../components/HeaderAppBar'
 import MailUs from '../scenes/MailUs'
-import Cursor from './Cursor'
+import loadable from '@loadable/component'
+// import Cursor from './Cursor'
+
+const Cursor = loadable(
+
+  async () => (await import('./Cursor')),
+  {
+    fallback: <>Loading.....</>
+  }
+)
+
 
 export default function TopLayout({ children, path }) {
   return (
@@ -32,12 +41,6 @@ export default function TopLayout({ children, path }) {
           rel="stylesheet"
         />
 
-
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
-            <link
-              href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;700;900&display=swap"
-              rel="stylesheet"/>
 
       </Helmet>
 
@@ -73,6 +76,7 @@ export default function TopLayout({ children, path }) {
               {/*<VersionNo>v0.1</VersionNo>*/}
 
               <Cursor />
+
             </Page>
           </AppStateProvider>
         </ThemeProvider>

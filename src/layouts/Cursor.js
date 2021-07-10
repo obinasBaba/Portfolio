@@ -1,10 +1,21 @@
 import React, {useEffect, useRef} from 'react'
-import Paper from 'paper'
 import SimplexNoise from 'simplex-noise'
 import {useMotionValue} from 'framer-motion'
 import {motion} from 'framer-motion'
 import {lerp, map} from '../helpers/utils'
 import styled from 'styled-components'
+import loadable from '@loadable/component'
+import * as Paper from 'paper'
+
+// const Paper = loadable(
+//
+//   async () => (await import('paper')),
+//   {
+//     fallback: <>Loading.....</>
+//   }
+// )
+
+
 
 const H = styled.div`
   position: fixed;
@@ -38,7 +49,7 @@ const Cursor = () => {
 
 
 
-    // initCanvas();
+    initCanvas();
 
     initHover();
 
@@ -105,7 +116,7 @@ const Cursor = () => {
           bigCoordinates = [];
         }
 
-        const scaleDown = 1;
+        const scaleDown = 0.92;
         polygon.scale(scaleDown);
       }
 
