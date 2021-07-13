@@ -72,10 +72,12 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
     feDisplacementMapEl.current = svgRef.current.querySelector('feDisplacementMap')
     svgRect.current = svgRef.current.getBoundingClientRect()
 
-    }, [])
-  
+  }, [])
+
 
   useEffect(() => {
+
+    // window.addEventListener('resize', calcWinsize);
 
     let trackMousePos = ev => {
       if ( mousePos.current )
@@ -91,7 +93,7 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
 
     return () => window.removeEventListener('mousemove', trackMousePos)
 
-    }, [intersection])
+  }, [intersection])
 
   const track = () => {
     lastMousePos.current.translation.x =
@@ -103,8 +105,8 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
     // console.log('x:', lastMousePos.current.translation.x, 'y: ', lastMousePos.current.translation.y)
 
     svgRef.current.style.transform =
-      `translateX(${(lastMousePos.current.translation.x-window ? window.innerWidth/2 : 0 )}px)
-       translateY(${lastMousePos.current.translation.y -window ? window.innerWidth/2 : 0}px)`;
+      `translateX(${(lastMousePos.current.translation.x - window.innerWidth/2 )}px)
+       translateY(${lastMousePos.current.translation.y - window.innerHeight/2}px)`;
 
     // console.log('x:', svgRef.current.getBoundingClientRect().x, 'y: ',
     //   svgRef.current.getBoundingClientRect().y)

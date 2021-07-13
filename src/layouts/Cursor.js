@@ -1,21 +1,9 @@
-import React, {useEffect, useRef} from 'react'
+import React, { useEffect, useRef } from 'react'
 import SimplexNoise from 'simplex-noise'
-import {useMotionValue} from 'framer-motion'
-import {motion} from 'framer-motion'
-import {lerp, map} from '../helpers/utils'
+import { motion, useMotionValue } from 'framer-motion'
+import { lerp, map } from '../helpers/utils'
 import styled from 'styled-components'
-import loadable from '@loadable/component'
-import * as Paper from 'paper'
-
-// const Paper = loadable(
-//
-//   async () => (await import('paper')),
-//   {
-//     fallback: <>Loading.....</>
-//   }
-// )
-
-
+import Paper, {Group} from 'paper'
 
 const H = styled.div`
   position: fixed;
@@ -34,7 +22,7 @@ const Cursor = () => {
 
   let x = useMotionValue(-100);
   let y = useMotionValue(-100);
-  let isStuck = false;
+  let isStuck = true;
   let showCursor = false;
   let group, stuckX, stuckY, fillOuterCursor;
   let s = new SimplexNoise();
@@ -42,12 +30,11 @@ const Cursor = () => {
 
   useEffect(() => {
 
+
     window.addEventListener('mousemove', e => {
       x.set( e.clientX )
       y.set( e.clientY )
     })
-
-
 
     initCanvas();
 
@@ -63,7 +50,7 @@ const Cursor = () => {
 
     Paper.setup(canvasRef.current)
 
-    const strokeColor = "rgba(255, 0, 0, 0.5)";
+    const strokeColor = "#3719ca";
     const strokeWidth = 1;
     const segments = 8;
     const radius = 15;
@@ -72,6 +59,8 @@ const Cursor = () => {
     const noiseScale = 150; // speed
     const noiseRange = 4; // range of distortion
     let isNoisy = false;
+
+
 
     const polygon = new Paper.Path.RegularPolygon(
       new Paper.Point(0, 1),
@@ -83,27 +72,30 @@ const Cursor = () => {
     polygon.strokeWidth = strokeWidth;
     polygon.smooth();
 
-    group = new Paper.Group([polygon]);
+    const p2 = polygon.clone();
+
+    group = new Group([polygon, p2]);
     group.applyMatrix = false;
+
 
     //create noise equal to segments
     const noiseObjects = polygon.segments.map(() => new SimplexNoise());
+    const noiseObjects2 = polygon.segments.map(() => new SimplexNoise());
+
+    const no = group.children.map( i => {
+      return polygon.segments.map(() => new SimplexNoise());
+    } )
+
     let bigCoordinates = [];
 
     Paper.view.onFrame = event => {
 
-      if ( !isStuck ){
-        lastX.set( lerp( lastX.get(), x.get(), .2 ) )
-        lastY.set( lerp( lastY.get(), y.get(), .2 ) )
-      }else if ( isStuck ){
-        lastX.set( lerp(lastX.get(), stuckX, .2) )
-        lastY.set( lerp(lastY.get(), stuckY, .2) )
-      }
-
+      lastX.set( lerp( lastX.get(), x.get(), .2 ) )
+      lastY.set( lerp( lastY.get(), y.get(), .2 ) )
       group.position = new Paper.Point(lastX.get(), lastY.get());
 
 
-      if ( isStuck && polygon.bounds.width < shapeBounds.width )
+      /*if ( isStuck && polygon.bounds.width < shapeBounds.width )
         polygon.scale(1.08) // scale up the shape
 
       else if ( !isStuck && polygon.bounds.width > 30 ){
@@ -118,38 +110,44 @@ const Cursor = () => {
 
         const scaleDown = 0.92;
         polygon.scale(scaleDown);
-      }
+      }*/
 
       //if stuck and big, apply simplex noise
-      if ( isStuck && polygon.bounds.width >= shapeBounds.width ){
+      if ( isStuck  ){
         isNoisy = true;
 
-        //get the coordinates of the large circle
+        //get the coordinates of the large circle before any noise start( normal coordinate )
         if (bigCoordinates.length === 0) {
           polygon.segments.forEach((segment, i) => {
             bigCoordinates[i] = [segment.point.x, segment.point.y];
           });
         }
 
+        group.children.forEach( (item, index) => {
+          item.segments.forEach((s, i) => {
+
+            let noiseObjects = no[index]
+            //get new noise value
+            //we divide event.count by noiseScale to get a very smooth value
+            const noiseX = noiseObjects[i].noise2D(event.count / noiseScale, 0);
+            const noiseY = noiseObjects[i].noise2D(event.count / noiseScale, 1);
+
+            // map the noise value to our defined range
+            const distortionX = map(noiseX, -1, 1, -noiseRange, noiseRange);
+            const distortionY = map(noiseY, -1, 1, -noiseRange, noiseRange);
+
+            // apply distortion to coordinates
+            const newX = bigCoordinates[i][0] + distortionX;  // accessing x
+            const newY = bigCoordinates[i][1] + distortionY;  // accessing y
+
+            //set new (noisy) coordinate of point
+            s.point.set(newX, newY);
+          })
+        } )
+
+
+
         // calculate noise value for each point at that frame
-        polygon.segments.forEach((segment, i) => {
-
-          //get new noise value
-          //we divide event.count by noiseScale to get a very smooth value
-          const noiseX = noiseObjects[i].noise2D(event.count / noiseScale, 0);
-          const noiseY = noiseObjects[i].noise2D(event.count / noiseScale, 1);
-
-          // map the noise value to our defined range
-          const distortionX = map(noiseX, -1, 1, -noiseRange, noiseRange);
-          const distortionY = map(noiseY, -1, 1, -noiseRange, noiseRange);
-
-          // apply distortion to coordinates
-          const newX = bigCoordinates[i][0] + distortionX;  // accessing x
-          const newY = bigCoordinates[i][1] + distortionY;  // accessing y
-
-          //set new (noisy) coordinate of point
-          segment.point.set(newX, newY);
-        });
       }
 
       polygon.smooth();
@@ -177,10 +175,22 @@ const Cursor = () => {
   
   return (
     <>
-      <H ref={hRef} onClick={() => {}}  >H</H>
+      <H ref={hRef} onClick={() => {}}>
 
-      <motion.div style={{x, y}} className="circle-cursor circle-cursor--inner"/>
-      <canvas ref={canvasRef} className="circle-cursor circle-cursor--outer" resize={true}/>
+      </H>
+
+
+
+
+      <motion.div
+        style={{ x, y }}
+        className="circle-cursor circle-cursor--inner"
+      />
+      <canvas
+        ref={canvasRef}
+        className="circle-cursor circle-cursor--outer"
+        resize={true}
+      />
     </>
   )
 }

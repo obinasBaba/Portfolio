@@ -34,16 +34,21 @@ const ThumbAndDot = ( {hidden, onClick, index, anchor} ) => {
   return (
     <ThumbAndDotContianer layout>
 
-        <motion.a href={`http://localhost:8000/projects${anchor}`} >
+        {/*<motion.a href={`/projects${anchor}`} >*/}
+
+      <Link to={`${anchor}`}>
 
           <BigDot
             onClick={() => {
               onClick.set(index)
+              // navigate(anchor)
             }}
             anchor={anchor}
           />
 
-        </motion.a>
+      </Link>
+
+      {/*</motion.a>*/}
 
 
       <AnimatePresence exitBeforeEnter={true} >

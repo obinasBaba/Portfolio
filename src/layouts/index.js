@@ -42,6 +42,7 @@ export default function TopLayout({ children, path }) {
         />
 
 
+
       </Helmet>
 
       <StyledThemeProvider theme={theme}>
@@ -54,6 +55,9 @@ export default function TopLayout({ children, path }) {
               <HeaderAppBar />
 
               <Main>
+
+
+
                 <SkyColor />
 
                 <Moon />
@@ -61,11 +65,9 @@ export default function TopLayout({ children, path }) {
                 <BackgroundStars />
 
                 {/*<AnimateSharedLayout type="crossfade">*/}
-                  <AnimatePresence exitBeforeEnter custom={{path: path}} >
-
-                        {children}
-
-                  </AnimatePresence>
+                <AnimatePresence exitBeforeEnter custom={{ path: path }}>
+                  {children}
+                </AnimatePresence>
                 {/*</AnimateSharedLayout>*/}
               </Main>
 
@@ -76,7 +78,6 @@ export default function TopLayout({ children, path }) {
               {/*<VersionNo>v0.1</VersionNo>*/}
 
               <Cursor />
-
             </Page>
           </AppStateProvider>
         </ThemeProvider>

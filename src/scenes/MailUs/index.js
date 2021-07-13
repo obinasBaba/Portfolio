@@ -51,7 +51,7 @@ const Background = styled.span`
   right: 0;
   z-index: -11;
   height: calc(100% + (var(--indent) * 1000px));
-  background: linear-gradient(0deg, #1e213d, #02021e);
+  background: linear-gradient(to bottom, rgba(30, 33, 61, -10%) 0%, #02021e 20%);
 `
 
 const TitleWrapper = styled.div`
@@ -113,7 +113,7 @@ const MailUs = () => {
 
   return (
     <MailUsContainer ref={elRef}>
-      <Background style={backgroundParallax} />
+      <Background   />
 
       <TitleWrapper>
         <GradientText variant='h1' className='title' >

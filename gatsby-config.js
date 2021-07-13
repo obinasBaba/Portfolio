@@ -27,6 +27,13 @@ module.exports = {
         path: `${__dirname}/src/assets/images`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `json`,
+        path: `${__dirname}/src/assets/json`,
+      },
+    },
 
     { //sourcing markdown images
       resolve: `gatsby-source-filesystem`,

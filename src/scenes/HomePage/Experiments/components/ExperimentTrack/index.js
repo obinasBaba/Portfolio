@@ -20,16 +20,24 @@ export const Track = styled.section`
 
 const ExperimentTrack = () => {
   const { exp1, exp2, exp3, exp4 } = useExperimentAssets()
+  const expData = [
+    {src: exp1, title: 'Elastic Search Bar'},
+    {src: exp2, title: 'Mouse Hover effect'},
+    {src: exp3, title: 'Menu Icon animation'},
+    {src: exp4, title: 'TextField Interaction'},
+  ]
+
 
   return (
     
     <Track>
 
-      {[exp1, exp2, exp3, exp4].map(({ publicURL }) => (
+      {expData.map(( item , index ) => (
         <Item
-          key={publicURL}
-          imgUrl={publicURL}
-          title={'Experiments & Open Source'}
+          key={item.src.publicURL}
+          imgUrl={item.src.publicURL}
+          title={item.title}
+          index={index}
         />
       ))}
 

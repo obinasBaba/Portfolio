@@ -90,11 +90,13 @@ export const Page = styled.div`
     left: 0;
     top: 0;
     pointer-events: none;
+
     &--outer {
       width: 100vw;
       height: 100vh;
       z-index: 12000;
     }
+
     &--inner {
       width: 5px;
       height: 5px;
@@ -102,7 +104,7 @@ export const Page = styled.div`
       top: -2.5px;
       border-radius: 50%;
       z-index: 11000;
-      background: crimson;
+      background: #2c00ff;
     }
   }
 `

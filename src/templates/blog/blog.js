@@ -17,7 +17,7 @@ const BlogContainer = styled.div`
 const BlogTemplate = ({ data }) => {
   const { title, date, tags, thumbnail } = data.markdownRemark.frontmatter
 
-  const { setMoonLight, setHeaderGradient, setIsWhite, moonLight } = useContext(AppStateContext)
+  const { setMoonLight, setHeaderGradient, moonLight } = useContext(AppStateContext)
 
   useEffect(() => {
     setMoonLight({...moonLight, show: false})

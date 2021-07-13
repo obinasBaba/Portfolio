@@ -1,4 +1,7 @@
-import React from 'react'
+import React, {useEffect, useRef} from 'react'
+import lotti  from  'lottie-web';
+import styled, {css} from 'styled-components'
+import build from './build.json'
 
 export const Call = () => {
   return (
@@ -15,29 +18,67 @@ export const Call = () => {
   )
 }
 
-export const Design = () => {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54">
-      <defs>
-        <clipPath id="clip-path">
-          <rect id="Icon" width="54" height="54" rx="27" transform="translate(75 50.095)" fill="#f23333"/>
-        </clipPath>
-      </defs>
-      <g id="process__icon-2" transform="translate(-75 -50.095)">
-        <g id="Mask_Group_8" data-name="Mask Group 8" clipPath="url(#clip-path)">
-          <g id="pencil-circle-thin" transform="translate(66.49 41.585)">
-            <path id="Path_6579" data-name="Path 6579" d="M0,0H71.02V71.02H0Z" fill="none"/>
-            <circle id="Ellipse_7" data-name="Ellipse 7" cx="26.632" cy="26.632" r="26.632" transform="translate(8.877 8.877)" fill="none" stroke="#3719ca" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/>
-            <path id="Path_6580" data-name="Path 6580" d="M30.375,39.876a4.439,4.439,0,0,1,8.877,0" transform="translate(9.573 11.169)" fill="none" stroke="#3719ca" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/>
-            <path id="Path_6581" data-name="Path 6581" d="M16.875,39.876a4.439,4.439,0,0,1,8.877,0" transform="translate(5.319 11.169)" fill="none" stroke="#3719ca" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/>
-            <path id="Path_6582" data-name="Path 6582" d="M32.5,50.6V39.876a4.439,4.439,0,0,0-8.877,0V50.6" transform="translate(7.446 11.169)" fill="none" stroke="#3719ca" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/>
-            <path id="Path_6583" data-name="Path 6583" d="M43.507,53.794V44.039L30.191,15.188,16.875,44.039v9.755" transform="translate(5.319 4.787)" fill="none" stroke="#3719ca" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/>
-            <path id="Path_6584" data-name="Path 6584" d="M22.327,25.313H34.619" transform="translate(7.037 7.978)" fill="none" stroke="#3719ca" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/>
-          </g>
-        </g>
-      </g>
-    </svg>
+const IconContainer = styled.div`
+  //z-index: -1;
+  height: 100px;
+  width: 100px;
+  margin: -20px -50px -20px -20px;
 
+
+
+  path {
+    stroke: #3719ca;
+    fill: #3719ca;
+  }
+  svg{
+  }
+
+  ${ ({design}) => design && css`
+    transform: rotate(20deg);
+
+  ` };
+  
+  ${ ({rocket}) => rocket && css`
+    transform: rotate(20deg);
+    path{
+      fill: rgba(55, 25, 202, 0);
+    }
+
+  ` };
+`
+
+export const Design = ({path, rocket}) => {
+
+  const iconRef = useRef(null)
+
+  useEffect(() => {
+    let r = 1;
+    if (path)
+    {
+      let l = lotti.loadAnimation({
+        container: iconRef.current,
+        renderer: 'svg',
+        loop: false,
+        autoplay: true,
+        path: path,
+        // animationData: build
+      })
+
+      // l.addEventListener('data_ready', () => {})
+      l.addEventListener('complete', () => {
+        1 === r ? r = -1 : -1 === r && (r = 1);
+          l.setDirection(r);
+          l.play();
+      })
+
+    }
+  }, [])
+
+  if ( !path )
+    return <Build />
+
+  return (
+    <IconContainer ref={iconRef} rocket={rocket} />
   )
 }
 

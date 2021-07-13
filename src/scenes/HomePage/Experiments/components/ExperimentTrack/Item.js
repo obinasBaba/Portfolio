@@ -4,22 +4,15 @@ import { mediumUp, spacing } from '../../../../../styles/mixins'
 import { Typography } from '@material-ui/core'
 
 export const ExperimentItem = styled.div`
-  //background-color: #faebd6;
-
-  ${spacing('pv', 5)};
-  ${spacing('pb', 3)};
-
-  //background: rgba(31, 38, 135, 0.37);
-  //box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  //backdrop-filter: blur(4px);
-  //border-radius: 10px;
-  //border: 1px solid rgba( 255, 255, 255, 0.18 );
-
+  //border: 1px solid red;
   flex: 1 1 50%;
   display: flex;
   flex-flow: column;
   justify-content: space-between;
-  //align-items: center;
+  cursor: pointer;
+
+  ${spacing('pv', 5)};
+  ${spacing('pb', 3)};
 
 
   img {
@@ -49,23 +42,29 @@ const ExperimentTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
+  //border: thin solid lightcoral;
   width: 85%;
   margin: 0 auto;
+  ${spacing('ph', 3)};
+  
+  .title{
+    font-weight: lighter;
+    //letter-spacing: 1px;
+  }
   
 `
 
-const Item = ({  imgUrl, title }) => {
+const Item = ({  imgUrl, title, index}) => {
   return (
     <ExperimentItem  >
       <img src={imgUrl} alt={'boo'} />
 
       <ExperimentTitle >
 
-        <Typography align="left" variant={'body2'} style={{
-          fontWeight: 300
-        }} >{title}</Typography>
 
-        <Typography variant={'body2'}>12</Typography>
+        <Typography align="left" variant={'subtitle1'} className='title' >{title}</Typography>
+        <Typography variant={'body2'}>0{index + 1}</Typography>
 
       </ExperimentTitle>
     </ExperimentItem>

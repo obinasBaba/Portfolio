@@ -10,7 +10,7 @@ const FooterMetaContainer = styled( Container )`
   flex-flow: column;
   //border: thin solid yellow;
   
-  ${spacing('mt', 10)};
+  ${spacing('mt', 5)};
   
   ${ mediumUp( css`
     flex-flow: row wrap;
@@ -31,6 +31,9 @@ const MetaColumn = styled.div`
   
   & > :not(:first-child){
     ${ spacing('mt', .5) };
+    font-weight: 300;
+    letter-spacing: 1.2px;
+
   }
 `
 
@@ -48,12 +51,12 @@ const FooterMeta = () => {
       {
         data.map((c, i) => {
             return (
-              <MetaColumn>
+              <MetaColumn key={ Math.random() }>
                 <Typography variant='h5' className='title'>{
                   i === 0 && 'Explore' || i === 1 && 'Social'
                   || i === 2 && 'Contact' || i === 3 && 'Henzzo.io'
                 }</Typography>
-                { c.map((t, i) => <Typography variant='subtitle1' >{t}</Typography>) }
+                { c.map((t, i) => <Typography key={Math.random()} variant='subtitle2' >{t}</Typography>) }
               </MetaColumn>
 
             )

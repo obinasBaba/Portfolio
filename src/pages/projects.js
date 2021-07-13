@@ -126,7 +126,7 @@ const Projects = ({ location }) => {
         setRecordHistory={false}
         // navigation={true}
         // navigationPosition="left"
-        dragAnAndMove={true}
+        // dragAnAndMove={true}
         scrollBar={false}
         autoScrolling={true}
         fitToSection={true}

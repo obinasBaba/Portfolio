@@ -27,7 +27,7 @@ export const useExperimentAssets = () => {
         publicURL
         name
       }
-      exp4: file(relativePath: { eq: "sections/experiments/exp4.jpg" }) {
+      exp4: file(relativePath: { eq: "sections/experiments/exp4.gif" }) {
         publicURL
         name
       }

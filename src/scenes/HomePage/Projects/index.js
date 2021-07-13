@@ -5,6 +5,10 @@ import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { getMousePos } from '../../../helpers/utils'
 import { navigate } from 'gatsby'
 import Headline from '../../../components/Headline'
+import lotti from 'lottie-web';
+import c1 from './circle.json';
+import c2 from './circle2.json';
+import {Typography} from '@material-ui/core'
 
 const ProjectContainer = styled.div`
   max-width: 100%;
@@ -13,7 +17,8 @@ const ProjectContainer = styled.div`
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  //border: thin solid red;
+  //border: thick solid red;
+  padding: 2rem 0;
   ${ spacing( 'mb', 8 ) };
 
   &::before {
@@ -53,67 +58,32 @@ const ProjectContainer = styled.div`
     align-items: center;
     justify-content: center;
     background: none;
-    padding: 0;
+    padding: 4rem;
     border-radius: 100px;
     position: relative;
     //border: thin solid green;
 
-    ${heightWidth('height', 50)};
-    ${heightWidth('width', 75)};
+    ${heightWidth('height', 53)};
+    ${heightWidth('width', 53)};
     
     .btn-border {
       position: absolute;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 250px;
-      width: 250px;
-      //border: 2px solid #02021e;
-      border-radius: 50%;
-      background: linear-gradient( to top left, red, yellow );
-
-      box-shadow: 70px 120px 150px -30px rgba(2, 2, 30, 0.6);
-      
-      &:last-child{
-        background: linear-gradient(
-                258.52deg,
-                  #3719ca -132.34%,
-                rgba(55, 25, 202, 0) 22.57%
-        ),
-        linear-gradient(
-                283.68deg,
-                rgba(235, 174, 149, 0) 45.54%,
-                rgba(235, 174, 149, 0.19) 130.68%
-        ),
-        linear-gradient(3.27deg, #02021e 13.68%, #262147 142.62%);
-      }
-
-    }
-    
-  }
-
-  .cursor {
-    display: none;
-  }
-
-  @media (any-pointer: fine) {
-    .cursor {
-      position: fixed;
       top: 0;
       left: 0;
-      display: block;
-      pointer-events: none;
+      bottom: 0;
+      right: 0;
+      
+      p{
+        //position: absolute;
+        //z-index: 99999;
+      }
+      
+      path{
+        stroke-width: 4px;
+      }
+      
     }
-
-    .cursor__inner {
-      fill: var(--cursor-fill);
-      stroke: var(--cursor-stroke);
-      stroke-width: var(--cursor-stroke-width);
-    }
-
-    .credits {
-      padding-left: 25vw;
-    }
+    
   }
 `
 
@@ -123,7 +93,8 @@ const top = {}
 const Projects = () => {
 
   const hoverValue = useMotionValue(0);
-
+  const outerRef = useRef(null);
+  const innerRef = useRef(null);
 
   const ref = useRef(null);
   const xPos = useMotionValue(0);
@@ -173,7 +144,29 @@ const Projects = () => {
 
     return () => window.removeEventListener('mousemove', mouseMoveHandler)
 
-  }, [])
+  }, []);
+
+  useEffect(() => {
+
+    lotti.loadAnimation({
+      container: outerRef.current,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      animationData: c1
+    })
+
+    lotti.loadAnimation({
+      container: innerRef.current,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      animationData: c2
+    })
+
+
+    }, [])
+  
 
   return (
     <motion.div
@@ -204,21 +197,25 @@ const Projects = () => {
 
           }}
         >
-          {/*<Link to={'/projects'}>*/}
-            <motion.div className="btn-border outer-border"
-                        style={{ x: x2, y: y2 }}
+
+          <Typography variant='body1' className='all-project' > All Projects(5)</Typography>
+
+
+          <motion.div ref={outerRef}
+                        className="btn-border outer-border"
+                        // style={{ x: x2, y: y2 }}
 
             />
 
 
-            <motion.div className="btn-border inner-border"
-                        style={{ x, y }}
+            <motion.div ref={innerRef}
+                        className="btn-border inner-border"
+                        // style={{ x, y }}
                         onClick={ () => navigate('/projects#one') }
 
             >
-              All Projects(12)
+
             </motion.div>
-          {/*</Link>*/}
 
         </motion.div>
 

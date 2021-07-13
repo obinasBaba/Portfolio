@@ -24,16 +24,13 @@ const HomePage = () => {
 
       <SectionWrapper>
         <Hero />
-
       </SectionWrapper>
 
       <RecentWorkWrapper>
         <RecentWorks />
       </RecentWorkWrapper>
 
-      <SectionWrapper>
-        <Projects />
-      </SectionWrapper>
+      <Projects />
 
       <SectionWrapper>
         <BlogPosts/>

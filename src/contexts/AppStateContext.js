@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 
 export const AppStateContext = React.createContext(false)
 
@@ -14,6 +14,14 @@ const AppStateProvider = ( {children} ) => {
   const [isWhite, setIsWhite] = useState(false)
   const [isHeaderGradient, setHeaderGradient] = useState(true)
   const [isContactOpen, setContactModal] = useState(false)
+  const [top, setTop1] = useState('0')
+
+  const setTop = (value) => {
+    console.log('setTOp ------------- ', value)
+      console.log('initial top : ', top, 'new value: ', value)
+      window.localStorage.setItem('top', value.toString())
+      setTop1(value)
+  }
 
   const [fromCaseStudy, setFromCaseStudy] = useState(false)
 
@@ -23,6 +31,13 @@ const AppStateProvider = ( {children} ) => {
     width: 0,
     height: 0,
   })
+
+  useEffect(() => {
+    // console.log('top is null', 'localSto : ', window.localStorage.getItem('top'))
+    // setTop1( window.localStorage.getItem('top') )
+
+    }, [])
+
 
   return (
     <AppStateContext.Provider value={{
@@ -36,7 +51,8 @@ const AppStateProvider = ( {children} ) => {
       isContactOpen,
       setContactModal,
       fromCaseStudy, setFromCaseStudy,
-      titleRect, setTitleRect
+      titleRect, setTitleRect,
+      top, setTop,
 
     }} >
 

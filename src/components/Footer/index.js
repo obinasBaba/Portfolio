@@ -38,7 +38,7 @@ const FooterContainer = styled.div`
   }
 
   ${spacing('pv', 4)};
-  // ${spacing('mt', 2)};
+  ${spacing('pb', 3)};
 
   
 `

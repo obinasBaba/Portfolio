@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, {useContext, useEffect, useRef, useState} from 'react'
 import styled from 'styled-components'
 import {
   motion,
@@ -11,14 +11,26 @@ import { useIntersection } from 'react-use'
 import { Typography } from '@material-ui/core'
 import { processData } from './data'
 import Card from './Card'
+import {useApproachAssets} from '../../../hooks/queries/useApproachAssets'
+import WavyLines from './WavyLines'
+import {AppStateContext} from '../../../contexts/AppStateContext'
 
 const ProcessContainer = styled.div`
-  //border: thin dashed red;
-  height: 380vh; 
+  // --bg : ${ ({inView}) => inView ? '#02021e' : 'rgba(2,2,30,0)' };
+  
+  height: 500vh; 
   overflow: visible;
   position: relative;
   //margin: 10rem 0;
-  padding: 14rem 0 15rem;
+  padding: 14rem 0 10rem;
+  //background: var(--bg);
+  
+  transition: background 1s cubic-bezier(0.6, 0.01, 0, 0.9);
+  
+  .wavy{
+    position: sticky;
+    top: 0;
+  }
 `
 
 const ProcessTxt = styled( Typography )`
@@ -33,7 +45,7 @@ const ProcessTxt = styled( Typography )`
 `
 
 const ProcessMask = styled(motion.div)`
-  //border: thick dashed #89dc14;
+  //border: thin dashed #89dc14;
   margin-top: 4rem;
   padding: 10rem 0 0 17rem;
   top: 4.5rem;
@@ -45,7 +57,7 @@ const ProcessMask = styled(motion.div)`
 const ProcessTrack = styled(motion.div)`
   display: flex;
   //border: thin dashed #ec1f30;
-  width: 210vw;
+  width: 250vw;
   & > :not( :last-child ){
     margin-right: 11rem;
   }
@@ -53,21 +65,29 @@ const ProcessTrack = styled(motion.div)`
 
 
 
-
+//
 const MyProcess = () => {
+   const { top, setTop, } = useContext(AppStateContext);
+
+  const { build, design, pentool, phone, rocket } = useApproachAssets();
+  const icons = [ phone,  pentool, design, build, rocket ];
+
   const maskRef = useRef(null);
   const containerRef = useRef(null);
+  const [inView, setInview] = useState(false)
+
+
 
   let lastScrollTop = useMotionValue(0);
   let dir = useMotionValue('down');
 
   const { scrollYProgress } = useViewportScroll()
-  const [ rootMargin, setRootMargin ] = useState(0)
+  const rootM = useMotionValue(0);
 
 
   const intersection = useIntersection(maskRef, {
     root: null,
-    rootMargin: `100px 0px -${rootMargin}px 0px`,
+    rootMargin: `100px 0px -${rootM.get()}px 0px`,
     threshold: 0,
   });
 
@@ -87,7 +107,7 @@ const MyProcess = () => {
 
   useTransform(scrollYProgress, (i) => {
     if ( intersection && intersection.isIntersecting ){
-      // background.set('#d95b09')
+      // setTop(yBeforeIntersection.get())
       intersected.set( true )
       yAfterIntersection.set(i - yBeforeIntersection.get())
 
@@ -95,7 +115,6 @@ const MyProcess = () => {
 
       if ( !intersected.get() )
         yBeforeIntersection.set( i )
-      // background.set('#6797c7')
     }
 
   })
@@ -104,11 +123,17 @@ const MyProcess = () => {
 
     let style = getComputedStyle(maskRef.current);
     const rootMargin = window.innerHeight - style.top.substring(0, style.top.length - 2);
-    setRootMargin(rootMargin);
+    rootM.set(rootMargin)
 
-    const ff = () => {
+    let rect = maskRef.current.getBoundingClientRect();
+
+    const ff = (e) => {
+
+      // console.log('yBefore : ', yBeforeIntersection.get(), 'top: ', top)
+      // console.log(rect.top + window.scrollY, window.scrollY)
+
       // console.log('root', style.top, window.innerHeight)
-      console.log(containerRef.current.getBoundingClientRect())
+      // console.log(containerRef.current.getBoundingClientRect())
       // console.log('scroll: ', scroll.get())
 
       // console.log('vpScroll: ', scrollYProgress.get())
@@ -119,7 +144,6 @@ const MyProcess = () => {
       return () => window.removeEventListener('scroll', ff)
 
     }, [])
-
 
   useEffect(() => {
 
@@ -136,24 +160,30 @@ const MyProcess = () => {
       lastScrollTop.set( current <= 0 ? 0 : current )
 
     };
-    window.addEventListener('scroll', detectScrollDirection)
-    return () => window.removeEventListener('scroll', detectScrollDirection)
+
 
     }, [])
 
 
   return (
-    <ProcessContainer ref={containerRef} >
+    <ProcessContainer ref={containerRef} inView={inView} >
 
-      <ProcessTxt variant='h1' noWrap={true}>My Process</ProcessTxt>
+      <div className="wavy">
+        <WavyLines/>
+      </div>
 
+      <ProcessTxt  inView={inView} variant='h1' className='title' noWrap={true}>My Approach</ProcessTxt>
 
       <ProcessMask ref={maskRef} >
+
         <ProcessTrack  style={{ x }}  >
 
           {
-            processData.map(( {no, title, txt, icon} ) =>
-              <Card no={no} title={title} txt={txt} Icon={icon}  />
+            processData.map(( {no, title, txt, icon, keys, path}, index ) =>
+              <Card key={title} no={no} title={title} txt={txt} Icon={icon}
+                    index={index}
+                    path={icons[index].publicURL }
+                    methodologies={keys}  />
             )
 
           }
