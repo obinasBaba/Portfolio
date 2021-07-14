@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import paper from 'paper';
 import SimplexNoise from 'simplex-noise'
 import {map} from '../../../helpers/utils'
-import {pointArr} from './p'
-import b from './b.svg'
 
 const WavyLinesContainer = styled.div`
   //border: thin solid lightcoral; 

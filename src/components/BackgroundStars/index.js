@@ -27,6 +27,7 @@ const BackgroundStars = () => {
 
   const { scrollY } = useViewportScroll()
   const mappedY = useTransform(scrollY, y => Math.ceil((300 / 3400) * -y))
+
   const yScrollBig = useSpring(mappedY, config)
   const yScrollSmall = useTransform(yScrollBig, latest => latest / 1.5)
 

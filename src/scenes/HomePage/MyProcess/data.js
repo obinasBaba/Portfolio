@@ -1,4 +1,3 @@
-import {Build, Call, Design, Launch} from './icons'
 
 export const processData = [
   {
@@ -9,10 +8,8 @@ export const processData = [
               get to know you. Before i can properly design your
               good-looking website, i need to understand you,
               you pain-points, and you audience.`,
-    icon: Call,
   },
   {
-    path: 'https://assets.website-files.com/5e0f6cce946b126508a0d575/5f43f75c877e0a1cbad6221c_illus_small_design.json',
     keys: 'strategy | identity',
     no: '02',
     title: 'Design Phase',
@@ -21,7 +18,6 @@ export const processData = [
               specific needs, All while accurately representing your
               brand and keeping things aesthetically pleasing and usable
               for you purpose.`,
-    icon: Design,
   },{
     path: 'https://assets.website-files.com/5e0f6cce946b126508a0d575/5f43f2c19a790bb0c71ccf44_illus_small_branding.json',
     keys: 'Accessibility | Interactions',
@@ -32,7 +28,6 @@ export const processData = [
           prototyped and tested to ensure they're hitting the right
           notes with consumers and to reveal areas of for improvement.
     `,
-    icon: Build,
   },
   {
     path: 'https://assets.website-files.com/5e0f6cce946b126508a0d575/5f43f2c2b496a8e317cb250b_illus_small_development.json',
@@ -42,7 +37,6 @@ export const processData = [
     txt: `Once you're happy with the designs, i will proceed to building them
               making sure everyting is optimised to follow modern web practices,
               such as speed, security and reliability.`,
-    icon: Build,
   },
 
   {
@@ -52,6 +46,5 @@ export const processData = [
     txt: `After i double checked everything, it's time to launch your
               website. in this phase i will also provide same training videos
               on how you can add content to your website so you can do it yourself.`,
-    icon: Launch,
   },
 ]

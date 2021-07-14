@@ -20,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     
-    cursor: none;
+    //cursor: none;
   }
 
   

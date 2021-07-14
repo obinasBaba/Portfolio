@@ -179,8 +179,8 @@ const MyProcess = () => {
         <ProcessTrack  style={{ x }}  >
 
           {
-            processData.map(( {no, title, txt, icon, keys, path}, index ) =>
-              <Card key={title} no={no} title={title} txt={txt} Icon={icon}
+            processData.map(( {no, title, txt, keys}, index ) =>
+              <Card key={title} no={no} title={title} txt={txt}
                     index={index}
                     path={icons[index].publicURL }
                     methodologies={keys}  />
