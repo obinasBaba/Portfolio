@@ -36,21 +36,11 @@ const HomePage = () => {
         <BlogPosts/>
       </SectionWrapper>
 
-
       <SectionWrapper>
         <Experiments />
       </SectionWrapper>
 
-      {/*<SectionWrapper>*/}
-        <MyProcess/>
-      {/*</SectionWrapper>*/}
-
-
-      {/*<SectionWrapper>*/}
-      {/*  <MailUs />*/}
-      {/*</SectionWrapper>*/}
-
-
+      <MyProcess/>
 
     </>
   )

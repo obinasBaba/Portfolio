@@ -87,6 +87,15 @@ export const InnerWrapper = styled(motion.div)`
     .image-cover:last-child {
     }
   }
+  
+  a{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+  }
 `
 
 export const OverflowWrapper = styled(motion.div)`

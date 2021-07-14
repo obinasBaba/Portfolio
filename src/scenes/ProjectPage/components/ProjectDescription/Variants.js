@@ -30,7 +30,18 @@ export const btnTxtVariants = {
   },
   exitFp: {
     y: '120%',
-  }
+  },
+
+  exit( c ){
+
+    if (c && c.path && c && c.path.startsWith('/portfolio'))
+      return {}
+    else
+      return {
+        y: '120%',
+      }
+
+  },
 }
 
 export const tagsVariants = {
@@ -75,7 +86,6 @@ export const titleVariant = {
       duration: 0,
     },
   },
-
   animateFp: {
     transition: {
       staggerChildren: 0.02,
@@ -99,9 +109,6 @@ export const letterVariant = {
 
   animate: {
     y: 0,
-    // transition: {
-    //   duration: 0,
-    // },
   },
 
   initial: {
@@ -116,5 +123,18 @@ export const letterVariant = {
   },
   exitFp: {
     y: '100%'
-  }
+  },
+
+  exit( c ){
+
+    if (c && c.path && c && c.path.startsWith('/portfolio'))
+      return {}
+    else
+      return {
+        opacity: 0,
+        // y: '100%',
+        scale: .8,
+      }
+
+  },
 }

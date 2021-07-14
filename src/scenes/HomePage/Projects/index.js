@@ -2,11 +2,12 @@ import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { gridMultiplayer, heightWidth, spacing } from '../../../styles/mixins'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { navigate } from 'gatsby'
+import {Link, navigate} from 'gatsby'
 import Headline from '../../../components/Headline'
 import lotti from 'lottie-web'
 import { Typography } from '@material-ui/core'
 import { useProjectCircles } from '../../../hooks/queries/useProjectCircles'
+import {useScrollRestoration} from 'gatsby'
 
 const ProjectContainer = styled.div`
   max-width: 100%;
@@ -20,7 +21,6 @@ const ProjectContainer = styled.div`
   ${spacing('mb', 8)};
 
   .hover-target {
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,6 +32,10 @@ const ProjectContainer = styled.div`
 
     ${heightWidth('height', 53)};
     ${heightWidth('width', 53)};
+    
+    a{
+      z-index: 1;
+    }
 
     .btn-border {
       position: absolute;
@@ -78,10 +82,26 @@ const Planet = styled( motion.div )`
   }
 `
 
+const parentVariant = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 1.5,
+    }
+  }
+}
+
 
 const Projects = () => {
 
   const { circle1, circle2 } = useProjectCircles();
+  const projectSectionRestoration = useScrollRestoration('project-section')
 
 
   const outerRef = useRef(null);
@@ -145,8 +165,6 @@ const Projects = () => {
       autoplay: true,
       path: circle2.publicURL
     })
-
-
     }, [])
   
 
@@ -154,6 +172,11 @@ const Projects = () => {
     <motion.div
       id={'proSec'}
       ref={containerRef}
+
+      variants={parentVariant}
+      initial='initial'
+      animate='animate'
+      exit='exit'
     >
 
       <ProjectContainer>
@@ -166,7 +189,10 @@ const Projects = () => {
 
         <motion.div  className='hover-target'>
 
-          <Typography variant='subtitle1' className='all-project' > All Projects(5)</Typography>
+          <Link id='proSec'  to={'/projects/#one'}>All Projects(5)</Link>
+
+
+          {/*<Typography variant='subtitle1' className='all-project' > </Typography>*/}
 
 
           <motion.div ref={outerRef}
@@ -176,9 +202,7 @@ const Projects = () => {
 
           <motion.div ref={innerRef}
                       style={ { rotate: moRotate2 } }
-                      className="btn-border inner-border"
-
-                      onClick={ () => navigate('/projects#one') }/>
+                      className="btn-border inner-border" />
 
 
         </motion.div>

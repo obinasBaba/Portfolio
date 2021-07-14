@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import ReturnBtn from '../components/ReturnBtn'
 import ReactFullpage from '@fullpage/react-fullpage'
 import { AppStateContext } from '../contexts/AppStateContext'
-import { useAnimation, useMotionValue } from 'framer-motion'
+import { useAnimation, useMotionValue, motion } from 'framer-motion'
 import useProjectsAssets from '../hooks/queries/useProjectsAssets'
 import NavDots from '../scenes/ProjectPage/components/NavDots'
 import ScrollDown from '../scenes/ProjectPage/components/SideBarTools/ScrollDown'
@@ -13,8 +13,25 @@ import {
   ProjectContainerGrid,
   ProjectDescription, ProjectImage,
 } from '../scenes/ProjectPage'
+import {Link} from 'gatsby'
 
 const topVariant = {}
+
+const parentVariant = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      ease: [0.6, 0.01, 0, 0.9],
+      duration: 2,
+    }
+  },
+  exit: {
+    opacity: 0
+  }
+};
 
 const Projects = ({ location }) => {
   const { auth, kklLuzern, udemy, ...listAssets } = useProjectsAssets()
@@ -94,7 +111,7 @@ const Projects = ({ location }) => {
   } = useContext(AppStateContext)
 
   const moInitial = useMotionValue(
-    fromCaseStudy ? ['initial', 'animate'] : ['animate', 'initial']
+    fromCaseStudy ? ['initial', 'animate'] : ['initial']
   )
   const moDir = useMotionValue('')
 
@@ -108,12 +125,17 @@ const Projects = ({ location }) => {
   }, [])
 
   return (
-    <>
-      <ReturnBtn
-        onClick={() => {
-          // window.history.back()
-        }}
-      />
+    <motion.div variants={parentVariant}
+                initial={moInitial.get()}
+                animate='animate'
+                // exit='exit'
+    >
+
+
+      <Link to={'/#proSec'}>
+        <ReturnBtn  />
+      </Link>
+
       <NavDots ref={setActiveNavDot} />
       <ScrollDown hidden={activeIndex !== 0} />
 
@@ -124,9 +146,6 @@ const Projects = ({ location }) => {
         animateAnchor={false}
         setLockAnchors={false}
         setRecordHistory={false}
-        // navigation={true}
-        // navigationPosition="left"
-        // dragAnAndMove={true}
         scrollBar={false}
         autoScrolling={true}
         fitToSection={true}
@@ -147,13 +166,14 @@ const Projects = ({ location }) => {
           controllers.current[origin.index].start('exitFp')
           controllers.current[dist.index].start('animateFp')
         }}
+
         afterLoad={(origin, dist, dir) => {
           // console.log('afterLoad ----', dist.index, dir)
 
           if (dir === null && !fromCaseStudy)
             controllers.current.forEach((c, i) => c.start('initial'))
 
-          if (dist.isLast) return true
+
 
           // if (dir === null && !fromCaseStudy)
           //   return controllers.current.forEach(c => c.start('initialFp'))
@@ -228,7 +248,7 @@ const Projects = ({ location }) => {
           )
         }}
       />
-    </>
+    </motion.div>
   )
 }
 

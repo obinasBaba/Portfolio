@@ -7,90 +7,64 @@ export const transition = {
 }
 
 export const imgContainerVariant = {
-
   initial: {
     x: '10%',
-    scale: .85,
+    scale: 0.85,
+    transition: {
+      duration: 0,
+    },
   },
 
   animate: {
     x: 0,
     scale: 1,
-      // transition: {
-      //   duration: 0,
-      // }
+    transition: {
+      duration: 0,
+    },
   },
 
-  exit( c ){
-
-    if (c && c.path && c && c.path.startsWith('/portfolio'))
+  exit(c) {
+    if (c && c.path && c && c.path.startsWith('/portfolio')) return {}
+    else
       return {
-        // padding: 0,
-        // margin: 0,
-        // background: 'rgba(55,25,202,0)',
-        // transition: {
-        //   duration: 1
-        // }
+        opacity: 0,
+        scale: 0.92,
       }
-
   },
 
-  initialFp: { // equal with initial
-    // x: '10%',
-    // scale: .85,
-    //
-    // transition: {
-    //   duration: 0,
-    // }
-  },
-
-  animateFp(c){
-
-
-    return{
+  animateFp(c) {
+    return {
       x: 0,
       scale: 1,
-      // skewX: [null, c.dir === null ? 0 : c.dir === 'up' ? -3 : 3  , 0],
       transition: {
-        // skewX: {
-        //   duration: 1,
-        //   times: [0, .5, 1]
-        // },
         default: {
           duration: 1.5,
-          ease: [.33, 1, .68, 1],
+          ease: [0.33, 1, 0.68, 1],
           // ease:  [0.6, 0.01, 0, 0.9],
-          delay: .5
-        }
-      }
+          delay: 0.5,
+        },
+      },
     }
   },
 
   exitFp: {
     x: '10%',
-    scale: .83,
-
-  }
+    scale: 0.83,
+  },
 }
 
 export const innerVariant = {
-  initial: { },
-
-  animate: {  },
-
-  exit(c){
-
-    if ( c && c.path && c.path.startsWith('/portfolio') )
-      return{
-      // height: '100vh'
-    }
+  initial: {
+    scale: 1
   },
 
-  initialFp: {
+  animateFp: {
+    scale: 1,
   },
 
-
-
+  hover: {
+    scale: 1.05
+  }
 }
 
 export const imgOverVariants = {
@@ -114,8 +88,13 @@ export const imgOverVariants = {
 
 export const imgCover = {
   initial: {
-    x: 0
+    x: 0,
+    transition: {
+      duration: 0,
+    }
   },
+
+  //we want to find it just like as we leave it for the case-study page transition
   animate: {
     x: '110%',
     transition: {
@@ -125,10 +104,8 @@ export const imgCover = {
 
   initialFp:{
     x: '0%',
-    transition: {
-      duration: 0,
-    }
   },
+
   animateFp: {
     x: '110%',
   },
@@ -152,6 +129,7 @@ export const effectVariant = {
   initialFp: {
     y: '100%'
   },
+
   animateFp(c){
     // console.log('effect animateFp', c)
     return{
