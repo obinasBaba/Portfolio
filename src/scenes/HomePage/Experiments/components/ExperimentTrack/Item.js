@@ -2,8 +2,9 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { mediumUp, spacing } from '../../../../../styles/mixins'
 import { Typography } from '@material-ui/core'
+import {motion} from 'framer-motion'
 
-export const ExperimentItem = styled.div`
+export const ExperimentItem = styled( motion.div )`
   //border: 1px solid red;
   flex: 1 1 50%;
   display: flex;
@@ -36,6 +37,31 @@ export const ExperimentItem = styled.div`
       height: clamp(100px, 20vw, 230px);
     }
   `)};
+  
+  .title{
+    transition: transform .5s cubic-bezier(0.6, 0.01, 0, 0.9), color .3s ease-in;
+    transform: scale(1);
+    color: white;
+  }
+  
+  &:hover{
+    .title{
+      transition: transform .5s cubic-bezier(0.6, 0.01, 0, 0.9) .1s, color .3s ease-in;
+      color: navajowhite;
+      transform: scale(1.1);
+    }
+
+    .num{
+      transition: transform .5s cubic-bezier(0.6, 0.01, 0, 0.9) .3s;
+      transform: translateY(-30%);
+      &::after{
+        transform: translateX(-50%) translateY(50%);
+        transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9),
+                    opacity .2s ease-in;
+        opacity: 1;
+      }
+    }
+  }
 `
 
 const ExperimentTitle = styled.div`
@@ -55,6 +81,28 @@ const ExperimentTitle = styled.div`
   
 `
 
+
+const NumberContainer = styled( Typography )`
+  position: relative;
+  transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9) .2s;
+  
+  &::after{
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9),
+                opacity .5s ease-in;
+    
+    transform: translateX(-50%) translateY(100%);
+    opacity: 0;
+    content: '';
+    display: block;
+    height: 14px;
+    width: 7px;
+    background: navajowhite;
+  }
+`
+
 const Item = ({  imgUrl, title, index}) => {
   return (
     <ExperimentItem  >
@@ -64,7 +112,7 @@ const Item = ({  imgUrl, title, index}) => {
 
 
         <Typography align="left" variant={'subtitle1'} className='title' >{title}</Typography>
-        <Typography variant={'body2'}>0{index + 1}</Typography>
+        <NumberContainer className='num' variant={'body2'}>0{index + 1}</NumberContainer>
 
       </ExperimentTitle>
     </ExperimentItem>

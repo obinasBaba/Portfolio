@@ -2,9 +2,9 @@ import React, {useContext} from 'react'
 import {smallUp} from '../../styles/mixins'
 import styled, {css} from 'styled-components'
 import {AppStateContext} from '../../contexts/AppStateContext'
-import {AnimatePresence} from 'framer-motion'
+import {AnimatePresence, motion} from 'framer-motion'
 
-const MoonBg = styled.div`
+const MoonBg = styled( motion.div )`
   position: ${ ({position}) => position } ;
   top: 0;
   left: 0;
@@ -50,9 +50,6 @@ const MoonBg = styled.div`
 const Moon = ( ) => {
 
   const {  moonLight: { showMoon, show, position, } } = useContext( AppStateContext );
-
-
-
 
   return (
 

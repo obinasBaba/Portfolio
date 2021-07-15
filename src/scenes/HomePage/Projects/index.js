@@ -124,18 +124,17 @@ const Projects = () => {
   const ySmall = useTransform(yBig, y => y / 5)
   const xSmall = useTransform(xBig, x => x / 5)
 
-  const calc = (x, y) => {
+  const calculateMotionValues = (x, y) => {
     const xPos =  (x - window.innerWidth ) / 18;
     const yPos =  (y - window.innerHeight ) / 18;
     yBig.set(yPos);
     xBig.set(xPos);
   };
 
-
   //transform
   useEffect(() => {
     let handler = async (e) => {
-      calc(e.clientX, e.clientY);
+      calculateMotionValues(e.clientX, e.clientY);
       const xPos =  (e.x - window.innerWidth / 2) / 50;
       // const yPos =  (e.y - window.innerHeight / 2) / 100;
       moRotate.set( xPos )
@@ -145,7 +144,6 @@ const Projects = () => {
     return () => window.removeEventListener('mousemove', handler)
 
   }, [])
-
 
   //lottie animation
   useEffect(() => {
@@ -165,6 +163,10 @@ const Projects = () => {
       autoplay: true,
       path: circle2.publicURL
     })
+    }, [])
+
+  useEffect(() => {
+
     }, [])
   
 
@@ -192,12 +194,9 @@ const Projects = () => {
           <Link id='proSec'  to={'/projects/#one'}>All Projects(5)</Link>
 
 
-          {/*<Typography variant='subtitle1' className='all-project' > </Typography>*/}
-
 
           <motion.div ref={outerRef}
                       style={{rotate: moRotate}}
-
                       className="btn-border outer-border" />
 
           <motion.div ref={innerRef}

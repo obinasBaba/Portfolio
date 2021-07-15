@@ -4,25 +4,31 @@ import { motion, useMotionValue } from 'framer-motion'
 import { lerp, map } from '../helpers/utils'
 import styled from 'styled-components'
 import Paper, {Group} from 'paper'
+import {useProjectCircles} from '../hooks/queries/useProjectCircles'
 
 const H = styled.div`
   position: fixed;
   top: 20%;
   left: 20%;
+  height: min-content;
+  width: min-content;
   font-size: 2rem;
   font-weight: 900;
 `
 
 const Cursor = () => {
 
+  const { circle1 } = useProjectCircles();
+
+
   const canvasRef = useRef(null);
   const hRef = useRef(null);
   let lastX = useMotionValue(0)
   let lastY = useMotionValue(0)
 
-  let x = useMotionValue(-100);
-  let y = useMotionValue(-100);
-  let isStuck = true;
+  let x = useMotionValue(100);
+  let y = useMotionValue(100);
+  let isStuck = false;
   let showCursor = false;
   let group, stuckX, stuckY, fillOuterCursor;
   let s = new SimplexNoise();
@@ -51,9 +57,9 @@ const Cursor = () => {
     Paper.setup(canvasRef.current)
 
     const strokeColor = "#3719ca";
-    const strokeWidth = 1;
+    const strokeWidth = 2;
     const segments = 8;
-    const radius = 15;
+    const radius = 30;
 
     //noisiness
     const noiseScale = 150; // speed
@@ -61,44 +67,58 @@ const Cursor = () => {
     let isNoisy = false;
 
 
+    new Paper.Path.Rectangle()
 
-    const polygon = new Paper.Path.RegularPolygon(
-      new Paper.Point(0, 1),
-      segments,
-      radius,
-    );
+
+    let rect = new Paper.Rectangle(0, 0, 100, 100)
+    const polygon = new Paper.Path.Rectangle( rect );
+
+
+    polygon.insert(1, new Paper.Point(0, 50))
+    polygon.insert(3, new Paper.Point(50, 0))
+    polygon.insert(5, new Paper.Point(100, 50))
+    polygon.insert(8, new Paper.Point(50, 100))
+    // polygon.segments[1].selected = true;
+
 
     polygon.strokeColor = strokeColor;
     polygon.strokeWidth = strokeWidth;
+    polygon.selected = true;
     polygon.smooth();
 
-    const p2 = polygon.clone();
 
-    group = new Group([polygon, p2]);
+    group = new Group([ polygon ]);
     group.applyMatrix = false;
 
 
-    //create noise equal to segments
+    //create noise objects equal to segments
     const noiseObjects = polygon.segments.map(() => new SimplexNoise());
-    const noiseObjects2 = polygon.segments.map(() => new SimplexNoise());
-
-    const no = group.children.map( i => {
-      return polygon.segments.map(() => new SimplexNoise());
-    } )
-
     let bigCoordinates = [];
 
     Paper.view.onFrame = event => {
 
-      lastX.set( lerp( lastX.get(), x.get(), .2 ) )
-      lastY.set( lerp( lastY.get(), y.get(), .2 ) )
+      if (isStuck) {
+        // move circle around normally
+        lastX.set( lerp( lastX.get(), stuckX, .2 ) )
+        lastY.set( lerp( lastY.get(), stuckY, .2 ) )
+
+      } else {
+        // fixed position on a nav item
+        lastX.set( lerp( lastX.get(), x.get(), .2 ) )
+        lastY.set( lerp( lastY.get(), y.get(), .2 ) )
+
+      }
+
       group.position = new Paper.Point(lastX.get(), lastY.get());
 
 
-      /*if ( isStuck && polygon.bounds.width < shapeBounds.width )
-        polygon.scale(1.08) // scale up the shape
+      if ( isStuck && polygon.bounds.width < shapeBounds.width )
+      {
+        // scale up the shape
+        // polygon.scale(1.08)
+      }
 
-      else if ( !isStuck && polygon.bounds.width > 30 ){
+      else if ( !isStuck && polygon.bounds.width > 40 ){
 
         if ( isNoisy ){ // remove noise
           polygon.segments.forEach((s, i) => {
@@ -109,8 +129,8 @@ const Cursor = () => {
         }
 
         const scaleDown = 0.92;
-        polygon.scale(scaleDown);
-      }*/
+        // polygon.scale(scaleDown);
+      }
 
       //if stuck and big, apply simplex noise
       if ( isStuck  ){
@@ -123,10 +143,8 @@ const Cursor = () => {
           });
         }
 
-        group.children.forEach( (item, index) => {
-          item.segments.forEach((s, i) => {
+          polygon.segments.forEach((segment, i) => {
 
-            let noiseObjects = no[index]
             //get new noise value
             //we divide event.count by noiseScale to get a very smooth value
             const noiseX = noiseObjects[i].noise2D(event.count / noiseScale, 0);
@@ -141,9 +159,8 @@ const Cursor = () => {
             const newY = bigCoordinates[i][1] + distortionY;  // accessing y
 
             //set new (noisy) coordinate of point
-            s.point.set(newX, newY);
+            segment.point.set(newX, newY);
           })
-        } )
 
 
 
@@ -175,8 +192,8 @@ const Cursor = () => {
   
   return (
     <>
-      <H ref={hRef} onClick={() => {}}>
-
+      <H ref={hRef} >
+        All Projects
       </H>
 
 

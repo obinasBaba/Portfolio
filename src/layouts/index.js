@@ -77,7 +77,7 @@ export default function TopLayout({ children, path }) {
 
               {/*<VersionNo>v0.1</VersionNo>*/}
 
-              <Cursor />
+              {/*<Cursor />*/}
             </Page>
           </AppStateProvider>
         </ThemeProvider>

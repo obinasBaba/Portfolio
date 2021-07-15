@@ -98,10 +98,10 @@ export const Page = styled.div`
     }
 
     &--inner {
-      width: 5px;
-      height: 5px;
-      left: -2.5px;
-      top: -2.5px;
+      width: 10px;
+      height: 10px;
+      left: -5.2px;
+      top: -5.2px;
       border-radius: 50%;
       z-index: 11000;
       background: #2c00ff;
