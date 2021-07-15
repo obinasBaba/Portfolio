@@ -8,7 +8,6 @@ export const homeWorksBigImage = graphql`
         placeholder: BLURRED
         webpOptions: { quality: 100 }
       )
-    
     }
   }
 `
@@ -21,7 +20,6 @@ export const homeWorksMiddleImage = graphql`
         placeholder: BLURRED
         webpOptions: { quality: 100 }
       )
-     
     }
   }
 `
@@ -34,7 +32,6 @@ export const homeWorksSmallImage = graphql`
         placeholder: BLURRED
         webpOptions: { quality: 100 }
       )
-   
     }
   }
 `
@@ -49,12 +46,12 @@ const useHomeWorksAssets = () => {
         ...homeWorksMiddleImage
       }
       eScooter: file(
-        relativePath: { eq: "sections/home-works/eScooter-Booking.jpg" }
+        relativePath: { eq: "sections/home-works/eScooter-2.jpg" }
       ) {
         name
         ...homeWorksBigImage
       }
-      Web: file(relativePath: { eq: "sections/home-works/Web.jpg" }) {
+      Web: file(relativePath: { eq: "sections/home-works/web-3.jpg" }) {
         name
         ...homeWorksBigImage
       }
@@ -66,7 +63,7 @@ const useHomeWorksAssets = () => {
       }
       Investments: file(
         relativePath: {
-          eq: "sections/home-works/Investments-Platform-Mobile.jpg"
+          eq: "sections/home-works/Realty-Web-Dasboard.jpg"
         }
       ) {
         name
@@ -78,7 +75,7 @@ const useHomeWorksAssets = () => {
         name
         ...homeWorksSmallImage
       }
-      Starbank: file(relativePath: { eq: "sections/home-works/Starbank.jpg" }) {
+      Starbank: file(relativePath: { eq: "sections/home-works/starbank-2.jpg" }) {
         name
         ...homeWorksSmallImage
       }
@@ -89,7 +86,7 @@ const useHomeWorksAssets = () => {
         ...homeWorksSmallImage
       }
       Travel: file(
-        relativePath: { eq: "sections/home-works/Travel-Agency-Website.jpg" }
+        relativePath: { eq: "sections/home-works/travel-2.jpg" }
       ) {
         name
         ...homeWorksSmallImage

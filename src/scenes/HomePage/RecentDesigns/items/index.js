@@ -77,6 +77,7 @@ const DesignImage = ( { images } ) => {
           <GatsbyImage alt={imgData.name}
                        key={ index }
                        className={'image'}
+                       objectFit='cover'
                        image={ getImage( imgData ) }/> )
 
       }
