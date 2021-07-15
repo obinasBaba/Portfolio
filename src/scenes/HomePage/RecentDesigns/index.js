@@ -46,8 +46,8 @@ const RecentWorks = () => {
              dribbleRed={ dribbleRed.publicURL } />
 
       <ScrollGallery step={4}>
-        {imageList.map(item => {
-          return <DesignImage images={item} key={item[0].name} />;
+        {imageList.map((item, index) => {
+          return <DesignImage images={item} key={item[0].name + index} />;
         })}
       </ScrollGallery>
 

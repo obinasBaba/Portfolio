@@ -28,7 +28,7 @@ const BigDotContainer = styled( motion.div )`
 
 export const BigDot = ( {onClick, anchor} ) => {
   return (
-    <BigDotContainer onClick={() => {onClick();}}  >
+    <BigDotContainer layout onClick={() => {onClick();}}  >
 
 
         <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9">
@@ -48,7 +48,7 @@ const DottedLineContainer = styled( motion.div )`
 `
 export const DottedLine = () => {
   return (
-    <DottedLineContainer layout>
+    <DottedLineContainer >
       <svg xmlns="http://www.w3.org/2000/svg" width="1.691" height="35.521" viewBox="0 0 1.691 35.521">
         <ellipse id="Ellipse_6" data-name="Ellipse 6" cx="0.846" cy="0.846" rx="0.846" ry="0.846" fill="#cbc3af"/>
         <ellipse id="Ellipse_6-2" data-name="Ellipse 6" cx="0.846" cy="0.846" rx="0.846" ry="0.846" transform="translate(0 6.766)" fill="#cbc3af"/>

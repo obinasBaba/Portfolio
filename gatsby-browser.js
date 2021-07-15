@@ -10,10 +10,12 @@
 //   <AnimatePresence exitBeforeEnter >{element}</AnimatePresence>
 // );
 
-export const shouldUpdateScroll = ({
-  routerProps: { location },
-  getSavedScrollPosition,
-}) => {
+export const shouldUpdateScroll = ( obj ) => {
+
+
+
+  const {pathname, routerProps: { location }, getSavedScrollPosition} = obj;
+
 
   /*if ( location.action === 'PUSH' )
   {
@@ -28,5 +30,42 @@ export const shouldUpdateScroll = ({
     setTimeout( () => window.scrollTo( ...(saved) ), 1000)
   }*/
 
-  return true
+  // console.log(pathname)
+  // console.log(obj)
+
+
+  if ( pathname === '/blog' ){
+    setTimeout(() => {
+      window.scrollTo(0, 0)
+    }, 1200)
+    return false;
+  }
+
+  if ( pathname === '/' && obj.prevRouterProps && obj.prevRouterProps.location.pathname === '/blog' ){
+    const saved = getSavedScrollPosition(location);
+    setTimeout( () => {
+      // console.log('scrolling to saved', saved)
+      window.scrollTo( ...(saved) )
+    }, 1100)
+
+    return false;
+  }
+
+  if ( location.action === 'PUSH' ) {
+    setTimeout( () => window.scrollTo(0,0), 1000 )
+  }
+  else{
+    // console.log(location)
+    // console.log('delayed')
+    const saved = getSavedScrollPosition(location);
+    setTimeout( () => {
+      window.scrollTo( ...(saved) )
+    }, 1100)
+
+    return false;
+  }
+
+
+  return false;
+
 }

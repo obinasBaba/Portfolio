@@ -48,7 +48,7 @@ const ProjectImage = ({
 
         <Link to={link} state={{ path: url }} />
 
-        <motion.img src={img} />
+        <motion.img data-src={img} />
 
         <motion.div className="image-over" variants={imgOverVariants}>
 

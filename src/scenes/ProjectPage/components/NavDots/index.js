@@ -5,7 +5,9 @@ import {spacing} from '../../../../styles/mixins'
 import {BigDot, DottedLine, Thumb} from './Components/NavTools'
 import ThumbAndDot from './Components/ThumbAndDot'
 
-const NavContainer = styled( motion.div )`
+const NavContainer = styled( motion.ul )`
+  padding: 0;
+  margin: 0;
   position: fixed;
   z-index: 9999;
   ${ spacing('ml', 3.2) };
@@ -42,7 +44,7 @@ const parentVariant = {
 const NavDots = React.forwardRef( (props, ref) => {
 
   const [active, setActive] = useState(0);
-  const [anchors, setAnchors] = useState(['#one', '#two', '#three', '#four'])
+  const [anchors, setAnchors] = useState(['one', 'two', 'three', 'four'])
 
   useEffect(() => {
 
@@ -51,7 +53,7 @@ const NavDots = React.forwardRef( (props, ref) => {
     }
 
     }, [])
-  
+
 
   return (
 
@@ -59,16 +61,20 @@ const NavDots = React.forwardRef( (props, ref) => {
                     initial='initial'
                     animate='animate'
                     exit='exit'
+                    id='navDots'
                     transition={transition}
+
       >
 
         <AnimateSharedLayout type="crossfade">
 
 
         {
-          anchors.map( (anchor, i) => <>
-            <ThumbAndDot anchor={anchor} hidden={i === active} index={i} onClick={ {set: setActive} } />
-            { i !== 3 && <DottedLine/>  }
+          anchors.map( (anchor, index) => <>
+            <ThumbAndDot anchor={anchor} hidden={index === active}
+                         index={index}
+                         dataAnchor={anchor}
+                         onClick={ {set: setActive} } />
           </> )
         }
 

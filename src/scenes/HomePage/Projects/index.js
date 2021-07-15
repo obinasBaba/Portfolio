@@ -92,7 +92,7 @@ const parentVariant = {
   exit: {
     opacity: 0,
     transition: {
-      duration: 1.5,
+      duration: 1,
     }
   }
 }
@@ -174,7 +174,7 @@ const Projects = () => {
     <motion.div
       id={'proSec'}
       ref={containerRef}
-
+      {...projectSectionRestoration}
       variants={parentVariant}
       initial='initial'
       animate='animate'

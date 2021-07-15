@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import {AnimatePresence, motion} from 'framer-motion'
-import {BigDot, Thumb} from './NavTools'
-import {Link, navigate} from 'gatsby'
+import { AnimatePresence, motion } from 'framer-motion'
+import {BigDot, DottedLine, Thumb} from './NavTools'
+import { Link, navigate } from 'gatsby'
 
-const ThumbAndDotContianer = styled( motion.div )`
+const ThumbAndDotContianer = styled(motion.div)`
   //border: thin solid lightblue;
   position: relative;
   display: grid;
@@ -14,47 +14,51 @@ const ThumbAndDotContianer = styled( motion.div )`
   justify-items: center;
   align-content: center;
   justify-content: center;
-  
-  
-  & > :first-child{
+
+  & > :first-child {
     grid-column: 1 / 1;
-    grid-row: 1 / 1 ;
+    grid-row: 1 / 1;
     //border: thin solid lightblue;
   }
-  
-  & > :last-child{
+
+  & > :last-child {
     grid-column: 1 / 1;
-    grid-row: 1 / 1 ;
+    grid-row: 1 / 1;
     //display: none;
   }
-  
 `
 
-const ThumbAndDot = ( {hidden, onClick, index, anchor} ) => {
+const StyledLink = styled(motion.a)`
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+`
+
+const ThumbAndDot = ({ hidden, onClick, index, anchor, dataAnchor }) => {
   return (
-    <ThumbAndDotContianer layout>
+    <StyledLink
+                data-menuanchor={dataAnchor }
+                href={`#${dataAnchor}`} >
 
-        {/*<motion.a href={`/projects${anchor}`} >*/}
-
-      <Link to={`${anchor}`}>
+      <ThumbAndDotContianer  layout >
 
           <BigDot
             onClick={() => {
               onClick.set(index)
-              // navigate(anchor)
             }}
             anchor={anchor}
           />
 
-      </Link>
+        <AnimatePresence exitBeforeEnter={true}>
+          {hidden && <Thumb layoutId={index} />}
+        </AnimatePresence>
 
-      {/*</motion.a>*/}
+      </ThumbAndDotContianer>
 
+      { index !== 3 && <DottedLine/>  }
 
-      <AnimatePresence exitBeforeEnter={true} >
-        {hidden && <Thumb layoutId={index} />}
-      </AnimatePresence>
-    </ThumbAndDotContianer>
+    </StyledLink>
   )
 }
 

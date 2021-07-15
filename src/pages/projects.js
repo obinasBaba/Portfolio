@@ -137,7 +137,9 @@ const Projects = ({ location }) => {
       </Link>
 
       <NavDots ref={setActiveNavDot} />
-      <ScrollDown hidden={activeIndex !== 0} />
+      <ScrollDown show={activeIndex === 0} />
+
+
 
       <ReactFullpage
         easingcss3="cubic-bezier(0.645, 0.045, 0.355, 1)"
@@ -149,6 +151,10 @@ const Projects = ({ location }) => {
         scrollBar={false}
         autoScrolling={true}
         fitToSection={true}
+        recordHistory={true}
+        scrollOverflow={true}
+        lazyLoading={true}
+        menu={'#navDots'} //for dotted navigation
         onLeave={(origin, dist, dir) => {
           // console.log('onLeave ----')
 
@@ -241,7 +247,7 @@ const Projects = ({ location }) => {
                 )
               })}
 
-              <div className="section">
+              <div className="section fp-auto-height">
                 <Others {...othersAssets} active={activeIndex} />
               </div>
             </>

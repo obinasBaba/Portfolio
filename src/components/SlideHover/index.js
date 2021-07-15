@@ -1,11 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import {spacing} from '../../styles/mixins'
 
 const HoverSlider = styled.div`
   position: relative;
   //display: inline;
   width: fit-content;
-  padding-bottom: 8px;
+  ${ spacing('pb', .8) };
 
   &:before {
     content: '';

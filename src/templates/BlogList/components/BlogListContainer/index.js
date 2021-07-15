@@ -2,8 +2,9 @@ import React from 'react'
 import { Container, Typography } from '@material-ui/core'
 import styled, { css } from 'styled-components'
 import { mediumUp, spacing, text } from '../../../../styles/mixins'
+import {motion} from 'framer-motion'
 
-const ArticleCardWrapper = styled( Container )`
+const BlogListContainer = styled( Container )`
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -23,21 +24,51 @@ const MyArticles = styled( Typography )`
   ` ) }
 `;
 
+const BlogListWrapper = styled( motion.div )`
 
-const BlogListContainer = ({ children}) => {
+`
+
+const wrapperVariant = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1
+  },
+  exit: {
+    opacity: 0,
+  }
+}
+
+const transition = {
+  duration: 1,
+  ease: [0.6, 0.01, 0, 0.9],
+
+}
+
+const BlogList = ({ children}) => {
   return (
 
-      <ArticleCardWrapper fixed={ false } maxWidth={ "lg" }>
+      <BlogListContainer fixed={ false } maxWidth={ "lg" }>
 
-        <MyArticles variant="h1">
-          My Articles
-        </MyArticles>
+        <motion.div variants={wrapperVariant}
+                    transition={transition}
+                    initial='initial'
+                    animate='animate'
+                    exit='exit'
+        >
 
-        { children }
+          <MyArticles variant="h1">
+            My Articles
+          </MyArticles>
 
-      </ArticleCardWrapper>
+          { children }
+
+        </motion.div>
+
+      </BlogListContainer>
 
   );
 };
 
-export default BlogListContainer;
+export default BlogList;

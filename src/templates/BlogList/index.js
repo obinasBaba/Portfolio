@@ -1,9 +1,9 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext, useEffect, useLayoutEffect} from 'react'
 import BlogCard from './components/BlogCard'
 import { graphql, Link } from 'gatsby'
 import styled, { useTheme } from 'styled-components'
 import { useMediaQuery } from '@material-ui/core'
-import BlogListContainer from './components/BlogListContainer'
+import BlogList from './components/BlogListContainer'
 import {AppStateContext} from '../../contexts/AppStateContext'
 
 const PageLinks = styled.div`
@@ -29,6 +29,10 @@ const BlogListTemplate = ({
 
   }, [])
 
+  useLayoutEffect(() => {
+    // window.scrollTo(0, 0)
+  })
+
   const previousPage = currentPage === 2 ? '/blog' : `/blog/${currentPage - 1}`
 
   const nextPage = `/blog/${currentPage + 1}`
@@ -36,7 +40,7 @@ const BlogListTemplate = ({
   const match = useMediaQuery(theme.breakpoints.up('sm'))
 
   return (
-    <BlogListContainer>
+    <BlogList>
       {data.allMarkdownRemark.edges.map(
         (
           {
@@ -72,7 +76,7 @@ const BlogListTemplate = ({
         {currentPage < pageCount && <Link to={nextPage}>Next Page</Link>}
       </PageLinks>
 
-    </BlogListContainer>
+    </BlogList>
   )
 }
 
