@@ -1,12 +1,17 @@
-import React from 'react'
+import React, {useEffect, useRef} from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider } from '@material-ui/core/styles'
-import { ThemeProvider as StyledThemeProvider } from 'styled-components'
+import styled, { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import theme from '../theme'
 import '../styles/fontFace.css'
-import { AnimatePresence } from 'framer-motion'
+import {
+  AnimatePresence,
+  motion,
+  useTransform,
+  useViewportScroll,
+} from 'framer-motion'
 import { GlobalStyle, Main, Page } from './layoutComponents/index'
 import AppStateProvider from '../contexts/AppStateContext'
 import BackgroundStars from '../components/BackgroundStars'
@@ -14,19 +19,16 @@ import Moon from './Components/Moon'
 import { SkyColor } from './Components/SkyColor'
 import HeaderAppBar from '../components/HeaderAppBar'
 import MailUs from '../scenes/MailUs'
-import loadable from '@loadable/component'
 // import Cursor from './Cursor'
+import ProgressCircle from './Components/ProgressCircle'
 
-const Cursor = loadable(
 
-  async () => (await import('./Cursor')),
-  {
-    fallback: <>Loading.....</>
-  }
-)
 
 
 export default function TopLayout({ children, path }) {
+
+
+
   return (
     <React.Fragment>
       <Helmet>
@@ -55,9 +57,6 @@ export default function TopLayout({ children, path }) {
               <HeaderAppBar />
 
               <Main>
-
-
-
                 <SkyColor />
 
                 <Moon />
@@ -78,6 +77,9 @@ export default function TopLayout({ children, path }) {
               {/*<VersionNo>v0.1</VersionNo>*/}
 
               {/*<Cursor />*/}
+
+              <ProgressCircle />
+
             </Page>
           </AppStateProvider>
         </ThemeProvider>

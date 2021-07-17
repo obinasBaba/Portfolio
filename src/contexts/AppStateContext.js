@@ -14,14 +14,14 @@ const AppStateProvider = ( {children} ) => {
   const [isWhite, setIsWhite] = useState(false)
   const [isHeaderGradient, setHeaderGradient] = useState(true)
   const [isContactOpen, setContactModal] = useState(false)
-  const [top, setTop1] = useState('0')
+  const [top, setTop] = useState(null)
 
-  const setTop = (value) => {
+ /* const setTop = (value) => {
     console.log('setTOp ------------- ', value)
       console.log('initial top : ', top, 'new value: ', value)
       window.localStorage.setItem('top', value.toString())
       setTop1(value)
-  }
+  }*/
 
   const [fromCaseStudy, setFromCaseStudy] = useState(false)
 
@@ -48,8 +48,7 @@ const AppStateProvider = ( {children} ) => {
       isWhite,
       isHeaderGradient,
       setHeaderGradient,
-      isContactOpen,
-      setContactModal,
+      isContactOpen, setContactModal,
       fromCaseStudy, setFromCaseStudy,
       titleRect, setTitleRect,
       top, setTop,

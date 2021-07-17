@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react'
 import styled from 'styled-components'
 import paper from 'paper';
 import SimplexNoise from 'simplex-noise'
-import {map} from '../../../helpers/utils'
+import {map} from '../../../../helpers/utils'
 
 const WavyLinesContainer = styled.div`
   //border: thin solid lightcoral; 

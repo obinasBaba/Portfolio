@@ -71,6 +71,7 @@ const TitleWrapper = styled.div`
 
 const MailUs = () => {
   const elRef = React.useRef(null)
+  const { isContactOpen, setContactModal } = useContext(AppStateContext);
   let elParams = null
   let elPosition = null
 
@@ -118,7 +119,9 @@ const MailUs = () => {
       <TitleWrapper>
         <GradientText variant='h1' className='title' >
           Ready To Create <br /> Your Star ?</GradientText>
-        <MotionBtn text={'Contact Me'} arrow fontLarge />
+        <MotionBtn text={'Contact Me'} arrow={false} fontLarge
+                   onClick={() => setContactModal( !isContactOpen )}
+        />
       </TitleWrapper>
 
       <FooterMeta/>

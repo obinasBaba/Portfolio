@@ -10,6 +10,7 @@ const Btn = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   width: fit-content;
   letter-spacing: 2px;
   font-family: var(--sofia-soft);
@@ -62,6 +63,15 @@ const Btn = styled(motion.div)`
       transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
     }
   }
+  
+  a{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 999;
+  }
 `
 
 const tempVar = {
@@ -73,7 +83,7 @@ const tempVar = {
 const MotionBtn = ({
   text = 'CASE-STUDY',
   arrow = true,
-  to = '#',
+  to,
   state = {},
   fontLarge,
   clr,
@@ -82,6 +92,7 @@ const MotionBtn = ({
   margin = true,
   layoutId = false,
   arrowClr = '#fff',
+  onClick
 
 }) => {
   const controls = useAnimation()
@@ -89,8 +100,8 @@ const MotionBtn = ({
   return (
     <motion.div layoutId={layoutId}>
 
-    <Link to={to} state={state} >
       <Btn
+        onClick={onClick}
         margin={margin}
         arrow={arrow}
         clr={clr}
@@ -111,6 +122,9 @@ const MotionBtn = ({
           })
         }}
       >
+
+        {to &&  <Link to={to} state={state}/>}
+
         <Typography
           variant="body1"
           style={{
@@ -149,7 +163,6 @@ const MotionBtn = ({
 
         )}
       </Btn>
-    </Link>
 
      </motion.div>
   )

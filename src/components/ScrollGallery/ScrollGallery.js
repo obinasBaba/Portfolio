@@ -18,7 +18,7 @@ const AnimatedDiv = styled(motion.div)`
 const Gallery = ({ children, step }) => {
   const { scrollYProgress } = useViewportScroll()
 
-  const mapped = useTransform(scrollYProgress, [0, 1], [-1, -700])
+  const mapped = useTransform(scrollYProgress, [0, 1], [-1, -600])
 
   const x = useSpring(mapped, {
     mass: 1, tension: 550, friction: 140, damping: 10, stiffness: 50
