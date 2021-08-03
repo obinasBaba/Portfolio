@@ -7,8 +7,8 @@ import two from './img/1.jpg'
 import three from './img/4.jpg'
 import four from './img/5.jpg'
 import { useIntersection } from 'react-use'
-import { distance, getMousePos, lerp } from './util'
 import Item from './components/Item'
+import {distance, lerp, getMousePos} from '../../../../helpers/utils'
 
 
 const imgVariants = {
@@ -47,8 +47,7 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
   const svgRef = useRef(null)
   const svgRect = useRef({width: 0, height: 0})
 
-  const mousePos = useRef({x:  0,
-    y:   0})
+  const mousePos = useRef({x:  0, y:   0})
 
   const lastMousePos = useRef({
     translation: {
@@ -111,7 +110,7 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
     // console.log('x:', svgRef.current.getBoundingClientRect().x, 'y: ',
     //   svgRef.current.getBoundingClientRect().y)
 
-    console.log('running : ', cancelId.current)
+    // console.log('running : ', cancelId.current)
 
     // Scale goes from 0 to 100 for mouseDistance values between 0 to 100
     lastMousePos.current.displacement.x =

@@ -18,6 +18,7 @@ export const TextContainer = styled.div`
   
   ${spacing('pl', 6)};
   ${spacing('pb', 17)};
+  ${spacing('pt', 3)};
 
 
   ${ smallUp( css`

@@ -6,12 +6,25 @@ import Headline from '../../../components/Headline'
 
 const ExperimentsContainer = styled.div`
   max-width: 100%;
-  overflow: hidden;
-  
-  ${ spacing( 'mt', 20 ) };
+  //overflow: hidden;
   text-align: center;
   position: relative;
   
+  ${ spacing( 'mt', 20 ) };
+  
+  
+  //border: thin solid crimson;
+  
+`
+
+const Diagonal = styled.div`
+  position: absolute;
+  height: 1200px;
+  width: 1200px;
+  //width: 100%;
+  top: -50%;
+  z-index: -10;
+  right: 0%;
 `
 
 const Experiments = () => {

@@ -42,10 +42,6 @@ const Previews = (  ) => {
 
   useEffect(() => {
 
-
-
-    console.log(edges[1])
-
     }, [])
   
 

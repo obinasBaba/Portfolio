@@ -22,12 +22,12 @@ const InfoTxt = styled.div`
     background-image: url(${logo});
     background-repeat: no-repeat;
     background-size: contain;
-    top: 0;
-    left: -64%;
+    top: -10%;
+    left: -74%;
     z-index: -1;
 
-    ${ heightWidth('width', 57) };
-    ${ heightWidth('height', 56) };
+    ${ heightWidth('width', 70) };
+    ${ heightWidth('height', 70) };
   }
   
   .more-link{
@@ -59,7 +59,17 @@ const Title = styled.p`
   font-weight: 900;
   
   ${ title( 2 ) };
-  ${spacing( 'mb', 6 )};
+  ${spacing( 'mb', 5 )};
+  
+  span{
+    ${ text( .8 ) };
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 300;
+    ${spacing( 'mt', 3 )};
+
+  }
 `
 
 
@@ -72,6 +82,15 @@ const Info = () => {
         I usually write an in-depth article sharing what I learned every often.
         My Articles help me to chronicle ideas &amp; solutions
         to problems that we face when building great web products.
+
+        {/*<SlideHover>*/}
+          <a href="https://readers-corner.netlify.app"
+             target='_blank'
+          >
+            <span>checkout my blog site.</span>
+          </a>
+        {/*</SlideHover>*/}
+
       </Title>
 
       <SlideHover onClick={() => {

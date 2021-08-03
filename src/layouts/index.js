@@ -21,6 +21,7 @@ import HeaderAppBar from '../components/HeaderAppBar'
 import MailUs from '../scenes/MailUs'
 // import Cursor from './Cursor'
 import ProgressCircle from './Components/ProgressCircle'
+import LoadingSpinner from '../components/LoadingSpinner'
 
 
 
@@ -57,6 +58,8 @@ export default function TopLayout({ children, path }) {
               <HeaderAppBar />
 
               <Main>
+                {/*<LoadingSpinner/>*/}
+
                 <SkyColor />
 
                 <Moon />
@@ -74,9 +77,6 @@ export default function TopLayout({ children, path }) {
                 <MailUs />
               </footer>
 
-              {/*<VersionNo>v0.1</VersionNo>*/}
-
-              {/*<Cursor />*/}
 
               <ProgressCircle />
 

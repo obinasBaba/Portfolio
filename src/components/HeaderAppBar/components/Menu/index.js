@@ -5,6 +5,7 @@ import MotionBtn from '../../../MotionBtn'
 import { MenuContainer, MenuList, Overlay } from './components'
 import CloseBtn from '../CloseBtn'
 import BackgroundSvg from './components/BgSvg'
+import MenuItems from './components/MenuItems'
 
 const menuVariants = {}
 
@@ -46,7 +47,7 @@ const menuListVariants = {
   },
   exit: {
     opacity: 1,
-    x: 900,
+    x: '100%',
     transition: {
       delay: .2,
       duration: 0.8,
@@ -164,23 +165,9 @@ const Menu = ({ toggleMenu: { setMenuIsOpen, menuIsOpen } }) => {
         onClick={() => setMenuIsOpen(!menuIsOpen)}
       />
 
-      <MenuList variants={menuListVariants} key={3}>
+      <MenuList variants={menuListVariants}  >
 
-        {[{ txt: 'Works', link: '/' },
-          { txt: 'Recent Designs', link: '/' }, { txt: 'Blogs', link: '/blog' },
-          { txt: 'Experiments', link: '/' }].map(({txt, link}, i) => (
-          <motion.div
-            key={i}
-            variants={motionBtnVariant}
-            style={{ overflow: 'hidden' }}
-            onClick={() => setMenuIsOpen(!menuIsOpen)}
-
-          >
-            <motion.div variants={innerBtnVariant}>
-              <MotionBtn arrow={false} text={txt} clr="#32344d" to={link} />
-            </motion.div>
-          </motion.div>
-        ))}
+        <MenuItems onClick={() => setMenuIsOpen(!menuIsOpen)} />
 
         <BackgroundSvg />
 

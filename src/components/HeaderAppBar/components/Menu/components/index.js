@@ -1,6 +1,6 @@
-import styled, {css} from 'styled-components'
-import {motion} from 'framer-motion'
-import {largeUp, smallUp, spacing} from '../../../../../styles/mixins'
+import styled, { css } from 'styled-components'
+import { motion } from 'framer-motion'
+import { largeUp, smallUp, spacing } from '../../../../../styles/mixins'
 
 export const MenuContainer = styled(motion.div)`
   position: fixed;
@@ -26,18 +26,20 @@ export const MenuList = styled(motion.div)`
   align-items: center;
   justify-content: center;
   //clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
-  ${ spacing('pl', 25) };
+  //border: thin solid red;
+  
+  ${spacing('pl', 25)};
+  
 
-${ css`
-    
-    ${ smallUp( css`
+  ${css`
+    ${smallUp(css`
       flex-basis: 70%;
       ${ spacing('pl', 15) };
 
     ` ) };
     
     ${ largeUp( css`
-      flex-basis: 63%;
+      flex-basis: 73%;
       ${ spacing('pl', 10) };
 
     ` ) }
