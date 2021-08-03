@@ -8,6 +8,7 @@ import lotti from 'lottie-web'
 import { Typography } from '@material-ui/core'
 import { useProjectCircles } from '../../../hooks/queries/useProjectCircles'
 import {useScrollRestoration} from 'gatsby'
+import ButtonCtrl from '../../../helpers/buttonCtrl'
 
 const ProjectContainer = styled.div`
   max-width: 100%;
@@ -48,6 +49,13 @@ const ProjectContainer = styled.div`
       path {
         stroke-width: 4px;
       }
+    }
+    
+    .proSec{
+      cursor: pointer;
+      z-index: 1;
+      //border: thin solid crimson;
+      ${spacing('p', 2)};
     }
   }
 `
@@ -105,6 +113,7 @@ const Projects = () => {
 
 
   const outerRef = useRef(null);
+  const txtRef = useRef(null);
   const innerRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -167,8 +176,14 @@ const Projects = () => {
 
   useEffect(() => {
 
-    }, [])
-  
+    const btn = new ButtonCtrl( txtRef.current  )
+    btn.on('enter', () => {
+
+    })
+
+  }, [])
+
+
 
   return (
     <motion.div
@@ -191,7 +206,9 @@ const Projects = () => {
 
         <motion.div  className='hover-target'>
 
-          <Link id='proSec'  to={'/projects/#one'}>All Projects(5)</Link>
+            <Link id='proSec' className='proSec'
+                  ref={txtRef}
+                  to={'/projects/#one'}>All Projects(5)</Link>
 
 
 

@@ -13,6 +13,8 @@ export const GlobalStyle = createGlobalStyle`
   #gatsby-focus-wrapper {
     //height: 100%;
   }
+  
+  
 
   html {
     --dark: #02021e;
@@ -21,6 +23,15 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-text-size-adjust: 100%;
     
     //cursor: none;
+  }
+
+  body{
+    --bg-gradient: linear-gradient(to bottom, #072142, #061c37, #07182b, #061220, #020b16);
+    
+    &.active{
+      --bg-gradient: #02021e;
+
+    }
   }
 
   

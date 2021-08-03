@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import styled, { css } from 'styled-components'
 import { heightWidth, mediumUp, spacing } from '../../../styles/mixins'
 import { motion } from 'framer-motion'
+import ButtonCtrl from '../../../helpers/buttonCtrl'
 
 // const headerTransition = 'all .3s'
 
@@ -135,8 +136,16 @@ const HiddenText = styled.p`
 `
 
 const NavBtn = ({ isWhite, toggleMenu, pos, variants = {} }) => {
+
+  useEffect(() => {
+
+    // const btn = new ButtonCtrl(document.querySelector('.btn'))
+
+  }, [])
+
   return (
     <Btn
+      className='btn'
       isWhite={isWhite}
       pos={pos}
       initial={{ opacity: 0 }}
