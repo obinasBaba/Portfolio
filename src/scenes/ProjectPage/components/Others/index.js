@@ -95,6 +95,8 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
   }, [intersection])
 
   const track = () => {
+    if ( !svgRef.current ) return;
+
     lastMousePos.current.translation.x =
       lerp(lastMousePos.current.translation.x, mousePos.current.x, 0.1);
 
@@ -118,10 +120,13 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
 
     lastMousePos.current.displacement.y =
       lerp(lastMousePos.current.displacement.y, mousePos.current.y, 0.1);
+    // x1,x2,y1,y2
 
     const mouseDistance =
-      distance(lastMousePos.current.displacement.x, mousePos.current.x,
-        lastMousePos.current.displacement.y, mousePos.current.y);
+      distance(lastMousePos.current.displacement.x,
+        lastMousePos.current.displacement.y,
+        mousePos.current.x,
+         mousePos.current.y);
 
     dmScale.current = Math.min(mouseDistance, 100);
     feDisplacementMapEl.current.scale.baseVal = dmScale.current;

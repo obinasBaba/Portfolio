@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import styled, { css } from 'styled-components'
 import { heightWidth, mediumUp, spacing } from '../../../styles/mixins'
 import { motion } from 'framer-motion'
-import ButtonCtrl from '../../../helpers/buttonCtrl'
 
 // const headerTransition = 'all .3s'
 

@@ -85,10 +85,6 @@ const thumbVariant = {
 
 const ScrollDown = ( {show} ) => {
 
-  console.log(show)
-  const control = useAnimation();
-
-
 
   return (
     <>

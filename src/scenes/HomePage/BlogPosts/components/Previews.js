@@ -4,6 +4,7 @@ import p2 from './images/4.jpg'
 import p3 from './images/6.jpg'
 import Item from './item'
 import {useRecommendedBlogs} from '../../../../hooks/queries/useRecommendedAssets'
+import useHomeWorksAssets from '../../../../hooks/queries/useHomeWorksAssets'
 
 
 function getRandomInt(min, max) {
@@ -16,15 +17,8 @@ function getRecommendedPosts(allPosts = []) {
   const RECOMMENDED_POSTS_LIMIT = 3;
   const recommendedPosts = [];
 
-  while (
-    recommendedPosts.length < RECOMMENDED_POSTS_LIMIT &&
-    allPosts.length > RECOMMENDED_POSTS_LIMIT
-    ) {
-    const random = Math.floor(Math.random() * allPosts.length);
-
-    if ( !recommendedPosts.includes(allPosts[random]) ) {
-      recommendedPosts.push(allPosts[random]);
-    }
+  for(let i = 0; i < 3; i++) {
+    recommendedPosts.push(allPosts[i]);
   }
 
   return recommendedPosts;
@@ -33,8 +27,9 @@ function getRecommendedPosts(allPosts = []) {
 const Previews = (  ) => {
 
   const { allPost: { edges }, totalCount } = useRecommendedBlogs();
+  const {p1, p2, p3} = useHomeWorksAssets();
 
-  console.log(edges)
+  console.log(p1, p2, p3);
 
 
   const items = getRecommendedPosts(edges);
@@ -53,7 +48,7 @@ const Previews = (  ) => {
                      tag={item.node.frontmatter.tags.map(({tag}) => tag)  .join(', ')}
                      title={item.node.frontmatter.title}
                      link={item.node.fields.slug}
-                     media={item.node.frontmatter.thumbnail} />;
+                     media={[p1, p2, p3][index]} />;
       })}
     </>
   )

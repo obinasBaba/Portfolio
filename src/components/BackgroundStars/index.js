@@ -18,9 +18,9 @@ const BackgroundStars = () => {
   const yMouse = useSpring( 0, config);
   const xMouse = useSpring(0, config);
 
-  const calc = (x, y) => {
-    const xPos =  (x - window.innerWidth / 2) / 45;
-    const yPos =  (y - window.innerHeight / 2) / 45;
+  const calcNewMousePos = (x, y) => {
+    const xPos =  (x - window.innerWidth / 2) / 30;
+    const yPos =  (y - window.innerHeight / 2) / 30;
     yMouse.set(yPos);
     xMouse.set(xPos);
   };
@@ -32,17 +32,23 @@ const BackgroundStars = () => {
   const yScrollSmall = useTransform(yScrollBig, latest => latest / 1.5)
 
 
-  useEffect( () => calc(mouse.elX, mouse.elY), [mouse] );
+  useEffect( () => calcNewMousePos(mouse.elX, mouse.elY), [mouse] );
 
   return (
-    <Galaxy ref={target}>
+    <Galaxy ref={target}
+            style={{
+              // backgroundImage: `url(${starsBig.publicURL})`,
+              y: yMouse,
+              x: xMouse,
+            }}
+    >
 
       <Wrapper style={{ y: yScrollBig }}>
         <Layer
           style={{
             backgroundImage: `url(${starsBig.publicURL})`,
-            y: yMouse,
-            x: xMouse,
+            // y: yMouse,
+            // x: xMouse,
           }}
         />
       </Wrapper>
@@ -51,8 +57,8 @@ const BackgroundStars = () => {
         <Layer
           style={{
             backgroundImage: `url(${starsSmallOld.publicURL})`,
-            y: yMouse,
-            x: xMouse,
+            // y: yMouse,
+            // x: xMouse,
           }}
         />
       </Wrapper>

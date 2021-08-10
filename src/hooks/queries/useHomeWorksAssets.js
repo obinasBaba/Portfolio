@@ -107,6 +107,27 @@ const useHomeWorksAssets = () => {
         name
         ...homeWorksBigImage
       }
+      
+      p1: file(
+        relativePath: { eq: "sections/home-gallery/2.jpg" }
+      ){
+        name
+        ...homeWorksBigImage 
+      }
+      
+      p2: file(
+        relativePath: { eq: "sections/home-gallery/4.jpg" }  
+      ){
+         name
+        ...homeWorksBigImage
+      }
+      
+      p3: file(
+        relativePath: { eq: "sections/home-gallery/6.jpg" }
+      ){
+        name
+        ...homeWorksBigImage
+      }
     }
   `)
 }

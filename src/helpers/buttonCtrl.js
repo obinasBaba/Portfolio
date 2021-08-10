@@ -4,12 +4,10 @@ import {EventEmitter} from 'events';
 import {calcWinsize, distance, getMousePos, lerp} from './utils'
 
 // Calculate the viewport size
-let winsize = calcWinsize();
-window.addEventListener('resize', () => winsize = calcWinsize());
+let winsize ;
 
 // Track the mouse position
 let mousepos = {x: 0, y: 0};
-window.addEventListener('mousemove', ev => mousepos = getMousePos(ev));
 
 export default class ButtonCtrl extends EventEmitter {
     constructor(el) {
@@ -17,6 +15,10 @@ export default class ButtonCtrl extends EventEmitter {
         // DOM elements
         // el: main button
         // text: inner text element
+        window.addEventListener('resize', () => winsize = calcWinsize());
+        window.addEventListener('mousemove', ev => mousepos = getMousePos(ev));
+
+
         this.DOM = {el: el};
         // amounts the button will translate
         this.renderedStyles = {
@@ -39,7 +41,7 @@ export default class ButtonCtrl extends EventEmitter {
         // size/position
         this.rect = this.DOM.el.getBoundingClientRect();
         // the movement will take place when the distance from the mouse to the center of the button is lower than this value
-        this.distanceToTrigger = this.rect.width * 1.5;
+        this.distanceToTrigger = this.rect.width * 1;
     }
 
     initEvents() {
@@ -87,8 +89,6 @@ export default class ButtonCtrl extends EventEmitter {
         this.DOM.el.style.transform =
             `translate3d(${this.renderedStyles['tx'].previous}px, ${this.renderedStyles['ty'].previous}px, 0)`;
 
-        // this.DOM.text.style.transform =
-        //     `translate3d(${this.renderedStyles['tx'].previous * 0.5}px, ${this.renderedStyles['ty'].previous * 0.5}px, 0)`;
 
         requestAnimationFrame(() => this.render());
     }

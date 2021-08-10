@@ -62,7 +62,6 @@ export default function TopLayout({ children, path }) {
 
                 <SkyColor />
 
-                <Moon />
 
                 <BackgroundStars />
 

@@ -7,7 +7,8 @@ import styled from 'styled-components'
 import { SectionWrapper } from '../../components/Container'
 import BlogPosts from './BlogPosts'
 import MyProcess from './MyProcess'
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
+import Moon from '../../layouts/Components/Moon'
 
 const RecentWorkWrapper = styled.section`
   max-width: 100vw;
@@ -16,53 +17,66 @@ const RecentWorkWrapper = styled.section`
   //display: none;
 `
 
+const MoonContainer = styled.div`
+  //border: thick solid red;
+  max-width: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+`
+
 const parentVariant = {
   initial: {
-    opacity: 0
+    opacity: 0,
   },
   animate: {
     opacity: 1,
   },
   exit: {
-    opacity: 0
-  }
+    opacity: 0,
+  },
 }
 
-const transition ={
+const transition = {
   duration: 1,
 }
 
 const HomePage = () => {
-
-
   return (
-    <motion.div variants={parentVariant}
-                transition={transition}
-                initial='initial'
-                animate='animate'
-                exit='exit'
+    <motion.div
+      variants={parentVariant}
+      transition={transition}
+      initial="initial"
+      animate="animate"
+      exit="exit"
     >
 
-      <SectionWrapper>
-        <Hero />
-      </SectionWrapper>
+      <MoonContainer>
+        <Moon />
 
-      <RecentWorkWrapper>
-        <RecentWorks />
-      </RecentWorkWrapper>
+
+        <SectionWrapper>
+          <Hero />
+        </SectionWrapper>
+
+        <RecentWorkWrapper>
+          <RecentWorks />
+        </RecentWorkWrapper>
+
+
+      </MoonContainer>
 
       <Projects />
 
       <SectionWrapper>
-        <BlogPosts/>
+        <BlogPosts />
       </SectionWrapper>
 
       <SectionWrapper>
         <Experiments />
       </SectionWrapper>
 
-      <MyProcess/>
-
+      <MyProcess />
     </motion.div>
   )
 }

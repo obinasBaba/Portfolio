@@ -4,7 +4,12 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import ReturnBtn from '../components/ReturnBtn'
 import ReactFullpage from '@fullpage/react-fullpage'
 import { AppStateContext } from '../contexts/AppStateContext'
-import { useAnimation, useMotionValue, motion } from 'framer-motion'
+import {
+  useAnimation,
+  useMotionValue,
+  motion,
+  AnimatePresence,
+} from 'framer-motion'
 import useProjectsAssets from '../hooks/queries/useProjectsAssets'
 import NavDots from '../scenes/ProjectPage/components/NavDots'
 import ScrollDown from '../scenes/ProjectPage/components/SideBarTools/ScrollDown'
@@ -14,6 +19,15 @@ import {
   ProjectDescription, ProjectImage,
 } from '../scenes/ProjectPage'
 import {Link} from 'gatsby'
+import styled from 'styled-components'
+import Moon from '../layouts/Components/Moon'
+
+const ProjectPage = styled( motion.main )`
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  //border: thick solid red;
+`
 
 const topVariant = {}
 
@@ -125,11 +139,15 @@ const Projects = ({ location }) => {
   }, [])
 
   return (
-    <motion.div variants={parentVariant}
+    <ProjectPage variants={parentVariant}
                 initial={moInitial.get()}
                 animate='animate'
                 // exit='exit'
     >
+
+      <AnimatePresence>
+        <Moon />
+      </AnimatePresence>
 
 
       <Link to={'/#proSec'}>
@@ -254,7 +272,7 @@ const Projects = ({ location }) => {
           )
         }}
       />
-    </motion.div>
+    </ProjectPage>
   )
 }
 
