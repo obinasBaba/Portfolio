@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useLayoutEffect, useState} from 'react'
+import Subscribers from '../helpers/Subscribers'
 
 export const AppStateContext = React.createContext(false)
 
@@ -11,17 +12,19 @@ const AppStateProvider = ( {children} ) => {
     position: 'absolute',
   })
 
+  const loadingEvents = Subscribers.getInstance();
+
   const [isWhite, setIsWhite] = useState(false)
   const [isHeaderGradient, setHeaderGradient] = useState(true)
   const [isContactOpen, setContactModal] = useState(false)
   const [top, setTop] = useState(null)
+  const [loadingPage, setLoadingPage] = useState(true)
 
- /* const setTop = (value) => {
-    console.log('setTOp ------------- ', value)
-      console.log('initial top : ', top, 'new value: ', value)
-      window.localStorage.setItem('top', value.toString())
-      setTop1(value)
-  }*/
+  const [toolTip, setToolTip] = useState({
+    text: '...',
+    show: true
+  })
+
 
   const [fromCaseStudy, setFromCaseStudy] = useState(false)
 
@@ -32,9 +35,19 @@ const AppStateProvider = ( {children} ) => {
     height: 0,
   })
 
-  useEffect(() => {
-    // console.log('top is null', 'localSto : ', window.localStorage.getItem('top'))
-    // setTop1( window.localStorage.getItem('top') )
+
+  useLayoutEffect(() => {
+
+    // new Subscribers().addListener()
+
+   loadingEvents.addListener('finishLoading', () => {
+     setLoadingPage(false)
+     setToolTip({
+       text: '',
+       show: false
+     })
+   })
+
 
     }, [])
 
@@ -52,6 +65,9 @@ const AppStateProvider = ( {children} ) => {
       fromCaseStudy, setFromCaseStudy,
       titleRect, setTitleRect,
       top, setTop,
+      loadingPage, setLoadingPage,
+      events: loadingEvents,
+      toolTip, setToolTip
 
     }} >
 

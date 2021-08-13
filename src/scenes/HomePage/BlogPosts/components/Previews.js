@@ -29,7 +29,7 @@ const Previews = (  ) => {
   const { allPost: { edges }, totalCount } = useRecommendedBlogs();
   const {p1, p2, p3} = useHomeWorksAssets();
 
-  console.log(p1, p2, p3);
+  // console.log(p1, p2, p3);
 
 
   const items = getRecommendedPosts(edges);

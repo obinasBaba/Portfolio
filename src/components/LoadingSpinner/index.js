@@ -1,6 +1,15 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, {
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react'
 import styled from 'styled-components'
-import {lerp} from '../../helpers/utils'
+import { lerp } from '../../helpers/utils'
+import { AnimatePresence } from 'framer-motion'
+import { AppStateContext } from '../../contexts/AppStateContext'
+import FontLoaded from 'fontfaceobserver'
 
 const SpinnerContainer = styled.div`
   position: fixed;
@@ -10,7 +19,42 @@ const SpinnerContainer = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: #02021e;
+  //background-color: #02021e;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#072142),
+    color-stop(#061c37),
+    color-stop(#07182b),
+    color-stop(#061220),
+    to(#020b16)
+  );
+  background-image: -webkit-linear-gradient(
+    top,
+    #072142,
+    #061c37,
+    #07182b,
+    #061220,
+    #020b16
+  );
+  background-image: -o-linear-gradient(
+    top,
+    #072142,
+    #061c37,
+    #07182b,
+    #061220,
+    #020b16
+  );
+  background-image: linear-gradient(
+    to bottom,
+    #072142,
+    #061c37,
+    #07182b,
+    #061220,
+    #020b16
+  );
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,15 +69,15 @@ const Content = styled.div`
   gap: 3rem;
   border: thin solid crimson;
 
-  -webkit-filter: url("#goo");
-  filter: url("#goo");
-  
-  *{
+  -webkit-filter: url('#goo');
+  filter: url('#goo');
+
+  * {
     border-radius: 50%;
     position: absolute;
   }
 
-  animation: rotate linear ;
+  animation: rotate linear;
   animation-fill-mode: forwards;
   animation-direction: normal;
   animation-iteration-count: infinite;
@@ -46,21 +90,18 @@ const Content = styled.div`
 
     to {
       transform: rotate(360deg);
-
     }
   }
-  
-  
 `
 
 const SmallBall = styled.div`
   height: 50px;
   width: 50px;
   background-color: white;
-  animation: move alternate ease-in-out ;
+  animation: move alternate ease-in-out;
   animation-name: move;
   animation-iteration-count: infinite;
-  animation-duration: 2s;
+  animation-duration: 3s;
   top: -100px;
   left: 100px;
   --movex: 50px;
@@ -71,10 +112,9 @@ const SmallBall = styled.div`
     }
 
     to {
-      transform: translateY( 70px) translateX(var(--move));
+      transform: translateY(70px) translateX(var(--move));
     }
   }
-  
 `
 
 const BigBall = styled.div`
@@ -84,71 +124,82 @@ const BigBall = styled.div`
 `
 
 const LoadingSpinner = () => {
-
-  const [randX, setRandX] = useState(70)
+  const { loadingPage, setLoadingPage, events } = useContext(AppStateContext)
 
   const smallRef = useRef(null)
   const contentRef = useRef(null)
   const lastPos = {
     x: 0,
     target: 50,
-    cancelId: null
+    cancelId: null,
   }
 
-  useEffect(() => {
-    // setInterval(changeAnimationTime, 5000)
-    changeAnimationTime()
-  })
+  useLayoutEffect(() => {
+
+    // console.log('Spinner ::' , events)
+
+    events.addLoader()
+
+    let elianto = new FontLoaded('Elianto-Regular')
+    let poppins = new FontLoaded('Poppins Black')
+    let icons = new FontLoaded('jaro.io icons')
+
+    Promise.all([
+      elianto.load(),
+      poppins.load(),
+      icons.load()
+    ])
+      .then(() => {
+        events.finishLoading()
+      }).catch(console.error)
+
+
+    return () => {}
+  }, [])
 
   const move = () => {
     // console.log(lastPos.target, Math.floor(lastPos.x))
-    if ( Math.ceil(lastPos.x) === lastPos.target  )
-      lastPos.target = lastPos.target * -1;
+    if (Math.ceil(lastPos.x) === lastPos.target)
+      lastPos.target = lastPos.target * -1
 
     lastPos.x = lerp(lastPos.x, lastPos.target, 0.1)
-    smallRef.current.style.transform = `translateY(${lastPos.x}px)`;
+    smallRef.current.style.transform = `translateY(${lastPos.x}px)`
 
-    lastPos.cancelId = requestAnimationFrame(() => move());
-
-  }
-
-
-  function randomTime (max) {
-    return Math.round(Math.random() * max)
-  }
-
-  function changeAnimationTime() {
-    let rand = randomTime(50)
-    smallRef.current.style.setProperty('--movex', `${rand}px`);
-    smallRef.current.style.animationName = `move`;
-
-    setTimeout(() => {
-      // changeAnimationTime()
-    }, 3000)
+    lastPos.cancelId = requestAnimationFrame(() => move())
   }
 
   return (
-    <SpinnerContainer>
+    <AnimatePresence>
+      {loadingPage && (
+        <SpinnerContainer>
 
+          <Content ref={contentRef}>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
+              <defs>
+                <filter id="goo">
+                  <feGaussianBlur
+                    in="SourceGraphic"
+                    stdDeviation="10"
+                    result="blur"
+                  />
+                  <feColorMatrix
+                    in="blur"
+                    mode="matrix"
+                    values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+                    result="goo"
+                  />
+                  <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+                </filter>
+              </defs>
+            </svg>
 
+            <SmallBall ref={smallRef} />
+            <BigBall />
+          </Content>
 
-      <Content ref={contentRef} >
-
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
-          <defs>
-            <filter id="goo">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
-              <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
-            </filter>
-          </defs>
-        </svg>
-
-        <SmallBall ref={smallRef} randX={randX} />
-        <BigBall />
-      </Content>
-
-    </SpinnerContainer>
+        </SpinnerContainer>
+      )}
+    </AnimatePresence>
   )
 }
 

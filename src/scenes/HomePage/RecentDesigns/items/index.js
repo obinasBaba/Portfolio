@@ -76,7 +76,7 @@ const DesignImage = ( { images } ) => {
         images.map( (imgData, index) =>
           <GatsbyImage alt={imgData.name}
                        key={ index }
-                       className={'image'}
+                       className={'image dribble-shots'}
                        objectFit='cover'
                        image={ getImage( imgData ) }/> )
 

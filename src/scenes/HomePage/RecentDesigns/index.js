@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext, useLayoutEffect} from 'react'
 import styled from 'styled-components'
 import Title from './Title'
 import { useRecentDesignAssets } from '../../../hooks/queries/useRecentDesignAssets'
@@ -6,6 +6,9 @@ import { spacing } from '../../../styles/mixins'
 import useHomeWorksAssets from '../../../hooks/queries/useHomeWorksAssets'
 import DesignImage from './items'
 import ScrollGallery from '../../../components/ScrollGallery/ScrollGallery'
+import ImagesLoaded from 'imagesloaded'
+import {AppStateContext} from '../../../contexts/AppStateContext'
+import Subscribers from '../../../helpers/Subscribers'
 
 const RecentDesignWrapper = styled.div`
   ${spacing('mb', 13)};
@@ -14,6 +17,10 @@ const RecentDesignWrapper = styled.div`
 const RecentWorks = () => {
 
   const { circledText, dribbleRed } = useRecentDesignAssets();
+  const { loadingPage, setLoadingPage, events } = useContext(AppStateContext)
+  // const loadingEvents = Subscribers.getInstance()
+
+
   const {
     Art,
     eScooter,
@@ -38,6 +45,19 @@ const RecentWorks = () => {
     [Realty, Hommy, Tude],
   ];
 
+  useLayoutEffect(() => {
+    console.log('recentDesign', events.addLoader)
+
+    events.addLoader()
+
+    ImagesLoaded(document.querySelectorAll('.dribble-shots'))
+      .on('done',  instance => {
+        // setLoadingPage(false)
+        events.finishLoading()
+      })
+
+  }, [])
+  
 
   return (
     <RecentDesignWrapper id='#design' >

@@ -18,16 +18,12 @@ const WavyLinesContainer = styled.div`
     height: 100%;
 
   }
-  
-  .canvas-wrapper{
-    //transform: rotate(105deg);
-  }
 `
 
 const WavyLines = () => {
 
   let width, height, center;
-  let points = 6;
+  let points = 10;
   let smooth = true;
   let path;
   let p2;
@@ -36,7 +32,7 @@ const WavyLines = () => {
 
   //noisiness
   const noiseScale = 1550; // speed
-  const noiseRange = 104; // range of distortion
+  const noiseRange = 50; // range of distortion
   let isNoisy = false;
 
   const canvasRef = useRef(null)
