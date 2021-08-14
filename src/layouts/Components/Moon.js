@@ -1,18 +1,11 @@
-import React, {useContext, useEffect} from 'react'
-import {smallUp} from '../../styles/mixins'
-import styled, {css} from 'styled-components'
-import {AppStateContext} from '../../contexts/AppStateContext'
-import {
-  AnimatePresence,
-  motion,
-  useMotionValue, useSpring,
-  useTransform,
-} from 'framer-motion'
-import {getMousePos} from '../../helpers/utils'
-
+import React, { useEffect } from 'react'
+import { smallUp } from '../../styles/mixins'
+import styled, { css } from 'styled-components'
+import { motion, useSpring } from 'framer-motion'
+import { getMousePos } from '../../helpers/utils'
 
 const MoonBg = styled( motion.div )`
-  position: ${ ({position}) => position } ;
+  position: absolute ;
   top: 0;
   left: 0;
   right: 0;
@@ -54,7 +47,12 @@ const MoonBg = styled( motion.div )`
   }
 `
 
-const moonVariant = {
+const defaultMoonVariant = {
+  transition: {
+    duration: 1,
+    ease: [0.6, 0.01, 0, 0.9],
+  },
+
   initial: {
     opacity: 0,
     scale: .95,
@@ -69,20 +67,17 @@ const moonVariant = {
   }
 }
 
-export const transition = {
-  duration: 1,
-  ease: [0.6, 0.01, 0, 0.9],
+
+const config = {
+  mass: .5,
+  stiffness: 50,
+  damping: 10,
 }
 
-const Moon = ( ) => {
+const Moon = ( {showMoon = true, show = true, variants = {}} ) => {
 
-  const {  moonLight: { showMoon, show, position, } } = useContext( AppStateContext );
 
-  const config = {
-    mass: .5,
-    stiffness: 50,
-    damping: 10,
-  }
+
 
   const x = useSpring(0, config)
   const y = useSpring(0, config)
@@ -107,13 +102,12 @@ const Moon = ( ) => {
 
   return (
 
-    <AnimatePresence>
+    // <AnimatePresence>
 
-      {
-        show && <MoonBg moon={showMoon}
-                        position={position}
-                        variants={moonVariant}
-                        transition={transition}
+      // {
+         <MoonBg moon={showMoon}
+                        variants={{ ...defaultMoonVariant, ...variants }}
+                        transition={defaultMoonVariant.transition}
                         initial='initial'
                         animate='animate'
                         exit='exit'
@@ -146,9 +140,9 @@ const Moon = ( ) => {
 
         </div>
       </MoonBg>
-      }
+      // }
 
-    </AnimatePresence>
+    // </AnimatePresence>
   )
 }
 

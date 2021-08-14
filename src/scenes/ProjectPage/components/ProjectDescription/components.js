@@ -12,6 +12,7 @@ export const ProjectDesc = styled(motion.div)`
   flex-flow: column;
   z-index: 10;
   grid-row: 3;
+  pointer-events: none;
   //overflow: hidden;
   //border: thin solid red;
   ${gridColWidth(8, 58)}
@@ -49,7 +50,9 @@ export const Tags = styled(Typography)`
   line-height: 1.6em;
   letter-spacing: 0.5px;
   color: #b3afaf;
-  
+  pointer-events: initial;
+
+
   ${ largeUp( css`
     display: initial;
   ` ) };
@@ -58,6 +61,7 @@ export const Tags = styled(Typography)`
 
 export const Title = styled(motion.h1)`
   //line-height: 1.25em;
+  pointer-events: initial;
   font-weight: 700;
   margin: 0;
   ${spacing('mt', 2)}
@@ -93,6 +97,5 @@ export const Title = styled(motion.h1)`
 export const OverflowWrapper = styled( motion.div )`
   overflow: hidden;
   width: max-content;
-  
-  
+  pointer-events: initial;
 `

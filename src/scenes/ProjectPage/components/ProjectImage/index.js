@@ -1,9 +1,8 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React, {useContext, useState} from 'react'
-import {motion} from 'framer-motion'
-import {Link} from 'gatsby'
-import {GatsbyImage, getImage} from 'gatsby-plugin-image'
+import React, { useContext } from 'react'
+import { motion } from 'framer-motion'
+import { Link } from 'gatsby'
 import {
   effectVariant,
   imgContainerVariant,
@@ -12,8 +11,8 @@ import {
   innerVariant,
   transition,
 } from './Variants'
-import {InnerWrapper, OverflowWrapper, ProjectImg} from './components'
-import {AppStateContext} from '../../../../contexts/AppStateContext'
+import { InnerWrapper, OverflowWrapper, ProjectImg } from './components'
+import { AppStateContext } from '../../../../contexts/AppStateContext'
 
 import img from './preview-111.jpg'
 import StackUsed from '../StackUsed'
@@ -37,7 +36,7 @@ const ProjectImage = ({
       reversed={reversed}
       variants={imgContainerVariant}
       transition={transition}
-      custom={custom}
+      // custom={custom}
     >
 
       <InnerWrapper

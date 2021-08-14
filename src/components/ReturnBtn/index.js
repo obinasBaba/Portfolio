@@ -7,8 +7,8 @@ const ExitBtn = styled( motion.div )`
   //border: thin solid crimson;
   position: fixed;
   cursor: pointer;
-  ${ spacing('ml', 3.1) };
-  top: 16%;
+  ${ spacing('ml', 3) };
+  top: 20%;
   z-index: 999;
 
   ${heightWidth('height', 6)};
@@ -68,10 +68,34 @@ const pathVariant = {
   }
 }
 
+const parentVariant = {
+  transition: {
+    duration: 1,
+    ease: [0.6, 0.01, 0, 0.9],
+  },
+
+  initial: {
+    x: '-200%',
+    y: '-40%',
+  },
+  animate: {
+    x: 0,
+  },
+  exit: {
+    x: '-200%',
+  },
+}
+
 const ReturnBtn = ( { onClick } ) => {
 
   return (
-    <ExitBtn onClick={onClick} >
+    <ExitBtn onClick={onClick}
+             variants={parentVariant}
+             transition={parentVariant.transition}
+             initial='initial'
+             animate='animate'
+             exit='exit'
+    >
       <motion.svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"
                   variants={containerVariant}
                   initial='initial'

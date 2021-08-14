@@ -10,7 +10,6 @@ import img from './preview-111.jpg'
 
 export const ProjectImg = styled(motion.div)`
   ${gridColWidth()}; //mobile-first
-  cursor: pointer;
   position: relative;
   background: ${({ theme }) => theme.palette.secondary.main};
 

@@ -13,7 +13,7 @@ import { OverflowWrapper, ProjectDesc, Tags, Title } from './components'
 import baffle from 'baffle'
 import {AppStateContext} from '../../../../contexts/AppStateContext'
 
-const ProjectDescription = ({ link, reversed, tags, title, url, index, exit, active }) => {
+const ProjectDescription = ({ link, reversed, tags, title, url, index, exit }) => {
 
   const baffleRef = useRef(null)
   const titleRef = useRef(null)

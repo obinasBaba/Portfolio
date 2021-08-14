@@ -1,30 +1,39 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AnimatePresence, motion } from 'framer-motion'
-import {BigDot, DottedLine, Thumb} from './NavTools'
-import { Link, navigate } from 'gatsby'
+import {AnimatePresence, AnimateSharedLayout, motion} from 'framer-motion'
+import { AnchorDot, DottedLine, Thumb } from './NavTools'
 
-const ThumbAndDotContianer = styled(motion.div)`
+const ThumbAndDotContainer = styled(motion.li)`
   //border: thin solid lightblue;
+  padding: 0;
+  margin: 0;
+  
   position: relative;
   display: grid;
-  //align-items: center;
-  //justify-content: center;
   align-items: center;
   justify-items: center;
-  align-content: center;
-  justify-content: center;
-
-  & > :first-child {
-    grid-column: 1 / 1;
-    grid-row: 1 / 1;
-    //border: thin solid lightblue;
+  
+  & a{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 
-  & > :last-child {
+  & .anchorDot {
     grid-column: 1 / 1;
     grid-row: 1 / 1;
-    //display: none;
+  }
+
+  & .thumb {
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+  }
+
+  & .dot_Line {
+    grid-column: 1 / 1;
+    grid-row: 2 / 3;
   }
 `
 
@@ -33,32 +42,36 @@ const StyledLink = styled(motion.a)`
   flex-flow: column;
   align-items: center;
   justify-content: center;
+
+  //border: thin solid crimson;
 `
 
-const ThumbAndDot = ({ hidden, onClick, index, anchor, dataAnchor }) => {
+const ThumbAndDot = ({ hidden, clickEvent, index, anchor, dataAnchor }) => {
   return (
-    <StyledLink
-                data-menuanchor={dataAnchor }
-                href={`#${dataAnchor}`} >
+    <ThumbAndDotContainer >
 
-      <ThumbAndDotContianer  layout >
 
-          <BigDot
-            onClick={() => {
-              onClick.set(index)
-            }}
-            anchor={anchor}
-          />
 
-        <AnimatePresence exitBeforeEnter={true}>
-          {hidden && <Thumb layoutId={index} />}
-        </AnimatePresence>
+      <a data-menuanchor={dataAnchor} href={`#${dataAnchor}`}
+         onClick={() => clickEvent(index)}
+      />
 
-      </ThumbAndDotContianer>
+      <AnimateSharedLayout>
+        <AnchorDot   anchor={anchor}  onClick={() => clickEvent(index)} />
+      </AnimateSharedLayout>
 
-      { index !== 3 && <DottedLine/>  }
+        {hidden && <Thumb  isFirst={index === 0} isLast={index === 3} />}
 
-    </StyledLink>
+
+      <AnimateSharedLayout>
+        {index !== 3 && <DottedLine className="dotLine"  />}
+      </AnimateSharedLayout>
+
+
+
+
+
+    </ThumbAndDotContainer>
   )
 }
 
