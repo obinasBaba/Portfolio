@@ -1,25 +1,24 @@
 import React from 'react'
-import { Typography } from '@material-ui/core'
 import styled, { css } from 'styled-components'
 import {
   heightWidth,
   largeUp,
   mediumDown,
   mediumUp,
-  spacing, text,
+  spacing,
+  text,
 } from '../../styles/mixins'
 
 import Dribbble from '../../assets/images/brands/dribbble.inline.svg'
 import Instagram from '../../assets/images/brands/instagram.inline.svg'
 import Behance from '../../assets/images/brands/behance.inline.svg'
 import Github from '../../assets/images/brands/github.inline.svg'
-import NPM from '../../assets/images/brands/npm.inline.svg'
 
 const FooterContainer = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: column;
   padding-right: 15px;
   padding-left: 15px;
@@ -39,6 +38,8 @@ const FooterContainer = styled.div`
 
   ${spacing('pv', 4)};
   ${spacing('pb', 3)};
+  ${spacing('mb', 3)};
+  ${spacing('mt', 3)};
 
   
 `
@@ -46,6 +47,7 @@ const FooterContainer = styled.div`
 const Social = styled.ul`
   position: relative;
   display: flex;
+  
   justify-content: center;
   align-items: center;
   list-style-type: none;
@@ -89,6 +91,10 @@ const Social = styled.ul`
 `
 
 const Love = styled.div`
+  position: absolute;
+  //left: 0;
+  ${spacing('left', 4)};
+
   font-weight: 300;
   line-height: 0;
   letter-spacing: 1.2px;
@@ -122,6 +128,9 @@ const Love = styled.div`
 `
 
 const Copy = styled.div`
+  position: absolute;
+  ${spacing('right', 4)};
+
   display: flex;
   align-items: center;
   justify-content: center;

@@ -36,8 +36,8 @@ const MailUsContainer = styled.div`
     background-image: url(${Logo});
     background-repeat: no-repeat;
     filter: blur(10px);
-    ${heightWidth('width', 70)};
-    ${heightWidth('height', 70)};
+    ${heightWidth('width', 65)};
+    ${heightWidth('height', 65)};
   }
 
 `
