@@ -123,5 +123,7 @@ export const Page = styled.div`
 export const Main = styled( motion.main )`
   flex: 1;
   position: relative;
+  width: 100%;
+  overflow: hidden;
 `
 

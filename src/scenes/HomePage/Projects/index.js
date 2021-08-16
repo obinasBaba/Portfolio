@@ -24,6 +24,8 @@ const ProjectContainer = styled.div`
   //border: thick solid red;
   padding: 2rem 0;
   ${spacing('mb', 8)};
+  
+  //border: thick solid red;
 
   .hover-target {
     display: flex;
@@ -207,6 +209,7 @@ const Projects = () => {
       initial="initial"
       animate="animate"
       exit="exit"
+      data-scroll-section
     >
       <ProjectContainer>
         <Headline title={'Projects'} mb={3} subtitle={'Case Studies'} />

@@ -2,13 +2,17 @@ import styled from 'styled-components'
 import {motion} from 'framer-motion'
 
 export const Galaxy = styled(motion.div)`
-  position: fixed;
+  position: absolute;
   overflow: hidden;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   z-index: -1;
-  width: 100vw;
-  height: 100vh;
+  pointer-events: none;
+
+  //width: 100vw;
+  //height: 100vh;
 `
 
 export const Wrapper = styled( motion.div )`

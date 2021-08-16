@@ -1,23 +1,12 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
-import { largeUp, spacing } from '../../styles/mixins'
+import styled from 'styled-components'
 import { Container } from '@material-ui/core'
-import {motion} from 'framer-motion'
-
-export const PageContainer = styled( motion.div) `
-  // ${spacing('pt', 20)};
-  //
-  ${largeUp(css`
-    // ${spacing('pt', 14)};
-  `)};
-`
 
 let StyledSectionWrapper = styled(Container)`
   max-width: 1600px;
   margin: 0 auto;
-  //width: 100%;
-  //overflow: hidden;
-  //position: relative;
+  width: 100%;
+  height: 100vh;
 `
 
 export const SectionWrapper = ({
@@ -28,6 +17,7 @@ export const SectionWrapper = ({
   component = 'section',
   bg = 'transparent',
   idName='',
+  dataScrollSection = false
 }) => {
   return (
     <StyledSectionWrapper
@@ -40,6 +30,7 @@ export const SectionWrapper = ({
         background: `${ bg ? bg : 'initial' }`
       }}
 
+      data-scroll-section={dataScrollSection}
     >
       {children}
     </StyledSectionWrapper>

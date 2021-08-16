@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { useContext, useLayoutEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { lerp } from '../../helpers/utils'
 import { AnimatePresence } from 'framer-motion'
@@ -12,40 +6,16 @@ import { AppStateContext } from '../../contexts/AppStateContext'
 import FontLoaded from 'fontfaceobserver'
 
 const SpinnerContainer = styled.div`
-  position: fixed;
-  z-index: 9999;
+  position: absolute;
+  //z-index: 9999;
   //height: 100vh;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  //background-color: #02021e;
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    left bottom,
-    from(#072142),
-    color-stop(#061c37),
-    color-stop(#07182b),
-    color-stop(#061220),
-    to(#020b16)
-  );
-  background-image: -webkit-linear-gradient(
-    top,
-    #072142,
-    #061c37,
-    #07182b,
-    #061220,
-    #020b16
-  );
-  background-image: -o-linear-gradient(
-    top,
-    #072142,
-    #061c37,
-    #07182b,
-    #061220,
-    #020b16
-  );
+  background-color: #02021e;
+  border: thin solid red;
+
   background-image: linear-gradient(
     to bottom,
     #072142,
@@ -170,7 +140,7 @@ const LoadingSpinner = () => {
 
   return (
     <AnimatePresence>
-      {loadingPage && (
+      {false && (
         <SpinnerContainer>
 
           <Content ref={contentRef}>

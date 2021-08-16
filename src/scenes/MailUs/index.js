@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
-import styled, { css } from 'styled-components'
-import { Typography } from '@material-ui/core'
+import styled from 'styled-components'
 import MotionBtn from '../../components/MotionBtn'
-import {heightWidth, mediumUp, spacing, text} from '../../styles/mixins'
+import { heightWidth, spacing, text } from '../../styles/mixins'
 import Logo from './logo.svg'
-import {AppStateContext} from '../../contexts/AppStateContext'
-import {GradientText} from '../../components/GrdientText'
-import Footer from '../../components/Footer'
+import { AppStateContext } from '../../contexts/AppStateContext'
+import { GradientText } from '../../components/GrdientText'
 import FooterMeta from './FooterMeta'
+import Footer from '../../components/Footer'
 
 const MailUsContainer = styled.div`
   position: relative;
@@ -17,8 +16,9 @@ const MailUsContainer = styled.div`
   justify-content: center;
   text-align: center;
   //height: calc(100vh - 142px);
-  overflow: hidden;
+  //overflow: hidden;
   box-sizing: border-box;
+  z-index: 0;
 
   ${spacing('pt', 15)};
   ${spacing('h', 4)};
@@ -31,7 +31,6 @@ const MailUsContainer = styled.div`
     border-radius: 50%;
     //box-shadow: 70px 120px 150px -30px rgba(2, 2, 30, 0.6);
     transform: translate(-50%, -50%);
-    z-index: -3;
     transition: all 1s;
     background-image: url(${Logo});
     background-repeat: no-repeat;
@@ -43,14 +42,15 @@ const MailUsContainer = styled.div`
 `
 
 const Background = styled.span`
-  display: inline-block;
+  //display: inline-block;
   position: absolute;
   width: 100%;
   left: 0;
   top: 0;
   right: 0;
-  z-index: -11;
-  height: calc(100% + (var(--indent) * 1000px));
+  bottom: 0;
+  z-index: -1;
+  //height: calc(100% + (var(--indent) * 1000px));
   background: linear-gradient(to bottom, rgba(30, 33, 61, -10%) 0%, #02021e 20%);
 `
 
@@ -113,7 +113,7 @@ const MailUs = () => {
   });
 
   return (
-    <MailUsContainer ref={elRef}>
+    <MailUsContainer ref={elRef} >
       <Background   />
 
       <TitleWrapper>

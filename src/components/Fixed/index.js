@@ -1,6 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import ToolTip from './ToolTip'
+import BackgroundStars from '../BackgroundStars'
+import {SkyColor} from '../../layouts/Components/SkyColor'
+import LoadingSpinner from '../LoadingSpinner'
 
 const FixedContainer = styled.div`
   position: fixed;
@@ -10,13 +13,17 @@ const FixedContainer = styled.div`
   bottom: 0;
   pointer-events: none;
 
-  z-index: 99999;
+  //z-index: 99999;
 `
 
 const Fixed = () => {
   return (
     <FixedContainer>
       <ToolTip />
+      <BackgroundStars />
+      <SkyColor />
+      <LoadingSpinner />
+
     </FixedContainer>
   )
 }

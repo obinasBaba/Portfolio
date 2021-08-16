@@ -47,7 +47,7 @@ const PostsContainer = styled.section`
 
 const BlogPosts = () => {
   return (
-    <PostsContainer>
+    <PostsContainer  >
       <aside>
         <Info />
       </aside>

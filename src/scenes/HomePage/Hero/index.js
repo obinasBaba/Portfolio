@@ -2,13 +2,14 @@ import React from 'react'
 import { Typography } from '@material-ui/core'
 import H from './H.inline.svg'
 import { HeroContainer, Lines, SvgWithTxt, TextContainer } from './components'
+import Moon from '../../../layouts/Components/Moon'
 
 const Hero = () => {
   // const { logo } = useHeaderAssets();
 
   return (
     <>
-      <HeroContainer>
+      <HeroContainer >
         <TextContainer>
           <Typography variant="h2"> hi, I'm </Typography>
 
@@ -26,6 +27,9 @@ const Hero = () => {
             markup engineer.
           </Typography>
         </TextContainer>
+
+        <Moon />
+
       </HeroContainer>
     </>
   )

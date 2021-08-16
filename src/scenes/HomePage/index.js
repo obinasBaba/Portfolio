@@ -9,6 +9,8 @@ import BlogPosts from './BlogPosts'
 import MyProcess from './MyProcess'
 import { motion } from 'framer-motion'
 import Moon from '../../layouts/Components/Moon'
+import MailUs from '../MailUs'
+import Footer from '../../components/Footer'
 
 const RecentWorkWrapper = styled.section`
   max-width: 100vw;
@@ -44,39 +46,41 @@ const transition = {
 const HomePage = () => {
   return (
     <motion.div
-      variants={parentVariant}
-      transition={transition}
-      initial="initial"
-      animate="animate"
-      exit="exit"
+      // variants={parentVariant}
+      // transition={transition}
+      // initial="initial"
+      // animate="animate"
+      // exit="exit"
+      id="main-container" data-scroll-container
     >
 
-      <MoonContainer>
-        <Moon />
+      <SectionWrapper dataScrollSection={true}>
+        <Hero />
+      </SectionWrapper>
 
-
-        <SectionWrapper>
-          <Hero />
-        </SectionWrapper>
-
-        <RecentWorkWrapper>
-          <RecentWorks />
-        </RecentWorkWrapper>
-
-
-      </MoonContainer>
+      <RecentWorks />
 
       <Projects />
 
-      <SectionWrapper>
+      <SectionWrapper dataScrollSection={true} >
         <BlogPosts />
       </SectionWrapper>
 
-      <SectionWrapper>
+      <SectionWrapper dataScrollSection={true}>
         <Experiments />
       </SectionWrapper>
 
-      <MyProcess />
+      <MyProcess data-scroll-section />
+
+
+      <SectionWrapper dataScrollSection={true}>
+        <MailUs />
+      </SectionWrapper>
+
+      {/*<Footer/>*/}
+
+
+
     </motion.div>
   )
 }

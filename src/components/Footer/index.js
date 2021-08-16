@@ -26,6 +26,8 @@ const FooterContainer = styled.div`
   width: 100%;
   //background-color: #3719ca;
   //border: thin solid red;
+  //background-color: #02021e;
+  //border: thin solid red;
 
   ${largeUp(css`
     flex-direction: row;
@@ -38,8 +40,8 @@ const FooterContainer = styled.div`
 
   ${spacing('pv', 4)};
   ${spacing('pb', 3)};
-  ${spacing('mb', 3)};
-  ${spacing('mt', 3)};
+  // ${spacing('mb', 3)};
+  // ${spacing('mt', 3)};
 
   
 `

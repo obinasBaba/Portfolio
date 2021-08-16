@@ -5,7 +5,7 @@ export const HeroContainer = styled.div`
   position: relative;
   height: 100vh;
   width: 100%;
-  overflow: hidden;
+  //overflow: hidden;
 `
 
 export const TextContainer = styled.div`

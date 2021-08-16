@@ -121,7 +121,7 @@ const bgVariant = {
 
 
 const Headline = ({ subTitle, title, about, media }) => {
-  const { role, context, period } = about
+  // const { role, context, period } = about
 
   let t = 'Digital Creative Agency.'
 

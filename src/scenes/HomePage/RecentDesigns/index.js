@@ -48,19 +48,19 @@ const RecentWorks = () => {
   useLayoutEffect(() => {
     console.log('recentDesign', events.addLoader)
 
-    events.addLoader()
+    // events.addLoader()
 
     ImagesLoaded(document.querySelectorAll('.dribble-shots'))
       .on('done',  instance => {
         // setLoadingPage(false)
-        events.finishLoading()
+        // events.finishLoading()
       })
 
   }, [])
   
 
   return (
-    <RecentDesignWrapper id='#design' >
+    <RecentDesignWrapper id='#design'  data-scroll-section>
 
       <Title circledText={ circledText.publicURL }
              dribbleRed={ dribbleRed.publicURL } />
