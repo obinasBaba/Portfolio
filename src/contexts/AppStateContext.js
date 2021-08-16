@@ -77,4 +77,13 @@ const AppStateProvider = ( {children} ) => {
   )
 }
 
-export default AppStateProvider
+
+const StateWrapper = ({children}) => {
+  return (
+    <AppStateProvider>
+      {children}
+    </AppStateProvider>
+  )
+}
+
+export default StateWrapper

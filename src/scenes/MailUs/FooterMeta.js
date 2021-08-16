@@ -233,7 +233,7 @@ const FooterMeta = () => {
 
             {data[i].map(({ txt, link }) => (
               <Hover
-                key={txt}
+                key={txt + title}
                 variants={{}}
                 whileHover="hover"
                 initial="initial"

@@ -7,6 +7,10 @@ export default class Subscribers extends EventEmitter{
 
   static _instance = null
   subscribers = []
+  scroll = {
+    x: 0,
+    y: 0
+  }
 
   static getInstance() {
     if ( this._instance === null ){

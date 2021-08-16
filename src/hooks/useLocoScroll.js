@@ -1,13 +1,19 @@
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { useEffect } from "react";
+import {useEffect, useLayoutEffect} from 'react'
 import LocomotiveScroll from "locomotive-scroll";
-import LocoCss from "locomotive-scroll/dist/locomotive-scroll.css";
+import "locomotive-scroll/dist/locomotive-scroll.css";
+import Subscribers from '../helpers/Subscribers'
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function useLocoScroll(start) {
+  let subs = Subscribers.getInstance();
+
   useEffect(() => {
+
+    console.log('loco invoked', start)
+
     if (!start) return;
     let locoScroll = null;
 
@@ -21,7 +27,11 @@ export default function useLocoScroll(start) {
     });
 
     // whenever when we scroll loco update scrollTrigger
-    locoScroll.on("scroll", () => {ScrollTrigger.update();});
+    locoScroll.on("scroll", arg => {
+      ScrollTrigger.update();
+      subs.scroll = arg.scroll
+      // console.log(subs.scroll)
+    });
 
     ScrollTrigger.scrollerProxy(scrollEl, {
       /*getBoundingClientRect(){
@@ -56,11 +66,13 @@ export default function useLocoScroll(start) {
       }
     };
 
+    window.addEventListener('resize', lsUpdate)
     ScrollTrigger.addEventListener("refresh", lsUpdate);
     ScrollTrigger.refresh();
 
     return () => {
       if (locoScroll) {
+        window.removeEventListener('resize', lsUpdate)
         ScrollTrigger.removeEventListener("refresh", lsUpdate);
         locoScroll.destroy();
         locoScroll = null;

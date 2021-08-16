@@ -8,7 +8,7 @@ const BigPlanetContainer = styled( motion.div )`
 `
 
 const Planet = styled.div`
-  border: thin solid rgba(252, 213, 167, 0.65);
+  //border: thin solid rgba(252, 213, 167, 0.65);
   height: 700px;
   width: 700px;
   perspective: 1000px;

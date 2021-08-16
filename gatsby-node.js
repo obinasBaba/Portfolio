@@ -11,6 +11,10 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
             test: /node_modules\/paper/,
             use: loaders.null(),
           },
+          {
+            test: /locomotive-scroll/,
+            use: loaders.null(),
+          },
         ],
       },
     })

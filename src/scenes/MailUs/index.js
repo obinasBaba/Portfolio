@@ -21,7 +21,7 @@ const MailUsContainer = styled.div`
   box-sizing: border-box;
   z-index: 0;
   
-  border: thin solid red;
+  //border: thin solid red;
   
 
   ${spacing('mt', 12)};

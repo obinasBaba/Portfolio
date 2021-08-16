@@ -22,7 +22,7 @@ const Fixed = () => {
       <ToolTip />
       <BackgroundStars />
       <SkyColor />
-      <LoadingSpinner />
+      {/*<LoadingSpinner />*/}
 
     </FixedContainer>
   )

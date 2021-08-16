@@ -46,7 +46,7 @@ const RecentWorks = () => {
   ];
 
   useLayoutEffect(() => {
-    console.log('recentDesign', events.addLoader)
+    // console.log('recentDesign', events.addLoader)
 
     // events.addLoader()
 

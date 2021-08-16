@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import PropTypes from 'prop-types'
+import React, { useContext, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider } from '@material-ui/core/styles'
@@ -8,26 +7,13 @@ import theme from '../theme'
 import '../styles/fontFace.css'
 import { AnimatePresence } from 'framer-motion'
 import { GlobalStyle, Main, Page } from './layoutComponents/index'
-import AppStateProvider from '../contexts/AppStateContext'
+import AppStateProvider, { AppStateContext } from '../contexts/AppStateContext'
 import HeaderAppBar from '../components/HeaderAppBar'
-import MailUs from '../scenes/MailUs'
 import ProgressCircle from './Components/ProgressCircle'
 import Fixed from '../components/Fixed'
-import Footer from '../components/Footer'
-// import 'locomotive-scroll/dist/locomotive-scroll.css'
-// import LocomotiveScroll from 'locomotive-scroll'
+import LoadingSpinner from '../components/LoadingSpinner'
 
-export default function TopLayout({ children, path }) {
-  useEffect(() => {
-    const scrollEl = document.querySelector('#main-container')
-
-    /*let locoScroll = new LocomotiveScroll({
-        el: scrollEl,
-        smooth: true,
-        multiplier: 1,
-      })*/
-  }, [])
-
+export default function Layout({ children, path }) {
   return (
     <React.Fragment>
       <Helmet>
@@ -55,12 +41,9 @@ export default function TopLayout({ children, path }) {
 
               <Main>
                 <AnimatePresence exitBeforeEnter custom={{ path: path }}>
-                  {children}
+                  <LoadingSpinner children={children} />
                 </AnimatePresence>
               </Main>
-
-              {/*<Footer/>*/}
-              {/*<footer>fotter</footer>*/}
 
               <ProgressCircle />
             </Page>
@@ -70,4 +53,3 @@ export default function TopLayout({ children, path }) {
     </React.Fragment>
   )
 }
-

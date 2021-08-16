@@ -1,20 +1,28 @@
-import React, { useContext, useLayoutEffect, useRef } from 'react'
+import React, {useContext, useLayoutEffect, useRef} from 'react'
 import styled from 'styled-components'
-import { lerp } from '../../helpers/utils'
-import { AnimatePresence } from 'framer-motion'
-import { AppStateContext } from '../../contexts/AppStateContext'
+import {lerp} from '../../helpers/utils'
+import {AnimatePresence} from 'framer-motion'
+import {AppStateContext} from '../../contexts/AppStateContext'
 import FontLoaded from 'fontfaceobserver'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger);
+
 
 const SpinnerContainer = styled.div`
-  position: absolute;
-  //z-index: 9999;
+  position: fixed;
+  z-index: 9999;
   //height: 100vh;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   background-color: #02021e;
-  border: thin solid red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  //border: thin solid red;
 
   background-image: linear-gradient(
     to bottom,
@@ -24,10 +32,6 @@ const SpinnerContainer = styled.div`
     #061220,
     #020b16
   );
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `
 
 const Content = styled.div`
@@ -38,20 +42,19 @@ const Content = styled.div`
   justify-content: center;
   gap: 3rem;
   border: thin solid crimson;
-
   -webkit-filter: url('#goo');
   filter: url('#goo');
-
-  * {
-    border-radius: 50%;
-    position: absolute;
-  }
-
+  
   animation: rotate linear;
   animation-fill-mode: forwards;
   animation-direction: normal;
   animation-iteration-count: infinite;
   animation-duration: 4s;
+
+  * {
+    border-radius: 50%;
+    position: absolute;
+  }
 
   @keyframes rotate {
     from {
@@ -93,8 +96,8 @@ const BigBall = styled.div`
   background-color: white;
 `
 
-const LoadingSpinner = () => {
-  const { loadingPage, setLoadingPage, events } = useContext(AppStateContext)
+const LoadingSpinner = ({children}) => {
+  const { loadingPage, events } = useContext(AppStateContext)
 
   const smallRef = useRef(null)
   const contentRef = useRef(null)
@@ -140,7 +143,8 @@ const LoadingSpinner = () => {
 
   return (
     <AnimatePresence>
-      {false && (
+      {loadingPage ?
+
         <SpinnerContainer>
 
           <Content ref={contentRef}>
@@ -168,7 +172,11 @@ const LoadingSpinner = () => {
           </Content>
 
         </SpinnerContainer>
-      )}
+        :
+        <>
+          {children}
+        </>
+      }
     </AnimatePresence>
   )
 }

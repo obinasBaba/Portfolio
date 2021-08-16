@@ -125,7 +125,7 @@ const Title = styled(Typography)`
 
 const Item = ({ media, tag, title, link }) => {
 
-  console.log(media)
+  // console.log(media)
 
   return (
     <PreviewContainer>

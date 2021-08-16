@@ -15,7 +15,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .c-scrollbar {
-    display: none;
+    //display: none;
   }
   
 
