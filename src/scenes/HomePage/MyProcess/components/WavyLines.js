@@ -7,9 +7,9 @@ import {map} from '../../../../helpers/utils'
 const WavyLinesContainer = styled.div`
   //border: thin solid lightcoral; 
   width: 100%;
-  height: 100vh;
+  //height: 100vh;
   position: absolute;
-  top: -100px;
+  top: 0;
   left: 0;
   z-index: -1;
   

@@ -1,14 +1,15 @@
-import React, {useContext, useEffect, useRef} from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import {motion, useMotionValue} from 'framer-motion'
-import {Typography} from '@material-ui/core'
-import {processData} from './data'
+import { motion, useMotionValue, useTransform } from 'framer-motion'
+import { Typography } from '@material-ui/core'
+import { processData } from './data'
 import Card from './components/Card'
-import {useApproachAssets} from '../../../hooks/queries/useApproachAssets'
+import { useApproachAssets } from '../../../hooks/queries/useApproachAssets'
 import gsap from 'gsap'
 import STrigger from 'gsap/ScrollTrigger'
-import {AppStateContext} from '../../../contexts/AppStateContext'
-import {spacing} from '../../../styles/mixins'
+import { AppStateContext } from '../../../contexts/AppStateContext'
+import { spacing } from '../../../styles/mixins'
+import BigPlanet from './components/BigPlanet'
 
 gsap.registerPlugin(STrigger)
 
@@ -39,7 +40,7 @@ const ProcessTxt = styled(Typography)`
   //padding-left: 7rem;
   //padding-bottom: 2rem;
   ${spacing('pl', 7)};
-  ${spacing('pb', 1)};
+  ${spacing('pb', 1.7)};
 
   color: transparent;
   -webkit-text-stroke: 1.5px #f9d6ac;
@@ -84,6 +85,9 @@ const MyProcess = () => {
   const containerRef = useRef(null)
 
   const progress = useMotionValue(0)
+  const opacity = useTransform(progress, [.89, .96], [1, 0])
+  const y = useTransform(progress, [0, 1], [0, -200])
+  // animate(y)
 
   useEffect(() => {
 
@@ -91,12 +95,24 @@ const MyProcess = () => {
 
     setTimeout(() => {
       gsap.to('.track', {
-        x: -(document.querySelector('.track').offsetWidth - 500 ),
+        // x: -(trackRef.current.offsetWidth - 500 ),
         ease: "none",
         scrollTrigger: {
           trigger: '.mask',
-          scrub: 2,
+          // scrub: 2,
           pin: true,
+          start: 'top 25%',
+          end: () => '+=' +  (trackRef.current.offsetWidth - 300),
+        },
+      })
+
+      gsap.to('.track', {
+        x: -(trackRef.current.offsetWidth - 400 ),
+        ease: "none",
+        scrollTrigger: {
+          trigger: '.mask',
+          scrub: 1.3,
+          // pin: true,
           start: 'top 25%',
           onUpdate(self){
             progress.set(self.progress)
@@ -110,8 +126,18 @@ const MyProcess = () => {
           pin: true,
           pinSpacing: false,
           trigger: '.title-wrapper',
-          start: 'top 15%',
-          end: () => '+=' +  (trackRef.current.offsetWidth + 200) ,
+          start: 'top 10%',
+          end: () => '+=' +  (trackRef.current.offsetWidth ) ,
+        }
+      })
+
+      gsap.to('.wavy', {
+        scrollTrigger: {
+          pin: true,
+          pinSpacing: false,
+          trigger: '.wavy',
+          start: 'top 5%',
+          end: () => '+=' +  (trackRef.current.offsetWidth ) ,
         }
       })
 
@@ -123,17 +149,21 @@ const MyProcess = () => {
 
   return (
     <ProcessContainer ref={containerRef} >
-     {/* <div className="wavy">
-        <WavyLines />
-      </div>*/}
+      <div className="wavy">
+        <motion.div style={{y}}>
+          <BigPlanet progress={progress} />
+        </motion.div>
+
+      </div>
 
 
       <div className="title-wrapper">
+        <motion.div style={{opacity}}>
+          <ProcessTxt ref={titleRef} variant="h1" className="title" noWrap={true}>
+              My Approach
+          </ProcessTxt>
+        </motion.div>
 
-      <ProcessTxt ref={titleRef} variant="h1" className="title" noWrap={true}>
-            My Approach
-
-        </ProcessTxt>
       </div>
 
 

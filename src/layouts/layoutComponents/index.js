@@ -21,6 +21,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
+    //overflow: hidden;
     
     //cursor: none;
   }
@@ -95,6 +96,9 @@ export const Page = styled.div`
   display: flex;
   flex-flow: column;
   flex-direction: column;
+  //border: thick solid crimson;
+  //overflow: hidden;
+
 
   .circle-cursor {
     position: fixed;
@@ -124,6 +128,7 @@ export const Main = styled( motion.main )`
   flex: 1;
   position: relative;
   width: 100%;
-  overflow: hidden;
+  
+  border: thick solid yellow;
 `
 

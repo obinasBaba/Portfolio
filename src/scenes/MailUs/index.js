@@ -16,12 +16,15 @@ const MailUsContainer = styled.div`
   justify-content: center;
   text-align: center;
   //height: calc(100vh - 142px);
+  //min-height: 100vh;
   //overflow: hidden;
   box-sizing: border-box;
   z-index: 0;
+  
+  //border: thin solid red;
 
-  ${spacing('pt', 15)};
-  ${spacing('h', 4)};
+  ${spacing('mt', 65)};
+  // ${spacing('h', 4)};
 
   &::after {
     content: '';
@@ -29,7 +32,7 @@ const MailUsContainer = styled.div`
     top: 60%;
     left: 50%;
     border-radius: 50%;
-    //box-shadow: 70px 120px 150px -30px rgba(2, 2, 30, 0.6);
+    box-shadow: 70px 120px 150px -30px rgba(2, 2, 30, 0.6);
     transform: translate(-50%, -50%);
     transition: all 1s;
     background-image: url(${Logo});
@@ -43,6 +46,7 @@ const MailUsContainer = styled.div`
 
 const Background = styled.span`
   //display: inline-block;
+  display: none;
   position: absolute;
   width: 100%;
   left: 0;
@@ -72,31 +76,7 @@ const TitleWrapper = styled.div`
 const MailUs = () => {
   const elRef = React.useRef(null)
   const { isContactOpen, setContactModal } = useContext(AppStateContext);
-  let elParams = null
-  let elPosition = null
-
-  const [backgroundParallax, setBackgroundParallax] = useState(null);
   const { setHeaderGradient } = useContext( AppStateContext );
-
-
-  const moveBackground = () => {
-    elParams = elRef.current.getBoundingClientRect();
-    elPosition = elParams.top - window.innerHeight;
-    if (elPosition + elParams.height / 2 <= 0) {
-      setBackgroundParallax({
-        transform: `translate3d(0, ${elParams.height + elPosition}px, 0)`,
-      })
-    }
-  }
-
-  useEffect(() => {
-    elParams = elRef.current.getBoundingClientRect()
-    setBackgroundParallax({
-      transform: `translate3d(0, ${elParams.height / 2}px, 0)`,
-    })
-    window.addEventListener('scroll', moveBackground)
-    return () => window.removeEventListener('scroll', moveBackground)
-  }, []);
 
   useEffect(() => {
     function removeGradient(MailUsRef) {

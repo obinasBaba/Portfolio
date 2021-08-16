@@ -55,8 +55,8 @@ const Num = styled( motion.div )`
   position: absolute;
   top: -40%;
   right: -18%;
-  font-size: var(--poppins);
-  font-weight: lighter;
+  font-family: "Bodoni Moda", sans-serif;
+  font-weight: 900;
   letter-spacing: -3px;
   -webkit-text-stroke: 1.5px #3719ca;
   color: transparent;
@@ -100,7 +100,7 @@ const keysVariants = {
 const Card = ({ txt, title, methodologies, index, path }) => {
 
   const cardRef = useRef(null)
-  let intersecting = useOnScreen(cardRef, 0.2, '0% -50% 0% 0%')
+  let intersecting = useOnScreen(cardRef, 0, '0% -42% 0% 0%')
   const [inView, setInView] = useState(false)
   const controller = useAnimation();
 
