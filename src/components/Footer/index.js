@@ -29,6 +29,9 @@ const FooterContainer = styled.div`
   //background-color: #02021e;
   //border: thin solid green;
 
+  ${spacing('mv', 3)};
+
+
   ${largeUp(css`
     flex-direction: row;
   `)};

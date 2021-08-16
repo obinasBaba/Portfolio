@@ -13,40 +13,24 @@ const MailUsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   text-align: center;
   //height: calc(100vh - 142px);
   //min-height: 100vh;
-  //overflow: hidden;
+  overflow: hidden;
   box-sizing: border-box;
   z-index: 0;
   
-  //border: thin solid red;
+  border: thin solid red;
+  
 
-  ${spacing('mt', 65)};
-  // ${spacing('h', 4)};
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    border-radius: 50%;
-    box-shadow: 70px 120px 150px -30px rgba(2, 2, 30, 0.6);
-    transform: translate(-50%, -50%);
-    transition: all 1s;
-    background-image: url(${Logo});
-    background-repeat: no-repeat;
-    filter: blur(10px);
-    ${heightWidth('width', 65)};
-    ${heightWidth('height', 65)};
-  }
+  ${spacing('mt', 12)};
 
 `
 
 const Background = styled.span`
   //display: inline-block;
-  display: none;
+  //display: none;
   position: absolute;
   width: 100%;
   left: 0;
@@ -55,7 +39,7 @@ const Background = styled.span`
   bottom: 0;
   z-index: -1;
   //height: calc(100% + (var(--indent) * 1000px));
-  background: linear-gradient(to bottom, rgba(30, 33, 61, -10%) 0%, #02021e 20%);
+  background: linear-gradient(to bottom, rgba(30, 33, 61, 0%) -10%, #02021e 60%);
 `
 
 const TitleWrapper = styled.div`
@@ -66,11 +50,23 @@ const TitleWrapper = styled.div`
   justify-content: center;
   
   .title{
-
     font-weight: 900;
-    
     // ${ text(5) };
   }
+`
+
+const LogoEffect = styled.div`
+  position: absolute;
+  background-image: url(${Logo});
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(2px);
+  z-index: -1;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 `
 
 const MailUs = () => {
@@ -94,7 +90,9 @@ const MailUs = () => {
 
   return (
     <MailUsContainer ref={elRef} >
-      <Background   />
+      <Background  />
+
+      <LogoEffect />
 
       <TitleWrapper>
         <GradientText variant='h1' className='title' >

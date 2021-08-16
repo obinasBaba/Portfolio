@@ -25,12 +25,12 @@ const TitleContainer = styled.header`
 
 
 
-const Headline = ( {title, subtitle, mb} ) => {
+const Headline = ( {title, subtitle, mb, clsName} ) => {
 
 
 
   return (
-    <TitleContainer mb={mb}  >
+    <TitleContainer mb={mb}  className={clsName}>
       <GradientText variant='h1'
                     noWrap={true}  >
         {title}

@@ -75,7 +75,7 @@ const ImageBox = styled.div`
   }
 
   .img-wrapper {
-    z-index: -1;
+    //z-index: -1;
     display: block;
 
     img {
@@ -124,6 +124,9 @@ const Title = styled(Typography)`
 `
 
 const Item = ({ media, tag, title, link }) => {
+
+  console.log(media)
+
   return (
     <PreviewContainer>
       <Link to={link} />

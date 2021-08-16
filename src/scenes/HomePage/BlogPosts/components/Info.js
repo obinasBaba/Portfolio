@@ -8,6 +8,8 @@ import logo from './images/logo.svg'
 const InfoTxt = styled.div`
 
   position: relative;
+  //border: thin solid red;
+  
   ${ spacing('pt', 2) };
   
   @media screen and (max-width: 768px) {
@@ -22,9 +24,9 @@ const InfoTxt = styled.div`
     background-image: url(${logo});
     background-repeat: no-repeat;
     background-size: contain;
-    top: -10%;
+    top: -20%;
     left: -74%;
-    z-index: -1;
+    //z-index: -1;
 
     ${ heightWidth('width', 70) };
     ${ heightWidth('height', 70) };

@@ -33,10 +33,12 @@ const LogoLink = styled.a`
   }
   
   .circledText{
-    max-width: 120px;
+    width: 100%;
   }
   
   .dribbleRed{
+    width: 100%;
+
     position: absolute;
     transition: transform 1s ease;
     will-change: transform;
@@ -49,6 +51,8 @@ const LogoLink = styled.a`
       filter: invert(52%) sepia(26%) saturate(5887%) hue-rotate(303deg) brightness(81%);
     }
   }
+  
+  
   
 `
 

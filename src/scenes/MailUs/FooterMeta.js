@@ -10,9 +10,7 @@ const FooterMetaContainer = styled(Container)`
   justify-content: space-between;
   flex-flow: column;
 
-  //border: thin solid yellow;
-
-  ${spacing('mt', 5)};
+  ${spacing('mv', 5)};
 
   ${mediumUp(css`
     flex-flow: row wrap;

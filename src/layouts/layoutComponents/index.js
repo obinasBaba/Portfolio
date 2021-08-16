@@ -13,7 +13,10 @@ export const GlobalStyle = createGlobalStyle`
   #gatsby-focus-wrapper {
     //height: 100%;
   }
-  
+
+  .c-scrollbar {
+    display: none;
+  }
   
 
   html {
@@ -97,7 +100,7 @@ export const Page = styled.div`
   flex-flow: column;
   flex-direction: column;
   //border: thick solid crimson;
-  //overflow: hidden;
+  overflow: hidden;
 
 
   .circle-cursor {
@@ -129,6 +132,6 @@ export const Main = styled( motion.main )`
   position: relative;
   width: 100%;
   
-  border: thick solid yellow;
+  //border: thick solid yellow;
 `
 

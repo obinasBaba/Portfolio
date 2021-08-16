@@ -9,12 +9,12 @@ import {
 } from '../../../styles/mixins'
 import Info from './components/Info'
 import Previews from './components/Previews'
+import Headline from '../../../components/Headline'
 
 const PostsContainer = styled.section`
   max-width: 100%;
   //overflow: hidden;
-  
-  ${spacing('mt', 20)};
+
   ${spacing('mb', 15)};
   ${gridify()};
 
@@ -29,8 +29,8 @@ const PostsContainer = styled.section`
       ${gridColWidth(5, 61)};
     `)}
   }
-  
-  & main{
+
+  & main {
     ${gridColWidth(35, 59)};
 
     ${mediumDown(css`
@@ -43,19 +43,30 @@ const PostsContainer = styled.section`
   }
 `
 
-
+const BlogPostContainer = styled.section`
+  ${spacing('mt', 15)};
+`
 
 const BlogPosts = () => {
   return (
-    <PostsContainer  >
-      <aside>
-        <Info />
-      </aside>
+    <BlogPostContainer>
+      <Headline
+        className="blog-headline"
+        title='My Blogs'
+        subtitle='Tips & Tricks'
+        mb={10}
+      />
 
-      <main>
-        <Previews/>
-      </main>
-    </PostsContainer>
+      <PostsContainer>
+        <aside>
+          <Info />
+        </aside>
+
+        <main>
+          <Previews />
+        </main>
+      </PostsContainer>
+    </BlogPostContainer>
   )
 }
 

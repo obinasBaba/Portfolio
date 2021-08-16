@@ -16,7 +16,7 @@ import ButtonCtrl from '../../../helpers/buttonCtrl'
 
 const ProjectContainer = styled.div`
   max-width: 100%;
-  overflow: hidden;
+  //overflow: hidden;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -36,6 +36,7 @@ const ProjectContainer = styled.div`
     border-radius: 100px;
     position: relative;
     //border: thin solid green;
+    transform: scale(1.2);
 
     ${heightWidth('height', 53)};
     ${heightWidth('width', 53)};
@@ -54,6 +55,8 @@ const ProjectContainer = styled.div`
 
       path {
         stroke-width: 4px;
+        //transform: scale(1.2);
+
       }
     }
 
@@ -159,6 +162,8 @@ const Projects = () => {
 
   //lottie animation
   useEffect(() => {
+    if ( moRotate.get() != 0 ) return;
+
     lotti.loadAnimation({
       container: outerRef.current,
       renderer: 'svg',

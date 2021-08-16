@@ -6,7 +6,8 @@ let StyledSectionWrapper = styled(Container)`
   max-width: 1600px;
   margin: 0 auto;
   width: 100%;
-  height: 100vh;
+  //height: 100vh;
+  
 `
 
 export const SectionWrapper = ({
