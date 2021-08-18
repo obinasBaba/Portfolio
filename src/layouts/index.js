@@ -12,6 +12,7 @@ import HeaderAppBar from '../components/HeaderAppBar'
 import ProgressCircle from './Components/ProgressCircle'
 import Fixed from '../components/Fixed'
 import LoadingSpinner from '../components/LoadingSpinner'
+import Cursor from '../components/Cursor'
 
 export default function Layout({ children, path }) {
   return (
@@ -38,6 +39,7 @@ export default function Layout({ children, path }) {
             <Page>
               <HeaderAppBar />
               <Fixed />
+              <Cursor/>
 
               <Main>
                 <AnimatePresence exitBeforeEnter custom={{ path: path }}>

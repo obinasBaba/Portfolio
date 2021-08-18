@@ -1,6 +1,6 @@
 import { graphql, useStaticQuery } from 'gatsby'
 
-export function useRecentDesignAssets(){
+export function useProjectSvg(){
   return useStaticQuery(graphql`
     query {
       
@@ -12,6 +12,12 @@ export function useRecentDesignAssets(){
       
       circledText: file(
         relativePath: { eq: "sections/portfolio-works/circled-text.svg" }
+      ) {
+        publicURL
+      }
+      
+      rightArrow: file(
+        relativePath: { eq: "sections/otherUtil/right-arrow.svg" }
       ) {
         publicURL
       }

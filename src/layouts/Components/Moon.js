@@ -12,7 +12,8 @@ const MoonBg = styled(motion.div)`
   height: 1185px;
   width: 100%;
   //overflow: hidden;
-  z-index: ${({ zIndex }) => zIndex && zIndex};
+  //z-index: -1;
+  pointer-events: none;
   //border: thick solid red;
 
   .moonlight {

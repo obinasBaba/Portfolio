@@ -153,7 +153,7 @@ const Footer = ( {color} ) => {
       <Love>Made With <span className='heart-icon'>&#9825;</span> by <b>henok</b></Love>
 
       <Social>
-        <li>
+        <li className='hover_target'>
           <a
             href="https://github.com/Halo-Lab"
             target="_blank"
@@ -169,6 +169,8 @@ const Footer = ( {color} ) => {
             href="https://www.instagram.com/halolabteam/"
             target="_blank"
             rel="noopener noreferrer"
+            className='hover_target'
+
           >
             Instagram
             <Instagram />

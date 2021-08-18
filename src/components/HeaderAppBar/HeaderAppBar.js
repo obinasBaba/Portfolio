@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react'
 import useScrollTrigger from '@material-ui/core/useScrollTrigger'
 import Slide from '@material-ui/core/Slide'
 import styled, { css } from 'styled-components'
-import LogoAndSocial from './components/LogoAndSocial'
+import HomeLogo from './components/HomeLogo'
 import NavBtn from './components/NavBtn'
 import ContactBtn from './components/ContactBtn'
 import { mediumUp, spacing } from '../../styles/mixins'
@@ -56,7 +56,7 @@ const NavContainer = styled.div`
   }
 
   ${mediumUp(css`
-    ${spacing('pv', 1.5)};
+    ${spacing('pv', 2)};
     ${spacing('ph', 5)};
   `)};
 `
@@ -102,7 +102,7 @@ function HeaderAppBar({}) {
       <HideOnScroll>
         <NavContainer isGradient={false} isWhite={isWhite}>
           <ToolBarWrapper>
-            <LogoAndSocial isWhite={isWhite} />
+            <HomeLogo isWhite={isWhite} />
 
             <AnimatePresence>
               {!menuIsOpen && (

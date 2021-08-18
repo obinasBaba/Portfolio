@@ -226,11 +226,11 @@ const Projects = () => {
         <motion.div className="hover-target">
           <Link
             id="proSec"
-            className="proSec"
+            className="proSec hover_target"
             ref={txtRef}
             to={'/projects/#one'}
           >
-            <motion.div animate={controls}>All Projects(5)</motion.div>
+            <motion.div className='hover_target'>All Projects(5)</motion.div>
           </Link>
 
           <motion.div

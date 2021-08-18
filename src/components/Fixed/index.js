@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import ToolTip from './ToolTip'
 import BackgroundStars from '../BackgroundStars'
 import {SkyColor} from '../../layouts/Components/SkyColor'
-import LoadingSpinner from '../LoadingSpinner'
 
 const FixedContainer = styled.div`
   position: fixed;
@@ -22,7 +21,6 @@ const Fixed = () => {
       <ToolTip />
       <BackgroundStars />
       <SkyColor />
-      {/*<LoadingSpinner />*/}
 
     </FixedContainer>
   )

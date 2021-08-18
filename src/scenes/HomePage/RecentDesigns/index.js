@@ -1,7 +1,7 @@
 import React, {useContext, useLayoutEffect} from 'react'
 import styled from 'styled-components'
 import Title from './Title'
-import { useRecentDesignAssets } from '../../../hooks/queries/useRecentDesignAssets'
+import { useProjectSvg } from '../../../hooks/queries/useProjectSvg'
 import { spacing } from '../../../styles/mixins'
 import useHomeWorksAssets from '../../../hooks/queries/useHomeWorksAssets'
 import DesignImage from './items'
@@ -16,7 +16,7 @@ const RecentDesignWrapper = styled.div`
 
 const RecentWorks = () => {
 
-  const { circledText, dribbleRed } = useRecentDesignAssets();
+  const { circledText, dribbleRed } = useProjectSvg();
   const { loadingPage, setLoadingPage, events } = useContext(AppStateContext)
   // const loadingEvents = Subscribers.getInstance()
 

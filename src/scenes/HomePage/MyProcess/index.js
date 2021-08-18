@@ -43,7 +43,7 @@ const ProcessMask = styled(motion.div)`
 
 const ProcessTrack = styled(motion.div)`
   display: flex;
-  border: thin dashed #00CCFF;
+  //border: thin dashed #00CCFF;
   width: max-content;
 
   & > :not(:last-child) { 

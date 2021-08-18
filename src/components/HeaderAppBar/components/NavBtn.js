@@ -6,6 +6,8 @@ import { motion } from 'framer-motion'
 // const headerTransition = 'all .3s'
 
 const Btn = styled(motion.button)`
+  --clr: crimson;
+  
   position: relative;
   display: flex;
   align-items: center;
@@ -59,8 +61,10 @@ const Btn = styled(motion.button)`
 
   &:hover,
   &:focus {
-    box-shadow: inset 0 0 0 1px ${({ theme }) => theme.palette.secondary.main};
-    background-color: ${({ theme, open }) => theme.palette.secondary.main};
+    //box-shadow: inset 0 0 0 1px ${({ theme }) => theme.palette.secondary.main};
+    //background-color: ${({ theme, open }) => theme.palette.secondary.main};
+    box-shadow: none;
+
 
     & > :first-child {
       //bars
@@ -144,7 +148,7 @@ const NavBtn = ({ isWhite, toggleMenu, pos, variants = {} }) => {
 
   return (
     <Btn
-      className='btn'
+      className='btn hover_target'
       isWhite={isWhite}
       pos={pos}
       initial={{ opacity: 0 }}

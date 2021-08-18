@@ -26,7 +26,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-text-size-adjust: 100%;
     //overflow: hidden;
     
-    //cursor: none;
+    cursor: none;
   }
 
   body{
@@ -101,30 +101,7 @@ export const Page = styled.div`
   flex-direction: column;
   //border: thick solid crimson;
   overflow: hidden;
-
-
-  .circle-cursor {
-    position: fixed;
-    left: 0;
-    top: 0;
-    pointer-events: none;
-
-    &--outer {
-      width: 100vw;
-      height: 100vh;
-      z-index: 12000;
-    }
-
-    &--inner {
-      width: 10px;
-      height: 10px;
-      left: -5.2px;
-      top: -5.2px;
-      border-radius: 50%;
-      z-index: 11000;
-      background: #2c00ff;
-    }
-  }
+  
 `
 
 export const Main = styled( motion.main )`
