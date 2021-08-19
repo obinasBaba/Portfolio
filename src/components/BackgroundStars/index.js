@@ -43,7 +43,7 @@ const BackgroundStars = () => {
             }}
     >
 
-      <Wrapper style={{ y: yScrollBig }}>
+      <Wrapper style={{ y: yScrollSmall }}>
         <Layer
           style={{
             backgroundImage: `url(${starsBig.publicURL})`,
@@ -53,7 +53,7 @@ const BackgroundStars = () => {
         />
       </Wrapper>
 
-      <Wrapper style={{ y: yScrollSmall }}>
+      <Wrapper style={{ y: yScrollBig }}>
         <Layer
           style={{
             backgroundImage: `url(${starsSmallOld.publicURL})`,

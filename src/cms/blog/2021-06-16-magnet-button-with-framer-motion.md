@@ -80,7 +80,7 @@ Design testing is a check of layout for design compliance. A product designer is
 **Typical problems that could be found during the design testing:**
 
 * incorrect spacings; 
-* missed states on interactive elements;
+* missed state on interactive elements;
 * bad animation timing or easing.
 
 ### Functional testing

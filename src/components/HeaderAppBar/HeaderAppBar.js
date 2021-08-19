@@ -1,14 +1,13 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import useScrollTrigger from '@material-ui/core/useScrollTrigger'
 import Slide from '@material-ui/core/Slide'
 import styled, { css } from 'styled-components'
 import HomeLogo from './components/HomeLogo'
 import NavBtn from './components/NavBtn'
-import ContactBtn from './components/ContactBtn'
 import { mediumUp, spacing } from '../../styles/mixins'
 import { AnimatePresence } from 'framer-motion'
 import Menu from './components/Menu'
-import {AppStateContext} from '../../contexts/AppStateContext'
+import { AppStateContext } from '../../contexts/AppStateContext'
 import ContactMe from '../ContactMe'
 
 const transition = css`
@@ -57,11 +56,11 @@ const NavContainer = styled.div`
 
   ${mediumUp(css`
     ${spacing('pv', 2)};
-    ${spacing('ph', 5)};
+    ${spacing('ph', 6)};
   `)};
 `
 
-const ToolBarWrapper = styled.nav`
+const NavWrapper = styled.nav`
   margin: 0 auto;
   max-width: 1600px;
   display: flex;
@@ -74,7 +73,6 @@ function HeaderAppBar({}) {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const {
     isWhite,
-    isHeaderGradient,
     isContactOpen,
     setContactModal,
   } = useContext(AppStateContext)
@@ -101,19 +99,12 @@ function HeaderAppBar({}) {
 
       <HideOnScroll>
         <NavContainer isGradient={false} isWhite={isWhite}>
-          <ToolBarWrapper>
+          <NavWrapper>
             <HomeLogo isWhite={isWhite} />
 
             <AnimatePresence>
               {!menuIsOpen && (
                 <>
-                  <ContactBtn
-                    isWhite={isWhite}
-                    key={menuIsOpen.toString() + 'con'}
-                    isContactOpen={isContactOpen}
-                    setContactModal={setContactModal}
-                  />
-
                   <NavBtn
                     isWhite={isWhite}
                     key={!menuIsOpen.toString() + 'nav'}
@@ -122,7 +113,7 @@ function HeaderAppBar({}) {
                 </>
               )}
             </AnimatePresence>
-          </ToolBarWrapper>
+          </NavWrapper>
         </NavContainer>
       </HideOnScroll>
     </>

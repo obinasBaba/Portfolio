@@ -14,6 +14,7 @@ import Fixed from '../components/Fixed'
 import LoadingSpinner from '../components/LoadingSpinner'
 import Cursor from '../components/Cursor'
 
+
 export default function Layout({ children, path }) {
   return (
     <React.Fragment>

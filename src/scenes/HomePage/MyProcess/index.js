@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, {useContext, useEffect, useRef, useState} from 'react'
 import styled from 'styled-components'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 import { Typography } from '@material-ui/core'
@@ -10,6 +10,7 @@ import STrigger from 'gsap/ScrollTrigger'
 import { AppStateContext } from '../../../contexts/AppStateContext'
 import { spacing } from '../../../styles/mixins'
 import BigPlanet from './components/BigPlanet'
+import useOnScreen from '../../../hooks/useOnScreen'
 
 
 
@@ -18,7 +19,7 @@ const ProcessContainer = styled.div`
   overflow: visible;
   position: relative;
   padding: 14rem 0 10rem;
-  //border: thin solid red;
+  border: thin solid red;
 
 `
 
@@ -28,7 +29,7 @@ const ProcessTxt = styled(Typography)`
   -webkit-text-stroke: 1.5px #f9d6ac;
   font-weight: 900;
   font-family: "Bodoni Moda", sans-serif;
-  //border: thin dashed burlywood;
+  border: thin dashed burlywood;
 
   ${spacing('pl', 7)};
   ${spacing('pb', 1.7)}
@@ -36,14 +37,14 @@ const ProcessTxt = styled(Typography)`
 
 const ProcessMask = styled(motion.div)`
   z-index: 5;
-  //border: thin dashed #89dc14;
+  border: thin dashed #89dc14;
   
   ${spacing('pl', 50)};
 `
 
 const ProcessTrack = styled(motion.div)`
   display: flex;
-  //border: thin dashed #00CCFF;
+  border: thin dashed #00CCFF;
   width: max-content;
 
   & > :not(:last-child) { 
@@ -65,37 +66,53 @@ const MyProcess = () => {
   const trackRef = useRef(null)
   const containerRef = useRef(null)
 
+  let intersecting = useOnScreen(containerRef, 0)
+  const [inView, setInView] = useState(false)
+
   const progress = useMotionValue(0)
   const opacity = useTransform(progress, [.89, .96], [1, 0])
   const y = useTransform(progress, [0, 1], [0, -200])
 
+  useEffect(() => {
+    if ( inView ) return;
+    if ( intersecting )
+      setInView(true)
+
+  }, [intersecting])
 
   useEffect(() => {
 
+    if ( inView )
     setTimeout(() => {
-      gsap.to('.track', {
+
+      console.log('gsap inview')
+
+      const mask = document.querySelector('.mask')
+      const track = document.querySelector('.track')
+
+      gsap.to(track, {
         // x: -(trackRef.current.offsetWidth - 500 ),
         ease: "none",
         scrollTrigger: {
-          trigger: '.mask',
+          trigger: mask,
           pin: true,
           start: 'top 25%',
-          end: () => '+=' +  (trackRef.current.offsetWidth - 300),
+          end: () => '+=' +  (track.offsetWidth - 300),
         },
       })
 
-      gsap.to('.track', {
-        x: -(trackRef.current.offsetWidth - 400 ),
+      gsap.to(track, {
+        x: -(track.offsetWidth - 400 ),
         ease: "none",
         scrollTrigger: {
-          trigger: '.mask',
+          trigger: mask,
           scrub: 1.3,
           // pin: true,
           start: 'top 25%',
           onUpdate(self){
             progress.set(self.progress)
           },
-          end: () => '+=' +  trackRef.current.offsetWidth ,
+          end: () => '+=' +  track.offsetWidth ,
         },
       })
 
@@ -105,7 +122,7 @@ const MyProcess = () => {
           pinSpacing: false,
           trigger: '.title-wrapper',
           start: 'top 10%',
-          end: () => '+=' +  (trackRef.current.offsetWidth ) ,
+          end: () => '+=' +  (track.offsetWidth ) ,
         }
       })
 
@@ -115,52 +132,58 @@ const MyProcess = () => {
           pinSpacing: false,
           trigger: '.wavy',
           start: 'top 5%',
-          end: () => '+=' +  (trackRef.current.offsetWidth ) ,
+          end: () => '+=' +  (track.offsetWidth ) ,
         }
       })
 
       STrigger.refresh()
     })
 
-  }, [loadingPage])
+  }, [loadingPage, inView])
 
 
   return (
     <ProcessContainer ref={containerRef} data-scroll-section>
-      <div className="wavy">
-        <motion.div style={{y}}>
-          <BigPlanet progress={progress} />
-        </motion.div>
+      {
+        inView ?       <>
+          <div className="wavy">
+            <motion.div style={{y}}>
+              <BigPlanet progress={progress} />
+            </motion.div>
 
-      </div>
-
-
-      <div className="title-wrapper">
-        <motion.div style={{opacity}}>
-          <ProcessTxt ref={titleRef} variant="h1" className="title" noWrap={true}>
-              My Approach
-          </ProcessTxt>
-        </motion.div>
-
-      </div>
+          </div>
 
 
+          <div className="title-wrapper">
+            <motion.div style={{opacity}}>
+              <ProcessTxt ref={titleRef} variant="h1" className="title" noWrap={true}>
+                My Approach
+              </ProcessTxt>
+            </motion.div>
 
-      <ProcessMask ref={maskRef} className='mask' >
-        <ProcessTrack ref={trackRef} className='track'>
-          {processData.map(({ no, title, txt, keys }, index) => (
-            <Card
-              key={title}
-              no={no}
-              title={title}
-              txt={txt}
-              index={index}
-              path={icons[index].publicURL}
-              methodologies={keys}
-            />
-          ))}
-        </ProcessTrack>
-      </ProcessMask>
+          </div>
+
+
+
+          <ProcessMask ref={maskRef} className='mask' >
+            <ProcessTrack ref={trackRef} className='track'>
+              {processData.map(({ no, title, txt, keys }, index) => (
+                <Card
+                  key={title}
+                  no={no}
+                  title={title}
+                  txt={txt}
+                  index={index}
+                  path={icons[index].publicURL}
+                  methodologies={keys}
+                />
+              ))}
+            </ProcessTrack>
+          </ProcessMask>
+        </>
+
+          : <></>
+      }
 
     </ProcessContainer>
   )

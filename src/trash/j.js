@@ -28570,7 +28570,7 @@
       }
       static htmlElement(t, e, i, r=!0) {
         if (!t || !t.appendChild)
-          throw new Error("parent is not a valid DOM element");
+          throw new Error("parent is not a valid dom element");
         let n = document.querySelector(`#${i}`);
         return n || (n = document.createElement(e),
           n.setAttribute("id", i),
@@ -28849,7 +28849,7 @@
       }
       static svgElement(t, e, i) {
         if (!t || !t.appendChild)
-          throw new Error("parent is not a valid DOM element");
+          throw new Error("parent is not a valid dom element");
         let r = document.querySelector(`#${i}`);
         return r || (r = document.createElementNS("http://www.w3.org/2000/svg", e),
           r.setAttribute("id", i),

@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components'
 import { mediumUp, spacing } from '../../../../../styles/mixins'
 import { Typography } from '@material-ui/core'
 import {motion} from 'framer-motion'
+import {useProjectSvg} from '../../../../../hooks/queries/useProjectSvg'
+import RightArrowLink from './RightArrowLink'
 
 export const ExperimentItem = styled( motion.div )`
   //border: 1px solid red;
@@ -10,7 +12,7 @@ export const ExperimentItem = styled( motion.div )`
   display: flex;
   flex-flow: column;
   justify-content: space-between;
-  cursor: pointer;
+  //cursor: pointer;
 
   ${spacing('pv', 5)};
   ${spacing('pb', 3)};
@@ -64,15 +66,16 @@ export const ExperimentItem = styled( motion.div )`
   }
 `
 
-const ExperimentTitle = styled.div`
+const InfoBar = styled.div`
   display: flex;
+  flex-flow: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   
   //border: thin solid lightcoral;
   width: 85%;
   margin: 0 auto;
-  ${spacing('ph', 3)};
+  // ${spacing('ph', 1)};
   
   .title{
     font-weight: lighter;
@@ -104,17 +107,20 @@ const NumberContainer = styled( Typography )`
 `
 
 const Item = ({  imgUrl, title, index}) => {
+
+
   return (
     <ExperimentItem  >
       <img src={imgUrl} alt={'boo'} />
 
-      <ExperimentTitle >
+      <InfoBar >
 
 
-        <Typography align="left" variant={'subtitle1'} className='title' >{title}</Typography>
-        <NumberContainer className='num' variant={'body2'}>0{index + 1}</NumberContainer>
+        <Typography align="left" variant={'subtitle1'} className='title' >0{index + 1}.&nbsp;{ title}</Typography>
 
-      </ExperimentTitle>
+        <RightArrowLink/>
+
+      </InfoBar>
     </ExperimentItem>
   )
 }

@@ -1,12 +1,12 @@
-import React from 'react'
-import { Divider } from '@material-ui/core'
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/all'
+import React, {useEffect, useLayoutEffect, useRef} from 'react'
 import styled, { css } from 'styled-components'
 import useHeaderAssets from '../../../hooks/queries/useHeaderAssets'
 import { Link } from 'gatsby'
-import { heightWidth, mediumUp, spacing } from '../../../styles/mixins'
+import { heightWidth, mediumUp } from '../../../styles/mixins'
 import { ReactSVG } from 'react-svg'
 import { motion } from 'framer-motion'
+import MagnetElement from '../../../helpers/MagnetElement'
+import useOnScreen from '../../../hooks/useOnScreen'
 
 const Logo = styled(motion.div)`
   margin-right: auto;
@@ -37,12 +37,12 @@ const logoVariant = {
   initial: {
     opacity: 0,
     scale: 1.56,
-    rotate: 20
+    rotate: 20,
   },
   animate: {
     opacity: 1,
     scale: 1.05,
-    rotate: 0
+    rotate: 0,
   },
   exit: {  },
 
@@ -55,17 +55,43 @@ const logoVariant = {
 
 const HomeLogo = ({ isWhite }) => {
   const { logo } = useHeaderAssets()
+  const logoRef = useRef(null)
+  // let magnet = null
+  const inView = useOnScreen(logoRef, 0)
+
+  useEffect(() => {
+
+    const magnet = new MagnetElement({
+      element: document.querySelector('.home_logo'),
+      amounts: {
+        trigger: 1.2,
+        stop: 2,
+        distance: .7
+      }
+    })
+
+
+    if ( inView )
+      magnet.start()
+    else
+      magnet.stop()
+
+    return () => magnet.stop()
+
+  }, [inView])
 
   return (
     <Logo isWhite={isWhite}
           variants={logoVariant}
           transition={logoVariant.transition}
-          initial='initial'
-          animate='animate'
+          initial="initial"
+          animate="animate"
+          className="home_logo"
           // exit='exit'
+      ref={logoRef}
     >
       <Link to={'/'}>
-        <ReactSVG className="logoSvg hover_target" src={logo.publicURL} />
+        <ReactSVG className="logoSvg" src={logo.publicURL} />
       </Link>
     </Logo>
   )

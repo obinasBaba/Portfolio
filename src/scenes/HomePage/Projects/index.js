@@ -1,6 +1,11 @@
 import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import { gridMultiplayer, heightWidth, spacing } from '../../../styles/mixins'
+import {
+  gridMultiplayer,
+  heightWidth,
+  spacing,
+  text,
+} from '../../../styles/mixins'
 import {
   motion,
   useAnimation,
@@ -12,10 +17,12 @@ import { Link, useScrollRestoration } from 'gatsby'
 import Headline from '../../../components/Headline'
 import lotti from 'lottie-web'
 import { useProjectCircles } from '../../../hooks/queries/useProjectCircles'
-import ButtonCtrl from '../../../helpers/buttonCtrl'
+import MagnetElement from '../../../helpers/MagnetElement'
+import useOnScreen from '../../../hooks/useOnScreen'
 
 const ProjectContainer = styled.div`
   max-width: 100%;
+  min-height: 100vh;
   //overflow: hidden;
   display: flex;
   flex-flow: column;
@@ -23,9 +30,13 @@ const ProjectContainer = styled.div`
   justify-content: center;
   //border: thick solid red;
   padding: 2rem 0;
+  ${spacing('pt', 25)};
   ${spacing('mb', 8)};
   
   //border: thick solid red;
+  .allProjects-txt{
+    ${ text(1.1) };
+  }
 
   .hover-target {
     display: flex;
@@ -35,8 +46,7 @@ const ProjectContainer = styled.div`
     padding: 4rem;
     border-radius: 100px;
     position: relative;
-    //border: thin solid green;
-    transform: scale(1.2);
+    border: thin solid green;
 
     ${heightWidth('height', 53)};
     ${heightWidth('width', 53)};
@@ -118,10 +128,11 @@ const Projects = () => {
   const { circle1, circle2 } = useProjectCircles()
   const projectSectionRestoration = useScrollRestoration('project-section')
 
-  const outerRef = useRef(null)
+  const circle1Ref = useRef(null)
   const txtRef = useRef(null)
-  const innerRef = useRef(null)
+  const circle2Ref = useRef(null)
   const containerRef = useRef(null)
+  const inView = useOnScreen(containerRef, 0)
 
   const moRotate = useMotionValue(0)
   const moRotate2 = useMotionValue(0)
@@ -165,7 +176,7 @@ const Projects = () => {
     if ( moRotate.get() != 0 ) return;
 
     lotti.loadAnimation({
-      container: outerRef.current,
+      container: circle1Ref.current,
       renderer: 'svg',
       loop: true,
       autoplay: true,
@@ -173,7 +184,7 @@ const Projects = () => {
     })
 
     lotti.loadAnimation({
-      container: innerRef.current,
+      container: circle2Ref.current,
       renderer: 'svg',
       loop: true,
       autoplay: true,
@@ -182,7 +193,7 @@ const Projects = () => {
   }, [])
 
   useEffect(() => {
-    const btn = new ButtonCtrl(txtRef.current)
+    /*const btn = new MagnetElement(txtRef.current)
     btn.on('enter', () => {
       controls.start({
         scale: 1.2,
@@ -202,45 +213,45 @@ const Projects = () => {
           ease: 'easeInOut',
         },
       })
-    })
-  }, [])
+    })*/
+
+  }, [false])
 
   return (
     <motion.div
-      id={'proSec'}
+      id='proSec'
       ref={containerRef}
       {...projectSectionRestoration}
       variants={parentVariant}
       initial="initial"
       animate="animate"
       exit="exit"
-      data-scroll-section
     >
       <ProjectContainer>
         <Headline title={'Projects'} mb={3} subtitle={'Case Studies'} />
 
         <Planet style={{ y: yBig, x: xBig }} />
 
-        <Planet className={'planet-two'} style={{ y: ySmall, x: xSmall }} />
+        <Planet className='planet-two' style={{ y: ySmall, x: xSmall }} />
 
         <motion.div className="hover-target">
           <Link
             id="proSec"
-            className="proSec hover_target"
+            className="proSec"
             ref={txtRef}
             to={'/projects/#one'}
           >
-            <motion.div className='hover_target'>All Projects(5)</motion.div>
+            <motion.div className='allProjects-txt  hover_target'>All Projects(5)</motion.div>
           </Link>
 
           <motion.div
-            ref={outerRef}
+            ref={circle1Ref}
             style={{ rotate: moRotate }}
             className="btn-border outer-border"
           />
 
           <motion.div
-            ref={innerRef}
+            ref={circle2Ref}
             style={{ rotate: moRotate2 }}
             className="btn-border inner-border"
           />

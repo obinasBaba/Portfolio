@@ -1,4 +1,4 @@
-import React, {useContext, useLayoutEffect} from 'react'
+import React, { useLayoutEffect } from 'react'
 import styled from 'styled-components'
 import Title from './Title'
 import { useProjectSvg } from '../../../hooks/queries/useProjectSvg'
@@ -7,18 +7,15 @@ import useHomeWorksAssets from '../../../hooks/queries/useHomeWorksAssets'
 import DesignImage from './items'
 import ScrollGallery from '../../../components/ScrollGallery/ScrollGallery'
 import ImagesLoaded from 'imagesloaded'
-import {AppStateContext} from '../../../contexts/AppStateContext'
-import Subscribers from '../../../helpers/Subscribers'
 
 const RecentDesignWrapper = styled.div`
-  ${spacing('mb', 13)};
+  
+  //border: thick solid saddlebrown;
 `
 
 const RecentWorks = () => {
 
   const { circledText, dribbleRed } = useProjectSvg();
-  const { loadingPage, setLoadingPage, events } = useContext(AppStateContext)
-  // const loadingEvents = Subscribers.getInstance()
 
 
   const {

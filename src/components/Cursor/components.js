@@ -38,12 +38,7 @@ export const Pointer = styled(motion.div)`
   //transform: translate(-50%, -50%);
 
   p {
-    //display: none;
-
-    &:first-child {
-      //display: none;
-    }
-
+    
     position: absolute;
     font-family: 'jaro.io icons', serif;
     line-height: 0;
@@ -53,6 +48,7 @@ export const Pointer = styled(motion.div)`
     left: -50%;
     inset: auto;
     color: rgb(120, 128, 158);
+    font-size: .8rem;
     //mix-blend-mode: difference;
   }
 `

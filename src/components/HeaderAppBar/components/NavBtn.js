@@ -142,7 +142,7 @@ const NavBtn = ({ isWhite, toggleMenu, pos, variants = {} }) => {
 
   useEffect(() => {
 
-    // const btn = new ButtonCtrl(document.querySelector('.btn'))
+    // const btn = new MagnetElement(document.querySelector('.btn'))
 
   }, [])
 
