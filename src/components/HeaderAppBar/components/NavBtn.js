@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import styled, { css } from 'styled-components'
 import { heightWidth, mediumUp, spacing } from '../../../styles/mixins'
 import { motion } from 'framer-motion'
+import MagnetElement from '../../../helpers/MagnetElement'
 
 // const headerTransition = 'all .3s'
 
@@ -14,35 +15,23 @@ const Btn = styled(motion.button)`
   justify-content: center;
   overflow: hidden;
   outline: none;
-  box-shadow: ${({ isWhite }) =>
+  border: ${({ isWhite }) =>
           isWhite
-                  ? 'inset 0 0 0 1px rgba(2, 2, 30, 0.2)'
-                  : 'inset 0 0 0 1px rgba(255, 255, 255, 0.2)'};
+                  ? 'thin solid rgba(2, 2, 30, 0.2)'
+                  : 'thin solid rgba(255, 255, 255, 0.2)'};
+  
   border: none;
+  
   border-radius: 50%;
   background-color: transparent;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: background-color 0.3s, border .3s;
   backface-visibility: hidden;
   transform: translate3d(0, 0, 0);
   z-index: 999550;
 
   ${heightWidth('height', 6)};
   ${heightWidth('width', 6)};
-
-  ${({ pos }) =>
-    pos &&
-    css`
-      position: absolute;
-      top: 2.2rem;
-      right: 2rem;
-
-      ${mediumUp(css`
-        ${spacing('containerVariant', 2)};
-        ${spacing('right', 8)};
-      `)};
-    `};
-
   
 
   ${({ isWhite }) =>
@@ -63,7 +52,7 @@ const Btn = styled(motion.button)`
   &:focus {
     //box-shadow: inset 0 0 0 1px ${({ theme }) => theme.palette.secondary.main};
     //background-color: ${({ theme, open }) => theme.palette.secondary.main};
-    box-shadow: none;
+    //border: 0;
 
 
     & > :first-child {
@@ -113,25 +102,6 @@ const Bars = styled.span`
   &::after {
     margin-top: 0.5rem;
   }
-
-  ${({ opened }) =>
-    opened
-      ? css`
-          background-color: transparent !important;
-
-          &:before {
-            top: 0.45rem;
-            transform: translateX(-50%) rotate(45deg);
-            width: 100%;
-          }
-
-          &:after {
-            top: -0.55rem;
-            transform: translateX(-50%) rotate(-45deg);
-            width: 100%;
-          }
-        `
-      : ''};
 `
 
 const HiddenText = styled.p`
@@ -142,13 +112,25 @@ const NavBtn = ({ isWhite, toggleMenu, pos, variants = {} }) => {
 
   useEffect(() => {
 
-    // const btn = new MagnetElement(document.querySelector('.btn'))
+    const magnet = new MagnetElement({
+      element: document.querySelector('.nav-btn'),
+      amounts: {
+        trigger: 1.2,
+        stop: 1.5,
+        distance: .42
+      }
+    })
+
+    return () => {
+      magnet.stop()
+      magnet.disconnect()
+    }
 
   }, [])
 
   return (
     <Btn
-      className='btn hover_target'
+      className='nav-btn'
       isWhite={isWhite}
       pos={pos}
       initial={{ opacity: 0 }}

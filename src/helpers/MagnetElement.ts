@@ -3,29 +3,34 @@
 import { EventEmitter } from 'events'
 import { distance, lerp } from './utils'
 import EventUtil from './EventUtil'
+import { object } from "prop-types"
 
 // Calculate the viewport size
 
 // Track the mouse position
 // let mousepos = {x: 0, y: 0};
 
-type MagnetTypes = {
+type MagnetType = {
   element: HTMLElement
   amounts: {
     trigger?: number
     stop?: number
-    distance: number
+    distance?: number
+  },
+  inView?: {
+    rootMargin: string,
+    threshold: number
   }
 }
 
-export default class MagnetElement extends EventEmitter {
+export default class MagnetElement {
   eventUtil = EventUtil.getInstance()
-  element: HTMLElement
-  rect: DOMRect
+  element: HTMLElement;
+  rect: DOMRect;
 
   distanceToTrigger: number
   distanceToStop: number
-  amounts = {
+  amount = {
     // rect:Rect,
     trigger: 1,
     stop: 1,
@@ -40,34 +45,62 @@ export default class MagnetElement extends EventEmitter {
     hover: false,
     reqAnimationId: 0,
   }
+  inView: boolean;
 
   onResize: () => void
+  disconnect: () => void;
 
-  constructor(el: MagnetTypes) {
-    super()
-    this.element = el.element
-    this.amounts = { ...this.amounts, ...el?.amounts }
-    this.onResize = () => this.calculateSizePosition()
+
+   constructor(el: MagnetType) {
+    console.log('constructor invoked')
+
+     this.element = el.element
+     this.amount = { ...this.amount, ...el?.amounts }
 
     // calculate size/position
     this.calculateSizePosition()
     // init events
     this.initEvents()
-    // loop fn
+
     this.state.reqAnimationId = requestAnimationFrame(() => this.render())
+
+    this.startObserving(
+       '0px',
+       0
+    )
+  }
+
+  startObserving(rootMargin, threshold){
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Update our state when observer callback fires
+        if (entry.isIntersecting)
+          this.start()
+        else
+          this.stop()
+
+      },
+      {
+        rootMargin: rootMargin,
+        threshold: threshold
+      }
+    );
+    observer.observe(this.element)
+    this.disconnect = () => observer.disconnect();
   }
 
   calculateSizePosition() {
     // size/position
     this.rect = this.element.getBoundingClientRect()
     // the movement will take place when the distance from the mouse to the center of the button is lower than this value
-    this.distanceToTrigger = this.rect.width * this.amounts.trigger
-    this.distanceToStop = this.rect.width * this.amounts.stop
+    this.distanceToTrigger = this.rect.width * this.amount.trigger
+    this.distanceToStop = this.rect.width * this.amount.stop
   }
 
   initEvents() {
-    // window.addEventListener('resize', this.onResize)
-    // window.addEventListener('scroll', this.onResize)
+    this.onResize = () => this.calculateSizePosition()
+    window.addEventListener('resize', this.onResize)
+    window.addEventListener('scroll', this.onResize)
   }
 
   stop() {
@@ -91,7 +124,7 @@ export default class MagnetElement extends EventEmitter {
       this.rect.top + this.rect.height / 2 //center
     )
 
-    console.log(distanceMouseButton)
+    // console.log(distanceMouseButton)
 
     // new values for the translations
     let x = 0
@@ -101,23 +134,26 @@ export default class MagnetElement extends EventEmitter {
       distanceMouseButton < this.distanceToTrigger ||
       (this.state.hover && distanceMouseButton < this.distanceToStop)
     ) {
-      if (!this.state.hover) this.enter()
+      if (!this.state.hover)
+        this.state.hover = true;
 
-      x = (this.eventUtil.mousePos.x - (this.rect.left + this.rect.width / 2)) * this.amounts.distance
-      y = (this.eventUtil.mousePos.y - (this.rect.top + this.rect.height / 2)) * this.amounts.distance
+      x = (this.eventUtil.mousePos.x - (this.rect.left + this.rect.width / 2)) *
+        this.amount.distance;
 
-    } else if (this.state.hover) {
-      this.leave()
-    }
+      y = (this.eventUtil.mousePos.y - (this.rect.top + this.rect.height / 2)) *
+        this.amount.distance;
 
-    this.renderedStyles.x.current = x
-    this.renderedStyles.y.current = y
+    }else if (this.state.hover)
+      this.state.hover = false;
+
+    this.renderedStyles.x.current = x;
+    this.renderedStyles.y.current = y;
 
     for (const key in this.renderedStyles) {
       this.renderedStyles[key].previous = lerp(
         this.renderedStyles[key].previous,
         this.renderedStyles[key].current,
-        this.renderedStyles[key].amt
+        0.1
       )
     }
 
@@ -126,19 +162,5 @@ export default class MagnetElement extends EventEmitter {
               0)`
 
     this.state.reqAnimationId = requestAnimationFrame(() => this.render())
-  }
-
-  enter() {
-    this.emit('enter')
-    this.state.hover = true
-    // this.el.classList.add('button--hover');
-    // document.body.classList.add('active');
-  }
-
-  leave() {
-    this.emit('leave')
-    this.state.hover = false
-    // this.el.classList.remove('button--hover');
-    // document.body.classList.remove('active');
   }
 }

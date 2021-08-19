@@ -46,7 +46,7 @@ const ProjectContainer = styled.div`
     padding: 4rem;
     border-radius: 100px;
     position: relative;
-    border: thin solid green;
+    //border: thin solid green;
 
     ${heightWidth('height', 53)};
     ${heightWidth('width', 53)};
@@ -193,29 +193,22 @@ const Projects = () => {
   }, [])
 
   useEffect(() => {
-    /*const btn = new MagnetElement(txtRef.current)
-    btn.on('enter', () => {
-      controls.start({
-        scale: 1.2,
-        cursor: 'pointer',
-        transition: {
-          duration: 0.3,
-          ease: 'easeInOut',
-        },
-      })
+
+    const magnet = new MagnetElement({
+      element: document.querySelector('.proSec'),
+      amounts: {
+        trigger: 1.2,
+        stop: 1.2,
+        distance: .4
+      }
     })
 
-    btn.on('leave', () => {
-      controls.start({
-        scale: 1,
-        transition: {
-          duration: 0.8,
-          ease: 'easeInOut',
-        },
-      })
-    })*/
+    return () => {
+      magnet.stop()
+      magnet.disconnect()
+    }
 
-  }, [false])
+  }, [])
 
   return (
     <motion.div

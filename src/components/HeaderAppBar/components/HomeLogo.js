@@ -5,8 +5,8 @@ import { Link } from 'gatsby'
 import { heightWidth, mediumUp } from '../../../styles/mixins'
 import { ReactSVG } from 'react-svg'
 import { motion } from 'framer-motion'
-import MagnetElement from '../../../helpers/MagnetElement'
 import useOnScreen from '../../../hooks/useOnScreen'
+import MagnetElement from '../../../helpers/MagnetElement'
 
 const Logo = styled(motion.div)`
   margin-right: auto;
@@ -62,23 +62,20 @@ const HomeLogo = ({ isWhite }) => {
   useEffect(() => {
 
     const magnet = new MagnetElement({
-      element: document.querySelector('.home_logo'),
+      element: document.querySelector('.magnet'),
       amounts: {
         trigger: 1.2,
         stop: 2,
-        distance: .7
+        distance: .65
       }
     })
 
-
-    if ( inView )
-      magnet.start()
-    else
+    return () => {
       magnet.stop()
+      magnet.disconnect()
+    }
 
-    return () => magnet.stop()
-
-  }, [inView])
+  }, [])
 
   return (
     <Logo isWhite={isWhite}
@@ -86,8 +83,9 @@ const HomeLogo = ({ isWhite }) => {
           transition={logoVariant.transition}
           initial="initial"
           animate="animate"
-          className="home_logo"
-          // exit='exit'
+          className="magnet"
+
+
       ref={logoRef}
     >
       <Link to={'/'}>

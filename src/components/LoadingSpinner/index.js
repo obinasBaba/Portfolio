@@ -107,9 +107,12 @@ const LoadingSpinner = ({children}) => {
     cancelId: null,
   }
 
+  let magnetElements;
+
   useLayoutEffect(() => {
 
     // console.log('Spinner ::' , events)
+    // magnetElements = loadingPage && new MagnetElement()
 
     events.addLoader()
 

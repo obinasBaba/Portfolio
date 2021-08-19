@@ -19,7 +19,7 @@ const ProcessContainer = styled.div`
   overflow: visible;
   position: relative;
   padding: 14rem 0 10rem;
-  border: thin solid red;
+  //border: thin solid red;
 
 `
 
@@ -29,7 +29,7 @@ const ProcessTxt = styled(Typography)`
   -webkit-text-stroke: 1.5px #f9d6ac;
   font-weight: 900;
   font-family: "Bodoni Moda", sans-serif;
-  border: thin dashed burlywood;
+  //border: thin dashed burlywood;
 
   ${spacing('pl', 7)};
   ${spacing('pb', 1.7)}
@@ -37,14 +37,14 @@ const ProcessTxt = styled(Typography)`
 
 const ProcessMask = styled(motion.div)`
   z-index: 5;
-  border: thin dashed #89dc14;
+  //border: thin dashed #89dc14;
   
   ${spacing('pl', 50)};
 `
 
 const ProcessTrack = styled(motion.div)`
   display: flex;
-  border: thin dashed #00CCFF;
+  //border: thin dashed #00CCFF;
   width: max-content;
 
   & > :not(:last-child) { 

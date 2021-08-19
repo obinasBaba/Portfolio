@@ -67,7 +67,8 @@ const AppStateProvider = ( {children} ) => {
       top, setTop,
       loadingPage, setLoadingPage,
       events: loadingEvents,
-      toolTip, setToolTip
+      toolTip, setToolTip,
+      // magnet: MagnetElements
 
     }} >
 
