@@ -50,19 +50,15 @@ const Btn = styled(motion.button)`
 
   &:hover,
   &:focus {
-    //box-shadow: inset 0 0 0 1px ${({ theme }) => theme.palette.secondary.main};
-    //background-color: ${({ theme, open }) => theme.palette.secondary.main};
-    //border: 0;
-
 
     & > :first-child {
       //bars
-      background-color: #fff;
+      background-color: #e7a28f;
 
       &:after,
       &:before {
         //bars after and before sudo
-        background-color: #fff;
+        background-color: #e7a28f;
       }
     }
   }
@@ -71,15 +67,15 @@ const Btn = styled(motion.button)`
 const Bars = styled.span`
   position: absolute;
   //border: thin solid crimson;
-  height: 1px;
+  height: 3px;
   left: 0;
   right: 0;
   width: 40%;
   top: 50%;
   display: block;
-  background-color: #fff;
+  background-color: #f9d6ac;
   margin: auto;
-  border-radius: 30px;
+  border-radius: 550px;
 
   &::before,
   &::after {
@@ -88,10 +84,10 @@ const Bars = styled.span`
     left: 50%;
     transform: translateX(-50%);
     display: block;
-    border-radius: 3px;
-    height: 1.2px;
+    border-radius: 555px;
+    height: 3px;
     width: 70%;
-    background-color: #fff;
+    background-color: #f9d6ac;
     transition: transform 0.3s;
   }
 

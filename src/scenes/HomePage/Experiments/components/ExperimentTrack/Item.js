@@ -16,9 +16,10 @@ export const ExperimentItem = styled( motion.div )`
 
   ${spacing('pv', 5)};
   ${spacing('pb', 3)};
+  
+  video{
+    //border: thin solid red;
 
-
-  img {
     width: clamp(100px, 35vw, 230px);
     height: clamp(100px, 35vw, 230px);
     object-fit: cover;
@@ -28,6 +29,7 @@ export const ExperimentItem = styled( motion.div )`
 
     ${spacing('mb', 5)};
   }
+  
 
   ${mediumUp(css`
     ${spacing('pv', 5)};
@@ -111,7 +113,11 @@ const Item = ({  imgUrl, title, index}) => {
 
   return (
     <ExperimentItem  >
-      <img src={imgUrl} alt={'boo'} />
+
+      <video autoPlay loop muted playsInline>
+        <source src={imgUrl.webm.publicURL} type="video/webm" />
+        <source src={imgUrl.mp4.publicURL} type="video/mp4" />
+      </video>
 
       <InfoBar >
 

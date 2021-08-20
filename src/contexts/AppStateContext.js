@@ -19,6 +19,7 @@ const AppStateProvider = ( {children} ) => {
   const [isContactOpen, setContactModal] = useState(false)
   const [top, setTop] = useState(null)
   const [loadingPage, setLoadingPage] = useState(true)
+  const [currentPath, setCurrentPath] = useState('/')
 
   const [toolTip, setToolTip] = useState({
     text: '...',
@@ -68,6 +69,7 @@ const AppStateProvider = ( {children} ) => {
       loadingPage, setLoadingPage,
       events: loadingEvents,
       toolTip, setToolTip,
+      currentPath, setCurrentPath
       // magnet: MagnetElements
 
     }} >

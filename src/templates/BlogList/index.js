@@ -17,15 +17,21 @@ const PageLinks = styled.div`
 const BlogListTemplate = ({
   data,
   pageContext: { currentPage, pageCount },
+  path
 }) => {
+
+
 
   const {
     moonLight,
-    setMoonLight
+    setMoonLight,
+    currentPath, setCurrentPath
   } = useContext( AppStateContext )
 
   useEffect(() => {
-    setMoonLight({...moonLight, showMoon: false, position: 'fixed', show: true})
+    // setMoonLight({...moonLight, showMoon: false, position: 'fixed', show: true})
+
+    setCurrentPath(path)
 
   }, [])
 

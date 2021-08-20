@@ -1,10 +1,20 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
 import ProjectPage from '../scenes/ProjectPage'
+import {AppStateContext} from '../contexts/AppStateContext'
 
-const Projects = ({ location }) => {
+const Projects = ({ location, path }) => {
 
+  console.log(path)
+
+  const {
+    currentPath, setCurrentPath
+  } = useContext( AppStateContext )
+
+  useEffect(() => {
+    setCurrentPath(path)
+  }, [])
 
   return (
     <ProjectPage/>

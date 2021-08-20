@@ -22,7 +22,7 @@ const MenuItemsContainer = styled( motion.ul )`
   padding: 0;
   width: 85%;
   height: 59%;
-  //border: thin solid crimson;
+  border: thin solid crimson;
 
   ${largeUp(css`
     margin-top: 0;
@@ -106,6 +106,10 @@ const Item = styled( motion.li )`
       margin-right: 76%;
     }
   `)};
+  
+  ${ ({active}) => active && css`
+    ${hoverMixin}
+  `};
   
   &:hover{
    ${hoverMixin}; 
@@ -261,7 +265,7 @@ const MenuItems = ({onClick}) => {
     },
     {
       title: 'Blog',
-      link: '/blog/',
+      link: '/blog',
       icon: blogIcon,
       stars: blogStars,
     },
@@ -277,6 +281,7 @@ const MenuItems = ({onClick}) => {
   const {
     isContactOpen,
     setContactModal,
+    currentPath
   } = useContext(AppStateContext)
 
   return (
@@ -292,7 +297,12 @@ const MenuItems = ({onClick}) => {
 
           <Item variants={itemVariants}
                 transition={transition}
+                active={link === currentPath && currentPath !== '/'}
+                key={link + index + title}
                 onClick={() => {
+                  if ( link === currentPath )
+                    return;
+
                   onClick();
                   if ( title === 'About' || title === 'Contacts')
                     setTimeout(() => setContactModal(!isContactOpen), 600)

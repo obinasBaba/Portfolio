@@ -14,7 +14,8 @@ const BlogContainer = styled.div`
 
 `
 
-const BlogTemplate = ({ data }) => {
+const BlogTemplate = ({ data, path }) => {
+
   const { title, date, tags, thumbnail } = data.markdownRemark.frontmatter
 
   const { setMoonLight, setHeaderGradient, moonLight } = useContext(AppStateContext)

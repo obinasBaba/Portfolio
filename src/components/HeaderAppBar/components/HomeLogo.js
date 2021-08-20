@@ -59,7 +59,7 @@ const HomeLogo = ({ isWhite }) => {
   // let magnet = null
   const inView = useOnScreen(logoRef, 0)
 
-  useEffect(() => {
+  /*useEffect(() => {
 
     const magnet = new MagnetElement({
       element: document.querySelector('.magnet'),
@@ -75,7 +75,7 @@ const HomeLogo = ({ isWhite }) => {
       magnet.disconnect()
     }
 
-  }, [])
+  }, [])*/
 
   return (
     <Logo isWhite={isWhite}
@@ -84,6 +84,8 @@ const HomeLogo = ({ isWhite }) => {
           initial="initial"
           animate="animate"
           className="magnet"
+          data-tooltip
+          data-tooltip-text='This is home'
 
 
       ref={logoRef}

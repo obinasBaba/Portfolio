@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import ToolTip from './ToolTip'
 import BackgroundStars from '../BackgroundStars'
 import { SkyColor } from '../../layouts/Components/SkyColor'
+import { AnimatePresence } from 'framer-motion'
 
 const FixedContainer = styled.div`
   position: fixed;
@@ -15,16 +16,17 @@ const FixedContainer = styled.div`
   //z-index: 99999;
 `
 
-
-
 const Fixed = () => {
   return (
-    <FixedContainer>
-      <ToolTip />
-      <BackgroundStars />
-      <SkyColor />
+    <AnimatePresence>
 
-    </FixedContainer>
+      <FixedContainer>
+        <ToolTip />
+        <BackgroundStars />
+        <SkyColor />
+      </FixedContainer>
+
+    </AnimatePresence>
   )
 }
 
