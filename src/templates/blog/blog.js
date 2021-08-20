@@ -10,7 +10,7 @@ const BlogContainer = styled.div`
   max-width: 1600px;
   width: 100%;
   overflow: hidden;
-  font-family: var(--sofia-pro);
+  //font-family: var(--sofia-pro);
 
 `
 

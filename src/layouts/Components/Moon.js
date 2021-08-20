@@ -5,7 +5,7 @@ import { motion, useSpring } from 'framer-motion'
 import { getMousePos } from '../../helpers/utils'
 
 const MoonBg = styled(motion.div)`
-  position: absolute;
+  position: ${ ({pos}) => pos ?? 'absolute' };
   top: 0;
   left: 0;
   right: 0;
@@ -72,7 +72,7 @@ const config = {
   damping: 10,
 }
 
-const Moon = ({ zIndex, showMoon = true, show = true, variants = {} }) => {
+const Moon = ({ zIndex, pos, showMoon = true, show = true, variants = {} }) => {
   const x = useSpring(0, config)
   const y = useSpring(0, config)
 
@@ -95,6 +95,7 @@ const Moon = ({ zIndex, showMoon = true, show = true, variants = {} }) => {
 
     // {
     <MoonBg
+      pos={pos}
       moon={showMoon}
       zIndex={zIndex}
       variants={{ ...defaultMoonVariant, ...variants }}

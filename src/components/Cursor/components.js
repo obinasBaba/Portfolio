@@ -40,7 +40,8 @@ export const Pointer = styled(motion.div)`
   p {
     
     position: absolute;
-    font-family: 'jaro.io icons', serif;
+    //font-family: 'jaro.io icons', serif;
+    font-family: 'shapes', serif;
     line-height: 0;
     padding: 0;
     margin: 0;

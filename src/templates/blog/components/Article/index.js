@@ -75,7 +75,9 @@ const ArticleWrapper = styled ( Container ) `
     `) };
 
     p {
-      ${ text(1.4) };
+      // ${ text(1.4) };
+      color: rgba(0, 0, 0, .7);
+      ${ text( 1 ) };
       color: blue;
       text-align: right;
 
@@ -161,7 +163,7 @@ const ArticleWrapper = styled ( Container ) `
   }
 
   p {
-    font-family: var(--sofia-pro);
+    //font-family: var(--sofia-pro);
     //font-size: 1.13rem;
     ${ text(1.13) };
 
@@ -180,7 +182,7 @@ const ArticleWrapper = styled ( Container ) `
 
   ul, ol {
     list-style: none;
-    font-family: var(--sofia-soft);
+    //font-family: var(--sofia-soft);
     ${ text(1.135) };
     font-weight: 300;
     letter-spacing: 0.5px;
@@ -229,7 +231,7 @@ const ArticleWrapper = styled ( Container ) `
   }
 
   a {
-    font-family: var(--sofia-pro);
+    //font-family: var(--sofia-pro);
     ${ text(1.13) };
     line-height: 1.5;
     font-weight: 300;

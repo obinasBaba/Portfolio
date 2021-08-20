@@ -17,21 +17,10 @@ let theme = createMuiTheme({
     MuiCssBaseline: {
       '@global': {},
     },
-
-    MuiContainer: {
-      root: {
-        // paddingLeft: '1.5rem',
-        // paddingRight: '1.5rem',
-
-      },
-    },
   },
 
   typography: {
     fontFamily: ['Elianto-Regular'].join(','),
-    // fontFamily: 'Raleway, sans-serif',
-
-
 
     h1: {
       fontFamily: 'Poppins Black',

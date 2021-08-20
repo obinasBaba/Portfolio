@@ -28,7 +28,7 @@ const ProcessTxt = styled(Typography)`
   color: transparent;
   -webkit-text-stroke: 1.5px #f9d6ac;
   font-weight: 900;
-  font-family: "Bodoni Moda", sans-serif;
+  font-family: 'Bodoni Moda', serif;
   //border: thin dashed burlywood;
 
   ${spacing('pl', 7)};

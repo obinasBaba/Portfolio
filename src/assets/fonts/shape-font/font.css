@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'shapes';
+    src: url('./shapes-font.woff2') format('woff2'),
+    url('./shapes-font.eot') format('embedded-opentype'),
+    url('./shapes-font.woff') format('woff'),
+    url('./shapes-font.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}

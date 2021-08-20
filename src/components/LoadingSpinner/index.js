@@ -118,7 +118,7 @@ const LoadingSpinner = ({children}) => {
 
     let elianto = new FontLoaded('Elianto-Regular')
     let poppins = new FontLoaded('Poppins Black')
-    let icons = new FontLoaded('jaro.io icons')
+    let icons = new FontLoaded('shapes')
 
     Promise.all([
       elianto.load(),
