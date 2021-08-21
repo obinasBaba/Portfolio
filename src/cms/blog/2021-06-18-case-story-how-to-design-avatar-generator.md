@@ -20,7 +20,7 @@ Our task was to create an engaging UI for Kartunix. All the elements of UI were 
 
 ![](http://api.halo-lab.com/wp-content/uploads/2019/04/1_i1uTiP_P_AKa1OodqiZUJg-1024x820.jpeg)
 
-We set the slider with options right below the avatar like in many video games and the avatar was placed in the middle of the page. It became a basic layout for the user flow in our case.
+We set the slider with options right below the avatar like in many video games and the avatar was placed in the middle of the pageTitle. It became a basic layout for the user flow in our case.
 
 ### Anatomy of Design Process
 

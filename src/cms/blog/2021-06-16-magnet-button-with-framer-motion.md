@@ -28,7 +28,7 @@ In the Audition room users become judges. First, you watch a 30-second video and
 
 ### Promotion
 
-Sometimes video treats you so well that you’d like to support the artist. For that reason, we came up with an idea of boosting. Boost gives extra points which help a talented person to get to the top. Apparently, it is a limited operation. The most appreciated “Video of the day” as well as “Best videos” and “Latest videos” get to the main page so for artists who got there the chance to be seen by well-known producers highly increases.
+Sometimes video treats you so well that you’d like to support the artist. For that reason, we came up with an idea of boosting. Boost gives extra points which help a talented person to get to the top. Apparently, it is a limited operation. The most appreciated “Video of the day” as well as “Best videos” and “Latest videos” get to the main pageTitle so for artists who got there the chance to be seen by well-known producers highly increases.
 
 ### Access to the industry
 
@@ -90,7 +90,7 @@ This is to confirm that the software product being developed has the entire rang
 **Examples of what may go wrong:**
 
 * a login form doesn’t allow the user to login with proper email;
-* it is not possible to open a checkout page even though the products were added to the cart;
+* it is not possible to open a checkout pageTitle even though the products were added to the cart;
 * literally any other functional or logical issue.
 
 <!--StartFragment-->
@@ -108,7 +108,7 @@ Optimization of images refers to the hygiene of a modern web app. Although the I
 
 ### Test Google Lighthouse report
 
-Google can improve the quality of your web page. It has audits of performance, accessibility, progressive web apps, SEO. In addition to the check itself, it provides developers with advice on troubleshooting which is very handy.
+Google can improve the quality of your web pageTitle. It has audits of performance, accessibility, progressive web apps, SEO. In addition to the check itself, it provides developers with advice on troubleshooting which is very handy.
 
 **You can use it in a few ways:**
 

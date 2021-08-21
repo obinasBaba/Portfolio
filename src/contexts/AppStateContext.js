@@ -15,7 +15,7 @@ const AppStateProvider = ( {children} ) => {
   const loadingEvents = Subscribers.getInstance();
 
   const [isWhite, setIsWhite] = useState(false)
-  const [isHeaderGradient, setHeaderGradient] = useState(true)
+  const [isHeaderGradient, setHeaderGradient] = useState(false)
   const [isContactOpen, setContactModal] = useState(false)
   const [top, setTop] = useState(null)
   const [loadingPage, setLoadingPage] = useState(true)

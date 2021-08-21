@@ -8,7 +8,7 @@ const MoreBlogContainer = styled.div`
   padding-right: 15px;
   padding-left: 15px;
   max-width: 90rem;
-  font-family: var(--sofia-pro);
+  
   @media screen and (min-width: 768px) {
     padding-right: 4.28rem;
     padding-left: 4.28rem;

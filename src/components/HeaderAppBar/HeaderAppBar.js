@@ -41,17 +41,23 @@ const NavContainer = styled.div`
 
   &::after {
     content: '';
-    display: ${({ isGradient }) => (isGradient ? 'block' : 'none')};
+    //visibility: ${({ isGradient }) => (isGradient ? 'visible' : 'hidden')};
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     ${transition};
-    background: ${({ isWhite }) =>
-      isWhite
-        ? 'linear-gradient(180deg, rgba(243, 243, 243, 1) 0%, rgba(243, 243, 243, 0) 98%)'
-        : 'linear-gradient(0deg, rgba(2, 2, 30, 0.0001) 0%, #02021e 98%)'};
+
+    ${({ isGradient }) =>
+      isGradient &&
+      css`
+        background: ${({ isWhite }) =>
+          isWhite
+            ? 'linear-gradient(180deg, rgba(243, 243, 243, 1) 0%, rgba(243, 243, 243, 0) 98%)'
+            : 'linear-gradient(0deg, rgba(2, 2, 30, 0.0001) 0%, #02021e 98%)'};
+      `};
   }
 
   ${mediumUp(css`
@@ -69,10 +75,10 @@ const NavWrapper = styled.nav`
 `
 
 function HeaderAppBar({}) {
-
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const [menuIsOpen, setMenuIsOpen] = useState(false)
   const {
     isWhite,
+    isHeaderGradient,
     isContactOpen,
     setContactModal,
   } = useContext(AppStateContext)
@@ -93,12 +99,13 @@ function HeaderAppBar({}) {
           />
         )}
 
-        {isContactOpen && <ContactMe toggleModal={{ setContactModal, isContactOpen }} />}
-
+        {isContactOpen && (
+          <ContactMe toggleModal={{ setContactModal, isContactOpen }} />
+        )}
       </AnimatePresence>
 
       <HideOnScroll>
-        <NavContainer isGradient={false} isWhite={isWhite}>
+        <NavContainer isGradient={isHeaderGradient} isWhite={isWhite}>
           <NavWrapper>
             <HomeLogo isWhite={isWhite} />
 
@@ -109,13 +116,7 @@ function HeaderAppBar({}) {
               menu={menuIsOpen}
             />
 
-            <AnimatePresence>
-              {!menuIsOpen && (
-                <>
-
-                </>
-              )}
-            </AnimatePresence>
+            <AnimatePresence>{!menuIsOpen && <></>}</AnimatePresence>
           </NavWrapper>
         </NavContainer>
       </HideOnScroll>

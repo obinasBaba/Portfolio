@@ -1,29 +1,29 @@
-import React from "react";
-import styled, { css } from "styled-components";
+import React from 'react'
+import styled, { css } from 'styled-components'
 import {
-  heightWidth, largeUp,
+  heightWidth,
+  largeUp,
   mediumDown,
-  mediumUp, smallDown,
+  mediumUp,
+  smallDown,
   smallUp,
   spacing,
-  text, title,
-  xLargeUp,
-  xxLargeUp
+  text,
+  title,
+  xxLargeUp,
 } from '../../../../styles/mixins'
-import { Container } from "@material-ui/core";
+import { Container } from '@material-ui/core'
+import BackArrow from './BackArrow'
 
 const ArticleContainer = styled.div`
-  
-  ${ spacing( "pt", 5 ) };
-  ${ spacing( "pb", 10 ) };
-  // ${ spacing( "mt", 3 ) };
+  position: relative;
 
-  background-color: white;
-  //border: thick solid palevioletred;
-   
- 
+  ${ spacing( "pt", 22 ) };
+  ${ spacing( "pb", 10 ) };
+  ${ spacing( "mt", -16 ) };
+
   color: var(--dark);
-  //border: thick solid blue;
+  
 
 `;
 
@@ -32,15 +32,8 @@ const ArticleWrapper = styled ( Container ) `
   margin: 0 auto;
   padding: 0 20px;
 
-  //color: #02021e;
-
   ${ xxLargeUp( css`
-      max-width: 900px;
-    ` ) };
-  
-  ${ smallUp( css`
-       // ${ spacing( "ph", 3 ) };
-
+    max-width: 900px;
   ` ) };
 
   & > :not(figure) {
@@ -60,36 +53,33 @@ const ArticleWrapper = styled ( Container ) `
 
 
   blockquote{
-    font-family: var(--gramatika);
     max-width: 35rem;
     margin: 2.75rem auto;
     //border: thin solid red;
-    
+
     ${ smallUp(css`
       margin: 4.2rem auto 1.18rem ;
 
     `) };
-    
+
     ${ mediumDown(css`
       max-width: 100%;
     `) };
 
     p {
-      // ${ text(1.4) };
-      color: rgba(0, 0, 0, .7);
-      ${ text( 1 ) };
+      ${ text(1.4) };
       color: blue;
       text-align: right;
 
     }
-    
+
     em{
       ${ text(1.13) };
 
       //color: inherit;
       opacity: .8;
     }
-    
+
     cite {
       display: flex;
       align-items: center;
@@ -115,11 +105,10 @@ const ArticleWrapper = styled ( Container ) `
         object-fit: cover;
       }
     }
-    
+
   }
-  
+
   h2{
-    font-family: var(--gramatika);
     ${title(1.9)};
     line-height: 1.3; 
     font-weight: bold;
@@ -138,22 +127,18 @@ const ArticleWrapper = styled ( Container ) `
   }
 
   h3 {
-    font-family: var(--gramatika);
     ${title(1.65)};
     font-weight: bold;
     margin-top: calc(2.5rem * var(--size));
     margin-bottom: calc(1rem * var(--indent));
-    
-    
+
     ${ smallUp( css`
       line-height: 160.6%;
       letter-spacing: 0.5px;
     ` ) };
-    
   }
 
   h4 {
-    font-family: var(--gramatika);
     ${title(1.65)};
     line-height: 35px;
     font-weight: bold;
@@ -163,42 +148,39 @@ const ArticleWrapper = styled ( Container ) `
   }
 
   p {
-    //font-family: var(--sofia-pro);
-    //font-size: 1.13rem;
-    ${ text(1.13) };
 
-    line-height: 1.44;
+    line-height: 1.582 !important;
     font-weight: 300;
     letter-spacing: 0.1px;
-    margin-bottom: calc(1.5rem * var(--halo));
-    
+    margin-bottom: calc(1.5rem * var(--size));
+
+    ${ text(1.015) };
+
+
     ${ mediumUp( css`
       letter-spacing: .5px;
       line-height: 149%;
 
     ` ) };
-    
+
   }
 
   ul, ol {
     list-style: none;
-    //font-family: var(--sofia-soft);
-    ${ text(1.135) };
     font-weight: 300;
     letter-spacing: 0.5px;
     padding-left: 10px;
-    margin-bottom: calc(1.7rem * var(--halo));
+    margin-bottom: calc(1.5rem * var(--size));
+
+    ${ text(1.135) };
 
 
     & > li {
       position: relative;
       word-break: break-word;
-      //overflow-wrap: anywhere;
-      
-      ${ spacing('mb', 3.2) };
-      ${ heightWidth('padding-left', 2.4) };
-      
-       
+
+      ${ spacing('mb', 2.5) };
+      ${ heightWidth('padding-left', 2) };
 
       &:before {
         position: absolute;
@@ -213,7 +195,10 @@ const ArticleWrapper = styled ( Container ) `
     & > li {
 
       &:before {
-        content: '•';
+        font-family: 'shapes', serif;
+        ${text(.6)};
+        line-height: 400%;
+        content: 'h';
       }
     }
   }
@@ -231,8 +216,7 @@ const ArticleWrapper = styled ( Container ) `
   }
 
   a {
-    //font-family: var(--sofia-pro);
-    ${ text(1.13) };
+    ${ text(1.07) };
     line-height: 1.5;
     font-weight: 300;
     letter-spacing: 0.3px;
@@ -249,18 +233,18 @@ const ArticleWrapper = styled ( Container ) `
   strong {
     font-weight: 600;
   }
-  
+
   img{
     max-width: 100%;
     display: block;
     margin: 0 auto;
   }
-  
+
   em{
     text-align: right;
     padding: 5px;
   }
-  
+
   ${ smallDown( css`
 
     .gatsby-resp-image-wrapper{
@@ -271,10 +255,12 @@ const ArticleWrapper = styled ( Container ) `
   ` ) };
 `;
 
+
 const Article = ({ html }) => {
   return (
     <ArticleContainer>
 
+      <BackArrow/>
 
 
       <ArticleWrapper dangerouslySetInnerHTML={ { __html: html } }

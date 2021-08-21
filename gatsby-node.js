@@ -99,13 +99,18 @@ exports.createPages = async ({ graphql, actions }) => {
   ` );
 
   //creating pages for all markdown file with content-key of 'blog'
-  result.data.allMarkdownRemark.edges
-    .forEach(({node : {fields: {slug}}}) => {
+  const edges = result.data.allMarkdownRemark.edges;
+  edges.forEach(({node : {fields: {slug}}}, index) => {
+
+      const next = (index + 1 <= edges.length) ? edges[index + 1] : edges[0];
+
       createPage({
         path: slug,
-        component: path.resolve('./src/templates/blog/blog.js'),
+        component:
+          path.resolve('./src/templates/BlogPage/index.js'),
         context: {
           slug: slug,
+          nextBlog: next,
         }
       })
     });

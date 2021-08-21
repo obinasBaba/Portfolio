@@ -174,12 +174,12 @@ const Cursor = () => {
 
           // generate perlin-noise and apply
           const distortionX = map(noiseX, -1, 1,
-            isStuck ? -5 : -noiseRange,
-            isStuck ? 5 : noiseRange
+            isStuck ? -4 : -noiseRange,
+            isStuck ? 4 : noiseRange
           )
           const distortionY = map(noiseY, -1, 1,
-            isStuck ? -5 : -noiseRange,
-            isStuck ? 5 : noiseRange
+            isStuck ? -4 : -noiseRange,
+            isStuck ? 4 : noiseRange
           )
 
           const newX = coordinates[i][0] + distortionX // accessing x
@@ -207,11 +207,13 @@ const Cursor = () => {
       isStuck = false
     }
 
-    const linkItems = document.querySelectorAll('.hover_target')
-    linkItems.forEach(item => {
-      item.addEventListener('mouseenter', handleHover)
-      item.addEventListener('mouseleave', handleLeave)
-    })
+    setTimeout(() => {
+      const linkItems = document.querySelectorAll('.hover_target')
+      linkItems.forEach(item => {
+        item.addEventListener('mouseenter', handleHover)
+        item.addEventListener('mouseleave', handleLeave)
+      })
+    }, 1000)
   }
 
   return (

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { heightWidth, mediumUp, spacing } from '../../../styles/mixins'
 import { motion } from 'framer-motion'
@@ -9,7 +9,7 @@ import useMagnet from '../../../hooks/useMagnet'
 
 const Btn = styled(motion.button)`
   --clr: crimson;
-  
+
   position: relative;
   display: flex;
   align-items: center;
@@ -17,24 +17,34 @@ const Btn = styled(motion.button)`
   overflow: hidden;
   outline: none;
   border: none;
-  
+
   border-radius: 50%;
   background-color: transparent;
   cursor: pointer;
-  transition: background-color 0.3s, border .3s;
+  transition: background-color 0.3s, border 0.3s;
   backface-visibility: hidden;
   transform: translate3d(0, 0, 0);
   z-index: 999550;
 
   ${heightWidth('height', 6)};
   ${heightWidth('width', 6)};
-  
+
+  ${({ isWhite }) =>
+    isWhite &&
+    css`
+      & > :first-child {
+        background-color: #02021e;
+
+        &::after,
+        &::before {
+          background-color: #02021e;
+        }
+      }
+    `};
 
   &:hover,
   &:focus {
-
     & > :first-child {
-      //bars
       background-color: #e7a28f;
 
       &:after,
@@ -88,15 +98,13 @@ const HiddenText = styled.p`
 `
 
 const NavBtn = ({ isWhite, toggleMenu, pos, variants = {}, menu }) => {
-
-  useMagnet('.nav-btn', 1.6, .51, )
-
+  useMagnet('.nav-btn', 1.6, 0.51)
 
   return (
     <Btn
-      className='nav-btn'
+      className="nav-btn"
       data-tooltip
-      data-tooltip-text='open my space'
+      data-tooltip-text="open my space"
       isWhite={isWhite}
       pos={pos}
       initial={{ opacity: 0 }}

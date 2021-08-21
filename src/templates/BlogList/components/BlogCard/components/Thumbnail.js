@@ -2,6 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import CardMedia from '@material-ui/core/CardMedia'
 import {
+  heightWidth,
   largeUp,
   mediumUp,
   smallUp,
@@ -18,35 +19,30 @@ const StyledThumbnail = styled(CardMedia)`
   height: 0;
   background-color: #fff;
   //padding-bottom: 40%;
-
+  
   ${spacing('mt', -7)};
   ${spacing('br', 2)};
 
   & .image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 100%;
     width: 100%;
-    display: block;
 
-    ${spacing('br',
-            2)};
+    ${spacing('br', 2)};
   }
 
   ${smallUp(css`
     flex: 1 0;
     margin-top: 0;
-    height: 90%;
+    height: max-content;
+    ${heightWidth('height', 35)};
+
 
     ${spacing('ml', -3)};
   `)}
   
-  & a.link{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 2;
-  }
   
   ${mediumUp(css`
     ${spacing('ml', -5)};

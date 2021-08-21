@@ -20,12 +20,10 @@ const MailUsContainer = styled.div`
   overflow: hidden;
   box-sizing: border-box;
   z-index: 0;
-  
+
   //border: thin solid red;
-  
 
   ${spacing('mt', 12)};
-
 `
 
 const Background = styled.span`
@@ -39,7 +37,11 @@ const Background = styled.span`
   bottom: 0;
   z-index: -1;
   //height: calc(100% + (var(--indent) * 1000px));
-  background: linear-gradient(to bottom, rgba(30, 33, 61, 0%) -10%, #02021e 60%);
+  background: linear-gradient(
+    to bottom,
+    rgba(30, 33, 61, 0%) 0%,
+    #02021e 60%
+  );
 `
 
 const TitleWrapper = styled.div`
@@ -48,10 +50,10 @@ const TitleWrapper = styled.div`
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  
-  .title{
+
+  .title {
     font-weight: 900;
-    // ${ text(5) };
+    // ${text(5)};
   }
 `
 
@@ -71,41 +73,42 @@ const LogoEffect = styled.div`
 
 const MailUs = () => {
   const elRef = React.useRef(null)
-  const { isContactOpen, setContactModal } = useContext(AppStateContext);
-  const { setHeaderGradient } = useContext( AppStateContext );
+  const { isContactOpen, setContactModal } = useContext(AppStateContext)
+  const { setHeaderGradient } = useContext(AppStateContext)
 
   useEffect(() => {
     function removeGradient(MailUsRef) {
-      const el = MailUsRef.current.getBoundingClientRect().top;
-      return el < 120
-        ? setHeaderGradient(false)
-        : setHeaderGradient(true);
+      const el = MailUsRef.current.getBoundingClientRect().top
+      return el < 120 ? setHeaderGradient(false) : setHeaderGradient(true)
     }
 
-    let removeGradientOnScroll = removeGradient(elRef);
+    let removeGradientOnScroll = removeGradient(elRef)
 
-    window.addEventListener('scroll', () => removeGradientOnScroll);
-    return () => window.removeEventListener('scroll', removeGradientOnScroll);
-  });
+    window.addEventListener('scroll', () => removeGradientOnScroll)
+    return () => window.removeEventListener('scroll', removeGradientOnScroll)
+  })
 
   return (
-    <MailUsContainer ref={elRef} >
-      <Background  />
+    <MailUsContainer ref={elRef}>
+      <Background />
 
       <LogoEffect />
 
       <TitleWrapper>
-        <GradientText variant='h1' className='title' >
-          Ready To Create <br /> Your Star ?</GradientText>
-        <MotionBtn text={'Contact Me'} arrow={false} fontLarge
-                   onClick={() => setContactModal( !isContactOpen )}
+        <GradientText variant="h1" className="title">
+          Ready To Create <br /> Your Star ?
+        </GradientText>
+        <MotionBtn
+          text={'Contact Me'}
+          arrow={false}
+          fontLarge
+          onClick={() => setContactModal(!isContactOpen)}
         />
       </TitleWrapper>
 
-      <FooterMeta/>
+      <FooterMeta />
 
-      <Footer/>
-
+      <Footer />
     </MailUsContainer>
   )
 }

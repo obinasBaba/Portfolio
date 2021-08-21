@@ -1,12 +1,10 @@
-import React, {useEffect, useLayoutEffect, useRef} from 'react'
+import React, { useRef } from 'react'
 import styled, { css } from 'styled-components'
 import useHeaderAssets from '../../../hooks/queries/useHeaderAssets'
 import { Link } from 'gatsby'
 import { heightWidth, mediumUp } from '../../../styles/mixins'
 import { ReactSVG } from 'react-svg'
 import { motion } from 'framer-motion'
-import useOnScreen from '../../../hooks/useOnScreen'
-import MagnetElement from '../../../helpers/MagnetElement'
 import useMagnet from '../../../hooks/useMagnet'
 
 const Logo = styled(motion.div)`
@@ -18,8 +16,8 @@ const Logo = styled(motion.div)`
   align-items: center;
   justify-content: center;
   //border: thin solid red;
-  
-  .trigger{
+
+  .trigger {
     position: absolute;
     top: -20px;
     left: -20px;

@@ -4,17 +4,17 @@
 [33m474f835[m myProcess working, some cleanUp codes, heading to locomotion
 [33m1de0ed7[m myProcess style
 [33m3b6870c[m[33m ([m[1;32mworker[m[33m)[m my process initial working done, heading to further customise
-[33m1f2a2cc[m project page redo
+[33m1f2a2cc[m project pageTitle redo
 [33ma0975b4[m footer link hover styled
 [33m9ad1fc5[m tooltip added, loading animtion, font-observer, imageloaded added
 [33m5188da1[m correct util.distance arguments, moon is now localized(removed from layout.js) and it animate on mouse move
 [33m2e40fa6[m magnetic btn added
 [33m3da638d[m navigation slider redesigned
 [33m932e89c[m scrollProgressCircle working with svg
-[33me009f13[m blog section styled, project page links working
+[33me009f13[m blog section styled, project pageTitle links working
 [33m445c6f5[m recent work reactored
 [33mbca4181[m experiment hover effect styled
-[33ma72f4e7[m exit animation for project-page is working
+[33ma72f4e7[m exit animation for project-pageTitle is working
 [33m2fb65b3[m projectSection motion is working
 [33m0b7fb74[m my approach redesigned, wavy line working, lottiANim added
 [33m5f8c562[m[33m ([m[1;32mpapper[m[33m)[m paper working, with loadable/component, and gatsby-config options
@@ -32,9 +32,9 @@
 [33me023778[m initial variant is now dynamic
 [33ma1b126b[m both exit and initial is at the case-study(headline) side now
 [33m9a2eb05[m transition barley working, lot to improve
-[33mf3ba78a[m project page redone, optimized
+[33mf3ba78a[m project pageTitle redone, optimized
 [33m18ee949[m blog card, blog headline animation added
-[33m72f6b90[m blogList page working
+[33m72f6b90[m blogList pageTitle working
 [33ma950712[m blog pages created
 [33me6bc506[m my-process section first style draft finished
 [33m47a5480[m my process initial style done
@@ -42,13 +42,13 @@
 [33m33a0dd3[m contact-me modal style desktop style done
 [33med1ef0b[m contact form style done
 [33mc73ffea[m contact modal  reformated
-[33m82acb3e[m project page optimized
+[33m82acb3e[m project pageTitle optimized
 [33mc754043[m spacing is now in rem, AppStateContext created, code cleanup
 [33mc99bfeb[m myProcess section first draft
 [33m940b9d4[m overflow is now in each sections
 [33me8f7d40[m blogPost section added
-[33m3b35dc1[m[33m ([m[1;32mproPage[m[33m)[m now projects are separet page
-[33md9d5731[m page transition not fully working, heading to separat project page
+[33m3b35dc1[m[33m ([m[1;32mproPage[m[33m)[m now projects are separet pageTitle
+[33md9d5731[m pageTitle transition not fully working, heading to separat project pageTitle
 [33mb26fe39[m heading for AnimationSHaredLayout
 [33m9b1670f[m project mockup pic in place
 [33mf34fd94[m Project case-study style changed
@@ -80,7 +80,7 @@
 [33m7056165[m experiments for mobile style done
 [33mbe7f242[m transition issue working with AnimatePresence component
 [33m2a6cfd7[m others-project section style done
-[33m1fe7132[m projectImg hover working, heading to create page for project page
+[33m1fe7132[m projectImg hover working, heading to create pageTitle for project pageTitle
 [33m9082aad[m project working version done, motion remain
 [33m497a54f[m changing before framer-motion
 [33mf5b0778[m recent work style done

@@ -27,10 +27,10 @@ export const shadow = depth => {
     box-shadow: 0 14px 80px rgba(34, 45, 58, 0.2);
     transition: box-shadow 0.3s;
 
-    &:hover {
+    /*&:hover {
       transform: translateY(2px);
       box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.12);
-    }
+    }*/
   `
 }
 

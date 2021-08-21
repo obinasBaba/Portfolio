@@ -1,43 +1,30 @@
-import React, {useContext, useEffect, useLayoutEffect} from 'react'
+import React, { useContext, useEffect, useLayoutEffect } from 'react'
 import BlogCard from './components/BlogCard'
 import { graphql, Link } from 'gatsby'
 import styled, { useTheme } from 'styled-components'
 import { useMediaQuery } from '@material-ui/core'
 import BlogList from './components/BlogListContainer'
-import {AppStateContext} from '../../contexts/AppStateContext'
+import { AppStateContext } from '../../contexts/AppStateContext'
+import ReadButton from './components/BlogCard/components/ReadButton'
+import MailUs from '../../scenes/MailUs'
 
 const PageLinks = styled.div`
   padding: 1rem;
-
-  a {
-    margin: 1rem;
-  }
+  border: thin solid rebeccapurple;
+  display: flex;
+  justify-content: space-between;
 `
 
 const BlogListTemplate = ({
   data,
   pageContext: { currentPage, pageCount },
-  path
+  path,
 }) => {
-
-
-
-  const {
-    moonLight,
-    setMoonLight,
-    currentPath, setCurrentPath
-  } = useContext( AppStateContext )
+  const { setCurrentPath } = useContext(AppStateContext)
 
   useEffect(() => {
-    // setMoonLight({...moonLight, showMoon: false, position: 'fixed', show: true})
-
     setCurrentPath(path)
-
   }, [])
-
-  useLayoutEffect(() => {
-    // window.scrollTo(0, 0)
-  })
 
   const previousPage = currentPage === 2 ? '/blog' : `/blog/${currentPage - 1}`
 
@@ -46,43 +33,46 @@ const BlogListTemplate = ({
   const match = useMediaQuery(theme.breakpoints.up('sm'))
 
   return (
-    <BlogList>
-      {data.allMarkdownRemark.edges.map(
-        (
-          {
-            node: {
-              id,
-              excerpt,
-              fields: { slug },
-              frontmatter: {
-                title,
-                thumbnail: { publicURL, childImageSharp },
-                date,
+    <>
+      <BlogList>
+        {data.allMarkdownRemark.edges.map(
+          (
+            {
+              node: {
+                id,
+                excerpt,
+                fields: { slug },
+                frontmatter: {
+                  title,
+                  thumbnail: { publicURL, childImageSharp },
+                  date,
+                },
               },
             },
-          },
-          index
-        ) => {
-          return (
-            <BlogCard
-              title={title}
-              date={date}
-              key={excerpt}
-              featuredMedia={{publicURL, childImageSharp}}
-              body={`${excerpt.substr(0, 290)} ...`}
-              slug={slug}
-            />
-          )
-        }
-      )}
+            index
+          ) => {
+            return (
+              <BlogCard
+                title={title}
+                date={date}
+                key={excerpt}
+                featuredMedia={{ publicURL, childImageSharp }}
+                body={`${excerpt.substr(0, 290)} ...`}
+                slug={slug}
+                index={index}
+              />
+            )
+          }
+        )}
 
-      <PageLinks>
-        {currentPage > 1 && <Link to={previousPage}>Prev Page</Link>}
+        {/*<PageLinks>
+        {currentPage > 1 && <ReadButton txt="Prev" to={previousPage} />}
 
-        {currentPage < pageCount && <Link to={nextPage}>Next Page</Link>}
-      </PageLinks>
-
-    </BlogList>
+        {currentPage < pageCount && <ReadButton txt="Next" to={nextPage} />}
+      </PageLinks>*/}
+      </BlogList>
+      <MailUs />
+    </>
   )
 }
 

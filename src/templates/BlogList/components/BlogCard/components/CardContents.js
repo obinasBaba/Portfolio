@@ -72,7 +72,7 @@ const ContentWrapper = styled.div `
 `;
 
 
-const CardContents = ({ overline, title, body, link, tags }) => {
+const CardContents = ({ index, overline, title, body, link, tags }) => {
 
   return (
     <ContentWrapper>
@@ -87,9 +87,7 @@ const CardContents = ({ overline, title, body, link, tags }) => {
 
       <Excerpt gutterBottom={ true }>{ body }</Excerpt>
 
-      <ReadButton>Read more</ReadButton>
-
-      {/*<MotionBtn text='Read More' arrowClr={'#02021e'} />*/}
+      <ReadButton index={index} txt='read' to={link} />
 
     </ContentWrapper>
   );
