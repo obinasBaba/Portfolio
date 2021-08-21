@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 import { heightWidth, mediumUp, spacing } from '../../../styles/mixins'
 import { motion } from 'framer-motion'
 import MagnetElement from '../../../helpers/MagnetElement'
+import useMagnet from '../../../hooks/useMagnet'
 
 // const headerTransition = 'all .3s'
 
@@ -15,11 +16,6 @@ const Btn = styled(motion.button)`
   justify-content: center;
   overflow: hidden;
   outline: none;
-  border: ${({ isWhite }) =>
-          isWhite
-                  ? 'thin solid rgba(2, 2, 30, 0.2)'
-                  : 'thin solid rgba(255, 255, 255, 0.2)'};
-  
   border: none;
   
   border-radius: 50%;
@@ -33,20 +29,6 @@ const Btn = styled(motion.button)`
   ${heightWidth('height', 6)};
   ${heightWidth('width', 6)};
   
-
-  ${({ isWhite }) =>
-    isWhite
-      ? css`
-          & > :first-child {
-            background-color: #02021e;
-
-            &::after,
-            &::before {
-              background-color: #02021e;
-            }
-          }
-        `
-      : ''};
 
   &:hover,
   &:focus {
@@ -76,6 +58,7 @@ const Bars = styled.span`
   background-color: #f9d6ac;
   margin: auto;
   border-radius: 550px;
+  z-index: -1;
 
   &::before,
   &::after {
@@ -104,34 +87,21 @@ const HiddenText = styled.p`
   text-indent: 99999px;
 `
 
-const NavBtn = ({ isWhite, toggleMenu, pos, variants = {} }) => {
+const NavBtn = ({ isWhite, toggleMenu, pos, variants = {}, menu }) => {
 
-  useEffect(() => {
+  useMagnet('.nav-btn', 1.6, .51, )
 
-    const magnet = new MagnetElement({
-      element: document.querySelector('.nav-btn'),
-      amounts: {
-        trigger: 1.2,
-        stop: 1.5,
-        distance: .42
-      }
-    })
-
-    return () => {
-      magnet.stop()
-      magnet.disconnect()
-    }
-
-  }, [])
 
   return (
     <Btn
       className='nav-btn'
+      data-tooltip
+      data-tooltip-text='open my space'
       isWhite={isWhite}
       pos={pos}
       initial={{ opacity: 0 }}
       animate={{
-        opacity: 1,
+        opacity: menu ? 0 : 1,
         transition: {
           delay: 0.6,
         },
@@ -144,7 +114,7 @@ const NavBtn = ({ isWhite, toggleMenu, pos, variants = {} }) => {
       }}
       onClick={() => toggleMenu.setMenuIsOpen(!toggleMenu.menuIsOpen)}
     >
-      {toggleMenu.menuIsOpen ? 'SVG' :  <Bars opened={toggleMenu.menuIsOpen} />}
+      <Bars opened={toggleMenu.menuIsOpen} />
 
       <HiddenText> Menu </HiddenText>
     </Btn>

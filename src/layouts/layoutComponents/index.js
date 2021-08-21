@@ -101,6 +101,7 @@ export const Page = styled.div`
   flex-direction: column;
   //border: thick solid crimson;
   overflow: hidden;
+  //z-index: 0;
   
 `
 

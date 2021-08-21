@@ -102,14 +102,17 @@ function HeaderAppBar({}) {
           <NavWrapper>
             <HomeLogo isWhite={isWhite} />
 
+            <NavBtn
+              isWhite={isWhite}
+              key={!menuIsOpen.toString() + 'nav'}
+              toggleMenu={{ setMenuIsOpen, menuIsOpen }}
+              menu={menuIsOpen}
+            />
+
             <AnimatePresence>
               {!menuIsOpen && (
                 <>
-                  <NavBtn
-                    isWhite={isWhite}
-                    key={!menuIsOpen.toString() + 'nav'}
-                    toggleMenu={{ setMenuIsOpen, menuIsOpen }}
-                  />
+
                 </>
               )}
             </AnimatePresence>

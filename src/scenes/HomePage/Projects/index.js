@@ -19,6 +19,7 @@ import lotti from 'lottie-web'
 import { useProjectCircles } from '../../../hooks/queries/useProjectCircles'
 import MagnetElement from '../../../helpers/MagnetElement'
 import useOnScreen from '../../../hooks/useOnScreen'
+import useMagnet from '../../../hooks/useMagnet'
 
 const ProjectContainer = styled.div`
   max-width: 100%;
@@ -167,8 +168,15 @@ const Projects = () => {
       moRotate.set(xPos)
       moRotate2.set(xPos * -1)
     }
+    window.addEventListener('scroll', () => {
+      // console.log('wTop:', window.scrollY, 'eTop:', document.querySelector('.proSec').getBoundingClientRect().top)
+    })
+
     window.addEventListener('mousemove', handler)
+
+
     return () => window.removeEventListener('mousemove', handler)
+
   }, [])
 
   //lottie animation
@@ -192,23 +200,8 @@ const Projects = () => {
     })
   }, [])
 
-  useEffect(() => {
+  useMagnet('.proSec', 1.6, .51, );
 
-    const magnet = new MagnetElement({
-      element: document.querySelector('.proSec'),
-      amounts: {
-        trigger: 1.2,
-        stop: 1.2,
-        distance: .4
-      }
-    })
-
-    return () => {
-      magnet.stop()
-      magnet.disconnect()
-    }
-
-  }, [])
 
   return (
     <motion.div

@@ -22,20 +22,15 @@ const pointerVariants = {
 
 const Cursor = () => {
   const canvasRef = useRef(null)
-  const hRef = useRef(null)
   let lastX = useMotionValue(0)
   let lastY = useMotionValue(0)
 
   let x = useMotionValue(100)
   let y = useMotionValue(100)
   let isStuck = false
-  let showCursor = false
-
-  const strokeColor = 'rgb(120, 128, 158)'
   const strokeWidth = 1.5
   const segments = 10
   const radius = 25
-
   let stuck = {
     x: 0,
     y: 0,
@@ -110,8 +105,8 @@ const Cursor = () => {
 
   const initCanvas = () => {
     const maxBounds = {
-      width: 90,
-      height: 90,
+      width: 75,
+      height: 75,
     }
 
     //noisiness
@@ -135,7 +130,7 @@ const Cursor = () => {
 
       //scale them and recorde the scaled coordinates
       polygons.forEach(({ polygon }, i) => {
-        polygon.scale(amount)
+        polygon.scale(amount);
         polygons[i].coordinates = polygon.segments.reduce((p, c, i) => {
           p.push([c.point.x, c.point.y])
           return p
@@ -159,17 +154,16 @@ const Cursor = () => {
       if (isStuck && polygons[0].clone.bounds.width < maxBounds.width) {
         // console.log(polygons[0].clone.bounds.width, '- UP')
 
-        const scaleUp = 1.06;
-        scalePolygon(scaleUp)
+        scalePolygon(1.06)
 
-      } else if ( !isStuck && (polygons[0].clone.bounds.width) > polygons[0].originalBoundWidth + 4 ) {
+      } else if (
+        !isStuck &&
+        (polygons[0].clone.bounds.width) > polygons[0].originalBoundWidth + 4
+      ) {
         // console.log(polygons[0].clone.bounds.width, '- DOWN')
 
-        const scaleDown = 0.94;
-        scalePolygon(scaleDown)
+        scalePolygon(0.94)
       }
-
-      // console.log(polygons[0].clone.bounds.width)
 
 
       // noise generation
@@ -179,17 +173,11 @@ const Cursor = () => {
           const noiseY = noiseObjects[i].noise2D(event.count / noiseScale, 1)
 
           // generate perlin-noise and apply
-          const distortionX = map(
-            noiseX,
-            -1,
-            1,
+          const distortionX = map(noiseX, -1, 1,
             isStuck ? -5 : -noiseRange,
             isStuck ? 5 : noiseRange
           )
-          const distortionY = map(
-            noiseY,
-            -1,
-            1,
+          const distortionY = map(noiseY, -1, 1,
             isStuck ? -5 : -noiseRange,
             isStuck ? 5 : noiseRange
           )
@@ -215,6 +203,7 @@ const Cursor = () => {
     }
 
     const handleLeave = () => {
+      console.log('mouse leave')
       isStuck = false
     }
 

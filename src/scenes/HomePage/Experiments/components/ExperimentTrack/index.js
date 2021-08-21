@@ -34,7 +34,7 @@ const ExperimentTrack = () => {
 
       {expData.map(( item , index ) => (
         <Item
-          key={item.src.publicURL}
+          key={item.src.mp4.publicURL + index}
           imgUrl={item.src}
           title={item.title}
           index={index}

@@ -124,7 +124,7 @@ const Item = ({  imgUrl, title, index}) => {
 
         <Typography align="left" variant={'subtitle1'} className='title' >0{index + 1}.&nbsp;{ title}</Typography>
 
-        <RightArrowLink/>
+        {/*<RightArrowLink/>*/}
 
       </InfoBar>
     </ExperimentItem>

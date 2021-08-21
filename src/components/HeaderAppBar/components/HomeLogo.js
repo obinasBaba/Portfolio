@@ -7,14 +7,27 @@ import { ReactSVG } from 'react-svg'
 import { motion } from 'framer-motion'
 import useOnScreen from '../../../hooks/useOnScreen'
 import MagnetElement from '../../../helpers/MagnetElement'
+import useMagnet from '../../../hooks/useMagnet'
 
 const Logo = styled(motion.div)`
+  position: relative;
   margin-right: auto;
   fill: white; //todo gradient
   z-index: 50;
   display: flex;
   align-items: center;
   justify-content: center;
+  //border: thin solid red;
+  
+  .trigger{
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    z-index: -1;
+    //border: thin solid tomato;
+  }
 
   & .logoSvg {
     ${heightWidth('max-width', 6)};
@@ -56,26 +69,9 @@ const logoVariant = {
 const HomeLogo = ({ isWhite }) => {
   const { logo } = useHeaderAssets()
   const logoRef = useRef(null)
-  // let magnet = null
-  const inView = useOnScreen(logoRef, 0)
 
-  /*useEffect(() => {
+  useMagnet('.logo', 1.6, .51, )
 
-    const magnet = new MagnetElement({
-      element: document.querySelector('.magnet'),
-      amounts: {
-        trigger: 1.2,
-        stop: 2,
-        distance: .65
-      }
-    })
-
-    return () => {
-      magnet.stop()
-      magnet.disconnect()
-    }
-
-  }, [])*/
 
   return (
     <Logo isWhite={isWhite}
@@ -83,13 +79,14 @@ const HomeLogo = ({ isWhite }) => {
           transition={logoVariant.transition}
           initial="initial"
           animate="animate"
-          className="magnet"
+          className="magnet logo"
           data-tooltip
-          data-tooltip-text='This is home'
-
-
-      ref={logoRef}
+          data-tooltip-text='Where it all started'
+          ref={logoRef}
     >
+
+      <div className="trigger"/>
+
       <Link to={'/'}>
         <ReactSVG className="logoSvg" src={logo.publicURL} />
       </Link>

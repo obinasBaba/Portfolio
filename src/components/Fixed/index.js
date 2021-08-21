@@ -13,17 +13,21 @@ const FixedContainer = styled.div`
   bottom: 0;
   pointer-events: none;
 
-  //z-index: 99999;
+  //z-index: 0 ;
 `
+
+
 
 const Fixed = () => {
   return (
     <AnimatePresence>
 
       <FixedContainer>
+
         <ToolTip />
         <BackgroundStars />
         <SkyColor />
+
       </FixedContainer>
 
     </AnimatePresence>

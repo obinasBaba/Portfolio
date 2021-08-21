@@ -1,13 +1,16 @@
 import React, {useLayoutEffect} from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import {heightWidth, spacing, text, title} from '../../../../styles/mixins'
 import SlideHover from '../../../../components/SlideHover'
 import {Link} from 'gatsby'
 import logo from './images/logo.svg'
+import RightArrowLink
+  from '../../Experiments/components/ExperimentTrack/RightArrowLink'
 
 const InfoTxt = styled.div`
 
   position: relative;
+  z-index: 0;
   //border: thin solid red;
   
   ${ spacing('pt', 2) };
@@ -26,30 +29,12 @@ const InfoTxt = styled.div`
     background-size: contain;
     top: -20%;
     left: -74%;
-    //z-index: -1;
+    z-index: -1;
 
     ${ heightWidth('width', 70) };
     ${ heightWidth('height', 70) };
   }
-  
-  .more-link{
-    position: relative;
-    margin-right: -10px;
-    color: white;
-    font-weight: lighter;
-    line-height: 1.4em;
-    text-transform: uppercase;
-    text-decoration: none;
-    letter-spacing: 10px;
-
-    ${ text( 1 ) };
-
-
-    @media screen and (max-width: 768px) {
-      display: none;
-    }
-  }
-  
+    
 `
 
 const Title = styled.p`
@@ -63,18 +48,37 @@ const Title = styled.p`
   ${ title( 2 ) };
   ${spacing( 'mb', 5 )};
   
+ 
+`
+
+const Checkout = styled.div`
+  //border: thin solid rebeccapurple;
+  width: 74%;
+
+  ${spacing( 'mt', 3 )};
+
+
   span{
     ${ text( .8 ) };
     display: block;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 300;
-    ${spacing( 'mt', 3 )};
-
   }
+  
 `
 
+const txtStyle = css`
+  position: relative;
+  margin: 0;
+  color: white;
+  font-weight: lighter;
+  line-height: 1.4em;
+  text-transform: uppercase;
+  letter-spacing: 5px;
 
+  ${ text( 1 ) };
+`;
 
 const Info = () => {
   return (
@@ -85,27 +89,25 @@ const Info = () => {
         My Articles help me to chronicle ideas &amp; solutions
         to problems that we face when building great web products.
 
-        {/*<SlideHover>*/}
-          <a href="https://readers-corner.netlify.app"
-             target='_blank'
-          >
-            <span>checkout my blog site.</span>
-          </a>
-        {/*</SlideHover>*/}
+          {/*<a href="https://readers-corner.netlify.app" target='_blank'>*/}
+          {/*</a>*/}
 
       </Title>
 
-      <SlideHover onClick={() => {
-        window.scrollToTop = false;
-      }}  >
-        <Link to="/blog" className='more-link'
-              state={{
-                from: '/blog'
-              }}
-        >
-          MORE BLOG POSTS
-        </Link>
-      </SlideHover>
+      <RightArrowLink lineLength='69%'
+                      txt='checkout my blog site.'
+                      target='_blank'
+                      link='https://readers-corner.netlify.app'
+                      tooTipTxt='i built my own blog-site'
+      />
+
+      <RightArrowLink lineLength='81%'
+                      mt={3}
+                      txt='MORE BLOG POSTS'
+                      link='/blog'
+                      txtStyle={txtStyle}
+                      tooTipTxt='blog list'
+      />
 
     </InfoTxt>
   )

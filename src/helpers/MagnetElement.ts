@@ -3,151 +3,144 @@
 import { EventEmitter } from 'events'
 import { distance, lerp } from './utils'
 import EventUtil from './EventUtil'
-import { object } from "prop-types"
+import { object } from 'prop-types'
+import gsap from 'gsap'
 
 // Calculate the viewport size
 
-// Track the mouse position
-// let mousepos = {x: 0, y: 0};
-
 type MagnetType = {
   element: HTMLElement
-  amounts: {
-    trigger?: number
-    stop?: number
-    distance?: number
-  },
-  inView?: {
-    rootMargin: string,
-    threshold: number
-  }
+  stop?: number
+  distance?: number
 }
 
 export default class MagnetElement {
-  eventUtil = EventUtil.getInstance()
-  element: HTMLElement;
-  rect: DOMRect;
+  events = EventUtil.getInstance()
+  element: HTMLElement
+  rect: DOMRect
 
   distanceToTrigger: number
   distanceToStop: number
-  amount = {
-    // rect:Rect,
-    trigger: 1,
-    stop: 1,
-    lerp: 0.1,
-    distance: 0.5,
-  }
+  stop: number = 1
+  distance: number = 0.32
   renderedStyles = {
     x: { previous: 0, current: 0, amt: 0.1 },
     y: { previous: 0, current: 0, amt: 0.1 },
   }
-  state = {
-    hover: false,
-    reqAnimationId: 0,
-  }
-  inView: boolean;
+  reqAnimationId: number = undefined
+  inView: boolean = true
 
   onResize: () => void
-  disconnect: () => void;
+  scroll: { x: number; y: number }
 
-
-   constructor(el: MagnetType) {
+  constructor(el: MagnetType) {
     console.log('constructor invoked')
 
-     this.element = el.element
-     this.amount = { ...this.amount, ...el?.amounts }
+    this.element = el.element
+    this.stop = el.stop
+    this.distance = el.distance
 
-    // calculate size/position
-    this.calculateSizePosition()
-    // init events
     this.initEvents()
-
-    this.state.reqAnimationId = requestAnimationFrame(() => this.render())
-
-    this.startObserving(
-       '0px',
-       0
-    )
   }
 
-  startObserving(rootMargin, threshold){
+  startObserving(rootMargin, threshold) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         // Update our state when observer callback fires
-        if (entry.isIntersecting)
+        /*if (entry.isIntersecting)
           this.start()
         else
-          this.stop()
-
+          this.stop()*/
       },
       {
         rootMargin: rootMargin,
-        threshold: threshold
+        threshold: threshold,
       }
-    );
+    )
     observer.observe(this.element)
-    this.disconnect = () => observer.disconnect();
+    // this.disconnect = () => observer.disconnect();
   }
 
   calculateSizePosition() {
     // size/position
     this.rect = this.element.getBoundingClientRect()
-    // the movement will take place when the distance from the mouse to the center of the button is lower than this value
-    this.distanceToTrigger = this.rect.width * this.amount.trigger
-    this.distanceToStop = this.rect.width * this.amount.stop
+    this.scroll = { x: window.scrollX, y: window.scrollY }
+    this.distanceToStop = this.rect.width * this.stop
   }
 
   initEvents() {
     this.onResize = () => this.calculateSizePosition()
     window.addEventListener('resize', this.onResize)
-    window.addEventListener('scroll', this.onResize)
+
+    this.element.addEventListener('mouseenter', ev => {
+      console.log('Enter')
+      this.calculateSizePosition()
+      this.loopRender()
+    })
   }
 
-  stop() {
-    cancelAnimationFrame(this.state.reqAnimationId)
+  loopRender() {
+    if (!this.reqAnimationId) {
+      this.reqAnimationId = requestAnimationFrame(() => this.render())
+    }
+  }
+
+  stopRendering(forceStop?: boolean) {
+    if (this.reqAnimationId) {
+      window.cancelAnimationFrame(this.reqAnimationId)
+      this.reqAnimationId = undefined
+
+      gsap.fromTo(
+        this.element,
+        {
+          x: this.renderedStyles.x.previous,
+          y: this.renderedStyles.y.previous,
+        },
+        {
+          x: 0,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3',
+        }
+      )
+
+      this.renderedStyles.y.previous = this.renderedStyles.x.previous = 0
+    }
+  }
+
+  start() {}
+
+  destroy() {
     window.removeEventListener('resize', this.onResize)
-    window.removeEventListener('scroll', this.onResize)
-  }
-
-  start() {
-    this.stop()
-    this.initEvents()
-    this.state.reqAnimationId = requestAnimationFrame(() => this.render())
   }
 
   render() {
-    // calculate the distance from the mouse to the center of the button
+    // console.log(distanceMouseButton)
     const distanceMouseButton = distance(
-      this.eventUtil.mousePos.x,
-      this.eventUtil.mousePos.y,
+      this.events.mousePos.x,
+      this.events.mousePos.y,
       this.rect.left + this.rect.width / 2, //center
       this.rect.top + this.rect.height / 2 //center
     )
 
-    // console.log(distanceMouseButton)
+    if (distanceMouseButton > this.distanceToStop) {
+      return this.stopRendering()
+    }
 
-    // new values for the translations
-    let x = 0
-    let y = 0
+    const scrollDif = {
+      x: this.scroll.x - window.scrollX,
+      y: this.scroll.y - window.scrollY,
+    }
 
-    if (
-      distanceMouseButton < this.distanceToTrigger ||
-      (this.state.hover && distanceMouseButton < this.distanceToStop)
-    ) {
-      if (!this.state.hover)
-        this.state.hover = true;
+    this.renderedStyles.x.current =
+      (this.events.mousePos.x -
+        (scrollDif.x + this.rect.left + this.rect.width / 2)) *
+      this.distance
 
-      x = (this.eventUtil.mousePos.x - (this.rect.left + this.rect.width / 2)) *
-        this.amount.distance;
-
-      y = (this.eventUtil.mousePos.y - (this.rect.top + this.rect.height / 2)) *
-        this.amount.distance;
-
-    }else if (this.state.hover)
-      this.state.hover = false;
-
-    this.renderedStyles.x.current = x;
-    this.renderedStyles.y.current = y;
+    this.renderedStyles.y.current =
+      (this.events.mousePos.y -
+        (scrollDif.y + this.rect.top + this.rect.height / 2)) *
+      this.distance
 
     for (const key in this.renderedStyles) {
       this.renderedStyles[key].previous = lerp(
@@ -157,10 +150,8 @@ export default class MagnetElement {
       )
     }
 
-    this.element.style.transform = `translate3d(${this.renderedStyles.x.previous}px,
-             ${this.renderedStyles.y.previous}px,
-              0)`
+    this.element.style.transform = `translate(${this.renderedStyles.x.previous}px, ${this.renderedStyles.y.previous}px)`
 
-    this.state.reqAnimationId = requestAnimationFrame(() => this.render())
+    this.reqAnimationId = requestAnimationFrame(() => this.render())
   }
 }

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext, useEffect, useLayoutEffect} from 'react'
 import styled from 'styled-components'
 import { spacing, text } from '../../styles/mixins'
 import {AnimatePresence, motion} from 'framer-motion'
@@ -9,7 +9,7 @@ const InfoChipContainer = styled( motion.div )`
   position: absolute;
   bottom: 6%;
   left: 4%;
-  z-index: 10;
+  z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,9 +74,19 @@ const containerVariant = {
 const ToolTip = () => {
   const { toolTip, setToolTip } = useContext(AppStateContext)
 
+  const { loadingPage } = useContext(AppStateContext)
+
   useEffect(() => {
-    const toolTipElements = document.querySelectorAll('[data-tooltip] ')
+
+    if ( loadingPage )
+      return;
+
+    const toolTipElements = document.querySelectorAll('[data-tooltip]')
+    // console.log(toolTipElements)
+
     toolTipElements.forEach( el => {
+
+      // console.log(el)
 
       el.addEventListener('mouseenter', element => {
         setToolTip({
@@ -94,7 +104,7 @@ const ToolTip = () => {
 
     } )
 
-  }, [])
+  }, [loadingPage])
 
   return (
     <AnimatePresence>
