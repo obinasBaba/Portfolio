@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react'
+import React, {useLayoutEffect, useRef} from 'react'
 import styled from 'styled-components'
 import Title from './Title'
 import { useProjectSvg } from '../../../hooks/queries/useProjectSvg'
@@ -7,10 +7,11 @@ import useHomeWorksAssets from '../../../hooks/queries/useHomeWorksAssets'
 import DesignImage from './items'
 import ScrollGallery from '../../../components/ScrollGallery/ScrollGallery'
 import ImagesLoaded from 'imagesloaded'
+import useOnScreen from '../../../hooks/useOnScreen'
 
 const RecentDesignWrapper = styled.div`
   
-  //border: thick solid saddlebrown;
+  border: thick solid saddlebrown;
 `
 
 const RecentWorks = () => {
@@ -42,6 +43,10 @@ const RecentWorks = () => {
     [Realty, Hommy, Tude],
   ];
 
+  const containerRef = useRef(null)
+  const inView = useOnScreen(containerRef, 0, '5%')
+
+
   useLayoutEffect(() => {
     // console.log('recentDesign', events.addLoader)
 
@@ -54,19 +59,37 @@ const RecentWorks = () => {
       })
 
   }, [])
+
+
   
 
   return (
-    <RecentDesignWrapper id='#design'  data-scroll-section>
+    <RecentDesignWrapper id='#design'  data-scroll-section ref={containerRef}>
 
       <Title circledText={ circledText.publicURL }
              dribbleRed={ dribbleRed.publicURL } />
 
-      <ScrollGallery step={4}>
-        {imageList.map((item, index) => {
-          return <DesignImage images={item} key={item[0].name + index} />;
-        })}
-      </ScrollGallery>
+      {
+        inView ?
+          <ScrollGallery>
+            {imageList.map((item, index) => {
+              return <DesignImage images={item} key={item[0].name + index} />;
+            })}
+          </ScrollGallery>
+
+          :
+
+          <div style={{
+            display: 'flex',
+            alignItems: 'center'
+          }}
+          >
+            {imageList.map((item, index) => {
+              return <DesignImage images={item} key={item[0].name + index} />;
+            })}
+          </div>
+      }
+
 
     </RecentDesignWrapper>
   )

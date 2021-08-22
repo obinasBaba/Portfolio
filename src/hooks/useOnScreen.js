@@ -24,7 +24,8 @@ function useOnScreen(ref, threshold = 0.3, rootMargin = '0px') {
         observer.unobserve(currentRef);
       }
     };
-  }, [ref, threshold]); // Empty array ensures that effect is only run on mount and unmount
+  }, [ref, threshold]);
+  // Empty array ensures that effect is only run on mount and unmount
 
   return isIntersecting;
 }

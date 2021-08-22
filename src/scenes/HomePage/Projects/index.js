@@ -17,9 +17,7 @@ import { Link, useScrollRestoration } from 'gatsby'
 import Headline from '../../../components/Headline'
 import lotti from 'lottie-web'
 import { useProjectCircles } from '../../../hooks/queries/useProjectCircles'
-import MagnetElement from '../../../helpers/MagnetElement'
 import useOnScreen from '../../../hooks/useOnScreen'
-import useMagnet from '../../../hooks/useMagnet'
 
 const ProjectContainer = styled.div`
   max-width: 100%;
@@ -33,10 +31,9 @@ const ProjectContainer = styled.div`
   padding: 2rem 0;
   ${spacing('pt', 25)};
   ${spacing('mb', 8)};
-  
-  //border: thick solid red;
-  .allProjects-txt{
-    ${ text(1.1) };
+
+  .allProjects-txt {
+    ${text(1.1)};
   }
 
   .hover-target {
@@ -67,7 +64,6 @@ const ProjectContainer = styled.div`
       path {
         stroke-width: 4px;
         //transform: scale(1.2);
-
       }
     }
 
@@ -133,18 +129,18 @@ const Projects = () => {
   const txtRef = useRef(null)
   const circle2Ref = useRef(null)
   const containerRef = useRef(null)
-  const inView = useOnScreen(containerRef, 0)
+  let Lotti = useRef([])
 
   const moRotate = useMotionValue(0)
   const moRotate2 = useMotionValue(0)
-
-  const controls = useAnimation()
 
   const config = {
     mass: 1,
     stiffness: 50,
     damping: 20,
   }
+
+  const inView = useOnScreen(containerRef, 0)
 
   const yBig = useSpring(0, config)
   const xBig = useSpring(0, config)
@@ -159,81 +155,99 @@ const Projects = () => {
     xBig.set(xPos)
   }
 
+  let handler = async e => {
+    calculateMotionValues(e.clientX, e.clientY)
+    const xPos = (e.x - window.innerWidth / 2) / 50
+    // const yPos =  (e.y - window.innerHeight / 2) / 100;
+    moRotate.set(xPos)
+    moRotate2.set(xPos * -1)
+  }
+
   //transform
   useEffect(() => {
-    let handler = async e => {
-      calculateMotionValues(e.clientX, e.clientY)
-      const xPos = (e.x - window.innerWidth / 2) / 50
-      // const yPos =  (e.y - window.innerHeight / 2) / 100;
-      moRotate.set(xPos)
-      moRotate2.set(xPos * -1)
-    }
-    window.addEventListener('scroll', () => {
-      // console.log('wTop:', window.scrollY, 'eTop:', document.querySelector('.proSec').getBoundingClientRect().top)
-    })
 
-    window.addEventListener('mousemove', handler)
 
+
+    if ( inView )
+      window.addEventListener('mousemove', handler)
+    else
+      window.removeEventListener('mousemove', handler)
 
     return () => window.removeEventListener('mousemove', handler)
-
-  }, [])
+  }, [inView])
 
   //lottie animation
   useEffect(() => {
-    return;
-    if ( moRotate.get() != 0 ) return;
+    // if (moRotate.get() !== 0) return
 
-    lotti.loadAnimation({
-      container: circle1Ref.current,
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: circle1.publicURL,
+    window.addEventListener('scroll', () => {
+      console.log(moRotate.get())
     })
 
-    lotti.loadAnimation({
-      container: circle2Ref.current,
-      renderer: 'svg',
-      loop: true,
-      autoplay: false,
-      path: circle2.publicURL,
-    })
+    Lotti.current.push(
+      lotti.loadAnimation({
+        container: circle1Ref.current,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: circle1.publicURL,
+      })
+    )
+
+    Lotti.current.push(
+      lotti.loadAnimation({
+        container: circle2Ref.current,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: circle2.publicURL,
+      })
+    )
   }, [])
 
-  // useMagnet('.proSec', 1.6, .51, );
+  useEffect(() => {
+    if ( Lotti[0] )
+      return;
 
+    if (inView) Lotti.current.forEach(lotti => {
+      lotti.play()
+    })
+    else Lotti.current.forEach(lotti => {
+      lotti.stop()
+    })
+  }, [inView])
 
   return (
     <motion.div
-      id='proSec'
-      ref={containerRef}
+      id="proSec"
       {...projectSectionRestoration}
       variants={parentVariant}
       initial="initial"
       animate="animate"
       exit="exit"
-
+      ref={containerRef}
     >
       <ProjectContainer>
         <Headline title={'Projects'} mb={3} subtitle={'Case Studies'} />
 
         <Planet style={{ y: yBig, x: xBig }} />
 
-        <Planet className='planet-two' style={{ y: ySmall, x: xSmall }} />
+        <Planet className="planet-two" style={{ y: ySmall, x: xSmall }} />
 
-        <motion.div className="hover-target"
-
-        >
+        <motion.div className="hover-target">
           <Link
             id="proSec"
             data-pointer
             data-magnet
+            data-tooltip
+            data-tooltip-text="Let me show you how cool i am!"
             className="proSec"
             ref={txtRef}
             to={'/projects/#one'}
           >
-            <motion.div className='allProjects-txt  hover_target'>All Projects(5)</motion.div>
+            <motion.div className="allProjects-txt  hover_target">
+              All Projects(5)
+            </motion.div>
           </Link>
 
           <motion.div

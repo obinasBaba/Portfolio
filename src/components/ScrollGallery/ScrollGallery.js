@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import {
   animate,
@@ -24,6 +24,10 @@ const Gallery = ({ children, step }) => {
   const x = useSpring(mapped, {
     mass: .5,  damping: 10, stiffness: 50,
   })
+
+  useEffect(() => {
+    console.log( 'x' ,  x.get())
+  }, [])
 
   return <AnimatedDiv style={{ x: x }}>{children}</AnimatedDiv>
 }

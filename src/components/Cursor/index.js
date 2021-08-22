@@ -58,7 +58,7 @@ const Cursor = () => {
   const strokeWidth = 1.5
   const segments = 10
   const radius = 25
-  let stuck = {
+  let stuckPos = {
     x: 0,
     y: 0,
   }
@@ -163,6 +163,7 @@ const Cursor = () => {
       //scale them and recorde the scaled coordinates
       polygons.forEach(({ polygon }, i) => {
         polygon.scale(amount);
+
         polygons[i].coordinates = polygon.segments.reduce((p, c, i) => {
           p.push([c.point.x, c.point.y])
           return p
@@ -173,8 +174,8 @@ const Cursor = () => {
     Paper.view.onFrame = event => {
       if (isStuck) {
         // stuck the circle
-        lastX.set(lerp(lastX.get(), stuck.x, 0.14))
-        lastY.set(lerp(lastY.get(), stuck.y, 0.14))
+        lastX.set(lerp(lastX.get(), stuckPos.x, 0.14))
+        lastY.set(lerp(lastY.get(), stuckPos.y, 0.14))
       } else if (!isStuck) {
         // move the circle normally
         lastX.set(lerp(lastX.get(), x.get(), 0.14))
@@ -188,6 +189,7 @@ const Cursor = () => {
         // console.log(polygons[0].clone.bounds.width, '- UP')
 
         scalePolygon(1.06)
+
 
       } else if (
         !isStuck &&
@@ -227,21 +229,25 @@ const Cursor = () => {
   }
 
   const initHover = () => {
-    const handleHover = e => {
-      // console.log('mouse enter')
+    const handleHover = (stuck=false, e) => {
 
-      // const rect = e.currentTarget.getBoundingClientRect()
-      // stuck.x = Math.round(rect.left + rect.width / 2)
-      // stuck.y = Math.round(rect.top + rect.height / 2)
-      // isStuck = true;
+      if ( stuck ){
+        const rect = e.getBoundingClientRect()
+        stuckPos.x = Math.round(rect.left + rect.width / 2)
+        stuckPos.y = Math.round(rect.top + rect.height / 2)
+        isStuck = true;
+      }else {
+        control.start('big');
+        isStuck = false
+      }
 
-      control.start('big')
     }
 
-    const handleLeave = () => {
+    const handleLeave = ( scaleDown=false ) => {
       // console.log('mouse leave')
-      // isStuck = false;
-      // control.start('small')
+      isStuck = false;
+      if ( scaleDown )
+        control.start('small')
 
     }
 
@@ -250,8 +256,6 @@ const Cursor = () => {
 
 
       linkItems.forEach(element => {
-        element.addEventListener('mouseenter', handleHover)
-        element.addEventListener('mouseleave', handleLeave)
 
         if ( element.dataset.magnet ){
           // console.log(element)
@@ -264,9 +268,20 @@ const Cursor = () => {
           magnet.on('leave', () => {
             control.start('small')
           })
+
+          element.addEventListener('mouseenter',
+            () => handleHover(false))
+
+        }else {
+
+          element.addEventListener('mouseenter',
+            (ev) => handleHover(element.dataset.stuck, ev.currentTarget))
+
+          element.addEventListener('mouseleave',
+            () => handleLeave(true))
         }
       })
-    }, 500)
+    }, 10)
   }
 
   return (

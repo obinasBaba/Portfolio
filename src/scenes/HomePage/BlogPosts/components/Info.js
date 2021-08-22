@@ -88,10 +88,6 @@ const Info = () => {
         I usually write an in-depth article sharing what I learned every often.
         My Articles help me to chronicle ideas &amp; solutions
         to problems that we face when building great web products.
-
-          {/*<a href="https://readers-corner.netlify.app" target='_blank'>*/}
-          {/*</a>*/}
-
       </Title>
 
       <RightArrowLink lineLength='69%'
@@ -106,7 +102,7 @@ const Info = () => {
                       txt='MORE BLOG POSTS'
                       link='/blog'
                       txtStyle={txtStyle}
-                      tooTipTxt='blog list'
+                      tooTipTxt='Have lil sec? read my blogs.'
       />
 
     </InfoTxt>

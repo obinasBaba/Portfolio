@@ -57,6 +57,7 @@ const Arrow = styled.div`
   z-index: 0;
   transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9);
 
+  border: thin solid red;
   
 
   & div {
@@ -121,7 +122,11 @@ const RightArrowLink = ({
 
       <ArrowContainer>
         <ArrowLine />
-        <Arrow className='arrow' data-tooltip data-tooltip-text={tooTipTxt} >
+        <Arrow className='arrow'
+               data-tooltip
+               data-pointer
+               data-stuck
+               data-tooltip-text={tooTipTxt} >
           { target ? <a href={link} target={target}/> : <Link to={link} /> }
           <ReactSVG src={rightArrow.publicURL} />
         </Arrow>
