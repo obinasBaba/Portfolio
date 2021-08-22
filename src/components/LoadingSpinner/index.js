@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const SpinnerContainer = styled.div`
   position: fixed;
-  //z-index: 9999;
+  z-index: 9999;
   //height: 100vh;
   top: 0;
   left: 0;
@@ -121,25 +121,6 @@ const LoadingSpinner = ({children}) => {
         <SpinnerContainer>
 
           <Content ref={contentRef}>
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
-              <defs>
-                <filter id="goo">
-                  <feGaussianBlur
-                    in="SourceGraphic"
-                    stdDeviation="10"
-                    result="blur"
-                  />
-                  <feColorMatrix
-                    in="blur"
-                    mode="matrix"
-                    values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
-                    result="goo"
-                  />
-                  <feComposite in="SourceGraphic" in2="goo" operator="atop" />
-                </filter>
-              </defs>
-            </svg>
-
             <SmallBall ref={smallRef} />
             <BigBall />
           </Content>

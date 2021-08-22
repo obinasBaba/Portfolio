@@ -2,19 +2,14 @@
 const {EventEmitter}  = require('events')
 
 
-export default class Subscribers extends EventEmitter{
+export default class EventSubscribers extends EventEmitter{
 
+  private static _instance : EventSubscribers = null;
+  private subscribers = []
 
-  static _instance = null
-  subscribers = []
-  scroll = {
-    x: 0,
-    y: 0
-  }
-
-  static getInstance() {
+  static getInstance() : EventSubscribers {
     if ( this._instance === null ){
-      this._instance = new Subscribers()
+      this._instance = new EventSubscribers()
       return this._instance
     }
     else{
@@ -28,11 +23,12 @@ export default class Subscribers extends EventEmitter{
 
   addLoader(){
     this.subscribers.push('loader : ')
+    console.log(this.subscribers)
+
   }
 
   finishLoading(){
     this.subscribers.pop()
-
 
     if ( this.subscribers.length === 0 )
       this.emit('finishLoading')

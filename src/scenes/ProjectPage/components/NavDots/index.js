@@ -19,11 +19,11 @@ const NavContainer = styled(motion.ul)`
   margin: 0;
   //border: thin solid red;
   //-webkit-filter: url("#goo");
-  //filter: url("#goo");
+  filter: url("#dots-gooey");
   //filter: blur(2px) contrast(11110);
   
   svg{
-    display: none;  
+    //display: none;  
     position: absolute;
     pointer-events: none;
   }
@@ -80,16 +80,6 @@ const NavDots = React.forwardRef((props, ref) => {
         exit="exit"
         id="navDots"
       >
-        <svg xmlns="http://www.w3.org/2000/svg"
-             version="1.1" width="800">
-          <defs>
-            <filter id="goo">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
-              <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
-            </filter>
-          </defs>
-        </svg>
 
         {anchors.map((anchor, index) => (
           <>
@@ -105,6 +95,24 @@ const NavDots = React.forwardRef((props, ref) => {
         ))}
 
 
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
+          <defs>
+            <filter id="dots-gooey">
+              <feGaussianBlur
+                in="SourceGraphic"
+                stdDeviation="4"
+                result="blur"
+              />
+              <feColorMatrix
+                in="blur"
+                mode="matrix"
+                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+                result="goo"
+              />
+              <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+            </filter>
+          </defs>
+        </svg>
 
       </NavContainer>
 

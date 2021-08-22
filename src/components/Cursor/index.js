@@ -228,7 +228,7 @@ const Cursor = () => {
 
   const initHover = () => {
     const handleHover = e => {
-      console.log('mouse enter')
+      // console.log('mouse enter')
 
       // const rect = e.currentTarget.getBoundingClientRect()
       // stuck.x = Math.round(rect.left + rect.width / 2)
@@ -239,7 +239,7 @@ const Cursor = () => {
     }
 
     const handleLeave = () => {
-      console.log('mouse leave')
+      // console.log('mouse leave')
       // isStuck = false;
       // control.start('small')
 

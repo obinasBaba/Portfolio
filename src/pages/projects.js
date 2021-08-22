@@ -6,7 +6,7 @@ import {AppStateContext} from '../contexts/AppStateContext'
 
 const Projects = ({ location, path }) => {
 
-  console.log(path)
+  // console.log(path)
 
   const {
     currentPath, setCurrentPath

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {heightWidth, spacing} from '../../styles/mixins'
 import { motion } from 'framer-motion'
-import {Link} from '@material-ui/core'
+import {Link} from 'gatsby'
 
 const ExitBtn = styled( motion.div )`
   //border: thin solid crimson;
@@ -99,7 +99,7 @@ const ReturnBtn = ( { onClick, to } ) => {
              // className='hover_target'
     >
 
-      {/*<Link to={'/blogs'}/>*/}
+      <Link to='/projects/#1'/>
 
       <motion.svg xmlns="http://www.w3.org/2000/svg"
                   width="60" height="60" viewBox="0 0 60 60"

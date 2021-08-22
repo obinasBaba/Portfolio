@@ -3,12 +3,12 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import {useEffect, useLayoutEffect} from 'react'
 import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
-import Subscribers from '../helpers/Subscribers'
+import EventSubscribers from '../helpers/EventSubscribers'
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function useLocoScroll(start) {
-  let subs = Subscribers.getInstance();
+  let subs = EventSubscribers.getInstance();
 
   useEffect(() => {
 

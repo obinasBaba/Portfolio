@@ -9,8 +9,8 @@ import LoadingSpinner from '../../components/LoadingSpinner'
 import ToolTip from '../../components/Fixed/ToolTip'
 import ProgressCircle from '../../components/ScrollProgressCircle'
 import { AppStateContext } from '../../contexts/AppStateContext'
-import Cursor from '../../components/Cursor'
 import FontLoaded from 'fontfaceobserver'
+import Cursor from '../../components/Cursor'
 
 export const PageContainer = styled.div`
   position: relative;
@@ -51,11 +51,13 @@ const Page = ({ children, path }) => {
     // console.log('Spinner ::' , events)
     // magnetElements = loadingPage && new MagnetElement()
 
-    events.addLoader()
+    // events.addLoader()
 
     let elianto = new FontLoaded('Elianto-Regular')
     let poppins = new FontLoaded('Poppins Black')
     let icons = new FontLoaded('shapes')
+
+    // console.log( 'path : ', path)
 
     Promise.all([elianto.load(), poppins.load(), icons.load()])
       .then(() => {
@@ -86,7 +88,7 @@ const Page = ({ children, path }) => {
         </Main>
 
         <BottomGradient />
-        {/*<ToolTip />*/}
+        <ToolTip />
         <ProgressCircle />
     </PageContainer>
   )

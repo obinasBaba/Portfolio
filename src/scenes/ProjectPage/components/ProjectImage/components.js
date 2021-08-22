@@ -35,6 +35,8 @@ export const ProjectImg = styled(motion.div)`
     ${gridColWidth(25, 65)};
     margin-right: calc(100vw / 64 * 6); ;
   `)};
+  
+  border: thin solid rebeccapurple;
 `
 
 
@@ -46,11 +48,14 @@ export const InnerWrapper = styled(motion.div)`
   overflow: hidden;
   display: flex;
   align-items: center;
-  max-height: 400px;
-  //height: 400px;
+  //max-height: 400px;
+  height: 400px;
+  border: thin solid red;
 
   img {
+    display: block;
     width: 100%;
+    height: 100%;
     object-fit: cover;
     //transition: filter 1.5s cubic-bezier(0.77, 0, 0.175, 1)
   }

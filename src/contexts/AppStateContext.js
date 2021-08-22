@@ -1,5 +1,5 @@
 import React, {useEffect, useLayoutEffect, useState} from 'react'
-import Subscribers from '../helpers/Subscribers'
+import EventSubscribers from '../helpers/EventSubscribers'
 
 export const AppStateContext = React.createContext(false)
 
@@ -12,7 +12,7 @@ const AppStateProvider = ( {children} ) => {
     position: 'absolute',
   })
 
-  const loadingEvents = Subscribers.getInstance();
+  const loadingEvents = EventSubscribers.getInstance();
 
   const [isWhite, setIsWhite] = useState(false)
   const [isHeaderGradient, setHeaderGradient] = useState(false)
@@ -40,7 +40,7 @@ const AppStateProvider = ( {children} ) => {
 
   useLayoutEffect(() => {
 
-    // new Subscribers().addListener()
+    // new EventSubscribers().addListener()
 
    loadingEvents.addListener('finishLoading', () => {
      setLoadingPage(false)

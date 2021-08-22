@@ -6,7 +6,6 @@ import styled from 'styled-components'
 import { gridify } from '../../styles/mixins'
 import Moon from '../../layouts/Components/Moon'
 import NavDots from './components/NavDots'
-import ScrollDown from '../../components/ScrollDown'
 import ReactFullpage from '@fullpage/react-fullpage'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import ProjectImage from './components/ProjectImage'
@@ -44,6 +43,7 @@ const ProjectPage = () => {
   )
 
   const [activeIndex, setActiveIndex] = useState(0)
+  
 
   return (
     <ProjectPageContainer
@@ -54,13 +54,9 @@ const ProjectPage = () => {
     >
       <Moon showMoon={false} variants={moonVariants} />
 
-      {/*<Link to={'/'}>
-        <ReturnBtn />
-      </Link>*/}
-
       <NavDots ref={activeNavDotRef} />
 
-      <ProjectScrollDown  show={activeIndex === 0} />
+      <ProjectScrollDown show={activeIndex === 0} />
 
       <ReactFullpage
         easingcss3="cubic-bezier(0.645, 0.045, 0.355, 1)"
@@ -77,8 +73,6 @@ const ProjectPage = () => {
         lazyLoading={true}
         menu={'#navDots'} //for dotted navigation
         onLeave={(origin, dist, dir) => {
-          // console.log('onLeaveListener ----')
-
           if (
             activeNavDotRef.current &&
             activeNavDotRef.current.setActiveAnchors

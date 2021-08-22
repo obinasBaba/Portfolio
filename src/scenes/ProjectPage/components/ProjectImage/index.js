@@ -14,8 +14,8 @@ import {
 import { InnerWrapper, OverflowWrapper, ProjectImg } from './components'
 import { AppStateContext } from '../../../../contexts/AppStateContext'
 
-import img from './preview-111.jpg'
 import StackUsed from '../StackUsed'
+import {GatsbyImage, getImage} from 'gatsby-plugin-image'
 
 const ProjectImage = ({
   reversed,
@@ -29,7 +29,8 @@ const ProjectImage = ({
   items,
   custom,
 }) => {
-  const { show } = useContext(AppStateContext)
+
+  console.log(preview)
 
   return (
     <ProjectImg
@@ -47,7 +48,7 @@ const ProjectImage = ({
 
         <Link to={link} state={{ path: url }} />
 
-        <motion.img data-src={img}
+        <motion.img src={preview.publicURL}
                     variants={imgVariant}
                     transition={transition}
         />

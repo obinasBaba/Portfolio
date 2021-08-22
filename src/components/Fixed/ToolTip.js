@@ -1,7 +1,7 @@
-import React, {useContext, useEffect, useLayoutEffect} from 'react'
+import React, { useContext, useEffect, useLayoutEffect } from 'react'
 import styled from 'styled-components'
 import { spacing, text } from '../../styles/mixins'
-import {AnimatePresence, motion} from 'framer-motion'
+import { AnimatePresence, motion, useAnimation } from 'framer-motion'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import Typography from '@material-ui/core/Typography'
 
@@ -10,6 +10,24 @@ const InfoChipContainer = styled(motion.div)`
   bottom: 6%;
   left: 4%;
   //z-index: 100;
+`
+
+// dataset.about
+
+const Excerpt = styled(Typography)`
+  //flex: 1;
+  color: rgba(0, 0, 0, 0.7);
+  line-height: 0;
+  margin: 0;
+  padding: 0;
+
+  text-shadow: 0 3px 3px rgba(0, 0, 0, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  ${text(0.7)};
+`
+
+const ToolTipWrapper = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,103 +55,79 @@ const InfoChipContainer = styled(motion.div)`
   ${spacing('gap', 0.7)};
 `
 
-// dataset.about
-
-const Excerpt = styled(Typography)`
-  //flex: 1;
-  color: rgba(0, 0, 0, 0.7);
-  line-height: 0;
-  margin: 0;
-  padding: 0;
-  
-  text-shadow: 0 3px 3px rgba(0, 0, 0, 0.35);
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  ${text(0.7)};
-`
-
 const containerVariant = {
   initial: {
     opacity: 0,
-    // x: 20,
+    y: 20,
   },
-  animate:{
+  animate: {
     opacity: 1,
-    x: 110
+    y: 0,
   },
   exit: {
-    // x: -20,
+    y: -20,
     opacity: 0,
   },
 }
 
-const ToolTip = ({txt}) => {
+const ToolTip = ({ txt }) => {
   const { toolTip, setToolTip } = useContext(AppStateContext)
 
   const { loadingPage } = useContext(AppStateContext)
+  const controll = useAnimation()
+
+  useEffect(() => {}, [])
 
   useEffect(() => {
-
-    if ( loadingPage )
-      return;
+    if (loadingPage) return
 
     const toolTipElements = document.querySelectorAll('[data-tooltip]')
     // console.log(toolTipElements)
 
-    toolTipElements.forEach( el => {
-
+    toolTipElements.forEach(el => {
       // console.log(el)
 
       el.addEventListener('mouseenter', element => {
+        console.log('toolEnter')
+
         setToolTip({
           text: element.target.dataset.tooltipText,
-          show: true
+          show: true,
         })
       })
 
       el.addEventListener('mouseleave', () => {
+        console.log('toolLeave')
+
         setToolTip({
           text: '',
-          show: false
+          show: false,
         })
       })
-
-    } )
-
+    })
   }, [loadingPage])
 
   return (
-    <AnimatePresence exitBeforeEnter>
-      {
-        toolTip.show &&
-          <motion.div variants={containerVariant}
-                      initial='initial'
-                      animate='animate'
-                      exit='exit'
-                      transition={{
-                        duration: 2,
-                        ease: 'linear'
-                      }}
-                      // key={txt}
-                     >
-
-            <h1 style={{
-              fontSize: '10rem',
-              position: 'absolute',
-              top: 0,
-              left: '10%',
-            }} >{toolTip.text}</h1>
-
-            {/*<InfoChipContainer>
-
-
-              <motion.span className="dot" />
-              <Excerpt>{txt}</Excerpt>
-            </InfoChipContainer>*/}
-          </motion.div>
-
-      }
-    </AnimatePresence>
+    <InfoChipContainer>
+      <AnimatePresence exitBeforeEnter>
+        {toolTip.show && (
+          <ToolTipWrapper
+            variants={containerVariant}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{
+              duration: .8,
+              ease: [0.6, 0.01, 0, 0.9],
+            }}
+            // key={txt}
+          >
+            <motion.span className="dot" />
+            <Excerpt>{toolTip.text}</Excerpt>
+          </ToolTipWrapper>
+        )}
+      </AnimatePresence>
+    </InfoChipContainer>
   )
 }
 

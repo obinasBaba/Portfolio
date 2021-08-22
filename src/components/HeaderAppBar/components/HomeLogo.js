@@ -87,7 +87,7 @@ const HomeLogo = ({ isWhite }) => {
           ref={logoRef}
     >
 
-      <div className="trigger"/>
+      {/*<div className="trigger"/>*/}
 
       <Link to={'/'}>
         <ReactSVG className="logoSvg" src={logo.publicURL} />

@@ -20,6 +20,8 @@ const ThumbAndDotContainer = styled.li`
 
     grid-column: 1 / 1;
     grid-row: 1 / 1;
+    
+    //border: thin solid red;
   }
 
   & a {
@@ -36,6 +38,12 @@ const ThumbAndDotContainer = styled.li`
   }
 
   & .thumb {
+    //position: absolute;
+    //left: auto;
+    //top: 0;
+    //inset: auto;
+    //transform: translateX(-15%) translateY(-15%);
+    
     background-color: #3719ca;
     height: 30px;
     width: 30px;

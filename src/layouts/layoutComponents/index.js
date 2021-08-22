@@ -102,6 +102,11 @@ export const GlobalStyle = createGlobalStyle`
     
   }
   
+  svg#goo{
+    pointer-events: none;
+    position: absolute;
+  }
+  
 `
 
 
