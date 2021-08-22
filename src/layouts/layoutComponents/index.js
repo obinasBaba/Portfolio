@@ -36,6 +36,11 @@ export const GlobalStyle = createGlobalStyle`
       --bg-gradient: #02021e;
 
     }
+    
+    * {
+      cursor: none;
+    }
+    
   }
 
   
@@ -66,6 +71,11 @@ export const GlobalStyle = createGlobalStyle`
     display: block;
     text-decoration: none;
     color: inherit;
+    cursor: none;
+  }
+  
+  *{
+    cursor: none !important;
   }
 
   body {
@@ -94,20 +104,11 @@ export const GlobalStyle = createGlobalStyle`
   
 `
 
-export const Page = styled.div`
-  position: relative;
-  display: flex;
-  flex-flow: column;
-  flex-direction: column;
-  //border: thick solid crimson;
-  overflow: hidden;
-  //z-index: 0;
-  
-`
+
 
 export const Main = styled( motion.main )`
-  flex: 1;
   position: relative;
+  flex: 1;
   width: 100%;
   
   //border: thick solid yellow;

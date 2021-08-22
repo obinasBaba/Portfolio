@@ -7,7 +7,7 @@ import {
   effectVariant,
   imgContainerVariant,
   imgCover,
-  imgOverVariants,
+  imgOverVariants, imgVariant,
   innerVariant,
   transition,
 } from './Variants'
@@ -47,7 +47,10 @@ const ProjectImage = ({
 
         <Link to={link} state={{ path: url }} />
 
-        <motion.img data-src={img} />
+        <motion.img data-src={img}
+                    variants={imgVariant}
+                    transition={transition}
+        />
 
         <motion.div className="image-over" variants={imgOverVariants}>
 

@@ -9,23 +9,39 @@ import { AnimatePresence } from 'framer-motion'
 import Menu from './components/Menu'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import ContactMe from '../ContactMe'
+import ToolTip from '../Fixed/ToolTip'
 
 const transition = css`
   transition: all 0.3s;
 `
 
-function HideOnScroll(props) {
-  const { children, window } = props
+function HideOnScroll({ children, window, isMenuOpen }) {
   // Note that you normally won't need to set the window ref as useScrollTrigger
   // will default to window.
   // This is only being set here because the demo is in an iframe.
+  const [slide, setSlide] = useState(true)
+
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
     threshold: 50,
   })
 
+  const {
+    isContactOpen,
+    setContactModal,
+  } = useContext(AppStateContext)
+
+  useEffect(() => {
+    if ( isContactOpen || isMenuOpen ){
+      setSlide(false)
+    }else {
+      setSlide(!trigger)
+    }
+
+  }, [isContactOpen, trigger, isMenuOpen])
+
   return (
-    <Slide appear={false} direction="down" in={!trigger}>
+    <Slide appear={false} direction="down" in={slide}>
       {children}
     </Slide>
   )
@@ -33,7 +49,7 @@ function HideOnScroll(props) {
 
 const NavContainer = styled.div`
   position: fixed;
-  z-index: 100;
+  z-index: 10;
   top: 0;
   width: 100%;
   padding: 2rem 2rem 1.3rem;
@@ -81,6 +97,7 @@ function HeaderAppBar({}) {
     isHeaderGradient,
     isContactOpen,
     setContactModal,
+    toolTip, setToolTip
   } = useContext(AppStateContext)
 
   useEffect(() => {
@@ -102,10 +119,14 @@ function HeaderAppBar({}) {
         {isContactOpen && (
           <ContactMe toggleModal={{ setContactModal, isContactOpen }} />
         )}
+
+
+        {/*{toolTip.show && <ToolTip txt={toolTip.text} /> }*/}
+
       </AnimatePresence>
 
-      <HideOnScroll>
-        <NavContainer isGradient={isHeaderGradient} isWhite={isWhite}>
+      <HideOnScroll isMenuOpen={menuIsOpen} >
+        <NavContainer isGradient={false} isWhite={isWhite}>
           <NavWrapper>
             <HomeLogo isWhite={isWhite} />
 
@@ -115,8 +136,6 @@ function HeaderAppBar({}) {
               toggleMenu={{ setMenuIsOpen, menuIsOpen }}
               menu={menuIsOpen}
             />
-
-            <AnimatePresence>{!menuIsOpen && <></>}</AnimatePresence>
           </NavWrapper>
         </NavContainer>
       </HideOnScroll>

@@ -181,6 +181,7 @@ const Projects = () => {
 
   //lottie animation
   useEffect(() => {
+    return;
     if ( moRotate.get() != 0 ) return;
 
     lotti.loadAnimation({
@@ -195,12 +196,12 @@ const Projects = () => {
       container: circle2Ref.current,
       renderer: 'svg',
       loop: true,
-      autoplay: true,
+      autoplay: false,
       path: circle2.publicURL,
     })
   }, [])
 
-  useMagnet('.proSec', 1.6, .51, );
+  // useMagnet('.proSec', 1.6, .51, );
 
 
   return (
@@ -212,6 +213,7 @@ const Projects = () => {
       initial="initial"
       animate="animate"
       exit="exit"
+
     >
       <ProjectContainer>
         <Headline title={'Projects'} mb={3} subtitle={'Case Studies'} />
@@ -220,9 +222,13 @@ const Projects = () => {
 
         <Planet className='planet-two' style={{ y: ySmall, x: xSmall }} />
 
-        <motion.div className="hover-target">
+        <motion.div className="hover-target"
+
+        >
           <Link
             id="proSec"
+            data-pointer
+            data-magnet
             className="proSec"
             ref={txtRef}
             to={'/projects/#one'}

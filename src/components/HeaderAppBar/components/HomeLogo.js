@@ -68,7 +68,7 @@ const HomeLogo = ({ isWhite }) => {
   const { logo } = useHeaderAssets()
   const logoRef = useRef(null)
 
-  useMagnet('.logo', 1.6, .51, )
+  // useMagnet('.logo', 1.7, .21, )
 
 
   return (
@@ -77,7 +77,11 @@ const HomeLogo = ({ isWhite }) => {
           transition={logoVariant.transition}
           initial="initial"
           animate="animate"
-          className="magnet logo"
+          className="logo"
+          data-pointer
+          data-magnet
+          data-magnet-distance='1.6'
+          data-magnet-stop='1.7'
           data-tooltip
           data-tooltip-text='Where it all started'
           ref={logoRef}

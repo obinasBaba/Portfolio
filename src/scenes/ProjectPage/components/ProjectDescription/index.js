@@ -53,7 +53,7 @@ const ProjectDescription = ({ link, reversed, tags, title, url, index, exit }) =
         {
           title.split(' ').map( (word, i) =>
 
-              <motion.span className='word'>
+              <motion.span className='word' key={word + i}>
 
                 {
                   Array.from(word).map((c, i) =>

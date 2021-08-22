@@ -5,21 +5,32 @@ import { spacing } from '../../../../styles/mixins'
 import ThumbAndDot from './Components/ThumbAndDot'
 
 const NavContainer = styled(motion.ul)`
-  padding: 0;
-  margin: 0;
   position: fixed;
-  z-index: 9999;
-  ${spacing('ml', 3.2)};
-  ${spacing('mb', 3.5)};
-  top: 50%;
+  top: 40%;
   left: 0;
-  //transform: translateY(-45%);
-  //align-self: flex-start;
 
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: center;
+  grid-gap: 1rem;
+
+  padding: 0;
+  margin: 0;
+  //border: thin solid red;
+  //-webkit-filter: url("#goo");
+  //filter: url("#goo");
+  //filter: blur(2px) contrast(11110);
+  
+  svg{
+    display: none;  
+    position: absolute;
+    pointer-events: none;
+  }
+
+  ${spacing('ml', 3.2)};
+  ${spacing('mb', 3.5)};
+  z-index: 99999;
 `
 
 const parentVariant = {
@@ -60,7 +71,7 @@ const NavDots = React.forwardRef((props, ref) => {
   }, [])
 
   return (
-    <AnimateSharedLayout    >
+    <AnimateSharedLayout   >
       <NavContainer
         variants={parentVariant}
         transition={parentVariant.transition}
@@ -69,6 +80,17 @@ const NavDots = React.forwardRef((props, ref) => {
         exit="exit"
         id="navDots"
       >
+        <svg xmlns="http://www.w3.org/2000/svg"
+             version="1.1" width="800">
+          <defs>
+            <filter id="goo">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+              <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+            </filter>
+          </defs>
+        </svg>
+
         {anchors.map((anchor, index) => (
           <>
             <ThumbAndDot
@@ -77,11 +99,15 @@ const NavDots = React.forwardRef((props, ref) => {
               hidden={index === active}
               index={index}
               dataAnchor={anchor}
-              clickEvent={setActive}
+              clickEvent={() => setActive(index)}
             />
           </>
         ))}
+
+
+
       </NavContainer>
+
     </AnimateSharedLayout>
   )
 })

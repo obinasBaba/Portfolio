@@ -1,18 +1,15 @@
-import React, {useContext, useLayoutEffect, useRef} from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
-import {lerp} from '../../helpers/utils'
-import {AnimatePresence} from 'framer-motion'
-import {AppStateContext} from '../../contexts/AppStateContext'
-import FontLoaded from 'fontfaceobserver'
+import { lerp } from '../../helpers/utils'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger)
 
 
 const SpinnerContainer = styled.div`
   position: fixed;
-  z-index: 9999;
+  //z-index: 9999;
   //height: 100vh;
   top: 0;
   left: 0;
@@ -97,7 +94,6 @@ const BigBall = styled.div`
 `
 
 const LoadingSpinner = ({children}) => {
-  const { loadingPage, events } = useContext(AppStateContext)
 
   const smallRef = useRef(null)
   const contentRef = useRef(null)
@@ -109,29 +105,6 @@ const LoadingSpinner = ({children}) => {
 
   let magnetElements;
 
-  useLayoutEffect(() => {
-
-    // console.log('Spinner ::' , events)
-    // magnetElements = loadingPage && new MagnetElement()
-
-    events.addLoader()
-
-    let elianto = new FontLoaded('Elianto-Regular')
-    let poppins = new FontLoaded('Poppins Black')
-    let icons = new FontLoaded('shapes')
-
-    Promise.all([
-      elianto.load(),
-      poppins.load(),
-      icons.load()
-    ])
-      .then(() => {
-        events.finishLoading()
-      }).catch(console.error)
-
-
-    return () => {}
-  }, [])
 
   const move = () => {
     // console.log(lastPos.target, Math.floor(lastPos.x))
@@ -145,9 +118,6 @@ const LoadingSpinner = ({children}) => {
   }
 
   return (
-    <AnimatePresence>
-      {loadingPage ?
-
         <SpinnerContainer>
 
           <Content ref={contentRef}>
@@ -175,12 +145,6 @@ const LoadingSpinner = ({children}) => {
           </Content>
 
         </SpinnerContainer>
-        :
-        <>
-          {children}
-        </>
-      }
-    </AnimatePresence>
   )
 }
 

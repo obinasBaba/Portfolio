@@ -1,5 +1,8 @@
 import MagnetElement from '../helpers/MagnetElement'
-import { useEffect } from 'react'
+import {useContext, useEffect} from 'react'
+import {AppStateContext} from '../contexts/AppStateContext'
+
+
 
 const useMagnet = (
   clsName = '',
@@ -7,11 +10,17 @@ const useMagnet = (
   distance = 0.32,
   dependency = [],
 ) => {
+
+  const { setCursorScaled } = useContext(AppStateContext)
+
+
   useEffect(() => {
     const magnet = new MagnetElement({
       element: document.querySelector(clsName),
       stop,
       distance,
+      onEnter: () => setCursorScaled(true),
+      onLeave: () => setCursorScaled(false)
     })
 
     return () => magnet.destroy()

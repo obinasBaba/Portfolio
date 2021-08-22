@@ -11,15 +11,15 @@ import gsap from 'gsap'
 type MagnetType = {
   element: HTMLElement
   stop?: number
-  distance?: number
+  distance?: number,
+  onLeave?: () => void
 }
 
-export default class MagnetElement {
+export default class MagnetElement extends EventEmitter{
   events = EventUtil.getInstance()
   element: HTMLElement
   rect: DOMRect
 
-  distanceToTrigger: number
   distanceToStop: number
   stop: number = 1
   distance: number = 0.32
@@ -32,33 +32,18 @@ export default class MagnetElement {
 
   onResize: () => void
   scroll: { x: number; y: number }
+  // onLeaveListener : () => void = () => {}
 
   constructor(el: MagnetType) {
+    super()
     console.log('constructor invoked')
 
     this.element = el.element
     this.stop = el.stop
     this.distance = el.distance
+    // this.onLeaveListener = el.onLeave
 
     this.initEvents()
-  }
-
-  startObserving(rootMargin, threshold) {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // Update our state when observer callback fires
-        /*if (entry.isIntersecting)
-          this.start()
-        else
-          this.stop()*/
-      },
-      {
-        rootMargin: rootMargin,
-        threshold: threshold,
-      }
-    )
-    observer.observe(this.element)
-    // this.disconnect = () => observer.disconnect();
   }
 
   calculateSizePosition() {
@@ -74,12 +59,15 @@ export default class MagnetElement {
 
     this.element.addEventListener('mouseenter', ev => {
       console.log('Enter')
+
+      gsap.killTweensOf(this.element);
+      this.onStart()
       this.calculateSizePosition()
       this.loopRender()
     })
   }
 
-  loopRender() {
+  loopRender(fn?) {
     if (!this.reqAnimationId) {
       this.reqAnimationId = requestAnimationFrame(() => this.render())
     }
@@ -105,10 +93,11 @@ export default class MagnetElement {
       )
 
       this.renderedStyles.y.previous = this.renderedStyles.x.previous = 0
+
+      // this.onLeaveListener();
+      this.onLeave()
     }
   }
-
-  start() {}
 
   destroy() {
     window.removeEventListener('resize', this.onResize)
@@ -153,5 +142,13 @@ export default class MagnetElement {
     this.element.style.transform = `translate(${this.renderedStyles.x.previous}px, ${this.renderedStyles.y.previous}px)`
 
     this.reqAnimationId = requestAnimationFrame(() => this.render())
+  }
+
+  private onStart(){
+    this.emit('start')
+  }
+
+  private onLeave(){
+    this.emit('leave')
   }
 }

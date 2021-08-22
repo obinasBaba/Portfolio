@@ -20,7 +20,7 @@ const Btn = styled(motion.button)`
 
   border-radius: 50%;
   background-color: transparent;
-  cursor: pointer;
+  cursor: none;
   transition: background-color 0.3s, border 0.3s;
   backface-visibility: hidden;
   transform: translate3d(0, 0, 0);
@@ -98,11 +98,13 @@ const HiddenText = styled.p`
 `
 
 const NavBtn = ({ isWhite, toggleMenu, pos, variants = {}, menu }) => {
-  useMagnet('.nav-btn', 1.6, 0.51)
+  // useMagnet('.nav-btn', 1.6, 0.51)
 
   return (
     <Btn
       className="nav-btn"
+      data-pointer
+      data-magnet
       data-tooltip
       data-tooltip-text="open my space"
       isWhite={isWhite}

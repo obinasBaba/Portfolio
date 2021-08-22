@@ -6,15 +6,11 @@ import {Link} from '@material-ui/core'
 
 const ExitBtn = styled( motion.div )`
   //border: thin solid crimson;
-  //position: fixed;
-  cursor: pointer;
-  //left : calc(3.27rem * var(--indent));
-  //top: ${({t}) => t};
-  z-index: 999;
   position: relative;
 
   ${heightWidth('height', 6)};
   ${heightWidth('width', 6)};
+  
   
   a{
     position: absolute;
@@ -100,15 +96,10 @@ const ReturnBtn = ( { onClick, to } ) => {
 
   return (
     <ExitBtn onClick={onClick}
-             variants={parentVariant}
-             transition={parentVariant.transition}
-             initial='initial'
-             animate='animate'
-             exit='exit'
-             className='hover_target'
+             // className='hover_target'
     >
 
-      <Link to={'/blogs'}/>
+      {/*<Link to={'/blogs'}/>*/}
 
       <motion.svg xmlns="http://www.w3.org/2000/svg"
                   width="60" height="60" viewBox="0 0 60 60"

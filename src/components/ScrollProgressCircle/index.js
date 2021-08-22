@@ -19,7 +19,6 @@ const RotatingDiv = styled(motion.div)`
 `
 
 const ProgressCircleContainer = styled.div`
-  z-index: 100;
   position: fixed;
   top: calc(100vh - calc(var(--size) * 6rem));
   bottom: auto;

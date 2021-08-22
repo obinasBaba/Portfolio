@@ -1,19 +1,28 @@
 import React from 'react'
 import styled from 'styled-components'
-import {AnimatePresence, AnimateSharedLayout, motion} from 'framer-motion'
+import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
 import { AnchorDot, DottedLine, Thumb } from './NavTools'
 
-const ThumbAndDotContainer = styled(motion.li)`
+const ThumbAndDotContainer = styled.li`
   //border: thin solid lightblue;
   padding: 0;
   margin: 0;
-  
   position: relative;
   display: grid;
-  align-items: center;
-  justify-items: center;
-  
-  & a{
+  place-items: center;
+
+  button {
+    border: none;
+    background-color: navajowhite;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+  }
+
+  & a {
     position: absolute;
     top: 0;
     left: 0;
@@ -27,8 +36,12 @@ const ThumbAndDotContainer = styled(motion.li)`
   }
 
   & .thumb {
+    background-color: #3719ca;
+    height: 30px;
+    width: 30px;
     grid-column: 1 / 1;
     grid-row: 1 / 1;
+    border-radius: 50%;
   }
 
   & .dot_Line {
@@ -46,31 +59,25 @@ const StyledLink = styled(motion.a)`
   //border: thin solid crimson;
 `
 
+const spring = {
+  type: 'spring',
+  stiffness: 500,
+  damping: 30,
+}
+
 const ThumbAndDot = ({ hidden, clickEvent, index, anchor, dataAnchor }) => {
   return (
-    <ThumbAndDotContainer >
+    <ThumbAndDotContainer>
+      <button className="pagination-dot" onClick={clickEvent} />
 
-
-
-      <a data-menuanchor={dataAnchor} href={`#${dataAnchor}`}
-         onClick={() => clickEvent(index)}
-      />
-
-      <AnimateSharedLayout>
-        <AnchorDot   anchor={anchor}  onClick={() => clickEvent(index)} />
-      </AnimateSharedLayout>
-
-        {hidden && <Thumb  isFirst={index === 0} isLast={index === 3} />}
-
-
-      <AnimateSharedLayout>
-        {index !== 3 && <DottedLine className="dotLine"  />}
-      </AnimateSharedLayout>
-
-
-
-
-
+      {hidden && (
+        <motion.div
+          className="thumb"
+          initial={false}
+          layoutId="outline"
+          transition={spring}
+        />
+      )}
     </ThumbAndDotContainer>
   )
 }

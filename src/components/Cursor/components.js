@@ -6,7 +6,7 @@ export const CursorContainer = styled.div`
   left: 0;
   top: 0;
   pointer-events: none;
-  z-index: 12000;
+  z-index: 9;
   //border: thin solid red;
   
   canvas[resize]{
@@ -35,6 +35,7 @@ export const Pointer = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
+  will-change: transform;
   //transform: translate(-50%, -50%);
 
   p {

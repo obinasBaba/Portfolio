@@ -192,7 +192,9 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
                 svgController.start('hover')
               }
 
-              return <Item title={word} onHoverStart={onHoverStart}
+              return <Item title={word}
+                           key={word + index}
+                           onHoverStart={onHoverStart}
                            customData={{ hovering: () => hoverIndex.get() === index }}  />
             })
           }

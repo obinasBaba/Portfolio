@@ -18,7 +18,6 @@ const MoonBg = styled(motion.div)`
 
   .moonlight {
     //border: thick solid yellow;
-
     position: absolute;
     margin: auto;
     height: 1285px;

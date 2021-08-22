@@ -23,11 +23,6 @@ const Fixed = () => {
     <AnimatePresence>
 
       <FixedContainer>
-
-        <ToolTip />
-        <BackgroundStars />
-        <SkyColor />
-
       </FixedContainer>
 
     </AnimatePresence>

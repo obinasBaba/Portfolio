@@ -21,7 +21,7 @@ const ContactContainer = styled( motion.section )`
   align-items: center;
   justify-content: center;
   //transform: translateX(100%);
-  z-index: 200;
+  z-index: 8;
   margin: auto auto;
   
   ${ spacing('ph', 4.8) };

@@ -44,23 +44,11 @@ const BackgroundStars = () => {
     >
 
       <Wrapper style={{ y: yScrollSmall }}>
-        <Layer
-          style={{
-            backgroundImage: `url(${starsBig.publicURL})`,
-            // y: yMouse,
-            // x: xMouse,
-          }}
-        />
+        <Layer style={{ backgroundImage: `url(${starsBig.publicURL})`, }} />
       </Wrapper>
 
       <Wrapper style={{ y: yScrollBig }}>
-        <Layer
-          style={{
-            backgroundImage: `url(${starsSmallOld.publicURL})`,
-            // y: yMouse,
-            // x: xMouse,
-          }}
-        />
+        <Layer style={{ backgroundImage: `url(${starsSmallOld.publicURL})`, }} />
       </Wrapper>
     </Galaxy>
   )

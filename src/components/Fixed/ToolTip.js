@@ -5,11 +5,11 @@ import {AnimatePresence, motion} from 'framer-motion'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import Typography from '@material-ui/core/Typography'
 
-const InfoChipContainer = styled( motion.div )`
-  position: absolute;
+const InfoChipContainer = styled(motion.div)`
+  position: fixed;
   bottom: 6%;
   left: 4%;
-  z-index: 100;
+  //z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,24 +54,20 @@ const Excerpt = styled(Typography)`
 
 const containerVariant = {
   initial: {
-    x: 20,
     opacity: 0,
+    // x: 20,
   },
-  animate(){
-    console.log('amiate function')
-    return  {
-      opacity: 0,
-      x: 0
-    }
+  animate:{
+    opacity: 1,
+    x: 110
   },
-
   exit: {
-    x: -20,
+    // x: -20,
     opacity: 0,
   },
 }
 
-const ToolTip = () => {
+const ToolTip = ({txt}) => {
   const { toolTip, setToolTip } = useContext(AppStateContext)
 
   const { loadingPage } = useContext(AppStateContext)
@@ -107,19 +103,35 @@ const ToolTip = () => {
   }, [loadingPage])
 
   return (
-    <AnimatePresence>
+    <AnimatePresence exitBeforeEnter>
       {
         toolTip.show &&
-        <InfoChipContainer  vairants={containerVariant}
-                            initial='initial'
-                            animate='animate'
-                            exit='exit'
-        >
+          <motion.div variants={containerVariant}
+                      initial='initial'
+                      animate='animate'
+                      exit='exit'
+                      transition={{
+                        duration: 2,
+                        ease: 'linear'
+                      }}
+                      // key={txt}
+                     >
+
+            <h1 style={{
+              fontSize: '10rem',
+              position: 'absolute',
+              top: 0,
+              left: '10%',
+            }} >{toolTip.text}</h1>
+
+            {/*<InfoChipContainer>
 
 
-          <motion.span className="dot" />
-          <Excerpt>{toolTip.text}</Excerpt>
-        </InfoChipContainer>
+              <motion.span className="dot" />
+              <Excerpt>{txt}</Excerpt>
+            </InfoChipContainer>*/}
+          </motion.div>
+
       }
     </AnimatePresence>
   )

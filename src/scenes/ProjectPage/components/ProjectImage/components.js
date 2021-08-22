@@ -52,6 +52,7 @@ export const InnerWrapper = styled(motion.div)`
   img {
     width: 100%;
     object-fit: cover;
+    //transition: filter 1.5s cubic-bezier(0.77, 0, 0.175, 1)
   }
 
   .image-over {

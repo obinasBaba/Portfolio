@@ -5,17 +5,16 @@ import { motion, useMotionValue } from 'framer-motion'
 import styled from 'styled-components'
 import { gridify } from '../../styles/mixins'
 import Moon from '../../layouts/Components/Moon'
-import { Link } from 'gatsby'
-import ReturnBtn from '../../components/ReturnBtn'
 import NavDots from './components/NavDots'
-import ScrollDown from './components/SideBarTools/ScrollDown'
+import ScrollDown from '../../components/ScrollDown'
 import ReactFullpage from '@fullpage/react-fullpage'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import ProjectImage from './components/ProjectImage'
 import ProjectDescription from './components/ProjectDescription'
 import Others from './components/Others'
 import { useProjectData } from './util/projectData'
-import { parentVariant, moonVariants, topVariant } from './util/variants'
+import { moonVariants, parentVariant, topVariant } from './util/variants'
+import ProjectScrollDown from './components/SideBarTools/ProjectScrollDown'
 
 const ProjectContainerGrid = styled(motion.div)`
   ${gridify};
@@ -55,13 +54,13 @@ const ProjectPage = () => {
     >
       <Moon showMoon={false} variants={moonVariants} />
 
-      <Link to={'/'}>
+      {/*<Link to={'/'}>
         <ReturnBtn />
-      </Link>
+      </Link>*/}
 
       <NavDots ref={activeNavDotRef} />
 
-      <ScrollDown show={activeIndex === 0} />
+      <ProjectScrollDown  show={activeIndex === 0} />
 
       <ReactFullpage
         easingcss3="cubic-bezier(0.645, 0.045, 0.355, 1)"
@@ -78,7 +77,7 @@ const ProjectPage = () => {
         lazyLoading={true}
         menu={'#navDots'} //for dotted navigation
         onLeave={(origin, dist, dir) => {
-          // console.log('onLeave ----')
+          // console.log('onLeaveListener ----')
 
           if (
             activeNavDotRef.current &&

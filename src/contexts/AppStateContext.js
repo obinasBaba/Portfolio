@@ -20,10 +20,11 @@ const AppStateProvider = ( {children} ) => {
   const [top, setTop] = useState(null)
   const [loadingPage, setLoadingPage] = useState(true)
   const [currentPath, setCurrentPath] = useState('/')
+  const [cursorScaled, setCursorScaled] = useState(false)
 
   const [toolTip, setToolTip] = useState({
-    text: '...',
-    show: true
+    text: '',
+    show: false
   })
 
 
@@ -43,10 +44,6 @@ const AppStateProvider = ( {children} ) => {
 
    loadingEvents.addListener('finishLoading', () => {
      setLoadingPage(false)
-     setToolTip({
-       text: '',
-       show: false
-     })
    })
 
 
@@ -69,7 +66,8 @@ const AppStateProvider = ( {children} ) => {
       loadingPage, setLoadingPage,
       events: loadingEvents,
       toolTip, setToolTip,
-      currentPath, setCurrentPath
+      currentPath, setCurrentPath,
+      cursorScaled, setCursorScaled
       // magnet: MagnetElements
 
     }} >

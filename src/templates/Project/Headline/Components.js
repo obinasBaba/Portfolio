@@ -15,21 +15,20 @@ export const HeadlineContainer = styled(motion.div)`
   height: 100vh;
   width: 100vw;
   position: relative;
-  //background: #02021e;
-
-  ${gridify};
-  //align-content: center;
   align-items: center;
   align-content: center;
-  //border: thin solid #FB7209;
+  border: thin solid #fb7209;
+
+  ${gridify};
 `
 
 export const ImageWrapper = styled(motion.div)`
-  ${gridColWidth()}; //mobile-first
-  background: rgba(55,25,202,1);
   position: relative;
-  //border: thick solid red;
   align-self: center;
+  background: rgba(55, 25, 202, 1);
+  //border: thick solid red;
+
+  ${gridColWidth()}; //mobile-first
 
   ${mediumUp(css`
     grid-row: 1;
@@ -103,8 +102,8 @@ export const MetaTexts = styled(motion.div)`
     ${gridColWidth(8, 35)};
     ${spacing('pt', 6)};
   `)};
-  
-  & > :last-child{
+
+  & > :last-child {
     ${spacing('mt', 4.5)};
   }
 
@@ -112,27 +111,22 @@ export const MetaTexts = styled(motion.div)`
     font-weight: 700;
     margin: 0;
     ${spacing('mt', 2)}
-    ${ title(3.35) };
+    ${title(3.35)};
     line-height: 1.3;
     //border: thin solid lightblue;
     letter-spacing: 2.5px;
     //overflow: hidden;
-    font-family: "Poppins Black",serif;
-
+    font-family: 'Poppins Black', serif;
 
     overflow-wrap: break-word;
-   
 
-    .word{
+    .word {
       display: inline-block;
       white-space: nowrap;
       overflow: hidden;
       vertical-align: top;
     }
-
   }
-
-  
 `
 
 export const Tags = styled(Typography)`
