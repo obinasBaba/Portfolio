@@ -4,16 +4,14 @@ import HomePage from '../scenes/HomePage'
 import { AppStateContext } from '../contexts/AppStateContext'
 import ToolTip from '../components/Fixed/ToolTip'
 
-const IndexPage = () => {
+const IndexPage = ({path}) => {
 
   const {
-    moonLight,
-    setMoonLight
+    setCurrentPath
   } = useContext( AppStateContext )
 
   useEffect(() => {
-    setMoonLight({...moonLight, showMoon: true, position: 'absolute'})
-
+    setCurrentPath(path)
   }, [])
 
   return (

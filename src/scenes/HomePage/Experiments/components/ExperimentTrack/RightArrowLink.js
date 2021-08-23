@@ -10,7 +10,6 @@ const RightArrowContainer = styled(motion.div)`
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
-  //margin-top: -5px;
   width: ${({ len }) => len};
 
   ${({ mt }) => css`
@@ -30,7 +29,8 @@ const ArrowContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-top: -5px;
+  //margin-top: -5px;
+  //gap: .5rem;
 `
 
 const ArrowLine = styled.div`
@@ -54,31 +54,46 @@ const Arrow = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: auto;
+  margin-left: 1.2rem;
   z-index: 0;
   transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9);
+  //border: thin solid red;
 
-  border: thin solid red;
-  
+  &:hover {
+    & > div {
+    transform: scale(1.1) translateX(-.26rem);
+    transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9);
+    //display: none;
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    transform: translateX(-30%) translateY(-50%);
+    //border: thin solid yellow;
+    padding: 2rem;
+  }
 
   & div {
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9);
-
+    transform: translateX(-1rem);
+    //border: thin solid black;
 
     svg {
       max-width: 100%;
       width: 100%;
     }
-
-    & :hover{
-      transform: scale(1.2);
-      transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9);
-    }
   }
 
-  a{
+  a {
     position: absolute;
     //pointer-events: none;
     top: 0;
@@ -87,7 +102,6 @@ const Arrow = styled.div`
     bottom: 0;
     //z-index: 1;
   }
-  
 `
 
 

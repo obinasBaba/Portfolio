@@ -6,49 +6,36 @@ import {Link} from 'gatsby'
 
 const ThumbAndDotContainer = styled.li`
   //border: thin solid lightblue;
-  padding: 0;
-  margin: 0;
   position: relative;
   display: grid;
   place-items: center;
-  font-family: 'shapes', serif;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
   
-  & > * {
+  & .thumb {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    font-family: 'shapes', serif;
+    font-size: 1.8rem;
     line-height: 0;
     margin: 0;
     padding: 0;
-    grid-column: 1 / 1;
-    grid-row: 1 / 1;
-  }
-
-  span {
-    border: none;
-    font-family: 'shapes', serif;
-    font-size: 1.5rem;
-  }
-
-  & a {
-    width: 100%;
-    height: 100%;
-    grid-column: 1 / 1;
-    grid-row: 1 / 1;
+    color: blue;
+    //filter: url("#dots-gooey");
   }
   
-  & .thumb {
-    height: 30px;
-    width: 30px;
-
-    font-family: 'shapes', serif;
-    font-size: 1.8rem;
-    color: blue;
-    
-    //filter: url("#dots-gooey");
-
-  }
-
-  & .dot_Line {
-    grid-column: 1 / 1;
-    grid-row: 2 / 3;
+  & .hover-area{
+    grid-column: 1;
+    grid-row: 1;
+    width: 250%;
+    height: 250%;
+    border-radius: 50%;
+    //border: thin solid crimson;
   }
 `
 
@@ -61,22 +48,29 @@ const spring = {
 
 const ThumbAndDot = ({ hidden, clickEvent, index, anchor, dataAnchor }) => {
   return (
-    <ThumbAndDotContainer>
-      <span className="pagination-dot">
-        h
-      </span>
+    <ThumbAndDotContainer onClick={clickEvent}>
+
+      <a
+        className="hover-area"
+        data-anchor={dataAnchor}
+        href={`#${anchor}`}
+
+        data-pointer
+        data-tooltip
+        data-stuck
+        data-tooltip-text='Next project'
+      />
 
       {hidden && (
-        <motion.div
-          className="thumb"
-          initial={false}
-          layoutId="outline"
-          transition={spring}
-        >
-          i
-        </motion.div>
-      )}
 
+        <motion.span
+          layoutId="outline"
+          initial={false}
+          transition={spring}
+          className='thumb'>
+          i
+        </motion.span>
+      )}
 
     </ThumbAndDotContainer>
   )

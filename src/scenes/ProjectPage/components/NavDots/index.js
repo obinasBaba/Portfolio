@@ -19,7 +19,7 @@ const NavContainer = styled(motion.ul)`
   margin: 0;
   //border: thin solid red;
   //-webkit-filter: url("#goo");
-  filter: url("#dots-gooey");
+  //filter: url("#dots-gooey");
   //filter: blur(2px) contrast(11110);
   
   svg{
@@ -74,9 +74,6 @@ const NavDots = React.forwardRef((props, ref) => {
     ref.current = { setActiveAnchors: setActive }
   }, [])
 
-  useEffect(() => {
-
-  }, [])
 
   return (
     <AnimateSharedLayout   >

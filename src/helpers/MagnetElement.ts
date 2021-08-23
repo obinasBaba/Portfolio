@@ -153,6 +153,6 @@ export default class MagnetElement extends EventEmitter{
 
   private onLeave(){
     this.emit('leave')
-    console.log('emit LEAVE')
+    // console.log('emit LEAVE')
   }
 }
