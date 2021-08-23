@@ -81,14 +81,14 @@ const ToolTip = ({ txt }) => {
   useEffect(() => {
     if (loadingPage) return
 
-    const toolTipElements = document.querySelectorAll('[data-tooltip]')
+    const toolTipElements = document.querySelectorAll('[data-tooltip-text]')
     // console.log(toolTipElements)
 
     toolTipElements.forEach(el => {
       // console.log(el)
 
       el.addEventListener('mouseenter', element => {
-        console.log('toolEnter')
+        // console.log('toolEnter')
 
         setToolTip({
           text: element.target.dataset.tooltipText,
@@ -97,7 +97,7 @@ const ToolTip = ({ txt }) => {
       })
 
       el.addEventListener('mouseleave', () => {
-        console.log('toolLeave')
+        // console.log('toolLeave')
 
         setToolTip({
           text: '',

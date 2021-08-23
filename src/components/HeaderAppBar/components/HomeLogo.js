@@ -10,12 +10,13 @@ import useMagnet from '../../../hooks/useMagnet'
 const Logo = styled(motion.div)`
   position: relative;
   margin-right: auto;
-  fill: white; //todo gradient
+  fill: var(--theme); //todo gradient
   z-index: 50;
   display: flex;
   align-items: center;
   justify-content: center;
   //border: thin solid red;
+  transition: fill .35s ease-in-out;
 
   .trigger {
     position: absolute;
@@ -35,13 +36,7 @@ const Logo = styled(motion.div)`
     `)};
   }
 
-  ${({ isWhite }) =>
-    isWhite &&
-    css`
-      .logoSvg {
-        fill: ${({ theme }) => theme.palette.primary.main};
-      }
-    `};
+  
 `
 
 const logoVariant = {

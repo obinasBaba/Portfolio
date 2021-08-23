@@ -13,6 +13,7 @@ import Development from './Development'
 import ReturnBtn from '../../components/ReturnBtn'
 import {AppStateContext} from '../../contexts/AppStateContext'
 import {Link} from 'gatsby'
+import useOnScreen from '../../hooks/useOnScreen'
 
 const topVariant = {
 
@@ -30,15 +31,24 @@ const Project = ({ pageContext, location }) => {
   const targetElement = React.useRef(null)
   const { setIsWhite, fromCaseStudy, setFromCaseStudy } = useContext( AppStateContext );
 
-  const intersection = useIntersection( targetElement, {
-    root: null,
-    rootMargin: '0px',
-    threshold: .2,
-  } )
+  const intersection = useOnScreen(targetElement, 0, '0px 0px -510px 0px')
 
   useEffect(() => {
-    setIsWhite(  intersection && intersection.isIntersecting )
     setFromCaseStudy(true)
+    if ( intersection ){
+      console.log(intersection)
+      document.body.classList.add('blog-clr')
+
+    }else
+    {
+      console.log(intersection)
+      document.body.classList.remove('blog-clr')
+
+    }
+
+    return () => {
+      document.body.classList.remove('blog-clr')
+    }
 
   }, [intersection]);
 

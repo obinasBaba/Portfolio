@@ -15,9 +15,6 @@ export const ContentSectionWrapper = styled.section`
   z-index: 1;
   color: #02021e;
 
-  // ${spacing('pv', 0)};
-  ${spacing('pb', 15)};
-
   .line {
     position: absolute;
     width: 1px;
@@ -47,4 +44,7 @@ export const ContentSectionWrapper = styled.section`
   &::after {
     left: 20%;
   }
+
+  ${spacing('pb', 15)};
+
 `

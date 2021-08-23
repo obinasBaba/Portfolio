@@ -56,6 +56,16 @@ export const imgContainerVariant = {
 export const imgVariant = {
   initial: {
     filter: 'grayscale(100%) sepia(20%) brightness(80%)',
+    transition: {
+      duration: 0,
+    },
+  },
+
+  animate: {
+    filter: 'grayscale(0%) sepia(0%) brightness(100%)',
+    transition: {
+      duration: 0,
+    },
   },
 
   initialFp: {

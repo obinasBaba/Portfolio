@@ -8,7 +8,6 @@ import useMagnet from '../../../hooks/useMagnet'
 // const headerTransition = 'all .3s'
 
 const Btn = styled(motion.button)`
-  --clr: crimson;
 
   position: relative;
   display: flex;
@@ -65,23 +64,25 @@ const Bars = styled.span`
   width: 40%;
   top: 50%;
   display: block;
-  background-color: #f9d6ac;
+  background-color: var(--theme);
   margin: auto;
   border-radius: 550px;
-  z-index: -1;
+
+  transition: background-color .35s ease-in-out;
+
 
   &::before,
   &::after {
     content: '';
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
     display: block;
     border-radius: 555px;
+    background-color: var(--theme);
+    transform: translateX(-50%);
+    transition: background-color .35s ease-in-out;
     height: 3px;
     width: 70%;
-    background-color: #f9d6ac;
-    transition: transform 0.3s;
   }
 
   &::before {

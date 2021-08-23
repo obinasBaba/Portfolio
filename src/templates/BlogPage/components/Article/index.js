@@ -22,7 +22,7 @@ const ArticleContainer = styled.div`
   ${ spacing( "pb", 10 ) };
   ${ spacing( "mt", -16 ) };
 
-  color: var(--dark);
+  color: var(--theme);
   
 
 `;
@@ -260,7 +260,7 @@ const Article = ({ html }) => {
   return (
     <ArticleContainer>
 
-      <BackArrow/>
+      <BackArrow to='/blog' />
 
 
       <ArticleWrapper dangerouslySetInnerHTML={ { __html: html } }

@@ -29,19 +29,26 @@ export const moonVariants = {
     x: 0,
     transition: {
       duration: 1.5,
-      delay: .8,
+      delay: .6,
       ease: [0.6, 0.01, 0, 0.9],
     },
   },
 
-  exit: {
-    opacity: 0,
-    scale: .8,
-    x: 100,
-    transition: {
-      duration: 1.5,
-      delay: .6,
-      ease: [0.6, 0.01, 0, 0.9],
-    },
+  exit(arg){
+    console.log('Exig: ', arg)
+
+    // if ( arg && arg.path === "/portfolio/project-1/" )
+    //   return;
+
+    return {
+      opacity: 0,
+      scale: .8,
+      x: 100,
+      transition: {
+        duration: 1.2,
+        delay: .2,
+        ease: [0.6, 0.01, 0, 0.9],
+      },
+    }
   }
 }

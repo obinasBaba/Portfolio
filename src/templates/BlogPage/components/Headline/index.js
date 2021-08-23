@@ -12,12 +12,11 @@ const HeadLineContainer = styled(motion.div)`
   display: grid;
 
   &[data-scrolled='true'] {
+    
     .image-box {
       grid-row: 1;
       width: 100%;
-      //max-height: 580px;
-
-
+      
       .overlay {
         background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
         visibility: visible;
@@ -25,15 +24,15 @@ const HeadLineContainer = styled(motion.div)`
     }
 
     .txt-align {
-      color: var(--dark);
+      color: var(--theme);
       align-content: end;
       align-items: center;
-
-      ${spacing('pl', 1)};
 
       .title {
         text-align: left;
       }
+
+      ${spacing('pl', 1)};
     }
   }
 `
@@ -42,21 +41,15 @@ const ImageBox = styled( motion.div )`
   position: relative;
   grid-row: 1;
   grid-column: 1;
-  //z-index: -1;
   inset: 0 0 0 0;
   max-width: 1400px;
   width: 100%;
-  
-  //border: thin solid red;
-
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  //height: 100vh;
   max-height: 580px;
 
   .overlay {
-    //visibility: hidden;
     position: absolute;
     inset: 0 0 0 0;
     backdrop-filter: blur(6px);
@@ -79,7 +72,8 @@ const TextAlign = styled( Container )`
   grid-column: 1;
   display: grid;
   z-index: 1;
-  transition: color 1s;
+  transition: color .4s ease-in-out;
+  text-shadow: 0.05em 0.05em 0.3em #000;
 
   ${ spacing( "mt", 8 ) };
   ${ spacing( "mb", .5 ) };
@@ -98,6 +92,7 @@ const Title = styled( motion.h1 )`
   text-align: center;
   letter-spacing: -.4px;
   font-family: var(--poppins);
+  //text-shadow: 0.1em 0.1em 0.3em #02021e;
 
   ${ spacing( "mt", 1.6 ) };
   ${ spacing( "mb", 2 ) };
@@ -155,22 +150,25 @@ const HeadLine = ({ categories, title, imgData, date, tags, thumbnail }) => {
       if ( topContainer.current.getBoundingClientRect().top < -80 ){
 
         setScrolled( true )
-        setIsWhite(!isWhite)
-        setHeaderGradient(!isHeaderGradient)
+        document.body.classList.add('blog-clr')
+
+        // setIsWhite(!isWhite)
+        // setHeaderGradient(!isHeaderGradient)
         // window.removeEventListener('scroll', scroll)
       }
       else {
-        // setScrolled( false )
-        setIsWhite(false)
-        setHeaderGradient(false)
+        setScrolled( false )
+        // setIsWhite(false)
+        // setHeaderGradient(false)
+        document.body.classList.remove('blog-clr')
       }
     }
 
     window.addEventListener('scroll', scroll)
 
     return () => {
-      setIsWhite(false)
-      setHeaderGradient(false)
+      document.body.classList.remove('blog-clr')
+      window.removeEventListener('scroll', scroll)
     }
 
     }, [ ])

@@ -73,27 +73,30 @@ export default class MagnetElement extends EventEmitter{
     }
   }
 
+  async initial(){
+    gsap.fromTo(
+      this.element,
+      {
+        x: this.renderedStyles.x.previous,
+        y: this.renderedStyles.y.previous,
+      },
+      {
+        x: 0,
+        y: 0,
+        duration: 0.8,
+        ease: 'power3',
+      }
+    )
+  }
+
   stopRendering(forceStop?: boolean) {
     if (this.reqAnimationId) {
       window.cancelAnimationFrame(this.reqAnimationId)
       this.reqAnimationId = undefined
 
-      gsap.fromTo(
-        this.element,
-        {
-          x: this.renderedStyles.x.previous,
-          y: this.renderedStyles.y.previous,
-        },
-        {
-          x: 0,
-          y: 0,
-          duration: 0.8,
-          ease: 'power3',
-        }
-      )
+      this.initial()
 
       this.renderedStyles.y.previous = this.renderedStyles.x.previous = 0
-
       // this.onLeaveListener();
       this.onLeave()
     }
@@ -150,5 +153,6 @@ export default class MagnetElement extends EventEmitter{
 
   private onLeave(){
     this.emit('leave')
+    console.log('emit LEAVE')
   }
 }

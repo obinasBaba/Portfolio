@@ -8,7 +8,7 @@ export const responsiveVar = css`
     --text: 1; // for regular text which size less than 20px font-size
     --size: 1; // for element width, height
     --column-width: 100vw / 64; // column width
-    
+
     //fonts
     --sofia-soft: 'Sofia Pro Soft', sans-serif;
     --sofia-pro: 'Sofia Pro', sans-serif;
@@ -16,10 +16,8 @@ export const responsiveVar = css`
     --abyss: 'abyssopelagic', sans-serif;
     --poppins: 'Poppins Black', sans-serif;
     --eli: 'Elianto-Regular', sans-serif;
+    
 
-
-    --thin: thin solid crimson;
- 
 
     @media screen and (max-width: 1025px) {
       --indent-high: 0.9;

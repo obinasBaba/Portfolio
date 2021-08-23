@@ -16,6 +16,7 @@ import { AppStateContext } from '../../../../contexts/AppStateContext'
 
 import StackUsed from '../StackUsed'
 import {GatsbyImage, getImage} from 'gatsby-plugin-image'
+import img from './preview-111.jpg'
 
 const ProjectImage = ({
   reversed,
@@ -30,7 +31,7 @@ const ProjectImage = ({
   custom,
 }) => {
 
-  console.log(preview)
+  // console.log(preview)
 
   return (
     <ProjectImg
@@ -48,7 +49,7 @@ const ProjectImage = ({
 
         <Link to={link} state={{ path: url }} />
 
-        <motion.img src={preview.publicURL}
+        <motion.img src={img}
                     variants={imgVariant}
                     transition={transition}
         />

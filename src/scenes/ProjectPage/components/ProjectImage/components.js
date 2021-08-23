@@ -36,7 +36,7 @@ export const ProjectImg = styled(motion.div)`
     margin-right: calc(100vw / 64 * 6); ;
   `)};
   
-  border: thin solid rebeccapurple;
+  //border: thin solid rebeccapurple;
 `
 
 
@@ -50,10 +50,10 @@ export const InnerWrapper = styled(motion.div)`
   align-items: center;
   //max-height: 400px;
   height: 400px;
-  border: thin solid red;
+  //border: thin solid red;
 
   img {
-    display: block;
+    //display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;

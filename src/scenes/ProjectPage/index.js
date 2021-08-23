@@ -100,11 +100,13 @@ const ProjectPage = () => {
           // setAnchors.current.setAnchors(index)
           setActiveIndex(index)
 
-          if (items[index]) items[index].controller.start('animateFp')
+          if (items[index])
+            items[index].controller.start('animateFp')
 
           if (fromCaseStudy) {
             items.forEach(
-              ({ controller }, i) => i !== index && controller.start('initial')
+              ({ controller }, i) =>
+                i !== index && controller.start('initial')
             )
 
             setFromCaseStudy(false)

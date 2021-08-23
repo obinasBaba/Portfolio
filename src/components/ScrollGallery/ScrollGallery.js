@@ -26,7 +26,8 @@ const Gallery = ({ children, step }) => {
   })
 
   useEffect(() => {
-    console.log( 'x' ,  x.get())
+    // console.log( 'x' ,  x.get())
+    return ( ) => mapped.destroy()
   }, [])
 
   return <AnimatedDiv style={{ x: x }}>{children}</AnimatedDiv>

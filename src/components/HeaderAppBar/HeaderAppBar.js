@@ -9,7 +9,6 @@ import { AnimatePresence } from 'framer-motion'
 import Menu from './components/Menu'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import ContactMe from '../ContactMe'
-import ToolTip from '../Fixed/ToolTip'
 
 const transition = css`
   transition: all 0.3s;
@@ -48,32 +47,25 @@ function HideOnScroll({ children, window, isMenuOpen }) {
 }
 
 const NavContainer = styled.div`
+
   position: fixed;
   z-index: 10;
   top: 0;
   width: 100%;
   padding: 2rem 2rem 1.3rem;
-  ${transition};
+  transition: all .35s ease-in-out;
 
   &::after {
     content: '';
-    //visibility: ${({ isGradient }) => (isGradient ? 'visible' : 'hidden')};
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    ${transition};
-
-    ${({ isGradient }) =>
-      isGradient &&
-      css`
-        background: ${({ isWhite }) =>
-          isWhite
-            ? 'linear-gradient(180deg, rgba(243, 243, 243, 1) 0%, rgba(243, 243, 243, 0) 98%)'
-            : 'linear-gradient(0deg, rgba(2, 2, 30, 0.0001) 0%, #02021e 98%)'};
-      `};
+    background-image: var(--head-gradient);
+    opacity: var(--head-opacity);
+    transition: all .35s ease-in-out;
   }
 
   ${mediumUp(css`
@@ -83,6 +75,7 @@ const NavContainer = styled.div`
 `
 
 const NavWrapper = styled.nav`
+  position: relative;
   margin: 0 auto;
   max-width: 1600px;
   display: flex;

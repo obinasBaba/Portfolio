@@ -1,7 +1,7 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core'
 import { darkColor, mainColor } from '../styles/variables/colors'
 
-let theme = createMuiTheme({
+const theme = createMuiTheme({
   breakpoints: {
     values: {
       xs: 0,

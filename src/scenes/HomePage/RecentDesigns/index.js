@@ -11,7 +11,7 @@ import useOnScreen from '../../../hooks/useOnScreen'
 
 const RecentDesignWrapper = styled.div`
   
-  border: thick solid saddlebrown;
+  //border: thick solid saddlebrown;
 `
 
 const RecentWorks = () => {

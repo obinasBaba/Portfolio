@@ -38,8 +38,12 @@ const ProgressCircleContainer = styled.div`
     grid-column: 1 / 1;
     opacity: .7;
     
+    & *{
+      transition: stroke .4s ease-in-out;
+    }
+    
     #phone_path{
-      stroke: #f9d6ac;
+      stroke: var(--theme);
     }
   }
 `
@@ -48,14 +52,14 @@ const ProgressCircleContainer = styled.div`
 const topPathVariant = {
   initial: {
     strokeWidth: 3,
-    stroke: '#123'
+    stroke: 'var(--stroke-top)',
   }
 }
 
 const bottomPathVariant = {
   initial: {
     pathLength: 0,
-    stroke: '#f9d6ac',
+    stroke: 'var(--stroke-bottom)',
     strokeWidth: 4
   },
 }

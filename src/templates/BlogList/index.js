@@ -1,19 +1,12 @@
-import React, { useContext, useEffect, useLayoutEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import BlogCard from './components/BlogCard'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import styled, { useTheme } from 'styled-components'
 import { useMediaQuery } from '@material-ui/core'
 import BlogList from './components/BlogListContainer'
 import { AppStateContext } from '../../contexts/AppStateContext'
-import ReadButton from './components/BlogCard/components/ReadButton'
 import MailUs from '../../scenes/MailUs'
 
-const PageLinks = styled.div`
-  padding: 1rem;
-  border: thin solid rebeccapurple;
-  display: flex;
-  justify-content: space-between;
-`
 
 const BlogListTemplate = ({
   data,

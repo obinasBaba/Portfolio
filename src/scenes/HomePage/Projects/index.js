@@ -116,7 +116,7 @@ const parentVariant = {
   exit: {
     opacity: 0,
     transition: {
-      duration: 1,
+      duration: 3,
     },
   },
 }

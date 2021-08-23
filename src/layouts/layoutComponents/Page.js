@@ -30,18 +30,10 @@ const BottomGradient = styled.div`
   bottom: 0;
   right: 0;
   pointer-events: none;
-  //border: thin solid rebeccapurple;
+  
+  background-image: var(--bottom-gradient);
+  transition: all .35s ease-in-out;
 
-  background-image: linear-gradient(
-    to bottom,
-    rgba(7, 33, 66, 0),
-    rgba(6, 28, 55, 0),
-    rgba(7, 24, 43, 0),
-    rgba(6, 18, 32, 0),
-    rgba(6, 18, 32, 0),
-    rgba(6, 18, 32, 0),
-    rgba(2, 11, 22, 1)
-  );
 `
 
 const Page = ({ children, path }) => {
@@ -75,14 +67,14 @@ const Page = ({ children, path }) => {
         <HeaderAppBar />
 
         <Main>
-          <AnimatePresence exitBeforeEnter custom={{ path: path }}>
+          <AnimatePresence exitBeforeEnter >
             {loadingPage ? (
               <LoadingSpinner />
             ) : (
-              <>
-                <Cursor />
+              <AnimatePresence  custom={{ path: path }}>
+                <Cursor path={path} />
                 {children}
-              </>
+              </AnimatePresence>
             )}
           </AnimatePresence>
         </Main>

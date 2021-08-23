@@ -11,6 +11,7 @@ const ArrowContainer = styled.div`
 `
 
 const BackArrow = () => {
+
   useEffect(() => {
     setTimeout(() => {
       const arr = document.querySelector('.arr-container')
@@ -36,7 +37,7 @@ const BackArrow = () => {
 
   return (
     <ArrowContainer className='arr-container'>
-      <ReturnBtn to="/blog" />
+      <ReturnBtn to='/blog' />
     </ArrowContainer>
   )
 }

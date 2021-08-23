@@ -12,6 +12,8 @@ import {
 import { OverflowWrapper, ProjectDesc, Tags, Title } from './components'
 import baffle from 'baffle'
 import {AppStateContext} from '../../../../contexts/AppStateContext'
+import RightArrowLink
+  from '../../../HomePage/Experiments/components/ExperimentTrack/RightArrowLink'
 
 const ProjectDescription = ({ link, reversed, tags, title, url, index, exit }) => {
 
@@ -79,7 +81,7 @@ const ProjectDescription = ({ link, reversed, tags, title, url, index, exit }) =
       <OverflowWrapper >
 
         <motion.div className='btn-wrapper' variants={btnTxtVariants} transition={transition}>
-          <MotionBtn text="Case-Study" to={link} state={{path: url}} margin={false} />
+          <RightArrowLink link={link} tooTipTxt='Project case-study' txt='case-study' lineLength='100%' />
         </motion.div>
 
       </OverflowWrapper>

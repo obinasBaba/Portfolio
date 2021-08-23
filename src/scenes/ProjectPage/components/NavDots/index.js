@@ -13,7 +13,7 @@ const NavContainer = styled(motion.ul)`
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  grid-gap: 1rem;
+  grid-gap: 2rem;
 
   padding: 0;
   margin: 0;
@@ -31,6 +31,10 @@ const NavContainer = styled(motion.ul)`
   ${spacing('ml', 3.2)};
   ${spacing('mb', 3.5)};
   z-index: 99999;
+`
+
+const Wrapper = styled.div`
+
 `
 
 const parentVariant = {
@@ -68,6 +72,10 @@ const NavDots = React.forwardRef((props, ref) => {
 
   useEffect(() => {
     ref.current = { setActiveAnchors: setActive }
+  }, [])
+
+  useEffect(() => {
+
   }, [])
 
   return (

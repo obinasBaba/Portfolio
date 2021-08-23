@@ -1,10 +1,10 @@
-import React, {useContext, useEffect, useRef} from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import SimplexNoise from 'simplex-noise'
-import {motion, useAnimation, useMotionValue, useSpring} from 'framer-motion'
+import { motion, useAnimation, useMotionValue, useSpring } from 'framer-motion'
 import { lerp, map } from '../../helpers/utils'
 import { CursorContainer, Pointer } from './components'
-import Paper from 'paper'
-import {AppStateContext} from '../../contexts/AppStateContext'
+import Paper, { Point } from 'paper'
+import { AppStateContext } from '../../contexts/AppStateContext'
 import MagnetElement from '../../helpers/MagnetElement'
 
 const pointerVariants = {
@@ -15,46 +15,44 @@ const pointerVariants = {
     scale: 1,
     transition: {
       ease: 'linear',
-      duration: .3
-    }
+      duration: 0.3,
+    },
   },
 
   big: {
     scale: 3.5,
     transition: {
       ease: 'linear',
-      duration: .3
-    }
+      duration: 0.3,
+    },
   },
 
   animate(c) {
     return {
       rotate: [null, 360 * c.factor],
       transition: {
-          repeat: Infinity,
-          repeatType: 'mirror',
-          ease: 'linear',
-          duration: 5 * 1.2,
-
+        repeat: Infinity,
+        repeatType: 'mirror',
+        ease: 'linear',
+        duration: 5 * 1.2,
       },
     }
   },
 }
 
-const Cursor = () => {
+const Cursor = ({path}) => {
   const canvasRef = useRef(null)
-  // const { cursorScaled, setCursorScaled } = useContext(AppStateContext)
-
 
   let lastX = useMotionValue(0)
   let lastY = useMotionValue(0)
-  const control =  useAnimation()
+  // const
+  const control = useAnimation()
 
+  let x = useMotionValue(window ? window.innerWidth / 2 : 0)
+  let y = useMotionValue(window ? window.innerHeight / 2 : 0)
 
-  let x = useMotionValue( window ? (window.innerWidth / 2) : 0 )
-  let y = useMotionValue(window ? (window.innerHeight / 2) : 0)
-
-  let isStuck = false;
+  const isStuck = useRef(false)
+  let isNoise = true
   const strokeWidth = 1.5
   const segments = 10
   const radius = 25
@@ -72,24 +70,23 @@ const Cursor = () => {
     )
 
     polygon.smooth()
-    const clone = polygon.clone({ insert: false })
+    const clone = polygon.clone({ insert: true })
 
     polygon.strokeColor = color
     polygon.strokeWidth = strokeWidth
-    let bound = clone.bounds.width;
+    let bound = clone.bounds.width
 
     const coordinates = polygon.segments.reduce((p, c, i) => {
       p.push([c.point.x, c.point.y])
       return p
     }, [])
 
-
     return {
       polygon,
       clone,
       noiseObjects: polygon.segments.map(() => new SimplexNoise()),
       coordinates,
-      originalBoundWidth: bound,
+      initialWidth: bound,
     }
   }
 
@@ -112,35 +109,12 @@ const Cursor = () => {
     }
   }
 
-
-
-  useEffect(() => {
-
-    control.start('animate')
-
-    window.addEventListener('mousemove', e => {
-      x.set(e.clientX)
-      y.set(e.clientY)
-    })
-
-    window.addEventListener('resize', e => {
-      Paper.view.remove()
-      initCanvas()
-      Paper.view.update()
-      // console.log(Paper.project.view.center)
-    })
-
-    initCanvas()
-
-    initHover()
-  }, [])
-
   const initCanvas = () => {
+    console.log('initCanvas')
     const maxBounds = {
       width: 75,
       height: 75,
     }
-
     //noisiness
     const noiseScale = 150 // speed
     const noiseRange = 2.1 // range of distortion
@@ -148,56 +122,63 @@ const Cursor = () => {
     Paper.setup(canvasRef.current)
 
     const { polygons, group } = initialize()
+    const ref = polygons[0].clone
+    const initialWidth = polygons[0].initialWidth //for short name ref
 
     const scalePolygon = amount => {
       //scale the clone for reference
-      polygons[0].clone.scale(amount)
+      ref.scale(amount)
 
-      //stop the noise
-      polygons.forEach(({ polygon, coordinates }, i) => {
-        polygon.segments.forEach((segment, i) => {
-          segment.point.set(coordinates[i][0], coordinates[i][1])
+      //get coordinates with out noise
+      if (isNoise)
+        polygons.forEach(({ polygon, coordinates }) => {
+          polygon.segments.forEach((segment, i) => {
+            segment.point.set(coordinates[i][0], coordinates[i][1])
+          })
+
+          isNoise = false
         })
-      })
 
       //scale them and recorde the scaled coordinates
-      polygons.forEach(({ polygon }, i) => {
-        polygon.scale(amount);
-
-        polygons[i].coordinates = polygon.segments.reduce((p, c, i) => {
-          p.push([c.point.x, c.point.y])
-          return p
-        }, [])
-      })
+      polygons.forEach(({ polygon }) => polygon.scale(amount))
     }
 
     Paper.view.onFrame = event => {
-      if (isStuck) {
-        // stuck the circle
-        lastX.set(lerp(lastX.get(), stuckPos.x, 0.14))
-        lastY.set(lerp(lastY.get(), stuckPos.y, 0.14))
-      } else if (!isStuck) {
+      if (isStuck.current) {
+        // disable the stuck if the mouse is away some distance
+        isStuck.current = group.position.isClose(new Paper.Point(x.get(), y.get()), 60)
+
+        //stuck the circle
+        if ( lastX.get() !== stuckPos.x && lastX.get() !== stuckPos.y ){
+          lastX.set(lerp(lastX.get(), stuckPos.x, 0.135))
+          lastY.set(lerp(lastY.get(), stuckPos.y, 0.135))
+          group.position = new Paper.Point(lastX.get(), lastY.get())
+        }
+      } else if (!isStuck.current) {
         // move the circle normally
-        lastX.set(lerp(lastX.get(), x.get(), 0.14))
-        lastY.set(lerp(lastY.get(), y.get(), 0.14))
+        lastX.set(lerp(lastX.get(), x.get(), 0.145))
+        lastY.set(lerp(lastY.get(), y.get(), 0.145))
+        group.position = new Paper.Point(lastX.get(), lastY.get())
       }
 
-      group.position = new Paper.Point(lastX.get(), lastY.get())
-
-
-      if (isStuck && polygons[0].clone.bounds.width < maxBounds.width) {
-        // console.log(polygons[0].clone.bounds.width, '- UP')
-
-        scalePolygon(1.06)
-
-
-      } else if (
-        !isStuck &&
-        (polygons[0].clone.bounds.width) > polygons[0].originalBoundWidth + 4
+      if (isStuck.current && ref.bounds.width < maxBounds.width)
+        return scalePolygon(1.06)
+      else if (!isStuck.current && ref.bounds.width > initialWidth + 4)
+        return scalePolygon(0.94)
+      else if (
+        (!isStuck.current && ref.bounds.width <= initialWidth + 4 && !isNoise) ||
+        (isStuck.current && ref.bounds.width >= maxBounds.width && !isNoise)
       ) {
-        // console.log(polygons[0].clone.bounds.width, '- DOWN')
 
-        scalePolygon(0.94)
+        // record the new scaled coordinates for the noise
+        polygons.forEach(({ polygon }, i) => {
+          polygons[i].coordinates = polygon.segments.reduce((p, c) => {
+            p.push([c.point.x, c.point.y])
+            return p
+          }, [])
+        })
+
+        isNoise = true
       }
 
 
@@ -208,14 +189,8 @@ const Cursor = () => {
           const noiseY = noiseObjects[i].noise2D(event.count / noiseScale, 1)
 
           // generate perlin-noise and apply
-          const distortionX = map(noiseX, -1, 1,
-            isStuck ? -4 : -noiseRange,
-            isStuck ? 4 : noiseRange
-          )
-          const distortionY = map(noiseY, -1, 1,
-            isStuck ? -4 : -noiseRange,
-            isStuck ? 4 : noiseRange
-          )
+          const distortionX = map(noiseX, -1, 1, isStuck.current ? -4 : -noiseRange, isStuck.current ? 4 : noiseRange)
+          const distortionY = map(noiseY, -1, 1, isStuck.current ? -4 : -noiseRange, isStuck.current ? 4 : noiseRange)
 
           const newX = coordinates[i][0] + distortionX // accessing x
           const newY = coordinates[i][1] + distortionY // accessing y
@@ -229,60 +204,84 @@ const Cursor = () => {
   }
 
   const initHover = () => {
-    const handleHover = (stuck=false, e) => {
-
-      if ( stuck ){
-        const rect = e.getBoundingClientRect()
+    const handleHover = (e) => {
+      console.log('enter hover')
+      if (e.currentTarget.dataset.stuck) {
+        const rect = e.currentTarget.getBoundingClientRect()
         stuckPos.x = Math.round(rect.left + rect.width / 2)
         stuckPos.y = Math.round(rect.top + rect.height / 2)
-        isStuck = true;
-      }else {
-        control.start('big');
-        isStuck = false
+        isStuck.current = true
+      } else {
+        control.start('big')
       }
-
     }
 
-    const handleLeave = ( scaleDown=false ) => {
-      // console.log('mouse leave')
-      isStuck = false;
-      if ( scaleDown )
-        control.start('small')
-
+    const handleLeave = (scaleDown = false) => {
+      console.log('leave hover')
+      control.start('small')
     }
 
-    setTimeout(() => {
-      const linkItems = document.querySelectorAll('[data-pointer]')
+    const pointerElements = document.querySelectorAll('[data-pointer]')
+    console.log(pointerElements)
+
+    pointerElements.forEach(element => {
+      element.removeEventListener('mouseenter',  handleHover)
+      element.removeEventListener('mouseleave',  handleLeave)
 
 
-      linkItems.forEach(element => {
 
-        if ( element.dataset.magnet ){
-          // console.log(element)
-          const magnet = new MagnetElement({
-            element: element,
-            stop: 1,
-            distance: .7,
-          })
+      if (element.dataset.magnet) {
+        // console.log(element)
+        const magnet = new MagnetElement({
+          element: element,
+          stop: 1,
+          distance: 0.7,
+        })
 
-          magnet.on('leave', () => {
-            control.start('small')
-          })
+        magnet.on('leave', () => {
+          console.log('LEAVE invoked')
+          control.start('small')
+        })
 
-          element.addEventListener('mouseenter',
-            () => handleHover(false))
+        element.addEventListener('mouseenter',  handleHover)
 
-        }else {
+      } else {
 
-          element.addEventListener('mouseenter',
-            (ev) => handleHover(element.dataset.stuck, ev.currentTarget))
-
-          element.addEventListener('mouseleave',
-            () => handleLeave(true))
-        }
-      })
-    }, 10)
+        element.addEventListener('mouseenter', handleHover )
+      }
+    })
   }
+
+  useEffect(() => {
+    control.start('animate')
+    const handleMouse = e => {
+      x.set(e.clientX)
+      y.set(e.clientY)
+    }
+    const reInitializePaper = () => {
+      Paper.view.remove()
+      initCanvas()
+      Paper.view.update()
+    }
+
+    window.addEventListener('mousemove', handleMouse)
+    window.addEventListener('resize', reInitializePaper)
+
+    initCanvas()
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouse)
+      window.removeEventListener('resize', reInitializePaper)
+    }
+
+  }, [])
+
+  useEffect(() => {
+    initHover()
+    console.log(path)
+  }, [path])
+
+
 
   return (
     <CursorContainer>
