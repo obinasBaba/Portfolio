@@ -10,7 +10,7 @@ export const MenuContainer = styled(motion.div)`
   width: 100vw;
   max-width: 1600px;
   margin: 0 auto;
-  z-index: 8;
+  z-index: 11;
   display: flex;
   justify-content: flex-end;
 `

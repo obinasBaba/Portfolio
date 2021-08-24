@@ -53,7 +53,7 @@ export const Design = ({path, rocket}) => {
       l.addEventListener('complete', () => {
         1 === r ? r = -1 : -1 === r && (r = 1);
           l.setDirection(r);
-          l.play();
+          // l.play();
       })
 
     }

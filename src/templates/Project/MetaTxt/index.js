@@ -81,7 +81,7 @@ const MetaTxt = () => {
 
   return (
 
-    <MetaContainer maxWidth='xxl' fixed={false}>
+    <MetaContainer maxWidth='xxl' fixed={false} data-scroll-section>
 
 
 

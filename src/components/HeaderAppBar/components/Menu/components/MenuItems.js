@@ -22,7 +22,7 @@ const MenuItemsContainer = styled( motion.ul )`
   padding: 0;
   width: 85%;
   height: 59%;
-  border: thin solid crimson;
+  //border: thin solid crimson;
 
   ${largeUp(css`
     margin-top: 0;

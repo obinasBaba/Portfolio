@@ -14,6 +14,7 @@ import Others from './components/Others'
 import { useProjectData } from './util/projectData'
 import { moonVariants, parentVariant, topVariant } from './util/variants'
 import ProjectScrollDown from './components/SideBarTools/ProjectScrollDown'
+import SideBarTools from './components/SideBarTools'
 
 const ProjectContainerGrid = styled(motion.div)`
   ${gridify};
@@ -21,14 +22,23 @@ const ProjectContainerGrid = styled(motion.div)`
   align-content: center;
   align-items: center;
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
+  
+  
+  
+  //border: thick solid red;
 `
 const ProjectPageContainer = styled(motion.main)`
   position: relative;
   max-width: 100%;
   overflow: hidden;
   //border: thick solid red;
+  //transform: translateY(0) !important;
+  .fp-section{
+    //border: thick solid red;
+  }
 `
+
 
 const ProjectPage = () => {
   const { othersAssets, items } = useProjectData()
@@ -50,13 +60,16 @@ const ProjectPage = () => {
       variants={parentVariant}
       initial={moVariants.get()}
       animate="animate"
+      data-scroll-section
+
       // exit='exit'
     >
       <Moon showMoon={false} variants={moonVariants} />
 
-      <NavDots ref={activeNavDotRef} />
-
-      <ProjectScrollDown show={activeIndex === 0} />
+      {/*<SideBarTools>*/}
+        <NavDots ref={activeNavDotRef} />
+        <ProjectScrollDown show={activeIndex === 0} />
+      {/*</SideBarTools>*/}
 
       <ReactFullpage
         easingcss3="cubic-bezier(0.645, 0.045, 0.355, 1)"
@@ -129,6 +142,7 @@ const ProjectPage = () => {
                       initial={moVariants.get()}
                       animate={controllers[index]}
                       exit={'exit'}
+                      data-scroll
                     >
                       <ProjectImage
                         reversed={true}

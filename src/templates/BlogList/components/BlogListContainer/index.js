@@ -111,11 +111,10 @@ const BlogList = ({ children}) => {
 
   return (
 
-      <BlogListContainer fixed={ false } maxWidth={ false}>
+      <BlogListContainer fixed={ false } maxWidth={ false} >
 
         <Moon showMoon={false} pos='fixed' />
-
-         <PenEffect  progress={progress}/>
+        <PenEffect  progress={progress}/>
 
         <BlogListWrapper variants={wrapperVariant}
                     transition={transition}

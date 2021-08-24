@@ -12,9 +12,9 @@ import { Typography } from '@material-ui/core'
 import { motion } from 'framer-motion'
 
 export const HeadlineContainer = styled(motion.div)`
+  position: relative;
   height: 100vh;
   width: 100vw;
-  position: relative;
   align-items: center;
   align-content: center;
   //border: thin solid #fb7209;

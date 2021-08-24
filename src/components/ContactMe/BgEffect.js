@@ -9,7 +9,7 @@ const BgSvgContainer = styled( motion.div )`
   right: 0;
   max-width: 50%;
   opacity: 0.1;
-  z-index: 10;
+  //z-index: 10;
 
   pointer-events: none;
   

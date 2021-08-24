@@ -73,12 +73,13 @@ const Intro = ({ intro }) => {
 
   return (
     <IntroContainer
-      themeCrl={themeColor}
-      logoUrl={logoUrl}
-      color={color}
+      // themeCrl={themeColor}
+      // logoUrl={logoUrl}
+      // color={color}
       maxWidth={false}
       fixed={false}
       component={'section'}
+      data-scroll-section
     >
       <Typography variant={'h1'}>{title}</Typography>
 

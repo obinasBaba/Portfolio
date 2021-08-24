@@ -89,16 +89,17 @@ export default class MagnetElement extends EventEmitter{
     )
   }
 
-  stopRendering(forceStop?: boolean) {
+  stopRendering() {
     if (this.reqAnimationId) {
       window.cancelAnimationFrame(this.reqAnimationId)
       this.reqAnimationId = undefined
+
+      this.onLeave()
 
       this.initial()
 
       this.renderedStyles.y.previous = this.renderedStyles.x.previous = 0
       // this.onLeaveListener();
-      this.onLeave()
     }
   }
 

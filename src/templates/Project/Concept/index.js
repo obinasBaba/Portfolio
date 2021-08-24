@@ -40,7 +40,7 @@ const ConceptTxtWrapper = styled( Container ) `
 
 const Concept = () => {
   return (
-    <ConceptContainer>
+    <ConceptContainer data-scroll-section>
       <ConceptTxtWrapper maxWidth='xl' fixed={true} >
 
         <Typography variant='h3' className="concept">CONCEPT</Typography>

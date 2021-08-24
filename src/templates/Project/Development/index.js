@@ -27,7 +27,7 @@ const TitleWrapper = styled.div`
 
 const Development = () => {
   return (
-    <DevelopmentContainer>
+    <DevelopmentContainer data-scroll-section>
 
       <TitleWrapper>
         <Typography variant="h1"> Development </Typography>

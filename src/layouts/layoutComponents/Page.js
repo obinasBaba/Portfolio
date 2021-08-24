@@ -1,17 +1,16 @@
-import React, {useContext, useEffect, useRef} from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { SkyColor } from '../Components/SkyColor'
 import BackgroundStars from '../../components/BackgroundStars'
 import HeaderAppBar from '../../components/HeaderAppBar'
 import { Main } from './index'
-import {AnimatePresence, useElementScroll} from 'framer-motion'
+import { AnimatePresence, useElementScroll } from 'framer-motion'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import ToolTip from '../../components/Fixed/ToolTip'
 import ProgressCircle from '../../components/ScrollProgressCircle'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import Cursor from '../../components/Cursor'
 import useLoadingFonts from '../../hooks/useFonts'
-import useLocoScroll from '../../hooks/useLocoScroll'
 
 export const PageContainer = styled.div`
   position: relative;
@@ -20,6 +19,20 @@ export const PageContainer = styled.div`
   //border: thick solid crimson;
   //overflow: hidden;
   //z-index: 0;
+
+  canvas[resize] {
+    width: 100%;
+    height: 100%;
+  }
+
+  & .canvas {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 20;
+    pointer-events: none;
+    //border: thin solid blue;
+  }
 `
 
 const BottomGradient = styled.div`
@@ -30,41 +43,37 @@ const BottomGradient = styled.div`
   bottom: 0;
   right: 0;
   pointer-events: none;
-  
-  background-image: var(--bottom-gradient);
-  transition: all .35s ease-in-out;
 
+  background-image: var(--bottom-gradient);
+  transition: all 0.35s ease-in-out;
 `
 
 const Page = ({ children, path }) => {
   const { loadingPage, moScroll } = useContext(AppStateContext)
 
-  useLoadingFonts();
-
-  useLocoScroll(!loadingPage, moScroll )
+  useLoadingFonts()
 
   return (
     <PageContainer>
-        <SkyColor />
-        <BackgroundStars />
-        <HeaderAppBar />
+      <SkyColor />
+      <BackgroundStars />
+      <HeaderAppBar />
 
-        <Main data-scroll-container >
-          <AnimatePresence exitBeforeEnter >
-            {loadingPage ? (
-              <LoadingSpinner />
-            ) : (
-              <AnimatePresence exitBeforeEnter  custom={{ path: path }}>
-                <Cursor path={path} />
-                {children}
-              </AnimatePresence>
-            )}
+      <Main data-scroll-container>
+        {loadingPage ? (
+          <LoadingSpinner />
+        ) : (
+          <AnimatePresence exitBeforeEnter custom={{ path: path }}>
+            <Cursor path={path} />
+            {children}
           </AnimatePresence>
-        </Main>
+        )}
+      </Main>
 
-        <BottomGradient />
-        <ToolTip />
-        <ProgressCircle />
+      <BottomGradient />
+      <ToolTip />
+      <ProgressCircle />
+      <canvas className="canvas" />
     </PageContainer>
   )
 }

@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
-import useScrollTrigger from '@material-ui/core/useScrollTrigger'
 import Slide from '@material-ui/core/Slide'
 import styled, { css } from 'styled-components'
 import HomeLogo from './components/HomeLogo'
 import NavBtn from './components/NavBtn'
 import { mediumUp, spacing } from '../../styles/mixins'
-import { AnimatePresence, useMotionValue } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 import Menu from './components/Menu'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import ContactMe from '../ContactMe'
@@ -69,6 +68,7 @@ const NavContainer = styled.div`
   width: 100%;
   padding: 2rem 2rem 1.3rem;
   transition: all .35s ease-in-out;
+  pointer-events: none;
 
   &::after {
     content: '';
@@ -96,6 +96,9 @@ const NavWrapper = styled.nav`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  & > *{
+    pointer-events: initial;
+  }
 `
 
 function HeaderAppBar({}) {
@@ -127,9 +130,6 @@ function HeaderAppBar({}) {
         {isContactOpen && (
           <ContactMe toggleModal={{ setContactModal, isContactOpen }} />
         )}
-
-
-        {/*{toolTip.show && <ToolTip txt={toolTip.text} /> }*/}
 
       </AnimatePresence>
 

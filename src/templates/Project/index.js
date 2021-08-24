@@ -4,66 +4,79 @@ import Intro from './Intro'
 import AnalysisPreparation from './AnalysisPreparation'
 import ColorPalette from './Colors'
 import FontUsed from './FontUsed'
-
-import { useIntersection } from 'react-use'
-import { ContentSectionWrapper, ProjectContainer } from './components'
 import MetaTxt from './MetaTxt'
 import Concept from './Concept'
 import Development from './Development'
 import ReturnBtn from '../../components/ReturnBtn'
-import {AppStateContext} from '../../contexts/AppStateContext'
-import {Link} from 'gatsby'
+import { AppStateContext } from '../../contexts/AppStateContext'
+import { Link } from 'gatsby'
 import useOnScreen from '../../hooks/useOnScreen'
+import useLocoScroll from '../../hooks/useLocoScroll'
+import styled from 'styled-components'
+import ScrollDown from '../../components/ScrollDown'
 
-const topVariant = {
+const BG = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #f3f3f3;
+  z-index: -1;
+`
+const FixedItems = styled.div`
+  position: fixed;
+  left: 3%;
+  top: 29%;
+  bottom: 5%;
+  z-index: 10;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
+`
 
+const Project = ({ pageContext, location, path }) => {
+  const { title, subTitle, about, intro } = pageContext.project
+  const { headlineImg } = pageContext.imageData
 
-}
-
-
-
-const Project = ({ pageContext, location }) => {
-  const { title, subTitle, about,  intro } = pageContext.project
-  const { headlineImg } = pageContext.imageData;
-
-  // console.log(location)
+  console.log(location)
 
   const targetElement = React.useRef(null)
-  const { setIsWhite, fromCaseStudy, setFromCaseStudy } = useContext( AppStateContext );
+  const {
+    currentPath,
+    setCurrentPath,
+    moScroll,
+    fromCaseStudy,
+    setFromCaseStudy,
+  } = useContext(AppStateContext)
 
   const intersection = useOnScreen(targetElement, 0, '0px 0px -510px 0px')
 
+
   useEffect(() => {
     setFromCaseStudy(true)
-    if ( intersection ){
+    setCurrentPath(location.pathname)
+
+    // return
+
+    if (intersection) {
       console.log(intersection)
       document.body.classList.add('blog-clr')
-
-    }else
-    {
+    } else {
       console.log(intersection)
       document.body.classList.remove('blog-clr')
-
     }
 
     return () => {
       document.body.classList.remove('blog-clr')
     }
+  }, [intersection])
 
-  }, [intersection]);
-
+  useLocoScroll(true, moScroll)
 
   return (
-    <ProjectContainer variants={topVariant}
-                      initial='initial'
-                      animate='animate'
-                      exit='exit'
-                      key='pro-container'
-
-    >
-
-
-
+    <>
       <Headline
         title={title}
         subTitle={subTitle}
@@ -71,34 +84,35 @@ const Project = ({ pageContext, location }) => {
         media={headlineImg}
       />
 
-      <ContentSectionWrapper ref={targetElement} >
-        <div className="line" />
+      <FixedItems>
+        <ReturnBtn to="/projects" />
+        <ScrollDown/>
+      </FixedItems>
 
-        <MetaTxt  />
 
-        <Intro intro={intro} />
+      <BG/>
 
-        <AnalysisPreparation />
+      <div className="line" />
 
-        <ColorPalette />
+      <MetaTxt />
 
-        <FontUsed />
+      <Intro intro={intro} />
 
-        <Concept  />
+      <AnalysisPreparation />
 
-        <Development />
+      <ColorPalette />
 
-      </ContentSectionWrapper>
+      <FontUsed />
 
-      {/*<NextProject />*/}
+      <Concept />
 
-      <Link to={  '/projects'}
-            state={{ path: 'location.pathname' }} >
-        <ReturnBtn key='return'  />
+      <Development />
+
+
+      <Link to={'/projects'} state={{ path: 'location.pathname' }}>
+        <ReturnBtn key="return" />
       </Link>
-
-
-    </ProjectContainer>
+    </>
   )
 }
 

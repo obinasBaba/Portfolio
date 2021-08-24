@@ -19,61 +19,35 @@ import lotti from 'lottie-web'
 import { useProjectCircles } from '../../../hooks/queries/useProjectCircles'
 import useOnScreen from '../../../hooks/useOnScreen'
 
-const ProjectContainer = styled.div`
-  max-width: 100%;
-  min-height: 100vh;
-  //overflow: hidden;
+const parentVariant = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 3,
+    },
+  },
+}
+
+
+const ProjectContainer = styled(motion.section)`
+  position: relative;
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  //border: thick solid red;
+  max-width: 100%;
+  min-height: 100vh;
+  border: thick solid red;
   padding: 2rem 0;
-  ${spacing('pt', 22)};
-  ${spacing('mb', 3)};
-
-  .allProjects-txt {
-    ${text(1.1)};
-  }
-
-  .hover-target {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: none;
-    padding: 4rem;
-    border-radius: 100px;
-    position: relative;
-    //border: thin solid green;
-
-    ${heightWidth('height', 53)};
-    ${heightWidth('width', 53)};
-
-    a {
-      z-index: 1;
-    }
-
-    .btn-border {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      transition: transform 2s ease-out;
-
-      path {
-        stroke-width: 4px;
-        //transform: scale(1.2);
-      }
-    }
-
-    .proSec {
-      cursor: pointer;
-      z-index: 1;
-      //border: thin solid crimson;
-      ${spacing('p', 2)};
-    }
-  }
+  
+  ${spacing('pt', 11)};
+  ${spacing('pb', 11)};
 `
 
 const Planet = styled(motion.div)`
@@ -106,27 +80,45 @@ const Planet = styled(motion.div)`
   }
 `
 
-const parentVariant = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      duration: 3,
-    },
-  },
-}
+
+const LottiContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  padding: 4rem;
+  border-radius: 100px;
+  //border: thin solid green;
+
+  ${heightWidth('height', 53)};
+  ${heightWidth('width', 53)};
+
+  .lotti {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    transition: transform 2s ease-out;
+
+    path {
+      stroke-width: 4px;
+    }
+  }
+
+  .to-projects {
+    //no need to make it relative for z-index to work b/c of the dynamic transform property
+    z-index: 1; 
+    ${text(1.1)};
+    ${spacing('p', 2)};
+  }
+`
 
 const Projects = () => {
   const { circle1, circle2 } = useProjectCircles()
-  const projectSectionRestoration = useScrollRestoration('project-section')
 
   const circle1Ref = useRef(null)
-  const txtRef = useRef(null)
   const circle2Ref = useRef(null)
   const containerRef = useRef(null)
   let Lotti = useRef([])
@@ -148,7 +140,6 @@ const Projects = () => {
   const ySmall = useTransform(yBig, y => y / 4)
   const xSmall = useTransform(xBig, x => x / 4)
 
-
   const calculateMotionValues = (x, y) => {
     const xPos = (x - window.innerWidth) / 15
     const yPos = (y - window.innerHeight) / 15
@@ -168,10 +159,8 @@ const Projects = () => {
   useEffect(() => {
     // return;
 
-    if ( inView )
-      window.addEventListener('mousemove', handler)
-    else
-      window.removeEventListener('mousemove', handler)
+    if (inView) window.addEventListener('mousemove', handler)
+    else window.removeEventListener('mousemove', handler)
 
     return () => window.removeEventListener('mousemove', handler)
   }, [inView])
@@ -181,7 +170,7 @@ const Projects = () => {
     // return;
     // if (moRotate.get() !== 0) return
 
-    Lotti.current = [];
+    Lotti.current = []
     lotti.destroy()
 
     Lotti.current.push(
@@ -207,65 +196,59 @@ const Projects = () => {
 
   useEffect(() => {
     console.log('inview :', inView, Lotti.current)
-    if ( Lotti[0] )
-      return;
+    if (Lotti[0]) return
 
-    if (inView) Lotti.current.forEach(lotti => {
-      lotti.play()
-    })
-    else Lotti.current.forEach(lotti => {
-      lotti.stop()
-    })
+    if (inView)
+      Lotti.current.forEach(lotti => {
+        lotti.play()
+      })
+    else
+      Lotti.current.forEach(lotti => {
+        lotti.stop()
+      })
   }, [inView])
 
   return (
-    <motion.section
-      id="proSec"
+    <ProjectContainer
+      id="projects"
       data-scroll-section
-      {...projectSectionRestoration}
       variants={parentVariant}
       initial="initial"
       animate="animate"
       exit="exit"
       ref={containerRef}
     >
-      <ProjectContainer>
-        <Headline title={'Projects'} mb={3} subtitle={'Case Studies'} />
+      <Headline title={'Projects'} mb={3} subtitle={'Case Studies'} />
 
-        <Planet style={{ y: yBig, x: xBig }} />
+      <Planet style={{ y: yBig, x: xBig }} />
 
-        <Planet className="planet-two" style={{ y: ySmall, x: xSmall }} />
+      <Planet className="planet-two" style={{ y: ySmall, x: xSmall }} />
 
-        <motion.div className="hover-target">
-          <Link
-            id="proSec"
-            data-pointer
-            data-magnet
-            data-tooltip
-            data-tooltip-text="Let me show you how cool i am!"
-            className="proSec"
-            ref={txtRef}
-            to={'/projects/#one'}
-          >
-            <motion.div className="allProjects-txt  hover_target">
-              All Projects(5)
-            </motion.div>
-          </Link>
+      <LottiContainer >
+        <Link
+          className="to-projects"
+          data-pointer
+          data-magnet
+          data-tooltip
+          data-tooltip-text="Let me show you how cool i am!"
+          to={'/projects/#one'}
+        >
+            All Projects(5)
+        </Link>
 
-          <motion.div
-            ref={circle1Ref}
-            style={{ rotate: moRotate }}
-            className="btn-border outer-border"
-          />
+        <motion.div
+          ref={circle1Ref}
+          style={{ rotate: moRotate }}
+          className="lotti lotti-1"
+        />
 
-          <motion.div
-            ref={circle2Ref}
-            style={{ rotate: moRotate2 }}
-            className="btn-border inner-border"
-          />
-        </motion.div>
-      </ProjectContainer>
-    </motion.section>
+        <motion.div
+          ref={circle2Ref}
+          style={{ rotate: moRotate2 }}
+          className="lotti lotti-2"
+        />
+      </LottiContainer>
+    </ProjectContainer>
   )
 }
 

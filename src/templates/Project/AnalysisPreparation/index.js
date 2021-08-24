@@ -66,7 +66,7 @@ const WireFrame = styled.div`
 
 const AnalysisPreparation = () => {
   return (
-    <AnalysisContainer fixed={false} maxWidth="xl" component="section">
+    <AnalysisContainer fixed={false} maxWidth="xl" component="section" data-scroll-section>
       <Title />
 
       <Flex>

@@ -8,15 +8,17 @@ const ProjectSDContainer = styled(motion.div)`
   position: fixed;
   z-index: 99;
   left: 0;
-  ${spacing('ml', 2.1)};
-
-  bottom: 4%;
-  cursor: pointer;
+  bottom: 5%;
+  
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-items: center;
   grid-gap: 0.6rem;
+
+  ${spacing('ml', 2.25)};
+
+  //border: thin solid red;
 `
 const parentVariant = {
   initial: {

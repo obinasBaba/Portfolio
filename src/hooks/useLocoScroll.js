@@ -10,14 +10,15 @@ gsap.registerPlugin(ScrollTrigger);
 export default function useLocoScroll(start, moScroll) {
   const events = EventSubscribers.getInstance();
 
+  console.log('outLocoInvoked...')
 
   useEffect(() => {
-
+    console.log( 'LocoInvoked ---- --- --', start)
 
     if (!start) return;
     let locoScroll = null;
 
-    const scrollEl = document.querySelector('[data-scroll-container]');
+    const scrollEl = document.querySelector('[data-scroll-container="true"]');
 
     locoScroll = new LocomotiveScroll({
       el: scrollEl,
@@ -31,6 +32,7 @@ export default function useLocoScroll(start, moScroll) {
       moScroll.x.set(arg.scroll.x)
       moScroll.y.set(arg.scroll.y)
       moScroll.limit.set(arg.limit.y)
+      // console.log(arg.scroll)
     });
 
     ScrollTrigger.scrollerProxy(scrollEl, {
@@ -70,6 +72,10 @@ export default function useLocoScroll(start, moScroll) {
     window.addEventListener('resize', lsUpdate)
     ScrollTrigger.addEventListener("refresh", lsUpdate);
     ScrollTrigger.refresh();
+
+    setTimeout(() => {
+      locoScroll.update()
+    }, 1000)
 
     return () => {
       if (locoScroll) {

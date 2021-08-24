@@ -2,17 +2,20 @@ import * as React from 'react'
 import { useContext, useEffect } from 'react'
 import HomePage from '../scenes/HomePage'
 import { AppStateContext } from '../contexts/AppStateContext'
-import ToolTip from '../components/Fixed/ToolTip'
+import useLocoScroll from '../hooks/useLocoScroll'
 
 const IndexPage = ({path}) => {
 
   const {
-    setCurrentPath
+    setCurrentPath, moScroll
   } = useContext( AppStateContext )
 
   useEffect(() => {
     setCurrentPath(path)
   }, [])
+
+  useLocoScroll(true, moScroll);
+
 
   return (
     <>

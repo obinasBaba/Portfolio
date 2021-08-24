@@ -28,7 +28,7 @@ const NavContainer = styled(motion.ul)`
     pointer-events: none;
   }
 
-  ${spacing('ml', 3.2)};
+  ${spacing('ml', 4.5)};
   ${spacing('mb', 3.5)};
   z-index: 99999;
 `
@@ -57,7 +57,7 @@ const parentVariant = {
     },
   },
   exit: {
-    x: '-200%',
+    x: '300%',
     transition: {
       delay: 0.1,
       duration: 1,

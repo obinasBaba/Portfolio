@@ -11,7 +11,7 @@ const AboutMetaContainer = styled( motion.div )`
   background-image: linear-gradient(137.81deg, #e7a28f 3.52%, #f9d6ac 41.89%, #fbfefc 96.77%);
   height: 100%;
   flex: 50%;
-  z-index: 200;
+  //z-index: 200;
   color: #02021e;
   
   display: flex;

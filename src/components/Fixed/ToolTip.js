@@ -58,54 +58,56 @@ const ToolTipWrapper = styled(motion.div)`
 const containerVariant = {
   initial: {
     opacity: 0,
-    y: 20,
+    y: 25,
   },
   animate: {
     opacity: 1,
     y: 0,
+    transition: {
+      duration: 1.2 * .5,
+      ease: 'easeIn'
+    }
   },
   exit: {
-    y: -20,
+    y: -25,
     opacity: 0,
+    transition: {
+      duration: 1.2 * .5,
+      ease: [0.6, 0.01, 0, 0.9],
+    }
   },
 }
 
 const ToolTip = ({ txt }) => {
-  const { toolTip, setToolTip } = useContext(AppStateContext)
+  const { toolTip, setToolTip, currentPath } = useContext(AppStateContext)
 
   const { loadingPage } = useContext(AppStateContext)
-  const controll = useAnimation()
 
-  useEffect(() => {}, [])
+  const onEnter = element => setToolTip({
+    text: element.target.dataset.tooltipText,
+    show: true,
+  })
 
-  useEffect(() => {
+  const onLeave = () =>  setToolTip({
+    text: '',
+    show: false,
+  })
+
+  const initToolTip = () => {
     if (loadingPage) return
+    onLeave();
 
     const toolTipElements = document.querySelectorAll('[data-tooltip-text]')
-    // console.log(toolTipElements)
-
     toolTipElements.forEach(el => {
-      // console.log(el)
-
-      el.addEventListener('mouseenter', element => {
-        // console.log('toolEnter')
-
-        setToolTip({
-          text: element.target.dataset.tooltipText,
-          show: true,
-        })
-      })
-
-      el.addEventListener('mouseleave', () => {
-        // console.log('toolLeave')
-
-        setToolTip({
-          text: '',
-          show: false,
-        })
-      })
+      el.removeEventListener('mouseenter', onEnter)
+      el.removeEventListener('mouseenter', onEnter)
+      el.addEventListener('mouseenter', onEnter)
+      el.addEventListener('mouseleave', onLeave)
     })
-  }, [loadingPage])
+  }
+
+  useEffect(() => initToolTip() , [loadingPage, currentPath])
+
 
   return (
     <InfoChipContainer>
@@ -116,11 +118,6 @@ const ToolTip = ({ txt }) => {
             initial="initial"
             animate="animate"
             exit="exit"
-            transition={{
-              duration: .8,
-              ease: [0.6, 0.01, 0, 0.9],
-            }}
-            // key={txt}
           >
             <motion.span className="dot" />
             <Excerpt>{toolTip.text}</Excerpt>

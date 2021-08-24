@@ -59,7 +59,7 @@ const ColorPalette = ({ colors, themeColor }) => {
   ]
 
   return (
-    <ColorsPaletteFlex maxWidth={false} fixed={true}  >
+    <ColorsPaletteFlex maxWidth={false} fixed={true} data-scroll-section >
       {tempColors.map(({ name, hex }) => (
         <ColorBox themeColor='rgba(255,66,0,0.84)' key={hex} >
           <Color hex={hex} />

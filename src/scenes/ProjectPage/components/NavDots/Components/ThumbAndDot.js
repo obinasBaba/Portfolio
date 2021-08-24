@@ -12,21 +12,28 @@ const ThumbAndDotContainer = styled.li`
   padding: 0;
   margin: 0;
   background-color: white;
-  height: 15px;
-  width: 15px;
+  height: 11px;
+  width: 11px;
   border-radius: 50%;
   
   & .thumb {
     position: absolute;
     display: grid;
     place-items: center;
-    font-family: 'shapes', serif;
-    font-size: 1.8rem;
-    line-height: 0;
-    margin: 0;
-    padding: 0;
-    color: blue;
+    
+    height: 20px;
+    width: 20px;
     //filter: url("#dots-gooey");
+    
+    p{
+      color: blue;
+      font-family: 'shapes', serif;
+      font-size: 1.4rem;
+      line-height: 0;
+      margin: 0;
+      padding: 0;
+    }
+    
   }
   
   & .hover-area{
@@ -41,9 +48,12 @@ const ThumbAndDotContainer = styled.li`
 
 
 const spring = {
-  type: 'spring',
-  stiffness: 500,
-  damping: 30,
+  // type: 'spring',
+  // stiffness: 500,
+  // damping: 30,
+
+  ease: [0.6, 0.01, 0, 0.9],
+  duration: 1,
 }
 
 const ThumbAndDot = ({ hidden, clickEvent, index, anchor, dataAnchor }) => {
@@ -68,7 +78,9 @@ const ThumbAndDot = ({ hidden, clickEvent, index, anchor, dataAnchor }) => {
           initial={false}
           transition={spring}
           className='thumb'>
-          i
+
+          <p>i</p>
+
         </motion.span>
       )}
 

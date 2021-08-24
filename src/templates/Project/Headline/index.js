@@ -25,17 +25,7 @@ import styled from 'styled-components'
 import ReturnBtn from '../../../components/ReturnBtn'
 import ScrollDown from '../../../components/ScrollDown'
 
-const FixedItems = styled.div`
-  position: fixed;
-  left: 3%;
-  top: 29%;
-  bottom: 5%;
-  z-index: 99999;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: space-between;
-`
+
 
 const Headline = ({ subTitle, title, about, media }) => {
 
@@ -49,12 +39,8 @@ const Headline = ({ subTitle, title, about, media }) => {
       initial="initial"
       animate="animate"
       exit="exit"
+      data-scroll-section
     >
-
-      <FixedItems>
-        <ReturnBtn to="/projects" />
-        <ScrollDown/>
-      </FixedItems>
 
       <BG variants={bgVariant} transition={transition} />
 

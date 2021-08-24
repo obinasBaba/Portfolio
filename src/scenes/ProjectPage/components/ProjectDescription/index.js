@@ -81,7 +81,7 @@ const ProjectDescription = ({ link, reversed, tags, title, url, index, exit }) =
       <OverflowWrapper >
 
         <motion.div className='btn-wrapper' variants={btnTxtVariants} transition={transition}>
-          <RightArrowLink link={link} tooTipTxt='Project case-study' txt='case-study' lineLength='100%' />
+          <MotionBtn text="Case-Study" to={link} state={{path: url}} margin={false} />
         </motion.div>
 
       </OverflowWrapper>

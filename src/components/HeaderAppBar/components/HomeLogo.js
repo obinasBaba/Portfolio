@@ -9,12 +9,12 @@ import useMagnet from '../../../hooks/useMagnet'
 
 const Logo = styled(motion.div)`
   position: relative;
-  margin-right: auto;
-  fill: var(--theme); //todo gradient
-  z-index: 50;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: auto;
+  fill: var(--theme); //todo gradient
+  z-index: 50;
   //border: thin solid red;
   transition: fill .35s ease-in-out;
 
@@ -79,6 +79,8 @@ const HomeLogo = ({ isWhite }) => {
           data-magnet-stop='1.7'
           data-tooltip
           data-tooltip-text='Where it all started'
+          data-attraction={1.4}
+          data-distance={.8}
           ref={logoRef}
     >
 
