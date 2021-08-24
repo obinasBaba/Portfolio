@@ -1,24 +1,24 @@
-import React, { useContext, useLayoutEffect } from 'react'
+import React, {useContext, useEffect, useRef} from 'react'
 import styled from 'styled-components'
 import { SkyColor } from '../Components/SkyColor'
 import BackgroundStars from '../../components/BackgroundStars'
 import HeaderAppBar from '../../components/HeaderAppBar'
 import { Main } from './index'
-import { AnimatePresence } from 'framer-motion'
+import {AnimatePresence, useElementScroll} from 'framer-motion'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import ToolTip from '../../components/Fixed/ToolTip'
 import ProgressCircle from '../../components/ScrollProgressCircle'
 import { AppStateContext } from '../../contexts/AppStateContext'
-import FontLoaded from 'fontfaceobserver'
 import Cursor from '../../components/Cursor'
+import useLoadingFonts from '../../hooks/useFonts'
+import useLocoScroll from '../../hooks/useLocoScroll'
 
 export const PageContainer = styled.div`
   position: relative;
   display: flex;
   flex-flow: column;
-  flex-direction: column;
   //border: thick solid crimson;
-  overflow: hidden;
+  //overflow: hidden;
   //z-index: 0;
 `
 
@@ -37,28 +37,11 @@ const BottomGradient = styled.div`
 `
 
 const Page = ({ children, path }) => {
-  const { loadingPage, events } = useContext(AppStateContext)
+  const { loadingPage, moScroll } = useContext(AppStateContext)
 
-  useLayoutEffect(() => {
-    // console.log('Spinner ::' , events)
-    // magnetElements = loadingPage && new MagnetElement()
+  useLoadingFonts();
 
-    // events.addLoader()
-
-    let elianto = new FontLoaded('Elianto-Regular')
-    let poppins = new FontLoaded('Poppins Black')
-    let icons = new FontLoaded('shapes')
-
-    // console.log( 'path : ', path)
-
-    Promise.all([elianto.load(), poppins.load(), icons.load()])
-      .then(() => {
-        events.finishLoading()
-      })
-      .catch(console.error)
-
-    return () => {}
-  }, [])
+  useLocoScroll(!loadingPage, moScroll )
 
   return (
     <PageContainer>
@@ -66,12 +49,12 @@ const Page = ({ children, path }) => {
         <BackgroundStars />
         <HeaderAppBar />
 
-        <Main>
+        <Main data-scroll-container >
           <AnimatePresence exitBeforeEnter >
             {loadingPage ? (
               <LoadingSpinner />
             ) : (
-              <AnimatePresence  custom={{ path: path }}>
+              <AnimatePresence exitBeforeEnter  custom={{ path: path }}>
                 <Cursor path={path} />
                 {children}
               </AnimatePresence>

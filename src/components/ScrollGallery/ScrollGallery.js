@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useContext, useEffect} from 'react'
 import styled from 'styled-components'
 import {
   animate,
@@ -7,6 +7,7 @@ import {
   useTransform,
   useViewportScroll,
 } from 'framer-motion'
+import {AppStateContext} from '../../contexts/AppStateContext'
 
 const AnimatedDiv = styled(motion.div)`
   display: flex;
@@ -17,9 +18,9 @@ const AnimatedDiv = styled(motion.div)`
 `
 
 const Gallery = ({ children, step }) => {
-  const { scrollYProgress } = useViewportScroll()
+  const { moScroll } = useContext(AppStateContext)
 
-  const mapped = useTransform(scrollYProgress, [0, 1], [-40, -1000])
+  const mapped = useTransform(moScroll.y, [0, 2500], [-40, -1000])
 
   const x = useSpring(mapped, {
     mass: .5,  damping: 10, stiffness: 50,

@@ -29,8 +29,8 @@ const ProjectContainer = styled.div`
   justify-content: center;
   //border: thick solid red;
   padding: 2rem 0;
-  ${spacing('pt', 25)};
-  ${spacing('mb', 8)};
+  ${spacing('pt', 22)};
+  ${spacing('mb', 3)};
 
   .allProjects-txt {
     ${text(1.1)};
@@ -88,8 +88,8 @@ const Planet = styled(motion.div)`
     #262147 78.93%
   );
 
-  ${heightWidth('width', 10)};
-  ${heightWidth('height', 10)};
+  ${heightWidth('width', 20)};
+  ${heightWidth('height', 20)};
 
   &.planet-two {
     left: initial;
@@ -100,8 +100,8 @@ const Planet = styled(motion.div)`
       #83a4ff 87.08%
     );
 
-    ${heightWidth('width', 4)};
-    ${heightWidth('height', 4)};
+    ${heightWidth('width', 8)};
+    ${heightWidth('height', 8)};
     ${gridMultiplayer('right', 10)};
   }
 `
@@ -145,8 +145,9 @@ const Projects = () => {
   const yBig = useSpring(0, config)
   const xBig = useSpring(0, config)
 
-  const ySmall = useTransform(yBig, y => y / 6)
-  const xSmall = useTransform(xBig, x => x / 6)
+  const ySmall = useTransform(yBig, y => y / 4)
+  const xSmall = useTransform(xBig, x => x / 4)
+
 
   const calculateMotionValues = (x, y) => {
     const xPos = (x - window.innerWidth) / 15
@@ -165,8 +166,7 @@ const Projects = () => {
 
   //transform
   useEffect(() => {
-
-
+    // return;
 
     if ( inView )
       window.addEventListener('mousemove', handler)
@@ -178,18 +178,18 @@ const Projects = () => {
 
   //lottie animation
   useEffect(() => {
+    // return;
     // if (moRotate.get() !== 0) return
 
-    window.addEventListener('scroll', () => {
-      console.log(moRotate.get())
-    })
+    Lotti.current = [];
+    lotti.destroy()
 
     Lotti.current.push(
       lotti.loadAnimation({
         container: circle1Ref.current,
         renderer: 'svg',
         loop: true,
-        autoplay: true,
+        autoplay: false,
         path: circle1.publicURL,
       })
     )
@@ -199,13 +199,14 @@ const Projects = () => {
         container: circle2Ref.current,
         renderer: 'svg',
         loop: true,
-        autoplay: true,
+        autoplay: false,
         path: circle2.publicURL,
       })
     )
   }, [])
 
   useEffect(() => {
+    console.log('inview :', inView, Lotti.current)
     if ( Lotti[0] )
       return;
 
@@ -218,8 +219,9 @@ const Projects = () => {
   }, [inView])
 
   return (
-    <motion.div
+    <motion.section
       id="proSec"
+      data-scroll-section
       {...projectSectionRestoration}
       variants={parentVariant}
       initial="initial"
@@ -263,7 +265,7 @@ const Projects = () => {
           />
         </motion.div>
       </ProjectContainer>
-    </motion.div>
+    </motion.section>
   )
 }
 

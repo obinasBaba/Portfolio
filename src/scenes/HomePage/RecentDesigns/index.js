@@ -9,7 +9,7 @@ import ScrollGallery from '../../../components/ScrollGallery/ScrollGallery'
 import ImagesLoaded from 'imagesloaded'
 import useOnScreen from '../../../hooks/useOnScreen'
 
-const RecentDesignWrapper = styled.div`
+const RecentDesignWrapper = styled.section`
   
   //border: thick solid saddlebrown;
 `

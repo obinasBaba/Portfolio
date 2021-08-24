@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components'
 import HomeLogo from './components/HomeLogo'
 import NavBtn from './components/NavBtn'
 import { mediumUp, spacing } from '../../styles/mixins'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, useMotionValue } from 'framer-motion'
 import Menu from './components/Menu'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import ContactMe from '../ContactMe'
@@ -15,26 +15,41 @@ const transition = css`
 `
 
 function HideOnScroll({ children, window, isMenuOpen }) {
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
   const [slide, setSlide] = useState(true)
-
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-    threshold: 50,
-  })
+  const [trigger, setTrigger] = useState(true)
 
   const {
     isContactOpen,
-    setContactModal,
+    moScroll: {y},
   } = useContext(AppStateContext)
+
+  const init = () =>{
+
+    setInterval(() => {
+      if (y.get() > y.getPrevious())
+      {
+          setTrigger(false)
+      }
+      else if (y.get() < y.getPrevious())
+      {
+        setTrigger(true)
+      }
+
+    }, 1000)
+  }
+
+
+  useEffect(() => {
+
+    init()
+
+  }, [])
 
   useEffect(() => {
     if ( isContactOpen || isMenuOpen ){
       setSlide(false)
     }else {
-      setSlide(!trigger)
+      setSlide(trigger)
     }
 
   }, [isContactOpen, trigger, isMenuOpen])

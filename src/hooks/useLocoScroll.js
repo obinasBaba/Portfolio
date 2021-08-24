@@ -1,44 +1,44 @@
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import {useEffect, useLayoutEffect} from 'react'
+import {useEffect} from 'react'
 import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import EventSubscribers from '../helpers/EventSubscribers'
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function useLocoScroll(start) {
-  let subs = EventSubscribers.getInstance();
+export default function useLocoScroll(start, moScroll) {
+  const events = EventSubscribers.getInstance();
+
 
   useEffect(() => {
 
-    console.log('loco invoked', start)
 
     if (!start) return;
     let locoScroll = null;
 
-    const scrollEl = document.querySelector("#main-container");
+    const scrollEl = document.querySelector('[data-scroll-container]');
 
     locoScroll = new LocomotiveScroll({
       el: scrollEl,
       smooth: true,
       multiplier: 1,
-      class: "is-reveal",
     });
 
     // whenever when we scroll loco update scrollTrigger
     locoScroll.on("scroll", arg => {
       ScrollTrigger.update();
-      subs.scroll = arg.scroll
-      // console.log(subs.scroll)
+      moScroll.x.set(arg.scroll.x)
+      moScroll.y.set(arg.scroll.y)
+      moScroll.limit.set(arg.limit.y)
     });
 
     ScrollTrigger.scrollerProxy(scrollEl, {
-      /*getBoundingClientRect(){
+      getBoundingClientRect(){
         return{
           top: 0, left: 0, width: window.innerWidth, height: window.innerHeight
         }
-      },*/
+      },
 
       // pinType: document.querySelector('').style.transform ? 'transform': 'fixed',
 
@@ -50,6 +50,7 @@ export default function useLocoScroll(start) {
         }
         return null;
       },
+
       scrollLeft(value) {
         if (locoScroll) {
           return arguments.length

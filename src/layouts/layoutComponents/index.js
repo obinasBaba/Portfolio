@@ -4,12 +4,8 @@ import { motion } from 'framer-motion'
 
 export const GlobalStyle = createGlobalStyle`
 
-  ${responsiveVar}
-
-  ;
-  ${fpNav}
-
-  ;
+  ${responsiveVar}  ;
+  ${fpNav}  ;
 
   html,
   body,
@@ -19,7 +15,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .c-scrollbar {
-    //display: none;
+    display: none;
   }
 
 
@@ -33,23 +29,19 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    --bg-gradient: linear-gradient(to bottom, #072142, #061c37, #07182b, #061220, #020b16);
-
-    &.active {
-      --bg-gradient: #02021e;
-
-    }
-
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    color: #fff;
+    
     * {
-      cursor: none;
+      cursor: none !important;
     }
 
     --theme: #fff;
     --stroke-bottom: #f9d6ac;
     --stroke-top: #02021e;
     --head-opacity: 0;
-
-
     --bottom-gradient: linear-gradient(to bottom,
     rgba(7, 33, 66, 0),
     rgba(6, 28, 55, 0),
@@ -101,19 +93,6 @@ export const GlobalStyle = createGlobalStyle`
     width: 0px;
   }
 
-  *::-webkit-scrollbar-track {
-    //background: #072142;
-    background-image: linear-gradient(to bottom, #072142, #061c37, #07182b, #061220, #020b16);
-    transition: background-color 1s ease-in-out;
-
-  }
-
-  *::-webkit-scrollbar-thumb {
-    background-color: #3719ca;
-    border-radius: 100px;
-    transition: background-color 1s ease-in-out;
-  }
-
   a {
     display: block;
     text-decoration: none;
@@ -121,45 +100,15 @@ export const GlobalStyle = createGlobalStyle`
     cursor: none;
   }
 
-  * {
-    cursor: none !important;
-  }
-
-  body {
-
-    //overflow-x: hidden;
-
-    &.locked {
-      overflow: hidden;
-      height: 100vh;
-    }
-
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-
-    margin: 0;
-    position: relative;
-    color: #fff;
-    //background: var(--dark);
-
-  }
-
-  .abyssopelagic {
-    font-family: Abyssopelagic, serif;
-
-  }
-
-  svg#goo {
-    pointer-events: none;
-    position: absolute;
-  }
 
 `
 
 export const Main = styled(motion.main)`
   position: relative;
   flex: 1;
+  display: flex;
+  flex-flow: column;
+  overflow: hidden;
   width: 100%;
-
-  //border: thick solid yellow;
+  //border: thick solid red;
 `

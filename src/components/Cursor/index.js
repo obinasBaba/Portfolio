@@ -301,6 +301,8 @@ const Cursor = ({path}) => {
   }, [path])
 
 
+  // console.time('UniquetLabelName') ....code here.... console.timeEnd('UniqueLabelName')
+
   return (
     <CursorContainer>
       <Pointer style={{ x, y }}>

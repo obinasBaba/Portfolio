@@ -29,6 +29,10 @@ export default function Layout({ children, path }) {
           </AppStateProvider>
         </ThemeProvider>
       </StyledThemeProvider>
+
+      <script type="text/javascript" src="https://unpkg.com/default-passive-events"/>
+
     </React.Fragment>
+
   )
 }

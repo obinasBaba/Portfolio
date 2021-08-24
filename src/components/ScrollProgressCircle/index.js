@@ -1,8 +1,14 @@
-import { motion, useTransform, useViewportScroll } from 'framer-motion'
-import React, {useContext, useEffect, useRef} from 'react'
+import {
+  motion,
+  useElementScroll, useMotionValue,
+  useTransform,
+  useViewportScroll,
+} from 'framer-motion'
+import React, {useContext, useEffect, useLayoutEffect, useRef} from 'react'
 import styled from 'styled-components'
 import { heightWidth, spacing } from '../../styles/mixins'
 import {AppStateContext} from '../../contexts/AppStateContext'
+import {map} from '../../helpers/utils'
 
 const RotatingDiv = styled(motion.div)`
   width: 100%;
@@ -70,12 +76,14 @@ const ScrollProgressCircle = () => {
   const {
     isContactOpen,
     setContactModal,
+    moScroll: {y, limit},
   } = useContext(AppStateContext)
 
-  const { scrollYProgress } = useViewportScroll()
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 361])
-  const pathLength = useTransform(rotate, [0, 360], [0, 1])
+  const rotate = useTransform(y, latest => {
+    return map(latest, 0, limit.get(), 0, 360)
+  })
 
+  const pathLength = useTransform(rotate, [0, 360], [0, 1])
 
   return (
     <ProgressCircleContainer>

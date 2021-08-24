@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useRef, useState} from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 import { Typography } from '@material-ui/core'
@@ -12,15 +12,12 @@ import { spacing } from '../../../styles/mixins'
 import BigPlanet from './components/BigPlanet'
 import useOnScreen from '../../../hooks/useOnScreen'
 
-
-
-const ProcessContainer = styled.div`
+const ProcessContainer = styled.section`
   min-height: 100vh;
   overflow: visible;
   position: relative;
   padding: 14rem 0 10rem;
   //border: thin solid red;
-
 `
 
 const ProcessTxt = styled(Typography)`
@@ -38,24 +35,21 @@ const ProcessTxt = styled(Typography)`
 const ProcessMask = styled(motion.div)`
   z-index: 5;
   //border: thin dashed #89dc14;
-  
+
   ${spacing('pl', 50)};
 `
 
 const ProcessTrack = styled(motion.div)`
   display: flex;
-  //border: thin dashed #00CCFF;
+  //border: 2px dashed #00ccff;
   width: max-content;
 
-  & > :not(:last-child) { 
-     ${spacing('mr', 17.5)};
+  & > :not(:last-child) {
+    ${spacing('mr', 17.5)};
   }
 `
 
-
-
 const MyProcess = () => {
-
   const { build, design, pentool, phone, rocket } = useApproachAssets()
   const { loadingPage } = useContext(AppStateContext)
 
@@ -70,121 +64,111 @@ const MyProcess = () => {
   const [inView, setInView] = useState(false)
 
   const progress = useMotionValue(0)
-  const opacity = useTransform(progress, [.89, .96], [1, 0])
+  const opacity = useTransform(progress, [0.89, 0.96], [1, 0])
   const y = useTransform(progress, [0, 1], [0, -200])
 
   useEffect(() => {
-    if ( inView ) return;
-    if ( intersecting )
-      setInView(true)
-
+    if (inView) return
+    if (intersecting) setInView(true)
   }, [intersecting])
 
   useEffect(() => {
+    // if ( inView )
 
-    if ( inView )
     setTimeout(() => {
-
-      console.log('gsap inview')
 
       const mask = document.querySelector('.mask')
       const track = document.querySelector('.track')
 
-      gsap.to(track, {
-        // x: -(trackRef.current.offsetWidth - 500 ),
-        ease: "none",
+      // STrigger.refresh()
+
+
+      gsap.timeline()
+        .to(track, {
+        ease: 'none',
         scrollTrigger: {
-          trigger: mask,
+          trigger: '.mask',
           pin: true,
-          start: 'top 25%',
-          end: () => '+=' +  (track.offsetWidth - 300),
+          scroller: '[data-scroll-container]',
+          start: () => 'top 25%',
+          end: () => '+=' + (track.offsetWidth - 300),
         },
       })
 
-      gsap.to(track, {
-        x: -(track.offsetWidth - 400 ),
-        ease: "none",
+        .to(track, {
+        x: -(track.offsetWidth - 400),
+        ease: 'none',
         scrollTrigger: {
-          trigger: mask,
-          scrub: 1.3,
-          // pin: true,
-          start: 'top 25%',
-          onUpdate(self){
+          trigger: '.mask',
+          scrub: 1,
+          scroller: '[data-scroll-container]',
+          start: () => 'top 25%',
+          end: () => '+=' + track.offsetWidth,
+
+          onUpdate(self) {
             progress.set(self.progress)
+            console.log(self.progress)
           },
-          end: () => '+=' +  track.offsetWidth ,
         },
       })
 
-      gsap.to('.title-wrapper', {
+        .to('.title-wrapper', {
         scrollTrigger: {
           pin: true,
           pinSpacing: false,
           trigger: '.title-wrapper',
-          start: 'top 10%',
-          end: () => '+=' +  (track.offsetWidth ) ,
-        }
+          scroller: '[data-scroll-container]',
+          start: () => 'top 10%',
+          end: () => '+=' + track.offsetWidth,
+        },
       })
 
-      gsap.to('.wavy', {
+        .to('.wavy', {
         scrollTrigger: {
           pin: true,
           pinSpacing: false,
           trigger: '.wavy',
+          scroller: '[data-scroll-container]',
           start: 'top 5%',
-          end: () => '+=' +  (track.offsetWidth ) ,
-        }
+          end: () => '+=' + track.offsetWidth,
+        },
       })
 
       STrigger.refresh()
     })
-
-  }, [loadingPage, inView])
-
+  }, [inView])
 
   return (
     <ProcessContainer ref={containerRef} data-scroll-section>
-      {
-        inView ?       <>
-          <div className="wavy">
-            <motion.div style={{y}}>
-              <BigPlanet progress={progress} />
-            </motion.div>
+      <div className="wavy">
+        <motion.div style={{ y }}>
+          <BigPlanet progress={progress} />
+        </motion.div>
+      </div>
 
-          </div>
+      <div className="title-wrapper">
+        <motion.div style={{ opacity }}>
+          <ProcessTxt ref={titleRef} variant="h1" className="title" noWrap={true}>
+            My Approach
+          </ProcessTxt>
+        </motion.div>
+      </div>
 
-
-          <div className="title-wrapper">
-            <motion.div style={{opacity}}>
-              <ProcessTxt ref={titleRef} variant="h1" className="title" noWrap={true}>
-                My Approach
-              </ProcessTxt>
-            </motion.div>
-
-          </div>
-
-
-
-          <ProcessMask ref={maskRef} className='mask' >
-            <ProcessTrack ref={trackRef} className='track'>
-              {processData.map(({ no, title, txt, keys }, index) => (
-                <Card
-                  key={title}
-                  no={no}
-                  title={title}
-                  txt={txt}
-                  index={index}
-                  path={icons[index].publicURL}
-                  methodologies={keys}
-                />
-              ))}
-            </ProcessTrack>
-          </ProcessMask>
-        </>
-
-          : <></>
-      }
-
+      <ProcessMask ref={maskRef} className="mask">
+        <ProcessTrack ref={trackRef} className="track">
+          {processData.map(({ no, title, txt, keys }, index) => (
+            <Card
+              key={title}
+              no={no}
+              title={title}
+              txt={txt}
+              index={index}
+              path={icons[index].publicURL}
+              methodologies={keys}
+            />
+          ))}
+        </ProcessTrack>
+      </ProcessMask>
     </ProcessContainer>
   )
 }

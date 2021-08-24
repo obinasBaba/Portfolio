@@ -8,7 +8,6 @@ import RightArrowLink
   from '../../Experiments/components/ExperimentTrack/RightArrowLink'
 
 const InfoTxt = styled.div`
-
   position: relative;
   z-index: 0;
   //border: thin solid red;
@@ -21,18 +20,6 @@ const InfoTxt = styled.div`
   
   &::before {
     content: '';
-    position: absolute;
-    opacity: .1;
-    border-radius: 50%;
-    background-image: url(${logo});
-    background-repeat: no-repeat;
-    background-size: contain;
-    top: -20%;
-    left: -74%;
-    z-index: -1;
-
-    ${ heightWidth('width', 70) };
-    ${ heightWidth('height', 70) };
   }
     
 `
@@ -48,7 +35,6 @@ const Title = styled.p`
   ${ title( 2 ) };
   ${spacing( 'mb', 5 )};
   
- 
 `
 
 const Checkout = styled.div`
@@ -80,9 +66,26 @@ const txtStyle = css`
   ${ text( 1 ) };
 `;
 
+const BlogEffect = styled.div`
+  position: absolute;
+  opacity: .1;
+  border-radius: 50%;
+  background-image: url(${logo});
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: -20%;
+  left: -74%;
+  z-index: -1;
+
+  ${ heightWidth('width', 70) };
+  ${ heightWidth('height', 70) };
+`
+
 const Info = () => {
   return (
     <InfoTxt>
+
+      <BlogEffect data-scroll data-scroll-speed='4'/>
 
       <Title >
         I usually write an in-depth article sharing what I learned every often.

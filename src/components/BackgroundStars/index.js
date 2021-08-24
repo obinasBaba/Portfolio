@@ -1,8 +1,14 @@
-import React, { useEffect, useRef } from 'react'
-import { useSpring, useTransform, useViewportScroll } from 'framer-motion'
+import React, {useContext, useEffect, useLayoutEffect, useRef} from 'react'
+import {
+  useElementScroll,
+  useSpring,
+  useTransform,
+  useViewportScroll,
+} from 'framer-motion'
 import useBackgroundsAssets from '../../hooks/queries/useBackgroundsAssets'
 import { Galaxy, Layer, Wrapper } from './components'
 import { useMouse } from 'react-use'
+import {AppStateContext} from '../../contexts/AppStateContext'
 
 const BackgroundStars = () => {
   const { starsBig, starsSmall, starsBigOld, starsSmallOld } = useBackgroundsAssets()
@@ -25,8 +31,16 @@ const BackgroundStars = () => {
     xMouse.set(xPos);
   };
 
+  const doc =  useRef(null);
+
+
+  useElementScroll( target )
+
   const { scrollY } = useViewportScroll()
-  const mappedY = useTransform(scrollY, y => Math.ceil((300 / 3400) * -y))
+  const { moScroll: {x, y} } = useContext(AppStateContext)
+
+
+  const mappedY = useTransform(y, y => Math.ceil((300 / 3400) * -y))
 
   const yScrollBig = useSpring(mappedY, config)
   const yScrollSmall = useTransform(yScrollBig, latest => latest / 1.5)

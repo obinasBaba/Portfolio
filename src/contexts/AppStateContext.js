@@ -1,5 +1,6 @@
 import React, {useEffect, useLayoutEffect, useState} from 'react'
 import EventSubscribers from '../helpers/EventSubscribers'
+import {useMotionValue, useTransform} from 'framer-motion'
 
 export const AppStateContext = React.createContext(false)
 
@@ -21,21 +22,23 @@ const AppStateProvider = ( {children} ) => {
   const [loadingPage, setLoadingPage] = useState(true)
   const [currentPath, setCurrentPath] = useState('/')
   const [cursorScaled, setCursorScaled] = useState(false)
-
+  const [fromCaseStudy, setFromCaseStudy] = useState(false)
   const [toolTip, setToolTip] = useState({
     text: '',
     show: false
   })
-
-
-  const [fromCaseStudy, setFromCaseStudy] = useState(false)
-
   const [titleRect, setTitleRect] = useState({
     x: 0,
     y: 0,
     width: 0,
     height: 0,
   })
+
+  const x= useMotionValue(0)
+  const y= useMotionValue(0)
+  const yProgress= useMotionValue(0);
+  const xProgress= useMotionValue(0);
+  const limit= useMotionValue(0)
 
 
   useLayoutEffect(() => {
@@ -67,7 +70,10 @@ const AppStateProvider = ( {children} ) => {
       events: loadingEvents,
       toolTip, setToolTip,
       currentPath, setCurrentPath,
-      cursorScaled, setCursorScaled
+      cursorScaled, setCursorScaled,
+      moScroll: {
+        x, y, yProgress, xProgress, limit,
+      }
       // magnet: MagnetElements
 
     }} >
