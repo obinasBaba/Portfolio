@@ -15,16 +15,13 @@ import {
 import { Container } from '@material-ui/core'
 import BackArrow from './BackArrow'
 
-const ArticleContainer = styled.div`
+const ArticleContainer = styled.section`
   position: relative;
+  color: var(--theme);
 
   ${ spacing( "pt", 22 ) };
   ${ spacing( "pb", 10 ) };
   ${ spacing( "mt", -16 ) };
-
-  color: var(--theme);
-  
-
 `;
 
 const ArticleWrapper = styled ( Container ) `
@@ -258,7 +255,7 @@ const ArticleWrapper = styled ( Container ) `
 
 const Article = ({ html }) => {
   return (
-    <ArticleContainer>
+    <ArticleContainer data-scroll-section>
 
       <BackArrow to='/blog' />
 

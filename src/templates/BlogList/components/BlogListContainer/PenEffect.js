@@ -1,28 +1,34 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styled from 'styled-components'
 import {motion, useSpring, useTransform} from 'framer-motion'
+import {AppStateContext} from '../../../../contexts/AppStateContext'
 
 const PenContainer = styled( motion.div )`
   position: fixed;
-  //z-index: -1;
   top: 17%;
   left: 1%;
   bottom: -14%;
-  right: auto;
-  //border: thin solid rebeccapurple;
+  pointer-events: none;
   opacity: .7;
+  //z-index: -1;
+  //border: thin solid rebeccapurple;
 `
 
-const PenEffect = ({progress}) => {
+const PenEffect = () => {
+
+  const {moScroll} = useContext(AppStateContext)
+  const progress = useTransform(moScroll.y,
+    [0, moScroll.limit.get()], [0, 1]);
 
   const yTransform =
-    useTransform(progress, [0, 1], [0, -110]);
+    useTransform(progress, [0, 1], [0, -125]);
 
   const y = useSpring(yTransform, {
     mass: .5,  damping: 10, stiffness: 50,
   })
 
-  const rTransform = useTransform(progress, [0, .4, .45, .95 ],
+  const rTransform = useTransform(progress,
+    [0, .4, .45, .95 ],
     [0, -15, 0, -15]);
   const rotate = useSpring(rTransform, {
     mass: .5,  damping: 10, stiffness: 50,

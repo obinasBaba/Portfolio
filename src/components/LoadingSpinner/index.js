@@ -82,7 +82,7 @@ const SmallBall = styled.div`
     }
 
     to {
-      transform: translateY(70px) translateX(var(--move));
+      transform: translateY(70px) translateX(var(50px));
     }
   }
 `
@@ -102,8 +102,6 @@ const LoadingSpinner = ({children}) => {
     target: 50,
     cancelId: null,
   }
-
-  let magnetElements;
 
 
   const move = () => {

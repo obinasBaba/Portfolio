@@ -71,7 +71,7 @@ const config = {
   damping: 10,
 }
 
-const Moon = ({ zIndex, pos, showMoon = true, show = true, variants = {} }) => {
+const Moon = ({ zIndex, pos = 'fixed', showMoon = true, show = true, variants = {} }) => {
   const x = useSpring(0, config)
   const y = useSpring(0, config)
 

@@ -43,8 +43,8 @@ const ProjectContainer = styled(motion.section)`
   justify-content: center;
   max-width: 100%;
   min-height: 100vh;
-  border: thick solid red;
-  padding: 2rem 0;
+  //border: thick solid red;
+  //padding: 2rem 0;
   
   ${spacing('pt', 11)};
   ${spacing('pb', 11)};

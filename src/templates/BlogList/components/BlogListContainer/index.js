@@ -8,6 +8,7 @@ import gsap from 'gsap';
 import STrigger from 'gsap/ScrollTrigger'
 import PenEffect from './PenEffect'
 import MailUs from '../../../../scenes/MailUs'
+import useLocoScroll from '../../../../hooks/useLocoScroll'
 
 
 const BlogListContainer = styled( Container )`
@@ -38,7 +39,7 @@ const Title = styled( Typography )`
 `;
 
 const BlogListWrapper = styled( motion.div )`
-  //border: thin dashed teal;
+  //border: 2px dashed teal;
   width: 100%;
   max-width: 1050px;
   display: flex;
@@ -90,13 +91,13 @@ const BlogList = ({ children}) => {
       const cardContainer = document.querySelector('.card-container')
 
       gsap.to(pageTitle, {
-        // x: -(trackRef.current.offsetWidth - 500 ),
         scrollTrigger: {
           trigger: pageTitle,
           pinSpacing: false,
           pin: true,
+          scroller: '[data-scroll-container]',
           scrub: 2,
-          start: 'top 10%',
+          start: 'top 8%',
           end: () => '+=' +  (cardContainer.offsetHeight),
           onUpdate(self){
             progress.set(self.progress)
@@ -111,10 +112,7 @@ const BlogList = ({ children}) => {
 
   return (
 
-      <BlogListContainer fixed={ false } maxWidth={ false} >
-
-        <Moon showMoon={false} pos='fixed' />
-        <PenEffect  progress={progress}/>
+      <BlogListContainer fixed={ false } maxWidth={ false} data-scroll-section>
 
         <BlogListWrapper variants={wrapperVariant}
                     transition={transition}

@@ -12,7 +12,7 @@ import ContactMe from '../ContactMe'
 const transition = css`
   transition: all 0.3s;
 `
-
+let intervalId;
 function HideOnScroll({ children, window, isMenuOpen }) {
   const [slide, setSlide] = useState(true)
   const [trigger, setTrigger] = useState(true)
@@ -23,16 +23,13 @@ function HideOnScroll({ children, window, isMenuOpen }) {
   } = useContext(AppStateContext)
 
   const init = () =>{
-
-    setInterval(() => {
+    clearInterval(intervalId)
+    intervalId = setInterval(() => {
       if (y.get() > y.getPrevious())
-      {
-          setTrigger(false)
-      }
+        setTrigger(false)
+
       else if (y.get() < y.getPrevious())
-      {
         setTrigger(true)
-      }
 
     }, 1000)
   }
@@ -78,7 +75,7 @@ const NavContainer = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: var(--head-gradient);
+    //background-image: var(--head-gradient);
     opacity: var(--head-opacity);
     transition: all .35s ease-in-out;
   }

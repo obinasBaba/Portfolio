@@ -39,7 +39,6 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   //data for Project case-study page...
-
   const data = await graphql(`
     query {
       preview1: file(relativePath: { eq: "sections/projects/preview-11.jpg" }) {
@@ -110,7 +109,7 @@ exports.createPages = async ({ graphql, actions }) => {
           path.resolve('./src/templates/BlogPage/index.js'),
         context: {
           slug: slug,
-          nextBlog: next,
+          nextBlog: next.node.fields.slug,
         }
       })
     });

@@ -1,36 +1,77 @@
 import React from "react";
 import styled from "styled-components";
-import { spacing } from "../../../../styles/mixins";
+import {gridColWidth, gridify, spacing} from '../../../../styles/mixins'
 import { Typography } from "@material-ui/core";
+import {GatsbyImage, getImage} from 'gatsby-plugin-image'
 
-const MoreBlogContainer = styled.div`
+const MoreBlogContainer = styled.section`
   margin: 0 auto;
-  padding-right: 15px;
-  padding-left: 15px;
   max-width: 90rem;
+  height: 380px;
+  border: thin solid red;
+
+
+  ${gridify()};
+  place-items: center;
   
-  @media screen and (min-width: 768px) {
-    padding-right: 4.28rem;
-    padding-left: 4.28rem;
+  & > *{
+     grid-row: 1;
   }
   
-  border: thin solid red;
+  @media screen and (min-width: 768px) {
+    //padding-right: 4.28rem;
+    //padding-left: 4.28rem;
+  }
   
-  ${ spacing('mb', 14) };
   
+  .img-box{
+    width: 100%;
+    height: 100%;
+    
+    ${gridColWidth()};
+    
+    img{
+      max-width: 100%;
+    }
+  }
+  
+  .next-title{
+    
+  }
 `
 
-const MoreTitle = styled( Typography )`
+const NextBlogTitle = styled.div`
+  z-index: 1;
+  text-align: left;
+  justify-self: start;
+  align-self: start;
   
+  & > :first-child{
+    max-width: 20ch;
+    text-align: left;
+    font-weight: 900;
+    color: var(--theme);
+  }
+  
+  ${spacing('ml', 10)};
+  ${spacing('mt', 7)};
+  ${gridColWidth()};
 `
 
-const MoreBlog = ( {} ) => {
+const MoreBlog = ( {data} ) => {
+  const { title, date, tags, thumbnail } = data
+  console.log(title)
+
+
   return (
-    <MoreBlogContainer>
+    <MoreBlogContainer data-scroll-section>
 
-      <MoreTitle> Other recent posts :  </MoreTitle>
-
-      
+      <GatsbyImage className='img-box' objectFit='cover' alt={'next blog'} image={getImage(thumbnail)}/>
+      <NextBlogTitle className='next-title' >
+        <Typography variant='h2'>
+          {title}
+        </Typography>
+      </NextBlogTitle>
 
     </MoreBlogContainer>
   );

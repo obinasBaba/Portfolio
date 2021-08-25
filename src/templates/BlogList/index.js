@@ -6,6 +6,9 @@ import { useMediaQuery } from '@material-ui/core'
 import BlogList from './components/BlogListContainer'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import MailUs from '../../scenes/MailUs'
+import useLocoScroll from '../../hooks/useLocoScroll'
+import Moon from '../../layouts/Components/Moon'
+import PenEffect from './components/BlogListContainer/PenEffect'
 
 
 const BlogListTemplate = ({
@@ -13,20 +16,24 @@ const BlogListTemplate = ({
   pageContext: { currentPage, pageCount },
   path,
 }) => {
-  const { setCurrentPath } = useContext(AppStateContext)
+  const { setCurrentPath, moScroll } = useContext(AppStateContext)
 
   useEffect(() => {
     setCurrentPath(path)
   }, [])
 
-  const previousPage = currentPage === 2 ? '/blog' : `/blog/${currentPage - 1}`
+  useLocoScroll(true)
 
+
+  const previousPage = currentPage === 2 ? '/blog' : `/blog/${currentPage - 1}`
   const nextPage = `/blog/${currentPage + 1}`
   const theme = useTheme()
   const match = useMediaQuery(theme.breakpoints.up('sm'))
 
   return (
     <>
+      <Moon showMoon={false} pos='fixed' />
+      <PenEffect  />
       <BlogList>
         {data.allMarkdownRemark.edges.map(
           (
@@ -64,7 +71,7 @@ const BlogListTemplate = ({
         {currentPage < pageCount && <ReadButton txt="Next" to={nextPage} />}
       </PageLinks>*/}
       </BlogList>
-      <MailUs />
+
     </>
   )
 }

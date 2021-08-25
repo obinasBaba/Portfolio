@@ -15,6 +15,7 @@ const BackArrow = () => {
   useEffect(() => {
     setTimeout(() => {
       const arr = document.querySelector('.arr-container')
+      const wrapper = document.querySelector('.article-wrapper')
 
       gsap.to(arr, {
         // x: -(trackRef.current.offsetWidth - 500 ),
@@ -23,8 +24,9 @@ const BackArrow = () => {
           pinSpacing: false,
           pin: true,
           scrub: 2,
-          start: 'top 20%',
-          end: () => '+=' + 2000,
+          start: 'top 30%',
+          scroller: '#blog-container',
+          end: () => '+=' + wrapper.offsetHeight,
           onUpdate(self) {
             // progress.set(self.progress)
           },

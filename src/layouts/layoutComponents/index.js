@@ -4,8 +4,12 @@ import { motion } from 'framer-motion'
 
 export const GlobalStyle = createGlobalStyle`
 
-  ${responsiveVar}  ;
-  ${fpNav}  ;
+  ${responsiveVar}
+
+  ;
+  ${fpNav}
+
+  ;
 
   html,
   body,
@@ -33,7 +37,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     margin: 0;
     color: #fff;
-    
+
     * {
       cursor: none !important;
     }
@@ -50,13 +54,13 @@ export const GlobalStyle = createGlobalStyle`
     rgba(6, 18, 32, 0),
     rgba(6, 18, 32, 0),
     rgba(2, 11, 22, 1));
-    
+
     --gradient: linear-gradient(0deg,
     rgba(2, 2, 30, 0.0001) 0%,
     rgba(2, 2, 30, 0) 95%);
 
     --head-gradient: linear-gradient(180deg,
-    #fbfefc 0%,
+    rgba(250, 222, 188, 0.8) 0%,
     rgba(243, 243, 243, 0) 94%);
 
 
@@ -65,7 +69,7 @@ export const GlobalStyle = createGlobalStyle`
       --stroke-top: #f9d6ac;
       --stroke-bottom: #02021e;
       --head-opacity: 1;
-      
+
       --gradient: linear-gradient(180deg,
       #fbfefc 0%,
       rgba(243, 243, 243, 0) 94%);

@@ -1,14 +1,16 @@
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import {useEffect} from 'react'
+import {useContext, useEffect} from 'react'
 import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import EventSubscribers from '../helpers/EventSubscribers'
+import {AppStateContext} from '../contexts/AppStateContext'
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function useLocoScroll(start, moScroll) {
+export default function useLocoScroll(start, elementId = '[data-scroll-container="true"]') {
   const events = EventSubscribers.getInstance();
+  const {moScroll} = useContext(AppStateContext)
 
   console.log('outLocoInvoked...')
 
@@ -18,7 +20,7 @@ export default function useLocoScroll(start, moScroll) {
     if (!start) return;
     let locoScroll = null;
 
-    const scrollEl = document.querySelector('[data-scroll-container="true"]');
+    const scrollEl = document.querySelector(elementId);
 
     locoScroll = new LocomotiveScroll({
       el: scrollEl,
@@ -32,7 +34,7 @@ export default function useLocoScroll(start, moScroll) {
       moScroll.x.set(arg.scroll.x)
       moScroll.y.set(arg.scroll.y)
       moScroll.limit.set(arg.limit.y)
-      // console.log(arg.scroll)
+      console.log(arg.scroll)
     });
 
     ScrollTrigger.scrollerProxy(scrollEl, {

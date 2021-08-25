@@ -40,19 +40,17 @@ const Project = ({ pageContext, location, path }) => {
   const { title, subTitle, about, intro } = pageContext.project
   const { headlineImg } = pageContext.imageData
 
-  console.log(location)
+  // console.log(location)
 
   const targetElement = React.useRef(null)
+  const intersection = useOnScreen(targetElement, 0, '0px 0px -510px 0px')
+
   const {
-    currentPath,
     setCurrentPath,
-    moScroll,
-    fromCaseStudy,
     setFromCaseStudy,
   } = useContext(AppStateContext)
 
-  const intersection = useOnScreen(targetElement, 0, '0px 0px -510px 0px')
-
+  useLocoScroll(true)
 
   useEffect(() => {
     setFromCaseStudy(true)
@@ -73,7 +71,6 @@ const Project = ({ pageContext, location, path }) => {
     }
   }, [intersection])
 
-  useLocoScroll(true, moScroll)
 
   return (
     <>

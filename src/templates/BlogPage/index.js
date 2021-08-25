@@ -1,12 +1,10 @@
-import React, { useContext, useEffect } from 'react'
-import { graphql, Link } from 'gatsby'
+import React from 'react'
+import { graphql } from 'gatsby'
 import HeadLine from './components/Headline'
 import Article from './components/Article'
 import MoreBlog from './components/MoreBlog'
-import { AppStateContext } from '../../contexts/AppStateContext'
 import styled from 'styled-components'
-import ReturnBtn from '../../components/ReturnBtn'
-import BackArrow from './components/Article/BackArrow'
+import useLocoScroll from '../../hooks/useLocoScroll'
 
 const BlogContainer = styled.div`
   position: relative;
@@ -14,7 +12,6 @@ const BlogContainer = styled.div`
   width: 100%;
   overflow: hidden;
   z-index: 0;
-  //font-family: var(--sofia-pro);
 `
 
 const GradientBg = styled.div`
@@ -32,13 +29,14 @@ const GradientBg = styled.div`
   );
 `
 
-const BlogPage = ({ data, path, ...other }) => {
-  const { title, date, tags, thumbnail } = data.markdownRemark.frontmatter
+const BlogPage = ({data, path, ...other}) => {
+  const { title, date, tags, thumbnail } = data.currentBlog.frontmatter;
 
-  // console.log(other)
+  useLocoScroll(true, '#blog-container')
+
 
   return (
-    <BlogContainer>
+    <BlogContainer data-scroll-container id='blog-container' >
       <GradientBg />
 
       <HeadLine
@@ -48,17 +46,17 @@ const BlogPage = ({ data, path, ...other }) => {
         thumbnail={thumbnail}
       />
 
-      <Article html={data.markdownRemark.html} />
+      <Article html={data.currentBlog.html} />
 
-      <MoreBlog />
+      <MoreBlog data={data.nextBlog.frontmatter}/>
 
     </BlogContainer>
   )
 }
 
 export const query = graphql`
-  query($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+  query($slug: String!, $nextBlog: String!) {
+    currentBlog: markdownRemark(fields: { slug: { eq: $slug } }) {
       frontmatter {
         contentKey
         date(formatString: "MMMM D, YYYY")
@@ -74,6 +72,24 @@ export const query = graphql`
       }
       html
     }
+    
+    nextBlog: markdownRemark(fields: { slug: { eq: $nextBlog } }) {
+      frontmatter {
+        contentKey
+        date(formatString: "MMMM D, YYYY")
+        title
+        tags {
+          tag
+        }
+        thumbnail {
+          childImageSharp {
+            gatsbyImageData(placeholder: BLURRED, quality: 100)
+          }
+        }
+      }
+      html
+    }
+    
   }
 `
 

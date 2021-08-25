@@ -3,10 +3,10 @@ import styled, { css } from 'styled-components'
 import { mediumUp, smallUp, spacing } from '../../../../styles/mixins'
 import {Container, Link, Typography} from '@material-ui/core'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import { AnimateSharedLayout, motion } from 'framer-motion'
+import {AnimateSharedLayout, motion, useTransform} from 'framer-motion'
 import {AppStateContext} from '../../../../contexts/AppStateContext'
 
-const HeadLineContainer = styled(motion.div)`
+const HeadLineContainer = styled(motion.section)`
   //border: thin solid greenyellow;
   width: 100%;
   display: grid;
@@ -18,8 +18,8 @@ const HeadLineContainer = styled(motion.div)`
       width: 100%;
       
       .overlay {
-        background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
-        visibility: visible;
+        opacity: 1;
+        transition: opacity 1s ease-in-out;
       }
     }
 
@@ -27,33 +27,49 @@ const HeadLineContainer = styled(motion.div)`
       color: var(--theme);
       align-content: end;
       align-items: center;
-
+      ${spacing('pl', 1)};
+      
       .title {
         text-align: left;
+        color: #02021e;
+      }
+      .meta{
+        color: #02021e;
       }
 
-      ${spacing('pl', 1)};
     }
   }
 `
 
 const ImageBox = styled( motion.div )`
   position: relative;
+  z-index: 1;
   grid-row: 1;
   grid-column: 1;
-  inset: 0 0 0 0;
-  max-width: 1400px;
-  width: 100%;
   display: flex;
   justify-content: center;
+  max-width: 1400px;
+  width: 100%;
+  inset: 0 0 0 0;
   margin: 0 auto;
   max-height: 580px;
+  
+  &::after{
+    content: '';
+    position: absolute;
+    display: block;
+    inset: 0;
+    backdrop-filter: blur(2px);
+  }
 
   .overlay {
     position: absolute;
     inset: 0 0 0 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
     backdrop-filter: blur(6px);
-
+    opacity: 0;
+    transition: all 1s ease-in-out;
+    z-index: 1;
   }
 
   & .img-container {
@@ -68,10 +84,10 @@ const ImageBox = styled( motion.div )`
 `;
 
 const TextAlign = styled( Container )`
+  z-index: 2;
   grid-row: 1;
   grid-column: 1;
   display: grid;
-  z-index: 1;
   transition: color .4s ease-in-out;
   text-shadow: 0.05em 0.05em 0.3em #000;
 
@@ -91,7 +107,6 @@ const Title = styled( motion.h1 )`
   text-transform: capitalize;
   text-align: center;
   letter-spacing: -.4px;
-  font-family: var(--poppins);
   //text-shadow: 0.1em 0.1em 0.3em #02021e;
 
   ${ spacing( "mt", 1.6 ) };
@@ -136,52 +151,32 @@ const HeadLine = ({ categories, title, imgData, date, tags, thumbnail }) => {
 
   const [scrolled, setScrolled] = useState(false);
 
-  const {
-    isHeaderGradient, setHeaderGradient,
-    isWhite, setIsWhite,
-  } = useContext(AppStateContext)
+  const {moScroll} = useContext(AppStateContext)
 
 
+  useTransform(moScroll.y, latest => {
+    // if (  !latest || latest <= 0) return 0;
+
+    if ( latest > 80 ){
+      if ( !scrolled  )
+        setScrolled( true )
+      document.body.classList.add('blog-clr')
+    }
+  })
 
   useEffect(() => {
-
-    let scroll = () => {
-      // console.log(topContainer.current.getBoundingClientRect().top)
-      if ( topContainer.current.getBoundingClientRect().top < -80 ){
-
-        setScrolled( true )
-        document.body.classList.add('blog-clr')
-
-        // setIsWhite(!isWhite)
-        // setHeaderGradient(!isHeaderGradient)
-        // window.removeEventListener('scroll', scroll)
-      }
-      else {
-        setScrolled( false )
-        // setIsWhite(false)
-        // setHeaderGradient(false)
-        document.body.classList.remove('blog-clr')
-      }
-    }
-
-    window.addEventListener('scroll', scroll)
-
-    return () => {
-      document.body.classList.remove('blog-clr')
-      window.removeEventListener('scroll', scroll)
-    }
-
+    return () => document.body.classList.remove('blog-clr')
     }, [ ])
 
   return (
     <AnimateSharedLayout>
 
-      <HeadLineContainer layout  ref={topContainer} data-scrolled={scrolled} >
+      <HeadLineContainer layout  ref={topContainer} data-scrolled={scrolled} data-scroll-section>
 
         <TextAlign maxWidth="lg" fixed={ true } className='txt-align' layout='position'>
           <Title variant="h1" className='title' layout='position'> { title } </Title>
 
-          <DateAndTags layout='position'>
+          <DateAndTags className='meta' layout='position'>
             <motion.p variant='subtitle2'
                       noWrap={true}
                       className='published-date' >
@@ -204,7 +199,7 @@ const HeadLine = ({ categories, title, imgData, date, tags, thumbnail }) => {
                        image={ getImage( thumbnail ) }
                        className="img-container" />
 
-          <motion.div className='overlay' layout />
+          <div className='overlay' />
         </ImageBox>
       </HeadLineContainer>
 

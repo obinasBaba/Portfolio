@@ -7,14 +7,14 @@ import useLocoScroll from '../hooks/useLocoScroll'
 const IndexPage = ({path}) => {
 
   const {
-    setCurrentPath, moScroll
+    setCurrentPath
   } = useContext( AppStateContext )
 
   useEffect(() => {
     setCurrentPath(path)
   }, [])
 
-  useLocoScroll(true, moScroll);
+  useLocoScroll(true);
 
 
   return (
