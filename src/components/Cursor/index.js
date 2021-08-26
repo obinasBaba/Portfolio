@@ -20,7 +20,7 @@ const Cursor = ({ path }) => {
     cursor.isStuck = false;
     document.body.classList.remove('canvas-hover')
 
-    console.log('inthover: ', path)
+    console.log('INIT__HOVER: ', path)
 
 
     const handleHover = e => {
@@ -34,11 +34,12 @@ const Cursor = ({ path }) => {
       } else {
         document.body.classList.add('canvas-hover')
         console.log(document.body.classList)
-        cursor.pointed = true;
+        cursor.startPointed(true)
       }
     }
     const handleLeave = () => {
       cursor.pointed = false;
+      cursor.startPointed(false)
       document.body.classList.remove('canvas-hover')
       console.log( 'classList: ', document.body.classList)
     }
@@ -65,6 +66,7 @@ const Cursor = ({ path }) => {
         }).on('leave', () => { //if it is magnet no mouseleave needed
           // console.log('LEAVE invoked')
            cursor.pointed = false;
+           cursor.startPointed(false)
            document.body.classList.remove('canvas-hover')
          })
 

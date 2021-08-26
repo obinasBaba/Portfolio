@@ -89,10 +89,9 @@ const ScrollProgressCircle = () => {
     <ProgressCircleContainer>
 
       <ProgressCircleWrapper
-        data-pointer
-        data-magnet
-        data-magnet-distance='1.6'
-        data-magnet-stop='1.7'
+        data-pointer='stuck'
+        // data-magnet-distance='1.6'
+        // data-magnet-stop='1.7'
         data-tooltip
         data-tooltip-text='Write me a poem...'
         onClick={() => setContactModal(!isContactOpen)}
