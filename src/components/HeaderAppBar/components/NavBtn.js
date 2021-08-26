@@ -8,14 +8,13 @@ import useMagnet from '../../../hooks/useMagnet'
 // const headerTransition = 'all .3s'
 
 const Btn = styled(motion.button)`
-
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   outline: none;
   border: none;
+  pointer-events: initial;
 
   border-radius: 50%;
   background-color: transparent;
@@ -23,26 +22,24 @@ const Btn = styled(motion.button)`
   transition: background-color 0.3s, border 0.3s;
   backface-visibility: hidden;
   transform: translate3d(0, 0, 0);
-  z-index: 999550;
 
   ${heightWidth('height', 6)};
   ${heightWidth('width', 6)};
+  
+  &::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    
+    //border: thin solid red;
+  }
 
-  ${({ isWhite }) =>
-    isWhite &&
-    css`
-      & > :first-child {
-        background-color: #02021e;
-
-        &::after,
-        &::before {
-          background-color: #02021e;
-        }
-      }
-    `};
-
-  &:hover,
-  &:focus {
+  & :hover,
+  & :focus {
     & > :first-child {
       background-color: #e7a28f;
 
@@ -96,6 +93,8 @@ const Bars = styled.span`
 
 const HiddenText = styled.p`
   text-indent: 99999px;
+  pointer-events: none;
+
 `
 
 const NavBtn = ({ isWhite, toggleMenu, pos, variants = {}, menu }) => {
@@ -104,8 +103,9 @@ const NavBtn = ({ isWhite, toggleMenu, pos, variants = {}, menu }) => {
   return (
     <Btn
       className="nav-btn"
-      data-pointer
-      data-magnet
+      data-pointer='magnet'
+      data-magnet-distance={.8}
+      data-magnet-attraction={1.8}
       data-tooltip
       data-tooltip-text="open my space"
       isWhite={isWhite}

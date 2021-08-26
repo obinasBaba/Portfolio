@@ -67,8 +67,11 @@ const NavContainer = styled.div`
   transition: all .35s ease-in-out;
   pointer-events: none;
 
+  display: flex;
+  justify-content: space-between;
+  
   &::after {
-    content: '';
+    //content: '';
     display: block;
     position: absolute;
     top: 0;
@@ -79,6 +82,7 @@ const NavContainer = styled.div`
     opacity: var(--head-opacity);
     transition: all .35s ease-in-out;
   }
+  
 
   ${mediumUp(css`
     ${spacing('pv', 2)};
@@ -91,10 +95,10 @@ const NavWrapper = styled.nav`
   margin: 0 auto;
   max-width: 1600px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   & > *{
-    pointer-events: initial;
+    //pointer-events: initial;
   }
 `
 
@@ -132,7 +136,6 @@ function HeaderAppBar({}) {
 
       <HideOnScroll isMenuOpen={menuIsOpen} >
         <NavContainer isGradient={false} isWhite={isWhite}>
-          <NavWrapper>
             <HomeLogo isWhite={isWhite} />
 
             <NavBtn
@@ -141,7 +144,6 @@ function HeaderAppBar({}) {
               toggleMenu={{ setMenuIsOpen, menuIsOpen }}
               menu={menuIsOpen}
             />
-          </NavWrapper>
         </NavContainer>
       </HideOnScroll>
     </>

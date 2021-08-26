@@ -12,20 +12,25 @@ const Logo = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: auto;
+  //margin-right: auto;
   fill: var(--theme); //todo gradient
   z-index: 50;
   //border: thin solid red;
   transition: fill .35s ease-in-out;
+  pointer-events: initial;
 
-  .trigger {
+
+  &::after {
+    content: '';
     position: absolute;
-    top: -20px;
-    left: -20px;
-    right: -20px;
-    bottom: -20px;
+    display: block;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
     z-index: -1;
-    //border: thin solid tomato;
+    
+    //border: thin solid red;
   }
 
   & .logoSvg {
@@ -73,14 +78,11 @@ const HomeLogo = ({ isWhite }) => {
           initial="initial"
           animate="animate"
           className="logo"
-          data-pointer
-          data-magnet
-          data-magnet-distance='1.6'
-          data-magnet-stop='1.7'
+          data-pointer='magnet'
+          data-magnet-distance={.8}
+          data-magnet-attraction={1.8}
           data-tooltip
           data-tooltip-text='Where it all started'
-          data-attraction={1.4}
-          data-distance={.8}
           ref={logoRef}
     >
 

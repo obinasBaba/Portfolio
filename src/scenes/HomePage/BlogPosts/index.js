@@ -11,6 +11,10 @@ import Info from './components/Info'
 import Previews from './components/Previews'
 import Headline from '../../../components/Headline'
 
+const BlogPostContainer = styled.section`
+  ${spacing('mt', 5)};
+`
+
 const PostsContainer = styled.section`
   max-width: 100%;
   //overflow: hidden;
@@ -43,9 +47,6 @@ const PostsContainer = styled.section`
   }
 `
 
-const BlogPostContainer = styled.section`
-  ${spacing('mt', 15)};
-`
 
 const BlogPosts = () => {
   return (

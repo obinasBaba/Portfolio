@@ -85,7 +85,7 @@ const Info = () => {
   return (
     <InfoTxt>
 
-      <BlogEffect data-scroll data-scroll-speed='4'/>
+      <BlogEffect data-scroll data-scroll-speed='2.2'/>
 
       <Title >
         I usually write an in-depth article sharing what I learned every often.

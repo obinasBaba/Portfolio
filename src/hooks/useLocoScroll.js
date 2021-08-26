@@ -34,7 +34,7 @@ export default function useLocoScroll(start, elementId = '[data-scroll-container
       moScroll.x.set(arg.scroll.x)
       moScroll.y.set(arg.scroll.y)
       moScroll.limit.set(arg.limit.y)
-      console.log(arg.scroll)
+      // console.log(arg.scroll)
     });
 
     ScrollTrigger.scrollerProxy(scrollEl, {

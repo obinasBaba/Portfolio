@@ -24,6 +24,12 @@ const Planet = styled.div`
   rgba(235, 174, 149, 0) 45.54%,
   rgba(235, 174, 149, 0.19) 130.68%),
   linear-gradient(3.27deg, #02021e 13.68%, #262147 142.62%);
+
+  background: linear-gradient(
+          36.99deg,
+          rgba(1, 1, 18, 0) 27.49%,
+          #262147 78.93%
+  ); 
 `
 
 const BigPlanet = ({progress}) => {

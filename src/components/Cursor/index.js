@@ -1,6 +1,6 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React, { useCallback, useEffect, useRef } from 'react'
+import React, {useCallback, useEffect, useMemo, useRef} from 'react'
 import {
   AnimatePresence,
   motion,
@@ -11,63 +11,36 @@ import { CursorContainer, Pointer } from './components'
 import MagnetElement from '../../helpers/MagnetElement'
 import PaperCursor from './PaperCursor'
 
-const pointerVariants = {
-  initial: {
-    scale: 1,
-  },
-  small: {
-    scale: 1,
-    transition: {
-      ease: 'linear',
-      duration: 0.45,
-    },
-  },
-
-  big: {
-    scale: 3.5,
-    transition: {
-      ease: 'linear',
-      duration: 0.4,
-    },
-  },
-
-  animate(c) {
-    return {
-      rotate: [null, 360 * c.factor],
-      transition: {
-        repeat: Infinity,
-        repeatType: 'mirror',
-        ease: 'linear',
-        duration: 5 * 1.2,
-      },
-    }
-  },
-}
 
 const Cursor = ({ path }) => {
-  const canvasRef = useRef(null)
-
-  let x = useMotionValue(window ? window.innerWidth / 2 : 0)
-  let y = useMotionValue(window ? window.innerHeight / 2 : 0)
-  const control = useAnimation()
-  const containerControl = useAnimation()
+  const cursor = useMemo(() => PaperCursor.getInstance(), []);
 
   const initHover = useCallback(() => {
+    cursor.pointed = false;
+    cursor.isStuck = false;
+    document.body.classList.remove('canvas-hover')
+
+    console.log('inthover: ', path)
+
+
     const handleHover = e => {
+
       // console.log('enter hover')
-      if (e.currentTarget.dataset.stuck) {
+      if (e.currentTarget.dataset.pointer === 'stuck') {
         const rect = e.currentTarget.getBoundingClientRect()
-        // stuckPos.x = Math.round(rect.left + rect.width / 2)
-        // stuckPos.y = Math.round(rect.top + rect.height / 2)
-        // isStuck = true
+        let x = Math.round(rect.left + rect.width / 2)
+        let y = Math.round(rect.top + rect.height / 2)
+        cursor.startStuck(x, y)
       } else {
-        containerControl.start({ zIndex: 11 })
-        control.start('big')
+        document.body.classList.add('canvas-hover')
+        console.log(document.body.classList)
+        cursor.pointed = true;
       }
     }
     const handleLeave = () => {
-      // console.log('leave hover')
-      control.start('small')
+      cursor.pointed = false;
+      document.body.classList.remove('canvas-hover')
+      console.log( 'classList: ', document.body.classList)
     }
 
     const pointerElements = document.querySelectorAll('[data-pointer]')
@@ -76,76 +49,48 @@ const Cursor = ({ path }) => {
     pointerElements.forEach(element => {
       element.removeEventListener('mouseenter', handleHover)
       element.removeEventListener('mouseleave', handleLeave)
-      const attraction = element.dataset.attraction ?? 1
-      const distance = element.dataset.distance ?? 0.7
 
-      if (element.dataset.magnet) {
+
+      element.addEventListener('mouseenter', handleHover)
+      const type = element.dataset.pointer;
+
+      if (type === 'magnet') {
         // console.log(element)
-        const magnet = new MagnetElement({
+        const attraction = element.dataset.magnetAttraction ?? 1;
+        const distance = element.dataset.magnetDistance ?? 0.7;
+         new MagnetElement({
           element: element,
           stop: attraction,
           distance: distance,
-        })
-
-        magnet.on('leave', () => {
+        }).on('leave', () => { //if it is magnet no mouseleave needed
           // console.log('LEAVE invoked')
-          control.start('small')
-          containerControl.start({
-            zIndex: 20,
-          })
-        })
+           cursor.pointed = false;
+           document.body.classList.remove('canvas-hover')
+         })
 
-        element.addEventListener('mouseenter', handleHover)
-      } else {
-        element.addEventListener('mouseenter', handleHover)
+      } else if ( type !== 'stuck' && type !== 'magnet' ){ //only pointer
+        element.addEventListener('mouseleave', handleLeave)
       }
+
     })
   }, [path])
 
   useEffect(() => {
-    const handleMouse = e => {
-      x.set(e.clientX)
-      y.set(e.clientY)
-    }
-
-    const cursor = PaperCursor.getInstance()
-
-    window.addEventListener('mousemove', handleMouse)
     window.addEventListener('resize', cursor.reInit)
 
     return () => {
-      window.removeEventListener('mousemove', handleMouse)
       window.removeEventListener('resize', cursor.reInit)
     }
   }, [])
 
   useEffect(() => {
-    control.start('initial')
-    control.start('animate')
-
     initHover()
   }, [path])
 
   return (
-    <CursorContainer animate={containerControl}>
-      <Pointer style={{ x, y }}>
-        <motion.p
-          variants={pointerVariants}
-          initial="initial"
-          animate={control}
-          custom={{ factor: 1 }}
-        >
-          h
-        </motion.p>
+    <CursorContainer >
+      <Pointer>
 
-        <motion.p
-          variants={pointerVariants}
-          initial="initial"
-          animate={control}
-          custom={{ factor: -1 }}
-        >
-          i
-        </motion.p>
       </Pointer>
     </CursorContainer>
   )

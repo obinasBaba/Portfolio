@@ -54,6 +54,7 @@ export const GlobalStyle = createGlobalStyle`
     rgba(6, 18, 32, 0),
     rgba(6, 18, 32, 0),
     rgba(2, 11, 22, 1));
+    --cIndex: 20;
 
     --gradient: linear-gradient(0deg,
     rgba(2, 2, 30, 0.0001) 0%,
@@ -82,6 +83,10 @@ export const GlobalStyle = createGlobalStyle`
       rgba(6, 18, 32, 0),
       rgba(6, 18, 32, 0),
       #fbfefc);
+    }
+    
+    &.canvas-hover{
+      --cIndex: 2;
     }
 
   }
@@ -117,4 +122,8 @@ export const Main = styled(motion.main)`
   z-index: 8;
   height: min-content;
   //border: thick solid red;
+  
+  & > *{
+    z-index: 1;
+  }
 `

@@ -29,7 +29,7 @@ export const PageContainer = styled.div`
     position: fixed;
     width: 100vw;
     height: 100vh;
-    z-index: 20;
+    z-index: var(--cIndex);
     pointer-events: none;
     //border: thin solid blue;
   }
@@ -63,10 +63,10 @@ const Page = ({ children, path }) => {
         {loadingPage ? (
           <LoadingSpinner />
         ) : (
-          <AnimatePresence exitBeforeEnter custom={{ path: path }}>
+          <AnimatePresence exitBeforeEnter  custom={{ path: path }}>
             <Cursor path={path} />
             {children}
-          </AnimatePresence>
+          </AnimatePresence >
         )}
       </Main>
 

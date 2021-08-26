@@ -51,9 +51,9 @@ const ProjectContainer = styled(motion.section)`
 `
 
 const Planet = styled(motion.div)`
-  content: '';
+ 
   position: absolute;
-  left: 10%;
+  //left: 10%;
   border-radius: 50%;
   z-index: 110;
   background: linear-gradient(
@@ -65,9 +65,7 @@ const Planet = styled(motion.div)`
   ${heightWidth('width', 20)};
   ${heightWidth('height', 20)};
 
-  &.planet-two {
-    left: initial;
-    right: 10%;
+  &.planet-right {
     background: linear-gradient(
       37.98deg,
       rgba(16, 8, 74, 0) 16.94%,
@@ -80,6 +78,18 @@ const Planet = styled(motion.div)`
   }
 `
 
+const ScrollPlanet = styled.div`
+  position: absolute;
+  left: 10%;
+  bottom: 40%;
+
+`
+
+const ScrollPlanet2 = styled.div`
+  position: absolute;
+  bottom: 40%;
+  right: 10%;
+`
 
 const LottiContainer = styled.div`
   position: relative;
@@ -90,7 +100,8 @@ const LottiContainer = styled.div`
   padding: 4rem;
   border-radius: 100px;
   //border: thin solid green;
-
+  
+ 
   ${heightWidth('height', 53)};
   ${heightWidth('width', 53)};
 
@@ -159,8 +170,9 @@ const Projects = () => {
   useEffect(() => {
     // return;
 
-    if (inView) window.addEventListener('mousemove', handler)
-    else window.removeEventListener('mousemove', handler)
+    // if (inView) window.addEventListener('mousemove', handler)
+    // else window.removeEventListener('mousemove', handler)
+    window.addEventListener('mousemove', handler)
 
     return () => window.removeEventListener('mousemove', handler)
   }, [inView])
@@ -220,9 +232,13 @@ const Projects = () => {
     >
       <Headline title={'Projects'} mb={3} subtitle={'Case Studies'} />
 
-      <Planet style={{ y: yBig, x: xBig }} />
+      <ScrollPlanet data-scroll={true} data-scroll-speed='-3'>
+        <Planet className='planet-left' style={{ y: yBig, x: xBig }} />
+      </ScrollPlanet>
 
-      <Planet className="planet-two" style={{ y: ySmall, x: xSmall }} />
+      <ScrollPlanet2 data-scroll={true} data-scroll-speed='-6'>
+        <Planet className="planet-right" style={{ y: ySmall, x: xSmall }} />
+      </ScrollPlanet2>
 
       <LottiContainer >
         <Link

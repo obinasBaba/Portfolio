@@ -10,7 +10,7 @@ const ExperimentsContainer = styled.div`
   text-align: center;
   position: relative;
   
-  ${ spacing( 'mt', 20 ) };
+  ${ spacing( 'mt', 10 ) };
   
   
   //border: thin solid crimson;
