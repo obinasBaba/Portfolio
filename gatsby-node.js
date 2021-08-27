@@ -103,13 +103,16 @@ exports.createPages = async ({ graphql, actions }) => {
 
       const next = (index + 1 <= edges.length) ? edges[index + 1] : edges[0];
 
+    console.log(next)
+    console.log(edges)
+
       createPage({
         path: slug,
         component:
           path.resolve('./src/templates/BlogPage/index.js'),
         context: {
           slug: slug,
-          nextBlog: next.node.fields.slug,
+          nextBlog: next ? next.node.fields.slug : edges[0].node.fields.slug
         }
       })
     });

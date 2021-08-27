@@ -19,10 +19,12 @@ function HideOnScroll({ children, window, isMenuOpen }) {
 
   const {
     isContactOpen,
+    currentPath,
     moScroll: {y},
   } = useContext(AppStateContext)
 
   const init = () =>{
+    setSlide(true)
     clearInterval(intervalId)
     intervalId = setInterval(() => {
       if (y.get() > y.getPrevious())
@@ -39,7 +41,7 @@ function HideOnScroll({ children, window, isMenuOpen }) {
 
     init()
 
-  }, [])
+  }, [currentPath])
 
   useEffect(() => {
     if ( isContactOpen || isMenuOpen ){

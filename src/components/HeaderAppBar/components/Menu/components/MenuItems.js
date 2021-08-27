@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import useMenuAssets from '../../../../../hooks/queries/useMenuAssets'
 import styled, { css } from 'styled-components'
 import {largeUp, mediumDown, mediumUp, text} from '../../../../../styles/mixins'
-import {Link} from 'gatsby'
+import {Link, navigate} from 'gatsby'
 import {motion, useMotionValue} from 'framer-motion'
 import {
   circleVariants, containerVariants, iconVariants,
@@ -299,21 +299,27 @@ const MenuItems = ({onClick}) => {
                 transition={transition}
                 active={link === currentPath && currentPath !== '/'}
                 key={link + index + title}
-                onClick={() => {
-                  if ( link === currentPath )
-                    return;
-
-                  onClick();
-                  if ( title === 'About' || title === 'Contacts')
-                    setTimeout(() => setContactModal(!isContactOpen), 600)
-                }}
           >
 
 
             <Title>{title}</Title>
 
             <Circle data-circle={index + 1}>
-              <Link to={link}/>
+              <Link to={link} onClick={(ev) => {
+                ev.preventDefault();
+
+                if ( link === currentPath )
+                  return;
+
+
+                if ( title === 'About' || title === 'Contacts')
+                  setTimeout(() => setContactModal(!isContactOpen), 600)
+
+                onClick()
+
+                setTimeout(() => navigate(link), 1000)
+
+              }}/>
 
             </Circle>
 

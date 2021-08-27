@@ -4,12 +4,12 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { spacing } from '../../../../styles/mixins'
 import ScrollDown from '../../../../components/ScrollDown'
 
-const ProjectSDContainer = styled(motion.div)`
+const ScrollDownWrapper = styled(motion.div)`
   position: fixed;
   z-index: 99;
   left: 0;
   bottom: 5%;
-  
+
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -20,7 +20,7 @@ const ProjectSDContainer = styled(motion.div)`
 
   //border: thin solid red;
 `
-const parentVariant = {
+const wrapperVariants = {
   initial: {
     y: '100%',
     opacity: 0,
@@ -44,20 +44,46 @@ const parentVariant = {
   },
 }
 
+const containerVariant = {
+  initial: {
+    x: 'calc( -100% + (var(--indent) * -2.25rem))',
+  },
+  animate: {
+    x: 0,
+  },
+  exit: {
+    x: 'calc( -100% + (var(--indent) * -2.25rem))',
+  },
+
+  transition: {
+    delay: 0.3,
+    duration: 1,
+    ease: [0.6, 0.01, 0, 0.9],
+  },
+}
+
 const ProjectScrollDown = ({ show }) => {
   return (
-    <AnimatePresence>
-      {show && (
-        <ProjectSDContainer
-          variants={parentVariant}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-        >
-          <ScrollDown show={show} />
-        </ProjectSDContainer>
-      )}
-    </AnimatePresence>
+    <ScrollDownWrapper
+      variants={containerVariant}
+      transition={containerVariant.transition}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
+      <AnimatePresence>
+        {show && (
+          <motion.div
+            variants={wrapperVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+          >
+            <ScrollDown show={show} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </ScrollDownWrapper>
   )
 }
 

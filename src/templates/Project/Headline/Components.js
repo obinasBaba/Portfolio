@@ -13,11 +13,13 @@ import { motion } from 'framer-motion'
 
 export const HeadlineContainer = styled(motion.div)`
   position: relative;
+  z-index: 1;
   height: 100vh;
   width: 100vw;
   align-items: center;
   align-content: center;
   //border: thin solid #fb7209;
+  color: white;
 
   ${gridify};
 `
@@ -39,19 +41,7 @@ export const ImageWrapper = styled(motion.div)`
     width: 100%;
     object-fit: cover;
   }
-
-  .overlay {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(55, 25, 202, 0.45);
-    mix-blend-mode: soft-light;
-    backdrop-filter: blur(5px);
-    //filter: blur(15px);
-  }
+  
 `
 
 export const InnerWrapper = styled(motion.div)`
@@ -71,10 +61,11 @@ export const InnerWrapper = styled(motion.div)`
   }
 `
 
-export const MetaTexts = styled(motion.div)`
+export const Texts = styled(motion.div)`
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-flow: column;
-  z-index: 1;
   grid-row: 2;
   //border: thin solid red;
   margin-left: calc(100vw / 64 * 2);
@@ -107,42 +98,14 @@ export const MetaTexts = styled(motion.div)`
     ${spacing('mt', 4.5)};
   }
 
-  & .pro-title {
-    font-weight: 700;
-    margin: 0;
-    ${spacing('mt', 2)}
-    ${title(3.35)};
-    line-height: 1.3;
-    //border: thin solid lightblue;
-    letter-spacing: 2.5px;
-    //overflow: hidden;
-    font-family: 'Poppins Black', serif;
-
-    overflow-wrap: break-word;
-
-    .word {
-      display: inline-block;
-      white-space: nowrap;
-      overflow: hidden;
-      vertical-align: top;
-    }
+  & .title {
+   
   }
 `
 
-export const Tags = styled(Typography)`
-  display: none;
-  font-weight: 300;
-  line-height: 1.6em;
-  letter-spacing: 0.5px;
-  color: #b3afaf;
-  opacity: 0;
 
-  ${largeUp(css`
-    display: initial;
-  `)};
-`
 
-export const BG = styled(motion.div)`
+export const HeadLineBG = styled(motion.div)`
   position: absolute;
   top: 0;
   left: 0;

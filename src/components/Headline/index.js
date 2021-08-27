@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import styled from 'styled-components'
-import { GradientText } from '../GrdientText'
+import { GradientText } from '../GradientText'
 import { spacing } from '../../styles/mixins'
 import {useMediaQuery, useTheme} from '@material-ui/core'
 import {useIntersection} from 'react-use'

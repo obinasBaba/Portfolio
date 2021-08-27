@@ -4,7 +4,7 @@ import MotionBtn from '../../components/MotionBtn'
 import { heightWidth, spacing, text } from '../../styles/mixins'
 import Logo from './logo.svg'
 import { AppStateContext } from '../../contexts/AppStateContext'
-import { GradientText } from '../../components/GrdientText'
+import { GradientText } from '../../components/GradientText'
 import FooterMeta from './FooterMeta'
 import Footer from '../../components/Footer'
 

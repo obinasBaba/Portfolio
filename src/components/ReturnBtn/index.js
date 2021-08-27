@@ -25,7 +25,7 @@ const ReturnBtnContainer = styled( motion.div )`
   
   svg{
     & *{
-      transition: stroke,fill .5s ease-in-out;
+      transition: fill .6s ease-in-out, stroke .6s ease-in-out;
     }
   }
 `
@@ -90,7 +90,7 @@ const ReturnBtn = ( { onClick, to } ) => {
              className='exitBtn'
     >
 
-      <Link to={to}>
+      {/*<Link to={to}>*/}
 
       <motion.svg xmlns="http://www.w3.org/2000/svg"
                   width="60" height="60" viewBox="0 0 60 60"
@@ -151,7 +151,7 @@ const ReturnBtn = ( { onClick, to } ) => {
         </motion.g>
       </motion.svg>
 
-      </Link>
+      {/*</Link>*/}
 
 
     </ReturnBtnContainer>

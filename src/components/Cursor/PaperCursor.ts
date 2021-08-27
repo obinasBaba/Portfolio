@@ -172,10 +172,10 @@ class PaperCursor {
     //scale the circles them and recorde the scaled coordinates
     this.circles.forEach(({ path }) => path.scale(amount))
 
-    console.log('SCALE:- ', amount, this.circles[0].path.bounds.width)
+    // console.log('SCALE:- ', amount, this.circles[0].path.bounds.width)
   }
 
-  startStuck(x: number, y: number) {
+  async startStuck(x: number, y: number) {
     this.stuckPos.x = x
     this.stuckPos.y = y
     this.isStuck = true
@@ -210,14 +210,14 @@ class PaperCursor {
       if (this.isStuck && Math.floor(this.cClone.bounds.width) < this.maxBounds.width) {
         this.cClone.scale(1.015)
         this.circles.forEach(({ path }) => path.scale(1.015))
-        console.log( 'up', this.cClone.bounds.width)
+        // console.log( 'up', this.cClone.bounds.width)
 
         //65.367032903977130978930453580233
       } else if (!this.isStuck && Math.floor(this.cClone.bounds.width) > 50 )
       {
         this.cClone.scale(.971)
         this.circles.forEach(({ path }) => path.scale(.971))
-        console.log('down', this.cClone.bounds.width)
+        // console.log('down', this.cClone.bounds.width)
 
       }else if(!this.isStuck && Math.floor(this.cClone.bounds.width) <= 50) {
         this.normalNoise()
@@ -238,7 +238,7 @@ class PaperCursor {
     }
   }
 
-  startPointed(pointed){
+  async startPointed(pointed){
     // Paper.view.onFrame = null;
 
     Paper.view.onFrame = event => {
@@ -253,13 +253,13 @@ class PaperCursor {
 
         if (Math.floor(this.cClone.bounds.width) > 44) {
           this.scalePolygon(0.9941)
-          console.log('DOWN: ', 'circle: ', this.cClone.bounds.width)
+          // console.log('DOWN: ', 'circle: ', this.cClone.bounds.width)
         } // Circle DOWN
 
         if (Math.floor(this.pClone.bounds.width) < 40) {
           this.pClone.scale(1.055)
           this.pointer.path.scale(1.055)
-          console.log('UP: ', 'pointer : ', this.pClone.bounds.width)
+          // console.log('UP: ', 'pointer : ', this.pClone.bounds.width)
         } // Pointer UP
       }
       else if (!this.pointed && (Math.floor(this.pClone.bounds.width) > 13 || Math.floor(this.cClone.bounds.width) < 50 ) ) {
@@ -267,17 +267,17 @@ class PaperCursor {
         if (Math.floor(this.pClone.bounds.width) > 13) {
           this.pointer.path.scale(0.945)
           this.pClone.scale(0.945)
-          console.log('DOWN: ', 'pointer : ', this.pointer.path.bounds.width)
+          // console.log('DOWN: ', 'pointer : ', this.pointer.path.bounds.width)
         }
 
         if (Math.floor(this.cClone.bounds.width) < 50) {
           // this.scalePolygon(1.008)
           this.circles.forEach(({ path }) => path.scale(1.007))
           this.cClone.scale(1.007)
-          console.log('UP: ', 'circle: ', this.cClone.bounds.width)
+          // console.log('UP: ', 'circle: ', this.cClone.bounds.width)
         }
       }else {
-        console.log('NORMAL NOISE')
+        // console.log('NORMAL NOISE')
         this.normalNoise()
       }
 

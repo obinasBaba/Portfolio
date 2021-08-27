@@ -36,7 +36,7 @@ export default class MagnetElement extends EventEmitter{
 
   constructor(el: MagnetType) {
     super()
-    console.log('constructor invoked')
+    // console.log('constructor invoked')
 
     this.element = el.element
     this.stop = el.stop
@@ -58,7 +58,7 @@ export default class MagnetElement extends EventEmitter{
     window.addEventListener('resize', this.onResize)
 
     this.element.addEventListener('mouseenter', ev => {
-      console.log('Enter')
+      // console.log('Enter')
 
       gsap.killTweensOf(this.element);
       this.onStart()

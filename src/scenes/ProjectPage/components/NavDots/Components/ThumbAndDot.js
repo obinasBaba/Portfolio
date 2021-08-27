@@ -15,8 +15,27 @@ const ThumbAndDotContainer = styled.li`
   height: 11px;
   width: 11px;
   border-radius: 50%;
+  transition: transform .5s cubic-bezier(0.6, 0.01, 0, 0.9),border .2s ease-in-out;
+  
+  & :hover{
+    transform: scale(1.4);
+    border: .5px solid blue;
+    transition: transform .5s cubic-bezier(0.6, 0.01, 0, 0.9),
+      border .2s ease-in-out;;
+  }
+
+  &::after{
+    z-index: -1;
+    //content: '';
+    display: block;
+    position: absolute;
+    inset: -30px;
+    border-radius: 50%;
+    //border: thin solid yellow;
+  }
   
   & .thumb {
+    z-index: 2;
     position: absolute;
     display: grid;
     place-items: center;
@@ -39,11 +58,13 @@ const ThumbAndDotContainer = styled.li`
   & .hover-area{
     grid-column: 1;
     grid-row: 1;
-    width: 250%;
-    height: 250%;
+    width: 300%;
+    height: 300%;
     border-radius: 50%;
     //border: thin solid crimson;
   }
+  
+ 
 `
 
 
@@ -58,16 +79,17 @@ const spring = {
 
 const ThumbAndDot = ({ hidden, clickEvent, index, anchor, dataAnchor }) => {
   return (
-    <ThumbAndDotContainer onClick={clickEvent}>
+    <ThumbAndDotContainer onClick={clickEvent}
+                          // layout
+    >
 
       <a
         className="hover-area"
         data-anchor={dataAnchor}
         href={`#${anchor}`}
 
-        data-pointer
-        data-tooltip
-        data-stuck
+        data-pointer={true}
+        data-tooltip={true}
         data-tooltip-text='Next project'
       />
 

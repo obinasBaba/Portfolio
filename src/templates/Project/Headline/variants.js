@@ -3,49 +3,29 @@ export const transition = {
   duration: 1,
 }
 
-export const headLine = {
+export const containerVariants = {
 
 }
 
 export const metaVariant = {
-  initial: {
-
-  },
+  initial: {},
   animate: {
     margin: 0,
-
   },
-  exit: {
-    ['margin-left']: 'calc(100vw / 64 * 2)'
+
+
+  exit(arg){
+    if ( arg && arg.path === '/projects/' )
+      return{
+        x: 'calc(100vw / 64 * 2)'
+      }
   }
 }
 
-export const titleVariant = {
-  initial: {
-
-  },
-
-  animate: {
-    scale: 1.3,
-    y: -30,
-    originX: 0
-
-  },
-
-  exit: {
-    scale: 1,
-    y: 0
-  },
-}
-
 export const btnVariant = {
-  initial: {
-  },
-  animate: {
-  },
-
-  exit: {
-  },
+  initial: {},
+  animate: {},
+  exit: {},
 }
 
 export const imgVariant = {
@@ -62,15 +42,20 @@ export const imgVariant = {
     padding: 'calc(100vw / 64 * 0)',
     ['padding-left']: 'calc(100vw / 64 * 0)',
   },
-  exit: {
-    // height: '400px',
-    // background: '#3719ca',
-    ['margin-right']: 'calc(100vw / 64 * 6)',
+  exit(arg){
+    console.log('outWrapper', arg)
 
-    padding: 'calc(100vw / 64 * .5)',
-    ['padding-left']: 'calc(100vw / 64 * 4)',
+    if ( arg && arg.path === '/projects/' )
+      return{
+        // height: '400px',
+        // background: '#3719ca',
+        ['margin-right']: 'calc(100vw / 64 * 6)',
+        padding: 'calc(100vw / 64 * .5)',
+        ['padding-left']: 'calc(100vw / 64 * 4)',
 
+      }
 
+    return {}
   }
 }
 
@@ -82,8 +67,15 @@ export const innerVariant = {
     height: '100vh'
   },
 
-  exit: {
-    height: 400,
+  exit(arg){
+    console.log('innerVariant', arg)
+
+    if ( arg && arg.path === '/projects/' )
+      return{
+      height: 400,
+    }
+
+    return {}
   }
 }
 

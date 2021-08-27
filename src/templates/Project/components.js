@@ -3,9 +3,23 @@ import { motion } from 'framer-motion'
 import { spacing } from '../../styles/mixins'
 
 export const ProjectContainer = styled(motion.div)`
+  position: relative;
+  z-index: -1;
   max-width: 1600px;
   width: 100%;
   overflow: hidden;
+  
+  --headlineBg: #02021e;
+  --contentBg: #02021e;
+  
+  &.container-scrolled{
+    --headlineBg: #fbfefc;
+    --contentBg: #fbfefc;
+  }
+  
+  & > :not(:first-child){
+    color: #02021e;
+  }
 `
 
 export const ContentSectionWrapper = styled.section`
@@ -13,7 +27,6 @@ export const ContentSectionWrapper = styled.section`
   background-color: #f3f3f3;
   border: .1px solid #f3f3f3;  /// fix this wierd bug
   z-index: 1;
-  color: #02021e;
 
   .line {
     position: absolute;

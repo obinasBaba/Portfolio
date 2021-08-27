@@ -18,6 +18,8 @@ const Cursor = ({ path }) => {
   const initHover = useCallback(() => {
     cursor.pointed = false;
     cursor.isStuck = false;
+    cursor.startPointed(false)
+
     document.body.classList.remove('canvas-hover')
 
     console.log('INIT__HOVER: ', path)

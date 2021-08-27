@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, {useContext, useEffect, useRef} from 'react'
 import styled from 'styled-components'
 import {
   gridMultiplayer,
@@ -18,6 +18,7 @@ import Headline from '../../../components/Headline'
 import lotti from 'lottie-web'
 import { useProjectCircles } from '../../../hooks/queries/useProjectCircles'
 import useOnScreen from '../../../hooks/useOnScreen'
+import {AppStateContext} from '../../../contexts/AppStateContext'
 
 const parentVariant = {
   initial: {
@@ -28,9 +29,6 @@ const parentVariant = {
   },
   exit: {
     opacity: 0,
-    transition: {
-      duration: 3,
-    },
   },
 }
 
@@ -128,6 +126,9 @@ const LottiContainer = styled.div`
 
 const Projects = () => {
   const { circle1, circle2 } = useProjectCircles()
+  const {
+     setRegisteredScrollPos
+  } = useContext( AppStateContext )
 
   const circle1Ref = useRef(null)
   const circle2Ref = useRef(null)
@@ -207,7 +208,7 @@ const Projects = () => {
   }, [])
 
   useEffect(() => {
-    console.log('inview :', inView, Lotti.current)
+    // console.log('inview :', inView, Lotti.current)
     if (Lotti[0]) return
 
     if (inView)
@@ -243,11 +244,15 @@ const Projects = () => {
       <LottiContainer >
         <Link
           className="to-projects"
-          data-pointer
-          data-magnet
+          data-pointer='magnet'
+          data-magnet-distance={.5}
+          data-magnet-attraction={.8}
           data-tooltip
           data-tooltip-text="Let me show you how cool i am!"
           to={'/projects/#one'}
+          onClick={() => {
+            setRegisteredScrollPos('#projects')
+          }}
         >
             All Projects(5)
         </Link>

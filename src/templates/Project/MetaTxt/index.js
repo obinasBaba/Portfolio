@@ -8,6 +8,7 @@ import mockup from './Showcase.png'
 const MetaContainer = styled( Container )`
   display: flex;
   flex-flow: column;
+  
   ${spacing('mt', 6)};
   ${spacing('mb', 10)};
 
@@ -67,7 +68,7 @@ export const A = styled( Typography )`
   //line-height: 160%;
   letter-spacing: 0;
   font-weight: 100;
-  color: gray;
+  
   // ${ spacing( 'text-indent', 1 ) };
 `
 

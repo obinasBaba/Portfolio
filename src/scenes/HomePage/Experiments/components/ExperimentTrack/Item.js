@@ -73,6 +73,8 @@ const InfoBar = styled.div`
   flex-flow: column;
   justify-content: space-between;
   align-items: flex-start;
+  //border: thin solid teal;
+  position: relative;
   
   //border: thin solid lightcoral;
   width: 85%;
@@ -84,29 +86,35 @@ const InfoBar = styled.div`
     //letter-spacing: 1px;
   }
   
-`
+  & :hover{
+    svg{
+      transform: rotate(-20deg) translateY(15px);
+      transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9);
+      
+      & *{
+        fill:  #e7a28f;
+        transition: fill .3s ease-in-out;
 
-
-const NumberContainer = styled( Typography )`
-  position: relative;
-  transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9) .2s;
-  
-  &::after{
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9),
-                opacity .5s ease-in;
-    
-    transform: translateX(-50%) translateY(100%);
-    opacity: 0;
-    content: '';
-    display: block;
-    height: 14px;
-    width: 7px;
-    background: navajowhite;
+      }
+    }
   }
+  
+  svg{
+    //border: thin solid red;
+    position: absolute;
+    bottom: 11px;
+    transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9);
+
+
+    & *{
+      filter: drop-shadow( 0px 7px 2px rgba(0, 0, 0, .7));
+      transition: fill .3s ease-in-out;
+    }
+  }
+  
 `
+
+
 
 const Item = ({  imgUrl, title, index}) => {
 
@@ -121,8 +129,20 @@ const Item = ({  imgUrl, title, index}) => {
 
       <InfoBar >
 
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 400 400">
+          <defs>
+            <path d="M0, 200a200, 200 0 1, 0 400, 0a200, 200 0 1, 0 -400, 0" id="txt-path"/>
+          </defs>
 
-        <Typography align="left" variant={'subtitle1'} className='title' >0{index + 1}.&nbsp;{ title}</Typography>
+          <text   fill="#fff" fontSize="1.4667rem" letterSpacing='1.8px' fontWeight="300">
+            <textPath startOffset="100"
+                      href="#txt-path">{title}</textPath>
+          </text>
+
+
+        </svg>
+
+        {/*<Typography align="left" variant={'subtitle1'} className='title' >0{index + 1}.&nbsp;{ title}</Typography>*/}
 
         {/*<RightArrowLink/>*/}
 

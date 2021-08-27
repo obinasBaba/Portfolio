@@ -6,6 +6,7 @@ import ThumbAndDot from './Components/ThumbAndDot'
 
 const NavContainer = styled(motion.ul)`
   position: fixed;
+  z-index: 10;
   top: 40%;
   left: 0;
 
@@ -20,7 +21,7 @@ const NavContainer = styled(motion.ul)`
   //border: thin solid red;
   //-webkit-filter: url("#goo");
   //filter: url("#dots-gooey");
-  //filter: blur(2px) contrast(11110);
+  //filter: blur(2px) contrast(120px);
   
   svg{
     //display: none;  
@@ -30,11 +31,6 @@ const NavContainer = styled(motion.ul)`
 
   ${spacing('ml', 4.5)};
   ${spacing('mb', 3.5)};
-  z-index: 99999;
-`
-
-const Wrapper = styled.div`
-
 `
 
 const parentVariant = {
@@ -45,7 +41,7 @@ const parentVariant = {
   },
 
   initial: {
-    x: '-200%',
+    x: 'calc((var(--indent) * -4.5rem))',
     y: '-40%',
   },
   animate: {
@@ -57,7 +53,7 @@ const parentVariant = {
     },
   },
   exit: {
-    x: '300%',
+    x: 'calc((var(--indent) * -4.5rem))',
     transition: {
       delay: 0.1,
       duration: 1,
@@ -84,6 +80,7 @@ const NavDots = React.forwardRef((props, ref) => {
         animate="animate"
         exit="exit"
         id="navDots"
+        // layout
       >
 
         {anchors.map((anchor, index) => (

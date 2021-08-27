@@ -30,7 +30,6 @@ const Logo = styled(motion.div)`
     bottom: -15px;
     z-index: -1;
     
-    //border: thin solid red;
   }
 
   & .logoSvg {
@@ -41,7 +40,11 @@ const Logo = styled(motion.div)`
     `)};
   }
 
-  
+  a{
+    position: absolute;
+    inset: 0;
+    pointer-events: all ;
+  }
 `
 
 const logoVariant = {
@@ -88,9 +91,9 @@ const HomeLogo = ({ isWhite }) => {
 
       {/*<div className="trigger"/>*/}
 
-      <Link to={'/'}>
-        <ReactSVG className="logoSvg" src={logo.publicURL} />
-      </Link>
+      <Link to={'/'}/>
+
+      <ReactSVG className="logoSvg" src={logo.publicURL} />
     </Logo>
   )
 }

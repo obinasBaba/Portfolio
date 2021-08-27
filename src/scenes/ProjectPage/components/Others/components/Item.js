@@ -3,7 +3,7 @@ import { ListItem } from './index'
 import { useAnimation } from 'framer-motion'
 import styled from 'styled-components'
 import { text } from '../../../../../styles/mixins'
-import { GradientText } from '../../../../../components/GrdientText'
+import { GradientText } from '../../../../../components/GradientText'
 
 const itemVariant = {
   initial: {},

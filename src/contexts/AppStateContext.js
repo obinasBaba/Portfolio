@@ -23,6 +23,7 @@ const AppStateProvider = ( {children} ) => {
   const [currentPath, setCurrentPath] = useState('/')
   const [cursorScaled, setCursorScaled] = useState(false)
   const [fromCaseStudy, setFromCaseStudy] = useState(false)
+  const [registeredScrollPos, setRegisteredScrollPos] = useState(null)
   const [toolTip, setToolTip] = useState({
     text: '',
     show: false
@@ -71,6 +72,7 @@ const AppStateProvider = ( {children} ) => {
       toolTip, setToolTip,
       currentPath, setCurrentPath,
       cursorScaled, setCursorScaled,
+      registeredScrollPos, setRegisteredScrollPos,
       moScroll: {
         x, y, yProgress, xProgress, limit,
       }

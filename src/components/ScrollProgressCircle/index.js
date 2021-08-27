@@ -74,6 +74,7 @@ const bottomPathVariant = {
 const ScrollProgressCircle = () => {
 
   const {
+    currentPath,
     isContactOpen,
     setContactModal,
     moScroll: {y, limit},
@@ -85,13 +86,19 @@ const ScrollProgressCircle = () => {
 
   const pathLength = useTransform(rotate, [0, 360], [0, 1])
 
+  useEffect(() => {
+    pathLength.set(0)
+    rotate.set(0)
+    y.set(0)
+  }, [currentPath])
+
   return (
     <ProgressCircleContainer>
 
       <ProgressCircleWrapper
-        data-pointer='stuck'
-        // data-magnet-distance='1.6'
-        // data-magnet-stop='1.7'
+        data-pointer='magnet'
+        data-magnet-distance={.6}
+        data-magnet-attraction={1.6}
         data-tooltip
         data-tooltip-text='Write me a poem...'
         onClick={() => setContactModal(!isContactOpen)}
@@ -115,7 +122,6 @@ const ScrollProgressCircle = () => {
         </motion.svg>
 
         <RotatingDiv  style={{ rotate }}>
-
 
           <motion.svg xmlns="http://www.w3.org/2000/svg"
                       className='circle'

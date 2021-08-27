@@ -60,16 +60,12 @@ const ProjectPage = () => {
       variants={parentVariant}
       initial={moVariants.get()}
       animate="animate"
-      data-scroll-section
-
       // exit='exit'
     >
       <Moon showMoon={false} variants={moonVariants} />
 
-      {/*<SideBarTools>*/}
         <NavDots ref={activeNavDotRef} />
         <ProjectScrollDown show={activeIndex === 0} />
-      {/*</SideBarTools>*/}
 
       <ReactFullpage
         easingcss3="cubic-bezier(0.645, 0.045, 0.355, 1)"

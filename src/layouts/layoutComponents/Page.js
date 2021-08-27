@@ -49,7 +49,7 @@ const BottomGradient = styled.div`
 `
 
 const Page = ({ children, path }) => {
-  const { loadingPage, moScroll } = useContext(AppStateContext)
+  const { loadingPage, currentPath } = useContext(AppStateContext)
 
   useLoadingFonts()
 
@@ -63,7 +63,7 @@ const Page = ({ children, path }) => {
         {loadingPage ? (
           <LoadingSpinner />
         ) : (
-          <AnimatePresence exitBeforeEnter  custom={{ path: path }}>
+          <AnimatePresence exitBeforeEnter  custom={{ path, cPath:  currentPath}}>
             <Cursor path={path} />
             {children}
           </AnimatePresence >
