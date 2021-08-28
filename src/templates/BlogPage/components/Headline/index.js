@@ -150,28 +150,39 @@ const HeadLine = ({ categories, title, imgData, date, tags, thumbnail }) => {
   const topContainer = useRef(null);
 
   const [scrolled, setScrolled] = useState(false);
+  const [rendered, setRendered] = useState(false)
 
   const {moScroll} = useContext(AppStateContext)
 
 
   useTransform(moScroll.y, latest => {
-    // if (  !latest || latest <= 0) return 0;
+
+    if ( !rendered )
+      return 0;
 
     if ( latest > 80 ){
       if ( !scrolled  )
         setScrolled( true )
-      document.body.classList.add('blog-clr')
     }
   })
 
   useEffect(() => {
+    if( scrolled )
+      document.body.classList.add('blog-clr')
+
+
+    }, [scrolled])
+
+  useEffect(() => {
+    setRendered(true)
+
     return () => document.body.classList.remove('blog-clr')
-    }, [ ])
+  }, [])
 
   return (
     <AnimateSharedLayout>
 
-      <HeadLineContainer layout  ref={topContainer} data-scrolled={scrolled} data-scroll-section>
+      <HeadLineContainer layout  ref={topContainer} data-scrolled={scrolled}>
 
         <TextAlign maxWidth="lg" fixed={ true } className='txt-align' layout='position'>
           <Title variant="h1" className='title' layout='position'> { title } </Title>

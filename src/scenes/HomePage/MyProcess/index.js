@@ -48,12 +48,15 @@ const ProcessTrack = styled(motion.div)`
     ${spacing('mr', 17.5)};
   }
 `
+// https://assets.website-files.com/5e0f6cce946b126508a0d575/5f871b5142ebdd72ead3da3c_illus_small_unsure_c.json
+//https://assets.website-files.com/5e0f6cce946b126508a0d575/5f8822d14b14dabd54bd2516_illus_small_ufo.json
+
 
 const MyProcess = () => {
-  const { build, design, pentool, phone, rocket } = useApproachAssets()
+  const { build, design, ufo, align, rocket } = useApproachAssets()
   const { loadingPage } = useContext(AppStateContext)
 
-  const icons = [phone, pentool, design, build, rocket]
+  const icons = [align, ufo, design, build, rocket]
 
   const maskRef = useRef(null)
   const titleRef = useRef(null)
@@ -90,7 +93,7 @@ const MyProcess = () => {
           trigger: '.mask',
           pin: true,
           scroller: '[data-scroll-container]',
-          start: () => 'top 25%',
+          start: () => 'top 23%',
           end: () => '+=' + (track.offsetWidth - 300),
         },
       })
@@ -107,7 +110,6 @@ const MyProcess = () => {
 
           onUpdate(self) {
             progress.set(self.progress)
-            console.log(self.progress)
           },
         },
       })

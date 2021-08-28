@@ -1,18 +1,19 @@
 import React from "react";
-import styled from "styled-components";
+import styled, {css} from 'styled-components'
 import {gridColWidth, gridify, spacing} from '../../../../styles/mixins'
 import { Typography } from "@material-ui/core";
 import {GatsbyImage, getImage} from 'gatsby-plugin-image'
+import ReadButton
+  from '../../../BlogList/components/BlogCard/components/ReadButton'
 
 const MoreBlogContainer = styled.section`
   margin: 0 auto;
   max-width: 90rem;
   height: 380px;
-  border: thin solid red;
 
 
   ${gridify()};
-  place-items: center;
+  
   
   & > *{
      grid-row: 1;
@@ -45,32 +46,75 @@ const NextBlogTitle = styled.div`
   text-align: left;
   justify-self: start;
   align-self: start;
+  //border: thin solid red;
+  display: flex;
+  flex-flow: column;
+  color: var(--theme);
   
   & > :first-child{
+    ${spacing('ml', -4)};
+    ${spacing('mb', 2)};
+  }
+  
+  & .title{
     max-width: 20ch;
     text-align: left;
     font-weight: 900;
     color: var(--theme);
   }
   
-  ${spacing('ml', 10)};
-  ${spacing('mt', 7)};
+  ${spacing('ml', 12)};
+  ${spacing('mt', 2)};
   ${gridColWidth()};
 `
 
-const MoreBlog = ( {data} ) => {
+const MetaWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--theme);
+  
+  ${ spacing( "pv", 2 ) };
+  ${ spacing( "pr", 4 ) };
+`;
+
+const MetaTxt = styled( Typography )`
+  font-size: .75rem;
+  letter-spacing: .5px;
+  opacity: .6;
+  //text-transform: uppercase;
+`;
+
+const MoreBlog = ( {data, slug} ) => {
   const { title, date, tags, thumbnail } = data
-  console.log(title)
+  console.log(slug)
 
 
   return (
     <MoreBlogContainer data-scroll-section>
 
       <GatsbyImage className='img-box' objectFit='cover' alt={'next blog'} image={getImage(thumbnail)}/>
+
       <NextBlogTitle className='next-title' >
-        <Typography variant='h2'>
+        <Typography>Next Up</Typography>
+
+        <Typography variant='h2' className='title'>
           {title}
         </Typography>
+
+        <MetaWrapper>
+          <MetaTxt>{ date }</MetaTxt>
+          <MetaTxt> #React, #Js </MetaTxt>
+        </MetaWrapper>
+
+        <ReadButton txt='Read' to={slug}
+                    style={css`
+                      margin-right: auto;
+                      ${spacing('ml', 2)};
+                      ${spacing('mt', 1)};
+                    `}
+        />
+
       </NextBlogTitle>
 
     </MoreBlogContainer>

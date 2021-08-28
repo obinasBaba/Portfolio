@@ -1,12 +1,15 @@
-import React from 'react'
+import React, {useContext, useLayoutEffect} from 'react'
 import { graphql } from 'gatsby'
 import HeadLine from './components/Headline'
 import Article from './components/Article'
 import MoreBlog from './components/MoreBlog'
 import styled from 'styled-components'
 import useLocoScroll from '../../hooks/useLocoScroll'
+import {AppStateContext} from '../../contexts/AppStateContext'
+import {motion} from 'framer-motion'
+import {basicVariants, transition} from '../../helpers/variants'
 
-const BlogContainer = styled.div`
+const BlogContainer = styled( motion.div )`
   position: relative;
   max-width: 1600px;
   width: 100%;
@@ -29,26 +32,53 @@ const GradientBg = styled.div`
   );
 `
 
+export const containerVariant = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1
+  },
+  exit: {
+    opacity: 0,
+  }
+}
+
 const BlogPage = ({data, path, ...other}) => {
   const { title, date, tags, thumbnail } = data.currentBlog.frontmatter;
+
+  const { setCurrentPath } = useContext(AppStateContext)
+  useLayoutEffect( () => {
+    setCurrentPath(path)
+  }, [] )
+
 
   useLocoScroll(true, '#blog-container')
 
 
   return (
-    <BlogContainer data-scroll-container id='blog-container' >
-      <GradientBg />
+    <BlogContainer data-scroll-container id='blog-container'
+                   variants={containerVariant}
+                   transition={transition}
+                   initial='initial'
+                   animate='animate'
+                   exit='exit'
+    >
 
-      <HeadLine
-        title={title}
-        date={date}
-        tags={tags ? tags : []}
-        thumbnail={thumbnail}
-      />
+     <div data-scroll-section={true}>
+       <HeadLine
+         title={title}
+         date={date}
+         tags={tags ? tags : []}
+         thumbnail={thumbnail}
+       />
+     </div>
 
       <Article html={data.currentBlog.html} />
 
-      <MoreBlog data={data.nextBlog.frontmatter}/>
+      <MoreBlog data={data.nextBlog.frontmatter} slug={data.nextBlog.fields.slug}/>
+
+      <GradientBg />
 
     </BlogContainer>
   )
@@ -87,7 +117,9 @@ export const query = graphql`
           }
         }
       }
-      html
+      fields {
+        slug
+      }
     }
     
   }

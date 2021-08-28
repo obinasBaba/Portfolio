@@ -22,7 +22,7 @@ const AppStateProvider = ( {children} ) => {
   const [loadingPage, setLoadingPage] = useState(true)
   const [currentPath, setCurrentPath] = useState('/')
   const [cursorScaled, setCursorScaled] = useState(false)
-  const [fromCaseStudy, setFromCaseStudy] = useState(false)
+
   const [registeredScrollPos, setRegisteredScrollPos] = useState(null)
   const [toolTip, setToolTip] = useState({
     text: '',
@@ -34,6 +34,11 @@ const AppStateProvider = ( {children} ) => {
     width: 0,
     height: 0,
   })
+
+  //using motionValue to avoid rerender
+  const fromProjectList = useMotionValue(false);
+  const fromCaseStudy = useMotionValue(false);
+  const isTop = useMotionValue(true);
 
   const x= useMotionValue(0)
   const y= useMotionValue(0)
@@ -64,7 +69,7 @@ const AppStateProvider = ( {children} ) => {
       isHeaderGradient,
       setHeaderGradient,
       isContactOpen, setContactModal,
-      fromCaseStudy, setFromCaseStudy,
+
       titleRect, setTitleRect,
       top, setTop,
       loadingPage, setLoadingPage,
@@ -75,7 +80,13 @@ const AppStateProvider = ( {children} ) => {
       registeredScrollPos, setRegisteredScrollPos,
       moScroll: {
         x, y, yProgress, xProgress, limit,
-      }
+      },
+
+      variantsUtil: {
+        fromCaseStudy,
+        fromProjectList,
+        isTop
+      },
       // magnet: MagnetElements
 
     }} >

@@ -20,24 +20,18 @@ const BackgroundStars = () => {
     damping: 20,
   }
   const target = useRef(null)
-  const mouse = useMouse(target)
+  // const mouse = useMouse(target)
   const yMouse = useSpring( 0, config);
   const xMouse = useSpring(0, config);
 
-  const calcNewMousePos = (x, y) => {
-    const xPos =  (x - window.innerWidth / 2) / 30;
-    const yPos =  (y - window.innerHeight / 2) / 30;
+  const calcNewMousePos = (ev) => {
+    const xPos =  (ev.clientX - window.innerWidth / 2) / 30;
+    const yPos =  (ev.clientY - window.innerHeight / 2) / 30;
     yMouse.set(yPos);
     xMouse.set(xPos);
   };
 
-  const doc =  useRef(null);
-
-
-  useElementScroll( target )
-
-  const { scrollY } = useViewportScroll()
-  const { moScroll: {x, y} } = useContext(AppStateContext)
+  const { moScroll: {y}, currentPath } = useContext(AppStateContext)
 
 
   const mappedY = useTransform(y, y => Math.ceil((300 / 3400) * -y))
@@ -46,7 +40,22 @@ const BackgroundStars = () => {
   const yScrollSmall = useTransform(yScrollBig, latest => latest / 1.5)
 
 
-  useEffect( () => calcNewMousePos(mouse.elX, mouse.elY), [mouse] );
+  useEffect( () => {
+
+    window.addEventListener('mousemove', calcNewMousePos)
+
+    setTimeout(() => {
+      // mappedY.destroy()
+
+    }, 5000)
+
+
+
+    return () => {
+      window.removeEventListener('mousemove', calcNewMousePos)
+    }
+
+  }, [currentPath] );
 
   return (
     <Galaxy ref={target}

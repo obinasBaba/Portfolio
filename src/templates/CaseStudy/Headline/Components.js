@@ -68,7 +68,7 @@ export const Texts = styled(motion.div)`
   flex-flow: column;
   grid-row: 2;
   //border: thin solid red;
-  margin-left: calc(100vw / 64 * 2);
+  //margin-left: calc(100vw / 64 * 2);
 
   ${gridColWidth(8, 58)}
   ${spacing('pt', 6)};
@@ -111,6 +111,7 @@ export const HeadLineBG = styled(motion.div)`
   left: 0;
   right: 0;
   bottom: 0;
-  background: #02021e;
+  background-color: var(--contentBg);
+  transition: background-color .8s ease-in-out ;
 
 `

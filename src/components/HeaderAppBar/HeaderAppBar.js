@@ -62,7 +62,7 @@ function HideOnScroll({ children, window, isMenuOpen }) {
 const NavContainer = styled.div`
 
   position: fixed;
-  z-index: 10;
+  z-index: 20;
   top: 0;
   width: 100%;
   padding: 2rem 2rem 1.3rem;

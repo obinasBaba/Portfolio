@@ -1,15 +1,9 @@
-import React, {useContext, useEffect} from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import {
-  animate,
-  motion,
-  useSpring,
-  useTransform,
-  useViewportScroll,
-} from 'framer-motion'
-import {AppStateContext} from '../../contexts/AppStateContext'
+import { motion, useSpring, useTransform } from 'framer-motion'
+import { AppStateContext } from '../../contexts/AppStateContext'
 
-const AnimatedDiv = styled(motion.div)`
+const ScrollContainer = styled(motion.div)`
   display: flex;
   align-items: center;
   list-style-type: none;
@@ -19,8 +13,10 @@ const AnimatedDiv = styled(motion.div)`
 
 const Gallery = ({ children, step }) => {
   const { moScroll } = useContext(AppStateContext)
+  const containerRef = useRef(null)
 
-  const mapped = useTransform(moScroll.y, [0, 2500], [-40, -1000])
+
+  const mapped = useTransform(moScroll.y, [0, 2500], [-40, -1200])
 
   const x = useSpring(mapped, {
     mass: .5,  damping: 10, stiffness: 50,
@@ -28,10 +24,10 @@ const Gallery = ({ children, step }) => {
 
   useEffect(() => {
     // console.log( 'x' ,  x.get())
-    return ( ) => mapped.destroy()
+
   }, [])
 
-  return <AnimatedDiv style={{ x: x }}>{children}</AnimatedDiv>
+  return <ScrollContainer ref={containerRef} style={{ x }}>{children}</ScrollContainer>
 }
 
 export default Gallery

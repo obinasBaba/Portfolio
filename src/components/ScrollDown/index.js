@@ -8,8 +8,9 @@ const ScrollTxt = styled(Typography)`
   font-weight: 300;
   line-height: 1.6em;
   letter-spacing: 3px;
-  color: #b3afaf;
-  z-index: 999999;
+  color: #fff;
+  display: none;
+  //z-index: 40;
 
   ${text(0.7)};
 `

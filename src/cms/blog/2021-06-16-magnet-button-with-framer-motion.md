@@ -73,9 +73,9 @@ Very often, designers do not notice that they are not talking to the decision-ma
 
 <!--StartFragment-->
 
-### Design testing
+### Illustration testing
 
-Design testing is a check of layout for design compliance. A product designer is responsible for this.  After a developer has finished their work, a designer shall check if everything has proper appearance and shows appropriate behavior. If there are any questions, a designer shall report a bug or decide with a developer on the need to redo something. 
+Illustration testing is a check of layout for design compliance. A product designer is responsible for this.  After a developer has finished their work, a designer shall check if everything has proper appearance and shows appropriate behavior. If there are any questions, a designer shall report a bug or decide with a developer on the need to redo something. 
 
 **Typical problems that could be found during the design testing:**
 

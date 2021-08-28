@@ -43,6 +43,7 @@ const ProjectContainer = styled(motion.section)`
   min-height: 100vh;
   //border: thick solid red;
   //padding: 2rem 0;
+  z-index: 11;
   
   ${spacing('pt', 11)};
   ${spacing('pb', 11)};
@@ -133,7 +134,7 @@ const Projects = () => {
   const circle1Ref = useRef(null)
   const circle2Ref = useRef(null)
   const containerRef = useRef(null)
-  let Lotti = useRef([])
+  let lottiRef = useRef([])
 
   const moRotate = useMotionValue(0)
   const moRotate2 = useMotionValue(0)
@@ -183,10 +184,10 @@ const Projects = () => {
     // return;
     // if (moRotate.get() !== 0) return
 
-    Lotti.current = []
+    lottiRef.current = []
     lotti.destroy()
 
-    Lotti.current.push(
+    lottiRef.current.push(
       lotti.loadAnimation({
         container: circle1Ref.current,
         renderer: 'svg',
@@ -196,7 +197,7 @@ const Projects = () => {
       })
     )
 
-    Lotti.current.push(
+    lottiRef.current.push(
       lotti.loadAnimation({
         container: circle2Ref.current,
         renderer: 'svg',
@@ -209,15 +210,15 @@ const Projects = () => {
 
   useEffect(() => {
     // console.log('inview :', inView, Lotti.current)
-    if (Lotti[0]) return
+    if (lottiRef[0]) return
 
     if (inView)
-      Lotti.current.forEach(lotti => {
+      lottiRef.current.forEach(lotti => {
         lotti.play()
       })
     else
-      Lotti.current.forEach(lotti => {
-        lotti.stop()
+      lottiRef.current.forEach(lotti => {
+        lotti.pause()
       })
   }, [inView])
 

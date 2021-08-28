@@ -49,7 +49,7 @@ const Companies = () => {
     },
     {
       src: BE,
-      txt: 'Behance Award Best UI Design',
+      txt: 'Behance Award Best UI Illustration',
     },
   ]
 

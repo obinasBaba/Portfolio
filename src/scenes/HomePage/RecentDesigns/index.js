@@ -69,26 +69,11 @@ const RecentWorks = () => {
       <Title circledText={ circledText.publicURL }
              dribbleRed={ dribbleRed.publicURL } />
 
-     {/* {
-        inView ?*/}
           <ScrollGallery>
             {imageList.map((item, index) => {
               return <DesignImage images={item} key={item[0].name + index} />;
             })}
           </ScrollGallery>
-
-          {/*:
-
-          <div style={{
-            display: 'flex',
-            alignItems: 'center'
-          }}
-          >
-            {imageList.map((item, index) => {
-              return <DesignImage images={item} key={item[0].name + index} />;
-            })}
-          </div>
-      }*/}
 
 
     </RecentDesignWrapper>

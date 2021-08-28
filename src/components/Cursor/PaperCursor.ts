@@ -1,5 +1,5 @@
 // @ts-ignore
-import Paper, { Group, Path } from 'paper'
+import Paper, { Group, Path} from 'paper'
 // @ts-ignore
 import SimplexNoise from 'simplex-noise'
 import { lerp, map } from '../../helpers/utils'
@@ -72,7 +72,7 @@ class PaperCursor {
 
     this.initCanvas()
 
-    console.log('CANVASE ____ INSTANTIATED _______')
+    console.log('CANVASE ____ INSTANTIATED _______', this.canvas)
   }
 
   private getCircles(args) : Circle {

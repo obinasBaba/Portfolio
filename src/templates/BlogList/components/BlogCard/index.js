@@ -12,34 +12,34 @@ import {
 } from '../../../../styles/mixins'
 
 const StyledBlogCard = styled(motion.div)`
-  margin: auto;
-  box-shadow: 0 5px 20px rgba(34, 45, 58, 0.2);
   position: relative;
-  //flex-basis: 40%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: auto;
   background-clip: padding-box;
   background-image: url(${({ media }) => media});
   background-position: 80% 30%;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-
+  box-shadow: 0 5px 20px rgba(34, 45, 58, 0.2);
+  
   ${spacing('br', 3)};
   ${spacing('mv', 10)};
   ${spacing('mb', 15)};
 
   &:before {
     content: '';
-    display: block;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    ${spacing('br', 3)};
+    z-index: -1;
+    
+    display: block;
+    overflow: hidden;
     backdrop-filter: blur(5px);
     background-image: linear-gradient(
       137.81deg,
@@ -47,7 +47,8 @@ const StyledBlogCard = styled(motion.div)`
       rgba(249, 214, 172, 0.88) 41.89%,
       rgba(251, 254, 252, 0.88) 96.77%
     );
-    overflow: hidden;
+
+    ${spacing('br', 3)};
   }
 
   &:first-child {
@@ -68,10 +69,6 @@ const StyledBlogCard = styled(motion.div)`
   `)};
 `
 
-const topVariant = {
-  initial: {},
-  hover: {},
-}
 
 const BlogCard = ({
   index,

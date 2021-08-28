@@ -29616,7 +29616,7 @@
     }
     function Tl(t) {
       var e = [];
-      t.querySelectorAll(".icon-illustration[data-lottie]").forEach((function(t) {
+      t.querySelectorAll(".icon-Illustration[data-lottie]").forEach((function(t) {
           e.push(function(t) {
             return new Promise((function(e) {
                 var i = t.dataset.lottie

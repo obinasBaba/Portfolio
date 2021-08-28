@@ -48,7 +48,7 @@ Pay attention to details and you will not have awkward moments with customers
 
 The team does the same, but with a project manager, who will take into account the time difference, catch up with deadlines and take into consideration the rest of the external factors that may affect the work. Don’t forget that there are regular calls from clients to performers for a direct discussion about the key points of a project. 
 
-Working with a designer directly means you are the last stand. You will need to understand how to form tasks, how to give the right feedback, how to evaluate aesthetics. And we know how busy are start-up founder’s lives are. Design director’s participation will ease some of this pain. Of course not all of it, because you understand your business better than anyone. But if it will reduce your headache by 50% surely it’s worth it?
+Working with a designer directly means you are the last stand. You will need to understand how to form tasks, how to give the right feedback, how to evaluate aesthetics. And we know how busy are start-up founder’s lives are. Illustration director’s participation will ease some of this pain. Of course not all of it, because you understand your business better than anyone. But if it will reduce your headache by 50% surely it’s worth it?
 
 ## **Statement 5: a freelancer is a creative person who is not always ready for harsh criticism of his work by the client**
 

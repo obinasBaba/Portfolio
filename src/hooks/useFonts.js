@@ -18,7 +18,9 @@ const useLoadingFonts = () => {
 
     Promise.all([elianto.load(), poppins.load(), icons.load()])
       .then(() => {
-        events.finishLoading()
+        setTimeout(() => {
+          events.finishLoading()
+        }, 3000)
       })
       .catch(console.error)
 

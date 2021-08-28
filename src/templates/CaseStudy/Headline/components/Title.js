@@ -25,8 +25,14 @@ const TitleContainer = styled( motion.h1 )`
 `
 
 const titleVariant = {
-  initial: {},
+  fromProjectsInitial: {},
+  fromProjectsAnimate: {
+    scale: 1.3,
+    y: -30,
+    originX: 0
+  },
 
+  initial: {},
   animate: {
     scale: 1.3,
     y: -30,
@@ -34,11 +40,22 @@ const titleVariant = {
   },
 
   exit(arg){
-    if ( arg && arg.path === '/projects/' )
+    if ( arg && arg.path === '/projects/' ){
+      const delay = arg.isTop ? arg.isTop.get() : false;
+
       return{
         scale: 1,
-          y: 0
+        y: 0,
+        transition: {
+          ...transition,
+          delay: delay ? 0 : 1,
+        }
       }
+
+    }
+    return {
+      opacity: 0,
+    }
   },
 }
 

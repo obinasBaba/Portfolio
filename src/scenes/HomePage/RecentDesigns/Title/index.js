@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import styled, { css } from 'styled-components'
 import { Container } from '@material-ui/core'
 import { heightWidth, largeUp, spacing } from '../../../../styles/mixins'
 import Headline from '../../../../components/Headline'
+import {AppStateContext} from '../../../../contexts/AppStateContext'
+import {useTransform} from 'framer-motion'
+import {motion} from 'framer-motion'
 
 const TitleContainer = styled(Container)`
   display: flex;
@@ -65,14 +68,13 @@ const Title = ({ dribbleRed, circledText }) => {
       transform: `rotate(${window.pageYOffset / 3}deg)`,
     } );
   }
+  const { moScroll } = useContext(AppStateContext)
+
+  const rotate = useTransform(moScroll.y, [200, 2000], [0, 360])
 
   useEffect(() => {
 
-    window.addEventListener('scroll', handleScroll)
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
   }, [])
   
 
@@ -84,12 +86,12 @@ const Title = ({ dribbleRed, circledText }) => {
         rel="noopener noreferrer"
         target="_blank"
       >
-        <img
+        <motion.img
           alt="Web App, Mobile"
           loading="lazy"
           src={circledText}
           className="circledText"
-          style={dribbleTextTransform}
+          style={{rotate}}
         />
 
         <img

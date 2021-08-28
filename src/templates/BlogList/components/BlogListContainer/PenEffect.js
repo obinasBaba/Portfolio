@@ -2,6 +2,14 @@ import React, {useContext} from 'react'
 import styled from 'styled-components'
 import {motion, useSpring, useTransform} from 'framer-motion'
 import {AppStateContext} from '../../../../contexts/AppStateContext'
+import {transition, basicVariants} from '../../../../helpers/variants'
+
+const penVariant = {
+  ...basicVariants,
+  animate: {
+    opacity: .7
+  }
+}
 
 const PenContainer = styled( motion.div )`
   position: fixed;
@@ -9,7 +17,6 @@ const PenContainer = styled( motion.div )`
   left: 1%;
   bottom: -14%;
   pointer-events: none;
-  opacity: .7;
   //z-index: -1;
   //border: thin solid rebeccapurple;
 `
@@ -35,7 +42,15 @@ const PenEffect = () => {
   })
 
   return (
-    <PenContainer style={{y, rotate}}>
+    <PenContainer style={{y, rotate}}
+                  variants={penVariant}
+                  transition={{...transition, delay: .5}}
+                  initial='initial'
+                  animate='animate'
+                  exit='exit'
+    >
+
+
       <svg xmlns="http://www.w3.org/2000/svg"
            width="100%" height="100%"
            viewBox="0 0 323.091 369.629">

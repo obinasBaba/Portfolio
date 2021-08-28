@@ -4,13 +4,16 @@ import { SkyColor } from '../Components/SkyColor'
 import BackgroundStars from '../../components/BackgroundStars'
 import HeaderAppBar from '../../components/HeaderAppBar'
 import { Main } from './index'
-import { AnimatePresence, useElementScroll } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import ToolTip from '../../components/Fixed/ToolTip'
 import ProgressCircle from '../../components/ScrollProgressCircle'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import Cursor from '../../components/Cursor'
 import useLoadingFonts from '../../hooks/useFonts'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+
 
 export const PageContainer = styled.div`
   position: relative;
@@ -48,8 +51,11 @@ const BottomGradient = styled.div`
   transition: all 0.35s ease-in-out;
 `
 
+
+gsap.registerPlugin(ScrollTrigger);
+
 const Page = ({ children, path }) => {
-  const { loadingPage, currentPath } = useContext(AppStateContext)
+  const { loadingPage, currentPath, variantsUtil: { isTop } } = useContext(AppStateContext)
 
   useLoadingFonts()
 
@@ -59,21 +65,26 @@ const Page = ({ children, path }) => {
       <BackgroundStars />
       <HeaderAppBar />
 
+      <canvas className="canvas" key={'pointer-map'} />
+
       <Main data-scroll-container>
-        {loadingPage ? (
-          <LoadingSpinner />
-        ) : (
-          <AnimatePresence exitBeforeEnter  custom={{ path, cPath:  currentPath}}>
-            <Cursor path={path} />
-            {children}
-          </AnimatePresence >
-        )}
+        <AnimatePresence exitBeforeEnter  custom={{ path, cPath:  currentPath}}>
+
+
+        {loadingPage ?
+             <LoadingSpinner />
+           :
+            <React.Fragment key='Main-Content'>
+                <Cursor path={path} />
+                {children}
+            </React.Fragment>
+          }
+        </AnimatePresence>
       </Main>
 
       <BottomGradient />
       <ToolTip />
       <ProgressCircle />
-      <canvas className="canvas" />
     </PageContainer>
   )
 }

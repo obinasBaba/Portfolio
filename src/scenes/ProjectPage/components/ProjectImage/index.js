@@ -32,6 +32,8 @@ const ProjectImage = ({
 }) => {
 
   // console.log(preview)
+  const { variantsUtil: {fromProjectList} } = useContext(AppStateContext)
+
 
   return (
     <ProjectImg
@@ -47,11 +49,15 @@ const ProjectImage = ({
         transition={transition}
       >
 
-        <Link to={link} state={{ path: url }} />
+        <Link to={link}
+              state={{ path: url }}
+              onClick={() => fromProjectList.set(true) }
+        />
 
         <motion.img data-src={img}
-                    // variants={imgVariant}
-                    // transition={transition}
+                    variants={imgVariant}
+                    transition={transition}
+
         />
 
         <motion.div className="image-over" variants={imgOverVariants}>

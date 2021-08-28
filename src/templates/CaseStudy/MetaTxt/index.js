@@ -77,7 +77,7 @@ const MetaTxt = () => {
   const about = [
     { q: 'Role -', a: 'UI design / Coding' },
     { q: 'Period -', a: 'End 2020' },
-    { q: 'Context -', a: 'Design, Illustration and Lettering' },
+    { q: 'Context -', a: 'Illustration, Illustration and Lettering' },
   ];
 
   return (

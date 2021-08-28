@@ -26,6 +26,14 @@ export const useApproachAssets = (index) => {
       rocket: file(relativePath: { eq: "rocket.json" }) {
         publicURL
       }
+      
+      align: file(relativePath: { eq: "align.json" }) {
+        publicURL
+      }
+      
+      ufo: file(relativePath: { eq: "ufo.json" }) {
+        publicURL
+      }
     }
   `)
 }

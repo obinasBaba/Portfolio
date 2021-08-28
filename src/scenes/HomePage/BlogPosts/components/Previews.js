@@ -47,7 +47,7 @@ const Previews = (  ) => {
         return <Item key={item.node.id}
                      tag={item.node.frontmatter.tags.map(({tag}) => tag)  .join(', ')}
                      title={item.node.frontmatter.title}
-                     link={item.node.fields.slug}
+                     link={'item.node.fields.slug'}
                      media={[p1, p2, p3][index]} />;
       })}
     </>

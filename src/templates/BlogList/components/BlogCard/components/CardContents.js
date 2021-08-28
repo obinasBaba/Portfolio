@@ -51,24 +51,21 @@ const Excerpt = styled( Typography )`
 
 
 const ContentWrapper = styled.div `
-  align-self: stretch;
+  position: relative;
+  z-index: 11;
+  
   flex: 1.5;
   display: flex;
   flex-flow: column;
   justify-content: space-between;
-  z-index: 11;
-  color: #02021e;
-  //border: thin solid blue;
+  align-self: stretch;
   
+  color: #02021e;
+  padding-bottom: 0;
 
   ${ spacing( "pv", 2 ) };
   ${ spacing( "ph", 3 ) };
-  padding-bottom: 0;
  
-  & > *{
-    //border: thin solid black;
-  }
-  
 `;
 
 

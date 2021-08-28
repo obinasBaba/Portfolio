@@ -18,20 +18,19 @@ import {ProjectContainer} from './components'
 import {usePresence, useTransform} from 'framer-motion'
 
 let args = {
-  path: '',
-  fun: ''
+  path: undefined,
+  scroll: undefined
 }
 
 const BG = styled.div`
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  //z-index: 1;
+  z-index: 0;
   background-color: var(--contentBg);
-  transition: background-color 1s ease-in-out ;
+  transition: background-color .8s ease-in-out ;
   //display: none;
 `
 
@@ -40,7 +39,7 @@ const FixedItems = styled.div`
   left: 3%;
   top: 29%;
   bottom: 5%;
-  z-index: 1;
+  z-index: 11;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -58,18 +57,14 @@ const containerVariants = {
     opacity: 1,
   },
   exit(arg){
-    console.log('Exit------------To: ', args)
     if ( arg.path )
       args.path = arg.path;
     if ( arg.scrollTop )
-      args.fun = arg.scrollTop
-
+      args.scroll = arg.scrollTop
 
     if ( arg.path === '/projects/' ){
-      console.log(args)
-
-      if ( args.fun )
-        args.fun()
+      if ( args.scroll )
+        args.scroll()
 
       return {}
     }
@@ -77,7 +72,7 @@ const containerVariants = {
     return{
       opacity: 0,
       transition: {
-        duration: 5
+        duration: 1.5
       }
     }
   }
@@ -88,26 +83,32 @@ const Project = ({ pageContext, location, path }) => {
   const { headlineImg } = pageContext.imageData
   const {
     setCurrentPath,
-    setFromCaseStudy,
-    moScroll
+    moScroll,
+    variantsUtil: {fromCaseStudy, isTop}
   } = useContext(AppStateContext)
+
+
 
   const loco =  useLocoScroll(true, '.projectContainer')
   // const [isPresent, safeToRemove] = usePresence()
 
   // console.log(loco.current)
 
-  useEffect(() => {
-    setFromCaseStudy(true)
-    setCurrentPath(location.pathname)
-  }, [])
-
-
   const [scrolled, setScrolled] = useState(false);
 
 
+  useEffect(() => {
+    fromCaseStudy.set(true)
+    setCurrentPath(location.pathname)
+
+  }, [])
+
+
+
+
+
   useTransform(moScroll.y, latest => {
-    if ( latest > 380 ){
+    if ( latest > 450 ){
       if ( !scrolled  )
         setScrolled( true )
 
@@ -141,55 +142,60 @@ const Project = ({ pageContext, location, path }) => {
 
 
   return (
-    <ProjectContainer className='projectContainer' data-scroll-container
-                      variants={containerVariants}
-                      exit='exit'
-                      custom={{
-                        scrollTop: () => loco.current.scrollTo('top')
-                        ,
-
-                      }}
-    >
-
-
-      <Headline
-        title={title}
-        subTitle={subTitle}
-        about={about}
-        media={headlineImg}
-      />
-
+    <>
       <FixedItems>
-        <ReturnBtn to="/projects"  onClick={(ev) => {
-
+        <ReturnBtn to="/projects" onClick={() => {
+          isTop.set( moScroll.y.get() < 10 )
+          console.log( 'pos: ', moScroll.y.get())
         }} />
 
         <ScrollDown/>
       </FixedItems>
 
-      <BG/>
-
-      <div className="line" />
-
-      <MetaTxt />
-
-      <Intro intro={intro} />
-
-      <AnalysisPreparation />
-
-      <ColorPalette />
-
-      <FontUsed />
-
-      <Concept />
-
-      <Development />
+      <ProjectContainer className='projectContainer' data-scroll-container
+                        variants={containerVariants}
+                        exit='exit'
+                        custom={{
+                          scrollTop: () => loco.current.scrollTo('top', {
+                            disableLerp: true
+                          })
+                        }}
+      >
 
 
-      <Link to={'/projects'} state={{ path: 'location.pathname' }}>
-        <ReturnBtn key="return" />
-      </Link>
-    </ProjectContainer>
+        <Headline
+          title={title}
+          subTitle={subTitle}
+          about={about}
+          media={headlineImg}
+        />
+
+
+        <BG/>
+
+        <div className="line" />
+
+        <MetaTxt />
+
+        <Intro intro={intro} />
+
+        <AnalysisPreparation />
+
+        <ColorPalette />
+
+        <FontUsed />
+
+        <Concept />
+
+        <Development />
+
+
+        <Link to={'/projects'} state={{ path: 'location.pathname' }}>
+          <ReturnBtn key="return" />
+        </Link>
+      </ProjectContainer>
+    </>
+
   )
 }
 

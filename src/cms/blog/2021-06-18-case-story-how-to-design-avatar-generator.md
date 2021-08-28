@@ -1,6 +1,6 @@
 ---
 contentKey: blog
-title: "Case Story: How to Design Avatar Generator"
+title: "Case Story: How to Illustration Avatar Generator"
 date: 2021-06-18T08:38:57.675Z
 tags:
   - tag: "#Js"
@@ -22,7 +22,7 @@ Our task was to create an engaging UI for Kartunix. All the elements of UI were 
 
 We set the slider with options right below the avatar like in many video games and the avatar was placed in the middle of the pageTitle. It became a basic layout for the user flow in our case.
 
-### Anatomy of Design Process
+### Anatomy of Illustration Process
 
 Participatory design is about keeping people engaged by doing something simple and funny before they need to do something really important for the business. So at the beginning, users get a small set of avatars to taste the service. Step by step they can:
 

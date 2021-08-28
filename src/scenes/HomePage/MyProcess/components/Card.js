@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react'
 import styled from 'styled-components'
 import { spacing, text } from '../../../../styles/mixins'
 import { Typography } from '@material-ui/core'
-import { Design } from './Icons'
+import { Illustration } from './Icons'
 import useOnScreen from '../../../../hooks/useOnScreen'
 import {motion, useAnimation} from 'framer-motion'
 
@@ -127,7 +127,7 @@ const Card = ({ txt, title, methodologies, index, path }) => {
            transition={{...keysVariants.transition, delay: .3}}
       >0{index+1}</Num>
 
-      <Design path={path} rocket={index === 4} design={index === 1} />
+      <Illustration path={path} rocket={index === 4} design={index === 1} />
       <Typography variant="h3" className="card-title">
         {title}
       </Typography>

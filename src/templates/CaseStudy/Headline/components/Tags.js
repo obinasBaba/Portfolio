@@ -34,11 +34,11 @@ const TagsContainer = styled( Typography )`
 `
 
 const tagVariants = {
-  initial: {
+  fromProjectsInitial: {
     opacity: 0,
     y: 0,
   },
-  animate: {
+  fromProjectsAnimate: {
     opacity: 1,
     y: '-110%'
   },

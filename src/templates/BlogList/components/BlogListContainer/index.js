@@ -1,15 +1,11 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { Container, Typography } from '@material-ui/core'
 import styled, { css } from 'styled-components'
 import { mediumUp, spacing, text } from '../../../../styles/mixins'
-import {motion, useMotionValue, useSpring, useTransform} from 'framer-motion'
-import Moon from '../../../../layouts/Components/Moon'
-import gsap from 'gsap';
+import { motion, useMotionValue, useTransform } from 'framer-motion'
+import gsap from 'gsap'
 import STrigger from 'gsap/ScrollTrigger'
-import PenEffect from './PenEffect'
-import MailUs from '../../../../scenes/MailUs'
-import useLocoScroll from '../../../../hooks/useLocoScroll'
-
+import { basicVariants, transition } from '../../../../helpers/variants'
 
 const BlogListContainer = styled( Container )`
   position: relative;
@@ -40,10 +36,10 @@ const Title = styled( Typography )`
 
 const BlogListWrapper = styled( motion.div )`
   //border: 2px dashed teal;
-  width: 100%;
-  max-width: 1050px;
   display: flex;
   flex-flow: column;
+  width: 100%;
+  max-width: 1050px;
   
   & > :not(:first-child){
     margin-left: auto;
@@ -54,27 +50,8 @@ const CardContainer = styled.div`
   margin-left: auto;
   display: flex;
   flex-flow: column;
-  
-  //border: thin solid rebeccapurple;
 `
 
-const wrapperVariant = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1
-  },
-  exit: {
-    opacity: 0,
-  }
-}
-
-const transition = {
-  duration: 1,
-  ease: [0.6, 0.01, 0, 0.9],
-
-}
 
 const BlogList = ({ children}) => {
 
@@ -114,7 +91,7 @@ const BlogList = ({ children}) => {
 
       <BlogListContainer fixed={ false } maxWidth={ false} data-scroll-section>
 
-        <BlogListWrapper variants={wrapperVariant}
+        <BlogListWrapper variants={basicVariants}
                     transition={transition}
                     initial='initial'
                     animate='animate'

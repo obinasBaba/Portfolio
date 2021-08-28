@@ -68,7 +68,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
     createPage({
       path: `/portfolio/${project.slug}/`,
-      component: require.resolve(`./src/templates/Project`),
+      component: require.resolve(`./src/templates/CaseStudy/index.js`),
       context: {
         project,
         nextProj,

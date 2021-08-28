@@ -92,7 +92,7 @@ const Cursor = ({ path }) => {
   }, [path])
 
   return (
-    <CursorContainer >
+    <CursorContainer key={'cursorContainer'}>
       <Pointer>
 
       </Pointer>

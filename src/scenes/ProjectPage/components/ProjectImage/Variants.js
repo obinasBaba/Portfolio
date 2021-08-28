@@ -82,15 +82,15 @@ export const imgVariant = {
     transition: {
       duration: 1.5,
       ease: [0.33, 1, 0.68, 1],
-      delay: 1.3,
+      delay: 1.4,
     },
   },
 
   exitFp: {
     filter: 'grayscale(100%) sepia(20%) brightness(80%)',
     transition: {
-      duration: 1,
-      delay: 0.2,
+      duration: .2,
+      delay: 1,
       ease: [0.33, 1, 0.68, 1],
     },
   },

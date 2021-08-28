@@ -38,9 +38,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     color: #fff;
 
-    * {
-      cursor: none !important;
-    }
+    
 
     --theme: #fff;
     --stroke-bottom: #f9d6ac;
@@ -54,7 +52,7 @@ export const GlobalStyle = createGlobalStyle`
     rgba(6, 18, 32, 0),
     rgba(6, 18, 32, 0),
     rgba(2, 11, 22, 1));
-    --cIndex: 20;
+
 
     --gradient: linear-gradient(0deg,
     rgba(2, 2, 30, 0.0001) 0%,
@@ -82,11 +80,13 @@ export const GlobalStyle = createGlobalStyle`
       rgba(6, 18, 32, 0),
       rgba(6, 18, 32, 0),
       rgba(6, 18, 32, 0),
-      #fbfefc);
+      rgba(251, 254, 252, 0));
     }
-    
-    &.canvas-hover{
-      --cIndex: 2;
+
+    --cIndex: 20;
+
+    &.canvas-hover {
+      --cIndex: 10;
     }
 
   }
@@ -110,6 +110,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
 
+
 `
 
 export const Main = styled(motion.main)`
@@ -119,11 +120,12 @@ export const Main = styled(motion.main)`
   flex-flow: column;
   overflow: hidden;
   width: 100%;
-  z-index: 8;
+  //z-index: 8;
   height: min-content;
   //border: thick solid red;
   
+  
   & > *{
-    z-index: 1;
+    //z-index: 1;
   }
 `

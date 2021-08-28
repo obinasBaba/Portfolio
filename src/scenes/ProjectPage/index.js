@@ -32,11 +32,6 @@ const ProjectPageContainer = styled(motion.main)`
   position: relative;
   max-width: 100%;
   overflow: hidden;
-  //border: thick solid red;
-  //transform: translateY(0) !important;
-  .fp-section{
-    //border: thick solid red;
-  }
 `
 
 
@@ -46,10 +41,11 @@ const ProjectPage = () => {
   const controllers = items.map(({ controller }) => controller)
   const activeNavDotRef = useRef(null)
 
-  const { fromCaseStudy, setFromCaseStudy } = useContext(AppStateContext)
+  const { variantsUtil: {fromCaseStudy} } = useContext(AppStateContext)
+
 
   const moVariants = useMotionValue(
-    fromCaseStudy ? ['initial', 'animate'] : ['initial']
+    fromCaseStudy.get() ? ['initial', 'animate'] : ['initial']
   )
 
   const [activeIndex, setActiveIndex] = useState(0)
@@ -101,7 +97,7 @@ const ProjectPage = () => {
         afterLoad={(origin, dist, dir) => {
           // console.log('afterLoad ----', dist.index, dir)
 
-          if (dir === null && !fromCaseStudy)
+          if (dir === null && !fromCaseStudy.get())
             controllers.forEach(controller => controller.start('initial'))
         }}
         afterRender={({ index, isLast }) => {
@@ -112,13 +108,13 @@ const ProjectPage = () => {
           if (items[index])
             items[index].controller.start('animateFp')
 
-          if (fromCaseStudy) {
+          if (fromCaseStudy.get()) {
             items.forEach(
               ({ controller }, i) =>
                 i !== index && controller.start('initial')
             )
 
-            setFromCaseStudy(false)
+            fromCaseStudy.set(false)
           }
         }}
         render={state => {
@@ -148,7 +144,7 @@ const ProjectPage = () => {
                         index={index}
                         preview={preview}
                         url={url}
-                        exit={fromCaseStudy}
+                        exit={fromCaseStudy.get()}
                         items={partners}
                       />
 
@@ -159,7 +155,7 @@ const ProjectPage = () => {
                         index={index}
                         tags={tags}
                         url={url}
-                        exit={fromCaseStudy}
+                        exit={fromCaseStudy.get()}
                       />
                     </ProjectContainerGrid>
                   </div>

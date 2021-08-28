@@ -13,6 +13,7 @@ const ArrowContainer = styled.div`
 const BackArrow = () => {
 
   useEffect(() => {
+    // return ;
     setTimeout(() => {
       const arr = document.querySelector('.arr-container')
       const wrapper = document.querySelector('.article-wrapper')

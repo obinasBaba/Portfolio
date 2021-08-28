@@ -1,16 +1,19 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
 import { lerp } from '../../helpers/utils'
-import gsap from 'gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
+import {AnimatePresence, motion} from 'framer-motion'
+import {
+  basicVariants,
+  transition,
+} from '../../helpers/variants'
 
-gsap.registerPlugin(ScrollTrigger)
 
-
-const SpinnerContainer = styled.div`
-  position: fixed;
-  z-index: 9999;
-  //height: 100vh;
+const SpinnerContainer = styled( motion.div )`
+  //position: fixed;
+  position: relative;
+  z-index: 50;
+  height: 100vh;
+  width: 100vw;
   top: 0;
   left: 0;
   bottom: 0;
@@ -21,14 +24,15 @@ const SpinnerContainer = styled.div`
   justify-content: center;
   //border: thin solid red;
 
-  background-image: linear-gradient(
+  /*background-image: linear-gradient(
     to bottom,
     #072142,
     #061c37,
     #07182b,
     #061220,
     #020b16
-  );
+  );*/
+  
 `
 
 const Content = styled.div`
@@ -38,6 +42,7 @@ const Content = styled.div`
   align-items: center;
   justify-content: center;
   gap: 3rem;
+  
   border: thin solid crimson;
   -webkit-filter: url('#goo');
   filter: url('#goo');
@@ -62,6 +67,10 @@ const Content = styled.div`
       transform: rotate(360deg);
     }
   }
+`
+
+const SpinnerWrapper = styled.div`
+  
 `
 
 const SmallBall = styled.div`
@@ -93,37 +102,64 @@ const BigBall = styled.div`
   background-color: white;
 `
 
+const containerVariants = {
+
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1
+    },
+
+  exit: {
+    opacity: 0,
+    y: '-100%',
+  }
+}
+
+
 const LoadingSpinner = ({children}) => {
 
   const smallRef = useRef(null)
   const contentRef = useRef(null)
-  const lastPos = {
-    x: 0,
-    target: 50,
-    cancelId: null,
-  }
-
-
-  const move = () => {
-    // console.log(lastPos.target, Math.floor(lastPos.x))
-    if (Math.ceil(lastPos.x) === lastPos.target)
-      lastPos.target = lastPos.target * -1
-
-    lastPos.x = lerp(lastPos.x, lastPos.target, 0.1)
-    smallRef.current.style.transform = `translateY(${lastPos.x}px)`
-
-    lastPos.cancelId = requestAnimationFrame(() => move())
-  }
 
   return (
-        <SpinnerContainer>
 
-          <Content ref={contentRef}>
-            <SmallBall ref={smallRef} />
-            <BigBall />
-          </Content>
+
+        <SpinnerContainer variants={containerVariants}
+                          transition={transition}
+                          initial='initial'
+                          animate='animate'
+                          exit='exit'>
+
+        {/*  <AnimatePresence>
+          <motion.div >*/}
+
+
+            <Content ref={contentRef}>
+              <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
+                <defs>
+                  <filter id="goo">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+                    <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+                  </filter>
+                </defs>
+              </svg>
+              <SmallBall ref={smallRef} />
+              <BigBall />
+            </Content>
+
+         {/* </motion.div>
+
+          </AnimatePresence>
+*/}
+
 
         </SpinnerContainer>
+
+
+
   )
 }
 
