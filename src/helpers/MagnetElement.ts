@@ -16,7 +16,7 @@ type MagnetType = {
 }
 
 export default class MagnetElement extends EventEmitter{
-  events = EventUtil.getInstance()
+  events;
   element: HTMLElement
   rect: DOMRect
 
@@ -38,6 +38,7 @@ export default class MagnetElement extends EventEmitter{
     super()
     // console.log('constructor invoked')
 
+    this.events = EventUtil.getInstance();
     this.element = el.element
     this.stop = el.stop
     this.distance = el.distance

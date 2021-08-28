@@ -5,7 +5,6 @@ import SimplexNoise from 'simplex-noise'
 import { lerp, map } from '../../helpers/utils'
 import EventUtil from '../../helpers/EventUtil'
 
-const events = EventUtil.getInstance()
 
 type Circle = {
   self: typeof Paper.Path.RegularPolygon;
@@ -22,6 +21,8 @@ type Pointer = {
 }
 
 class PaperCursor {
+  events;
+
   lastX = 0
   lastY = 0
   pLastY = 0
@@ -69,6 +70,7 @@ class PaperCursor {
 
   private constructor(canvas: HTMLCanvasElement) {
     this.canvas = document.querySelector('canvas.canvas')
+    this.events =  EventUtil.getInstance()
 
     this.initCanvas()
 
@@ -183,7 +185,7 @@ class PaperCursor {
     Paper.view.onFrame = event =>{
       // console.time('Stuck');
 
-      this.pointerGroup.position = new Paper.Point(events.mousePos.x, events.mousePos.y)
+      this.pointerGroup.position = new Paper.Point(this.events.mousePos.x, this.events.mousePos.y)
 
 
       if (this.isStuck){
@@ -191,11 +193,11 @@ class PaperCursor {
         this.lastY = lerp(this.lastY, this.stuckPos.y, 0.08)
         this.circleGroup.position = new Paper.Point(this.lastX, this.lastY)
         this.isStuck = this.circleGroup.position.isClose(
-          new Paper.Point(events.mousePos.x, events.mousePos.y), 60)
+          new Paper.Point(this.events.mousePos.x, this.events.mousePos.y), 60)
 
       }else {
-        this.lastX = lerp(this.lastX, events.mousePos.x, 0.14)
-        this.lastY = lerp(this.lastY, events.mousePos.y, 0.14)
+        this.lastX = lerp(this.lastX, this.events.mousePos.x, 0.14)
+        this.lastY = lerp(this.lastY, this.events.mousePos.y, 0.14)
         this.circleGroup.position = new Paper.Point(this.lastX, this.lastY)
       }
 
@@ -295,13 +297,13 @@ class PaperCursor {
   }
 
   updatePosition(){
-    this.lastX = lerp(this.lastX, events.mousePos.x, 0.14)
-    this.lastY = lerp(this.lastY, events.mousePos.y, 0.14)
+    this.lastX = lerp(this.lastX, this.events.mousePos.x, 0.14)
+    this.lastY = lerp(this.lastY, this.events.mousePos.y, 0.14)
 
     this.circleGroup.position = new Paper.Point(this.lastX, this.lastY)
     this.pointerGroup.position = new Paper.Point(
-      events.mousePos.x,
-      events.mousePos.y
+      this.events.mousePos.x,
+      this.events.mousePos.y
     )
   }
 
