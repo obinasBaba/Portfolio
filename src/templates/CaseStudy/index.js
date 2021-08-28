@@ -175,9 +175,9 @@ const Project = ({ pageContext, location, path }) => {
 
         <div className="line" />
 
-        <MetaTxt />
+        <Intro intro={intro}/>
 
-        <Intro intro={intro} />
+        {/*<MetaTxt />
 
         <AnalysisPreparation />
 
@@ -188,7 +188,7 @@ const Project = ({ pageContext, location, path }) => {
         <Concept />
 
         <Development />
-
+*/}
 
         <Link to={'/projects'} state={{ path: 'location.pathname' }}>
           <ReturnBtn key="return" />
@@ -198,5 +198,14 @@ const Project = ({ pageContext, location, path }) => {
 
   )
 }
+/*
+* Thanks for stopping by Alien,
+
+This is relatively a new project I just finished, so am
+putting together some intercis  to prepare and in depth,
+walk-through story to tell.
+
+Aside that enjoy other places of my space.
+* */
 
 export default Project

@@ -1,7 +1,13 @@
 import React from 'react'
 import { Container, Typography } from '@material-ui/core'
 import styled, { css } from 'styled-components'
-import { heightWidth, largeUp, mediumUp, spacing } from '../../../styles/mixins'
+import {
+  heightWidth,
+  largeUp,
+  mediumUp,
+  spacing,
+  text,
+} from '../../../styles/mixins'
 import Logo from './vigoza-logo.svg'
 
 const IntroContainer = styled(Container)`
@@ -18,16 +24,18 @@ const IntroContainer = styled(Container)`
 
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   flex-flow: column;
   text-align: center;
+  
   ${spacing('pv', 10)};
+  ${spacing('pl', 20)};
   ${spacing('mb', 10)};
-  overflow: hidden;
+  ${spacing('mt', 30)};
 
   &::after {
-    content: url(${Logo});
+    // content: url(${Logo});
     position: absolute;
     display: block;
     bottom: -35%;
@@ -44,7 +52,6 @@ const IntroContainer = styled(Container)`
     ${spacing('pv', 4)};
   `)};
 
-  ${largeUp(css``)};
 
   .desc {
     display: flex;
@@ -56,11 +63,33 @@ const IntroContainer = styled(Container)`
       ${heightWidth('margin-containerVariant', 3)};
     }
   }
+  
+  .title{
+    font-family: 'Elianto-Regular',serif;
+    letter-spacing: -1px;
+    ${text(3)};
+    ${spacing('mb', 2)};
+  }
+  .reason{
+    max-width: 40ch;
+    text-align: left;
+    
+    ${text(1.1)};
+    ${spacing('mb', 3)};
+
+
+  }
+  
+  .bye{
+    max-width: 40ch;
+    text-align: left;
+
+    ${text(.9)};
+  }
 `
 
 const Description = styled(Typography)`
   max-width: 47ch;
-  font-family: var(--sofia-pro);
   font-weight: 300;
   line-height: 160%;
   letter-spacing: 0.5px;
@@ -81,13 +110,29 @@ const Intro = ({ intro }) => {
       component={'section'}
       data-scroll-section
     >
-      <Typography variant={'h1'}>{title}</Typography>
 
-      <div className='desc' >
-        <Description>{desc}</Description>
 
-        {/*<MotionBtn text={'Visit Website'} to={siteLink} />*/}
-      </div>
+
+      <Typography className='title'
+                  variant={'h1'}>Thanks for stopping by Alien.</Typography>
+
+      <Typography gutterBottom={true} className='reason' >
+        This is relatively a new project I just finished, so am
+        putting together some bits and pieces to prepare an in-depth
+        walk-through story to tell.
+      </Typography>
+
+      <Typography className='bye' >
+        Aside that enjoy other places of my space.
+      </Typography>
+
+
+
+      {/*<div className='desc' >*/}
+      {/*  <Description>{desc}</Description>*/}
+
+      {/*  /!*<MotionBtn text={'Visit Website'} to={siteLink} />*!/*/}
+      {/*</div>*/}
 
     </IntroContainer>
   )

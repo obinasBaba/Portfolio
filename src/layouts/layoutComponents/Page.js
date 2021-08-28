@@ -9,10 +9,10 @@ import LoadingSpinner from '../../components/LoadingSpinner'
 import ToolTip from '../../components/Fixed/ToolTip'
 import ProgressCircle from '../../components/ScrollProgressCircle'
 import { AppStateContext } from '../../contexts/AppStateContext'
-import Cursor from '../../components/Cursor'
 import useLoadingFonts from '../../hooks/useFonts'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
+import Cursor from '../../components/Cursor'
 
 
 export const PageContainer = styled.div`
@@ -74,11 +74,16 @@ const Page = ({ children, path }) => {
         {loadingPage ?
              <LoadingSpinner />
            :
-            <React.Fragment key='Main-Content'>
-                <Cursor path={path} />
-                {children}
-            </React.Fragment>
-          }
+          <React.Fragment key='Main-Content'>
+            <AnimatePresence exitBeforeEnter  custom={{ path, cPath:  currentPath, isTop}}>
+
+                    <Cursor path={path} />
+                    {children}
+            </AnimatePresence>
+        </React.Fragment>
+
+
+        }
         </AnimatePresence>
       </Main>
 

@@ -238,6 +238,10 @@ class PaperCursor {
     }
   }
 
+  async startFocus(focused){
+
+  }
+
   async startPointed(pointed){
     // Paper.view.onFrame = null;
 
