@@ -9,62 +9,52 @@ import {
 import {motion, useMotionValue} from 'framer-motion'
 import MotionBtn from '../../../components/MotionBtn'
 
-import img from './preview-111.jpg'
 import {
   bgVariant,
   btnVariant, containerVariants,
-  imgVariant,
+  imgWrapperVariant,
   innerVariant,
-  textsVariant,
+  textsVariant, titleVariant,
   transition,
 } from './variants'
-import Title from './components/Title'
 import Tags from './components/Tags'
 import {AppStateContext} from '../../../contexts/AppStateContext'
+import Title
+  from '../../../scenes/ProjectPage/components/ProjectDescription/components/Title'
 
 
 
 
 const Headline = ({ subTitle, title, about, media }) => {
 
-  const { variantsUtil: {fromProjectList} } = useContext(AppStateContext)
 
 
-  const moInitial = useMotionValue(fromProjectList.get() ? ['fromProjectsInitial'] : ['initial'])
-  const moAnimate = useMotionValue(fromProjectList.get() ? ['fromProjectsAnimate'] : ['animate'])
-
-  useEffect(() => {
-    // console.log('fromProject : ', fromProjectList)
-    fromProjectList.set(false)
-  }, [])
 
 
   return (
     <HeadlineContainer
       variants={containerVariants}
-      initial={moInitial.get()}
-      animate={moAnimate.get()}
-      exit="exit"
       data-scroll-section
     >
 
-      <HeadLineBG  variants={bgVariant} transition={transition} />
 
-      <Texts variants={textsVariant}
-             transition={transition}>
+      <Texts variants={textsVariant} transition={transition}>
 
         <Tags txt='Analytics, UX, UI, Icons, Front-end' />
 
-        <Title title='Digital Creative Agency.' />
+        <Title title={title} variants={{
+          title: titleVariant,
+          transition: transition,
+        }} />
 
         <motion.div variants={btnVariant} transition={transition}>
           <MotionBtn margin={false} text="Visit Site" />
         </motion.div>
       </Texts>
 
-      <ImageWrapper variants={imgVariant} transition={transition} >
+      <ImageWrapper variants={imgWrapperVariant} transition={transition} >
         <InnerWrapper variants={innerVariant} transition={transition}>
-          <motion.img src={img} />
+          <motion.img src={media} />
         </InnerWrapper>
       </ImageWrapper>
 

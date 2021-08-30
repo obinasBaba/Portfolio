@@ -45,6 +45,8 @@ const AppStateProvider = ( {children} ) => {
   const yProgress= useMotionValue(0);
   const xProgress= useMotionValue(0);
   const limit= useMotionValue(0)
+  const projectImgLoaded= useMotionValue(false)
+  const fontLoaded= useMotionValue(false)
 
 
   useLayoutEffect(() => {
@@ -87,6 +89,8 @@ const AppStateProvider = ( {children} ) => {
         fromProjectList,
         isTop
       },
+      projectImgLoaded,
+      fontLoaded
       // magnet: MagnetElements
 
     }} >

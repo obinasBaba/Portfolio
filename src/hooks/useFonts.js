@@ -2,24 +2,23 @@ import {useContext, useLayoutEffect} from 'react'
 import FontLoaded from 'fontfaceobserver'
 import {AppStateContext} from '../contexts/AppStateContext'
 
-const useLoadingFonts = () => {
+const useLoadingFonts = ( fontLoaded, setFontFinish ) => {
 
   const { events } = useContext(AppStateContext)
 
   useLayoutEffect(() => {
-
-    events.addLoader()
+    if ( fontLoaded.get() )
+      return;
 
     let elianto = new FontLoaded('Elianto-Regular')
     let poppins = new FontLoaded('Poppins Black')
     let icons = new FontLoaded('shapes')
 
-    // console.log( 'path : ', path)
-
     Promise.all([elianto.load(), poppins.load(), icons.load()])
       .then(() => {
         setTimeout(() => {
-          events.finishLoading()
+          fontLoaded.set(true)
+          setFontFinish(true)
         }, 3000)
       })
       .catch(console.error)

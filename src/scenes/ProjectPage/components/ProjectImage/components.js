@@ -6,7 +6,6 @@ import {
   mediumUp,
   spacing,
 } from '../../../../styles/mixins'
-import img from './preview-111.jpg'
 
 export const ProjectImg = styled(motion.div)`
   ${gridColWidth()}; //mobile-first
@@ -51,6 +50,17 @@ export const InnerWrapper = styled(motion.div)`
   //max-height: 400px;
   height: 400px;
   //border: thin solid red;
+  
+  &::after{
+    //content: '';
+    position: absolute;
+    display: block;
+    inset: 0;
+    background-color: #3719ca;
+    opacity: .6;
+    mix-blend-mode: hard-light;
+    //background-blend-mode: soft-light;
+  }
 
   img {
     //display: block;

@@ -4,10 +4,10 @@ import {
   gridColWidth, largeUp, mediumUp,
   smallUp,
   spacing, title,
-} from '../../../../styles/mixins'
+} from '../../../../../styles/mixins'
 import {Typography} from '@material-ui/core'
 
-export const ProjectDesc = styled(motion.div)`
+export const ProjectDescriptionContainer = styled(motion.div)`
   display: flex;
   flex-flow: column;
   z-index: 10;
@@ -59,40 +59,6 @@ export const Tags = styled(Typography)`
   
 `
 
-export const Title = styled(motion.h1)`
-  //line-height: 1.25em;
-  pointer-events: initial;
-  font-weight: 700;
-  margin: 0;
-  ${spacing('mt', 2)}
-  ${ title(3.35) };
-  line-height: 1.3; 
-  //border: thin solid lightblue;
-  letter-spacing: 2.5px;
-  //overflow: hidden;
-  font-family: "Poppins Black",serif;
-
-
-  overflow-wrap: break-word;
-  //word-spacing: 2px;
-  
-  .word{
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-    //border: thin solid olivedrab;
-    white-space: nowrap;
-    overflow: hidden;
-    vertical-align: top;
-  }
-  
-  .letter{
-    font-family: "Poppins Black",serif;
-    display: inline-block;
-    //border: thin solid tomato;
-    
-  }
-`
 
 export const OverflowWrapper = styled( motion.div )`
   overflow: hidden;

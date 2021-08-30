@@ -39,6 +39,7 @@ export const ImageWrapper = styled(motion.div)`
 
   img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
   }
   
@@ -68,6 +69,8 @@ export const Texts = styled(motion.div)`
   flex-flow: column;
   grid-row: 2;
   //border: thin solid red;
+  word-break: break-all;
+  word-wrap: break-word;
   //margin-left: calc(100vw / 64 * 2);
 
   ${gridColWidth(8, 58)}
@@ -90,7 +93,7 @@ export const Texts = styled(motion.div)`
   `)};
 
   ${largeUp(css`
-    ${gridColWidth(8, 35)};
+    ${gridColWidth(10, 35)};
     ${spacing('pt', 6)};
   `)};
 

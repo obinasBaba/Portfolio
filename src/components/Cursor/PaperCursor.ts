@@ -60,6 +60,8 @@ class PaperCursor {
   private static Instance: PaperCursor = null
 
   static getInstance(canvas) {
+    if (document.querySelector('canvas') === null) return null;
+
     if (this.Instance === null) {
       this.Instance = new PaperCursor(canvas)
       return this.Instance

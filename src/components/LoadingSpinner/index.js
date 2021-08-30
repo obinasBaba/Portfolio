@@ -130,6 +130,7 @@ const LoadingSpinner = ({children}) => {
                           transition={transition}
                           initial='initial'
                           animate='animate'
+                          key={'lkajdfs'}
                           exit='exit'>
 
         {/*  <AnimatePresence>

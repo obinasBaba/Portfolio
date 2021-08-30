@@ -6,12 +6,19 @@ export const transition = {
 export const containerVariants = {}
 
 export const textsVariant = {
+  initial: {
+    x: 'calc(100vw / 64 * -2)',
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
 
   fromProjectsInitial: {
-    x: 'calc(100vw / 64 * 2)'
+    x: 0,
   },
   fromProjectsAnimate: {
-    x: 0,
+    x: 'calc(100vw / 64 * -2)'
   },
 
 
@@ -20,12 +27,17 @@ export const textsVariant = {
       const delay = arg.isTop ? arg.isTop.get() : false;
 
       return{
-        x: 'calc(100vw / 64 * 2)',
+        x: 0,
         transition: {
           ...transition,
           delay: delay ? 0 : 1,
         }
       }
+    }
+
+    return {
+      opacity: 0,
+      scale: .9
     }
   }
 }
@@ -36,7 +48,7 @@ export const btnVariant = {
   exit: {},
 }
 
-export const imgVariant = {
+export const imgWrapperVariant = {
   fromProjectsInitial: {
     ['margin-right']: 'calc(100vw / 64 * 6)',
     // background: 'transparent',
@@ -87,18 +99,17 @@ export const innerVariant = {
 
   exit(arg){
 
-    if (arg && arg.path === '/projects/') {
-      console.log('innerVariant --- - - top=', arg.isTop && arg.isTop.get())
+    if ( arg && arg.path === '/projects/' ){
+      const delay = arg.isTop ? arg.isTop.get() : false;
 
-      const isTop = arg.isTop ?? arg.isTop.get();
-
-      return {
+      return{
         height: 400,
         transition: {
           ...transition,
-          delay: isTop ? 0 : 1,
+          delay: delay ? 0 : 1,
         }
       }
+
     }
 
     return {}
@@ -122,9 +133,10 @@ export const bgVariant = {
   animate: {
     opacity: 1,
   },
+
   exit(arg){
     if ( arg && arg.path === '/projects/' ){
-      const delay = arg.isTop ? arg.isTop.get() : false;
+      const delay = arg.isTop ?? arg.isTop.get();
 
       return{
         opacity: 0,
@@ -142,3 +154,43 @@ export const bgVariant = {
   },
 
 }
+
+export const titleVariant = {
+
+  fromProjectsInitial: {},
+  fromProjectsAnimate: {
+    scale: 1.3,
+    y: -30,
+    originX: 0
+  },
+
+  initial: {
+    scale: 1.2,
+    y: -30,
+    originX: 0
+  },
+
+  animate: {
+    scale: 1.3,
+  },
+
+  exit(arg){
+    if ( arg && arg.path === '/projects/' ){
+      const delay = arg.isTop ? arg.isTop.get() : false;
+
+      return{
+        scale: 1,
+        y: 0,
+        transition: {
+          ...transition,
+          delay: delay ? 0 : 1,
+        }
+      }
+
+    }
+    return {
+      opacity: 0,
+    }
+  },
+}
+

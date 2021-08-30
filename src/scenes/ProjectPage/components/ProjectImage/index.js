@@ -14,9 +14,8 @@ import {
 import { InnerWrapper, OverflowWrapper, ProjectImg } from './components'
 import { AppStateContext } from '../../../../contexts/AppStateContext'
 
+
 import StackUsed from '../StackUsed'
-import {GatsbyImage, getImage} from 'gatsby-plugin-image'
-import img from './preview-11.jpg'
 
 const ProjectImage = ({
   reversed,
@@ -54,7 +53,7 @@ const ProjectImage = ({
               onClick={() => fromProjectList.set(true) }
         />
 
-        <motion.img data-src={img}
+        <motion.img data-src={preview.publicURL}
                     variants={imgVariant}
                     transition={transition}
 

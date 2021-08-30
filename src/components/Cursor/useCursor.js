@@ -1,12 +1,12 @@
-// noinspection JSIgnoredPromiseFromCall
-
-import React, { useCallback, useEffect, useMemo } from 'react'
-import { CursorContainer, Pointer } from './components'
-import MagnetElement from '../../helpers/MagnetElement'
+import {useCallback, useEffect, useMemo} from 'react'
 import PaperCursor from './PaperCursor'
+import MagnetElement from '../../helpers/MagnetElement'
 
-const Cursor = ({ path }) => {
-  const cursor = useMemo(() => PaperCursor.getInstance(), [])
+const useCursor = (path) => {
+
+  const cursor = useMemo(() =>{
+    return  PaperCursor.getInstance(document.body.querySelector('canvas.canvas'))
+  }, [])
 
   const initHover = useCallback(() => {
     cursor.pointed = false
@@ -81,10 +81,6 @@ const Cursor = ({ path }) => {
     initHover()
   }, [path])
 
-  return (
-    <React.Fragment key={'cursorContainer'}>
-    </React.Fragment>
-  )
 }
 
-export default Cursor
+export default useCursor;

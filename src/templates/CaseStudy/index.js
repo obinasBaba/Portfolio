@@ -15,7 +15,9 @@ import useLocoScroll from '../../hooks/useLocoScroll'
 import styled from 'styled-components'
 import ScrollDown from '../../components/ScrollDown'
 import {ProjectContainer} from './components'
-import {usePresence, useTransform} from 'framer-motion'
+import {useMotionValue, usePresence, useTransform} from 'framer-motion'
+import {HeadLineBG} from './Headline/Components'
+import {bgVariant, transition} from './Headline/variants'
 
 let args = {
   path: undefined,
@@ -23,6 +25,7 @@ let args = {
 }
 
 const BG = styled.div`
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -80,30 +83,26 @@ const containerVariants = {
 
 const Project = ({ pageContext, location, path }) => {
   const { title, subTitle, about, intro } = pageContext.project
-  const { headlineImg } = pageContext.imageData
+  const { headlineImg, publicURL } = pageContext.imageData
   const {
     setCurrentPath,
     moScroll,
-    variantsUtil: {fromCaseStudy, isTop}
+    variantsUtil: {fromCaseStudy, isTop, fromProjectList}
   } = useContext(AppStateContext)
-
-
-
-  const loco =  useLocoScroll(true, '.projectContainer')
-  // const [isPresent, safeToRemove] = usePresence()
-
-  // console.log(loco.current)
 
   const [scrolled, setScrolled] = useState(false);
 
+  const loco =  useLocoScroll(true, '.projectContainer')
+  const moInitial = useMotionValue(fromProjectList.get() ? ['fromProjectsInitial'] : ['initial'])
+  const moAnimate = useMotionValue(fromProjectList.get() ? ['fromProjectsAnimate'] : ['animate'])
 
   useEffect(() => {
+    // console.log('fromProject : ', fromProjectList)
+    fromProjectList.set(false)
     fromCaseStudy.set(true)
     setCurrentPath(location.pathname)
 
   }, [])
-
-
 
 
 
@@ -144,7 +143,7 @@ const Project = ({ pageContext, location, path }) => {
   return (
     <>
       <FixedItems>
-        <ReturnBtn to="/projects" onClick={() => {
+        <ReturnBtn to={ location.state.path ?? "/projects" } onClick={() => {
           isTop.set( moScroll.y.get() < 10 )
           console.log( 'pos: ', moScroll.y.get())
         }} />
@@ -154,6 +153,8 @@ const Project = ({ pageContext, location, path }) => {
 
       <ProjectContainer className='projectContainer' data-scroll-container
                         variants={containerVariants}
+                        initial={moInitial.get()}
+                        animate={moAnimate.get()}
                         exit='exit'
                         custom={{
                           scrollTop: () => loco.current.scrollTo('top', {
@@ -167,11 +168,12 @@ const Project = ({ pageContext, location, path }) => {
           title={title}
           subTitle={subTitle}
           about={about}
-          media={headlineImg}
+          media={publicURL}
         />
 
 
-        <BG/>
+        <HeadLineBG  variants={bgVariant} transition={transition} />
+
 
         <div className="line" />
 

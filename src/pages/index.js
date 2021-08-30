@@ -15,6 +15,10 @@ const IndexPage = ({path}) => {
   } = useContext( AppStateContext )
 
   useEffect(() => {
+    setCurrentPath(path)
+  }, [])
+
+  useEffect(() => {
 
     if ( registeredScrollPos !== null  ){
       loco.current.update()
@@ -30,9 +34,7 @@ const IndexPage = ({path}) => {
 
   }, [])
 
-  useEffect(() => {
-    setCurrentPath(path)
-  }, [])
+
 
 
 

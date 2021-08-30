@@ -34,10 +34,20 @@ const TagsContainer = styled( Typography )`
 `
 
 const tagVariants = {
+  initial: {
+    opacity: 0,
+    y: '-110%'
+  },
+
+  animate: {
+    opacity: 1,
+  },
+
   fromProjectsInitial: {
     opacity: 0,
     y: 0,
   },
+
   fromProjectsAnimate: {
     opacity: 1,
     y: '-110%'

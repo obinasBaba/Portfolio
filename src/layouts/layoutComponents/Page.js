@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, {useContext, useEffect, useRef, useState} from 'react'
 import styled from 'styled-components'
 import { SkyColor } from '../Components/SkyColor'
 import BackgroundStars from '../../components/BackgroundStars'
@@ -13,7 +13,6 @@ import useLoadingFonts from '../../hooks/useFonts'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import Cursor from '../../components/Cursor'
-
 
 export const PageContainer = styled.div`
   position: relative;
@@ -51,13 +50,18 @@ const BottomGradient = styled.div`
   transition: all 0.35s ease-in-out;
 `
 
-
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger)
 
 const Page = ({ children, path }) => {
-  const { loadingPage, currentPath, variantsUtil: { isTop } } = useContext(AppStateContext)
+  const {
+    fontLoaded,
+    currentPath,
+    variantsUtil: { isTop },
+  } = useContext(AppStateContext)
 
-  useLoadingFonts()
+  const [fontFinish, setFontFinish] = useState(fontLoaded.get())
+
+  useLoadingFonts(fontLoaded, setFontFinish)
 
   return (
     <PageContainer>
@@ -65,26 +69,23 @@ const Page = ({ children, path }) => {
       <BackgroundStars />
       <HeaderAppBar />
 
-      <canvas className="canvas" key={'pointer-map'} />
 
       <Main data-scroll-container>
-        <AnimatePresence exitBeforeEnter  custom={{ path, cPath:  currentPath}}>
 
-
-        {loadingPage ?
-             <LoadingSpinner />
-           :
-          <React.Fragment key='Main-Content'>
-            <AnimatePresence exitBeforeEnter  custom={{ path, cPath:  currentPath, isTop}}>
-
-                    <Cursor path={path} />
-                    {children}
-            </AnimatePresence>
-        </React.Fragment>
-
-
-        }
+        <AnimatePresence exitBeforeEnter custom={{ path, cPath: currentPath, isTop }}>
+          {
+            fontFinish ?
+              <React.Fragment key="Main-Content">
+                <Cursor path={currentPath} key={'cursor'} />
+                <AnimatePresence exitBeforeEnter custom={{ path, cPath: currentPath, isTop }}>
+                  {children}
+                </AnimatePresence>
+              </React.Fragment>
+              :
+              <LoadingSpinner key={'lkasdjf;laksjdf'} />
+          }
         </AnimatePresence>
+
       </Main>
 
       <BottomGradient />

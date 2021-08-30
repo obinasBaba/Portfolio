@@ -6,15 +6,14 @@ module.exports = [
   {
     id: 'ce0e89gf59-d30b-5d95-8167-8df1kfevcd',
     slug: 'project-1',
-    title: 'Vigoza',
-    subTitle: 'Creative Agency',
+    title: 'Linkedin Redesign',
     about: {
       role: 'UI/UX Developer',
       context: 'Design',
       period: 'Early 2019',
     },
     featured_media: {
-      source_url: '/projects/preview-11.jpg',
+      source_url: '/projects/linkedin.jpg',
     },
 
     intro: {
@@ -49,7 +48,7 @@ module.exports = [
   {
     id: 'ce0e89gf59-d30b-5d95-8167-8df1kfevcd',
     slug: 'project-2',
-    title: 'Honey',
+    title: 'Vigoza Digital Agency',
     subTitle: 'Beauty & Hair Space',
     about: {
       role: 'FrontEnd Developer',
@@ -86,7 +85,50 @@ module.exports = [
 
     excerpt:
       'Machine learning platform that helps users carry out primary research in the required field of activity.',
-    technologies: ['Reactjs', 'GraphQl', 'CSS Modules'],
+    technologies: ['Next.js', 'GraphQl', 'Chakra-Ui'],
+    content:
+      'We started our work with the ProSapient product from design. Given that the product deals with a complicated process, our main task was to make it easy and clear to perceive through visual solutions. Later we gave it to our team for development. ',
+  },
+  {
+    id: 'ce0e89gf59-d30b-5d95-8167-8df1kfevcd',
+    slug: 'project-3',
+    title: 'Atgeb Food Delivery',
+    about: {
+      role: 'FrontEnd Developer',
+      context: 'Design',
+      period: 'End 2018',
+    },
+    featured_media: {
+      source_url: '/projects/preview-22.png',
+    },
+
+    intro: {
+      themeColor: '#f1c9b3',
+      color: '#02021e',
+      logoUrl: '/projects/honey-logo.png',
+      // imageData: preview2,
+      link: 'https://www.prosapient.com',
+      title: 'The Project',
+      desc:
+        `
+        Honey is an outstanding Beauty and Hair space in Addis Abeba, Ethiopia.
+        They include a variety of services including professional hair cutting and
+        styling, manicures , pedicures, cosmetics, makeup and makeovers to say a few.
+        This WebApp(PWA) makes their client to keep up and admire their daily post as
+        well us to easily make an appointment despite the massive no of client.   
+        `,
+    },
+
+    companies: [
+      {
+        text: 'Total Funding Amount',
+        sourceImage: '/companies/2M.svg',
+      },
+    ],
+
+    excerpt:
+      'Machine learning platform that helps users carry out primary research in the required field of activity.',
+    technologies: ['Next.js', 'GraphQl', 'Chakra-Ui'],
     content:
       'We started our work with the ProSapient product from design. Given that the product deals with a complicated process, our main task was to make it easy and clear to perceive through visual solutions. Later we gave it to our team for development. ',
   },

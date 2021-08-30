@@ -13,20 +13,19 @@ export const projectsPreviewFragment = graphql`
 const useProjectsAssets = () => {
   return useStaticQuery(graphql`
     query {
-      preview1: file(relativePath: { eq: "sections/projects/preview-11.jpg" }) {
+      preview1: file(relativePath: { eq: "sections/projects/linkedin.jpg" }) {
         name
         publicURL
       }
-      preview2: file(relativePath: { eq: "sections/projects/preview-22.png" }) {
+      preview2: file(relativePath: { eq: "sections/projects/preview-11.jpg" }) {
         name
         publicURL
       }
-      preview3: file(relativePath: { eq: "sections/projects/preview-3.png" }) {
+      preview3: file(relativePath: { eq: "sections/projects/food.png" }) {
         name
         publicURL
       }
       
-  
       css3: file(relativePath: { eq: "sections/services-technologies/css3.svg" }) {
         publicURL
       }

@@ -16,7 +16,7 @@ const Gallery = ({ children, step }) => {
   const containerRef = useRef(null)
 
 
-  const mapped = useTransform(moScroll.y, [0, 2500], [-40, -1200])
+  const mapped = useTransform(moScroll.y, [0, 2500], [-40, -600])
 
   const x = useSpring(mapped, {
     mass: .5,  damping: 10, stiffness: 50,

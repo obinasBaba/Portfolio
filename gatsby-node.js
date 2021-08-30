@@ -41,17 +41,20 @@ exports.createPages = async ({ graphql, actions }) => {
   //data for Project case-study page...
   const data = await graphql(`
     query {
-      preview1: file(relativePath: { eq: "sections/projects/preview-11.jpg" }) {
+      preview1: file(relativePath: { eq: "sections/projects/linkedin.jpg" }) {
+        publicURL
         childImageSharp {
       gatsbyImageData(quality: 100, formats: [AUTO, WEBP, AVIF], placeholder: BLURRED)
     }
       }
-      preview2: file(relativePath: { eq: "sections/projects/preview-22.png" }) {
+      preview2: file(relativePath: { eq: "sections/projects/preview-11.jpg" }) {
+                publicURL
         childImageSharp {
       gatsbyImageData(quality: 100, formats: [AUTO, WEBP, AVIF], placeholder: BLURRED)
     }
       }
-      preview3: file(relativePath: { eq: "sections/projects/preview-3.png" }) {
+      preview3: file(relativePath: { eq: "sections/projects/food.png" }) {      
+        publicURL
         childImageSharp {
       gatsbyImageData(quality: 100, formats: [AUTO, WEBP, AVIF], placeholder: BLURRED)
     }
@@ -74,6 +77,7 @@ exports.createPages = async ({ graphql, actions }) => {
         nextProj,
         imageData: {
           headlineImg: imgData[index],
+          publicURL: imgData[index].publicURL
         },
       },
     })

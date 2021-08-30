@@ -12,6 +12,7 @@ import Page from './layoutComponents/Page'
 export default function Layout({ children, path }) {
   return (
     <React.Fragment>
+
       <Helmet>
         <meta
           name="viewport"
@@ -23,6 +24,8 @@ export default function Layout({ children, path }) {
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           <CssBaseline />
+          <canvas className="canvas" key={'pointer-map'} />
+
 
           <AppStateProvider>
             <Page path={path}>{children}</Page>
