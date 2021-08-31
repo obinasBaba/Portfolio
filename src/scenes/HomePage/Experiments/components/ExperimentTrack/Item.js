@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { mediumUp, spacing } from '../../../../../styles/mixins'
+import {mediumUp, smallDown, spacing} from '../../../../../styles/mixins'
 import { Typography } from '@material-ui/core'
 import {motion} from 'framer-motion'
 import {useProjectSvg} from '../../../../../hooks/queries/useProjectSvg'
@@ -28,6 +28,11 @@ export const ExperimentItem = styled( motion.div )`
     box-shadow: 0 15px 40px 1px rgb(0 0 0 / 25%);
 
     ${spacing('mb', 5)};
+    
+    ${smallDown(css`
+      width: clamp(150px, 36vw, 230px);
+      height: clamp(150px, 36vw, 230px);
+    `)};
   }
   
 

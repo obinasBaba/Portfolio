@@ -1,8 +1,8 @@
 import React, {useContext, useEffect, useRef} from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import {
   gridMultiplayer,
-  heightWidth,
+  heightWidth, largeUp,
   spacing,
   text,
 } from '../../../styles/mixins'
@@ -52,7 +52,6 @@ const ProjectContainer = styled(motion.section)`
 const Planet = styled(motion.div)`
  
   position: absolute;
-  //left: 10%;
   border-radius: 50%;
   z-index: 110;
   background: linear-gradient(
@@ -79,14 +78,19 @@ const Planet = styled(motion.div)`
 
 const ScrollPlanet = styled.div`
   position: absolute;
-  left: 10%;
-  bottom: 40%;
+  left: -12%;
+  bottom: 30%;
+  
+  ${largeUp(css`
+    left: 10%;
+    bottom: 40%;
+  `)};
 
 `
 
 const ScrollPlanet2 = styled.div`
   position: absolute;
-  bottom: 40%;
+  top: 40%;
   right: 10%;
 `
 

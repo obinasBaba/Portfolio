@@ -1,9 +1,9 @@
 // noinspection JSIgnoredPromiseFromCall
 
 import React, { useCallback, useEffect, useMemo } from 'react'
-import { CursorContainer, Pointer } from './components'
 import MagnetElement from '../../helpers/MagnetElement'
 import PaperCursor from './PaperCursor'
+import { debounce } from 'lodash'
 
 const Cursor = ({ path }) => {
   const cursor = useMemo(() => PaperCursor.getInstance(), [])
@@ -69,11 +69,16 @@ const Cursor = ({ path }) => {
     })
   }, [path])
 
+
   useEffect(() => {
-    window.addEventListener('resize', cursor.reInit)
+    const onResize = debounce(cursor.reInit.bind(cursor, []), 1000, {})
+    let onR = () => onResize()
+
+
+    window.addEventListener('resize', onR )
 
     return () => {
-      window.removeEventListener('resize', cursor.reInit)
+      window.removeEventListener('resize', onR)
     }
   }, [])
 

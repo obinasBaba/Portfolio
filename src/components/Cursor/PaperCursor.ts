@@ -388,19 +388,18 @@ class PaperCursor {
 
   initCanvas() {
     console.log('initCanvas')
-
     Paper.setup(this.canvas)
 
     this.initialize()
-    console.log(this.cClone.bounds.width, this.pointer.path.bounds.width)
+    // console.log(this.cClone.bounds.width, this.pointer.path.bounds.width)
     this.normalNoise()
 
   }
 
   reInit() {
-    /*Paper.view.remove()
-    initCanvas()
-    Paper.view.update()*/
+    Paper.view.remove()
+    this.initCanvas()
+    Paper.view.update()
   }
 }
 

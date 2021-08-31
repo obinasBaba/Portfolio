@@ -1,10 +1,17 @@
 import styled, { css } from 'styled-components'
-import { heightWidth, smallUp, spacing } from '../../../../styles/mixins'
+import {
+  heightWidth, largeUp,
+  mediumUp,
+  smallUp,
+  spacing, xLargeUp,
+} from '../../../../styles/mixins'
 
 export const HeroContainer = styled.div`
   position: relative;
   height: 100vh;
   width: 100%;
+  
+  //border: thick solid teal;
   //overflow: hidden;
 `
 
@@ -17,16 +24,27 @@ export const TextContainer = styled.div`
   //border: thin solid red;
   
   ${spacing('pl', 6)};
-  ${spacing('pb', 17)};
+  ${spacing('pb', 10)};
   ${spacing('pt', 3)};
 
 
   ${ smallUp( css`
     ${spacing('pb', 0)};
-    ${spacing('pl', 12)}; //smallDown
+    ${spacing('pl', 4)}; //smallDown
     justify-content: center; //smallDown
 
   ` ) };
+  
+  ${ largeUp( css`
+    ${spacing('pl', 7)}; //smallDown
+    ${spacing('pb', 4)};
+
+
+  ` ) };
+  
+  ${xLargeUp( css`
+    ${spacing('pl', 12)}; //smallDown
+  ` )};
   
 
   & > h2 {

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { smallUp } from '../../styles/mixins'
+import {largeUp, smallUp} from '../../styles/mixins'
 import styled, { css } from 'styled-components'
 import { motion, useSpring } from 'framer-motion'
 import { getMousePos } from '../../helpers/utils'
@@ -11,6 +11,7 @@ const MoonBg = styled(motion.div)`
   right: 0;
   height: 1185px;
   width: 100%;
+  margin-left: auto;
   //overflow: hidden;
   //z-index: -1;
   pointer-events: none;
@@ -22,19 +23,27 @@ const MoonBg = styled(motion.div)`
     margin: auto;
     height: 1285px;
     bottom: 0;
-    left: 0;
-    right: -80%;
-    top: -38%;
+    left: -40%;
+    right: -40%;
+    top: -66%;
     width: initial;
-    transform: translateX(-20%);
-
+    //transform: translateX(-20%);
+    
     ${smallUp(css`
       transform: translateX(0%);
-      right: 0;
-      width: 150%;
+      left: 0%;
+
+      right: -70%;
+      width: 170%;
       //top: 0;
       top: -45%;
     `)};
+    
+    ${largeUp( css`
+    
+      right: 0;
+      width: 150%;
+    ` )}:
 
     svg {
       //display: none;
@@ -67,7 +76,7 @@ const defaultMoonVariant = {
 
 const config = {
   mass: 0.5,
-  stiffness: 50,
+  stiffness: 30,
   damping: 10,
 }
 

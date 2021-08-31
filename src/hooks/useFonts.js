@@ -19,7 +19,7 @@ const useLoadingFonts = ( fontLoaded, setFontFinish ) => {
         setTimeout(() => {
           fontLoaded.set(true)
           setFontFinish(true)
-        }, 3000)
+        }, 0)
       })
       .catch(console.error)
 

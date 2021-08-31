@@ -2,9 +2,9 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import {
   gridColWidth,
-  gridify,
-  mediumDown,
-  smallDown,
+  gridify, largeUp,
+  mediumDown, mediumUp,
+  smallDown, smallUp,
   spacing,
 } from '../../../styles/mixins'
 import Info from './components/Info'
@@ -19,31 +19,43 @@ const PostsContainer = styled.section`
   max-width: 100%;
   //overflow: hidden;
 
-  ${spacing('mb', 15)};
+  ${spacing('mb', 25)};
+  ${spacing('grid-row-gap', 20)};
   ${gridify()};
 
   & aside {
-    ${gridColWidth(5, 25)};
+    ${gridColWidth(5, 61)};
 
-    ${mediumDown(css`
-      ${gridColWidth(4, 22)};
+
+    ${mediumUp(css`
+      ${gridColWidth(3, 32)};
     `)}
 
-    ${smallDown(css`
-      ${gridColWidth(5, 61)};
+    ${smallUp(css`
+      // ${gridColWidth(3, 35)};
     `)}
+    
+    ${largeUp(css`
+      ${gridColWidth(5, 25)};
+    ` )};
   }
 
   & main {
-    ${gridColWidth(35, 59)};
+    ${gridColWidth(5, 59)};
 
-    ${mediumDown(css`
-      ${gridColWidth(28, 61)};
+
+    ${mediumUp(css`
+      ${gridColWidth(36, 63)};
+
     `)}
 
-    ${smallDown(css`
-      ${gridColWidth(5, 59)};
+    ${smallUp(css`
+      // ${gridColWidth(40, 63)};
     `)}
+
+    ${largeUp(css`
+      ${gridColWidth(35, 59)};
+    ` )};
   }
 `
 

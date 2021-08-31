@@ -1,6 +1,12 @@
 import React, {useLayoutEffect} from 'react'
 import styled, {css} from 'styled-components'
-import {heightWidth, spacing, text, title} from '../../../../styles/mixins'
+import {
+  heightWidth, largeUp,
+  smallUp,
+  spacing,
+  text,
+  title,
+} from '../../../../styles/mixins'
 import SlideHover from '../../../../components/SlideHover'
 import {Link} from 'gatsby'
 import logo from './images/logo.svg'
@@ -13,13 +19,13 @@ const InfoTxt = styled.div`
   //border: thin solid red;
   
   ${ spacing('pt', 2) };
+
+  ${largeUp(css`
+     ${spacing('mt', 3)};
+  `)};
   
   @media screen and (max-width: 768px) {
     --indent: 0.7;
-  }
-  
-  &::before {
-    content: '';
   }
     
 `
@@ -37,22 +43,6 @@ const Title = styled.p`
   
 `
 
-const Checkout = styled.div`
-  //border: thin solid rebeccapurple;
-  width: 74%;
-
-  ${spacing( 'mt', 3 )};
-
-
-  span{
-    ${ text( .8 ) };
-    display: block;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 300;
-  }
-  
-`
 
 const txtStyle = css`
   position: relative;
@@ -93,14 +83,14 @@ const Info = () => {
         to problems that we face when building great web products.
       </Title>
 
-      <RightArrowLink lineLength='69%'
+      <RightArrowLink lineLength='75%'
                       txt='checkout my blog site.'
                       target='_blank'
                       link='https://readers-corner.netlify.app'
                       tooTipTxt='i built my own blog-site'
       />
 
-      <RightArrowLink lineLength='81%'
+      <RightArrowLink lineLength='86%'
                       mt={3}
                       txt='MORE BLOG POSTS'
                       link='/blog'

@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 import {
   heightWidth,
   largeUp,
-  mediumUp,
+  mediumUp, smallUp,
   spacing,
   text,
 } from '../../../../styles/mixins'
@@ -16,10 +16,19 @@ const PreviewContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
+  max-width: 500px;
+
 
   &:not(:first-child) {
     position: relative;
     ${spacing('mt', 8)};
+
+    ${smallUp(css`
+      // ${spacing('mt', 8)};
+
+      // ${spacing('mt', 4)};
+  `)}
 
     &::before {
       content: '';
@@ -38,6 +47,8 @@ const PreviewContainer = styled.div`
       }
     }
   }
+
+ 
 
   ${mediumUp(css`
     flex-direction: row;
@@ -58,6 +69,7 @@ const ImageBox = styled.div`
   flex: 0 0 auto;
   width: 100%;
   border: 1px solid #323453;
+  margin: 0 auto;
   background: linear-gradient(
     123.69deg,
     rgba(10, 12, 45, 0.45) 0%,
@@ -88,13 +100,15 @@ const ImageBox = styled.div`
 `
 
 const Desc = styled.div`
-  margin-top: 2rem;
+  ${spacing('mt', 2)};
+
 
   //@media screen and (min-width: $md) {}
 
   ${mediumUp(css`
     margin-top: 0;
-    margin-left: 40px;
+    ${spacing('ml', 2)};
+
   `)};
 
   ${largeUp(css`
