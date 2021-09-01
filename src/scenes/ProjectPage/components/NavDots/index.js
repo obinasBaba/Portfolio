@@ -1,28 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import { motion, AnimateSharedLayout } from 'framer-motion'
-import { spacing } from '../../../../styles/mixins'
+import {mediumUp, spacing} from '../../../../styles/mixins'
 import ThumbAndDot from './Components/ThumbAndDot'
 
 const NavContainer = styled(motion.ul)`
   position: fixed;
   z-index: 10;
-  top: 40%;
-  left: 0;
-
+  bottom: 4%;
+  left: 30%;
+  
   display: flex;
-  flex-flow: column;
   align-items: center;
   justify-content: center;
-  grid-gap: 2rem;
-
   padding: 0;
   margin: 0;
-  //border: thin solid red;
-  //-webkit-filter: url("#goo");
-  //filter: url("#dots-gooey");
-  //filter: blur(2px) contrast(120px);
-  
+ 
+  ${ mediumUp(css`
+    flex-flow: column;
+    top: 40%;
+    bottom: initial;
+    left: 0;
+    
+  `) };
+
+  ${spacing('gap', 3.2)};
+
+
   svg{
     //display: none;  
     position: absolute;

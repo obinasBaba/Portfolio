@@ -1,40 +1,41 @@
 import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
 import {
-  gridColWidth,
+  gridColWidth, gridMultiplayer,
   largeUp,
   mediumUp,
   spacing,
 } from '../../../../styles/mixins'
 
 export const ProjectImg = styled(motion.div)`
-  ${gridColWidth()}; //mobile-first
+  ${gridColWidth(6, 60)}; //mobile-first
   position: relative;
-  background: ${({ theme }) => theme.palette.secondary.main};
 
-  padding: calc(100vw / 64 * 0.5);
-  padding-left: calc(100vw / 64 * 4);
+  //padding: calc(100vw / 64 * 0.5) calc(100vw / 64 * 0.5) calc(100vw / 64 * 0.5) calc(100vw / 64 * 4);
+  ${gridMultiplayer('padding', .5)};
+  ${gridMultiplayer('padding-left', 4)};
 
   & .effect {
     color: tomato;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    // this one fixes gradient text line breaks safari bug: https://zellwk.com/blog/multi-line-gradient-links/
     -webkit-box-decoration-break: clone;
-    background-image: linear-gradient(
-      137.81deg,
-      #e7a28f 3.52%,
+    background-image: linear-gradient(137.81deg,
+    #e7a28f 3.52%,
       //#f9d6ac 41.89%, 
-      #fbfefc 96.77%
-    );
+    #fbfefc 96.77%);
   }
 
   ${mediumUp(css`
     grid-row: 1;
+    margin-right: calc(100vw / 64 * 6);;
+    background: ${({ theme }) => theme.palette.secondary.main};
+
+
     ${gridColWidth(25, 65)};
-    margin-right: calc(100vw / 64 * 6); ;
+
   `)};
-  
+
   //border: thin solid rebeccapurple;
 `
 
@@ -99,8 +100,9 @@ export const InnerWrapper = styled(motion.div)`
       }
     }
 
-    .image-cover:last-child {
-    }
+    ${mediumUp(css`
+      //display: block;
+    `)};
   }
   
   a{

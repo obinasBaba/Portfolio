@@ -113,7 +113,7 @@ export const innerVariant = {
 export const imgOverVariants = {
   animateFp: {
     transition: {
-      delayChildren: 0.2,
+      delayChildren: 0.3,
       staggerChildren: 0.17,
       staggerDirection: -1,
     },

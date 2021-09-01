@@ -1,9 +1,9 @@
 import React from 'react'
-import { ListItem } from './index'
-import { useAnimation } from 'framer-motion'
+import {motion, useAnimation} from 'framer-motion'
 import styled from 'styled-components'
-import { text } from '../../../../../styles/mixins'
+import {spacing, text} from '../../../../../styles/mixins'
 import { GradientText } from '../../../../../components/GradientText'
+import {Typography} from '@material-ui/core'
 
 const itemVariant = {
   initial: {},
@@ -43,20 +43,53 @@ const letterVariant = {
   hoverEnd: {}
 };
 
+const ListItem = styled( motion.li )`
+  //border: thin solid red;
+  padding: 0;
+  margin: 0;
+  
+  ${spacing('p', 2)};
+  //flex: 1 1 32%;
+
+  .title{
+    line-height: 180%;
+    
+    span{
+      display: inline-block;
+    }
+  }
+
+`
+
 const Tags = styled.div`
   display: flex;
   align-items: center;
   //flex-flow: column;
-  gap: 1rem;
-  ${ text(.7) };
   text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 0;
+
+  ${ spacing('gap', 1) };
+
+  
+  p{
+    ${ text(.6) };
+    font-weight: lighter;
+    opacity: .6;
+  }
+  
 `
 
-const DescTxt = styled.p`
-  //font-weight: 300;
+
+
+const DescTxt = styled( Typography )`
+  font-weight: lighter;
+  max-width: 40ch;
+
+  ${text(.9)};
 `
+
+
 
 const Item = ( { onHoverStart, title, customData} ) => {
 
@@ -73,6 +106,7 @@ const Item = ( { onHoverStart, title, customData} ) => {
       <GradientText variant='h3' className='title' >
         {title}
       </GradientText>
+
       <Tags>
         <p>Identity</p>
         <p>Cms</p>
@@ -80,10 +114,11 @@ const Item = ( { onHoverStart, title, customData} ) => {
         <p>System</p>
       </Tags>
 
-      <DescTxt>
+      <DescTxt className='approach-desc' >
         a fairly unique movie streaming service that intends to cover the niche of rather
         uncoventional treasures.
       </DescTxt>
+
 
     </ListItem>
   )

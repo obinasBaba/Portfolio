@@ -12,12 +12,15 @@ import { motion } from 'framer-motion'
 const StackList = styled(motion.ul)`
   position: absolute;
   left: 5%;
-  top: 100%;
-  & > :not(:first-child){
-    ${spacing('ml', 3)};
+  top: 93%;
+  z-index: 20;
+
+  & > :not(:first-child) {
+    ${spacing('ml',
+            3)};
 
   }
-  
+
   grid-row: 2;
   display: flex;
   justify-content: space-between;
@@ -25,33 +28,36 @@ const StackList = styled(motion.ul)`
   list-style-type: none;
   padding: 0;
   overflow: hidden;
-  
-  // ${gridColWidth(3, 30)};
-  ${spacing('mt', 1)};
+
+  ${spacing('mt',
+          1)};
 
   ${mediumUp(css`
     grid-row: 2;
     display: flex;
-
-    // ${({ reversed }) => reversed ? gridColWidth(40, 59) : gridColWidth(6, 20)};
+    top: 100%;
   `)};
-  
-  ${ largeUp( css`
-    //display: none;
-    ${  gridColWidth(25, 36)} 
-    
-  ` ) };
-  
+
+  ${largeUp(css`
+    ${gridColWidth(25,
+            36)}
+
+  `)};
+
 
   img {
     display: block;
     width: auto;
     margin: 0 auto;
     object-fit: cover;
-    ${length('width', 2.5)};
-    ${length('height', 2.5)};
+    //box-shadow: 0 1px 3px 12px rgba(0, 0, 0, 0.37);
+
+    ${length('width',
+            2.5)};
+    ${length('height',
+            2.5)};
   }
-  
+
 `
 
 const transition = {

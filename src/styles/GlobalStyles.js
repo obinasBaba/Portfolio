@@ -46,7 +46,7 @@ export const GlobalStyle = createGlobalStyle`
     
     ${smallUp( css`
       & *{
-        cursor: none;
+        //cursor: none;
       }
     ` )};
   }

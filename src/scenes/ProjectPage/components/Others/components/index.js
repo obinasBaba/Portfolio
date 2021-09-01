@@ -44,51 +44,39 @@ export const Title = styled(Typography)`
   -webkit-text-stroke: 1px white;
   color: transparent;
   text-align: left;
-  //align-self: flex-start;
-  ${spacing('ml', 15)};
-
   writing-mode: vertical-lr;
+  letter-spacing: 6px;
 
   text-orientation: mixed;
+  ${spacing('ml', 1)};
+
+  
+  ${mediumUp(css`
+    ${spacing('ml', 15)};
+
+  `)};
 
 `
 
 export const List = styled( motion.ul )`
+  z-index: 1;
   list-style-type: none;
   padding: 0;
   margin: 0;
   display: flex;
+  flex: 1;
   flex-flow: wrap;
   justify-content: space-around;
-  gap: 4rem;
   
-  ${spacing('m', 5)};
-  ${spacing('mh', 10)};
-  // ${spacing('ml', 40)};
-  //text-align: center;
-  //border: thin solid red;
+  
+  ${spacing('gap', 2)};
 
-  z-index: 1;
+  ${mediumUp(css`
+    ${spacing('m', 5)};
+    ${spacing('mh', 10)};
+    ${spacing('gap', 5)};
+  `)};
+
 `
 
-export const ListItem = styled( motion.li )`
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-  //max-width: 45ch;
-  flex: 1 1 32%;
-  
-  // ${spacing('p', 1)};
-  // ${spacing('ph', 2)};
 
-
-  .title{
-    // ${ text(2.4) };
-    line-height: 1.7;
-    
-    span{
-      display: inline-block;
-    }
-  }
-
-`
