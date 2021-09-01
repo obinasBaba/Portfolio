@@ -1,5 +1,6 @@
-import {createGlobalStyle} from 'styled-components'
+import {createGlobalStyle, css} from 'styled-components'
 import ResponsiveVars from './variables/ResponsiveVars'
+import {smallUp} from './mixins'
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -11,12 +12,17 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   & .canvas {
+    display: none;
     position: fixed;
     width: 100vw;
     height: 100vh;
     z-index: var(--cIndex);
     pointer-events: none;
     //border: thin solid blue;
+    
+    ${smallUp(css`
+      display: block;
+    `)};
   }
 
   html,
@@ -38,6 +44,10 @@ export const GlobalStyle = createGlobalStyle`
     //overflow: hidden;
 
     cursor: none;
+    
+    ${smallUp( css`
+      cursor: initial;
+    ` )};
   }
 
   body {

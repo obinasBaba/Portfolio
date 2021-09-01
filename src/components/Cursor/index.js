@@ -83,6 +83,7 @@ const Cursor = ({ path }) => {
 
     return () => {
       window.removeEventListener('resize', onR)
+      cursor.destroy()
     }
   }, [])
 

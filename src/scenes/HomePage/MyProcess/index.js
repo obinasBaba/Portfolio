@@ -8,7 +8,7 @@ import { useApproachAssets } from '../../../hooks/queries/useApproachAssets'
 import gsap from 'gsap'
 import STrigger from 'gsap/ScrollTrigger'
 import { AppStateContext } from '../../../contexts/AppStateContext'
-import {mediumUp, spacing, title} from '../../../styles/mixins'
+import {mediumUp, smallDown, spacing, text, title} from '../../../styles/mixins'
 import BigPlanet from './components/BigPlanet'
 import useOnScreen from '../../../hooks/useOnScreen'
 
@@ -30,13 +30,19 @@ const ProcessTitle = styled(Typography)`
   font-family: 'Bodoni Moda', serif;
   margin: 0 auto;
   //border: thin dashed burlywood;
-  // ${title(7)};
-
+  
+  ${spacing('pl', 3)};
   ${spacing('pb', 1.7)}
+
+  ${smallDown( css`
+    ${text(4)};
+  ` )};
   
   ${mediumUp( css`
     ${spacing('pl', 7)};
   ` )};
+  
+  
 `
 
 const ProcessMask = styled(motion.div)`

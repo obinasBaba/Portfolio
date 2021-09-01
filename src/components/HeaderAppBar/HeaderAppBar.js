@@ -33,7 +33,7 @@ function HideOnScroll({ children, window, isMenuOpen }) {
       else if (y.get() < y.getPrevious())
         setTrigger(true)
 
-    }, 1000)
+    }, 500)
   }
 
 

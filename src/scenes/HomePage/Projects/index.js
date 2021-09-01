@@ -4,7 +4,7 @@ import {
   gridMultiplayer,
   length, largeUp,
   spacing,
-  text,
+  text, smallUp,
 } from '../../../styles/mixins'
 import {
   motion,
@@ -14,7 +14,7 @@ import {
   useTransform,
 } from 'framer-motion'
 import { Link, useScrollRestoration } from 'gatsby'
-import Headline from '../../../components/Headline'
+import HeadlineTitle from '../../../components/Headline'
 import lotti from 'lottie-web'
 import { useProjectCircles } from '../../../hooks/queries/useProjectCircles'
 import useOnScreen from '../../../hooks/useOnScreen'
@@ -45,7 +45,7 @@ const ProjectContainer = styled(motion.section)`
   //padding: 2rem 0;
   z-index: 11;
   
-  ${spacing('pt', 11)};
+  ${spacing('pt', 26)};
   ${spacing('pb', 11)};
 `
 
@@ -90,8 +90,13 @@ const ScrollPlanet = styled.div`
 
 const ScrollPlanet2 = styled.div`
   position: absolute;
-  top: 40%;
-  right: 10%;
+  top: 50%;
+  right: 30%;
+
+  ${smallUp(css`
+    top: 40%;
+    right: 10%;
+  `)};
 `
 
 const LottiContainer = styled.div`
@@ -236,7 +241,7 @@ const Projects = () => {
       exit="exit"
       ref={containerRef}
     >
-      <Headline title={'Projects'} mb={3} subtitle={'Case Studies'} />
+      <HeadlineTitle title={'Projects'} mb={3} subtitle={'Case Studies'} />
 
       <ScrollPlanet data-scroll={true} data-scroll-speed='-3'>
         <Planet className='planet-left' style={{ y: yBig, x: xBig }} />

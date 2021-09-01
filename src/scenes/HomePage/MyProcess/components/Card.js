@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react'
 import styled, {css} from 'styled-components'
-import {mediumUp, spacing, text} from '../../../../styles/mixins'
+import {mediumUp, spacing, text, title} from '../../../../styles/mixins'
 import { Typography } from '@material-ui/core'
 import { Illustration } from './Icons'
 import useOnScreen from '../../../../hooks/useOnScreen'
@@ -47,14 +47,7 @@ const StyledCard = styled.div`
   }
 
   .approach-desc {
-    ${text(1.22)};
-
-    
-    ${mediumUp(css`
-      ${text(1.02)};
-
-
-    `)};
+    ${text(1.02)};
   }
 
   & svg {
@@ -151,6 +144,7 @@ const Card = ({ txt, title, methodologies, index, path }) => {
       <Typography variant="h3" className="card-title">
         {title}
       </Typography>
+
       <Typography className='approach-desc' >{txt}</Typography>
 
       <Keys variants={keysVariants}

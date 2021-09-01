@@ -7,10 +7,13 @@ import { Link } from 'gatsby'
 
 const FooterMetaContainer = styled(Container)`
   display: flex;
+  flex-flow: wrap;
   justify-content: space-between;
-  flex-flow: column;
-
+  //border: thin solid red;
+  
   ${spacing('mv', 5)};
+  ${spacing('mt', 10)};
+
 
   ${mediumUp(css`
     flex-flow: row wrap;
@@ -19,12 +22,21 @@ const FooterMetaContainer = styled(Container)`
 
 const MetaColumn = styled.div`
   display: flex;
+  flex: 50%;
   flex-flow: column;
   align-items: flex-start;
-  //border: thin solid lightcoral;
+  //border: thin solid lightgray;
+  ${spacing('mb', 10)};
+  ${spacing('ph', 4)};
+  
+  ${mediumUp(css`
+    flex: 25%;
+  `)};
+
+
 
   & .title {
-    ${spacing('mb', 1.5)};
+    ${spacing('mb', 3.5)};
     font-weight: bolder;
     letter-spacing: 1px;
   }
@@ -223,10 +235,10 @@ const FooterMeta = () => {
   ]
 
   return (
-    <FooterMetaContainer maxWidth="lg" disableGutters={true}>
+    <FooterMetaContainer maxWidth="lg" disableGutters={true} >
       {titleData.map((title, i) => {
         return (
-          <MetaColumn key={title + i}>
+          <MetaColumn key={title + i} data-scroll={true} >
             <Typography variant="h5" className="title">
               {title}
             </Typography>

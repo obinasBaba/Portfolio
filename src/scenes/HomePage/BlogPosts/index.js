@@ -9,7 +9,7 @@ import {
 } from '../../../styles/mixins'
 import Info from './components/Info'
 import Previews from './components/Previews'
-import Headline from '../../../components/Headline'
+import HeadlineTitle from '../../../components/Headline'
 
 const BlogPostContainer = styled.section`
   ${spacing('mt', 5)};
@@ -63,7 +63,7 @@ const PostsContainer = styled.section`
 const BlogPosts = () => {
   return (
     <BlogPostContainer>
-      <Headline
+      <HeadlineTitle
         className="blog-headline"
         title='My Blogs'
         subtitle='Tips & Tricks'

@@ -22,13 +22,15 @@ const FooterContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 100%;
- 
 
-  ${spacing('mv', 3)};
+  ${spacing('mv', 7)};
+  ${spacing('gap', 5)};
 
 
   ${largeUp(css`
     flex-direction: row;
+    ${spacing('mv', 3)};
+
   `)};
   
   @media screen and (min-width: 768px) {
@@ -93,8 +95,7 @@ const Love = styled.div`
   line-height: 0;
   letter-spacing: 1.2px;
   ${ text(.7) };
-
-
+  
   span{
     font-size: 28px;
   }
@@ -112,40 +113,41 @@ const Love = styled.div`
   
   ${ mediumDown( css`
     position: relative;
-    left: 0;
-    order: 1;
-    margin-top: 2rem;
-    top: 0;
-    transform: translateY(0);
+    
   ` ) };
   
 `
 
 const Copy = styled.div`
-  position: absolute;
-  ${spacing('right', 0)};
 
+  //order: 2;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: .2rem;
-  ${ text(.74) };
+  ${ text(.84) };
 
 
   span{
-    
-    font-family: var(--gramatika);
     font-weight: 300;
     ${ text(1) };
-    
   }
+  
+  ${largeUp(css`
+    position: absolute;
+    ${spacing('right', 0)};
+
+  ` )}
 `
 
 const Footer = ( {color} ) => {
   return (
-    <Container maxWidth='lg' disableGutters={true}  style={{}} >
+    <Container maxWidth='lg' disableGutters={true}  data-scroll={true} >
       <FooterContainer>
-        <Love>Made With <span className='heart-icon'>&#9825;</span> by <b>henok</b></Love>
+
+        <Copy >
+          <span>&copy;</span> 2021 Henzzo.io
+        </Copy>
 
         <Social>
           <li className='hover_target'>
@@ -193,9 +195,10 @@ const Footer = ( {color} ) => {
           </li>
         </Social>
 
-        <Copy>
-          <span>&copy;</span> 2021 Henzzo.io
-        </Copy>
+
+
+        <Love>Made With <span className='heart-icon'>&#9825;</span> by <b>henok</b></Love>
+
 
 
       </FooterContainer>

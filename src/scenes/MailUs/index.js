@@ -25,7 +25,6 @@ const MailUsContainer = styled.div`
 
   ${spacing('mt', 22)};
   ${spacing('pt', 22)};
-  // ${spacing('pb', 10)};
 `
 
 const Background = styled.span`
@@ -96,7 +95,6 @@ const MailUs = () => {
   return (
     <MailUsContainer ref={elRef}>
       <Background />
-
       <LogoEffect />
 
       <TitleWrapper>

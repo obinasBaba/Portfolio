@@ -10,6 +10,7 @@ import ImagesLoaded from 'imagesloaded'
 import useOnScreen from '../../../hooks/useOnScreen'
 
 const RecentDesignWrapper = styled.section`
+  //min-height: 100vh;
   
   //border: thick solid saddlebrown;
 `

@@ -1,8 +1,8 @@
 import React, {useContext, useEffect, useState} from 'react'
 import styled, { css } from 'styled-components'
 import { Container } from '@material-ui/core'
-import { length, largeUp, spacing } from '../../../../styles/mixins'
-import Headline from '../../../../components/Headline'
+import {length, largeUp, spacing, smallUp} from '../../../../styles/mixins'
+import HeadlineTitle from '../../../../components/Headline'
 import {AppStateContext} from '../../../../contexts/AppStateContext'
 import {useTransform} from 'framer-motion'
 import {motion} from 'framer-motion'
@@ -21,13 +21,14 @@ const TitleContainer = styled(Container)`
 const LogoLink = styled.a`
   position: relative;
   margin-left: auto;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   ${ length('width', 12) };
   
-  ${ largeUp( css`
-    margin-right: -20px;
+  ${ smallUp( css`
+    display: flex;
+    margin-right: -30px;
 
   ` ) };
   
@@ -102,13 +103,8 @@ const Title = ({ dribbleRed, circledText }) => {
         />
       </LogoLink>
 
-    {/*  <Typography variant={'h1'} style={{
-        letterSpacing: '-2px',
 
-
-      }}>Recent Works</Typography>*/}
-
-      <Headline title='Designs' subtitle='Recent Designs' />
+      <HeadlineTitle title='Designs' subtitle='Recent Designs' />
 
     </TitleContainer>
   )
