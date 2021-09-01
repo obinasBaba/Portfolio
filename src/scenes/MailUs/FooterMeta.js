@@ -41,7 +41,7 @@ const MetaColumn = styled.div`
   & .link-txt {
     ${spacing('mt', 0.5)};
     font-weight: 300;
-    ${text(0.66)};
+    ${text(0.79)};
   }
 
   ${mediumUp(css`
