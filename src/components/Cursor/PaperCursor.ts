@@ -242,7 +242,65 @@ class PaperCursor {
     }
   }
 
-  async startFocus(focused){
+  set focus(focused){
+    Paper.view.onFrame = event =>{
+      // console.time('Stuck');
+      this.updatePosition();
+
+      this.circles.forEach((circle) => {
+       this.clearNoise(circle)
+        this.isNoise = false
+      })
+
+      // 50.0000008508689
+      if (focused && Math.floor(this.cClone.bounds.width) > 0) {
+        this.cClone.scale(.87)
+        this.circles.forEach(({ path }) => path.scale(.87))
+        console.log( 'Down', this.cClone.bounds.width)
+
+        //65.367032903977130978930453580233
+      }
+      else if (!focused && Math.floor(this.cClone.bounds.width) < 50 ) {
+        this.cClone.scale(1.224)
+        this.circles.forEach(({ path }) => path.scale(1.224))
+        console.log('UP', this.cClone.bounds.width)
+
+      }
+      else if(!focused && Math.floor(this.cClone.bounds.width) === 50) {
+        console.log('normal', this.cClone.bounds.width)
+        return this.normalNoise()
+      }
+
+      /*this.circles.forEach(({ path }, i) => {
+        this.circles[i].coordinates = path.segments.reduce((p, c) => {
+          p.push([c.point.x, c.point.y])
+          return p
+        }, [])
+      })*/
+
+      this.circles.forEach((circle, i) => {
+        this.updateCoordinates2(circle)
+      })
+
+
+
+      this.noise(event)
+      // console.timeEnd('Stuck')
+    }
+
+  }
+
+  private updateCoordinates2(polygon : Circle | Pointer){
+    polygon.coordinates = polygon.path.segments.reduce((p, c) => {
+      p.push([c.point.x, c.point.y])
+      return p
+    }, [])
+
+  }
+  private clearNoise(polygon : Circle | Pointer){
+    polygon.path.segments.forEach((s,i) => {
+      s.point.set(polygon.coordinates[i][0], polygon.coordinates[i][1])
+    })
 
   }
 
@@ -345,7 +403,7 @@ class PaperCursor {
     }
   }
 
-   coordinatesWithoutNoise  ()  {
+  coordinatesWithoutNoise  ()  {
     if (this.isNoise) {
       for (let i = 0; i < this.segments; i++) {
         this.pointer.path.segments[i].point.set(
@@ -362,7 +420,7 @@ class PaperCursor {
     }
   }
 
-   updateCoordinates  ()  {
+  updateCoordinates  ()  {
     for (let i = 0; i < this.segments; i++) {
       this.pointer.coordinates[i] =
         [this.pointer.path.segments[i].point.x, this.pointer.path.segments[i].point.y]
@@ -391,7 +449,7 @@ class PaperCursor {
     Paper.setup(this.canvas)
 
     this.initialize()
-    // console.log(this.cClone.bounds.width, this.pointer.path.bounds.width)
+    console.log(this.cClone.bounds.width, this.pointer.path.bounds.width)
     this.normalNoise()
 
   }
@@ -400,6 +458,11 @@ class PaperCursor {
     Paper.view.remove()
     this.initCanvas()
     Paper.view.update()
+  }
+
+  destroy() {
+    Paper.project.remove();
+    Paper.view.remove()
   }
 }
 

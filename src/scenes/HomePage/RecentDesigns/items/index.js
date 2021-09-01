@@ -1,7 +1,7 @@
 import React from 'react'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import styled from 'styled-components'
-import {heightWidth, spacing} from '../../../../styles/mixins'
+import {length, spacing} from '../../../../styles/mixins'
 
 const ImageWrapper = styled.div`
   flex: 0 0 100%;
@@ -42,7 +42,7 @@ const ImageWrapper = styled.div`
   @media screen and (min-width: 1600px) {
   //@include hl-max-width(620px);
     
-    ${ heightWidth( 'max-width', 62 ) };
+    ${ length( 'max-width', 62 ) };
     
     &.item {
     //@include hl-margin(right, 20px);
@@ -51,7 +51,7 @@ const ImageWrapper = styled.div`
     &:nth-child(2n) {
       
     //@include hl-max-width(400px);
-      ${ heightWidth( 'max-width', 40 ) };
+      ${ length( 'max-width', 40 ) };
 
       .image:first-child {
       //@include hl-margin(bottom, 20px);

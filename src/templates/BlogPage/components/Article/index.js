@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import {
-  heightWidth,
+  length,
   largeUp,
   mediumDown,
   mediumUp,
@@ -177,7 +177,7 @@ const ArticleWrapper = styled ( Container ) `
       word-break: break-word;
 
       ${ spacing('mb', 2.5) };
-      ${ heightWidth('padding-left', 2) };
+      ${ length('padding-left', 2) };
 
       &:before {
         position: absolute;

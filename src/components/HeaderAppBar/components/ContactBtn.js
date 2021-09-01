@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Typography } from '@material-ui/core'
-import {heightWidth, mediumUp, spacing, text} from '../../../styles/mixins'
+import {length, mediumUp, spacing, text} from '../../../styles/mixins'
 import { motion } from 'framer-motion'
 
 const StyledContactBtn = styled.span`
@@ -26,8 +26,8 @@ const StyledContactBtn = styled.span`
     display: flex;
   `)};
   
-  ${heightWidth('width', 18)};
-  ${heightWidth('height', 6)};
+  ${length('width', 18)};
+  ${length('height', 6)};
   ${spacing('mr', 2)};
   
 

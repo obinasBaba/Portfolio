@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import {
   gridColWidth,
-  heightWidth,
+  length,
   largeUp,
   mediumUp,
   spacing,
@@ -48,8 +48,8 @@ const StackList = styled(motion.ul)`
     width: auto;
     margin: 0 auto;
     object-fit: cover;
-    ${heightWidth('width', 2.5)};
-    ${heightWidth('height', 2.5)};
+    ${length('width', 2.5)};
+    ${length('height', 2.5)};
   }
   
 `

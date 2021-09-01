@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core'
 import {
   gridColWidth,
   gridify,
-  heightWidth,
+  length,
   largeUp,
   mediumUp,
   spacing, text,

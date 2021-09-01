@@ -1,6 +1,6 @@
 import { css } from 'styled-components'
 
-export const responsiveVar = css`
+export default css`
   :root {
     --indent: 1; // for margin and padding
     --indent-high: 1;
@@ -48,25 +48,3 @@ export const responsiveVar = css`
     }
   }
 `
-
-export const fpNav = css`
-  
-  
-  
-  #fp-nav{
-    //border: thin solid red;
-    left: 40px !important;
-
-
-    .fp-left{
-    }
-    
-    a{
-      span{
-        background: aliceblue !important;
-        //width: 24px !important;
-      }
-    }
-  }
-`
-

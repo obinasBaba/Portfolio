@@ -6,7 +6,7 @@ import {
 } from 'framer-motion'
 import React, {useContext, useEffect, useLayoutEffect, useRef} from 'react'
 import styled from 'styled-components'
-import { heightWidth, spacing } from '../../styles/mixins'
+import { length, spacing } from '../../styles/mixins'
 import {AppStateContext} from '../../contexts/AppStateContext'
 import {map} from '../../helpers/utils'
 
@@ -51,8 +51,8 @@ const ProgressCircleWrapper = styled.div`
   }
   
   ${spacing('mr', 6)};
-  ${heightWidth('width', 5.1)};
-  ${heightWidth('height', 5.1)};
+  ${length('width', 5.1)};
+  ${length('height', 5.1)};
 `
 
 const topPathVariant = {

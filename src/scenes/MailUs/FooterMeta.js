@@ -239,6 +239,8 @@ const FooterMeta = () => {
                 initial="initial"
                 animate="animate"
                 exit="exit"
+                data-pointer='focus'
+
               >
                 {link && <Link to={'link'} />}
 

@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 
 import {
-  heightWidth,
+  length,
   largeUp,
   mediumUp, smallUp,
   spacing,
@@ -77,7 +77,7 @@ const ImageBox = styled.div`
   );
 
   ${mediumUp(css`
-    ${heightWidth('width', 18)}
+    ${length('width', 18)}
   `)};
 
   a {

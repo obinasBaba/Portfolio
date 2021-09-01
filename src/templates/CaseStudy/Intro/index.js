@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Typography } from '@material-ui/core'
 import styled, { css } from 'styled-components'
 import {
-  heightWidth,
+  length,
   largeUp,
   mediumUp,
   spacing,
@@ -45,7 +45,7 @@ const IntroContainer = styled(Container)`
   }
 
   & > :not(:first-child) {
-    ${heightWidth('margin-containerVariant', 3)};
+    ${length('margin-containerVariant', 3)};
   }
 
   ${mediumUp(css`
@@ -60,7 +60,7 @@ const IntroContainer = styled(Container)`
     justify-content: center;
 
     & > :not(:first-child) {
-      ${heightWidth('margin-containerVariant', 3)};
+      ${length('margin-containerVariant', 3)};
     }
   }
   

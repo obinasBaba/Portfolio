@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
 import { useProjectSvg } from '../../../../../hooks/queries/useProjectSvg'
 import { ReactSVG } from 'react-svg'
-import {heightWidth, spacing, text} from '../../../../../styles/mixins'
+import {length, spacing, text} from '../../../../../styles/mixins'
 import { Link } from 'gatsby'
 
 const RightArrowContainer = styled(motion.div)`
@@ -47,7 +47,7 @@ const Arrow = styled.div`
   z-index: 0;
   margin: 0 auto;
   max-width: 50px;
-  ${heightWidth('width', 5)};
+  ${length('width', 5)};
 
   display: flex;
   align-items: center;

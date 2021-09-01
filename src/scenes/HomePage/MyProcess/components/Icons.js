@@ -6,15 +6,18 @@ import useOnScreen from '../../../../hooks/useOnScreen'
 
 const IllustrationContainer = styled.div`
   //z-index: -1;
-  height: 100px;
+  position: absolute;
+  left: 4%;
+  top: -2%;
+  //margin: -50px -50px -20px -20px;
+  //border: thin solid red;
   width: 100px;
-  margin: -20px -50px -20px -20px;
+  height: 100px;
+  
 
   path {
     stroke: #3719ca;
     fill: #3719ca;
-  }
-  svg{
   }
 
   ${ ({design}) => design && css`

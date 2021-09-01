@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import {
-  heightWidth,
+  length,
   largeUp,
   mediumDown,
   mediumUp,
@@ -13,6 +13,7 @@ import Dribbble from '../../assets/images/brands/dribbble.inline.svg'
 import Instagram from '../../assets/images/brands/instagram.inline.svg'
 import Behance from '../../assets/images/brands/behance.inline.svg'
 import Github from '../../assets/images/brands/github.inline.svg'
+import {Container} from '@material-ui/core'
 
 const FooterContainer = styled.div`
   position: relative;
@@ -20,14 +21,8 @@ const FooterContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding-right: 15px;
-  padding-left: 15px;
-  max-width: 90rem;
   width: 100%;
-  //background-color: #3719ca;
-  //border: thin solid red;
-  //background-color: #02021e;
-  //border: thin solid green;
+ 
 
   ${spacing('mv', 3)};
 
@@ -40,7 +35,6 @@ const FooterContainer = styled.div`
     padding-right: 4.28rem;
     padding-left: 4.28rem;
   }
-
   
 `
 
@@ -75,8 +69,8 @@ const Social = styled.ul`
     height: 40px;
 
     ${mediumUp(css`
-      ${heightWidth('width', 6)}
-      ${heightWidth('height', 6)}
+      ${length('width', 6)}
+      ${length('height', 6)}
     `)};
 
     &:hover {
@@ -93,7 +87,7 @@ const Social = styled.ul`
 const Love = styled.div`
   position: absolute;
   //left: 0;
-  ${spacing('left', 4)};
+  ${spacing('left', 0)};
 
   font-weight: 300;
   line-height: 0;
@@ -129,7 +123,7 @@ const Love = styled.div`
 
 const Copy = styled.div`
   position: absolute;
-  ${spacing('right', 4)};
+  ${spacing('right', 0)};
 
   display: flex;
   align-items: center;
@@ -149,61 +143,64 @@ const Copy = styled.div`
 
 const Footer = ( {color} ) => {
   return (
-    <FooterContainer>
-      <Love>Made With <span className='heart-icon'>&#9825;</span> by <b>henok</b></Love>
+    <Container maxWidth='lg' disableGutters={true}  style={{}} >
+      <FooterContainer>
+        <Love>Made With <span className='heart-icon'>&#9825;</span> by <b>henok</b></Love>
 
-      <Social>
-        <li className='hover_target'>
-          <a
-            href="https://github.com/Halo-Lab"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Github
-            <Github />
-          </a>
-        </li>
+        <Social>
+          <li className='hover_target'>
+            <a
+              href="https://github.com/Halo-Lab"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Github
+              <Github />
+            </a>
+          </li>
 
-        <li>
-          <a
-            href="https://www.instagram.com/halolabteam/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className='hover_target'
+          <li>
+            <a
+              href="https://www.instagram.com/halolabteam/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className='hover_target'
 
-          >
-            Instagram
-            <Instagram />
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.behance.net/halolab"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Behance
-            <Behance />
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://dribbble.com/halolab"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Dribbble
-            <Dribbble />
-          </a>
-        </li>
-      </Social>
+            >
+              Instagram
+              <Instagram />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.behance.net/halolab"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Behance
+              <Behance />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://dribbble.com/halolab"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Dribbble
+              <Dribbble />
+            </a>
+          </li>
+        </Social>
 
-      <Copy>
-        <span>&copy;</span> 2021 Henzzo.io
-      </Copy>
+        <Copy>
+          <span>&copy;</span> 2021 Henzzo.io
+        </Copy>
 
 
-    </FooterContainer>
+      </FooterContainer>
+    </Container>
+
   )
 }
 

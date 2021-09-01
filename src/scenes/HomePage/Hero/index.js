@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography } from '@material-ui/core'
 import H from './H.inline.svg'
 import { HeroContainer, Lines, SvgWithTxt, TextContainer } from './components'
-import Moon from '../../../layouts/Components/Moon'
+import Moon from '../../../components/MoonLight'
 
 const Hero = () => {
   // const { logo } = useHeaderAssets();

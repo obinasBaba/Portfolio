@@ -80,7 +80,7 @@ const config = {
   damping: 10,
 }
 
-const Moon = ({ zIndex, pos = 'fixed', showMoon = true, show = true, variants = {} }) => {
+const MoonLight = ({ zIndex, pos = 'fixed', showMoon = true, show = true, variants = {} }) => {
   const x = useSpring(0, config)
   const y = useSpring(0, config)
 
@@ -144,4 +144,4 @@ const Moon = ({ zIndex, pos = 'fixed', showMoon = true, show = true, variants = 
   )
 }
 
-export default Moon
+export default MoonLight

@@ -1,7 +1,7 @@
 import React, {useLayoutEffect} from 'react'
 import styled, {css} from 'styled-components'
 import {
-  heightWidth, largeUp,
+  length, largeUp,
   smallUp,
   spacing,
   text,
@@ -67,8 +67,8 @@ const BlogEffect = styled.div`
   left: -74%;
   z-index: -1;
 
-  ${ heightWidth('width', 70) };
-  ${ heightWidth('height', 70) };
+  ${ length('width', 70) };
+  ${ length('height', 70) };
 `
 
 const Info = () => {

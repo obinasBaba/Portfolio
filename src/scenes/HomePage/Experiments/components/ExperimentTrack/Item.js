@@ -125,7 +125,7 @@ const Item = ({  imgUrl, title, index}) => {
 
 
   return (
-    <ExperimentItem  >
+    <ExperimentItem data-pointer='focus' >
 
       <video autoPlay loop muted playsInline>
         <source src={imgUrl.webm.publicURL} type="video/webm" />

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import {
-  heightWidth, largeUp,
+  length, largeUp,
   mediumUp,
   smallUp,
   spacing, xLargeUp,
@@ -55,7 +55,7 @@ export const TextContainer = styled.div`
   .job{
     ${spacing('mt', 5)};
     margin-left: 15px;
-    ${ heightWidth( 'letter-spacing', .2 ) };
+    ${ length( 'letter-spacing', .2 ) };
   }
   
 }

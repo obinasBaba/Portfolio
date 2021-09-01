@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import MotionBtn from '../../components/MotionBtn'
-import { heightWidth, spacing, text } from '../../styles/mixins'
+import { length, spacing, text } from '../../styles/mixins'
 import Logo from './logo.svg'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import { GradientText } from '../../components/GradientText'
@@ -23,7 +23,9 @@ const MailUsContainer = styled.div`
 
   //border: thin solid red;
 
-  ${spacing('mt', 12)};
+  ${spacing('mt', 22)};
+  ${spacing('pt', 22)};
+  // ${spacing('pb', 10)};
 `
 
 const Background = styled.span`
@@ -36,12 +38,15 @@ const Background = styled.span`
   right: 0;
   bottom: 0;
   z-index: -1;
-  //height: calc(100% + (var(--indent) * 1000px));
+  height: calc(100% + (var(--indent) * 1000px));
+  
   background: linear-gradient(
     to bottom,
     rgba(30, 33, 61, 0%) 0%,
-    #02021e 60%
+    #02021e 20%
   );
+  
+  //background-color:  #02021e;
 `
 
 const TitleWrapper = styled.div`

@@ -19,22 +19,26 @@ const Cursor = ({ path }) => {
 
     const handleHover = e => {
       // console.log('enter hover')
-      if (e.currentTarget.dataset.pointer === 'stuck') {
+      let type = e.currentTarget.dataset.pointer;
+      if (type === 'stuck') {
         const rect = e.currentTarget.getBoundingClientRect()
         let x = Math.round(rect.left + rect.width / 2)
         let y = Math.round(rect.top + rect.height / 2)
         cursor.startStuck(x, y)
+      }else if( type === 'focus'){
+        cursor.focus = true;
       } else {
         document.body.classList.add('canvas-hover')
-        console.log(document.body.classList)
         cursor.startPointed(true)
       }
     }
     const handleLeave = () => {
       cursor.pointed = false
       cursor.startPointed(false)
+      cursor.focus = false;
+
       document.body.classList.remove('canvas-hover')
-      console.log('classList: ', document.body.classList)
+      // console.log('classList: ', document.body.classList)
     }
 
     const pointerElements = document.querySelectorAll('[data-pointer]')

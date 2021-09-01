@@ -5,9 +5,9 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import theme from '../theme'
 import '../styles/fontFace.css'
-import { GlobalStyle } from './layoutComponents/index'
 import AppStateProvider from '../contexts/AppStateContext'
-import Page from './layoutComponents/Page'
+import Page from './Components/Page'
+import {GlobalStyle} from '../styles/GlobalStyles'
 
 export default function Layout({ children, path }) {
   return (

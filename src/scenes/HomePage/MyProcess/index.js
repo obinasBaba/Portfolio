@@ -1,67 +1,89 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
-import { Typography } from '@material-ui/core'
+import {Typography, useMediaQuery, useTheme} from '@material-ui/core'
 import { processData } from './data'
 import Card from './components/Card'
 import { useApproachAssets } from '../../../hooks/queries/useApproachAssets'
 import gsap from 'gsap'
 import STrigger from 'gsap/ScrollTrigger'
 import { AppStateContext } from '../../../contexts/AppStateContext'
-import { spacing } from '../../../styles/mixins'
+import {mediumUp, spacing, title} from '../../../styles/mixins'
 import BigPlanet from './components/BigPlanet'
 import useOnScreen from '../../../hooks/useOnScreen'
 
 const ProcessContainer = styled.section`
-  min-height: 100vh;
-  overflow: visible;
   position: relative;
-  padding: 14rem 0 10rem;
+  min-height: 100vh;
   //border: thin solid red;
+  
+  ${spacing('mt', 25.4)};
+  ${spacing('mb', 16)};
 `
 
-const ProcessTxt = styled(Typography)`
+const ProcessTitle = styled(Typography)`
+  position: relative;
   display: block;
   color: transparent;
   -webkit-text-stroke: 1.5px #f9d6ac;
   font-weight: 900;
   font-family: 'Bodoni Moda', serif;
+  margin: 0 auto;
   //border: thin dashed burlywood;
+  // ${title(7)};
 
-  ${spacing('pl', 7)};
   ${spacing('pb', 1.7)}
+  
+  ${mediumUp( css`
+    ${spacing('pl', 7)};
+  ` )};
 `
 
 const ProcessMask = styled(motion.div)`
   z-index: 5;
   //border: thin dashed #89dc14;
 
-  ${spacing('pl', 50)};
+  ${mediumUp(css`
+    ${spacing('pl', 50)};
+  `)};
 `
 
 const ProcessTrack = styled(motion.div)`
-  display: flex;
   //border: 2px dashed #00ccff;
-  width: max-content;
+  display: flex;
+  width: 100%;
+  flex-flow: column;
+  align-items: center;
+  ${spacing('p', 4)};
+  ${spacing('gap', 3.5)};
 
-  & > :not(:last-child) {
-    ${spacing('mr', 17.5)};
-  }
+
+
+  ${mediumUp(css`
+    flex-flow: row; 
+    flex-wrap: nowrap;
+    align-items: stretch;
+    width: max-content;
+    ${spacing('p', 0)};
+    ${spacing('gap', 0)};
+    
+
+    & > :not(:last-child) {
+      ${spacing('mr', 17.5)};
+    }
+  `)};
 `
-// https://assets.website-files.com/5e0f6cce946b126508a0d575/5f871b5142ebdd72ead3da3c_illus_small_unsure_c.json
-//https://assets.website-files.com/5e0f6cce946b126508a0d575/5f8822d14b14dabd54bd2516_illus_small_ufo.json
 
 
 const MyProcess = () => {
   const { build, design, ufo, align, rocket } = useApproachAssets()
-  const { loadingPage } = useContext(AppStateContext)
-
-  const icons = [align, ufo, design, build, rocket]
+  const icons = [ufo ,align, design, build, rocket]
 
   const maskRef = useRef(null)
   const titleRef = useRef(null)
   const trackRef = useRef(null)
   const containerRef = useRef(null)
+  const mediaMatch =  useMediaQuery( useTheme().breakpoints.up('md') )
 
   let intersecting = useOnScreen(containerRef, 0)
   const [inView, setInView] = useState(false)
@@ -76,6 +98,8 @@ const MyProcess = () => {
   }, [intersecting])
 
   useEffect(() => {
+    if ( !mediaMatch ) return;
+
     // if ( inView )
 
     setTimeout(() => {
@@ -83,14 +107,13 @@ const MyProcess = () => {
       const mask = document.querySelector('.mask')
       const track = document.querySelector('.track')
 
-      // STrigger.refresh()
-
+      STrigger.refresh()
 
       gsap.timeline()
         .to(track, {
         ease: 'none',
         scrollTrigger: {
-          trigger: '.mask',
+          trigger: mask,
           pin: true,
           scroller: '[data-scroll-container]',
           start: () => 'top 23%',
@@ -137,8 +160,8 @@ const MyProcess = () => {
       })
 
       STrigger.refresh()
-    })
-  }, [inView])
+    }, 0)
+  }, [mediaMatch, inView])
 
   return (
     <ProcessContainer ref={containerRef} data-scroll-section>
@@ -150,9 +173,9 @@ const MyProcess = () => {
 
       <div className="title-wrapper">
         <motion.div style={{ opacity }}>
-          <ProcessTxt ref={titleRef} variant="h1" className="title" noWrap={true}>
+          <ProcessTitle ref={titleRef} variant="h1" className="title" noWrap={true}>
             My Approach
-          </ProcessTxt>
+          </ProcessTitle>
         </motion.div>
       </div>
 

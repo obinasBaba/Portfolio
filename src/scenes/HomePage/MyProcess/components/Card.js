@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react'
-import styled from 'styled-components'
-import { spacing, text } from '../../../../styles/mixins'
+import styled, {css} from 'styled-components'
+import {mediumUp, spacing, text} from '../../../../styles/mixins'
 import { Typography } from '@material-ui/core'
 import { Illustration } from './Icons'
 import useOnScreen from '../../../../hooks/useOnScreen'
@@ -8,7 +8,6 @@ import {motion, useAnimation} from 'framer-motion'
 
 const StyledCard = styled.div`
   position: relative;
-  padding: 2rem 4rem 2rem;
   background-image: linear-gradient(
     137.81deg,
     #e7a28f 3.52%,
@@ -23,26 +22,39 @@ const StyledCard = styled.div`
   display: flex;
   flex-flow: column;
 
+  ${spacing('ph', 6)};
+  ${spacing('pt', 8)};
+  ${spacing('pb', 7)};
   ${spacing('mt', 8)};
+
+  ${mediumUp(css`
+    ${spacing('pt', 6.5)};
+    ${spacing('pb', 4)};
+  `)};
   
-  &:first-child{
-    // ${spacing('ml', 50)};
-
+  & > *{
+    //border: thin solid blueviolet;
   }
-
+  
 
   & .card-title {
     z-index: 1;
     font-family: var(--poppins);
     letter-spacing: -1px;
     font-weight: 900;
-    //font-family: "Bodoni Moda", sans-serif;
 
     ${spacing('mb', 1.6)};
   }
 
-  p {
-    ${text(1.02)};
+  .approach-desc {
+    ${text(1.22)};
+
+    
+    ${mediumUp(css`
+      ${text(1.02)};
+
+
+    `)};
   }
 
   & svg {
@@ -53,14 +65,22 @@ const StyledCard = styled.div`
 const Num = styled( motion.div )`
   //content: '0${({ no }) => no}';
   position: absolute;
-  top: -40%;
-  right: -18%;
+  top: -24%;
+  right: -4%;
   font-family: "Bodoni Moda", sans-serif;
   font-weight: 900;
   letter-spacing: -3px;
   -webkit-text-stroke: 1.5px #3719ca;
   color: transparent;
-  ${text(11)};
+  ${text(7)};
+
+
+  ${mediumUp(css`
+    ${text(11)}; 
+    right: -18%;
+    top: -40%;
+  `)};
+  
 `
 
 const Keys = styled( motion.div )`
@@ -131,7 +151,7 @@ const Card = ({ txt, title, methodologies, index, path }) => {
       <Typography variant="h3" className="card-title">
         {title}
       </Typography>
-      <Typography>{txt}</Typography>
+      <Typography className='approach-desc' >{txt}</Typography>
 
       <Keys variants={keysVariants}
             initial='initial'

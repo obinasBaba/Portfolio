@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
-import { heightWidth, mediumUp, spacing } from '../../../styles/mixins'
+import { length, mediumUp, spacing } from '../../../styles/mixins'
 import { motion } from 'framer-motion'
 import MagnetElement from '../../../helpers/MagnetElement'
 import useMagnet from '../../../hooks/useMagnet'
@@ -23,8 +23,8 @@ const Btn = styled(motion.button)`
   backface-visibility: hidden;
   transform: translate3d(0, 0, 0);
 
-  ${heightWidth('height', 5)};
-  ${heightWidth('width', 5)};
+  ${length('height', 5)};
+  ${length('width', 5)};
   
   &::after{
     content: '';

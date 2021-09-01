@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import CardMedia from '@material-ui/core/CardMedia'
 import {
-  heightWidth,
+  length,
   largeUp,
   mediumUp,
   smallUp,
@@ -37,7 +37,7 @@ const StyledThumbnail = styled(CardMedia)`
     flex: 1 0;
     margin-top: 0;
     height: max-content;
-    ${heightWidth('height', 35)};
+    ${length('height', 35)};
 
 
     ${spacing('ml', -3)};

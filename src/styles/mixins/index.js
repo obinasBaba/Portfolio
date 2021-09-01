@@ -108,7 +108,7 @@ export const spacing = (key, value) => {
   `
 }
 
-export const heightWidth = (key, value) => {
+export const length = (key, value) => {
   return css`
     ${key}: calc(${(value * 10) / 16}rem * var(--size));
   `
@@ -128,7 +128,7 @@ export const title= ( value ) => {
   `
 }
 
-export const gridMultiplayer = (key, value) => {
+export const gridMultiplayer = (key, value=1) => {
   return css`
     ${key}: 100vw / 64 * ${value};
   `

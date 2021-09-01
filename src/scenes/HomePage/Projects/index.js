@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useRef} from 'react'
 import styled, {css} from 'styled-components'
 import {
   gridMultiplayer,
-  heightWidth, largeUp,
+  length, largeUp,
   spacing,
   text,
 } from '../../../styles/mixins'
@@ -60,8 +60,8 @@ const Planet = styled(motion.div)`
     #262147 78.93%
   );
 
-  ${heightWidth('width', 20)};
-  ${heightWidth('height', 20)};
+  ${length('width', 20)};
+  ${length('height', 20)};
 
   &.planet-right {
     background: linear-gradient(
@@ -70,8 +70,8 @@ const Planet = styled(motion.div)`
       #83a4ff 87.08%
     );
 
-    ${heightWidth('width', 8)};
-    ${heightWidth('height', 8)};
+    ${length('width', 8)};
+    ${length('height', 8)};
     ${gridMultiplayer('right', 10)};
   }
 `
@@ -105,8 +105,8 @@ const LottiContainer = styled.div`
   //border: thin solid green;
   
  
-  ${heightWidth('height', 53)};
-  ${heightWidth('width', 53)};
+  ${length('height', 53)};
+  ${length('width', 53)};
 
   .lotti {
     position: absolute;

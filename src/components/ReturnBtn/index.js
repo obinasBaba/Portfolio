@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {heightWidth, spacing} from '../../styles/mixins'
+import {length, spacing} from '../../styles/mixins'
 import { motion } from 'framer-motion'
 import {Link} from 'gatsby'
 
@@ -10,8 +10,8 @@ const ReturnBtnContainer = styled( motion.div )`
   display: grid;
   place-items: center;
 
-  ${heightWidth('height', 6)};
-  ${heightWidth('width', 6)};
+  ${length('height', 6)};
+  ${length('width', 6)};
   
   & > *{
     grid-row: 1;

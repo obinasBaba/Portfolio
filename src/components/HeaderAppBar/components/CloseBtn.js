@@ -1,6 +1,6 @@
 import React from 'react'
 import {motion} from 'framer-motion'
-import {heightWidth, mediumUp, spacing} from '../../../styles/mixins'
+import {length, mediumUp, spacing} from '../../../styles/mixins'
 import styled, {css} from 'styled-components'
 
 const CloseContainer = styled( motion.div )`
@@ -13,8 +13,8 @@ const CloseContainer = styled( motion.div )`
   left: ${({pos}) => pos.left};
   bottom: ${({pos}) => pos.bottom};
   
-  ${heightWidth('height', 6)};
-  ${heightWidth('width', 6)};
+  ${length('height', 6)};
+  ${length('width', 6)};
   
   ${mediumUp(css`
     ${spacing('containerVariant', 2)};

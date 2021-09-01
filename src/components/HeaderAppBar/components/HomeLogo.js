@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import styled, { css } from 'styled-components'
 import useHeaderAssets from '../../../hooks/queries/useHeaderAssets'
 import { Link } from 'gatsby'
-import { heightWidth, mediumUp } from '../../../styles/mixins'
+import { length, mediumUp } from '../../../styles/mixins'
 import { ReactSVG } from 'react-svg'
 import { motion } from 'framer-motion'
 import useMagnet from '../../../hooks/useMagnet'
@@ -33,10 +33,10 @@ const Logo = styled(motion.div)`
   }
 
   & .logoSvg {
-    ${heightWidth('max-width', 6)};
+    ${length('max-width', 6)};
 
     ${mediumUp(css`
-      ${heightWidth('max-width', 5)};
+      ${length('max-width', 5)};
     `)};
   }
 

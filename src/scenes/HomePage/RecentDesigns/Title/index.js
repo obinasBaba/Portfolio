@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react'
 import styled, { css } from 'styled-components'
 import { Container } from '@material-ui/core'
-import { heightWidth, largeUp, spacing } from '../../../../styles/mixins'
+import { length, largeUp, spacing } from '../../../../styles/mixins'
 import Headline from '../../../../components/Headline'
 import {AppStateContext} from '../../../../contexts/AppStateContext'
 import {useTransform} from 'framer-motion'
@@ -24,7 +24,7 @@ const LogoLink = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  ${ heightWidth('width', 12) };
+  ${ length('width', 12) };
   
   ${ largeUp( css`
     margin-right: -20px;

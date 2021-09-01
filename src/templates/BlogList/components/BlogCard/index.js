@@ -4,7 +4,7 @@ import Thumbnail from './components/Thumbnail'
 import { motion } from 'framer-motion'
 import styled, { css } from 'styled-components'
 import {
-  heightWidth,
+  length,
   mediumUp,
   shadow,
   smallUp,
