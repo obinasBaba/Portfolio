@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Container, Typography } from '@material-ui/core'
-import { mediumUp, spacing } from '../../styles/mixins'
+import {mediumUp, spacing, text} from '../../styles/mixins'
 import { motion } from 'framer-motion'
 import { Link } from 'gatsby'
 
@@ -11,11 +11,12 @@ const FooterMetaContainer = styled(Container)`
   justify-content: space-between;
   //border: thin solid red;
   
-  ${spacing('mv', 5)};
-  ${spacing('mt', 10)};
+  ${spacing('mb', 4)};
+  ${spacing('mt', 14)};
 
 
   ${mediumUp(css`
+    ${spacing('mv', 5)};
     flex-flow: row wrap;
   `)};
 `
@@ -29,12 +30,8 @@ const MetaColumn = styled.div`
   ${spacing('mb', 10)};
   ${spacing('ph', 4)};
   
-  ${mediumUp(css`
-    flex: 25%;
-  `)};
-
-
-
+ 
+  
   & .title {
     ${spacing('mb', 3.5)};
     font-weight: bolder;
@@ -44,8 +41,17 @@ const MetaColumn = styled.div`
   & .link-txt {
     ${spacing('mt', 0.5)};
     font-weight: 300;
-    letter-spacing: 1.2px;
+    ${text(0.66)};
   }
+
+  ${mediumUp(css`
+    flex: 25%;
+
+    .link-txt{
+      font-size: .875rem;
+    }
+
+  `)};
 `
 
 const Hover = styled(motion.div)`
@@ -86,9 +92,7 @@ const Hover = styled(motion.div)`
     background-color: white;
     height: 1px;
   }
-
-  .inlay {
-  }
+  
 `
 
 const line1Variants = {
@@ -257,7 +261,7 @@ const FooterMeta = () => {
                 {link && <Link to={'link'} />}
 
                 <Typography
-                  key={Math.random()}
+                  key={link + txt + i}
                   className="link-txt"
                   variant="subtitle2"
                 >

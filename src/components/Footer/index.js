@@ -23,13 +23,14 @@ const FooterContainer = styled.div`
   flex-direction: column;
   width: 100%;
 
-  ${spacing('mv', 7)};
+  ${spacing('mv', 5)};
   ${spacing('gap', 5)};
 
 
   ${largeUp(css`
     flex-direction: row;
-    ${spacing('mv', 3)};
+    ${spacing('mb', 3)};
+    ${spacing('mt', 0)};
 
   `)};
   

@@ -22,7 +22,7 @@ const TitleContainer = styled.header`
   }
   
   .subtitle{
-    ${text(1.2)};
+    ${text(1)};
     letter-spacing: -.3px;
   }
   

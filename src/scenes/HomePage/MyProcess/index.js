@@ -35,7 +35,7 @@ const ProcessTitle = styled(Typography)`
   ${spacing('pb', 1.7)}
 
   ${smallDown( css`
-    ${text(4)};
+    ${text(3)};
   ` )};
   
   ${mediumUp( css`

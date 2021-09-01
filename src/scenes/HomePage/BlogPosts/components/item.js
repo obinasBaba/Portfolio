@@ -118,13 +118,18 @@ const Desc = styled.div`
 
 const Tag = styled(Typography)`
   font-weight: lighter;
-  ${text(0.7)};
+  ${text(0.6)};
   letter-spacing: 1px;
   color: lightgray;
   opacity: 0.5;
   text-transform: uppercase;
 
-  ${spacing('mb', 1)};
+  ${spacing('mb', 0)};
+  
+  ${smallUp(css`
+    ${spacing('mb', 0)};
+
+  `)};
 `
 
 const Title = styled(Typography)`

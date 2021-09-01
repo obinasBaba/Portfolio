@@ -43,10 +43,11 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-text-size-adjust: 100%;
     //overflow: hidden;
 
-    cursor: none;
     
     ${smallUp( css`
-      cursor: initial;
+      & *{
+        cursor: none;
+      }
     ` )};
   }
 

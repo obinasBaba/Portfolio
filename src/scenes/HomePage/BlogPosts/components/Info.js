@@ -30,16 +30,20 @@ const InfoTxt = styled.div`
     
 `
 
-const Title = styled.p`
+const Desc = styled.p`
   margin: 0;
   padding: 0;
   line-height: 1.35;
-  //font-family: var(--gramatika);
-  //letter-spacing: 1px;
-  font-weight: 900;
+  font-weight: 300;
   
-  ${ title( 2 ) };
+  ${ title( 1.9 ) };
   ${spacing( 'mb', 5 )};
+  
+  ${smallUp( css`
+    font-weight: 900;
+    ${ title( 2 ) };
+
+  ` )};
   
 `
 
@@ -77,11 +81,11 @@ const Info = () => {
 
       <BlogEffect data-scroll data-scroll-speed='2.2'/>
 
-      <Title >
+      <Desc >
         I usually write an in-depth article sharing what I learned every often.
         My Articles help me to chronicle ideas &amp; solutions
         to problems that we face when building great web products.
-      </Title>
+      </Desc>
 
       <RightArrowLink lineLength='75%'
                       txt='checkout my blog site.'
