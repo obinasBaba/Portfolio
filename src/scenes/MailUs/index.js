@@ -7,6 +7,7 @@ import { AppStateContext } from '../../contexts/AppStateContext'
 import { GradientText } from '../../components/GradientText'
 import FooterMeta from './FooterMeta'
 import Footer from '../../components/Footer'
+import BlobButton from '../../components/ButtonBlob'
 
 const MailUsContainer = styled.div`
   position: relative;
@@ -101,12 +102,15 @@ const MailUs = () => {
         <GradientText variant="h1" className="title">
           Ready To Create <br /> Your Star ?
         </GradientText>
-        <MotionBtn
+     {/*   <MotionBtn
           text={'Contact Me'}
           arrow={false}
           fontLarge
           onClick={() => setContactModal(!isContactOpen)}
-        />
+        />*/}
+
+        <BlobButton txt='Contact Me' />
+
       </TitleWrapper>
 
       <FooterMeta />

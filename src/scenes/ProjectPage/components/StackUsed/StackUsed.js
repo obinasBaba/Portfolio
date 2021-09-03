@@ -20,6 +20,8 @@ const StackList = styled(motion.ul)`
             3)};
 
   }
+  
+  border: thin solid red;
 
   grid-row: 2;
   display: flex;

@@ -9,7 +9,7 @@ import { AppStateContext } from '../../contexts/AppStateContext'
 import useLoadingFonts from '../../hooks/useFonts'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
-import Cursor from '../../components/Cursor'
+// import Cursor from '../../components/Cursor'
 import {PageContainer, BottomGradient, Main, SkyColor} from './Styled'
 
 

@@ -25,7 +25,9 @@ const ProjectContainerGrid = styled(motion.div)`
   align-content: center;
   align-items: center;
   position: relative;
-  height: 100vh;
+  height: 100%;
+  //height: 100vh;
+  
   //border: thick solid red;
 `
 const ProjectPageContainer = styled(motion.main)`

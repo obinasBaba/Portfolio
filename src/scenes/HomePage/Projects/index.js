@@ -19,6 +19,7 @@ import lotti from 'lottie-web'
 import { useProjectCircles } from '../../../hooks/queries/useProjectCircles'
 import useOnScreen from '../../../hooks/useOnScreen'
 import {AppStateContext} from '../../../contexts/AppStateContext'
+import BlobButton from '../../../components/ButtonBlob'
 
 const parentVariant = {
   initial: {
@@ -254,9 +255,9 @@ const Projects = () => {
       <LottiContainer >
         <Link
           className="to-projects"
-          data-pointer='magnet'
-          data-magnet-distance={.5}
-          data-magnet-attraction={.8}
+          // data-pointer='magnet'
+          // data-magnet-distance={.5}
+          // data-magnet-attraction={.8}
           data-tooltip
           data-tooltip-text="Let me show you how cool i am!"
           to={'/projects/#one'}
@@ -264,7 +265,7 @@ const Projects = () => {
             setRegisteredScrollPos('#projects')
           }}
         >
-            All Projects(5)
+            <BlobButton txt='All Projects(5)' />
         </Link>
 
         <motion.div

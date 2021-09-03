@@ -16,7 +16,7 @@ export const ProjectDescriptionContainer = styled(motion.div)`
   //overflow: hidden;
   //border: thin solid red;
   ${gridColWidth(8, 58)}
-  ${spacing('pt', 6)};
+  ${spacing('pt', 1.7)};
   ${spacing('pb', 6)};
   
   & > * + * {
@@ -31,6 +31,7 @@ export const ProjectDescriptionContainer = styled(motion.div)`
     grid-row: 1;
     //border: thin solid red;
     gridColWidth(4, 28)
+    ${spacing('pt', 6)};
     ${spacing('pb', 0)};
   `)};
 

@@ -48,12 +48,14 @@ export const InnerWrapper = styled(motion.div)`
   overflow: hidden;
   display: flex;
   align-items: center;
-  //max-height: 400px;
-  height: 400px;
-  //border: thin solid red;
+  height: 100%;
+  
+  ${mediumUp( css`
+    height: 400px;
+  ` )};
   
   &::after{
-    //content: '';
+    content: '';
     position: absolute;
     display: block;
     inset: 0;
