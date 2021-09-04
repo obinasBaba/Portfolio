@@ -11,6 +11,7 @@ import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 // import Cursor from '../../components/Cursor'
 import {PageContainer, BottomGradient, Main, SkyColor} from './Styled'
+import BackgroundOverlay from '../../components/BackgroundOverlay'
 
 
 gsap.registerPlugin(ScrollTrigger)
@@ -31,6 +32,7 @@ const Page = ({ children, path }) => {
       <SkyColor />
       <BackgroundStars />
       <HeaderAppBar />
+      <BackgroundOverlay/>
 
 
       <Main data-scroll-container>

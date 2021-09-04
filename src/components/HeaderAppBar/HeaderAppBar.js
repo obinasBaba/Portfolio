@@ -5,15 +5,12 @@ import HomeLogo from './components/HomeLogo'
 import NavBtn from './components/NavBtn'
 import { mediumUp, spacing } from '../../styles/mixins'
 import { AnimatePresence } from 'framer-motion'
-import Menu from './components/Menu'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import ContactMe from '../ContactMe'
 
-const transition = css`
-  transition: all 0.3s;
-`
 let intervalId;
-function HideOnScroll({ children, window, isMenuOpen }) {
+
+function HideOnScroll({ children, window }) {
   const [slide, setSlide] = useState(true)
   const [trigger, setTrigger] = useState(true)
 
@@ -44,13 +41,13 @@ function HideOnScroll({ children, window, isMenuOpen }) {
   }, [currentPath])
 
   useEffect(() => {
-    if ( isContactOpen || isMenuOpen ){
+    if ( isContactOpen  ){
       setSlide(false)
     }else {
       setSlide(trigger)
     }
 
-  }, [isContactOpen, trigger, isMenuOpen])
+  }, [isContactOpen, trigger])
 
   return (
     <Slide appear={false} direction="down" in={slide}>
@@ -105,13 +102,12 @@ const NavWrapper = styled.nav`
 `
 
 function HeaderAppBar({}) {
-  const [menuIsOpen, setMenuIsOpen] = useState(false)
   const {
     isWhite,
-    isHeaderGradient,
     isContactOpen,
     setContactModal,
-    toolTip, setToolTip
+    toolTip, setToolTip,
+    menuIsOpen, setMenuIsOpen
   } = useContext(AppStateContext)
 
   useEffect(() => {
@@ -123,12 +119,6 @@ function HeaderAppBar({}) {
   return (
     <>
       <AnimatePresence>
-        {menuIsOpen && (
-          <Menu
-            key={menuIsOpen.toString()}
-            toggleMenu={{ setMenuIsOpen, menuIsOpen }}
-          />
-        )}
 
         {isContactOpen && (
           <ContactMe toggleModal={{ setContactModal, isContactOpen }} />
@@ -142,8 +132,8 @@ function HeaderAppBar({}) {
 
             <NavBtn
               isWhite={isWhite}
-              key={!menuIsOpen.toString() + 'nav'}
-              toggleMenu={{ setMenuIsOpen, menuIsOpen }}
+              key='nav'
+              toggleMenu={ () => setMenuIsOpen(!menuIsOpen)}
               menu={menuIsOpen}
             />
         </NavContainer>

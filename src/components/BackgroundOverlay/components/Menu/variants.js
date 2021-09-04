@@ -4,14 +4,12 @@ export const transition = {
 }
 
 export const containerVariants = {
-  initial: {
-
-  },
+  initial: {},
 
   animate: {
     transition: {
-      staggerChildren: 0.03,
-      delayChildren: .766
+      staggerChildren: 0.05,
+      delayChildren: 1.5
     }
   },
 
@@ -26,15 +24,26 @@ export const containerVariants = {
 
 export const itemVariants = {
   initial: {
-    opacity: 0
+    opacity: 0,
+    scale: .9,
   },
 
   animate: {
     opacity: 1,
+    scale: 1,
   },
 
   exit: {
-    opacity: 0
+    opacity: 0,
+    scale: 0,
+
+    transition: {
+      opacity: {
+        ...transition,
+        duration: .7,
+      },
+      ...transition,
+    }
   }
 }
 

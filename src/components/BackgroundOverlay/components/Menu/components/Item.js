@@ -1,47 +1,10 @@
 import React, {useContext} from 'react'
-import useMenuAssets from '../../../../../hooks/queries/useMenuAssets'
-import styled, { css } from 'styled-components'
-import {largeUp, mediumDown, mediumUp, text} from '../../../../../styles/mixins'
+import {itemVariants, transition} from '../variants'
 import {Link, navigate} from 'gatsby'
-import {motion, useMotionValue} from 'framer-motion'
-import {
-  circleVariants, containerVariants, iconVariants,
-  itemVariants,
-  starVariants,
-  transition,
-} from './variants'
+import styled, {css} from 'styled-components'
+import {motion} from 'framer-motion'
+import {largeUp, mediumUp, text} from '../../../../../styles/mixins'
 import {AppStateContext} from '../../../../../contexts/AppStateContext'
-
-const MenuItemsContainer = styled( motion.ul )`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  list-style-type: none;
-  //margin-top: -80px;
-  padding: 0;
-  width: 85%;
-  height: 59%;
-  //border: thin solid crimson;
-
-  ${largeUp(css`
-    margin-top: 0;
-    height: 80%;
-  `)};
-
-  ${mediumDown(css`
-    margin-left: -8%;
-    width: 50%;
-  `)};
-  
-  a{
-    position: relative;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: inherit;
-  }
-`
 
 const hoverMixin = css`
   [data-circle='1'] {
@@ -82,7 +45,8 @@ const hoverMixin = css`
   }
 `
 
-const Item = styled( motion.li )`
+
+const ItemContainer = styled( motion.li )`
   position: relative;
   //border: thin solid red;
 
@@ -131,7 +95,7 @@ const Title = styled.div`
   text-shadow: 0.1em 0.1em 0.3em #000;
   pointer-events: none;
   
-  ${text(.8)};
+  ${text(.86)};
 `
 
 const Circle = styled( motion.div )`
@@ -238,102 +202,48 @@ const Icon = styled( motion.div )`
   }
 `
 
-const MenuItems = ({onClick}) => {
-  const {
-    blogIcon,
-    blogStars,
-    contactsIcon,
-    contactsStars,
-    portfolioIcon,
-    portfolioStars,
-    servicesIcon,
-    servicesStars,
-  } = useMenuAssets()
-
-  const items = [
-    {
-      title: 'Projects',
-      link: '/projects/',
-      icon: portfolioIcon,
-      stars: portfolioStars,
-    },
-    {
-      title: 'About',
-      link: '/',
-      icon: servicesIcon,
-      stars: servicesStars,
-    },
-    {
-      title: 'Blog',
-      link: '/blog',
-      icon: blogIcon,
-      stars: blogStars,
-    },
-    {
-      title: 'Contacts',
-      link: '/',
-      icon: contactsIcon,
-      stars: contactsStars,
-    },
-  ]
-
-  const active = useMotionValue(null);
+const Item = ({currentPath, link, stars, icon, index, onClick, title}) => {
   const {
     isContactOpen,
     setContactModal,
-    currentPath
   } = useContext(AppStateContext)
 
   return (
-    <MenuItemsContainer variants={containerVariants}
-                        initial='initial'
-                        animate='animate'
-                        exit='exit'
-                        // whileHover='hover'
 
-
+    <ItemContainer variants={itemVariants}
+          transition={transition}
+          active={link === currentPath && currentPath !== '/'}
+          key={link + index + title}
     >
-      {items.map(({ icon, link, stars, title }, index) => (
 
-          <Item variants={itemVariants}
-                transition={transition}
-                active={link === currentPath && currentPath !== '/'}
-                key={link + index + title}
-          >
+      <Title>{title}</Title>
 
+      <Circle data-circle={index + 1}>
+        <Link to={link} onClick={(ev) => {
+          ev.preventDefault();
 
-            <Title>{title}</Title>
-
-            <Circle data-circle={index + 1}>
-              <Link to={link} onClick={(ev) => {
-                ev.preventDefault();
-
-                if ( link === currentPath )
-                  return;
+          if ( link === currentPath )
+            return;
 
 
-                if ( title === 'About' || title === 'Contacts')
-                  setTimeout(() => setContactModal(!isContactOpen), 600)
+          if ( title === 'About' || title === 'Contacts')
+            setTimeout(() => setContactModal(!isContactOpen), 600)
 
-                onClick()
+          onClick()
 
-                setTimeout(() => navigate(link), 1000)
+          setTimeout(() => navigate(link), 1000)
 
-              }}/>
+        }}/>
+      </Circle>
 
-            </Circle>
+      <Star bgImg={stars.publicURL}
+            className='stars' />
 
-            <Star bgImg={stars.publicURL}
-                  className='stars' />
-
-            <Icon bgImg={icon.publicURL}
-                  data-icon={index + 1}
-                  className='icon' />
-          </Item>
-
-      ))}
-    </MenuItemsContainer>
+      <Icon bgImg={icon.publicURL}
+            data-icon={index + 1}
+            className='icon' />
+    </ItemContainer>
   )
 }
 
-export default MenuItems
+export default Item

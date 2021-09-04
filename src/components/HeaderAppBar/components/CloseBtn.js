@@ -111,7 +111,7 @@ const CloseBtn = ( { toggler, state, pos = {},
                       svgVariantDelay= 1,
                       borderClr, fillCrl = '#32344d'} ) => {
   return (
-    <CloseContainer pos={pos} onClick={ () => toggler && toggler( !state ) } >
+    <CloseContainer pos={pos} onClick={ toggler } >
 
       <motion.svg xmlns="http://www.w3.org/2000/svg"
                   width="100%" height="100%"

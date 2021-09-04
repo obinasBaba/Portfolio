@@ -36,7 +36,7 @@ const Logo = styled(motion.div)`
     ${length('max-width', 6)};
 
     ${mediumUp(css`
-      ${length('max-width', 5)};
+      ${length('max-width', 4.5)};
     `)};
   }
 

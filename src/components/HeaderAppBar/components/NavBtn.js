@@ -125,7 +125,7 @@ const NavBtn = ({ isWhite, toggleMenu, pos, variants = {}, menu }) => {
       pos={pos}
       initial={{ opacity: 0 }}
       animate={{
-        opacity: menu ? 0 : 1,
+        opacity:  1,
         transition: {
           delay: 0.6,
         },
@@ -136,7 +136,7 @@ const NavBtn = ({ isWhite, toggleMenu, pos, variants = {}, menu }) => {
           delay: 0,
         },
       }}
-      onClick={() => toggleMenu.setMenuIsOpen(!toggleMenu.menuIsOpen)}
+      onClick={toggleMenu}
     >
       {/*<Bars opened={toggleMenu.menuIsOpen} />*/}
 

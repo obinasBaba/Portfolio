@@ -22,6 +22,8 @@ const AppStateProvider = ( {children} ) => {
   const [loadingPage, setLoadingPage] = useState(true)
   const [currentPath, setCurrentPath] = useState('/')
   const [cursorScaled, setCursorScaled] = useState(false)
+  const [menuIsOpen, setMenuIsOpen] = useState(false)
+
 
   const [registeredScrollPos, setRegisteredScrollPos] = useState(null)
   const [toolTip, setToolTip] = useState({
@@ -71,6 +73,7 @@ const AppStateProvider = ( {children} ) => {
       isHeaderGradient,
       setHeaderGradient,
       isContactOpen, setContactModal,
+      menuIsOpen, setMenuIsOpen,
 
       titleRect, setTitleRect,
       top, setTop,
