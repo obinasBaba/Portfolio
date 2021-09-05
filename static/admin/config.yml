@@ -71,7 +71,7 @@ collections:
                 widget: "string"
               - label: "Items"
                 label_singular: "Item"
-                name: "items"
+                name: "ImageGrid"
                 widget: "list"
                 fields:
                   - label: "Name"

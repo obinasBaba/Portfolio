@@ -1,12 +1,8 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { lerp } from '../../helpers/utils'
-import {AnimatePresence, motion} from 'framer-motion'
-import {
-  basicVariants,
-  transition,
-} from '../../helpers/variants'
-
+import { motion } from 'framer-motion'
+import { transition } from '../../helpers/variants'
+import { useLottiAssets } from '../../hooks/queries/useLottiAssets'
 
 const SpinnerContainer = styled( motion.div )`
   //position: fixed;
@@ -102,6 +98,8 @@ const BigBall = styled.div`
   background-color: white;
 `
 
+ 
+
 const containerVariants = {
 
     initial: {
@@ -112,7 +110,7 @@ const containerVariants = {
     },
 
   exit: {
-    opacity: 0,
+    // opacity: 0,
     y: '-100%',
   }
 }
@@ -133,8 +131,6 @@ const LoadingSpinner = ({children}) => {
                           key={'lkajdfs'}
                           exit='exit'>
 
-        {/*  <AnimatePresence>
-          <motion.div >*/}
 
 
             <Content ref={contentRef}>
@@ -150,12 +146,6 @@ const LoadingSpinner = ({children}) => {
               <SmallBall ref={smallRef} />
               <BigBall />
             </Content>
-
-         {/* </motion.div>
-
-          </AnimatePresence>
-*/}
-
 
         </SpinnerContainer>
 

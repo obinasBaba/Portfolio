@@ -1,6 +1,6 @@
 import {graphql, useStaticQuery} from 'gatsby'
 
-export const useApproachAssets = (index) => {
+export const useLottiAssets = (index) => {
   return useStaticQuery(graphql`
     query {
       build: file(relativePath: {eq: "build.json"}) {
@@ -32,6 +32,10 @@ export const useApproachAssets = (index) => {
       }
       
       ufo: file(relativePath: { eq: "ufo.json" }) {
+        publicURL
+      }
+      
+      loading: file(relativePath: { eq: "loading-planet.json" }) {
         publicURL
       }
     }

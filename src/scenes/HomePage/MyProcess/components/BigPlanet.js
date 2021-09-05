@@ -4,7 +4,9 @@ import styled from 'styled-components'
 
 const BigPlanetContainer = styled( motion.div )`
   position: absolute;
-  left: -23%;
+  left: -20%;
+  perspective: 1000px;
+  //transform: scale(.9);
 `
 
 const Planet = styled.div`

@@ -244,20 +244,21 @@ const Projects = () => {
     >
       <HeadlineTitle title={'Projects'} mb={3} subtitle={'Case Studies'} />
 
-      <ScrollPlanet data-scroll={true} data-scroll-speed='-3'>
+      <ScrollPlanet data-scroll
+                    data-scroll-trigger='#projects'
+                    data-scroll-speed='-3'>
         <Planet className='planet-left' style={{ y: yBig, x: xBig }} />
       </ScrollPlanet>
 
-      <ScrollPlanet2 data-scroll={true} data-scroll-speed='-6'>
+      <ScrollPlanet2 data-scroll
+                     data-scroll-trigger='#projects'
+                     data-scroll-speed='-6'>
         <Planet className="planet-right" style={{ y: ySmall, x: xSmall }} />
       </ScrollPlanet2>
 
       <LottiContainer >
         <Link
           className="to-projects"
-          // data-pointer='magnet'
-          // data-magnet-distance={.5}
-          // data-magnet-attraction={.8}
           data-tooltip
           data-tooltip-text="Let me show you how cool i am!"
           to={'/projects/#one'}
@@ -265,7 +266,7 @@ const Projects = () => {
             setRegisteredScrollPos('#projects')
           }}
         >
-            <BlobButton txt='All Projects(5)' />
+            <BlobButton txt='Selected Projects' />
         </Link>
 
         <motion.div

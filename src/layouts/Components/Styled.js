@@ -46,7 +46,6 @@ export const Main = styled(motion.main)`
   width: 100%;
   //z-index: 8;
   height: min-content;
-  //border: thick solid red;
   
   
   & > *{

@@ -1,7 +1,7 @@
 
 export const processData = [
   {
-    keys: 'kick-off | surveys',
+    keys: '#kick-off | #Surveys',
     no: '01',
     title: 'Discovery Call',
     txt: `This is the phase where i dive deep into your world and
@@ -10,7 +10,7 @@ export const processData = [
               you pain-points, and you audience.`,
   },
   {
-    keys: 'strategy | identity',
+    keys: '#Strategy | #Identity',
     no: '02',
     title: 'Design Phase',
     txt: `I take what i've learned about you and craft a
@@ -20,7 +20,7 @@ export const processData = [
               for you purpose.`,
   },{
     path: 'https://assets.website-files.com/5e0f6cce946b126508a0d575/5f43f2c19a790bb0c71ccf44_illus_small_branding.json',
-    keys: 'Accessibility | Interactions',
+    keys: '#Accessibility | #Interactions',
     no: '02',
     title: 'Prototype',
     txt: `Now it's time to bring it to
@@ -31,7 +31,7 @@ export const processData = [
   },
   {
     path: 'https://assets.website-files.com/5e0f6cce946b126508a0d575/5f43f2c2b496a8e317cb250b_illus_small_development.json',
-    keys: 'codding | security',
+    keys: '#Codding | #Security',
     no: '03',
     title: 'Build Phase',
     txt: `Once you're happy with the designs, i will proceed to building them
@@ -40,7 +40,7 @@ export const processData = [
   },
 
   {
-    keys: 'Optimization | feedback',
+    keys: '#Optimization | #Feedback',
     no: '04',
     title: 'Launch Phase',
     txt: `After i double checked everything, it's time to launch your

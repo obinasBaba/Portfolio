@@ -125,7 +125,11 @@ const Item = ({  imgUrl, title, index}) => {
 
 
   return (
-    <ExperimentItem data-pointer='focus' >
+    <ExperimentItem data-pointer='focus'
+                    data-scroll
+                    data-scroll-speed={index}
+                    // data-scroll-delay={index * Math.random()}
+    >
 
       <video autoPlay loop muted playsInline>
         <source src={imgUrl.webm.publicURL} type="video/webm" />

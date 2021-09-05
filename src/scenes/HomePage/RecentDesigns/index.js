@@ -1,23 +1,23 @@
 import React, {useLayoutEffect, useRef} from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import Title from './Title'
 import { useProjectSvg } from '../../../hooks/queries/useProjectSvg'
 import { spacing } from '../../../styles/mixins'
 import useHomeWorksAssets from '../../../hooks/queries/useHomeWorksAssets'
-import DesignImage from './items'
+import ImageGrid from './ImageGrid'
 import ScrollGallery from '../../../components/ScrollGallery/ScrollGallery'
 import ImagesLoaded from 'imagesloaded'
 import useOnScreen from '../../../hooks/useOnScreen'
 
 const RecentDesignWrapper = styled.section`
   //min-height: 100vh;
-  
-  //border: thick solid saddlebrown;
+  //border: thin solid red;
 `
 
 const RecentWorks = () => {
 
   const { circledText, dribbleRed } = useProjectSvg();
+
 
 
   const {
@@ -42,10 +42,13 @@ const RecentWorks = () => {
     [Art, Lazy, Teampoint],
     [North],
     [Realty, Hommy, Tude],
+    [Web],
+
   ];
 
   const containerRef = useRef(null)
   const inView = useOnScreen(containerRef, 0, '5%')
+
 
 
   useLayoutEffect(() => {
@@ -70,11 +73,9 @@ const RecentWorks = () => {
       <Title circledText={ circledText.publicURL }
              dribbleRed={ dribbleRed.publicURL } />
 
-          <ScrollGallery>
-            {imageList.map((item, index) => {
-              return <DesignImage images={item} key={item[0].name + index} />;
-            })}
-          </ScrollGallery>
+          <ScrollGallery imageRow={imageList} speed={4} target={1}
+                         txt='Apocalypse'
+          />
 
 
     </RecentDesignWrapper>

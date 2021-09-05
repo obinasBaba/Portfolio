@@ -49,6 +49,8 @@ const AppStateProvider = ( {children} ) => {
   const limit= useMotionValue(0)
   const projectImgLoaded= useMotionValue(false)
   const fontLoaded= useMotionValue(false)
+  const scrollDirection = useMotionValue('down')
+
 
 
   useLayoutEffect(() => {
@@ -84,7 +86,7 @@ const AppStateProvider = ( {children} ) => {
       cursorScaled, setCursorScaled,
       registeredScrollPos, setRegisteredScrollPos,
       moScroll: {
-        x, y, yProgress, xProgress, limit,
+        x, y, yProgress, xProgress, limit, scrollDirection
       },
 
       variantsUtil: {

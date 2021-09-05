@@ -16,8 +16,8 @@ const IllustrationContainer = styled.div`
   
 
   path {
-    stroke: #3719ca;
-    fill: #3719ca;
+    stroke: #1e213d;
+    fill: #1e213d;
   }
 
   ${ ({design}) => design && css`

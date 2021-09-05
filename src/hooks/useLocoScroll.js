@@ -14,6 +14,7 @@ export default function useLocoScroll(start, elementId = '[data-scroll-container
   console.log('outLocoInvoked...')
   const locoScroll = useRef(null)
 
+
   useEffect(() => {
     console.log( 'LocoInvoked ---- --- --', start)
 
@@ -26,6 +27,7 @@ export default function useLocoScroll(start, elementId = '[data-scroll-container
       el: scrollEl,
       smooth: true,
       multiplier: 1,
+      getDirection: true,
     });
 
     // whenever when we scroll loco update scrollTrigger
@@ -34,7 +36,9 @@ export default function useLocoScroll(start, elementId = '[data-scroll-container
       moScroll.x.set(arg.scroll.x)
       moScroll.y.set(arg.scroll.y)
       moScroll.limit.set(arg.limit.y)
-      // console.log(arg.scroll)
+      moScroll.scrollDirection.set(arg.direction)
+
+
     });
 
     ScrollTrigger.scrollerProxy(scrollEl, {
@@ -45,21 +49,32 @@ export default function useLocoScroll(start, elementId = '[data-scroll-container
       },
 
       // pinType: document.querySelector('').style.transform ? 'transform': 'fixed',
-
       scrollTop(value) {
+        // console.log('scrollTop', arguments.length)
+
         if (locoScroll.current) {
-          return arguments.length
-            ? locoScroll.current.scrollTo(value, 0, 0)
+          let value =  arguments.length ? locoScroll.current.scrollTo(value, 0, 0)
             : locoScroll.current.scroll.instance.scroll.y;
+
+          // console.log( 'scrollTOp',  value)
+          return value;
+
         }
         return null;
       },
+      fixedMarkers: true,
 
       scrollLeft(value) {
+        // console.log('scrollLeft', arguments.length)
         if (locoScroll.current) {
-          return arguments.length
+
+          let value =  arguments.length
             ? locoScroll.current.scrollTo(value, 0, 0)
-            : locoScroll.current.scroll.instance.scroll.x;
+            : -document.querySelector('.track').getBoundingClientRect().x;
+
+          // console.log( 'scrollLeft',  value)
+          return value;
+
         }
         return null;
       },

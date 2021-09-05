@@ -8,34 +8,39 @@ import {motion, useAnimation} from 'framer-motion'
 
 const StyledCard = styled.div`
   position: relative;
-  background-image: linear-gradient(
-    137.81deg,
-    #e7a28f 3.52%,
-    #f9d6ac 41.89%,
-    #fbfefc 96.77%
-  );
   max-width: 54ch;
   border-radius: 20px;
   box-shadow: 0 40px 49px 0 rgba(0 0 0/ 16%);
   color: #02021e;
+  background-image: linear-gradient(137.81deg,
+  #e7a28f 3.52%,
+  #f9d6ac 41.89%,
+  rgba(251, 254, 252, 0.56) 96.77%);
 
   display: flex;
   flex-flow: column;
 
-  ${spacing('ph', 6)};
-  ${spacing('pt', 8)};
-  ${spacing('pb', 7)};
-  ${spacing('mt', 8)};
+
+  ${spacing('ph',
+          6)};
+  ${spacing('pt',
+          8)};
+  ${spacing('pb',
+          7)};
+  ${spacing('mt',
+          8)};
 
   ${mediumUp(css`
-    ${spacing('pt', 6.5)};
-    ${spacing('pb', 4)};
+    ${spacing('pt',
+            6.5)};
+    ${spacing('pb',
+            4)};
   `)};
-  
-  & > *{
+
+  & > * {
     //border: thin solid blueviolet;
   }
-  
+
 
   & .card-title {
     z-index: 1;
@@ -43,16 +48,20 @@ const StyledCard = styled.div`
     letter-spacing: -1px;
     font-weight: 900;
 
-    ${spacing('mb', 1.6)};
+    ${spacing('mb',
+            1.6)};
   }
 
   .approach-desc {
     ${text(1.02)};
+    color: #1e213d;
   }
 
   & svg {
     margin-left: -30px;
   }
+
+
 `
 
 const Num = styled( motion.div )`
@@ -63,7 +72,7 @@ const Num = styled( motion.div )`
   font-family: "Bodoni Moda", sans-serif;
   font-weight: 900;
   letter-spacing: -3px;
-  -webkit-text-stroke: 1.5px #3719ca;
+  -webkit-text-stroke: 2.5px #02021e;
   color: transparent;
   ${text(7)};
 
@@ -87,6 +96,8 @@ const Keys = styled( motion.div )`
   position: absolute;
   right: 0;
   bottom: 0;
+  color: #1e213d;
+  
 
   ${text(0.7)};
   ${spacing('mt', 2)};
@@ -125,14 +136,17 @@ const Card = ({ txt, title, methodologies, index, path }) => {
   }, [intersecting])
 
   useEffect(() => {
-    if ( intersecting )
-      controller.start('animate')
+    if (intersecting) controller.start('animate')
 
   }, [intersecting])
 
 
   return (
-    <StyledCard no={index + 1} className='card' ref={cardRef}>
+    <StyledCard no={index + 1} className={`card card-${index}`} ref={cardRef}
+                // data-scroll-direction='horizontal'
+                // data-scroll-speed='4'
+                // data-scroll
+    >
 
       <Num variants={keysVariants}
            initial='initial'
@@ -153,7 +167,7 @@ const Card = ({ txt, title, methodologies, index, path }) => {
             transition={keysVariants.transition}
             exit='exit'
       >
-        {methodologies}
+       {methodologies}
       </Keys>
     </StyledCard>
   )

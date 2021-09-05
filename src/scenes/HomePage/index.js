@@ -49,8 +49,8 @@ const HomePage = () => {
       <SectionWrapper dataScrollSection={true}>
         <Experiments />
       </SectionWrapper>
-{/*
-      <MyProcess data-scroll-section />*/}
+
+      <MyProcess data-scroll-section />
 
       <SectionWrapper dataScrollSection={true}>
         <MailUs />

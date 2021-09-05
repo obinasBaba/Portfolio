@@ -35,7 +35,7 @@ const Page = ({ children, path }) => {
       <BackgroundOverlay/>
 
 
-      <Main data-scroll-container>
+      <Main data-scroll-container id='main-container'>
 
         <AnimatePresence exitBeforeEnter custom={{ path, cPath: currentPath, isTop }}>
           {

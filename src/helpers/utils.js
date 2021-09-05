@@ -49,6 +49,9 @@ export const distance = (x1, y1, x2, y2) => {
   return Math.hypot(a, b)
 }
 
+export const randomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+
+
 export const map = (value, in_min, in_max, out_min, out_max) => {
   return ((value - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
 }
