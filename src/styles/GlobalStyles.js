@@ -59,7 +59,7 @@ export const GlobalStyle = createGlobalStyle`
 
     
 
-    --theme: #fff;
+    --theme: #a4b5c0;
     --stroke-bottom: #f9d6ac;
     --stroke-top: #02021e;
     --head-opacity: 0;
