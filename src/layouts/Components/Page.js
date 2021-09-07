@@ -9,7 +9,7 @@ import { AppStateContext } from '../../contexts/AppStateContext'
 import useLoadingFonts from '../../hooks/useFonts'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
-// import Cursor from '../../components/Cursor'
+import Cursor from '../../components/Cursor'
 import {PageContainer, BottomGradient, Main, SkyColor} from './Styled'
 import BackgroundOverlay from '../../components/BackgroundOverlay'
 
@@ -41,7 +41,7 @@ const Page = ({ children, path }) => {
           {
             fontFinish ?
               <React.Fragment key="Main-Content">
-                {/*<Cursor path={currentPath} key={'cursor'} />*/}
+                <Cursor path={currentPath} key={'cursor'} />
 
                 <AnimatePresence exitBeforeEnter custom={{ path, cPath: currentPath, isTop }}>
                   {children}

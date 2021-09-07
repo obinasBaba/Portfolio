@@ -1,17 +1,24 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React, { useCallback, useEffect, useMemo } from 'react'
+import React, {useCallback, useContext, useEffect, useMemo} from 'react'
 import MagnetElement from '../../helpers/MagnetElement'
 import PaperCursor from './PaperCursor'
 import { debounce } from 'lodash'
+import {AppStateContext} from '../../contexts/AppStateContext'
 
 const Cursor = ({ path }) => {
+
+  const {
+    menuIsOpen,
+  } = useContext(AppStateContext)
+
   const cursor = useMemo(() => PaperCursor.getInstance(), [])
 
-  const initHover = useCallback(() => {
+  const initHover = useCallback(async () => {
     cursor.pointed = false
     cursor.isStuck = false
-    cursor.startPointed(false)
+    cursor.isPointed = false
+    cursor.focus = false;
 
     document.body.classList.remove('canvas-hover')
 
@@ -29,12 +36,12 @@ const Cursor = ({ path }) => {
         cursor.focus = true;
       } else {
         document.body.classList.add('canvas-hover')
-        cursor.startPointed(true)
+        cursor.isPointed = true
       }
     }
     const handleLeave = () => {
       cursor.pointed = false
-      cursor.startPointed(false)
+      cursor.isPointed = false;
       cursor.focus = false;
 
       document.body.classList.remove('canvas-hover')
@@ -63,7 +70,7 @@ const Cursor = ({ path }) => {
           //if it is magnet no mouseleave needed
           // console.log('LEAVE invoked')
           cursor.pointed = false
-          cursor.startPointed(false)
+          cursor.isPointed = (false)
           document.body.classList.remove('canvas-hover')
         })
       } else if (type !== 'stuck' && type !== 'magnet') {
@@ -89,7 +96,7 @@ const Cursor = ({ path }) => {
 
   useEffect(() => {
     initHover()
-  }, [path])
+  }, [path, menuIsOpen])
 
   return (
     <React.Fragment key={'cursorContainer'}>

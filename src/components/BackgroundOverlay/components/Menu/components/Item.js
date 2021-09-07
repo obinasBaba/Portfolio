@@ -211,6 +211,7 @@ const Item = ({currentPath, link, stars, icon, index, onClick, title}) => {
   return (
 
     <ItemContainer variants={itemVariants}
+                   data-pointer='focus'
           transition={transition}
           active={link === currentPath && currentPath !== '/'}
           key={link + index + title}

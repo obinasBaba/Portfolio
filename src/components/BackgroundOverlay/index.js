@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import OverlayController from './OverlayController'
 import LogoBgEffect from './components/LogoBgEffect'
@@ -19,9 +19,13 @@ const OverlayContainer = styled.div`
   justify-content: center;
   pointer-events: none;
   
-  z-index: 15;
+  ${({isOpen}) => isOpen && 'pointer-events: initial;' };
+  
+  z-index: 9;
 
   svg{
+    pointer-events: none;
+    
     .shape-overlays__path:nth-of-type(1) {
       fill: url(#gradient1);
     }
@@ -42,7 +46,7 @@ const OverlayContainer = styled.div`
 
     width: 100vw;
     height: 100vh;
-    pointer-events: none;
+    //pointer-events: none;
     //z-index: 1;
     
     path{
@@ -72,12 +76,15 @@ const BackgroundOverlay = () => {
 
   useEffect(() => {
     overlayRef.current.toggle(menuIsOpen);
+    // if ( menuIsOpen )
+
+
 
   }, [menuIsOpen])
   
   
   return (
-    <OverlayContainer onClick={() => {}}>
+    <OverlayContainer isOpen={menuIsOpen}>
 
       <svg className="shape-overlays" viewBox="0 0 100 100" preserveAspectRatio="none">
         <defs>

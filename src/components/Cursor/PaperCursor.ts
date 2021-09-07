@@ -54,6 +54,8 @@ class PaperCursor {
   pointer: Pointer
   pClone: typeof Paper.Path.RegularPolygon
   pointerGroup: typeof Paper.Group
+  normalColor: paper.Color = new Paper.Color('#78809EFF')
+  focusedColor = new Paper.Color('#a4b5c0')
 
 
   readonly canvas: HTMLCanvasElement
@@ -120,8 +122,7 @@ class PaperCursor {
 
     pointer.smooth()
     const clone = pointer.clone({ insert: false })
-    pointer.fillColor = '#78809EFF'
-    const initialWidth = clone.bounds.width
+    pointer.fillColor = this.normalColor;
 
     const coordinates = pointer.segments.reduce((p, c, i) => {
       p.push([c.point.x, c.point.y])
@@ -187,20 +188,20 @@ class PaperCursor {
     Paper.view.onFrame = event =>{
       // console.time('Stuck');
 
-      this.pointerGroup.position = new Paper.Point(this.events.mousePos.x, this.events.mousePos.y)
 
 
       if (this.isStuck){
+
         this.lastX = lerp(this.lastX, this.stuckPos.x, 0.08)
         this.lastY = lerp(this.lastY, this.stuckPos.y, 0.08)
         this.circleGroup.position = new Paper.Point(this.lastX, this.lastY)
+        this.pointerGroup.position = new Paper.Point(this.events.mousePos.x, this.events.mousePos.y)
+
         this.isStuck = this.circleGroup.position.isClose(
           new Paper.Point(this.events.mousePos.x, this.events.mousePos.y), 60)
 
       }else {
-        this.lastX = lerp(this.lastX, this.events.mousePos.x, 0.14)
-        this.lastY = lerp(this.lastY, this.events.mousePos.y, 0.14)
-        this.circleGroup.position = new Paper.Point(this.lastX, this.lastY)
+        this.updatePosition()
       }
 
       this.circles.forEach(({ path, coordinates }) => {
@@ -243,7 +244,7 @@ class PaperCursor {
   }
 
   set focus(focused){
-    Paper.view.onFrame = event =>{
+    Paper.view.onFrame = async event => {
       // console.time('Stuck');
       this.updatePosition();
 
@@ -254,71 +255,64 @@ class PaperCursor {
 
       // 50.0000008508689
       if (focused && Math.floor(this.cClone.bounds.width) > 0) {
+        this.circleGroup.opacity = this.circleGroup.opacity * .82
+        this.pointer.path.fillColor = this.focusedColor
+
         this.cClone.scale(.87)
+
         this.circles.forEach(({ path }) => path.scale(.87))
-        console.log( 'Down', this.cClone.bounds.width)
+        // console.log( 'Down', this.cClone.bounds.width)
 
         //65.367032903977130978930453580233
       }
       else if (!focused && Math.floor(this.cClone.bounds.width) < 50 ) {
+        this.circleGroup.opacity = 1
+        this.pointer.path.fillColor = this.normalColor
+
         this.cClone.scale(1.224)
         this.circles.forEach(({ path }) => path.scale(1.224))
         console.log('UP', this.cClone.bounds.width)
 
       }
       else if(!focused && Math.floor(this.cClone.bounds.width) === 50) {
-        console.log('normal', this.cClone.bounds.width)
+        // console.log('normal', this.cClone.bounds.width)
         return this.normalNoise()
       }
 
-      /*this.circles.forEach(({ path }, i) => {
-        this.circles[i].coordinates = path.segments.reduce((p, c) => {
-          p.push([c.point.x, c.point.y])
-          return p
-        }, [])
-      })*/
-
       this.circles.forEach((circle, i) => {
-        this.updateCoordinates2(circle)
+        this.updateCoordinates(circle)
       })
-
-
 
       this.noise(event)
       // console.timeEnd('Stuck')
     }
-
   }
 
-  private updateCoordinates2(polygon : Circle | Pointer){
-    polygon.coordinates = polygon.path.segments.reduce((p, c) => {
-      p.push([c.point.x, c.point.y])
-      return p
-    }, [])
+  set isPointed(pointed){
 
-  }
-  private clearNoise(polygon : Circle | Pointer){
-    polygon.path.segments.forEach((s,i) => {
-      s.point.set(polygon.coordinates[i][0], polygon.coordinates[i][1])
-    })
-
-  }
-
-  async startPointed(pointed){
-    // Paper.view.onFrame = null;
-
-    Paper.view.onFrame = event => {
+    Paper.view.onFrame = async event => {
       // console.time('Pointed');
-
 
       this.updatePosition()
 
-      this.coordinatesWithoutNoise()
+      if (this.isNoise) { //normalize the everything
+
+        this.circles.forEach((circle) => {
+          this.clearNoise(circle)
+        })
+
+        this.clearNoise(this.pointer)
+
+        this.isNoise = false
+      }
 
       if (pointed){
 
-        if (Math.floor(this.cClone.bounds.width) > 44) {
-          this.scalePolygon(0.9941)
+        if (Math.floor(this.cClone.bounds.width) > 43) {
+
+          this.cClone.scale(0.9941)
+          this.circles.forEach(({ path }) => path.scale(0.9941))
+
           // console.log('DOWN: ', 'circle: ', this.cClone.bounds.width)
         } // Circle DOWN
 
@@ -328,26 +322,35 @@ class PaperCursor {
           // console.log('UP: ', 'pointer : ', this.pClone.bounds.width)
         } // Pointer UP
       }
-      else if (!this.pointed && (Math.floor(this.pClone.bounds.width) > 13 || Math.floor(this.cClone.bounds.width) < 50 ) ) {
+      else if (!this.pointed &&
+        (Math.floor(this.pClone.bounds.width) > 13
+          || Math.floor(this.cClone.bounds.width) < 50 ) ) {
 
         if (Math.floor(this.pClone.bounds.width) > 13) {
           this.pointer.path.scale(0.945)
           this.pClone.scale(0.945)
           // console.log('DOWN: ', 'pointer : ', this.pointer.path.bounds.width)
-        }
+        } //pointer down
 
         if (Math.floor(this.cClone.bounds.width) < 50) {
           // this.scalePolygon(1.008)
           this.circles.forEach(({ path }) => path.scale(1.007))
           this.cClone.scale(1.007)
           // console.log('UP: ', 'circle: ', this.cClone.bounds.width)
-        }
-      }else {
+        } //circle up
+      }
+      else {
         // console.log('NORMAL NOISE')
+        this.isNoise = true
         this.normalNoise()
       }
 
-      this.updateCoordinates()
+      this.circles.forEach((circle, i) => {
+        this.updateCoordinates(circle)
+      })
+
+      this.updateCoordinates(this.pointer)
+
       this.isNoise = true
 
       this.noise(event)
@@ -361,10 +364,16 @@ class PaperCursor {
     this.lastY = lerp(this.lastY, this.events.mousePos.y, 0.14)
 
     this.circleGroup.position = new Paper.Point(this.lastX, this.lastY)
-    this.pointerGroup.position = new Paper.Point(
-      this.events.mousePos.x,
-      this.events.mousePos.y
-    )
+    this.pointerGroup.position = new Paper.Point(this.events.mousePos.x, this.events.mousePos.y)
+  }
+
+  clearNoise(polygon : Circle | Pointer){
+    polygon.path.segments.forEach((s,i) => {
+      s.point.set(
+        polygon.coordinates[i][0],
+        polygon.coordinates[i][1]
+      )
+    })
   }
 
   noise(event){
@@ -387,8 +396,8 @@ class PaperCursor {
         path.smooth()
 
         if (index === 0){
-          const pDisX = map(noiseX, -1, 1, this.pointed ? -1.5 : -.6, this.pointed ? 1.5 : .6)
-          const pDisY = map(noiseY, -1, 1, this.pointed ? -1.5 : -.6, this.pointed ? 1.5 : .6)
+          const pDisX = map(noiseX, -1, 1, this.pointed ? -1.5 : -.52, this.pointed ? 1.5 : .52)
+          const pDisY = map(noiseY, -1, 1, this.pointed ? -1.5 : -.52, this.pointed ? 1.5 : .52)
 
           const newPX = this.pointer.coordinates[i][0] + pDisX // accessing x
           const newPY = this.pointer.coordinates[i][1] + pDisY // accessing y
@@ -412,7 +421,10 @@ class PaperCursor {
         )
 
         this.circles.forEach(({path, coordinates} ) => {
-          path.segments[i].point.set(coordinates[i][0], coordinates[i][1])
+          path.segments[i].point.set(
+            coordinates[i][0],
+            coordinates[i][1]
+          )
         })
       }
 
@@ -420,16 +432,12 @@ class PaperCursor {
     }
   }
 
-  updateCoordinates  ()  {
-    for (let i = 0; i < this.segments; i++) {
-      this.pointer.coordinates[i] =
-        [this.pointer.path.segments[i].point.x, this.pointer.path.segments[i].point.y]
+  updateCoordinates(polygon : Circle | Pointer){
+    polygon.coordinates = polygon.path.segments.reduce((p, c) => {
+      p.push([c.point.x, c.point.y])
+      return p
+    }, [])
 
-      this.circles.forEach(({path}, i2) => {
-        this.circles[i2].coordinates[i] =
-          [path.segments[i].point.x, path.segments[i].point.y]
-      })
-    }
   }
 
   normalNoise(){
