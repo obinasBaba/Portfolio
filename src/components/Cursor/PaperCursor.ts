@@ -271,7 +271,7 @@ class PaperCursor {
 
         this.cClone.scale(1.224)
         this.circles.forEach(({ path }) => path.scale(1.224))
-        console.log('UP', this.cClone.bounds.width)
+        // console.log('UP', this.cClone.bounds.width)
 
       }
       else if(!focused && Math.floor(this.cClone.bounds.width) === 50) {

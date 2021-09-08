@@ -41,7 +41,7 @@ const Page = ({ children, path }) => {
           {
             fontFinish ?
               <React.Fragment key="Main-Content">
-                <Cursor path={currentPath} key={'cursor'} />
+                 <Cursor path={currentPath} key={'cursor'} />
 
                 <AnimatePresence exitBeforeEnter custom={{ path, cPath: currentPath, isTop }}>
                   {children}

@@ -24,7 +24,7 @@ const ExperimentTrack = () => {
     {src: { mp4: exp1mp4, webm: exp1webm }, title: 'Elastic Search Bar'},
     {src: { mp4: exp2mp4, webm: exp2webm }, title: 'Mouse Hover effect'},
     {src: { mp4: exp3mp4, webm: exp3webm }, title: 'Menu Icon animation'},
-    {src: { mp4: exp4mp4, webm: exp4webm }, title: 'TextField Interaction'},
+    {src: { mp4: exp4mp4, webm: exp4webm }, title: 'CustomTextField Interaction'},
   ]
 
 

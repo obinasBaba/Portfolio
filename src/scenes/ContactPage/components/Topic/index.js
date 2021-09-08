@@ -1,13 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Typography } from '@material-ui/core'
+import { Typography, Checkbox } from '@material-ui/core'
 import { spacing } from '../../../../styles/mixins'
 import TopicItem from './TopicItem'
-import {useLottiAssets} from '../../../../hooks/queries/useLottiAssets'
+import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
+import { Field, useField } from 'formik'
 
-const TopicContainer = styled.div`
-
-`
+const TopicContainer = styled.div``
 
 const HeadLineTitle = styled(Typography)`
   font-family: Elianto-Regular, serif;
@@ -16,6 +15,10 @@ const HeadLineTitle = styled(Typography)`
   //color: #617683;
   color: #a4b5c0;
   //color: #5d6c7b;
+  
+  span{
+    text-transform: uppercase;
+  }
 `
 
 const CardRow = styled.div`
@@ -24,13 +27,26 @@ const CardRow = styled.div`
   gap: 2rem;
 
   ${spacing('mt', 6)};
-
 `
 
-const Topic = ({ name }) => {
+const TopicItemMap = ({ body, title, path, ...props }) => {
+  const [field, meta, helpers] = useField(props)
+
+  return (
+    <TopicItem
+      body={body}
+      title={field.value}
+      path={path}
+      selected={field.checked}
+      {...field}
+    />
+  )
+}
+
+const Topic = ({ values }) => {
   const topics = [
     {
-      title: 'Not SURE',
+      title: 'Not sure',
       body: "i don't know yet. let's talk and explore the possibilities ",
     },
     {
@@ -46,18 +62,28 @@ const Topic = ({ name }) => {
       body: 'i need a Api with all security, infrastructure setup',
     },
   ]
-  const {ufo, design, pentool, prototype,} = useLottiAssets();
+  const { ufo, design, pentool, prototype } = useLottiAssets()
   const iconIll = [ufo, design, pentool, prototype]
 
   return (
     <TopicContainer>
       <HeadLineTitle variant="h2">
-        nice to meet you henok getachew. what can i help you with?
+        nice to meet you <span>{values.name}</span>, what can i help you with?
       </HeadLineTitle>
 
       <CardRow>
         {topics.map(({ body, title }, idx) => {
-          return <TopicItem body={body} title={title} path={iconIll[idx]} />
+          return (
+            <Field
+              name={'topic'}
+              body={body}
+              path={iconIll[idx]}
+              value={title}
+              type="checkbox"
+              as={TopicItemMap}
+            />
+          )
+          // return <TopicItem body={body} title={title} path={iconIll[idx]} />
         })}
       </CardRow>
     </TopicContainer>

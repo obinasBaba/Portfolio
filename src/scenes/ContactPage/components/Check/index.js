@@ -48,26 +48,27 @@ const CheckBody = styled( Typography )`
 
 `
 
-const Check = () => {
+const Check = ({values}) => {
+
   const checkData = [
     {
       title: 'Name',
-      data: '-',
+      data: values.name !== '' ? values.name : '--',
     }, {
       title: 'E-mail',
-      data: '-',
+      data: values.email !== '' ? values.email : '--',
     }, {
       title: 'Project',
-      data: '-',
+      data: values.topic ? values.topic.join(', ') :  '-',
     }, {
       title: 'Company',
-      data: '-',
+      data: values.company !== '' ? values.company : '--',
     }, {
       title: 'Phone',
-      data: '-',
+      data: values.phone !== '' ? values.phone : '--',
     }, {
       title: 'Message',
-      data: '-',
+      data: values.message !== '' ? values.message : '--',
     },
   ]
 

@@ -16,7 +16,7 @@ export const HeadLineTitle = styled( Typography )`
   
 `
 
-export const TextField = styled( MuiTextField )`
+export const CustomTextField = styled( MuiTextField )`
   position: relative;
   flex: 1;
   //border: thin solid ;

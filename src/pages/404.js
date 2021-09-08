@@ -4,7 +4,7 @@ import Seo from "../components/seo"
 import styled from 'styled-components'
 import {Container, Typography} from '@material-ui/core'
 import {spacing, text} from '../styles/mixins'
-import NextButton from '../scenes/ContactPage/components/BottomBar/NextButton'
+import NextButton from '../scenes/ContactPage/components/BottomBar/GalaxyButton'
 
 const NotFoundContainer = styled.div`
   //border: thin solid red;

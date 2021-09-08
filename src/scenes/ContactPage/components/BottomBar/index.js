@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import Progress from './Progress'
-import NextButton from './NextButton'
 import {spacing} from '../../../../styles/mixins'
+import GalaxyButton from './GalaxyButton'
 
 const BottomContainer = styled.div`
   display: flex;
@@ -15,15 +15,15 @@ const BottomContainer = styled.div`
   ${spacing('mt', 9)};
 `
 
-const BottomBar = ({next, back, step}) => {
+const BottomBar = ({nextProps, backProps, step, ...props}) => {
   return (
-    <BottomContainer>
-      <NextButton txt='Back' onClick={back} />
+    <BottomContainer  >
+      <GalaxyButton text='Back' {...backProps} />
 
 
       <Progress step={step}/>
 
-      <NextButton txt='Next' onClick={next} />
+      <GalaxyButton  {...nextProps} />
 
     </BottomContainer>
   )

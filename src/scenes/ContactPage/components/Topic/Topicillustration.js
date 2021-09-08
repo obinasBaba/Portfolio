@@ -22,6 +22,8 @@ const TopicIllustration = ({path}) => {
 
 
   useLayoutEffect(() => {
+    if ( !path ) return;
+
     lotti.destroy(path.publicURL)
 
     let r = 1;

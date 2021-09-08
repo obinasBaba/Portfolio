@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import {HeadLineTitle, TextField} from '../Shared'
+import {HeadLineTitle, CustomTextField} from '../Shared'
 import {spacing} from '../../../../styles/mixins'
+import {FieldArray, Field} from 'formik'
 
 const EmailContainer = styled.div`
   
@@ -19,17 +20,20 @@ const EmailInputContainer = styled.div`
 
 `
 
-const Email = () => {
+const Email = ({ ...props}) => {
   return (
     <EmailContainer>
 
       <HeadLineTitle variant='h2'>
-        Nearly there. How can i reach you henok getachew?
+        Nearly there. How can i reach you ,
       </HeadLineTitle>
 
       <EmailInputContainer >
-        <TextField label='e-mail address'   />
-        <TextField label='phone number'  />
+        <Field name='email' label='email address' type='text' as={CustomTextField} />
+        <Field name='phone' label='phone no' type='tel' as={CustomTextField}/>
+
+        {/*<CustomTextField label='e-mail address'   />*/}
+        {/*<CustomTextField label='phone number'  />*/}
       </EmailInputContainer>
 
     </EmailContainer>

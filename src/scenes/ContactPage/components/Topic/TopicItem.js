@@ -1,11 +1,12 @@
-import React from 'react'
-import styled from 'styled-components'
-import {useLottiAssets} from '../../../../hooks/queries/useLottiAssets'
-import {Typography} from '@material-ui/core'
-import {spacing, text} from '../../../../styles/mixins'
+import React, { useRef } from 'react'
+import styled, { css } from 'styled-components'
+import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
+import { Typography } from '@material-ui/core'
+import { spacing, text } from '../../../../styles/mixins'
 import TopicIllustration from './Topicillustration'
 
 const TopicItemContainer = styled.div`
+  position: relative;
   height: 200px;
   width: 300px;
   display: flex;
@@ -14,58 +15,79 @@ const TopicItemContainer = styled.div`
 
   border-radius: 20px;
   background-color: #485564;
-  transition: background-color .3s ease-in;
+  transition: background-color 0.3s ease-in;
 
   &:hover {
     //background-color: #5d6c7b;;
-    background-color: #657785;;
-    transition: background-color .3s ease-out;
+
+    ${({ selected }) =>
+      !selected &&
+      css`
+        background-color: #758593;
+        transition: background-color 0.3s ease-out;
+      `};
   }
 
-  ${spacing('p',
-          2.7)};
+  ${({ selected }) =>
+    selected &&
+    css`
+      background-color: #758593;
+    `};
 
+  ${spacing('p', 2.7)};
+
+  & .topic_checkbox {
+    position: absolute;
+    visibility: hidden;
+  }
 `
 
-const TopicTitle = styled( Typography )`
+const TopicTitle = styled(Typography)`
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 1.3px;
   color: #02021e;
 
   ${text(1)};
-  ${spacing('mt', .5)};
-
+  ${spacing('mt', 0.5)};
 `
 
-const TopicBody = styled( Typography )`
+const TopicBody = styled(Typography)`
   font-weight: lighter;
-  color: #bac2d3;
-  letter-spacing: .6px;
+  //color: #bac2d3;
+  letter-spacing: 0.6px;
   line-height: 170%;
   color: #02021e;
-  
-  ${text(.8)};
 
+  ${text(0.8)};
 `
 
-const TopicItem = ({title, body, path}) => {
-
-
+const TopicItem = ({ title, body, path, selected, ...props }) => {
+  const checkboxRef = useRef(null)
 
   return (
-    <TopicItemContainer>
+    <TopicItemContainer
+      selected={selected}
+      data-pointer-color="#123"
+      data-pointer="focus"
+      onClick={() => {
+        checkboxRef.current.click()
+      }}
+    >
+      <input
+        ref={checkboxRef}
+        className="topic_checkbox"
+        type="checkbox"
+        {...props}
+      />
 
       <TopicIllustration path={path} />
 
-      <TopicTitle varaint='subtitle2' gutterBottom={true}>
+      <TopicTitle varaint="subtitle2" gutterBottom={true}>
         {title}
       </TopicTitle>
 
-      <TopicBody variant='subtitle2'>
-        {body}
-      </TopicBody>
-
+      <TopicBody variant="subtitle2">{body}</TopicBody>
     </TopicItemContainer>
   )
 }
