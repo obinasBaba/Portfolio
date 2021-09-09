@@ -4,6 +4,7 @@ import {Typography} from '@material-ui/core'
 import {spacing, text} from '../../../../styles/mixins'
 import useOnScreen from '../../../../hooks/useOnScreen'
 import lotti from 'lottie-web'
+import useLotti from '../../../../helpers/useLotti'
 
 const Container = styled.div`
   display: flex;
@@ -29,7 +30,10 @@ const List = styled.div`
 
 const Text = styled( Typography )`
   max-width: 36ch;
-  
+  color: #7b8a9b;
+  letter-spacing: 1.05px;
+
+
   ${text(.95)};
 `
 
@@ -39,47 +43,19 @@ const SkillTitle = styled( Typography )`
 
 const Illustration= styled.div`
   max-width: 100px;
-  margin-bottom: -1.5rem;
+  margin-bottom: -2.5rem;
 `
 
 const SkillColumn = ({path, title, text, list}) => {
 
   const lottiRef = useRef(null)
 
-  // const inView = useOnScreen(lottiRef, 0, )
-
-
-  useEffect(() => {
-    // lotti.destroy(path)
-
-    let r = 1;
-    if (path) {
-      lottiRef.current = lotti.loadAnimation({
-        name: path.publicURL,
-        container: lottiRef.current,
-        renderer: 'svg',
-        loop: false,
-        autoplay: true,
-        path: path.publicURL,
-      })
-
-      // l.addEventListener('data_ready', () => {})
-      lottiRef.current.addEventListener('complete', () => {
-        1 === r ? r = -1 : -1 === r && (r = 1);
-        lottiRef.current.setDirection(r);
-        lottiRef.current.play();
-      })
-
-    }
-
-    return ( ) => lotti.destroy(path.publicURL)
-
-  }, [])
-
+  useLotti(path, lottiRef )
 
   return (
     <Container>
-      <Illustration ref={lottiRef}/>
+      <Illustration className={title} ref={lottiRef}/>
+
       <SkillTitle variant='h4'>{title}</SkillTitle>
       <Text >{text}</Text>
 

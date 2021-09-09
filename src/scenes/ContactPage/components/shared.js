@@ -19,6 +19,10 @@ export const HeadLineTitle = styled( Typography )`
 export const CustomTextField = styled( MuiTextField )`
   position: relative;
   flex: 1;
+  -webkit-appearance: none;
+
+  appearance: none;
+  -moz-appearance: none;
   //border: thin solid ;
   
   & .MuiFormLabel-root{
@@ -34,7 +38,9 @@ export const CustomTextField = styled( MuiTextField )`
   
   & .MuiInput-input {
     border-bottom: 2px solid #5d6c7b;
-    color: #eec5b9;
+    //color: #eec5b9;
+    line-height: 200%;
+    padding-bottom: .5rem;
 
 
     &:focus {
@@ -76,3 +82,8 @@ export const CustomTextField = styled( MuiTextField )`
   }
 
 `
+
+export const transition = {
+  ease: [0.6, 0.01, 0, 0.9],
+  duration: 1.5,
+}

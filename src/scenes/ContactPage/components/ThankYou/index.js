@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {HeadLineTitle} from '../Shared'
+import {HeadLineTitle} from '../shared'
 import {Typography} from '@material-ui/core'
 import {text} from '../../../../styles/mixins'
 

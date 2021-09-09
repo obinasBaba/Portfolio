@@ -154,13 +154,13 @@ const Menu = ({ onClick }) => {
     },
     {
       title: 'Blog',
-      link: '/blog',
+      link: '/blog/',
       icon: blogIcon,
       stars: blogStars,
     },
     {
       title: 'Contact',
-      link: '/contact',
+      link: '/contact/',
       icon: contactsIcon,
       stars: contactsStars,
     },

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import styled from 'styled-components'
 import Progress from './Progress'
 import {spacing} from '../../../../styles/mixins'
@@ -16,6 +16,9 @@ const BottomContainer = styled.div`
 `
 
 const BottomBar = ({nextProps, backProps, step, ...props}) => {
+
+  const rendered = useRef(0)
+
   return (
     <BottomContainer  >
       <GalaxyButton text='Back' {...backProps} />
@@ -24,6 +27,8 @@ const BottomBar = ({nextProps, backProps, step, ...props}) => {
       <Progress step={step}/>
 
       <GalaxyButton  {...nextProps} />
+
+      <pre>{rendered.current++}</pre>
 
     </BottomContainer>
   )

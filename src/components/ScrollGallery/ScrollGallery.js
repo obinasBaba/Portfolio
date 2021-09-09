@@ -65,10 +65,10 @@ const Gallery = ({
           data-scroll-speed={speed}
           // data-scroll-target={`#image_row_container${target}`}
           data-scroll-direction="horizontal"
-          data-scroll-delay='.05'
+          data-scroll-delay='.3'
         >
           {imageRow.map((item, index) => {
-            return <ImageGrid images={item} key={item[0].name + index} />
+            return <ImageGrid images={item} idx={index} key={item[0].name + index} />
           })}
         </ScrollTrack>
       </ScrollWrapper>

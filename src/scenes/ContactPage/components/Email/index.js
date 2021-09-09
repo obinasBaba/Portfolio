@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {HeadLineTitle, CustomTextField} from '../Shared'
+import {HeadLineTitle, CustomTextField} from '../shared'
 import {spacing} from '../../../../styles/mixins'
 import {FieldArray, Field} from 'formik'
 
@@ -14,9 +14,7 @@ const EmailInputContainer = styled.div`
   justify-content: space-between;
   width: 70%;
   
-  gap: 4rem;
-  
-  ${spacing('mb', 3)};
+  ${spacing('gap', 6)};
 
 `
 
@@ -30,7 +28,7 @@ const Email = ({ ...props}) => {
 
       <EmailInputContainer >
         <Field name='email' label='email address' type='text' as={CustomTextField} />
-        <Field name='phone' label='phone no' type='tel' as={CustomTextField}/>
+        <Field name='phone' label='phone no'  as={CustomTextField}/>
 
         {/*<CustomTextField label='e-mail address'   />*/}
         {/*<CustomTextField label='phone number'  />*/}

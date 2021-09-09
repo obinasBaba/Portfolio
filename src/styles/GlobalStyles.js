@@ -146,5 +146,52 @@ export const GlobalStyle = createGlobalStyle`
   }
 
 
+  /* Change Autocomplete styles in Chrome*/
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    //border: none;
+    //-webkit-text-fill-color: transparent;
+    //-webkit-box-shadow: none;
+    //transition: none;
+    //
+    //appearance: none;
+    //background-image: none !important;
+    //background-color: transparent !important;
+    //color: transparent !important;
+    background-color: red !important;
+    background-image: none !important;
 
+    appearance: none !important;
+    -moz-appearance: none !important;
+    -webkit-appearance: none !important;
+
+    -webkit-box-shadow: none !important;
+
+    -webkit-text-fill-color: #a4b5c0 !important;
+
+  }
+
+
+  @-webkit-keyframes autofill {
+    0%,100% {
+      color: #666;
+      background: transparent;
+    }
+  }
+
+  input:-webkit-autofill {
+    -webkit-animation-delay: 1s; /* Safari support - any positive time runs instantly */
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+  }
+   
+  
 `

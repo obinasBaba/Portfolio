@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, {useMemo, useState} from 'react'
 import styled from 'styled-components'
-import {spacing} from '../../styles/mixins'
-import {Button, Container, Typography} from '@material-ui/core'
+import { spacing } from '../../styles/mixins'
+import { Button, Container, Typography } from '@material-ui/core'
 import HeaderMeta from './components/HeaderMeta'
 import WhoAreYou from './components/WhoAreYou'
 import BottomBar from './components/BottomBar'
@@ -9,31 +9,71 @@ import Topic from './components/Topic'
 import Message from './components/Message'
 import Email from './components/Email'
 import Check from './components/Check'
-import {useMotionValue} from 'framer-motion'
-import {FormikConsumer, Formik, Form} from 'formik'
+import { AnimatePresence, motion, useMotionValue, AnimateSharedLayout } from 'framer-motion'
+import { Formik, Form } from 'formik'
 import * as yup from 'yup'
 import ThankYou from './components/ThankYou'
+import { transition } from './components/shared'
 
-const ContactPageContainer = styled.section`
+const ContactPageContainer = styled(motion.section)`
   //border: thin solid red;
 `
 
 const ContactWrapper = styled(Container)`
   //border: thin solid lightblue;
 
-  ${spacing('mt',
-          15)};
-  ${spacing('ph',
-          4)};
+  ${spacing('mt', 15)};
+  ${spacing('ph', 4)};
 `
+
+const ErrorMsg = styled( Typography )`
+  color: #5d6c7b;
+  
+  ${spacing('mt', 1)};
+  
+  transition: all .3s ease-in-out;
+`
+
+const basic = {
+  initial: {
+    opacity: 0,
+    y: 35,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      opacity: {
+        duration : 1.5,
+        ease: 'easeIn',
+      },
+      default: {
+        duration: 1.1,
+        ease: 'easeOut',
+      }
+    }
+  },
+  exit: {
+    opacity: 0,
+    y: -35,
+  },
+}
+
+const basicTransition = {
+  duration: 1.1,
+  ease: 'easeOut',
+}
 
 const ContactPage = () => {
   const [idx, setIdx] = useState(0)
 
   const stepMotionValue = useMotionValue(1)
+  // const [isLast, setIsLast] = useState(false)
+
+
 
   const nextStep = () => {
-    if ( idx + 1 !== steps.length ) {
+    if (idx + 1 !== steps.length) {
       {
         setIdx(idx + 1)
         stepMotionValue.set(stepMotionValue.get() + 1)
@@ -42,11 +82,12 @@ const ContactPage = () => {
   }
 
   const backStep = () => {
-    if ( idx !== 0 ) {
+    if (idx !== 0) {
       setIdx(idx - 1)
       stepMotionValue.set(stepMotionValue.get() - 1)
     }
   }
+
 
   const steps = [
     {
@@ -59,9 +100,7 @@ const ContactPage = () => {
     },
     {
       schema: yup.object({
-        topic: yup.array()
-          .min(1,
-            'Please select at least one item'),
+        topic: yup.array().min(1, 'Please select at least one item'),
       }),
       fields: ['topic'],
       component: props => <Topic {...props} />,
@@ -70,8 +109,7 @@ const ContactPage = () => {
       schema: yup.object({
         message: yup
           .string()
-          .min(10,
-            'Please tell me more about your project')
+          .min(16, 'Please tell me more about your project')
           .required('Please tell me about your project'),
       }),
       fields: ['message'],
@@ -83,27 +121,37 @@ const ContactPage = () => {
           .string()
           .required('How can i reach you?')
           .email('Please enter a valid address'),
-        phone: yup
-          .number('Phone should be a number')
-          .notRequired('Phone should be a number')
-          .integer('Phone should not be in decimal'),
+        phone: yup.number()
+          .typeError("That doesn't look like a phone number")
+          .positive("A phone number can't start with a minus")
+          .integer("A phone number can't include a decimal point")
+          .min(8),
       }),
       fields: ['email', 'phone'],
       component: props => <Email {...props} />,
     },
     {
-      schema: yup.object({ }),
+      schema: yup.object({}),
       fields: [''],
       component: props => <Check {...props} />,
-    },{
+    },
+    {
       schema: yup.object({}),
       fields: [''],
       component: props => <ThankYou {...props} />,
     },
   ]
 
+
   return (
-    <ContactPageContainer>
+    <ContactPageContainer
+      data-scroll
+      data-scroll-section
+      variants={{}}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       <HeaderMeta />
 
       <ContactWrapper maxWidth="lg">
@@ -120,36 +168,70 @@ const ContactPage = () => {
           validateOnChange={false}
           validationSchema={steps[idx].schema}
           onSubmit={nextStep}
-          render={({ values,submitForm, errors, validateField }) => {
+          render={({ values, submitForm, errors, validateField }) => {
             return (
               <Form>
-                {steps[idx].component({ errors, values })}
+                <AnimateSharedLayout type='crossfade' >
 
-                <Typography variant="body2">
-                  {errors[steps[idx].fields[0]] ?? null}
-                </Typography>
+                  <AnimatePresence exitBeforeEnter>
+                    <motion.div
+                      layout
+                      variants={basic}
+                      transition={basicTransition}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      key={idx}
+                    >
+                      {steps[idx].component({ errors, values })}
+                    </motion.div>
+                  </AnimatePresence>
 
-                {
-                  idx !== steps.length-1 &&
-                  <BottomBar
-                    step={stepMotionValue}
-                    nextProps={{
-                      onClick: () => {
-                        if ( idx === steps.length -1)
-                          submitForm()
-                        else
-                          steps[idx].fields.forEach(field => validateField(field))
-                      },
 
-                      text: idx === steps.length - 2 ? 'Send' : 'Next',
-                    }}
-                    backProps={{
-                      onClick: backStep,
-                      type: 'button',
-                      buttonType: 2,
-                    }}
-                  />
-                }
+                  <motion.div layout transition={{duration: .5, ease: 'easeInOut'}}>
+                    <ErrorMsg variant="body2">
+                      {
+                        (errors[steps[idx].fields[0]] || errors[steps[idx].fields[1]]) ?? null
+                      }
+                    </ErrorMsg>
+                  </motion.div>
+
+                  <AnimatePresence>
+                    {idx !== steps.length-1 && (
+                      <motion.div layout
+                                  variants={basic}
+                                  transition={basicTransition}
+                                  initial="initial"
+                                  animate="animate"
+                                  exit="exit"
+                      >
+                        <BottomBar
+                          step={stepMotionValue}
+                          nextProps={{
+                            onClick: () => {
+                              if (idx === steps.length - 1) submitForm()
+                              else
+                                steps[idx].fields.forEach(field =>
+                                  validateField(field)
+                                )
+                            },
+
+                            text: idx === steps.length - 2 ? 'Send' : 'Next',
+                          }}
+                          backProps={{
+                            onClick: backStep,
+                            type: 'button',
+                            buttonType: 2,
+                          }}
+                        />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+
+
+                </AnimateSharedLayout>
+
               </Form>
             )
           }}

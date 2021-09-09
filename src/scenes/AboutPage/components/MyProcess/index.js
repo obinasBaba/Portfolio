@@ -105,11 +105,12 @@ const OperateTxt = styled(Typography)`
   font-family: 'Bodoni Moda', serif;
   margin: 0 auto;
   -webkit-text-stroke: 1.5px #5d6c7b;
+  line-height: 90%;
   
   ${text(8)};
   
   & > *{
-    line-height: .5;
+    line-height: 50%;
     padding-bottom: 0;
   }
   

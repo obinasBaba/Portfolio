@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { HeadLineTitle, CustomTextField } from '../Shared'
+import { HeadLineTitle, CustomTextField } from '../shared'
 import { TextField as MuiTextField } from '@material-ui/core'
 import { spacing, text } from '../../../../styles/mixins'
 import { FieldArray, Field } from 'formik'
@@ -10,7 +10,6 @@ const MessageContainer = styled.div``
 const MessageInput = styled.div`
   max-width: 60%;
 
-  ${spacing('mb', 4)};
 `
 
 const Message = ({ ...props }) => {
@@ -30,7 +29,6 @@ const Message = ({ ...props }) => {
           as={CustomTextField}
         />
 
-        {/*<CustomTextField label='Message' multiline={true} rows={4} fullWidth {...props} />*/}
       </MessageInput>
     </MessageContainer>
   )

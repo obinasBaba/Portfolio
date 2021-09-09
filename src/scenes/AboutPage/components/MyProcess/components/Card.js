@@ -1,10 +1,10 @@
-import React, {useEffect, useRef, useState} from 'react'
-import styled, {css} from 'styled-components'
-import {mediumUp, spacing, text, title} from '../../../../../styles/mixins'
+import React, { useEffect, useRef, useState } from 'react'
+import styled, { css } from 'styled-components'
+import { mediumUp, spacing, text, title } from '../../../../../styles/mixins'
 import { Typography } from '@material-ui/core'
 import { Illustration } from './Icons'
 import useOnScreen from '../../../../../hooks/useOnScreen'
-import {motion, useAnimation} from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
 
 const StyledCard = styled.div`
   position: relative;
@@ -18,27 +18,19 @@ const StyledCard = styled.div`
   display: flex;
   flex-flow: column;
 
-
-  ${spacing('ph',
-          6)};
-  ${spacing('pt',
-          8)};
-  ${spacing('pb',
-          7)};
-  ${spacing('mt',
-          8)};
+  ${spacing('ph', 6)};
+  ${spacing('pt', 8)};
+  ${spacing('pb', 7)};
+  ${spacing('mt', 8)};
 
   ${mediumUp(css`
-    ${spacing('pt',
-            6.5)};
-    ${spacing('pb',
-            4)};
+    ${spacing('pt', 6.5)};
+    ${spacing('pb', 4)};
   `)};
 
   & > * {
     //border: thin solid blueviolet;
   }
-
 
   & .card-title {
     z-index: 1;
@@ -46,8 +38,7 @@ const StyledCard = styled.div`
     letter-spacing: -1px;
     font-weight: 900;
 
-    ${spacing('mb',
-            1.6)};
+    ${spacing('mb', 1.6)};
   }
 
   .approach-desc {
@@ -58,32 +49,28 @@ const StyledCard = styled.div`
   & svg {
     margin-left: -30px;
   }
-
-
 `
 
-const Num = styled( motion.div )`
+const Num = styled(motion.div)`
   //content: '0${({ no }) => no}';
   position: absolute;
   top: -24%;
   right: -4%;
-  font-family: "Bodoni Moda", sans-serif;
+  font-family: 'Bodoni Moda', sans-serif;
   font-weight: 900;
   letter-spacing: -3px;
   -webkit-text-stroke: 2.5px #02021e;
   color: transparent;
   ${text(7)};
 
-
   ${mediumUp(css`
-    ${text(11)}; 
+    ${text(11)};
     right: -18%;
     top: -40%;
   `)};
-  
 `
 
-const Keys = styled( motion.div )`
+const Keys = styled(motion.div)`
   display: flex;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -95,7 +82,6 @@ const Keys = styled( motion.div )`
   right: 0;
   bottom: 0;
   color: #1e213d;
-  
 
   ${text(0.7)};
   ${spacing('mt', 2)};
@@ -110,7 +96,7 @@ const keysVariants = {
   },
   animate: {
     y: 0,
-    opacity: 1
+    opacity: 1,
   },
 
   transition: {
@@ -120,52 +106,50 @@ const keysVariants = {
 }
 
 const Card = ({ txt, title, methodologies, index, path }) => {
-
   const cardRef = useRef(null)
   let intersecting = useOnScreen(cardRef, 0, '0% -42% 0% 0%')
   const [inView, setInView] = useState(false)
-  const controller = useAnimation();
-
+  const controller = useAnimation()
 
   useEffect(() => {
-    if ( !inView )
-      setInView(intersecting)
-
+    if (!inView) setInView(intersecting)
   }, [intersecting])
 
   useEffect(() => {
     if (intersecting) controller.start('animate')
-
   }, [intersecting])
 
-
   return (
-    <StyledCard no={index + 1} className={`card card-${index}`} ref={cardRef}
-                // data-scroll-direction='horizontal'
-                // data-scroll-speed='4'
-                // data-scroll
+    <StyledCard
+      no={index + 1}
+      className={`card card-${index}`}
+      ref={cardRef}
     >
-
-      <Num variants={keysVariants}
-           initial='initial'
-           animate={controller}
-           transition={{...keysVariants.transition, delay: .3}}
-      >0{index+1}</Num>
+      <Num
+        variants={keysVariants}
+        initial="initial"
+        animate={controller}
+        transition={{ ...keysVariants.transition, delay: 0.3 }}
+      >
+        0{index + 1}
+      </Num>
 
       <Illustration path={path} rocket={index === 4} design={index === 1} />
+
       <Typography variant="h3" className="card-title">
         {title}
       </Typography>
 
-      <Typography className='approach-desc' >{txt}</Typography>
+      <Typography className="approach-desc">{txt}</Typography>
 
-      <Keys variants={keysVariants}
-            initial='initial'
-            animate={controller}
-            transition={keysVariants.transition}
-            exit='exit'
+      <Keys
+        variants={keysVariants}
+        initial="initial"
+        animate={controller}
+        transition={keysVariants.transition}
+        exit="exit"
       >
-       {methodologies}
+        {methodologies}
       </Keys>
     </StyledCard>
   )

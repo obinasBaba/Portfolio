@@ -34,7 +34,7 @@ const SkillRow = styled.div`
 
 const Skills = () => {
 
-  const { align, prototype} = useLottiAssets()
+  const { build, prototype} = useLottiAssets()
 
   return (
     <SkillsContainer data-scroll-section maxWidth="lg">
@@ -51,7 +51,7 @@ const Skills = () => {
 
       <SkillRow>
         <SkillColumn
-          path={prototype}
+          path={prototype.publicURL}
           title="design"
           text="i am curious to go beyond ordinary boundaries
          and create memorable & usable experiences by melding
@@ -61,7 +61,7 @@ const Skills = () => {
         />
 
         <SkillColumn
-          path={prototype}
+          path={build.publicURL}
           title="development"
           text="always starting from scratch, i aim to build innovative &
            flexible solutions that are both flawless and capable of growing with time"

@@ -14,6 +14,7 @@ const Contact = ({path}) => {
   } = useContext( AppStateContext )
 
   useEffect(() => {
+    console.log(path)
     setCurrentPath(path)
   }, [])
 

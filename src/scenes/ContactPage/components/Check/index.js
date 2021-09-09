@@ -1,5 +1,5 @@
 import React from 'react'
-import {HeadLineTitle} from '../Shared'
+import {HeadLineTitle} from '../shared'
 import styled from 'styled-components'
 import {Typography} from '@material-ui/core'
 import {spacing, text} from '../../../../styles/mixins'

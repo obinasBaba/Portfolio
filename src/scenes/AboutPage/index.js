@@ -18,18 +18,16 @@ const ScrollText = styled.section`
   align-content: center;
   justify-content: space-evenly;
   opacity: .3;
-  filter: blur(1px);
+  filter: blur(.3px);
   font-family: Elianto-Regular,serif;
   
   .content__breakout{
     margin: 0 -3rem;
     white-space: nowrap;
     text-transform: uppercase;
-    font-family: span, serif;
     font-weight: 200;
     font-style: italic;
     opacity: .3;
-
     font-family: Elianto-Regular,serif;
   }
   
