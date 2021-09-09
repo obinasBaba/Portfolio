@@ -65,16 +65,11 @@ export const Lines = styled.div`
   position: relative;
   height: 4px;
   border-radius: 100px;
-  background-image: linear-gradient(
-          137.81deg,
-          #e7a28f 13.52%,
-          #f9d6ac 41.89%,
-          #fbfefc 110.77%
-  );
+  margin-left: 15px;
+  background-image: var(--gray_gradient);
   
   ${ spacing( 'width', 9 ) };
   ${spacing('mt', 5)};
-  margin-left: 15px;
 
 
 

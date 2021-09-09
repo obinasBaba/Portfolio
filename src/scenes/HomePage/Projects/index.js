@@ -21,6 +21,7 @@ import useOnScreen from '../../../hooks/useOnScreen'
 import {AppStateContext} from '../../../contexts/AppStateContext'
 import BlobButton from '../../../components/ButtonBlob'
 import GalaxyButton from '../../ContactPage/components/BottomBar/GalaxyButton'
+import {Typography} from '@material-ui/core'
 
 const parentVariant = {
   initial: {
@@ -267,7 +268,9 @@ const Projects = () => {
             setRegisteredScrollPos('#projects')
           }}
         >
-            <GalaxyButton buttonType={3} text='Projects' />
+            <Typography data-pointer='magnet'
+
+            >projects</Typography>
         </Link>
 
         <motion.div

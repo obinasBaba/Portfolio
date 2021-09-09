@@ -148,7 +148,7 @@ const Menu = ({ onClick }) => {
     },
     {
       title: 'About',
-      link: '/',
+      link: '/about',
       icon: servicesIcon,
       stars: servicesStars,
     },
@@ -159,8 +159,8 @@ const Menu = ({ onClick }) => {
       stars: blogStars,
     },
     {
-      title: 'Contacts',
-      link: '/',
+      title: 'Contact',
+      link: '/contact',
       icon: contactsIcon,
       stars: contactsStars,
     },

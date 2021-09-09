@@ -13,7 +13,8 @@ import Dribbble from '../../assets/images/brands/dribbble.inline.svg'
 import Instagram from '../../assets/images/brands/instagram.inline.svg'
 import Behance from '../../assets/images/brands/behance.inline.svg'
 import Github from '../../assets/images/brands/github.inline.svg'
-import {Container} from '@material-ui/core'
+import Border from './border.inline.svg'
+import { Container } from '@material-ui/core'
 
 const FooterContainer = styled.div`
   position: relative;
@@ -26,25 +27,22 @@ const FooterContainer = styled.div`
   ${spacing('mv', 5)};
   ${spacing('gap', 5)};
 
-
   ${largeUp(css`
     flex-direction: row;
     ${spacing('mb', 3)};
     ${spacing('mt', 0)};
-
   `)};
-  
+
   @media screen and (min-width: 768px) {
     padding-right: 4.28rem;
     padding-left: 4.28rem;
   }
-  
 `
 
 const Social = styled.ul`
   position: relative;
   display: flex;
-  
+
   justify-content: center;
   align-items: center;
   list-style-type: none;
@@ -58,12 +56,15 @@ const Social = styled.ul`
     }
   }
 
+  
+
   a {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    //border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 50%;
     text-align: center;
     transition: background-color 0.2s, border-color 0.2s;
@@ -76,13 +77,33 @@ const Social = styled.ul`
       ${length('height', 6)}
     `)};
 
-    &:hover {
-      background-color: white;
-      border-color: white;
+    & > :first-child {
+      position: absolute;
+      transition: transform .6s cubic-bezier(0.6, 0.01, 0, 0.9);
+    }
 
+    & > :not(:first-child){
       path {
-        fill: ${({ theme }) => theme.palette.secondary.main};
+        fill: #5d6c7b;
+        transition: fill .6s cubic-bezier(0.6, 0.01, 0, 0.9);
       }
+    }
+
+    &:hover {
+      
+      & > :first-child{
+        transform: scale(.9) rotate(25deg);
+        transition: transform .6s cubic-bezier(0.6, 0.01, 0, 0.9);
+      }
+
+      & > :not(:first-child){
+        path {
+          fill: #a4b5c0;
+          transition: fill .6s cubic-bezier(0.6, 0.01, 0, 0.9);
+
+        }
+      }
+
     }
   }
 `
@@ -95,9 +116,9 @@ const Love = styled.div`
   font-weight: 300;
   line-height: 0;
   letter-spacing: 1.2px;
-  ${ text(.7) };
-  
-  span{
+  ${text(0.7)};
+
+  span {
     font-size: 28px;
   }
 
@@ -106,58 +127,53 @@ const Love = styled.div`
     font-family: Dancing Script, cursive;
     font-size: 1.2rem;
   }
-  
-  
+
   @media screen and (min-width: 1600px) {
     left: 0;
   }
-  
-  ${ mediumDown( css`
+
+  ${mediumDown(css`
     position: relative;
-    
-  ` ) };
-  
+  `)};
 `
 
 const Copy = styled.div`
-
   //order: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: .2rem;
-  ${ text(.84) };
+  gap: 0.2rem;
+  ${text(0.84)};
 
-
-  span{
+  span {
     font-weight: 300;
-    ${ text(1) };
+    ${text(1)};
   }
-  
+
   ${largeUp(css`
     position: absolute;
     ${spacing('right', 0)};
-
-  ` )}
+  `)}
 `
 
-const Footer = ( {color} ) => {
+const Footer = ({ color }) => {
   return (
-    <Container maxWidth='lg' disableGutters={true}  data-scroll={true} >
+    <Container maxWidth="lg" disableGutters={true} data-scroll={true}>
       <FooterContainer>
-
-        <Copy >
+        <Copy>
           <span>&copy;</span> 2021 Henzzo.io
         </Copy>
 
         <Social>
-          <li className='hover_target'>
+          <li>
             <a
               href="https://github.com/Halo-Lab"
               target="_blank"
               rel="noopener noreferrer"
+              data-pointer='focus'
             >
-              Github
+              <Border />
+              <span>Github</span>
               <Github />
             </a>
           </li>
@@ -167,10 +183,10 @@ const Footer = ( {color} ) => {
               href="https://www.instagram.com/halolabteam/"
               target="_blank"
               rel="noopener noreferrer"
-              className='hover_target'
-
+              data-pointer='focus'
             >
-              Instagram
+              <Border />
+              <span>Instagram</span>
               <Instagram />
             </a>
           </li>
@@ -179,8 +195,10 @@ const Footer = ( {color} ) => {
               href="https://www.behance.net/halolab"
               target="_blank"
               rel="noopener noreferrer"
+              data-pointer='focus'
             >
-              Behance
+              <Border />
+              <span> Behance</span>
               <Behance />
             </a>
           </li>
@@ -189,22 +207,20 @@ const Footer = ( {color} ) => {
               href="https://dribbble.com/halolab"
               target="_blank"
               rel="noopener noreferrer"
+              data-pointer='focus'
             >
-              Dribbble
+              <Border />
+              <span>Dribbble</span>
               <Dribbble />
             </a>
           </li>
         </Social>
 
-
-
-        <Love>Made With <span className='heart-icon'>&#9825;</span> by <b>henok</b></Love>
-
-
-
+        <Love>
+          Made With <span className="heart-icon">&#9825;</span> by <b>henok</b>
+        </Love>
       </FooterContainer>
     </Container>
-
   )
 }
 

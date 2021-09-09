@@ -57,14 +57,17 @@ export const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     margin: 0;
-    color: #a4b5c0;
+    color: var(--light_gray);
     //color: #fff;
+    --dark-gray: #434e5e;
+    --light_gray: #a4b5c0;
+    --medium: #5d6c7b;
 
 
     --gray_gradient: linear-gradient(137.81deg,
-    #5d6c7b 3.52%,
-    #a4b5c0 41.89%,
-    #cbd7de 96.77%);
+    #566373 3.52%,
+    #a4b5c0 45.89%,
+    #cbd7de 100.77%);
 
     --orage_gradient: linear-gradient(137.81deg,
     #e7a28f 3.52%,
@@ -74,8 +77,8 @@ export const GlobalStyle = createGlobalStyle`
 
     --theme: #a4b5c0;
     //--theme: #fff;
-    --stroke-bottom: #f9d6ac;
-    --stroke-top: #02021e;
+    --stroke-bottom: var(--light_gray);
+    --stroke-top: #434e5e;
     --head-opacity: 0;
     --bottom-gradient: linear-gradient(to bottom,
     rgba(7, 33, 66, 0),

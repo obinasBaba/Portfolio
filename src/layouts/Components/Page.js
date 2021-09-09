@@ -20,6 +20,7 @@ const Page = ({ children, path }) => {
   const {
     fontLoaded,
     currentPath,
+    bottomGradient,
     variantsUtil: { isTop },
   } = useContext(AppStateContext)
 
@@ -32,30 +33,32 @@ const Page = ({ children, path }) => {
       <SkyColor />
       <BackgroundStars />
       <HeaderAppBar />
-      <BackgroundOverlay/>
+      <BackgroundOverlay />
 
+      <Main data-scroll-container id="main-container">
+        <AnimatePresence
+          exitBeforeEnter
+          custom={{ path, cPath: currentPath, isTop }}
+        >
+          {fontFinish ? (
+            <React.Fragment key="Main-Content">
+              <Cursor path={currentPath} key={'cursor'} />
 
-      <Main data-scroll-container id='main-container'>
-
-        <AnimatePresence exitBeforeEnter custom={{ path, cPath: currentPath, isTop }}>
-          {
-            fontFinish ?
-              <React.Fragment key="Main-Content">
-                 <Cursor path={currentPath} key={'cursor'} />
-
-                <AnimatePresence exitBeforeEnter custom={{ path, cPath: currentPath, isTop }}>
-                  {children}
-                </AnimatePresence>
-              </React.Fragment>
-              :
-              <LoadingSpinner key={'lkasdjf;laksjdf'} />
-          }
+              <AnimatePresence
+                exitBeforeEnter
+                custom={{ path, cPath: currentPath, isTop }}
+              >
+                {children}
+              </AnimatePresence>
+            </React.Fragment>
+          ) : (
+            <LoadingSpinner key={'lkasdjf;laksjdf'} />
+          )}
         </AnimatePresence>
-
       </Main>
 
-      <BottomGradient />
-      <ToolTip />
+      { bottomGradient && <BottomGradient />}
+      {fontFinish && <ToolTip />}
       <ProgressCircle />
     </PageContainer>
   )

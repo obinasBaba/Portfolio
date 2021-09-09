@@ -34,7 +34,9 @@ const ProcessTitle = styled(Typography)`
   display: block;
 
   font-weight: 900;
-  font-family: 'Bodoni Moda', serif;
+  font-family: Elianto-Regular,serif;
+  line-height: 100%;
+  letter-spacing: -2px;
   margin: 0 auto;
 
   -webkit-background-clip: text;
@@ -111,6 +113,13 @@ const OperateTxt = styled(Typography)`
     padding-bottom: 0;
   }
   
+`
+
+const Methodology = styled.div`
+  position: relative;
+  z-index: 4;
+  max-width: 45ch;
+  margin: 4rem;
 `
 
 const MyProcess = () => {
@@ -248,16 +257,31 @@ const MyProcess = () => {
             className="title"
             noWrap={true}
           >
-            Approach
+            Approach <br />& vision
           </ProcessTitle>
         </motion.div>
+
+       {/* <Methodology>
+          <Typography>
+            I use well-known development methodologies to create a customized
+            approach for each of my projects. This allows me to achieve high
+            quality outcomes and full transparency towards my clients.
+          </Typography>
+        </Methodology>*/}
+
       </div>
+
+
 
       <ProcessMask ref={maskRef} className="mask">
         <ProcessTrack ref={trackRef} className="track">
           <Operate>
-            <OperateTxt className='operate_txt' variant="h1">How I</OperateTxt>
-            <OperateTxt className='operate_txt' variant="h1">Operate</OperateTxt>
+            <OperateTxt className="operate_txt" variant="h1">
+              How I
+            </OperateTxt>
+            <OperateTxt className="operate_txt" variant="h1">
+              Operate
+            </OperateTxt>
           </Operate>
 
           {processData.map(({ no, title, txt, keys }, index) => (

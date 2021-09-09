@@ -23,6 +23,7 @@ const AppStateProvider = ( {children} ) => {
   const [currentPath, setCurrentPath] = useState('/')
   const [cursorScaled, setCursorScaled] = useState(false)
   const [menuIsOpen, setMenuIsOpen] = useState(false)
+  const [bottomGradient, setBottomGradient] = useState(false)
 
 
   const [registeredScrollPos, setRegisteredScrollPos] = useState(null)
@@ -76,7 +77,7 @@ const AppStateProvider = ( {children} ) => {
       setHeaderGradient,
       isContactOpen, setContactModal,
       menuIsOpen, setMenuIsOpen,
-
+      bottomGradient, setBottomGradient,
       titleRect, setTitleRect,
       top, setTop,
       loadingPage, setLoadingPage,

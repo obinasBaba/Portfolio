@@ -35,12 +35,7 @@ const ToolTipWrapper = styled(motion.div)`
   opacity: 0.9;
   border-radius: 500px;
   box-sizing: border-box;
-  background-image: linear-gradient(
-    137.81deg,
-    #e7a28f 3.52%,
-    #f9d6ac 41.89%,
-    #fbfefc 96.77%
-  );
+  background-image: var(--gray_gradient);
 
   & .dot {
     height: 6px;
@@ -94,7 +89,7 @@ const ToolTip = ({ txt }) => {
   })
 
   const initToolTip = () => {
-    if (loadingPage) return
+    // if (loadingPage) return
     onLeave();
 
     const toolTipElements = document.querySelectorAll('[data-tooltip-text]')

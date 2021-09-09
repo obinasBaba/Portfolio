@@ -9,6 +9,7 @@ import FooterMeta from './FooterMeta'
 import Footer from '../../components/Footer'
 import BlobButton from '../../components/ButtonBlob'
 import GalaxyButton from '../ContactPage/components/BottomBar/GalaxyButton'
+import useOnScreen from '../../hooks/useOnScreen'
 
 const MailUsContainer = styled.div`
   position: relative;
@@ -17,6 +18,10 @@ const MailUsContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   text-align: center;
+
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
   //height: calc(100vh - 142px);
   //min-height: 100vh;
   overflow: hidden;
@@ -40,13 +45,9 @@ const Background = styled.span`
   bottom: 0;
   z-index: -1;
   height: calc(100% + (var(--indent) * 1000px));
-  
-  background: linear-gradient(
-    to bottom,
-    rgba(30, 33, 61, 0%) 0%,
-    #02021e 20%
-  );
-  
+
+  background: linear-gradient(to bottom, rgba(30, 33, 61, 0%) 0%, #02021e 20%);
+
   //background-color:  #02021e;
 `
 
@@ -56,7 +57,7 @@ const TitleWrapper = styled.div`
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  
+
   ${spacing('mb', 5)};
 
   .title {
@@ -81,23 +82,21 @@ const LogoEffect = styled.div`
 
 const MailUs = () => {
   const elRef = React.useRef(null)
-  const { isContactOpen, setContactModal } = useContext(AppStateContext)
-  const { setHeaderGradient } = useContext(AppStateContext)
+  const { bottomGradient, setBottomGradient, setContactModal } = useContext(AppStateContext)
+
+  const inView = useOnScreen(elRef, .5);
 
   useEffect(() => {
-    function removeGradient(MailUsRef) {
-      const el = MailUsRef.current.getBoundingClientRect().top
-      return el < 120 ? setHeaderGradient(false) : setHeaderGradient(true)
-    }
+    if ( inView )
+      setBottomGradient(false)
+    else
+      setBottomGradient(true)
 
-    let removeGradientOnScroll = removeGradient(elRef)
+  }, [inView])
 
-    window.addEventListener('scroll', () => removeGradientOnScroll)
-    return () => window.removeEventListener('scroll', removeGradientOnScroll)
-  })
 
   return (
-    <MailUsContainer ref={elRef}>
+    <MailUsContainer ref={elRef} data-scroll-section={true} >
       <Background />
       <LogoEffect />
 
@@ -106,8 +105,7 @@ const MailUs = () => {
           Ready To Create <br /> Your Star ?
         </GradientText>
 
-        <GalaxyButton text='Contact'/>
-
+        <GalaxyButton text="Contact" />
       </TitleWrapper>
 
       <FooterMeta />

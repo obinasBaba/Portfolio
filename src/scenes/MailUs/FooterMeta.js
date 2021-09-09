@@ -93,6 +93,11 @@ const Hover = styled(motion.div)`
     height: 1px;
   }
   
+  .link-txt{
+    color: #7b8a9b;
+
+  }
+  
 `
 
 const line1Variants = {

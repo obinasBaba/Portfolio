@@ -110,11 +110,11 @@ const Circle = styled( motion.div )`
   //transition: transform 0.5s;
 
   a{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    //position: absolute;
+    //top: 0;
+    //left: 0;
+    //right: 0;
+    //bottom: 0;
     z-index: 20;
   }
 
@@ -204,8 +204,7 @@ const Icon = styled( motion.div )`
 
 const Item = ({currentPath, link, stars, icon, index, onClick, title}) => {
   const {
-    isContactOpen,
-    setContactModal,
+    menuIsOpen, setMenuIsOpen
   } = useContext(AppStateContext)
 
   return (
@@ -216,33 +215,32 @@ const Item = ({currentPath, link, stars, icon, index, onClick, title}) => {
           active={link === currentPath && currentPath !== '/'}
           key={link + index + title}
     >
+      <Link to={link} onClick={(ev) => {
+        ev.preventDefault();
+
+        if ( link === currentPath )
+          return;
+
+        setMenuIsOpen(false)
+
+        setTimeout(() => navigate(link), 1200)
+
+      }}>
+
+        <Circle data-circle={index + 1}/>
+
+        <Star bgImg={stars.publicURL}
+              className='stars' />
+
+        <Icon bgImg={icon.publicURL}
+              data-icon={index + 1}
+              className='icon' />
+
+      </Link>
 
       <Title>{title}</Title>
 
-      <Circle data-circle={index + 1}>
-        <Link to={link} onClick={(ev) => {
-          ev.preventDefault();
 
-          if ( link === currentPath )
-            return;
-
-
-          if ( title === 'About' || title === 'Contacts')
-            setTimeout(() => setContactModal(!isContactOpen), 600)
-
-          onClick()
-
-          setTimeout(() => navigate(link), 1000)
-
-        }}/>
-      </Circle>
-
-      <Star bgImg={stars.publicURL}
-            className='stars' />
-
-      <Icon bgImg={icon.publicURL}
-            data-icon={index + 1}
-            className='icon' />
     </ItemContainer>
   )
 }
