@@ -19,8 +19,8 @@ const GalaxyButtonContainer = styled( motion.button )`
   }
   
   & .wrapper{
-    width: 80%;
-    height: 80%;
+    width: 95%;
+    height: 95%;
     transform: rotate(-62deg);
   }
   

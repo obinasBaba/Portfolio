@@ -4,21 +4,21 @@ import { motion, useMotionValue, useTransform } from 'framer-motion'
 import { Typography, useMediaQuery, useTheme } from '@material-ui/core'
 import { processData } from './data'
 import Card from './components/Card'
-import { useLottiAssets } from '../../../hooks/queries/useLottiAssets'
+import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
 import gsap from 'gsap'
 import STrigger from 'gsap/ScrollTrigger'
-import { AppStateContext } from '../../../contexts/AppStateContext'
+import { AppStateContext } from '../../../../contexts/AppStateContext'
 import {
   mediumUp,
   smallDown,
   spacing,
   text,
   title,
-} from '../../../styles/mixins'
+} from '../../../../styles/mixins'
 import BigPlanet from './components/BigPlanet'
-import useOnScreen from '../../../hooks/useOnScreen'
+import useOnScreen from '../../../../hooks/useOnScreen'
 import LocomotiveScroll from 'locomotive-scroll'
-import { randomNumber } from '../../../helpers/utils'
+import { randomNumber } from '../../../../helpers/utils'
 
 const ProcessContainer = styled.section`
   position: relative;
@@ -36,6 +36,16 @@ const ProcessTitle = styled(Typography)`
   font-weight: 900;
   font-family: 'Bodoni Moda', serif;
   margin: 0 auto;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  // this one fixes gradient text line breaks safari bug: https://zellwk.com/blog/multi-line-gradient-links/
+  -webkit-box-decoration-break: clone;
+
+  background-image: linear-gradient(137.81deg,
+  #5d6c7b 3.52%,
+  #a4b5c0 41.89%,
+  #bfd0d9 96.77%);
   //border: thin dashed burlywood;
 
   ${spacing('pl', 3)};
@@ -87,9 +97,12 @@ const Operate = styled.div`
   flex-flow: column;
   align-self: center;
 `
-const OperateTxt = styled(ProcessTitle)`
+const OperateTxt = styled(Typography)`
   color: transparent;
-  -webkit-text-stroke: 1.5px #f9d6ac;
+  font-weight: 900;
+  font-family: 'Bodoni Moda', serif;
+  margin: 0 auto;
+  -webkit-text-stroke: 1.5px #5d6c7b;
   
   ${text(8)};
   

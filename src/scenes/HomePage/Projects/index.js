@@ -20,6 +20,7 @@ import { useProjectCircles } from '../../../hooks/queries/useProjectCircles'
 import useOnScreen from '../../../hooks/useOnScreen'
 import {AppStateContext} from '../../../contexts/AppStateContext'
 import BlobButton from '../../../components/ButtonBlob'
+import GalaxyButton from '../../ContactPage/components/BottomBar/GalaxyButton'
 
 const parentVariant = {
   initial: {
@@ -266,7 +267,7 @@ const Projects = () => {
             setRegisteredScrollPos('#projects')
           }}
         >
-            <BlobButton txt='Selected Projects' />
+            <GalaxyButton buttonType={3} text='Projects' />
         </Link>
 
         <motion.div

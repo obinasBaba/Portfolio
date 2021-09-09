@@ -1,9 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react'
 import styled, {css} from 'styled-components'
-import {mediumUp, spacing, text, title} from '../../../../styles/mixins'
+import {mediumUp, spacing, text, title} from '../../../../../styles/mixins'
 import { Typography } from '@material-ui/core'
 import { Illustration } from './Icons'
-import useOnScreen from '../../../../hooks/useOnScreen'
+import useOnScreen from '../../../../../hooks/useOnScreen'
 import {motion, useAnimation} from 'framer-motion'
 
 const StyledCard = styled.div`
@@ -12,10 +12,8 @@ const StyledCard = styled.div`
   border-radius: 20px;
   box-shadow: 0 40px 49px 0 rgba(0 0 0/ 16%);
   color: #02021e;
-  background-image: linear-gradient(137.81deg,
-  #e7a28f 3.52%,
-  #f9d6ac 41.89%,
-  rgba(251, 254, 252, 0.56) 96.77%);
+
+  background-image: var(--gray_gradient);
 
   display: flex;
   flex-flow: column;

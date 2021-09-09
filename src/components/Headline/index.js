@@ -42,7 +42,7 @@ const HeadlineTitle = ( {title, subtitle, mb, clsName} ) => {
       </GradientText>
 
       <GradientText className='subtitle'
-                    color='textSecondary'
+
                     align='right' variant={'body1'} noWrap={true}>
         {subtitle}
       </GradientText>

@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react'
 import lotti  from  'lottie-web';
 import styled, {css} from 'styled-components'
-import useOnScreen from '../../../../hooks/useOnScreen'
+import useOnScreen from '../../../../../hooks/useOnScreen'
 
 
 const IllustrationContainer = styled.div`

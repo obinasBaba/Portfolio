@@ -1,10 +1,10 @@
 import React, {useContext, useEffect} from 'react'
-import ContactPage from '../scenes/ContactPage'
-import MailUs from '../scenes/MailUs'
-import {AppStateContext} from '../contexts/AppStateContext'
+import AboutPage from '../scenes/AboutPage'
 import useLocoScroll from '../hooks/useLocoScroll'
+import {AppStateContext} from '../contexts/AppStateContext'
 
-const Contact = ({path}) => {
+const About = ({path}) => {
+
 
   const loco = useLocoScroll(true);
 
@@ -19,10 +19,9 @@ const Contact = ({path}) => {
 
   return (
     <>
-      <ContactPage/>
-      <MailUs/>
+      <AboutPage/>
     </>
   )
 }
 
-export default Contact
+export default About

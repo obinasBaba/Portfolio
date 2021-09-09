@@ -5,7 +5,6 @@ import Projects from './Projects'
 import Experiments from './Experiments'
 import { SectionWrapper } from '../../components/Container'
 import BlogPosts from './BlogPosts'
-import MyProcess from './MyProcess'
 import MailUs from '../MailUs'
 import styled from 'styled-components'
 import {motion} from 'framer-motion'
@@ -49,8 +48,6 @@ const HomePage = () => {
       <SectionWrapper dataScrollSection={true}>
         <Experiments />
       </SectionWrapper>
-
-      <MyProcess data-scroll-section />
 
       <SectionWrapper dataScrollSection={true}>
         <MailUs />

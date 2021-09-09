@@ -4,7 +4,9 @@ import {smallUp} from './mixins'
 
 export const GlobalStyle = createGlobalStyle`
 
-  ${ResponsiveVars};
+  ${ResponsiveVars}
+
+  ;
 
   canvas[resize] {
     width: 100%;
@@ -19,7 +21,7 @@ export const GlobalStyle = createGlobalStyle`
     z-index: var(--cIndex);
     pointer-events: none;
     //border: thin solid blue;
-    
+
     ${smallUp(css`
       display: block;
     `)};
@@ -43,23 +45,35 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-text-size-adjust: 100%;
     //overflow: hidden;
 
-    
-    ${smallUp( css`
-      & *{
+
+    ${smallUp(css`
+      & * {
         cursor: none;
       }
-    ` )};
+    `)};
   }
 
   body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     margin: 0;
-    color: #fff;
+    color: #a4b5c0;
+    //color: #fff;
 
-    
+
+    --gray_gradient: linear-gradient(137.81deg,
+    #5d6c7b 3.52%,
+    #a4b5c0 41.89%,
+    #cbd7de 96.77%);
+
+    --orage_gradient: linear-gradient(137.81deg,
+    #e7a28f 3.52%,
+    #f9d6ac 41.89%,
+    #fbfefc 96.77%);
+
 
     --theme: #a4b5c0;
+    //--theme: #fff;
     --stroke-bottom: #f9d6ac;
     --stroke-top: #02021e;
     --head-opacity: 0;

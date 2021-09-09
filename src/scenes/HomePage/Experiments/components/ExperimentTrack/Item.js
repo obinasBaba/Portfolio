@@ -143,7 +143,7 @@ const Item = ({  imgUrl, title, index}) => {
             <path d="M0, 200a200, 200 0 1, 0 400, 0a200, 200 0 1, 0 -400, 0" id="txt-path"/>
           </defs>
 
-          <text   fill="#fff" fontSize="1.4667rem" letterSpacing='1.8px' fontWeight="300">
+          <text   fill="#a4b5c0" fontSize="1.4667rem" letterSpacing='1.8px' fontWeight="300">
             <textPath startOffset="100"
                       href="#txt-path">{title}</textPath>
           </text>
@@ -151,9 +151,6 @@ const Item = ({  imgUrl, title, index}) => {
 
         </svg>
 
-        {/*<Typography align="left" variant={'subtitle1'} className='title' >0{index + 1}.&nbsp;{ title}</Typography>*/}
-
-        {/*<RightArrowLink/>*/}
 
       </InfoBar>
     </ExperimentItem>

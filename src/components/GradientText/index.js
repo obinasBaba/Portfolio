@@ -8,12 +8,8 @@ export const GradientText = styled(Typography)`
   // this one fixes gradient text line breaks safari bug: https://zellwk.com/blog/multi-line-gradient-links/
   -webkit-box-decoration-break: clone;
 
-  background-image: linear-gradient(
-          137.81deg,
-          #e7a28f 3.52%,
-          #f9d6ac 41.89%,
-          #fbfefc 96.77%
-  );
+  
+  background-image: var(--gray_gradient);
 
   //font-family: var(--gramatika);
   //font-weight: 900;

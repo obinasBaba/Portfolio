@@ -99,9 +99,10 @@ const BackgroundOverlay = () => {
           <linearGradient id="gradient3" x1="0.177" y1="0.104" x2="0.949" y2="0.947"
                           gradientUnits="objectBoundingBox"
           >
-            <stop offset="0" stopColor="#e7a28f" />
-            <stop offset="0.482" stopColor="#f9d6ac" />
-            <stop offset="1" stopColor="#fbfefc" />
+
+            <stop offset="0" stopColor="#5d6c7b" />
+            <stop offset="0.482" stopColor="#a4b5c0" />
+            <stop offset="1" stopColor="#bfd0d9" />
           </linearGradient>
         </defs>
         <path className="shape-overlays__path" />

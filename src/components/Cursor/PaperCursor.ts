@@ -55,7 +55,7 @@ class PaperCursor {
   pClone: typeof Paper.Path.RegularPolygon
   pointerGroup: typeof Paper.Group
   normalColor: paper.Color = new Paper.Color('#78809EFF')
-  focusedColor = new Paper.Color('#a4b5c0')
+  focusedColor = new Paper.Color('#fbfefc')
 
 
   readonly canvas: HTMLCanvasElement
@@ -295,16 +295,12 @@ class PaperCursor {
 
       this.updatePosition()
 
-      if (this.isNoise) { //normalize the everything
 
-        this.circles.forEach((circle) => {
-          this.clearNoise(circle)
-        })
+      this.circles.forEach((circle) => {
+        this.clearNoise(circle)
+      })
 
-        this.clearNoise(this.pointer)
-
-        this.isNoise = false
-      }
+      this.clearNoise(this.pointer)
 
       if (pointed){
 
@@ -341,7 +337,7 @@ class PaperCursor {
       }
       else {
         // console.log('NORMAL NOISE')
-        this.isNoise = true
+        // this.isNoise = true
         this.normalNoise()
       }
 
@@ -350,8 +346,6 @@ class PaperCursor {
       })
 
       this.updateCoordinates(this.pointer)
-
-      this.isNoise = true
 
       this.noise(event)
 

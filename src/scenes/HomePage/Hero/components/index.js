@@ -98,7 +98,7 @@ export const SvgWithTxt = styled.div`
 
 
   svg {
-    fill: white;
+    fill: var(--color);
     ${ spacing( 'mr', -4 ) };
     ${ spacing( 'max-width', 20 ) };
   }

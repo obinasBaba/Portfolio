@@ -8,6 +8,7 @@ import { GradientText } from '../../components/GradientText'
 import FooterMeta from './FooterMeta'
 import Footer from '../../components/Footer'
 import BlobButton from '../../components/ButtonBlob'
+import GalaxyButton from '../ContactPage/components/BottomBar/GalaxyButton'
 
 const MailUsContainer = styled.div`
   position: relative;
@@ -51,10 +52,12 @@ const Background = styled.span`
 
 const TitleWrapper = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   flex-flow: column;
   align-items: center;
   justify-content: center;
+  
+  ${spacing('mb', 5)};
 
   .title {
     font-weight: 900;
@@ -102,14 +105,8 @@ const MailUs = () => {
         <GradientText variant="h1" className="title">
           Ready To Create <br /> Your Star ?
         </GradientText>
-     {/*   <MotionBtn
-          text={'Contact Me'}
-          arrow={false}
-          fontLarge
-          onClick={() => setContactModal(!isContactOpen)}
-        />*/}
 
-        <BlobButton txt='Contact Me' />
+        <GalaxyButton text='Contact'/>
 
       </TitleWrapper>
 

@@ -51,7 +51,6 @@ const Desc = styled.p`
 const txtStyle = css`
   position: relative;
   margin: 0;
-  color: white;
   font-weight: lighter;
   line-height: 1.4em;
   text-transform: uppercase;
