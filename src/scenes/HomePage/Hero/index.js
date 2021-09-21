@@ -1,8 +1,16 @@
 import React from 'react'
 import { Typography } from '@material-ui/core'
 import H from './H.inline.svg'
-import { HeroContainer, Lines, SvgWithTxt, TextContainer } from './components'
+import {
+  Greeting,
+  HeroContainer,
+  Intro, Lines,
+  SvgWithTxt,
+  TextContainer,
+} from './components'
 import Moon from '../../../components/MoonLight'
+
+
 
 const Hero = () => {
   // const { logo } = useHeaderAssets();
@@ -11,21 +19,33 @@ const Hero = () => {
     <>
       <HeroContainer >
         <TextContainer>
-          <Typography variant="h2"> hi, I'm </Typography>
 
-          <SvgWithTxt>
+          <Greeting>
+            <Typography variant="h1"> hi, I'm </Typography>
+
             <H />
-            <Typography className="enok" variant="h1">
+            <Typography  variant="h1">
               enok
             </Typography>
-          </SvgWithTxt>
 
-          <Lines />
+          </Greeting>
 
-          <Typography variant="h5" className="job">
-            Web developer / <br />
-            markup engineer.
-          </Typography>
+
+          <div>
+            {/*<Lines/>*/}
+
+          </div>
+
+          <Intro>
+            <Typography variant='h3'>
+              S-O-L-I-D front-end, <br/> less frame-work, less bugs, more engineering patterns!
+            </Typography>
+
+            <Typography  >
+              Your Mind is the best frame-work - by....
+            </Typography>
+          </Intro>
+
         </TextContainer>
 
         <Moon pos='absolute' />

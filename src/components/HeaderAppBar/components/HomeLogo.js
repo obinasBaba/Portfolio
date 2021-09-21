@@ -71,8 +71,6 @@ const HomeLogo = ({ isWhite }) => {
   const { logo } = useHeaderAssets()
   const logoRef = useRef(null)
 
-  // useMagnet('.logo', 1.7, .21, )
-
 
   return (
     <Logo isWhite={isWhite}

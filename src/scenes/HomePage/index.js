@@ -49,9 +49,7 @@ const HomePage = () => {
         <Experiments />
       </SectionWrapper>
 
-      {/*<SectionWrapper dataScrollSection={true}>*/}
-        <MailUs />
-      {/*</SectionWrapper>*/}
+      <MailUs />
 
 
     </motion.div>

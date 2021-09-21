@@ -70,7 +70,8 @@ export default function useLocoScroll(start, elementId = '[data-scroll-container
 
           let value =  arguments.length
             ? locoScroll.current.scrollTo(value, 0, 0)
-            : -document.querySelector('.track').getBoundingClientRect().x;
+            : document.querySelector('.track') ?
+            -document.querySelector('.track').getBoundingClientRect().x : 0;
 
           // console.log( 'scrollLeft',  value)
           return value;

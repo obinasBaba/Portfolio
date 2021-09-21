@@ -29,7 +29,7 @@ const ProgressCircleContainer = styled.div`
   top: calc(100vh - calc(var(--size) * 6rem));
   bottom: auto;
   right: 0;
-  z-index: 10;
+  z-index: 7;
 `
 
 const ProgressCircleWrapper = styled.div`

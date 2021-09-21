@@ -3,47 +3,63 @@ import {ease} from '../../helpers/glsEasings'
 class OverlayController {
 
   static instance = null;
+  static isAnimating = false;
+  static  duration = 900;
+  static  delayPointsMax = 280;
+  static  delayPerPath = 250;
 
 
-  static getInstance(element){
+  static getInstance(){
+
+    this.duration = 900; //Animation duration of one path element.
+
+    this.delayPointsMax = 280; // Max of delay value in all control points.
+
+    this.delayPerPath = 250; // Delay value per path.
+
+
     if( this.instance === null){
-      this.instance = new OverlayController(element);
+      this.instance = new OverlayController();
       return this.instance
     }else{
       return this.instance;
     }
   }
 
-  constructor(elm) {
-    this.elm = elm; // the parent SVG
-    this.path = elm.querySelectorAll('path'); //// Path elements in parent SVG. These are the layers of the overlay.
+  constructor() {
+    this.elm = document.body.querySelector('.shape-overlays'); // the parent SVG
+    this.path = this.elm.querySelectorAll('path'); //// Path elements in parent SVG. These are the layers of the overlay.
     this.numPoints = 10; //Number of control points for Bezier Curve.
-    this.duration = 900; //Animation duration of one path element.
     this.delayPointsArray = []; // Array of control points for Bezier Curve
-    this.delayPointsMax = 280; // Max of delay value in all control points.
-    this.delayPerPath = 250; // Delay value per path.
     this.timeStart = Date.now();
     this.isOpened = false;
-    this.isAnimating = false;
+    // this.isAnimating = false;
   }
 
-  toggle(open) {
-    if (this.isAnimating) {
-      return false;
+  toggle(open, options = {
+    duration: OverlayController.duration,
+    delayPointsMax: OverlayController.delayPointsMax,
+    delayPerPath: OverlayController.delayPerPath
+  }) {
+
+    if ( options ) {
+      OverlayController.duration = options.duration;
+      OverlayController.delayPointsMax= options.delayPointsMax
+      OverlayController.delayPerPath= options.delayPerPath
     }
 
-    if ( open && !this.isOpened || !open && this.isOpened  ){
-      // console.log('inside')
+    OverlayController.isAnimating = true;
+    for (let i = 0; i < this.numPoints; i++) {
+      this.delayPointsArray[i] = Math.random() * OverlayController.delayPointsMax;
+    }
 
-      this.isAnimating = true;
-      for (let i = 0; i < this.numPoints; i++) {
-        this.delayPointsArray[i] = Math.random() * this.delayPointsMax;
-      }
-      if (this.isOpened === false) {
-        this.open();
-      } else {
-        setTimeout(() => this.close(), 250)
-      }
+    if ( open  ){
+
+      this.open();
+
+    }else {
+
+      setTimeout(() => this.close(), 250)
     }
 
   }
@@ -68,7 +84,7 @@ class OverlayController {
     const points = [];
     for (let i = 0; i < this.numPoints; i++) {
       const max = Math.max(time - this.delayPointsArray[i], 0);
-      const glsEase = ease.cubicInOut(Math.min( max / this.duration, 1));
+      const glsEase = ease.cubicInOut(Math.min( max / OverlayController.duration, 1));
       points[i] = (1 - glsEase ) * 100
     }
 
@@ -86,28 +102,32 @@ class OverlayController {
   render() {
     if (this.isOpened) {
       for (let i = 0; i < this.path.length; i++) {
-        let generatedPath = this.updatePath(Date.now() - (this.timeStart + this.delayPerPath * i));
+        let generatedPath = this.updatePath(Date.now() - (this.timeStart + OverlayController.delayPerPath * i));
         this.path[i].setAttribute('d', generatedPath);
       }
     } else {
       for (let i = 0; i < this.path.length; i++) {
-        this.path[i].setAttribute('d', this.updatePath(Date.now() - (this.timeStart + this.delayPerPath * (this.path.length - i - 1))));
+        this.path[i].setAttribute('d', this.updatePath(Date.now() - (this.timeStart + OverlayController.delayPerPath * (this.path.length - i - 1))));
       }
     }
   }
 
   renderLoop() {
+
     this.render();
-    if (Date.now() - this.timeStart < this.duration + this.delayPerPath * (this.path.length - 1) + this.delayPointsMax) {
+    if (Date.now() - this.timeStart <
+      OverlayController.duration + OverlayController.delayPerPath
+      * (this.path.length - 1) + OverlayController.delayPointsMax) {
+
       requestAnimationFrame(() => this.renderLoop());
     }
     else {
-      this.isAnimating = false;
+      OverlayController.isAnimating = false;
     }
   }
   
   click(open){
-    if (this.isAnimating) {
+    if (OverlayController.isAnimating) {
       return false;
     }
 

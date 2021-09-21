@@ -8,13 +8,11 @@ import ProgressCircle from '../../components/ScrollProgressCircle'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import useLoadingFonts from '../../hooks/useFonts'
 import gsap from 'gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
 import Cursor from '../../components/Cursor'
 import {PageContainer, BottomGradient, Main, SkyColor} from './Styled'
 import BackgroundOverlay from '../../components/BackgroundOverlay'
 
 
-gsap.registerPlugin(ScrollTrigger)
 
 const Page = ({ children, path }) => {
   const {
@@ -33,7 +31,7 @@ const Page = ({ children, path }) => {
       <SkyColor />
       <BackgroundStars />
       <HeaderAppBar />
-      <BackgroundOverlay />
+      <BackgroundOverlay loading={fontFinish} />
 
       <Main data-scroll-container id="main-container">
         <AnimatePresence
@@ -42,7 +40,7 @@ const Page = ({ children, path }) => {
         >
           {fontFinish ? (
             <React.Fragment key="Main-Content">
-              <Cursor path={currentPath} key={'cursor'} />
+               <Cursor path={currentPath} key={'cursor'} />
 
               <AnimatePresence
                 exitBeforeEnter

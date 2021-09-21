@@ -1,12 +1,11 @@
 import {createGlobalStyle, css} from 'styled-components'
-import ResponsiveVars from './variables/ResponsiveVars'
+import { responsiveVars, webKitInputReset } from './variables/ResponsiveVars'
 import {smallUp} from './mixins'
 
 export const GlobalStyle = createGlobalStyle`
 
-  ${ResponsiveVars}
-
-  ;
+  ${responsiveVars};
+  ${webKitInputReset};
 
   canvas[resize] {
     width: 100%;
@@ -31,7 +30,7 @@ export const GlobalStyle = createGlobalStyle`
   body,
   #___gatsby,
   #gatsby-focus-wrapper {
-    //height: 100%;
+    height: 100%;
   }
 
   .c-scrollbar {
@@ -63,6 +62,12 @@ export const GlobalStyle = createGlobalStyle`
     --light_gray: #a4b5c0;
     --medium: #5d6c7b;
 
+    --theme: #a4b5c0;
+    //--theme: #fff;
+    --stroke-bottom: var(--light_gray);
+    --stroke-top: #434e5e;
+    --head-opacity: 0;
+
 
     --gray_gradient: linear-gradient(137.81deg,
     #566373 3.52%,
@@ -74,12 +79,6 @@ export const GlobalStyle = createGlobalStyle`
     #f9d6ac 41.89%,
     #fbfefc 96.77%);
 
-
-    --theme: #a4b5c0;
-    //--theme: #fff;
-    --stroke-bottom: var(--light_gray);
-    --stroke-top: #434e5e;
-    --head-opacity: 0;
     --bottom-gradient: linear-gradient(to bottom,
     rgba(7, 33, 66, 0),
     rgba(6, 28, 55, 0),
@@ -98,6 +97,9 @@ export const GlobalStyle = createGlobalStyle`
     rgba(250, 222, 188, 0.8) 0%,
     rgba(243, 243, 243, 0) 94%);
 
+    &.menu_open{
+      --theme: rgba(2, 11, 22, 1);
+    }
 
     &.blog-clr {
       --theme: #02021e;
@@ -144,54 +146,7 @@ export const GlobalStyle = createGlobalStyle`
     color: inherit;
     cursor: none;
   }
-
-
-  /* Change Autocomplete styles in Chrome*/
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  input:-webkit-autofill,
-  textarea:-webkit-autofill,
-  textarea:-webkit-autofill:hover,
-  textarea:-webkit-autofill:focus,
-  select:-webkit-autofill,
-  select:-webkit-autofill:hover,
-  select:-webkit-autofill:focus {
-    //border: none;
-    //-webkit-text-fill-color: transparent;
-    //-webkit-box-shadow: none;
-    //transition: none;
-    //
-    //appearance: none;
-    //background-image: none !important;
-    //background-color: transparent !important;
-    //color: transparent !important;
-    background-color: red !important;
-    background-image: none !important;
-
-    appearance: none !important;
-    -moz-appearance: none !important;
-    -webkit-appearance: none !important;
-
-    -webkit-box-shadow: none !important;
-
-    -webkit-text-fill-color: #a4b5c0 !important;
-
-  }
-
-
-  @-webkit-keyframes autofill {
-    0%,100% {
-      color: #666;
-      background: transparent;
-    }
-  }
-
-  input:-webkit-autofill {
-    -webkit-animation-delay: 1s; /* Safari support - any positive time runs instantly */
-    -webkit-animation-name: autofill;
-    -webkit-animation-fill-mode: both;
-  }
+  
    
   
 `

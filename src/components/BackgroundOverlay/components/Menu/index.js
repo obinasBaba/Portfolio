@@ -127,7 +127,7 @@ const metaVariant = {
 }
 
 
-const Menu = ({ onClick }) => {
+const Menu = ({ onClick, ...props }) => {
   const {
     blogIcon,
     blogStars,
@@ -148,7 +148,7 @@ const Menu = ({ onClick }) => {
     },
     {
       title: 'About',
-      link: '/about',
+      link: '/about/',
       icon: servicesIcon,
       stars: servicesStars,
     },
@@ -190,10 +190,10 @@ const Menu = ({ onClick }) => {
             link={link}
             stars={stars}
             icon={icon}
-            onClick={() => {}}
             currentPath={currentPath}
             index={index}
             title={title}
+            onClick={onClick}
           />
         ))}
       </MenuItemContainer>

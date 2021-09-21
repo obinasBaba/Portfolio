@@ -5,6 +5,7 @@ import styled, {css} from 'styled-components'
 import {motion} from 'framer-motion'
 import {largeUp, mediumUp, text} from '../../../../../styles/mixins'
 import {AppStateContext} from '../../../../../contexts/AppStateContext'
+import OverlayController from '../../../OverlayController'
 
 const hoverMixin = css`
   [data-circle='1'] {
@@ -202,7 +203,7 @@ const Icon = styled( motion.div )`
   }
 `
 
-const Item = ({currentPath, link, stars, icon, index, onClick, title}) => {
+const Item = ({currentPath, link, stars, icon, index, title, onClick}) => {
   const {
     menuIsOpen, setMenuIsOpen
   } = useContext(AppStateContext)
@@ -217,13 +218,13 @@ const Item = ({currentPath, link, stars, icon, index, onClick, title}) => {
     >
       <Link to={link} onClick={(ev) => {
         ev.preventDefault();
+        if( OverlayController.isAnimating ) return;
 
-        if ( link === currentPath )
-          return;
+        if ( link === currentPath ) return;
 
-        setMenuIsOpen(false)
+        onClick();
 
-        setTimeout(() => navigate(link), 1200)
+        setTimeout(() => navigate(link), 1300)
 
       }}>
 

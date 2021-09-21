@@ -44,11 +44,18 @@ const MoonBg = styled(motion.div)`
       right: 0;
       width: 150%;
     ` )}:
+    
 
     svg {
       //display: none;
+      //transform: scale(.9);
+
+
       #Moon {
         display: ${({ moon }) => (moon ? 'initial' : 'none')};
+        path{
+          transform: scale(.9);
+        }
       }
     }
   }

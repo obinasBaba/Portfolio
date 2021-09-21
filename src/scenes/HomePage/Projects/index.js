@@ -132,8 +132,15 @@ const LottiContainer = styled.div`
   .to-projects {
     //no need to make it relative for z-index to work b/c of the dynamic transform property
     z-index: 1; 
-    ${text(1.1)};
+    // ${text(1.1)};
     ${spacing('p', 2)};
+    
+    & > :first-child {
+      font-weight: bolder;
+      -webkit-text-stroke: 2px #5d6c7b;
+      color: transparent;
+      //font-family: Elianto-Regular;
+    }
   }
 `
 
@@ -247,13 +254,13 @@ const Projects = () => {
       <HeadlineTitle title={'Projects'} mb={3} subtitle={'Case Studies'} />
 
       <ScrollPlanet data-scroll
-                    data-scroll-trigger='#projects'
+                    // data-scroll-trigger='#projects'
                     data-scroll-speed='-3'>
         <Planet className='planet-left' style={{ y: yBig, x: xBig }} />
       </ScrollPlanet>
 
       <ScrollPlanet2 data-scroll
-                     data-scroll-trigger='#projects'
+                     // data-scroll-trigger='#projects'
                      data-scroll-speed='-6'>
         <Planet className="planet-right" style={{ y: ySmall, x: xSmall }} />
       </ScrollPlanet2>
@@ -268,9 +275,11 @@ const Projects = () => {
             setRegisteredScrollPos('#projects')
           }}
         >
-            <Typography data-pointer='magnet'
-
-            >projects</Typography>
+            <Typography variant='h1' noWrap
+                        // data-pointer='magnet'
+            >
+              Selected Works
+            </Typography>
         </Link>
 
         <motion.div

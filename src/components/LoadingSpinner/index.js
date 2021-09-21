@@ -1,8 +1,9 @@
-import React, { useRef } from 'react'
+import React, {useEffect, useLayoutEffect, useRef} from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { transition } from '../../helpers/variants'
 import { useLottiAssets } from '../../hooks/queries/useLottiAssets'
+import OverlayController from '../BackgroundOverlay/OverlayController'
 
 const SpinnerContainer = styled( motion.div )`
   //position: fixed;
@@ -14,7 +15,7 @@ const SpinnerContainer = styled( motion.div )`
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: #02021e;
+  //background-color: #02021e;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,6 +121,18 @@ const LoadingSpinner = ({children}) => {
 
   const smallRef = useRef(null)
   const contentRef = useRef(null)
+
+  useLayoutEffect(() => {
+
+    OverlayController.getInstance().toggle(true, {
+      duration: 0,
+      delayPointsMax: 0,
+      delayPerPath: 0,
+    })
+
+    return () => {}
+
+  }, [])
 
   return (
 

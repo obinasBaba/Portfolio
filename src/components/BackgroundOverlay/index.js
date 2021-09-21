@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, {useContext, useEffect, useLayoutEffect, useRef} from 'react'
 import styled, {css} from 'styled-components'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import OverlayController from './OverlayController'
@@ -10,18 +10,12 @@ const OverlayContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  
   width: 100vw;
   height: 100vh;
   
-  display: flex;
-  align-items: center;
-  justify-content: center;
   pointer-events: none;
   
-  ${({isOpen}) => isOpen && 'pointer-events: initial;' };
-  
-  z-index: 9;
+  z-index: 8;
 
   svg{
     pointer-events: none;
@@ -57,34 +51,19 @@ const OverlayContainer = styled.div`
     //border: thick solid red;
   }
 `
-const BackgroundOverlay = () => {
+const BackgroundOverlay = ({loading=true}) => {
 
-  const {
-    menuIsOpen, setMenuIsOpen
-  } = useContext(AppStateContext)
 
   const overlayRef = useRef(null);
-  const firstRender = useRef(true)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
 
-     overlayRef.current = OverlayController.getInstance(
-      document.querySelector('.shape-overlays')
-    );
+     overlayRef.current = OverlayController.getInstance();
 
     }, [])
 
-  useEffect(() => {
-    overlayRef.current.toggle(menuIsOpen);
-    // if ( menuIsOpen )
-
-
-
-  }, [menuIsOpen])
-  
-  
   return (
-    <OverlayContainer isOpen={menuIsOpen}>
+    <OverlayContainer loading={loading}>
 
       <svg className="shape-overlays" viewBox="0 0 100 100" preserveAspectRatio="none">
         <defs>
@@ -96,33 +75,23 @@ const BackgroundOverlay = () => {
             <stop offset="0%" stopColor="#ffd392" />
             <stop offset="100%" stopColor="#ff3898" />
           </linearGradient>
-          <linearGradient id="gradient3" x1="0.177" y1="0.104" x2="0.949" y2="0.947"
-                          gradientUnits="objectBoundingBox"
-          >
 
+          <linearGradient id="gradient3" x1="0.177" y1="0.104" x2="0.949" y2="0.947" gradientUnits="objectBoundingBox">
             <stop offset="0" stopColor="#5d6c7b" />
             <stop offset="0.482" stopColor="#a4b5c0" />
             <stop offset="1" stopColor="#bfd0d9" />
           </linearGradient>
+
+          <linearGradient id="gradient4" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%"   stopColor="#110046"/>
+            <stop offset="100%" stopColor="#32004a"/>
+          </linearGradient>
+
         </defs>
         <path className="shape-overlays__path" />
         <path className="shape-overlays__path" />
         <path className="shape-overlays__path" />
       </svg>
-
-
-      <AnimatePresence>
-        {
-
-          menuIsOpen &&
-          <React.Fragment key={menuIsOpen.toString() + 'menu'}>
-            <LogoBgEffect />
-            <Menu onClick={() => {}} />
-          </React.Fragment>
-        }
-      </AnimatePresence>
-
-
 
     </OverlayContainer>
   )

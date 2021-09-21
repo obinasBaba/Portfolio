@@ -1,6 +1,8 @@
 import {useContext, useLayoutEffect} from 'react'
 import FontLoaded from 'fontfaceobserver'
 import {AppStateContext} from '../contexts/AppStateContext'
+import OverlayController
+  from '../components/BackgroundOverlay/OverlayController'
 
 const useLoadingFonts = ( fontLoaded, setFontFinish ) => {
 
@@ -17,9 +19,17 @@ const useLoadingFonts = ( fontLoaded, setFontFinish ) => {
     Promise.all([elianto.load(), poppins.load(), icons.load()])
       .then(() => {
         setTimeout(() => {
+          OverlayController.getInstance().toggle(false , {
+            duration: 800,
+            delayPointsMax: 100,
+            delayPerPath: 100,
+          }, 1)
+
           fontLoaded.set(true)
           setFontFinish(true)
-        }, 0)
+
+
+        }, 2000)
       })
       .catch(console.error)
 

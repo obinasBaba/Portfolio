@@ -30,12 +30,6 @@ const IndexPage = ({path}) => {
         })
       })
       setRegisteredScrollPos(null)
-    }else {
-      loco.current.scrollTo('#process-containessr', {
-        duration: 0,
-        disableLerp: true,
-        offset: 400,
-      })
     }
 
   }, [])

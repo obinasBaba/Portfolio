@@ -8,9 +8,6 @@ const useLotti = (path, ref, loopReverse=false) => {
   useEffect(() => {
     lotti.destroy(path)
 
-    console.log(ref.current)
-    console.log(path)
-
     setTimeout(() => {
       if (true ) {
         lottiRef.current = lotti.loadAnimation({

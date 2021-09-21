@@ -68,9 +68,6 @@ const ContactPage = () => {
   const [idx, setIdx] = useState(0)
 
   const stepMotionValue = useMotionValue(1)
-  // const [isLast, setIsLast] = useState(false)
-
-
 
   const nextStep = () => {
     if (idx + 1 !== steps.length) {
@@ -87,7 +84,6 @@ const ContactPage = () => {
       stepMotionValue.set(stepMotionValue.get() - 1)
     }
   }
-
 
   const steps = [
     {
@@ -147,10 +143,6 @@ const ContactPage = () => {
     <ContactPageContainer
       data-scroll
       data-scroll-section
-      variants={{}}
-      initial="initial"
-      animate="animate"
-      exit="exit"
     >
       <HeaderMeta />
 
@@ -186,7 +178,6 @@ const ContactPage = () => {
                       {steps[idx].component({ errors, values })}
                     </motion.div>
                   </AnimatePresence>
-
 
                   <motion.div layout transition={{duration: .5, ease: 'easeInOut'}}>
                     <ErrorMsg variant="body2">
@@ -227,8 +218,6 @@ const ContactPage = () => {
                       </motion.div>
                     )}
                   </AnimatePresence>
-
-
 
                 </AnimateSharedLayout>
 
