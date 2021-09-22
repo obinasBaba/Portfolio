@@ -25,7 +25,7 @@ export const TextContainer = styled.div`
 
   ${spacing('pl', 6)};
   ${spacing('pb', 10)};
-  ${spacing('pt', 3)};
+  ${spacing('pt', 12)};
 
 
   ${ smallUp( css`
@@ -59,16 +59,21 @@ export const Greeting = styled.div`
 
   svg {
     transform: rotate(-10deg);
-
     fill: var(--color);
-    ${ spacing( 'mr', -2.8 ) };
+    
+    ${ spacing( 'mr', -2 ) };
     ${ spacing( 'ml', 3 ) };
-    ${ spacing( 'mt', 5 ) };
-    ${ spacing( 'max-width', 10 ) };
+    ${ spacing( 'mt', 4 ) };
+    ${ spacing( 'max-width', 8.2 ) };
   }
 
   & > :first-child{
     word-spacing: -20px;
+    text-indent: -10px;
+  }
+  
+  & > :last-child{
+    
   }
 
   & h1{
@@ -76,6 +81,8 @@ export const Greeting = styled.div`
     margin: 0;
     padding: 0;
     line-height: 100%;
+    ${text(4.8  )};
+
 
     @media (max-width: 576px) {
       font-size: clamp(30px, 15vw, 80px);
@@ -87,16 +94,16 @@ export const Greeting = styled.div`
 export const Intro = styled.div`
   display: flex;
   flex-flow: column;
-  gap: 2rem;
+  gap: 4rem;
   align-self: flex-start;
   
   & > :first-child {
     max-width: 20ch;
-    font-weight: bolder;
+    font-weight: bold;
     opacity: .8;
     word-spacing: -5px;
     
-    ${text(2.8)};
+    ${text(2.5  )};
     //color: #6c7b8a;
   }
 
@@ -104,7 +111,12 @@ export const Intro = styled.div`
     text-align: right;
     letter-spacing: -1px;
     color: var(--medium);
-    font-style: italic;
+    font-weight: bolder;
+    max-width: 22ch;
+    margin-left: auto;
+
+    //font-style: italic;
+    ${text(1.6 )};
 
   }
 `

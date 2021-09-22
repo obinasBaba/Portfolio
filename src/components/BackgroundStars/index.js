@@ -25,8 +25,8 @@ const BackgroundStars = () => {
   const xMouse = useSpring(0, config);
 
   const calcNewMousePos = (ev) => {
-    const xPos =  (ev.clientX - window.innerWidth / 2) / 30;
-    const yPos =  (ev.clientY - window.innerHeight / 2) / 30;
+    const xPos =  (ev.clientX - window.innerWidth / 2) / 80;
+    const yPos =  (ev.clientY - window.innerHeight / 2) / 80;
     yMouse.set(yPos);
     xMouse.set(xPos);
   };

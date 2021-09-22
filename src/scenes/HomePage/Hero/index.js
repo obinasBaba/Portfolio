@@ -21,7 +21,7 @@ const Hero = () => {
         <TextContainer>
 
           <Greeting>
-            <Typography variant="h1"> hi, I'm </Typography>
+            <Typography variant="h1"> hi, I am </Typography>
 
             <H />
             <Typography  variant="h1">
@@ -41,8 +41,8 @@ const Hero = () => {
               S-O-L-I-D front-end, <br/> less frame-work, less bugs, more engineering patterns!
             </Typography>
 
-            <Typography  >
-              Your Mind is the best frame-work - by....
+            <Typography variant='h5' >
+              Your Mind is the best front-end frame-work - by....
             </Typography>
           </Intro>
 

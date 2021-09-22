@@ -21,7 +21,7 @@ const MoonBg = styled(motion.div)`
     //border: thick solid yellow;
     position: absolute;
     margin: auto;
-    height: 1285px;
+    height: 1185px;
     bottom: 0;
     left: -40%;
     right: -40%;
@@ -43,20 +43,17 @@ const MoonBg = styled(motion.div)`
     
       right: 0;
       width: 150%;
-    ` )}:
+    ` )};
     
 
-    svg {
-      //display: none;
-      //transform: scale(.9);
+    & > svg {
+      
+      .path_73{
+        filter: blur(10px);
+        transform: scale(.95);
 
-
-      #Moon {
-        display: ${({ moon }) => (moon ? 'initial' : 'none')};
-        path{
-          transform: scale(.9);
-        }
       }
+
     }
   }
 `
@@ -135,10 +132,10 @@ const MoonLight = ({ zIndex, pos = 'fixed', showMoon = true, show = true, varian
               <path id="Path_62" data-name="Path 62" d="M672.125,994.25a321.364,321.364,0,1,1,125.406-25.345A320.066,320.066,0,0,1,672.125,994.25" transform="translate(-20.725 -20.725)" fill="rgba(255,255,250,0.05)" fillRule="evenodd"/>
             </g>
             {
-              showMoon &&   <g id="moon" transform="translate(746 141)">
-                <path id="Path_73" data-name="Path 73" d="M544.8,272.4c0,150.442-121.957,272.4-272.4,272.4S0,422.842,0,272.4,121.958,0,272.4,0,544.8,121.958,544.8,272.4" fill="#fffffa" fillRule="evenodd"/>
+              showMoon &&   <g id="moon" transform="translate(760 161)">
+                <path id="Path_73" className='path_73' d="M544.8,272.4c0,150.442-121.957,272.4-272.4,272.4S0,422.842,0,272.4,121.958,0,272.4,0,544.8,121.958,544.8,272.4" fill="#fffffa" fillRule="evenodd"/>
                 <path id="Path_74"
-                      data-name="Path 74" d="M199.374,191.592a59.5,59.5,0,1,1-59.5-59.5,59.5,59.5,0,0,1,59.5,59.5m97.58-95a38.08,38.08,0,1,1-38.08-38.08,38.08,38.08,0,0,1,38.08,38.08m-3.709,105a24.371,24.371,0,1,1-24.371-24.371,24.371,24.371,0,0,1,24.371,24.371" fill="rgba(230,230,230,0.3)" fillRule="evenodd"/>
+                        d="M199.374,191.592a59.5,59.5,0,1,1-59.5-59.5,59.5,59.5,0,0,1,59.5,59.5m97.58-95a38.08,38.08,0,1,1-38.08-38.08,38.08,38.08,0,0,1,38.08,38.08m-3.709,105a24.371,24.371,0,1,1-24.371-24.371,24.371,24.371,0,0,1,24.371,24.371" fill="rgba(230,230,230,0.3)" fillRule="evenodd"/>
               </g>
             }
           </g>

@@ -13,6 +13,7 @@ const BottomContainer = styled.div`
   width: 100%;
   
   ${spacing('mt', 9)};
+  ${spacing('ph', 5)};
 `
 
 const BottomBar = ({nextProps, backProps, step, ...props}) => {
@@ -23,12 +24,9 @@ const BottomBar = ({nextProps, backProps, step, ...props}) => {
     <BottomContainer  >
       <GalaxyButton text='Back' {...backProps} />
 
-
       <Progress step={step}/>
 
       <GalaxyButton  {...nextProps} />
-
-      <pre>{rendered.current++}</pre>
 
     </BottomContainer>
   )

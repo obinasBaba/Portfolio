@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import styled, { css } from 'styled-components'
 import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
-import { Typography } from '@material-ui/core'
+import {Button, Typography} from '@material-ui/core'
 import { spacing, text } from '../../../../styles/mixins'
 import TopicIllustration from './Topicillustration'
 
@@ -18,7 +18,7 @@ const TopicItemContainer = styled.div`
   transition: background-color 0.3s ease-in;
 
   &:hover {
-    //background-color: #5d6c7b;;
+    background-color: #5d6c7b;;
 
     ${({ selected }) =>
       !selected &&
@@ -39,6 +39,16 @@ const TopicItemContainer = styled.div`
   & .topic_checkbox {
     position: absolute;
     visibility: hidden;
+  }
+  
+  button{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    z-index: 10;
+    border-radius: 20px;
+
+
   }
 `
 
@@ -74,6 +84,8 @@ const TopicItem = ({ title, body, path, selected, ...props }) => {
         checkboxRef.current.click()
       }}
     >
+      <Button/>
+
       <input
         ref={checkboxRef}
         className="topic_checkbox"

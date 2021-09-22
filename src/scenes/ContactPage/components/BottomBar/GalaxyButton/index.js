@@ -5,7 +5,8 @@ import {text} from '../../../../../styles/mixins'
 import {motion} from 'framer-motion'
 
 const GalaxyButtonContainer = styled( motion.button )`
-  all: inherit;
+  background-color: transparent;
+  border: none;
   max-width: 120px;
   margin: -15px;
   display: grid;

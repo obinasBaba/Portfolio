@@ -139,7 +139,7 @@ const LottiContainer = styled.div`
       font-weight: bolder;
       -webkit-text-stroke: 2px #5d6c7b;
       color: transparent;
-      //font-family: Elianto-Regular;
+      font-family: Elianto-Regular;
     }
   }
 `
@@ -251,7 +251,7 @@ const Projects = () => {
       exit="exit"
       ref={containerRef}
     >
-      <HeadlineTitle title={'Projects'} mb={3} subtitle={'Case Studies'} />
+      {/*<HeadlineTitle title={'Projects'} mb={3} subtitle={'Case Studies'} />*/}
 
       <ScrollPlanet data-scroll
                     // data-scroll-trigger='#projects'
@@ -275,10 +275,14 @@ const Projects = () => {
             setRegisteredScrollPos('#projects')
           }}
         >
-            <Typography variant='h1' noWrap
+            <Typography variant='h1' noWrap gutterBottom
                         // data-pointer='magnet'
             >
               Selected Works
+            </Typography>
+
+          <Typography  noWrap align='center'>
+              case-studies
             </Typography>
         </Link>
 
