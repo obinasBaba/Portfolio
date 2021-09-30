@@ -1,13 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import styled from 'styled-components'
-import MotionBtn from '../../components/MotionBtn'
-import { length, spacing, text } from '../../styles/mixins'
+import { spacing, text } from '../../styles/mixins'
 import Logo from './logo.svg'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import { GradientText } from '../../components/GradientText'
 import FooterMeta from './FooterMeta'
 import Footer from '../../components/Footer'
-import BlobButton from '../../components/ButtonBlob'
 import GalaxyButton from '../ContactPage/components/BottomBar/GalaxyButton'
 import useOnScreen from '../../hooks/useOnScreen'
 
@@ -19,7 +17,7 @@ const MailUsContainer = styled.div`
   justify-content: space-between;
   text-align: center;
 
-  max-width: 1600px;
+  max-width: 100%;
   margin: 0 auto;
   width: 100%;
   //height: calc(100vh - 142px);
@@ -53,12 +51,12 @@ const Background = styled.span`
 
 const TitleWrapper = styled.div`
   display: flex;
-  gap: 2rem;
   flex-flow: column;
   align-items: center;
   justify-content: center;
 
   ${spacing('mb', 5)};
+  ${spacing('gap', 5)};
 
   .title {
     font-weight: 900;
@@ -81,22 +79,11 @@ const LogoEffect = styled.div`
 `
 
 const MailUs = () => {
-  const elRef = React.useRef(null)
-  const { bottomGradient, setBottomGradient, setContactModal } = useContext(AppStateContext)
 
-  const inView = useOnScreen(elRef, .5);
-
-  useEffect(() => {
-    if ( inView )
-      setBottomGradient(false)
-    else
-      setBottomGradient(true)
-
-  }, [inView])
 
 
   return (
-    <MailUsContainer ref={elRef} data-scroll-section={true} >
+    <MailUsContainer  data-scroll-section={true} >
       <Background />
       <LogoEffect />
 
@@ -111,6 +98,7 @@ const MailUs = () => {
       <FooterMeta />
 
       <Footer />
+
     </MailUsContainer>
   )
 }

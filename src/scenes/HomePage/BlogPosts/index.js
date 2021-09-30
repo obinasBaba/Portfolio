@@ -5,8 +5,8 @@ import {
   gridify, largeUp,
   mediumDown, mediumUp,
   smallDown, smallUp,
-  spacing,
-} from '../../../styles/mixins'
+  spacing, xLargeUp
+} from "../../../styles/mixins";
 import Info from './components/Info'
 import Previews from './components/Previews'
 import HeadlineTitle from '../../../components/Headline'
@@ -38,9 +38,16 @@ const PostsContainer = styled.section`
     ${largeUp(css`
       ${gridColWidth(5, 25)};
     ` )};
+    
+    
+    ${xLargeUp(css`
+      ${gridColWidth(3, 25)};
+    ` )};
   }
 
   & main {
+    //border: thin solid red;
+    
     ${gridColWidth(5, 59)};
 
 

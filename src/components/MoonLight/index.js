@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import {largeUp, smallUp} from '../../styles/mixins'
+import { largeUp, smallUp, xLargeUp } from "../../styles/mixins";
 import styled, { css } from 'styled-components'
 import { motion, useSpring } from 'framer-motion'
 import { getMousePos } from '../../helpers/utils'
@@ -28,7 +28,14 @@ const MoonBg = styled(motion.div)`
     top: -66%;
     width: initial;
     //transform: translateX(-20%);
-    
+
+    & > svg {
+      .path_73{
+        filter: blur(10px);
+        transform: scale(.95);
+      }
+    }
+
     ${smallUp(css`
       transform: translateX(0%);
       left: 0%;
@@ -45,16 +52,11 @@ const MoonBg = styled(motion.div)`
       width: 150%;
     ` )};
     
-
-    & > svg {
-      
-      .path_73{
-        filter: blur(10px);
-        transform: scale(.95);
-
-      }
-
-    }
+    ${xLargeUp( css`
+      top: -25%;
+      right: -65%;
+      height: 1500px;
+    ` )};
   }
 `
 
@@ -88,8 +90,6 @@ const MoonLight = ({ zIndex, pos = 'fixed', showMoon = true, show = true, varian
   const x = useSpring(0, config)
   const y = useSpring(0, config)
 
-  // const x = useTransform(xs, x => x / 38 * -1)
-  // const y = useTransform(ys, y => y / 25 * -1)
 
   useEffect(() => {
     let trackMousePos = ev => {

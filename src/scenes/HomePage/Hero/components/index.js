@@ -42,14 +42,10 @@ export const TextContainer = styled.div`
   ` ) };
 
   ${xLargeUp( css`
-    ${spacing('pl', 12)}; 
+    ${spacing('pl', 5)}; 
   ` )};
 
 
-  & > h2 {
-    //margin-left: 15px;
-    //font-weight: bolder;
-  }
 
 }`
 
@@ -87,7 +83,23 @@ export const Greeting = styled.div`
     @media (max-width: 576px) {
       font-size: clamp(30px, 15vw, 80px);
     }
+    
+   
   }
+
+  ${xLargeUp( css`
+      & h1{
+        ${text(5.8  )};
+      }
+    
+    svg{
+      ${ spacing( 'mt', 0 ) };
+      ${ spacing( 'max-width', 8.7 ) };
+    }
+    
+    
+
+  `)};
 
 `
 
@@ -119,6 +131,24 @@ export const Intro = styled.div`
     ${text(1.6 )};
 
   }
+  
+  ${xLargeUp( css`
+    margin-top: 2rem;
+
+
+    & > :first-child {
+      max-width: 21ch;
+      word-spacing: 0;
+
+      ${text(3  )};
+      //color: #6c7b8a;
+    }
+
+    & > :last-child{
+      ${text(1.3 )};
+    }
+    
+  ` )};
 `
 
 export const Lines = styled.div`

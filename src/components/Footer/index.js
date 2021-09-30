@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect } from "react";
 import styled, { css } from 'styled-components'
 import {
   length,
@@ -15,6 +15,8 @@ import Behance from '../../assets/images/brands/behance.inline.svg'
 import Github from '../../assets/images/brands/github.inline.svg'
 import Border from './border.inline.svg'
 import { Container } from '@material-ui/core'
+import { AppStateContext } from "../../contexts/AppStateContext";
+import useOnScreen from "../../hooks/useOnScreen";
 
 const FooterContainer = styled.div`
   position: relative;
@@ -110,13 +112,13 @@ const Social = styled.ul`
 
 const Love = styled.div`
   position: absolute;
-  //left: 0;
-  ${spacing('left', 0)};
-
   font-weight: 300;
   line-height: 0;
   letter-spacing: 1.2px;
+  
   ${text(0.7)};
+  ${spacing('left', 0)};
+
 
   span {
     font-size: 28px;
@@ -124,8 +126,9 @@ const Love = styled.div`
 
   b {
     font-weight: 700;
-    font-family: Dancing Script, cursive;
-    font-size: 1.2rem;
+    font-style: italic;
+    //font-family: Dancing Script, cursive;
+    //font-size: 1.2rem;
   }
 
   @media screen and (min-width: 1600px) {
@@ -157,8 +160,22 @@ const Copy = styled.div`
 `
 
 const Footer = ({ color }) => {
+
+  const elRef = React.useRef(null)
+  const { bottomGradient, setBottomGradient, setContactModal } = useContext(AppStateContext)
+
+  const inView = useOnScreen(elRef, .2);
+
+  useEffect(() => {
+    if ( inView )
+      setBottomGradient(false)
+    else
+      setBottomGradient(true)
+
+  }, [inView])
+
   return (
-    <Container maxWidth="lg" disableGutters={true} data-scroll={true}>
+    <Container ref={elRef} maxWidth="lg" disableGutters={true} data-scroll={true}>
       <FooterContainer>
         <Copy>
           <span>&copy;</span> 2021 Henzzo.io

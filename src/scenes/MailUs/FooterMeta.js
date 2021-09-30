@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Container, Typography } from '@material-ui/core'
-import {mediumUp, spacing, text} from '../../styles/mixins'
+import { mediumUp, spacing, text, xLargeUp } from "../../styles/mixins";
 import { motion } from 'framer-motion'
 import { Link } from 'gatsby'
 
@@ -27,6 +27,7 @@ const MetaColumn = styled.div`
   flex-flow: column;
   align-items: flex-start;
   //border: thin solid lightgray;
+  
   ${spacing('mb', 10)};
   ${spacing('ph', 4)};
   
@@ -52,6 +53,23 @@ const MetaColumn = styled.div`
     }
 
   `)};
+  
+  ${xLargeUp( css`
+      ${spacing('ph', 0)};
+
+
+    & .title {
+      ${spacing('mb', 1)};
+    }
+
+    & .link-txt {
+      ${spacing('mt', 0.5)};
+      font-weight: 300;
+      ${text(0.8)};
+    }
+    
+    
+  ` )};
 `
 
 const Hover = styled(motion.div)`

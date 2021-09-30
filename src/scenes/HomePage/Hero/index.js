@@ -31,11 +31,6 @@ const Hero = () => {
           </Greeting>
 
 
-          <div>
-            {/*<Lines/>*/}
-
-          </div>
-
           <Intro>
             <Typography variant='h3'>
               S-O-L-I-D front-end, <br/> less frame-work, less bugs, more engineering patterns!

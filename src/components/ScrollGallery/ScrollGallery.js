@@ -51,7 +51,7 @@ const ScrollTrackText = styled(Typography)`
 
 const Gallery = ({
   imageRow,
-  speed = 3,
+  speed = 1,
   delay = 0.03,
   target,
   right = false,
@@ -65,7 +65,7 @@ const Gallery = ({
           data-scroll-speed={speed}
           // data-scroll-target={`#image_row_container${target}`}
           data-scroll-direction="horizontal"
-          data-scroll-delay='.3'
+          data-scroll-delay='.08'
         >
           {imageRow.map((item, index) => {
             return <ImageGrid images={item} idx={index} key={item[0].name + index} />

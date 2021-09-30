@@ -17,7 +17,7 @@ const PreviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  max-width: 500px;
+  max-width: 600px;
 
 
   &:not(:first-child) {

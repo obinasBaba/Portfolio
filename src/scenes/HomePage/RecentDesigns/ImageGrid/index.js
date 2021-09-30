@@ -71,7 +71,7 @@ const ImageWrapper = styled.div`
 const DesignImage = ( { images, idx } ) => {
 
   return (
-    <ImageWrapper data-scroll data-scroll-speed={ idx %2 === 0 ? 1 : -1 }  >
+    <ImageWrapper data-scroll data-scroll-speed={ idx % 2 === 0 ? .5 : -.5 }  >
       {
         images.map( (imgData, index) =>
           <GatsbyImage alt={imgData.name}

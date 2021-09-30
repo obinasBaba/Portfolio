@@ -1,6 +1,11 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import {mediumUp, smallDown, spacing} from '../../../../../styles/mixins'
+import {
+  mediumUp,
+  smallDown,
+  spacing,
+  xLargeUp
+} from "../../../../../styles/mixins";
 import { Typography } from '@material-ui/core'
 import {motion} from 'framer-motion'
 import {useProjectSvg} from '../../../../../hooks/queries/useProjectSvg'
@@ -14,8 +19,13 @@ export const ExperimentItem = styled( motion.div )`
   justify-content: space-between;
   //cursor: pointer;
 
-  ${spacing('pv', 5)};
-  ${spacing('pb', 3)};
+  ${spacing('mv', 5)};
+  ${spacing('mb', 3)};
+  
+  .focus{
+    //border: thin solid green;
+    z-index: 10;
+  }
   
   video{
     //border: thin solid red;
@@ -33,26 +43,19 @@ export const ExperimentItem = styled( motion.div )`
       width: clamp(150px, 36vw, 230px);
       height: clamp(150px, 36vw, 230px);
     `)};
+    
+    ${ xLargeUp( css`
+      width: clamp(100px, 35vw, 270px);
+      height: clamp(100px, 35vw, 270px);
+    ` ) };
   }
-  
 
-  ${mediumUp(css`
-    ${spacing('pv', 5)};
-    ${spacing('pb', 3)};
-    flex: 1 1 25%;
-    //max-width: 330px;
-    img {
-      width: clamp(100px, 20vw, 230px);
-      height: clamp(100px, 20vw, 230px);
-    }
-  `)};
-  
   .title{
     transition: transform .5s cubic-bezier(0.6, 0.01, 0, 0.9), color .3s ease-in;
     transform: scale(1);
     color: white;
   }
-  
+
   &:hover{
     .title{
       transition: transform .5s cubic-bezier(0.6, 0.01, 0, 0.9) .1s, color .3s ease-in;
@@ -60,26 +63,25 @@ export const ExperimentItem = styled( motion.div )`
       transform: scale(1.1);
     }
 
-    .num{
-      transition: transform .5s cubic-bezier(0.6, 0.01, 0, 0.9) .3s;
-      transform: translateY(-30%);
-      &::after{
-        transform: translateX(-50%) translateY(50%);
-        transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9),
-                    opacity .2s ease-in;
-        opacity: 1;
-      }
-    }
   }
+  
+
+  ${mediumUp(css`
+    ${spacing('mv', 5)};
+    ${spacing('mb', 3)};
+    
+    flex: 1 1 25%;
+  `)};
+  
+  
 `
 
 const InfoBar = styled.div`
+  position: relative;
   display: flex;
   flex-flow: column;
   justify-content: space-between;
   align-items: flex-start;
-  //border: thin solid teal;
-  position: relative;
   
   //border: thin solid lightcoral;
   width: 85%;
@@ -125,19 +127,21 @@ const Item = ({  imgUrl, title, index}) => {
 
 
   return (
-    <ExperimentItem data-pointer='focus'
+    <ExperimentItem
                     data-scroll
                     data-scroll-speed={index}
                     // data-scroll-delay={index * Math.random()}
     >
 
-      <video autoPlay loop muted playsInline>
-        <source src={imgUrl.webm.publicURL} type="video/webm" />
-        <source src={imgUrl.mp4.publicURL} type="video/mp4" />
-      </video>
+      <div className='focus' data-pointer='focus'>
+        <video autoPlay loop muted playsInline >
+          <source src={imgUrl.webm.publicURL} type="video/webm" />
+          <source src={imgUrl.mp4.publicURL} type="video/mp4" />
+        </video>
+      </div>
+
 
       <InfoBar >
-
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 400 400">
           <defs>
             <path d="M0, 200a200, 200 0 1, 0 400, 0a200, 200 0 1, 0 -400, 0" id="txt-path"/>
@@ -150,9 +154,8 @@ const Item = ({  imgUrl, title, index}) => {
 
 
         </svg>
-
-
       </InfoBar>
+
     </ExperimentItem>
   )
 }

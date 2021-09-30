@@ -5,8 +5,8 @@ import {
   smallUp,
   spacing,
   text,
-  title,
-} from '../../../../styles/mixins'
+  title, xLargeUp
+} from "../../../../styles/mixins";
 import SlideHover from '../../../../components/SlideHover'
 import {Link} from 'gatsby'
 import logo from './images/logo.svg'
@@ -72,13 +72,21 @@ const BlogEffect = styled.div`
 
   ${ length('width', 70) };
   ${ length('height', 70) };
+  
+  ${xLargeUp( css`
+    left: -100%;
+
+
+    ${ length('width', 80) };
+    ${ length('height', 80) };
+  ` )};
 `
 
 const Info = () => {
   return (
     <InfoTxt>
 
-      <BlogEffect data-scroll data-scroll-speed='2.2'/>
+      <BlogEffect data-scroll data-scroll-speed='1.5'/>
 
       <Desc >
         I usually write an in-depth article sharing what I learned every often.
