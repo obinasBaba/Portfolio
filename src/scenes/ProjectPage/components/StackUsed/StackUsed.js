@@ -21,7 +21,7 @@ const StackList = styled(motion.ul)`
 
   }
   
-  border: thin solid red;
+  //border: thin solid red;
 
   grid-row: 2;
   display: flex;

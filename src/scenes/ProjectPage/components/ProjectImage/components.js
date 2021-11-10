@@ -4,14 +4,14 @@ import {
   gridColWidth, gridMultiplayer,
   largeUp,
   mediumUp,
-  spacing,
-} from '../../../../styles/mixins'
+  spacing, xLargeUp
+} from "../../../../styles/mixins";
 
 export const ProjectImg = styled(motion.div)`
   ${gridColWidth(6, 60)}; //mobile-first
   position: relative;
 
-  //padding: calc(100vw / 64 * 0.5) calc(100vw / 64 * 0.5) calc(100vw / 64 * 0.5) calc(100vw / 64 * 4);
+  padding: calc(100vw / 64 * 0.5) calc(100vw / 64 * 0.5) calc(100vw / 64 * 0.5) calc(100vw / 64 * 4);
   ${gridMultiplayer('padding', .5)};
   ${gridMultiplayer('padding-left', 4)};
 
@@ -53,9 +53,14 @@ export const InnerWrapper = styled(motion.div)`
   ${mediumUp( css`
     height: 400px;
   ` )};
+
+  ${xLargeUp( css`
+    height: 500px;
+    
+  ` )};
   
   &::after{
-    content: '';
+    //content: '';
     position: absolute;
     display: block;
     inset: 0;

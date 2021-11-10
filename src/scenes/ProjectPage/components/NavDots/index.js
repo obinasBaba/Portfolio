@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled, {css} from 'styled-components'
 import { motion, AnimateSharedLayout } from 'framer-motion'
-import {mediumUp, spacing} from '../../../../styles/mixins'
+import { mediumUp, spacing, xLargeUp } from "../../../../styles/mixins";
 import ThumbAndDot from './Components/ThumbAndDot'
 
 const NavContainer = styled(motion.ul)`
@@ -15,7 +15,7 @@ const NavContainer = styled(motion.ul)`
   justify-content: center;
   padding: 0;
   margin: 0;
- 
+  
   ${ mediumUp(css`
     flex-flow: column;
     top: 40%;
@@ -35,6 +35,11 @@ const NavContainer = styled(motion.ul)`
 
   ${spacing('ml', 4.5)};
   ${spacing('mb', 3.5)};
+  
+  ${xLargeUp( css`
+    ${spacing('ml', 6.7)};
+    
+  ` )};
 `
 
 const parentVariant = {

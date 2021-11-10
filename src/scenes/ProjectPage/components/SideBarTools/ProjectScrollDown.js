@@ -1,7 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from "styled-components";
 import { AnimatePresence, motion } from 'framer-motion'
-import { spacing } from '../../../../styles/mixins'
+import { spacing, xLargeUp } from "../../../../styles/mixins";
 import ScrollDown from '../../../../components/ScrollDown'
 
 const ScrollDownWrapper = styled(motion.div)`
@@ -17,6 +17,11 @@ const ScrollDownWrapper = styled(motion.div)`
   grid-gap: 0.6rem;
 
   ${spacing('ml', 2.25)};
+
+  ${xLargeUp( css`
+    ${spacing('ml', 6.35)};
+    
+  ` )};
 
   //border: thin solid red;
 `
