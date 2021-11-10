@@ -38,22 +38,16 @@ const Btn = styled(motion.button)`
     //border: thin solid red;
   }
 
-  & :hover,
-  & :focus {
-    & > :first-child {
-      //background-color: #e7a28f;
-
-      &:after,
-      &:before {
-        //bars after and before sudo
-        //background-color: #e7a28f;
-      }
-    }
-  }
   
   svg{
     position: absolute;
     inset: 0;
+    
+    ${( {menuIsOpen} ) => menuIsOpen && css`
+      #eye-left, #eye-right{
+        fill: #072142;
+      }
+  `};
   }
   
   & :hover{
@@ -63,6 +57,8 @@ const Btn = styled(motion.button)`
       }
     }
   }
+  
+  
 `
 
 const Bars = styled.span`
@@ -110,7 +106,7 @@ const HiddenText = styled.p`
 
 `
 
-const NavBtn = ({ isWhite, toggleMenu, pos, variants = {}, menu }) => {
+const NavBtn = ({ isWhite, toggleMenu, pos, variants = {}, menuIsOpen }) => {
   // useMagnet('.nav-btn', 1.6, 0.51)
 
   return (
@@ -122,6 +118,7 @@ const NavBtn = ({ isWhite, toggleMenu, pos, variants = {}, menu }) => {
       data-tooltip
       data-tooltip-text="open my space"
       isWhite={isWhite}
+      menuIsOpen={menuIsOpen}
       pos={pos}
       initial={{ opacity: 0 }}
       animate={{

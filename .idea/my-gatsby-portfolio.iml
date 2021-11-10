@@ -11,5 +11,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="default-passive-events" level="application" />
+    <orderEntry type="library" name="default-passive-events" level="application" />
+    <orderEntry type="library" name="webfont" level="application" />
+    <orderEntry type="library" name="kxo3pgz" level="application" />
   </component>
 </module>

@@ -29,10 +29,10 @@ const ProgressCircleContainer = styled.div`
   top: calc(100vh - calc(var(--size) * 6rem));
   bottom: auto;
   right: 0;
-  z-index: 11;
+  z-index: 7;
 `
 
-const ProgressCircleWrapper = styled.div`
+const ProgressCircleWrapper = styled( motion.div )`
   display: grid;
   place-items: center;
   
@@ -102,10 +102,21 @@ const ScrollProgressCircle = () => {
         data-tooltip
         data-tooltip-text='Write me a poem...'
         onClick={() => setContactModal(!isContactOpen)}
+        initial={{
+          // opacity: 0,
+        }}
+        animate={{
+          // opacity: 1
+        }}
+
+        transition={{
+          duration : 2
+        }}
       >
 
         <motion.svg xmlns="http://www.w3.org/2000/svg"
              className='phone'
+
              width="27" height="27" viewBox="0 0 27 27">
 
           <defs>

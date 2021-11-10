@@ -63,7 +63,7 @@ const logoVariant = {
   transition: {
     ease: [0.6, 0.01, 0, 0.9],
     duration: 3,
-    delay: 1,
+    delay: 0,
   },
 }
 

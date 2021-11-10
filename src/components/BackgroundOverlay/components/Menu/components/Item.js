@@ -3,7 +3,13 @@ import {itemVariants, transition} from '../variants'
 import {Link, navigate} from 'gatsby'
 import styled, {css} from 'styled-components'
 import {motion} from 'framer-motion'
-import {largeUp, mediumUp, text} from '../../../../../styles/mixins'
+import {
+  largeUp,
+  mediumUp,
+  spacing,
+  text,
+  xLargeUp
+} from "../../../../../styles/mixins";
 import {AppStateContext} from '../../../../../contexts/AppStateContext'
 import OverlayController from '../../../OverlayController'
 
@@ -11,17 +17,32 @@ const hoverMixin = css`
   [data-circle='1'] {
     transform: scale(1.62);
     transition: 1s cubic-bezier(0.6, 0.01, 0, 0.9);
+
+    ${xLargeUp( css`
+      transform: scale(1.32);
+
+    ` )};
   }
 
   [data-circle='2'],
   [data-circle='3'] {
     transform: scale(2.6);
     transition: 1s cubic-bezier(0.6, 0.01, 0, 0.9);
+
+    ${xLargeUp( css`
+      transform: scale(1.62);
+
+    ` )};
   }
 
   [data-circle='4'] {
     transform: scale(2);
     transition: 1s cubic-bezier(0.6, 0.01, 0, 0.9);
+
+    ${xLargeUp( css`
+      transform: scale(1.7);
+
+    ` )};
   }
 
   .stars {
@@ -126,6 +147,11 @@ const Circle = styled( motion.div )`
 
       width: var(--size);
       height: var(--size);
+      
+      
+      ${xLargeUp( css`
+        --size: 16.24rem;
+      ` )};
     }
 
     &[data-circle='2']{
@@ -133,6 +159,10 @@ const Circle = styled( motion.div )`
 
       width: var(--size);
       height: var(--size);
+
+      ${xLargeUp( css`
+        --size: 11.24rem;
+      ` )};
     }
     
     &[data-circle='3'] {
@@ -140,6 +170,10 @@ const Circle = styled( motion.div )`
 
       width: var(--size);
       height: var(--size);
+
+      ${xLargeUp( css`
+        --size: 9.24rem;
+      ` )};
     }
 
     &[data-circle='4'] {
@@ -147,7 +181,14 @@ const Circle = styled( motion.div )`
 
       width: var(--size);
       height: var(--size);
+
+
+      ${xLargeUp( css`
+        --size: 11.24rem;
+      ` )};
     }
+    
+    
     
   ` )};
 `
@@ -245,5 +286,7 @@ const Item = ({currentPath, link, stars, icon, index, title, onClick}) => {
     </ItemContainer>
   )
 }
+
+// benchmarking( react, chrome profiler)
 
 export default Item

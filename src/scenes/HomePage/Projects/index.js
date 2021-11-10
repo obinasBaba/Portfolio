@@ -1,27 +1,22 @@
-import React, {useContext, useEffect, useRef} from 'react'
-import styled, {css} from 'styled-components'
+import React, { useContext, useEffect, useRef } from 'react'
+import styled, { css } from 'styled-components'
 import {
   gridMultiplayer,
-  length, largeUp,
+  largeUp,
+  length,
+  smallUp,
   spacing,
-  text, smallUp,
+  text,
 } from '../../../styles/mixins'
-import {
-  motion,
-  useAnimation,
-  useMotionValue,
-  useSpring,
-  useTransform,
-} from 'framer-motion'
-import { Link, useScrollRestoration } from 'gatsby'
-import HeadlineTitle from '../../../components/Headline'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { Link } from 'gatsby'
 import lotti from 'lottie-web'
 import { useProjectCircles } from '../../../hooks/queries/useProjectCircles'
 import useOnScreen from '../../../hooks/useOnScreen'
-import {AppStateContext} from '../../../contexts/AppStateContext'
-import BlobButton from '../../../components/ButtonBlob'
-import GalaxyButton from '../../ContactPage/components/BottomBar/GalaxyButton'
-import {Typography} from '@material-ui/core'
+import { AppStateContext } from '../../../contexts/AppStateContext'
+import { Typography } from '@material-ui/core'
+import HeadlineTitle from "../../../components/Headline";
+import RotationCircleText from "./RotationCircleText";
 
 const parentVariant = {
   initial: {
@@ -38,8 +33,12 @@ const parentVariant = {
 
 const ProjectContainer = styled(motion.section)`
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   flex-flow: column;
+  place-items: center;
+  place-content: center;
+  
   align-items: center;
   justify-content: center;
   max-width: 100%;
@@ -85,8 +84,8 @@ const ScrollPlanet = styled.div`
   bottom: 30%;
   
   ${largeUp(css`
-    left: 10%;
-    bottom: 40%;
+    left: 6%;
+    bottom: 25%;
   `)};
 
 `
@@ -112,9 +111,13 @@ const LottiContainer = styled.div`
   border-radius: 100px;
   //border: thin solid green;
   
- 
-  ${length('height', 53)};
-  ${length('width', 53)};
+  grid-row: 2 / 3;
+  grid-column: 1/ 1;
+
+
+
+  ${length('height', 63)};
+  ${length('width', 63)};
 
   .lotti {
     position: absolute;
@@ -169,7 +172,7 @@ const Projects = () => {
   const yBig = useSpring(0, config)
   const xBig = useSpring(0, config)
 
-  const ySmall = useTransform(yBig, y => y / 4)
+  const ySmall = useTransform(yBig, y => y / 6)
   const xSmall = useTransform(xBig, x => x / 4)
 
   const calculateMotionValues = (x, y) => {
@@ -251,7 +254,7 @@ const Projects = () => {
       exit="exit"
       ref={containerRef}
     >
-      {/*<HeadlineTitle title={'Projects'} mb={3} subtitle={'Case Studies'} />*/}
+      <HeadlineTitle title={'Projects'} mb={3} subtitle={'Case Studies'} />
 
       <ScrollPlanet data-scroll
                     // data-scroll-trigger='#projects'
@@ -265,26 +268,7 @@ const Projects = () => {
         <Planet className="planet-right" style={{ y: ySmall, x: xSmall }} />
       </ScrollPlanet2>
 
-      <LottiContainer >
-        <Link
-          className="to-projects"
-          data-tooltip
-          data-tooltip-text="Let me show you how cool i am!"
-          to={'/projects/#one'}
-          onClick={() => {
-            setRegisteredScrollPos('#projects')
-          }}
-        >
-            <Typography variant='h1' noWrap gutterBottom
-                        // data-pointer='magnet'
-            >
-              Selected Works
-            </Typography>
-
-          <Typography  noWrap align='center'>
-              case-studies
-            </Typography>
-        </Link>
+      {/*<LottiContainer >
 
         <motion.div
           ref={circle1Ref}
@@ -297,7 +281,10 @@ const Projects = () => {
           style={{ rotate: moRotate2 }}
           className="lotti lotti-2"
         />
-      </LottiContainer>
+      </LottiContainer>*/}
+
+      <RotationCircleText />
+
     </ProjectContainer>
   )
 }

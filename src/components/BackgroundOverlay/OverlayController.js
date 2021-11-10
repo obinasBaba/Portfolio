@@ -62,6 +62,7 @@ class OverlayController {
       setTimeout(() => this.close(), 250)
     }
 
+    return this
   }
 
   open() {

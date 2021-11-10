@@ -1,7 +1,13 @@
 import React, {useContext, useEffect, useState} from 'react'
 import styled, { css } from 'styled-components'
 import { Container } from '@material-ui/core'
-import {length, largeUp, spacing, smallUp} from '../../../../styles/mixins'
+import {
+  length,
+  largeUp,
+  spacing,
+  smallUp,
+  xLargeUp
+} from "../../../../styles/mixins";
 import HeadlineTitle from '../../../../components/Headline'
 import {AppStateContext} from '../../../../contexts/AppStateContext'
 import {useTransform} from 'framer-motion'
@@ -24,13 +30,17 @@ const LogoLink = styled.a`
   display: none;
   justify-content: center;
   align-items: center;
+  
   ${ length('width', 12) };
   
   ${ smallUp( css`
     display: flex;
     margin-right: -30px;
-
   ` ) };
+  
+  ${xLargeUp( css`
+    margin-right: -100px;
+  ` )};
   
   img{
     width: 100%;
@@ -81,7 +91,7 @@ const Title = ({ dribbleRed, circledText }) => {
 
 
   return (
-    <TitleContainer maxWidth={'lg'} fixed={true} >
+    <TitleContainer maxWidth={'xl'} fixed={true} >
       <LogoLink
         href='href="https://dribbble.com/henok500'
         rel="noopener noreferrer"

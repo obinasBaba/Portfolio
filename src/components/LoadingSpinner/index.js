@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect, useRef} from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { transition } from '../../helpers/variants'
@@ -99,7 +99,7 @@ const BigBall = styled.div`
   background-color: white;
 `
 
- 
+
 
 const containerVariants = {
 
@@ -122,13 +122,17 @@ const LoadingSpinner = ({children}) => {
   const smallRef = useRef(null)
   const contentRef = useRef(null)
 
+  const [isOpened, setOpened] = useState(false)
+
   useLayoutEffect(() => {
 
-    OverlayController.getInstance().toggle(true, {
-      duration: 0,
-      delayPointsMax: 0,
-      delayPerPath: 0,
-    })
+    setOpened(
+      OverlayController.getInstance().toggle(true, {
+        duration: 0,
+        delayPointsMax: 0,
+        delayPerPath: 0,
+      }).isOpened
+    )
 
     return () => {}
 
@@ -137,30 +141,34 @@ const LoadingSpinner = ({children}) => {
   return (
 
 
-        <SpinnerContainer variants={containerVariants}
-                          transition={transition}
-                          initial='initial'
-                          animate='animate'
-                          key={'lkajdfs'}
-                          exit='exit'>
+        <>
+          {
+            isOpened && <SpinnerContainer variants={containerVariants}
+                                          transition={transition}
+                                          initial='initial'
+                                          animate='animate'
+                                          key={'lkajdfs'}
+                                          exit='exit'>
 
 
 
-            <Content ref={contentRef}>
-              <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
-                <defs>
-                  <filter id="goo">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
-                    <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
-                  </filter>
-                </defs>
-              </svg>
-              <SmallBall ref={smallRef} />
-              <BigBall />
-            </Content>
+              <Content ref={contentRef}>
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
+                  <defs>
+                    <filter id="goo">
+                      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+                      <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+                    </filter>
+                  </defs>
+                </svg>
+                <SmallBall ref={smallRef} />
+                <BigBall />
+              </Content>
 
-        </SpinnerContainer>
+            </SpinnerContainer>
+          }
+        </>
 
 
 

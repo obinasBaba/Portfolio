@@ -146,6 +146,7 @@ class PaperCursor {
         color: new Paper.Color('#78809EFF'),
       })
     )
+
     this.cClone = this.circles[0].self
     this.circleGroup = new Paper.Group(this.circles.map(p => p.path))
 
@@ -451,7 +452,7 @@ class PaperCursor {
     Paper.setup(this.canvas)
 
     this.initialize()
-    console.log(this.cClone.bounds.width, this.pointer.path.bounds.width)
+    // console.log(this.cClone.bounds.width, this.pointer.path.bounds.width)
     this.normalNoise()
 
   }
@@ -466,6 +467,11 @@ class PaperCursor {
     Paper.project.remove();
     Paper.view.remove()
   }
+
+
+  set stop(value){}
+
+  set start(value){}
 }
 
 export default PaperCursor

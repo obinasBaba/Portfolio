@@ -107,17 +107,21 @@ function HeaderAppBar({}) {
 
   }, [menuIsOpen])
 
+  const toggleMenu = () => {
+    if ( OverlayController.isAnimating )
+      return
+
+    setMenuIsOpen(!menuIsOpen)
+    OverlayController.getInstance().toggle(!menuIsOpen);
+
+  }
+
   return (
     <>
       <AnimatePresence>
 
         {menuIsOpen && (
-          <NavMenu closeMenu={() => {
-
-            setMenuIsOpen(false)
-            OverlayController.getInstance().toggle(false);
-
-          }} />
+          <NavMenu closeMenu={toggleMenu} />
         )}
 
       </AnimatePresence>
@@ -128,13 +132,8 @@ function HeaderAppBar({}) {
 
           <NavBtn
             key='nav'
-            toggleMenu={ () => {
-              if( OverlayController.isAnimating ) return;
-
-              setMenuIsOpen(!menuIsOpen)
-              OverlayController.getInstance().toggle(!menuIsOpen);
-
-            }}
+            menuIsOpen={menuIsOpen}
+            toggleMenu={ toggleMenu}
           />
         </NavContainer>
       </HideOnScroll>

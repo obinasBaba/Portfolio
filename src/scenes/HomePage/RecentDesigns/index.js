@@ -1,10 +1,8 @@
-import React, {useLayoutEffect, useRef} from 'react'
-import styled, {css} from 'styled-components'
+import React, { useLayoutEffect, useRef } from 'react'
+import styled from 'styled-components'
 import Title from './Title'
 import { useProjectSvg } from '../../../hooks/queries/useProjectSvg'
-import { spacing } from '../../../styles/mixins'
 import useHomeWorksAssets from '../../../hooks/queries/useHomeWorksAssets'
-import ImageGrid from './ImageGrid'
 import ScrollGallery from '../../../components/ScrollGallery/ScrollGallery'
 import ImagesLoaded from 'imagesloaded'
 import useOnScreen from '../../../hooks/useOnScreen'
@@ -17,8 +15,6 @@ const RecentDesignWrapper = styled.section`
 const RecentWorks = () => {
 
   const { circledText, dribbleRed } = useProjectSvg();
-
-
 
   const {
     Art,
@@ -47,35 +43,34 @@ const RecentWorks = () => {
   ];
 
   const containerRef = useRef(null)
-  const inView = useOnScreen(containerRef, 0, '5%')
-
-
+  const inView = useOnScreen(containerRef,
+    0,
+    '5%')
 
   useLayoutEffect(() => {
-    // console.log('recentDesign', events.addLoader)
+      // console.log('recentDesign', events.addLoader)
 
-    // events.addLoader()
+      // events.addLoader()
 
-    ImagesLoaded(document.querySelectorAll('.dribble-shots'))
-      .on('done',  instance => {
-        // setLoadingPage(false)
-        // events.finishLoading()
-      })
+      ImagesLoaded(document.querySelectorAll('.dribble-shots'))
+        .on('done',
+          instance => {
+            // setLoadingPage(false)
+            // events.finishLoading()
+          })
 
-  }, [])
-
-
-  
+    },
+    [])
 
   return (
-    <RecentDesignWrapper id='#design'  data-scroll-section ref={containerRef}>
+    <RecentDesignWrapper id='#design' data-scroll-section ref={containerRef}>
 
-      <Title circledText={ circledText.publicURL }
-             dribbleRed={ dribbleRed.publicURL } />
+      <Title circledText={circledText.publicURL}
+             dribbleRed={dribbleRed.publicURL} />
 
-          <ScrollGallery imageRow={imageList} speed={4} target={1}
-                         txt='Apocalypse'
-          />
+      <ScrollGallery imageRow={imageList} speed={4} target={1}
+                     txt='Apocalypse'
+      />
 
 
     </RecentDesignWrapper>

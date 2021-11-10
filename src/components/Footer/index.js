@@ -175,7 +175,7 @@ const Footer = ({ color }) => {
   }, [inView])
 
   return (
-    <Container ref={elRef} maxWidth="lg" disableGutters={true} data-scroll={true}>
+    <Container ref={elRef} maxWidth="xl" disableGutters={true} data-scroll={true}>
       <FooterContainer>
         <Copy>
           <span>&copy;</span> 2021 Henzzo.io

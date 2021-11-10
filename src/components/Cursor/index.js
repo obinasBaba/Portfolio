@@ -22,7 +22,7 @@ const Cursor = ({ path }) => {
 
     document.body.classList.remove('canvas-hover')
 
-    console.log('INIT__HOVER: ', path)
+    // console.log('INIT__HOVER: ', path)
 
     const handleHover = e => {
       // console.log('enter hover')
@@ -39,6 +39,7 @@ const Cursor = ({ path }) => {
         cursor.isPointed = true
       }
     }
+
     const handleLeave = () => {
       cursor.pointed = false
       cursor.isPointed = false;
