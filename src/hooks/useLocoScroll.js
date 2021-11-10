@@ -9,6 +9,7 @@ import {AppStateContext} from '../contexts/AppStateContext'
 gsap.registerPlugin(ScrollTrigger);
 
 export default function useLocoScroll(start, elementId = '[data-scroll-container="true"]') {
+
   const {moScroll} = useContext(AppStateContext)
 
   console.log('outLocoInvoked...')
@@ -29,6 +30,8 @@ export default function useLocoScroll(start, elementId = '[data-scroll-container
       multiplier: 1,
       getDirection: true,
     });
+
+
 
     // whenever when we scroll loco update scrollTrigger
     locoScroll.current.on("scroll", arg => {
@@ -93,7 +96,7 @@ export default function useLocoScroll(start, elementId = '[data-scroll-container
 
     setTimeout(() => {
       locoScroll.current.update()
-    }, 1000)
+    }, 2000)
 
     return () => {
       if (locoScroll.current) {

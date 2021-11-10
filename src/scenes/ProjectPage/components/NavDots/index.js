@@ -91,7 +91,7 @@ const NavDots = React.forwardRef((props, ref) => {
           <>
             <ThumbAndDot
               anchor={anchor}
-              key={anchor}
+              key={anchor + index}
               hidden={index === active}
               index={index}
               dataAnchor={anchor}

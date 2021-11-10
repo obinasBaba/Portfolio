@@ -15,49 +15,49 @@ import BackgroundOverlay from '../../components/BackgroundOverlay'
 
 const Page = ({ children, path }) => {
   const {
-    fontLoaded,
+    backgroundOverlay,
     currentPath,
     bottomGradient,
     variantsUtil: { isTop },
   } = useContext(AppStateContext)
 
-  const [fontFinish, setFontFinish] = useState(fontLoaded.get())
+  // const [fontFinish, setFontFinish] = useState(fontLoaded.get())
 
-  useLoadingFonts(fontLoaded, setFontFinish)
+  // useLoadingFonts(fontLoaded, setFontFinish)
 
   return (
     <PageContainer>
       <SkyColor />
       <BackgroundStars />
 
-      {fontFinish && <HeaderAppBar />}
+      {!backgroundOverlay && <HeaderAppBar />}
 
-      <BackgroundOverlay loading={fontFinish} />
 
       <Main data-scroll-container id="main-container">
         <AnimatePresence
           exitBeforeEnter
           custom={{ path, cPath: currentPath, isTop }}
         >
-          {fontFinish ? (
-            <React.Fragment key="Main-Content">
+          {/*{fontFinish ? (
+            <React.Fragment key="Main-Content">*/}
 
               {/*<Cursor path={currentPath} key={'cursor'} />*/}
               <AnimatePresence exitBeforeEnter custom={{ path, cPath: currentPath, isTop }}>
                 {children}
               </AnimatePresence>
 
-            </React.Fragment>
+        {/*    </React.Fragment>
           ) : (
 
             <LoadingSpinner key={'lkasdjf;laksjdf'} />
-          )}
+          )}*/}
+
         </AnimatePresence>
       </Main>
 
       { bottomGradient && <BottomGradient />}
 
-      {fontFinish && <>
+      {!backgroundOverlay && <>
         <ToolTip />
         <ProgressCircle />
       </>  }

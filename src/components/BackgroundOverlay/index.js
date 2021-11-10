@@ -52,21 +52,13 @@ const OverlayContainer = styled.div`
   }
 `
 
-const BackgroundOverlay = ({loading=true}) => {
+const BackgroundOverlay = ({loading=true, clsName}) => {
 
-
-  const overlayRef = useRef(null);
-
-  useLayoutEffect(() => {
-
-     overlayRef.current = OverlayController.getInstance();
-
-    }, [])
 
   return (
-    <OverlayContainer loading={loading}>
+    <OverlayContainer loading={loading}  >
 
-      <svg className="shape-overlays" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <svg className={clsName} viewBox="0 0 100 100" preserveAspectRatio="none">
         <defs>
           <linearGradient id="gradient1" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor="#00c99b" />

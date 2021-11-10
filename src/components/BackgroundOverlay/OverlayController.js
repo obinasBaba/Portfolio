@@ -2,14 +2,15 @@ import {ease} from '../../helpers/glsEasings'
 
 class OverlayController {
 
-  static instance = null;
+  static instance = new Map();
   static isAnimating = false;
   static  duration = 900;
   static  delayPointsMax = 280;
   static  delayPerPath = 250;
 
 
-  static getInstance(){
+  static getInstance(name){
+    if ( !name ) return null;
 
     this.duration = 900; //Animation duration of one path element.
 
@@ -18,16 +19,16 @@ class OverlayController {
     this.delayPerPath = 250; // Delay value per path.
 
 
-    if( this.instance === null){
-      this.instance = new OverlayController();
-      return this.instance
+    if( this.instance.get(name)){
+      return this.instance.get(name)
     }else{
-      return this.instance;
+      this.instance.set(name, new OverlayController(name))
+      return this.instance.get(name);
     }
   }
 
-  constructor() {
-    this.elm = document.body.querySelector('.shape-overlays'); // the parent SVG
+  constructor(name) {
+    this.elm = document.body.querySelector(`.${name}`); // the parent SVG
     this.path = this.elm.querySelectorAll('path'); //// Path elements in parent SVG. These are the layers of the overlay.
     this.numPoints = 10; //Number of control points for Bezier Curve.
     this.delayPointsArray = []; // Array of control points for Bezier Curve
@@ -59,7 +60,9 @@ class OverlayController {
 
     }else {
 
-      setTimeout(() => this.close(), 250)
+      this.close()
+
+      // setTimeout(() => this.close(), 250)
     }
 
     return this

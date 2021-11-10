@@ -1,7 +1,7 @@
 // noinspection JSIgnoredPromiseFromCall
 
 import React, {useContext, useEffect, useRef, useState} from 'react'
-import { motion, useMotionValue } from 'framer-motion'
+import { AnimatePresence, motion, useMotionValue } from "framer-motion";
 import styled from 'styled-components'
 import { gridify } from '../../styles/mixins'
 import Moon from '../../components/MoonLight'
@@ -58,20 +58,23 @@ const ProjectPage = () => {
 
     const imgNotifier =  ImgLoaded('#project-img', {})
     imgNotifier.on('always', self => {
-      setImgLoaded(true)
-      projectImgLoaded.set(true)
+      setTimeout(() => {
+        setImgLoaded(true)
+        projectImgLoaded.set(true)
+      }, 1000)
     })
 
   }, [])
 
   return (
-    <>
+    <AnimatePresence exitBeforeEnter>
       {
         imgLoaded ?
           <ProjectPageContainer
             variants={parentVariant}
             initial={moVariants.get()}
             animate="animate"
+            // key={'as;kldjfa'}
             // exit='exit'
           >
             <Moon showMoon={false} variants={moonVariants} />
@@ -193,21 +196,20 @@ const ProjectPage = () => {
 
           :
 
-          <>
-            <LoadingSpinner/>
-            {
-              items.map((item,index) => {
-                if(index === items.length - 1 ) return ;
-
-                return <img id='project-img' src={item.preview.publicURL} alt="" />
-
-              })
-            }
-          </>
+          <LoadingSpinner key={"lkasdjf;laksjdf"} finish={imgLoaded}/>
 
       }
 
-    </>
+      {
+        !imgLoaded && items.map((item,index) => {
+          if(index === items.length - 1 ) return ;
+
+          return <img id='project-img' key={item.toString()+index} src={item.preview.publicURL} alt="" />
+
+        })
+      }
+
+    </AnimatePresence>
   )
 }
 

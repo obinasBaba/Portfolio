@@ -25,6 +25,8 @@ const AppStateProvider = ( {children} ) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false)
   const [bottomGradient, setBottomGradient] = useState(false)
 
+  const [backgroundOverlay, setBackgroundOverlay] = useState(true)
+
 
   const [registeredScrollPos, setRegisteredScrollPos] = useState(null)
   const [toolTip, setToolTip] = useState({
@@ -96,7 +98,8 @@ const AppStateProvider = ( {children} ) => {
         isTop
       },
       projectImgLoaded,
-      fontLoaded
+      fontLoaded,
+      backgroundOverlay, setBackgroundOverlay
       // magnet: MagnetElements
 
     }} >

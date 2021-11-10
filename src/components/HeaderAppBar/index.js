@@ -9,6 +9,7 @@ import { AppStateContext } from '../../contexts/AppStateContext'
 import NavMenu from '../NavMenu'
 import OverlayController from '../BackgroundOverlay/OverlayController'
 import { debounce } from 'lodash'
+import BackgroundOverlay from "../BackgroundOverlay";
 
 
 function HideOnScroll({ children, window }) {
@@ -112,12 +113,21 @@ function HeaderAppBar({}) {
       return
 
     setMenuIsOpen(!menuIsOpen)
-    OverlayController.getInstance().toggle(!menuIsOpen);
+    if ( menuIsOpen )
+      return setTimeout(() => {
+        OverlayController.getInstance('nav-menu-overlay').toggle(!menuIsOpen);
+      }, 270)
+
+    OverlayController.getInstance('nav-menu-overlay').toggle(!menuIsOpen);
 
   }
 
   return (
     <>
+
+      <BackgroundOverlay clsName={'nav-menu-overlay'} />
+
+
       <AnimatePresence>
 
         {menuIsOpen && (

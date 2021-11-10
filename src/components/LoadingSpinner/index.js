@@ -1,9 +1,17 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState
+} from "react";
 import styled from 'styled-components'
-import { motion } from 'framer-motion'
+import { motion, usePresence } from "framer-motion";
 import { transition } from '../../helpers/variants'
 import { useLottiAssets } from '../../hooks/queries/useLottiAssets'
 import OverlayController from '../BackgroundOverlay/OverlayController'
+import BackgroundOverlay from "../BackgroundOverlay";
+import { AppStateContext } from "../../contexts/AppStateContext";
 
 const SpinnerContainer = styled( motion.div )`
   //position: fixed;
@@ -107,12 +115,21 @@ const containerVariants = {
       opacity: 0,
     },
     animate: {
-      opacity: 1
+      opacity: 1,
+      transition: {
+        ...transition,
+        duration: 2,
+
+      }
     },
 
-  exit: {
+  exit(arg){
     // opacity: 0,
-    y: '-100%',
+    console.log('exit invoked', arg);
+    arg.cleanUp()
+   return {
+     y: '-100%',
+   }
   }
 }
 
@@ -123,18 +140,34 @@ const LoadingSpinner = ({children}) => {
   const contentRef = useRef(null)
 
   const [isOpened, setOpened] = useState(false)
+  const {  setBackgroundOverlay } = useContext(AppStateContext)
+  // const [isPresent, safeToRemove] = usePresence()
+
+  const cleanUp = async () => {
+
+    await OverlayController.getInstance('loading-overlay').toggle(false, {
+      duration: 900,
+      delayPointsMax: 100,
+      delayPerPath: 100,
+    })
+
+    setBackgroundOverlay(false)
+  }
+
 
   useLayoutEffect(() => {
 
+    setBackgroundOverlay(true)
+
     setOpened(
-      OverlayController.getInstance().toggle(true, {
+      OverlayController.getInstance( 'loading-overlay').toggle(true, {
         duration: 0,
         delayPointsMax: 0,
         delayPerPath: 0,
       }).isOpened
     )
 
-    return () => {}
+    return () => { }
 
   }, [])
 
@@ -142,13 +175,20 @@ const LoadingSpinner = ({children}) => {
 
 
         <>
+
+          <BackgroundOverlay clsName={'loading-overlay'} />
+
           {
             isOpened && <SpinnerContainer variants={containerVariants}
                                           transition={transition}
                                           initial='initial'
                                           animate='animate'
                                           key={'lkajdfs'}
-                                          exit='exit'>
+                                          exit='exit'
+                                          custom={{cleanUp}}
+
+            >
+
 
 
 

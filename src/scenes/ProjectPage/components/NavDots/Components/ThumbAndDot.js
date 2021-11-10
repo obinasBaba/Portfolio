@@ -80,6 +80,7 @@ const spring = {
 const ThumbAndDot = ({ hidden, clickEvent, index, anchor, dataAnchor }) => {
   return (
     <ThumbAndDotContainer onClick={clickEvent}
+                          key={anchor}
                           // layout
     >
 
