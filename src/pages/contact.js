@@ -24,12 +24,13 @@ const Contact = ({path}) => {
 
 
   const {
-    setCurrentPath,
+    setCurrentPath, setBackgroundOverlay
   } = useContext( AppStateContext )
 
   useEffect(() => {
     console.log(path)
     setCurrentPath(path)
+    setBackgroundOverlay(false)
   }, [])
 
   return (

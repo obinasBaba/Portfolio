@@ -76,7 +76,7 @@ const containerVariant = {
 const ToolTip = ({ txt }) => {
   const { toolTip, setToolTip, currentPath } = useContext(AppStateContext)
 
-  const { loadingPage } = useContext(AppStateContext)
+  const { loadingPage, backgroundOverlay } = useContext(AppStateContext)
 
   const onEnter = element => setToolTip({
     text: element.target.dataset.tooltipText,
@@ -90,15 +90,17 @@ const ToolTip = ({ txt }) => {
 
   const initToolTip = () => {
     // if (loadingPage) return
-    onLeave();
+    setTimeout(() => {
+      onLeave();
 
-    const toolTipElements = document.querySelectorAll('[data-tooltip-text]')
-    toolTipElements.forEach(el => {
-      el.removeEventListener('mouseenter', onEnter)
-      el.removeEventListener('mouseenter', onEnter)
-      el.addEventListener('mouseenter', onEnter)
-      el.addEventListener('mouseleave', onLeave)
-    })
+      const toolTipElements = document.querySelectorAll('[data-tooltip-text]')
+      toolTipElements.forEach(el => {
+        el.removeEventListener('mouseenter', onEnter)
+        el.removeEventListener('mouseenter', onEnter)
+        el.addEventListener('mouseenter', onEnter)
+        el.addEventListener('mouseleave', onLeave)
+      })
+    }, 1000)
   }
 
   useEffect(() => initToolTip() , [loadingPage, currentPath])

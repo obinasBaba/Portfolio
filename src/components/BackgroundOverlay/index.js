@@ -56,7 +56,7 @@ const BackgroundOverlay = ({loading=true, clsName}) => {
 
 
   return (
-    <OverlayContainer loading={loading}  >
+    <OverlayContainer >
 
       <svg className={clsName} viewBox="0 0 100 100" preserveAspectRatio="none">
         <defs>

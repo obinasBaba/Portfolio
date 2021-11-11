@@ -29,16 +29,7 @@ const Previews = (  ) => {
   const { allPost: { edges }, totalCount } = useRecommendedBlogs();
   const {p1, p2, p3} = useHomeWorksAssets();
 
-  // console.log(p1, p2, p3);
-
-
   const items = getRecommendedPosts(edges);
-
-
-  useEffect(() => {
-
-    }, [])
-  
 
 
   return (
@@ -47,7 +38,7 @@ const Previews = (  ) => {
         return <Item key={item.node.id}
                      tag={item.node.frontmatter.tags.map(({tag}) => tag)  .join(', ')}
                      title={item.node.frontmatter.title}
-                     link={'item.node.fields.slug'}
+                     link={item.node.fields.slug || '/'}
                      media={[p1, p2, p3][index]} />;
       })}
     </>

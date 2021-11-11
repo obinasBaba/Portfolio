@@ -79,6 +79,7 @@ const Cursor = ({ path }) => {
         element.addEventListener('mouseleave', handleLeave)
       }
     })
+
   }, [path])
 
 

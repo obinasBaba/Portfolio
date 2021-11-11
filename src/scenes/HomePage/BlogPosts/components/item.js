@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from "react";
 import styled, { css } from 'styled-components'
 
 import {
@@ -11,6 +11,7 @@ import {
 import { Typography } from '@material-ui/core'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { Link } from 'gatsby'
+import Cursor from "../../../../components/Cursor/Cursor";
 
 const PreviewContainer = styled.div`
   position: relative;
@@ -18,7 +19,14 @@ const PreviewContainer = styled.div`
   flex-direction: column;
   margin: 0 auto;
   max-width: 600px;
-
+  
+  &:hover{
+    img{
+      transform: scale(1.3);
+      transition: transform 1.6s ease-in-out;
+    }
+  }
+  
 
   &:not(:first-child) {
     position: relative;
@@ -70,6 +78,7 @@ const ImageBox = styled.div`
   width: 100%;
   border: 1px solid #323453;
   margin: 0 auto;
+  overflow: hidden;
   background: linear-gradient(
     123.69deg,
     rgba(10, 12, 45, 0.45) 0%,
@@ -95,6 +104,8 @@ const ImageBox = styled.div`
       height: 100%;
       object-fit: cover;
       display: block;
+      
+      transition: transform 1s ease-in-out;
     }
   }
 `
@@ -146,8 +157,18 @@ const Item = ({ media, tag, title, link }) => {
 
   // console.log(media)
 
+  useEffect(() => {
+
+    setTimeout(() => {
+      Cursor.getInstance().refreshEventListeners('.home-blog-thumbnail')
+    })
+
+  }, [])
+
   return (
-    <PreviewContainer>
+    <PreviewContainer className='home-blog-thumbnail' data-pointer="focus"
+                      data-tooltip
+                      data-tooltip-text='Have a sec? hear me out.' >
       <Link to={link} />
 
       <ImageBox>

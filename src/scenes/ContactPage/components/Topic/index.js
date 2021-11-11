@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useEffect } from "react";
 import styled from 'styled-components'
 import { Typography, Checkbox } from '@material-ui/core'
 import { spacing } from '../../../../styles/mixins'
 import TopicItem from './TopicItem'
 import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
 import { Field, useField } from 'formik'
+import Cursor from "../../../../components/Cursor/Cursor";
 
-const TopicContainer = styled.div``
+const TopicContainer = styled.div`
+  //border: thin solid red;
+  //width: min-content;
+`
 
 const HeadLineTitle = styled(Typography)`
   font-family: Elianto-Regular, serif;
@@ -15,6 +19,8 @@ const HeadLineTitle = styled(Typography)`
   //color: #617683;
   color: #a4b5c0;
   //color: #5d6c7b;
+  //max-width: 20ch;
+  
   
   span{
     text-transform: uppercase;
@@ -59,11 +65,15 @@ const Topic = ({ values }) => {
     },
     {
       title: 'Api',
-      body: 'i need a Api with all security, infrastructure setup',
+      body: 'i need an Api with all security, infrastructure setup',
     },
   ]
   const { ufo, design, pentool, prototype } = useLottiAssets()
   const iconIll = [ufo, design, pentool, prototype]
+
+  useEffect(() => {
+    Cursor.getInstance().refreshEventListeners('.topic-item')
+  }, [])
 
   return (
     <TopicContainer>

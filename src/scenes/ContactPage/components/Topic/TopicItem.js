@@ -2,13 +2,14 @@ import React, { useRef } from 'react'
 import styled, { css } from 'styled-components'
 import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
 import {Button, Typography} from '@material-ui/core'
-import { spacing, text } from '../../../../styles/mixins'
+import { spacing, text, xLargeUp } from "../../../../styles/mixins";
 import TopicIllustration from './Topicillustration'
 
 const TopicItemContainer = styled.div`
   position: relative;
-  height: 200px;
-  width: 300px;
+  //height: 200px;
+  //width: 300px;
+  
   display: flex;
   flex-flow: column;
   align-items: flex-start;
@@ -16,6 +17,20 @@ const TopicItemContainer = styled.div`
   border-radius: 20px;
   background-color: #485564;
   transition: background-color 0.3s ease-in;
+  
+  * {
+    cursor: none;
+  }
+
+  ${spacing('p', 2.7)};
+
+  ${xLargeUp(css`
+
+    ${spacing('p', 2)};
+
+  `)};
+
+  //min-width: 300px;
 
   &:hover {
     background-color: #5d6c7b;;
@@ -34,7 +49,6 @@ const TopicItemContainer = styled.div`
       background-color: #758593;
     `};
 
-  ${spacing('p', 2.7)};
 
   & .topic_checkbox {
     position: absolute;
@@ -70,14 +84,20 @@ const TopicBody = styled(Typography)`
   color: #02021e;
 
   ${text(0.8)};
+  
+  ${xLargeUp(css`
+  
+  `)};
 `
 
 const TopicItem = ({ title, body, path, selected, ...props }) => {
   const checkboxRef = useRef(null)
 
+
   return (
     <TopicItemContainer
       selected={selected}
+      className='topic-item'
       data-pointer-color="#123"
       data-pointer="focus"
       onClick={() => {
