@@ -9,11 +9,15 @@ const Projects = ({ location, path }) => {
   // console.log(path)
 
   const {
-    currentPath, setCurrentPath
+    setBackgroundOverlay, setCurrentPath, setListenerTargetSelector
   } = useContext( AppStateContext )
 
   useEffect(() => {
     setCurrentPath(path)
+    setBackgroundOverlay(false)
+    setListenerTargetSelector('#main-container [data-pointer]')
+
+    return () => setListenerTargetSelector(undefined)
   }, [])
 
   return (

@@ -19,11 +19,12 @@ const AppStateProvider = ( {children} ) => {
   const [isHeaderGradient, setHeaderGradient] = useState(false)
   const [isContactOpen, setContactModal] = useState(false)
   const [top, setTop] = useState(null)
-  const [loadingPage, setLoadingPage] = useState(true)
+  const [loadingPage, setLoadingPage] = useState(null)
   const [currentPath, setCurrentPath] = useState('/')
   const [cursorScaled, setCursorScaled] = useState(false)
   const [menuIsOpen, setMenuIsOpen] = useState(false)
   const [bottomGradient, setBottomGradient] = useState(false)
+  const [listenerTargetSelector, setListenerTargetSelector] = useState('[data-pointer]')
 
   const [backgroundOverlay, setBackgroundOverlay] = useState(true)
 
@@ -99,7 +100,8 @@ const AppStateProvider = ( {children} ) => {
       },
       projectImgLoaded,
       fontLoaded,
-      backgroundOverlay, setBackgroundOverlay
+      backgroundOverlay, setBackgroundOverlay,
+      listenerTargetSelector, setListenerTargetSelector
       // magnet: MagnetElements
 
     }} >

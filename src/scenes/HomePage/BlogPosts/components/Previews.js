@@ -31,6 +31,10 @@ const Previews = (  ) => {
 
   const items = getRecommendedPosts(edges);
 
+  useEffect(() => {
+    console.log('preview rendred ----');
+  }, [])
+
 
   return (
     < >

@@ -16,12 +16,10 @@ export default function useLocoScroll (
 
   const { moScroll } = useContext(AppStateContext)
 
-  console.log('outLocoInvoked...')
   const locoScroll = useRef(null)
 
   useEffect(() => {
-      console.log('LocoInvoked ---- --- --',
-        start)
+      console.log('LocoInvoked ---- --- --', start)
 
       if ( !start ) return;
 
@@ -44,10 +42,11 @@ export default function useLocoScroll (
           moScroll.scrollDirection.set(arg.direction)
 
           setTimeout(() => {
+            if ( Cursor.pointing || Cursor.focusing ) return;
             // clearTimeout(timeout)
             Cursor.hideOnScroll()
 
-            }, 500)
+            }, 1000)
 
         });
 

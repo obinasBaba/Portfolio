@@ -63,6 +63,8 @@ export const GlobalStyle = createGlobalStyle`
     --medium: #5d6c7b;
 
     --theme: #a4b5c0;
+    //color: rgb(120, 128, 158);
+
     //--theme: #fff;
     --stroke-bottom: var(--light_gray);
     --stroke-top: #434e5e;
@@ -99,6 +101,8 @@ export const GlobalStyle = createGlobalStyle`
 
     &.menu_open{
       --theme: rgba(2, 11, 22, 1);
+      
+      
     }
 
     &.blog-clr {

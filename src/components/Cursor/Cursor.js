@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import EventUtil from '../../helpers/EventUtil'
 import InnerPointer from './InnerPointer'
-import OuterPointer from "./OuterPointer";
-import MagnetElement from "../../helpers/MagnetElement";
+import OuterPointer from './OuterPointer'
+import MagnetElement from '../../helpers/MagnetElement'
 import gsap from 'gsap'
 
 let show = false
@@ -17,7 +17,7 @@ const CursorContainer = styled.div`
   pointer-events: none;
   z-index: 30;
   opacity: 0;
-  
+
   & * {
     pointer-events: none;
   }
@@ -25,13 +25,45 @@ const CursorContainer = styled.div`
 
 class Cursor extends React.Component {
 
+  static Instance = null
+  static focusing
+  static pointing
   events
   props
-  static Instance = null
 
-  static getInstance(canvas) {
+  constructor (props) {
+    super(props)
 
-    if (this.Instance === null) {
+    this.events = EventUtil.getInstance()
+    this.props = props
+
+    this.handleLeave = this.handleLeave.bind(this)
+    this.handleHover = this.handleHover.bind(this)
+
+  }
+
+  set isFocused (value) {
+    Cursor.focusing = value
+
+    InnerPointer.focused(value)
+    OuterPointer.focused(value)
+  }
+
+  set isPointed (value) {
+    Cursor.pointing = value
+
+    gsap.to('.cursor-container',
+      {
+        zIndex: value ? 8 : 30
+      })
+
+    InnerPointer.pointed(value)
+    OuterPointer.pointed(value)
+  }
+
+  static getInstance (canvas) {
+
+    if ( this.Instance === null ) {
       this.Instance = new Cursor()
       return this.Instance
     } else {
@@ -39,65 +71,54 @@ class Cursor extends React.Component {
     }
   }
 
+  static hideOnScroll () {
+    if ( !show ) return
 
-  constructor(props) {
-    super(props)
-
-    this.events = EventUtil.getInstance()
-
-    this.handleLeave = this.handleLeave.bind(this)
-    this.handleHover = this.handleHover.bind(this)
-
+    gsap.to('.cursor-container',
+      {
+        opacity: 0,
+        duration: 1.2,
+        onComplete () {
+          show = false
+        }
+      })
   }
 
-  componentDidMount() {
+  componentDidMount () {
 
     this.refreshEventListeners('[data-pointer]')
 
-    window.addEventListener('mousemove', () => {
-      if ( show ) return
+    window.addEventListener('mousemove',
+      () => {
+        if ( show ) return
 
-      gsap.to('.cursor-container', {
-        opacity: 1,
-        duration: 1.2,
-        onComplete(){
-          show = true
-        }
-      },)
-    })
+        gsap.to('.cursor-container',
+          {
+            opacity: 1,
+            duration: 1.2,
+            onComplete () {
+              show = true
+            }
+          },)
+      })
   }
 
-  static hideOnScroll(){
-    if ( !show ) return
-
-    gsap.to('.cursor-container', {
-      opacity: 0,
-      duration: 1.2,
-      onComplete(){
-        show = false
-      }
-    })
-  }
-
-  componentWillUnmount() {
+  componentWillUnmount () {
     selectorCheck.clear()
   }
 
-  updateMousePos(){}
+  updateMousePos () {}
 
   handleHover = e => {
     // console.log('enter hover')
     let type = e.currentTarget.dataset.pointer;
 
-    console.log('type : ', type);
-
-
-    if (type === 'stuck') {
+    if ( type === 'stuck' ) {
       const rect = e.currentTarget.getBoundingClientRect()
       let x = Math.round(rect.left + rect.width / 2)
       let y = Math.round(rect.top + rect.height / 2)
       // cursor.startStuck(x, y)
-    }else if( type === 'focus'){
+    } else if ( type === 'focus' ) {
       this.isFocused = true;
 
     } else {
@@ -109,13 +130,9 @@ class Cursor extends React.Component {
   handleLeave = () => {
     this.isPointed = false;
     this.isFocused = false;
-
-    // document.body.classList.remove('canvas-hover')
-    // console.log('classList: ', document.body.classList)
   }
 
-   refreshEventListeners(selector){
-
+  refreshEventListeners (selector) {
 
     if ( selectorCheck.get(selector) ) return
     selectorCheck.set(selector, true)
@@ -131,7 +148,7 @@ class Cursor extends React.Component {
 
       const type = element.dataset.pointer
 
-      if (type === 'magnet') {
+      if ( type === 'magnet' ) {
         // console.log(element)
         const attraction = element.dataset.magnetAttraction ?? 1
         const distance = element.dataset.magnetDistance ?? 0.7
@@ -139,12 +156,13 @@ class Cursor extends React.Component {
           element: element,
           stop: attraction,
           distance: distance,
-        }).on('leave', () => {
-          //if it is magnet no mouseleave needed
-          // console.log('LEAVE invoked')
-          this.isPointed = false
-          // document.body.classList.remove('canvas-hover')
-        })
+        }).on('leave',
+          () => {
+            //if it is magnet no mouseleave needed
+            // console.log('LEAVE invoked')
+            this.isPointed = false
+            // document.body.classList.remove('canvas-hover')
+          })
       } else {
         //only for pointer and focused add mouseleave
         element.addEventListener('mouseleave', this.handleLeave)
@@ -152,26 +170,14 @@ class Cursor extends React.Component {
     })
   }
 
-  set isFocused(value){
-    InnerPointer.focused(value)
-    OuterPointer.focused(value)
-  }
+  render () {
 
-  set isPointed(value){
+    console.log('cursor rendered : ', this.props);
 
-    gsap.to('.cursor-container', {
-      zIndex: value ? 8 : 30
-    })
-
-    InnerPointer.pointed(value)
-    OuterPointer.pointed(value)
-  }
-
-  render() {
-    return(
+    return (
       <CursorContainer className='cursor-container'>
-        <InnerPointer/>
-        <OuterPointer/>
+        <InnerPointer />
+        <OuterPointer />
       </CursorContainer>
     )
   }

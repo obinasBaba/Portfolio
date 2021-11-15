@@ -31,6 +31,7 @@ const ProjectContainerGrid = styled(motion.div)`
   margin: 0 auto;
   
 `
+
 const ProjectPageContainer = styled(motion.main)`
   position: relative;
   max-width: 100%;
@@ -44,17 +45,16 @@ const ProjectPage = () => {
   const controllers = items.map(({ controller }) => controller)
   const activeNavDotRef = useRef(null)
 
-  const { variantsUtil: {fromCaseStudy}, projectImgLoaded } = useContext(AppStateContext)
+  const { variantsUtil: {fromCaseStudy}, projectImgLoaded ,setListenerTargetSelector} = useContext(AppStateContext)
 
 
-  const moVariants = useMotionValue(
-    fromCaseStudy.get() ? ['initial', 'animate'] : ['initial']
-  )
+  const moVariants = useMotionValue(fromCaseStudy.get() ? ['initial', 'animate'] : ['initial'])
 
   const [activeIndex, setActiveIndex] = useState(0)
   const [imgLoaded, setImgLoaded] = useState(projectImgLoaded.get());
 
-  useEffect(() => {
+  /*useEffect(() => {
+    return ;
     if ( projectImgLoaded.get() ) return;
 
     const imgNotifier =  ImgLoaded('#project-img', {})
@@ -67,10 +67,18 @@ const ProjectPage = () => {
 
   }, [])
 
+  useEffect(() => {
+    imgLoaded && setListenerTargetSelector('#main-container [data-pointer]')
+  }, [imgLoaded])*/
+
+  useEffect(() => {
+
+  }, [])
+
   return (
-    <AnimatePresence exitBeforeEnter>
-      {
-        imgLoaded ?
+    <>
+     {/* {
+        imgLoaded ?*/}
           <ProjectPageContainer
             variants={parentVariant}
             initial={moVariants.get()}
@@ -79,7 +87,6 @@ const ProjectPage = () => {
             // exit='exit'
           >
             <Moon showMoon={false} variants={moonVariants} />
-
             <NavDots ref={activeNavDotRef} />
             <ProjectScrollDown show={activeIndex === 0} />
 
@@ -197,20 +204,20 @@ const ProjectPage = () => {
 
           :
 
-          <LoadingSpinner key={"lkasdjf;laksjdf"} finish={imgLoaded}/>
+    {/*      <LoadingSpinner key={"lkasdjf;laksjdf"} finish={imgLoaded}/>
 
-      }
+      }*/}
 
-      {
+      {/*{
         !imgLoaded && items.map((item,index) => {
           if(index === items.length - 1 ) return ;
 
           return <img id='project-img' key={item.toString()+index} src={item.preview.publicURL} alt="" />
 
         })
-      }
+      }*/}
 
-    </AnimatePresence>
+    </>
   )
 }
 

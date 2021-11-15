@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from "react";
 import BackgroundStars from '../../components/BackgroundStars'
 import HeaderAppBar from '../../components/HeaderAppBar'
 import { AnimatePresence } from 'framer-motion'
 import ToolTip from '../../components/Fixed/ToolTip'
 import ProgressCircle from '../../components/ScrollProgressCircle'
 import { AppStateContext } from '../../contexts/AppStateContext'
-import Cursor from '../../components/Cursor/Cursor'
+import Cursor from '../../components/Cursor'
 import { BottomGradient, Main, PageContainer, SkyColor } from './Styled'
 
 const Page = ({ children, path }) => {
@@ -16,12 +16,16 @@ const Page = ({ children, path }) => {
     variantsUtil: { isTop },
   } = useContext(AppStateContext)
 
+  useEffect(() => {
+    console.log('backgroundOVerlay: ', backgroundOverlay);
+  }, [backgroundOverlay])
+
   return (
-    <PageContainer>
+    <PageContainer id='page-container'>
       <SkyColor />
       <BackgroundStars />
 
-      {!backgroundOverlay && <Cursor path={currentPath} key={'cursor'} /> }
+      {!backgroundOverlay && <Cursor path={currentPath} loadingOverlay={backgroundOverlay} /> }
 
       {!backgroundOverlay && <HeaderAppBar />}
 

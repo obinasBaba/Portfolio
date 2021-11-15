@@ -4,9 +4,10 @@ import AboutHero from './components/AboutHero'
 import MyProcess from './components/MyProcess'
 import MailUs from '../MailUs'
 import Skills from './components/Skills'
+import { motion } from "framer-motion";
 
-const AboutPageContainer = styled.div`
-
+const AboutPageContainer = styled( motion.div )`
+  position: relative;
 `
 
 const ScrollText = styled.section`
@@ -43,7 +44,7 @@ const ScrollText = styled.section`
 
 const AboutPage = () => {
   return (
-    <>
+    <AboutPageContainer>
       <AboutHero/>
 
       <ScrollText className="content content--feature" data-scroll-section>
@@ -60,7 +61,7 @@ const AboutPage = () => {
       <Skills/>
       <MyProcess/>
       <MailUs/>
-    </>
+    </AboutPageContainer>
   )
 }
 

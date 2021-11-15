@@ -9,9 +9,10 @@ import { AnimatePresence } from "framer-motion";
 
 const IndexPage = ({path}) => {
 
-  const {fontLoaded,
-    setCurrentPath,
-    registeredScrollPos, setRegisteredScrollPos
+  const {
+    fontLoaded, setCurrentPath,
+    registeredScrollPos, setRegisteredScrollPos,
+    setListenerTargetSelector
   } = useContext( AppStateContext )
 
   const [fontFinish, setFontFinish] = useState(fontLoaded.get())
@@ -22,6 +23,8 @@ const IndexPage = ({path}) => {
 
   useEffect(() => {
     setCurrentPath(path)
+    setListenerTargetSelector('#main-container [data-pointer]')
+    console.log('set listenerTarget in index.js');
   }, [])
 
   useEffect(() => {
@@ -44,9 +47,7 @@ const IndexPage = ({path}) => {
   return (
     <AnimatePresence exitBeforeEnter>
 
-      { fontFinish ? <HomePage /> :
-
-        <LoadingSpinner key={"lkasdjf;laksjdf"} finish={fontFinish} />}
+      { fontFinish ? <HomePage /> : <LoadingSpinner key={"loading"} finish={fontFinish} />}
 
     </AnimatePresence>
   )

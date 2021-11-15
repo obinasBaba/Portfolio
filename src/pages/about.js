@@ -15,11 +15,12 @@ const About = ({path}) => {
 
 
   const {
-    setCurrentPath,
+    setCurrentPath, setBackgroundOverlay
   } = useContext( AppStateContext )
 
   useEffect(() => {
     setCurrentPath(path)
+    setBackgroundOverlay(false)
   }, [])
 
   return (

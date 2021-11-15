@@ -155,15 +155,6 @@ const Title = styled(Typography)`
 
 const Item = ({ media, tag, title, link }) => {
 
-  // console.log(media)
-
-  useEffect(() => {
-
-    setTimeout(() => {
-      Cursor.getInstance().refreshEventListeners('.home-blog-thumbnail')
-    })
-
-  }, [])
 
   return (
     <PreviewContainer className='home-blog-thumbnail' data-pointer="focus"

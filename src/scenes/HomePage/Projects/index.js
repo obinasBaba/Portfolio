@@ -6,17 +6,14 @@ import {
   length,
   smallUp,
   spacing,
-  text,
 } from '../../../styles/mixins'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { Link } from 'gatsby'
 import lotti from 'lottie-web'
 import { useProjectCircles } from '../../../hooks/queries/useProjectCircles'
 import useOnScreen from '../../../hooks/useOnScreen'
 import { AppStateContext } from '../../../contexts/AppStateContext'
-import { Typography } from '@material-ui/core'
-import HeadlineTitle from "../../../components/Headline";
-import RotationCircleText from "./RotationCircleText";
+import HeadlineTitle from '../../../components/Headline'
+import RotationCircleText from './RotationCircleText'
 
 const parentVariant = {
   initial: {
@@ -115,7 +112,6 @@ const LottiContainer = styled.div`
   grid-column: 1/ 1;
 
 
-
   ${length('height', 63)};
   ${length('width', 63)};
 
@@ -129,20 +125,6 @@ const LottiContainer = styled.div`
 
     path {
       stroke-width: 4px;
-    }
-  }
-
-  .to-projects {
-    //no need to make it relative for z-index to work b/c of the dynamic transform property
-    z-index: 1; 
-    // ${text(1.1)};
-    ${spacing('p', 2)};
-    
-    & > :first-child {
-      font-weight: bolder;
-      -webkit-text-stroke: 2px #5d6c7b;
-      color: transparent;
-      font-family: Elianto-Regular;
     }
   }
 `
@@ -201,7 +183,7 @@ const Projects = () => {
     return () => window.removeEventListener('mousemove', handler)
   }, [inView])
 
-  //lottie animation
+ /* //lottie animation
   useEffect(() => {
     // return;
     // if (moRotate.get() !== 0) return
@@ -242,7 +224,7 @@ const Projects = () => {
       lottiRef.current.forEach(lotti => {
         lotti.pause()
       })
-  }, [inView])
+  }, [inView])*/
 
   return (
     <ProjectContainer
@@ -268,20 +250,6 @@ const Projects = () => {
         <Planet className="planet-right" style={{ y: ySmall, x: xSmall }} />
       </ScrollPlanet2>
 
-      {/*<LottiContainer >
-
-        <motion.div
-          ref={circle1Ref}
-          style={{ rotate: moRotate }}
-          className="lotti lotti-1"
-        />
-
-        <motion.div
-          ref={circle2Ref}
-          style={{ rotate: moRotate2 }}
-          className="lotti lotti-2"
-        />
-      </LottiContainer>*/}
 
       <RotationCircleText />
 

@@ -1,11 +1,13 @@
 import React from 'react'
-import styled from 'styled-components'
-import {HeadLineTitle} from '../shared'
-import {Typography} from '@material-ui/core'
-import {text} from '../../../../styles/mixins'
+import styled, { css } from 'styled-components'
+import { HeadLineTitle } from '../shared'
+import { Typography } from '@material-ui/core'
+import { length, text } from '../../../../styles/mixins'
+import LineArt from '../../../../components/LineArt'
 
 const ThankYouContainer = styled.div`
-  
+  //border: thin solid red;
+  position: relative;
 `
 
 const Body = styled(Typography)`
@@ -15,11 +17,12 @@ const Body = styled(Typography)`
   line-height: 170%;
   //color: #02021e;
 
-  
+
   ${text(1)};
 `
 
 const ThankYou = () => {
+
   return (
     <ThankYouContainer>
       <HeadLineTitle variant='h2'>
@@ -37,6 +40,12 @@ const ThankYou = () => {
         </Body>
       </div>
 
+      <LineArt artStyle={css`
+        position: absolute;
+        right: -60%;
+        ${length('height', 143)};
+        ${length('width', 143)};
+      `} />
 
     </ThankYouContainer>
   )

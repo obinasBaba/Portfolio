@@ -13,18 +13,19 @@ const AboutHeroContainer = styled.div`
 const Hello = styled( Typography )`
   font-family: Elianto-Regular,serif;
   font-weight: bolder;
-  
   margin-bottom: 2rem;
 `
 
 const Motto = styled( Typography )`
   font-weight: bolder;
+  color: #7b8a9b;
+
 
 `
 
 const Text = styled( Typography )`
   max-width: 36ch;
-  color: #7b8a9b;
+  color: #7b8a9b;;
 
 
   ${text(1)};
@@ -36,7 +37,7 @@ const AboutHero = () => {
   return (
     <AboutHeroContainer data-scroll-section>
 
-      <Container maxWidth='lg' >
+      <Container maxWidth='xl' >
         <Hello variant='h1'>
           Hello.
         </Hello>

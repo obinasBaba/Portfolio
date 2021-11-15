@@ -1,10 +1,10 @@
 import React from 'react'
-import {AnimatePresence, motion} from 'framer-motion'
+import { motion } from 'framer-motion'
 import LogoBgEffect from '../BackgroundOverlay/components/LogoBgEffect'
 import Menu from '../BackgroundOverlay/components/Menu'
 import styled from 'styled-components'
 
-const MenuContainer= styled( motion.div )`
+const MenuContainer = styled(motion.div)`
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -15,8 +15,7 @@ const MenuContainer= styled( motion.div )`
   justify-content: center;
   //pointer-events: none;
 
-  ${({isOpen}) => isOpen && 'pointer-events: initial;' };
-
+  ${({ isOpen }) => isOpen && 'pointer-events: initial;'};
 `
 
 const containerVariants = {
@@ -24,10 +23,10 @@ const containerVariants = {
 }
 
 const NavMenu = ( {closeMenu} ) => {
-  return (
-      <MenuContainer variants={containerVariants}
 
-      >
+
+  return (
+      <MenuContainer variants={containerVariants} id='menu-container' >
         <LogoBgEffect />
         <Menu onClick={closeMenu}  />
 

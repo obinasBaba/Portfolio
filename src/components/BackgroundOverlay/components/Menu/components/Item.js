@@ -118,6 +118,11 @@ const Title = styled.div`
   pointer-events: none;
   
   ${text(.86)};
+
+  ${xLargeUp( css`
+    ${text(1)};
+  
+  ` )};
 `
 
 const Circle = styled( motion.div )`
@@ -252,6 +257,7 @@ const Item = ({currentPath, link, stars, icon, index, title, onClick}) => {
   return (
 
     <ItemContainer variants={itemVariants}
+                   className='nav-menu-item'
                    data-pointer='focus'
           transition={transition}
           active={link === currentPath && currentPath !== '/'}

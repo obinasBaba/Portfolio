@@ -1,11 +1,18 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from "react";
 import useMenuAssets from '../../../../hooks/queries/useMenuAssets'
 import styled, { css } from 'styled-components'
-import { largeUp, mediumDown, spacing, text } from '../../../../styles/mixins'
+import {
+  largeUp,
+  mediumDown,
+  spacing,
+  text,
+  xLargeUp
+} from "../../../../styles/mixins";
 import { motion } from 'framer-motion'
 import { containerVariants } from './variants'
 import { AppStateContext } from '../../../../contexts/AppStateContext'
 import Item from './components/Item'
+import Cursor from "../../../Cursor/Cursor";
 
 const MenuItemContainer = styled(motion.ul)`
   position: relative;
@@ -173,7 +180,13 @@ const Menu = ({ onClick, ...props }) => {
     'hi@henzzo.io',
   ]
 
-  const { currentPath } = useContext(AppStateContext)
+  const {currentPath, setListenerTargetSelector } = useContext( AppStateContext )
+
+  useEffect(() => {
+    setListenerTargetSelector('#menu-container [data-pointer]')
+
+    return () => setListenerTargetSelector(undefined)
+  }, [])
 
   return (
     <MenuContainer

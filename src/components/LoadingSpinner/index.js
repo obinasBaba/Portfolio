@@ -125,7 +125,7 @@ const containerVariants = {
 
   exit(arg){
     // opacity: 0,
-    console.log('exit invoked', arg);
+    // console.log('exit invoked', arg);
     arg.cleanUp()
    return {
      y: '-100%',

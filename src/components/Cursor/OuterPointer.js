@@ -33,6 +33,11 @@ export const OuterContainer = styled(motion.div)`
     left: -50%;
     inset: auto;
     color: rgb(120, 128, 158);
+    color: var(--theme);
+
+    //transition: color .4s ease-in-out;
+
+
     //font-weight: bold;
     font-size: 3.6rem;
     //mix-blend-mode: difference;
@@ -45,6 +50,8 @@ class OuterPointer extends React.Component {
   events
   rotationTween
   static pointing
+  pointerTweenOne
+  pointerTweenTwo
 
 
   constructor(props) {
@@ -57,14 +64,14 @@ class OuterPointer extends React.Component {
 
     this.updateMousePos()
 
-    gsap.to('.outer .outer-one', {
+    this.pointerTweenOne = gsap.to('.outer .outer-one', {
       rotation: -360,
       duration: 5.8 * 1.2,
       ease: 'none',
       repeat: -1
     })
 
-    gsap.to('.outer .outer-two', {
+    this.pointerTweenTwo = gsap.to('.outer .outer-two', {
       rotation: 360,
       duration: 7.5 * 1.2,
       ease: 'none',
@@ -76,7 +83,14 @@ class OuterPointer extends React.Component {
 
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    console.log('kill tween  outer *****************8*****', this.pointerTweenTwo, this.pointerTweenOne);
+
+    if ( this.pointerTweenOne && this.pointerTweenTwo ){
+      this.pointerTweenOne.kill()
+      this.pointerTweenTwo.kill()
+    }
+  }
 
   updateMousePos(){
     const render = () => {

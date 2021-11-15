@@ -23,7 +23,7 @@ export const PointerContainer = styled(motion.div)`
 
 
   p {
-    
+
     position: absolute;
     font-family: 'shapes', serif;
     line-height: 0;
@@ -32,7 +32,12 @@ export const PointerContainer = styled(motion.div)`
     top: -50%;
     left: -50%;
     inset: auto;
-    color: rgb(120, 128, 158);
+    color: #b9c8d3;
+    //color: rgba(2, 11, 22, 1);
+    color: var(--theme);
+    
+    transition: color .25s ease-in-out;
+
     font-size: .78rem;
     //mix-blend-mode: difference;
   }
@@ -43,6 +48,8 @@ class InnerPointer extends React.Component {
 
   events
   rotationTween
+  pointerTweenOne
+  pointerTweenTwo
 
 
   constructor(props) {
@@ -55,14 +62,14 @@ class InnerPointer extends React.Component {
 
     this.updateMousePos()
 
-   gsap.to('.pointer .pointer-one', {
+   this.pointerTweenOne = gsap.to('.pointer .pointer-one', {
      rotation: -360,
      duration: 5 * 1.2,
      ease: 'none',
      repeat: -1
    })
 
-    gsap.to('.pointer .pointer-two', {
+    this.pointerTweenTwo = gsap.to('.pointer .pointer-two', {
       rotation: 360,
       duration: 6.6 * 1.2,
       ease: 'none',
@@ -70,25 +77,39 @@ class InnerPointer extends React.Component {
     })
   }
 
+  componentWillUnmount() {
+    console.log('kill tween *****************8*****', this.pointerTweenTwo, this.pointerTweenOne);
+
+
+    if ( this.pointerTweenOne && this.pointerTweenTwo ){
+      this.pointerTweenOne.kill()
+      this.pointerTweenTwo.kill()
+    }
+  }
+
   startRotationTween(){
 
   }
 
-  componentWillUnmount() {}
+
 
   updateMousePos(){
     const render = () => {
       // this.lastX.set( lerp(this.lastX.get(), this.events.mousePos.x, 0.18 ))
       // this.lastY.set( lerp(this.lastY.get(),  this.events.mousePos.y, 0.18))
 
-      gsap.to('.pointer', {
-        x: this.events.mousePos.x,
-        y: this.events.mousePos.y,
-        duration: 0,
+      if ( this.pointerTweenTwo && this.pointerTweenTwo.isActive() )
+        gsap.to('.pointer', {
+          x: this.events.mousePos.x,
+          y: this.events.mousePos.y,
+          duration: 0,
 
-      })
+        })
 
-      requestAnimationFrame(() => render())
+      else
+        cancelAnimationFrame(this.animId)
+
+      this.animId = requestAnimationFrame(() => render())
     }
 
     requestAnimationFrame(() => render())
@@ -101,12 +122,14 @@ class InnerPointer extends React.Component {
   }
 
   static async focused(value){
+
     gsap.to('.pointer', {
       scale: value ? 1.2 : 1,
     })
 
     gsap.to('.pointer p', {
-      color: value ? '#a4b5c0' : 'rgb(120, 128, 158)'
+      color: value ? '#a4b5c0' : 'var(--theme)',
+
     })
   }
 
