@@ -22,12 +22,17 @@ const containerVariants = {
   },
   exit: {
     opacity: 0
-  }
+  },
+
+   transition: {
+    duration: 5
+   }
 }
 
 const HomePage = () => {
   return (
     < motion.div variants={containerVariants}
+                 transition={containerVariants.transition}
                  initial="initial"
                  animate="animate"
                  exit="exit"

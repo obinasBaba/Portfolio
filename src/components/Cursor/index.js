@@ -346,7 +346,7 @@ const Cursor = ({ path, loadingOverlay }) => {
 
       setTimeout(() => {
         refreshEventListeners(listenerTargetSelector)
-      }, 5000)
+      }, 0)
 
     }, [listenerTargetSelector])
 

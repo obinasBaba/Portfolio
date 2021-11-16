@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import BackgroundStars from '../../components/BackgroundStars'
 import HeaderAppBar from '../../components/HeaderAppBar'
 import { AnimatePresence } from 'framer-motion'
@@ -7,18 +7,23 @@ import ProgressCircle from '../../components/ScrollProgressCircle'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import Cursor from '../../components/Cursor'
 import { BottomGradient, Main, PageContainer, SkyColor } from './Styled'
+import useLoadingFonts from "../../hooks/useFonts";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import BackgroundOverlay from "../../components/BackgroundOverlay";
 
 const Page = ({ children, path }) => {
   const {
     backgroundOverlay,
     currentPath,
     bottomGradient,
+    fontLoaded,
     variantsUtil: { isTop },
   } = useContext(AppStateContext)
 
-  useEffect(() => {
-    console.log('backgroundOVerlay: ', backgroundOverlay);
-  }, [backgroundOverlay])
+
+  const [fontFinish, setFontFinish] = useState(fontLoaded.get())
+
+  useLoadingFonts(fontLoaded, setFontFinish)
 
   return (
     <PageContainer id='page-container'>
@@ -29,10 +34,12 @@ const Page = ({ children, path }) => {
 
       {!backgroundOverlay && <HeaderAppBar />}
 
+      <LoadingSpinner key='sakldfja;lskdf' fontFinish={fontFinish}/>
+
 
       <Main data-scroll-container id="main-container">
         <AnimatePresence exitBeforeEnter custom={{ path, cPath: currentPath, isTop }}>
-          {children}
+          { !backgroundOverlay && <>{children}</>}
         </AnimatePresence>
       </Main>
 

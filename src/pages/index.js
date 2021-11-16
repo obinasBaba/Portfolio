@@ -1,35 +1,31 @@
 import * as React from 'react'
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
+import { useContext, useEffect } from 'react'
 import HomePage from '../scenes/HomePage'
 import { AppStateContext } from '../contexts/AppStateContext'
 import useLocoScroll from '../hooks/useLocoScroll'
-import useLoadingFonts from "../hooks/useFonts";
-import LoadingSpinner from "../components/LoadingSpinner";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence } from 'framer-motion'
 
-const IndexPage = ({path}) => {
-
+const IndexPage = ({ path }) => {
   const {
-    fontLoaded, setCurrentPath,
-    registeredScrollPos, setRegisteredScrollPos,
-    setListenerTargetSelector
-  } = useContext( AppStateContext )
+    backgroundOverlay,
+    setCurrentPath,
+    registeredScrollPos,
+    setRegisteredScrollPos,
+    setListenerTargetSelector,
+  } = useContext(AppStateContext)
 
-  const [fontFinish, setFontFinish] = useState(fontLoaded.get())
-
-  const loco = useLocoScroll(fontFinish);
-
-  useLoadingFonts(fontLoaded, setFontFinish)
+  const loco = useLocoScroll(!backgroundOverlay)
 
   useEffect(() => {
+    if (backgroundOverlay) return
+
     setCurrentPath(path)
     setListenerTargetSelector('#main-container [data-pointer]')
-    console.log('set listenerTarget in index.js');
-  }, [])
+    console.log('set listenerTarget in index.js')
+  }, [backgroundOverlay])
 
   useEffect(() => {
-
-    if ( registeredScrollPos !== null  ){
+    if (registeredScrollPos !== null) {
       loco.current.update()
       setTimeout(() => {
         loco.current.scrollTo(registeredScrollPos, {
@@ -40,16 +36,10 @@ const IndexPage = ({path}) => {
       })
       setRegisteredScrollPos(null)
     }
-
   }, [])
 
-
   return (
-    <AnimatePresence exitBeforeEnter>
-
-      { fontFinish ? <HomePage /> : <LoadingSpinner key={"loading"} finish={fontFinish} />}
-
-    </AnimatePresence>
+      <HomePage />
   )
 }
 
