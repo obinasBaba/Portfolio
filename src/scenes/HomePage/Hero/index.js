@@ -22,14 +22,12 @@ const Hero = () => {
 
           <Greeting>
             <Typography variant="h1"> hi, I am </Typography>
-
             <H />
             <Typography  variant="h1">
               enok
             </Typography>
 
           </Greeting>
-
 
           <Intro>
             <Typography variant='h3'>

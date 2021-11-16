@@ -8,8 +8,6 @@ import {
   spacing,
 } from '../../../styles/mixins'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import lotti from 'lottie-web'
-import { useProjectCircles } from '../../../hooks/queries/useProjectCircles'
 import useOnScreen from '../../../hooks/useOnScreen'
 import { AppStateContext } from '../../../contexts/AppStateContext'
 import HeadlineTitle from '../../../components/Headline'
@@ -42,7 +40,6 @@ const ProjectContainer = styled(motion.section)`
   min-height: 100vh;
   //border: thick solid red;
   //padding: 2rem 0;
-  z-index: 11;
   
   ${spacing('pt', 26)};
   ${spacing('pb', 11)};
@@ -98,47 +95,13 @@ const ScrollPlanet2 = styled.div`
   `)};
 `
 
-const LottiContainer = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  padding: 4rem;
-  border-radius: 100px;
-  //border: thin solid green;
-  
-  grid-row: 2 / 3;
-  grid-column: 1/ 1;
-
-
-  ${length('height', 63)};
-  ${length('width', 63)};
-
-  .lotti {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    transition: transform 2s ease-out;
-
-    path {
-      stroke-width: 4px;
-    }
-  }
-`
 
 const Projects = () => {
-  const { circle1, circle2 } = useProjectCircles()
   const {
      setRegisteredScrollPos
   } = useContext( AppStateContext )
 
-  const circle1Ref = useRef(null)
-  const circle2Ref = useRef(null)
   const containerRef = useRef(null)
-  let lottiRef = useRef([])
 
   const moRotate = useMotionValue(0)
   const moRotate2 = useMotionValue(0)
@@ -183,48 +146,7 @@ const Projects = () => {
     return () => window.removeEventListener('mousemove', handler)
   }, [inView])
 
- /* //lottie animation
-  useEffect(() => {
-    // return;
-    // if (moRotate.get() !== 0) return
 
-    lottiRef.current = []
-    lotti.destroy()
-
-    lottiRef.current.push(
-      lotti.loadAnimation({
-        container: circle1Ref.current,
-        renderer: 'svg',
-        loop: true,
-        autoplay: false,
-        path: circle1.publicURL,
-      })
-    )
-
-    lottiRef.current.push(
-      lotti.loadAnimation({
-        container: circle2Ref.current,
-        renderer: 'svg',
-        loop: true,
-        autoplay: false,
-        path: circle2.publicURL,
-      })
-    )
-  }, [])
-
-  useEffect(() => {
-    // console.log('inview :', inView, Lotti.current)
-    if (lottiRef[0]) return
-
-    if (inView)
-      lottiRef.current.forEach(lotti => {
-        lotti.play()
-      })
-    else
-      lottiRef.current.forEach(lotti => {
-        lotti.pause()
-      })
-  }, [inView])*/
 
   return (
     <ProjectContainer
@@ -251,7 +173,7 @@ const Projects = () => {
       </ScrollPlanet2>
 
 
-      <RotationCircleText />
+      <RotationCircleText inview={inView} />
 
     </ProjectContainer>
   )

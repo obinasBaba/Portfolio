@@ -1,6 +1,7 @@
 import { gsap } from 'gsap';
 import { navigate } from "gatsby";
 
+
 let DOM = {
     // frame: document.querySelector('.frame'),
     // content: document.querySelector('.content'),
@@ -9,12 +10,26 @@ let DOM = {
 };
 
 export class CircleTextController {
+    static instance = null
+    started = false
+
+    static getInstance(el){
+
+        if( this.instance ){
+            return this.instance
+        }else{
+            this.instance = new CircleTextController(el)
+            return this.instance
+        }
+    }
 
     constructor(el) {
         // the SVG element
-        this.DOM = {el: el};
+        this.DOM = {el: document.querySelector('.circles')};
         // SVG texts
         this.DOM.circleText = [...this.DOM.el.querySelectorAll('text.circles__text')];
+        this.DOM.button = document.querySelectorAll('.rotation-circle .enter');
+        this.DOM.buttonTxt = document.querySelectorAll('.circles__text');
         // total
         this.circleTextTotal = this.DOM.circleText.length;
 
@@ -22,7 +37,7 @@ export class CircleTextController {
             frame: document.querySelector('.frame'),
             content: document.querySelector('.content'),
             enterCtrl: document.querySelector('.enter'),
-            enterBackground: document.querySelector('.enter__bg')
+            enterTxt: document.querySelector('.enter__text')
         };
 
         
@@ -42,14 +57,10 @@ export class CircleTextController {
     }
 
     initEvents() {
+
         this.enterMouseEnterEv = () => {
             gsap.killTweensOf([DOM.enterBackground,this.DOM.circleText]);
-            
-            gsap.to(DOM.enterBackground, {
-                duration: 1,
-                ease: 'expo',
-                scale: 1.4
-            });
+
             gsap.to(this.DOM.circleText, {
                 duration: 1,
                 ease: 'expo',
@@ -57,16 +68,18 @@ export class CircleTextController {
                 rotation: i => i%2 ? '-=90' : '+=90',
                 opacity: 0.4,
                 
-            });
+            })
+
+            gsap.to(this.DOM.button, {
+                duration: 0.9,
+                ease: 'back.out',
+                scale: 1.35,
+            } );
         };
 
         this.enterMouseLeaveEv = () => {
             // gsap.killTweensOf([DOM.enterBackground,this.DOM.circleText]);
-            gsap.to(DOM.enterBackground, {
-                duration: 1,
-                ease: 'expo',
-                scale: 1
-            });
+
             gsap.to(this.DOM.circleText, {
                 duration: 1,
                 ease: 'expo',
@@ -77,6 +90,12 @@ export class CircleTextController {
                     amount: -0.2
                 }
             });
+
+            gsap.to(this.DOM.button, {
+                duration: 0.9,
+                ease: 'back.out',
+                scale: 1,
+            } );
         };
 
         DOM.enterCtrl.addEventListener('mouseenter', this.enterMouseEnterEv);
@@ -113,6 +132,8 @@ export class CircleTextController {
         .add(() => {
             gsap.set(DOM.enterCtrl, {pointerEvents: 'auto'});
         }, 'start+=2');
+
+        this.started = true
     }
 
     enter() {
@@ -141,19 +162,11 @@ export class CircleTextController {
                 amount: -0.4
             }
         }, 'start')
+
           .add(() => {
               navigate('/projects')
           }, 'start+=1.3')
-        // .to([DOM.content.children, DOM.frame.children], {
-        //     duration: 0.9,
-        //     ease: 'back.out',
-        //     startAt: {opacity: 0, scale: 1.2},
-        //     scale: 1,
-        //     opacity: 1,
-        //     stagger: {
-        //         amount: 0.3
-        //     }
-        // }, 'start+=1.3')
+
     }
 }
 

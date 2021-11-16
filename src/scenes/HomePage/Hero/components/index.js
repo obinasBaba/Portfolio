@@ -61,6 +61,13 @@ export const Greeting = styled.div`
     ${ spacing( 'ml', 3 ) };
     ${ spacing( 'mt', 4 ) };
     ${ spacing( 'max-width', 8.2 ) };
+    
+    ${xLargeUp( css`
+      ${ spacing( 'mt', 0 ) };
+      ${ spacing( 'max-width', 12 ) };
+      ${ spacing( 'mr', -3 ) };
+
+    ` )};
   }
 
   & > :first-child{
@@ -93,8 +100,7 @@ export const Greeting = styled.div`
       }
     
     svg{
-      ${ spacing( 'mt', 0 ) };
-      ${ spacing( 'max-width', 8.7 ) };
+      
     }
     
     

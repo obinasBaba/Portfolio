@@ -69,7 +69,7 @@ export const PointerContainer = styled(motion.div)`
 
   &.inner {
     p {
-      transition: color .25s ease-in-out;
+      //transition: color .25s ease-in-out;
       font-size: .78rem;
     }
   }
@@ -77,7 +77,7 @@ export const PointerContainer = styled(motion.div)`
 
 `
 
-const InnerPointer = ({isPointed, isFocused}) => {
+const InnerPointer = ({isPointed, isFocused, pointedColor}) => {
 
   useEffect(() => {
     gsap.to('.pointer.inner > *', {
@@ -106,7 +106,8 @@ const InnerPointer = ({isPointed, isFocused}) => {
     console.log('focused :', isFocused, );
 
     gsap.to('.pointer.inner > *', {
-      color: isFocused ? '#a4b5c0' : 'var(--theme)',
+      color: isFocused ? ( pointedColor || '#a4b5c0' ) : 'var(--theme)',
+      duration: gsap.defaults().duration
     })
 
     gsap.to('.pointer.inner', {
@@ -166,6 +167,7 @@ const Cursor = ({ path, loadingOverlay }) => {
 
   const [isFocused, setIsFocused] = useState(false)
   const [isPointed, setIsPointed] = useState(false)
+  const [pointedColor, setPointedColor] = useState(undefined)
 
 
   const { listenerTargetSelector, } = useContext(AppStateContext)
@@ -299,9 +301,13 @@ const Cursor = ({ path, loadingOverlay }) => {
   const handleHover = e => {
     // console.log('enter hover')
     let type = e.currentTarget.dataset.pointer;
+    let color = e.currentTarget.dataset.pointerColor;
 
     if ( type === 'focus' )
+    {
       setIsFocused(true);
+      color && setPointedColor(color)
+    }
      else
       setIsPointed(true)
 
@@ -335,13 +341,8 @@ const Cursor = ({ path, loadingOverlay }) => {
     }, [])
 
   useEffect(() => {
-    refreshEventListeners('[data-pointer]')
-  }, [])
-
-  useEffect(() => {
     if ( !listenerTargetSelector ) return;
 
-    // return;
       console.log('selector: ', listenerTargetSelector, 'loading: ', loadingOverlay);
 
       setTimeout(() => {
@@ -364,6 +365,14 @@ const Cursor = ({ path, loadingOverlay }) => {
 
     return () => clearAnim()
   }, [])
+
+  useEffect(() => {
+    setTimeout(() => {
+      refreshEventListeners('#main-container [data-pointer]')
+    }, 500)
+    setIsPointed(false)
+    setIsFocused(false)
+  }, [path])
 
   const updateMousePos = () => {
     const render = () => {
@@ -394,7 +403,7 @@ const Cursor = ({ path, loadingOverlay }) => {
 
   return (
     <CursorContainer className='cursor-container'>
-      <InnerPointer isPointed={isPointed} isFocused={isFocused} />
+      <InnerPointer isPointed={isPointed} isFocused={isFocused} pointedColor={pointedColor} />
       <OuterPointer isPointed={isPointed} isFocused={isFocused} />
     </CursorContainer>
   )

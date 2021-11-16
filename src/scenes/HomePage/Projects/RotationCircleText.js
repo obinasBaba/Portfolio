@@ -1,6 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from "react";
 import styled, { css } from 'styled-components'
 import { CircleTextController } from './CircleTextController'
+import { gsap } from "gsap";
+import STrigger from 'gsap/ScrollTrigger'
+
 
 const vars = css`
   margin: 0;
@@ -146,19 +149,49 @@ const Container = styled.div`
 `
 
 
-const RotationCircleText = () => {
+const RotationCircleText = ({inview}) => {
+  const circleRef = useRef();
 
   useEffect(() => {
+      circleRef.current = CircleTextController.getInstance();
+    CircleTextController.getInstance().start()
 
-
-      const intro = new CircleTextController(document.querySelector('.circles'));
-      intro.start();
-
+      return () => {}
 
   } , [])
 
+  useEffect(() => {
+    return ;
+       inview && !circleRef.current.started &&  CircleTextController.getInstance().start();
+  }, [inview])
+
+  useEffect(() => {
+    const track = document.querySelector('#projects')
+
+
+    setTimeout(() => {
+     gsap
+       .timeline()
+       .to([...document.querySelectorAll('.rotation-circle .circles__text')], {
+         // ease: 'none',
+         rotation: i => i%2 ? '-=60' : '+=60',
+
+         scrollTrigger: {
+           trigger: '#projects',
+           scroller: '[data-scroll-container]',
+           scrub: 1,
+           start: () => 'top 10',
+           end: () => '+=' + track.offsetHeight,
+         },
+       })
+
+     STrigger.refresh()
+   }, 500)
+  }, [])
+
+
   return (
-    <Container>
+    <Container className='rotation-circle' >
       <svg className="circles" width="100%" height="100%"
            viewBox="0 0 1400 1400">
         <def>
@@ -189,7 +222,10 @@ const RotationCircleText = () => {
         </text>
       </svg>
 
-      <button className="enter">
+      <button className="enter"
+              data-pointer='focus'
+              data-pointer-color='#02021e'
+      >
         <div className="enter__bg"/>
         <span className="enter__text">Explore</span>
       </button>

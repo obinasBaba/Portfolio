@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 import { Typography, useMediaQuery, useTheme } from '@material-ui/core'
@@ -7,18 +7,9 @@ import Card from './components/Card'
 import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
 import gsap from 'gsap'
 import STrigger from 'gsap/ScrollTrigger'
-import { AppStateContext } from '../../../../contexts/AppStateContext'
-import {
-  mediumUp,
-  smallDown,
-  spacing,
-  text,
-  title,
-} from '../../../../styles/mixins'
+import { mediumUp, smallDown, spacing, text } from '../../../../styles/mixins'
 import BigPlanet from './components/BigPlanet'
 import useOnScreen from '../../../../hooks/useOnScreen'
-import LocomotiveScroll from 'locomotive-scroll'
-import { randomNumber } from '../../../../helpers/utils'
 
 const ProcessContainer = styled.section`
   position: relative;

@@ -20,7 +20,7 @@ const IndexPage = ({ path }) => {
     if (backgroundOverlay) return
 
     setCurrentPath(path)
-    setListenerTargetSelector('#main-container [data-pointer]')
+    // setListenerTargetSelector('#main-container [data-pointer]')
     console.log('set listenerTarget in index.js')
   }, [backgroundOverlay])
 
