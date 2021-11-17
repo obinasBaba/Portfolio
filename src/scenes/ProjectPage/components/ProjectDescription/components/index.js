@@ -14,7 +14,7 @@ export const ProjectDescriptionContainer = styled(motion.div)`
   grid-row: 3;
   pointer-events: none;
   //overflow: hidden;
-  //border: thin solid red;
+  border: thin solid red;
   ${gridColWidth(8, 58)}
   ${spacing('pt', 1.7)};
   ${spacing('pb', 6)};

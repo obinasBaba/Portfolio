@@ -68,7 +68,7 @@ export const Texts = styled(motion.div)`
   display: flex;
   flex-flow: column;
   grid-row: 2;
-  //border: thin solid red;
+  border: thin solid red;
   word-break: break-all;
   word-wrap: break-word;
   //margin-left: calc(100vw / 64 * 2);

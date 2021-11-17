@@ -1,13 +1,9 @@
+// noinspection JSIgnoredPromiseFromCall
+
 import { gsap } from 'gsap';
 import { navigate } from "gatsby";
 
 
-let DOM = {
-    // frame: document.querySelector('.frame'),
-    // content: document.querySelector('.content'),
-    enterCtrl: document.querySelector('.enter'),
-    enterBackground: document.querySelector('.enter__bg')
-};
 
 export class CircleTextController {
     static instance = null
@@ -30,15 +26,9 @@ export class CircleTextController {
         this.DOM.circleText = [...this.DOM.el.querySelectorAll('text.circles__text')];
         this.DOM.button = document.querySelectorAll('.rotation-circle .enter');
         this.DOM.buttonTxt = document.querySelectorAll('.circles__text');
+        this.DOM.enterCtrl = document.querySelector('.enter');
         // total
         this.circleTextTotal = this.DOM.circleText.length;
-
-        DOM = {
-            frame: document.querySelector('.frame'),
-            content: document.querySelector('.content'),
-            enterCtrl: document.querySelector('.enter'),
-            enterTxt: document.querySelector('.enter__text')
-        };
 
         
         this.setup();
@@ -51,7 +41,7 @@ export class CircleTextController {
         // hide on start
         gsap.set([this.DOM.circleText ], {opacity: 0});
         // don't allow to hover
-        gsap.set(DOM.enterCtrl, {pointerEvents: 'none'});
+        gsap.set(this.DOM.enterCtrl, {pointerEvents: 'none'});
 
         this.initEvents();
     }
@@ -59,7 +49,7 @@ export class CircleTextController {
     initEvents() {
 
         this.enterMouseEnterEv = () => {
-            gsap.killTweensOf([DOM.enterBackground,this.DOM.circleText]);
+            // gsap.killTweensOf([this.DOM.enterBackground,this.DOM.circleText]);
 
             gsap.to(this.DOM.circleText, {
                 duration: 1,
@@ -98,11 +88,11 @@ export class CircleTextController {
             } );
         };
 
-        DOM.enterCtrl.addEventListener('mouseenter', this.enterMouseEnterEv);
-        DOM.enterCtrl.addEventListener('mouseleave', this.enterMouseLeaveEv);
+        this.DOM.enterCtrl.addEventListener('mouseenter', this.enterMouseEnterEv);
+        this.DOM.enterCtrl.addEventListener('mouseleave', this.enterMouseLeaveEv);
 
         this.enterClickEv = () => this.enter();
-        DOM.enterCtrl.addEventListener('click', this.enterClickEv);
+        this.DOM.enterCtrl.addEventListener('click', this.enterClickEv);
     }
 
     start() {
@@ -118,7 +108,7 @@ export class CircleTextController {
             }
         }, 'start')
         // scale in the texts & enter button and fade them in
-        .to([this.DOM.circleText, DOM.enterCtrl], {
+        .to([this.DOM.circleText, this.DOM.enterCtrl], {
             duration: 3,
             ease: 'expo.inOut',
             startAt: {opacity: 0, scale: 0.8},
@@ -130,7 +120,7 @@ export class CircleTextController {
         }, 'start')
         // at start+1 allow the hover over the enter ctrl
         .add(() => {
-            gsap.set(DOM.enterCtrl, {pointerEvents: 'auto'});
+            gsap.set(this.DOM.enterCtrl, {pointerEvents: 'auto'});
         }, 'start+=2');
 
         this.started = true
@@ -139,15 +129,15 @@ export class CircleTextController {
     enter() {
         this.startTL.kill();
         
-        gsap.set(DOM.enterCtrl, {pointerEvents: 'none'});
-        DOM.enterCtrl.removeEventListener('mouseenter', this.enterMouseEnterEv);
-        DOM.enterCtrl.removeEventListener('mouseleave', this.enterMouseLeaveEv);
+        gsap.set(this.DOM.enterCtrl, {pointerEvents: 'none'});
+        this.DOM.enterCtrl.removeEventListener('mouseenter', this.enterMouseEnterEv);
+        this.DOM.enterCtrl.removeEventListener('mouseleave', this.enterMouseLeaveEv);
 
         // gsap.set([DOM.frame, DOM.content], {opacity: 1});
 
         gsap.timeline()
         .addLabel('start', 0)
-        .to(DOM.enterCtrl, {
+        .to(this.DOM.enterCtrl, {
             duration: 0.6,
             ease: 'back.in',
             scale: 0.2,

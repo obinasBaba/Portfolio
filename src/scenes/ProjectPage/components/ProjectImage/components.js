@@ -55,7 +55,7 @@ export const InnerWrapper = styled(motion.div)`
   ` )};
 
   ${xLargeUp( css`
-    height: 500px;
+    //height: 500px;
     
   ` )};
   
