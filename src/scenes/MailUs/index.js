@@ -8,6 +8,7 @@ import FooterMeta from './FooterMeta'
 import Footer from '../../components/Footer'
 import GalaxyButton from '../ContactPage/components/BottomBar/GalaxyButton'
 import useOnScreen from '../../hooks/useOnScreen'
+import MotionBtn from "../../components/MotionBtn";
 
 const MailUsContainer = styled.div`
   position: relative;
@@ -92,7 +93,8 @@ const MailUs = () => {
           Ready To Create <br /> Your Star ?
         </GradientText>
 
-        <GalaxyButton text="Contact" />
+        <MotionBtn text="Contact" to='/contact' data-pointer='focus' data-pointer-color='#02021e' />
+
       </TitleWrapper>
 
       <FooterMeta />

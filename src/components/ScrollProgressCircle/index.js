@@ -9,6 +9,7 @@ import styled from 'styled-components'
 import { length, spacing } from '../../styles/mixins'
 import {AppStateContext} from '../../contexts/AppStateContext'
 import {map} from '../../helpers/utils'
+import { Link } from "gatsby";
 
 const RotatingDiv = styled(motion.div)`
   width: 100%;
@@ -30,18 +31,25 @@ const ProgressCircleContainer = styled.div`
   bottom: auto;
   right: 0;
   
-  z-index: 1;
-  
+  z-index: 20;
+
 `
 
 const ProgressCircleWrapper = styled( motion.div )`
+  position: relative;
   display: grid;
   place-items: center;
+  
+  a{
+    position: absolute;
+    inset: 0;
+    
+  }
   
   & .phone{
     grid-row: 1 / 1;
     grid-column: 1 / 1;
-    opacity: .7;
+    //opacity: .7;
 
     & *{
       transition: stroke .4s ease-in-out;
@@ -99,6 +107,7 @@ const ScrollProgressCircle = () => {
 
       <ProgressCircleWrapper
         data-pointer='magnet'
+        data-pointer-color='#5d6c7b'
         data-magnet-distance={.6}
         data-magnet-attraction={1.6}
         data-tooltip
@@ -117,7 +126,9 @@ const ScrollProgressCircle = () => {
         }}
       >
 
-        <motion.svg xmlns="http://www.w3.org/2000/svg"
+        <Link to={'/contact'}/>
+
+        <svg xmlns="http://www.w3.org/2000/svg"
              className='phone'
              width="27" height="27" viewBox="0 0 27 27">
 
@@ -132,7 +143,7 @@ const ScrollProgressCircle = () => {
               <path id="phone_path" data-name="Path 6575" d="M9.753,13.164a8.9,8.9,0,0,0,4.119,4.1A.836.836,0,0,0,14.7,17.2l2.641-1.761a.844.844,0,0,1,.8-.074l4.94,2.117a.841.841,0,0,1,.506.875,5.063,5.063,0,0,1-5.022,4.422A14.344,14.344,0,0,1,4.219,8.438,5.063,5.063,0,0,1,8.64,3.415a.841.841,0,0,1,.875.506l2.119,4.944a.844.844,0,0,1-.07.794L9.81,12.341A.836.836,0,0,0,9.753,13.164Z" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.688"/>
             </g>
           </g>
-        </motion.svg>
+        </svg>
 
         <RotatingDiv  style={{ rotate }}>
 

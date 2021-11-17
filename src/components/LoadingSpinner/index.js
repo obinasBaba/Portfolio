@@ -201,7 +201,10 @@ const LoadingSpinner = ({ fontFinish }) => {
 
   useEffect(() => {
     if ( fontFinish )
+    {
       setBackgroundOverlay(false)
+      window.fromLoading = true
+    }
 
   }, [fontFinish])
 

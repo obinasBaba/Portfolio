@@ -92,7 +92,7 @@ const MotionBtn = ({
   margin = true,
   layoutId = false,
   arrowClr = '#fff',
-  onClick
+  onClick, ...props
 
 }) => {
   const controls = useAnimation()
@@ -101,6 +101,7 @@ const MotionBtn = ({
     <motion.div layoutId={layoutId}>
 
       <Btn
+        {...props}
         onClick={onClick}
         margin={margin}
         arrow={arrow}

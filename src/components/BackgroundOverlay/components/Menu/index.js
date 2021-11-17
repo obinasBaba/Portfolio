@@ -188,6 +188,10 @@ const Menu = ({ onClick, ...props }) => {
     return () => setListenerTargetSelector(undefined)
   }, [])
 
+  useEffect(() => {
+    // onClick()
+  }, [currentPath])
+
   return (
     <MenuContainer
       variants={{}}

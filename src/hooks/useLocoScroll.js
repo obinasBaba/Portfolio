@@ -104,27 +104,22 @@ export default function useLocoScroll (
         }
       };
 
-      window.addEventListener('resize',
-        lsUpdate)
-      ScrollTrigger.addEventListener("refresh",
-        lsUpdate);
+      window.addEventListener('resize', lsUpdate)
+      ScrollTrigger.addEventListener("refresh", lsUpdate);
       ScrollTrigger.refresh();
 
       setTimeout(() => {
-          locoScroll.current.update()
+          locoScroll.current && locoScroll.current.update()
         },
-        2000)
+        500)
 
       return () => {
         if ( locoScroll.current ) {
-          window.removeEventListener('resize',
-            lsUpdate)
-          ScrollTrigger.removeEventListener("refresh",
-            lsUpdate);
+          window.removeEventListener('resize', lsUpdate)
+          ScrollTrigger.removeEventListener("refresh", lsUpdate);
           locoScroll.current.destroy();
           locoScroll.current = null;
-          console.log("Kill",
-            locoScroll.current);
+          console.log("Kill", locoScroll.current);
         }
       };
     },

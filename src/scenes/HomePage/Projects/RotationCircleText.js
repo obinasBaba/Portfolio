@@ -156,7 +156,9 @@ const RotationCircleText = ({inview}) => {
       circleRef.current = CircleTextController.getInstance();
     CircleTextController.getInstance().start()
 
-      return () => {}
+      return () => {
+      CircleTextController.instance = null
+      }
 
   } , [])
 
@@ -186,7 +188,7 @@ const RotationCircleText = ({inview}) => {
        })
 
      STrigger.refresh()
-   }, 500)
+     }, 500)
   }, [])
 
 

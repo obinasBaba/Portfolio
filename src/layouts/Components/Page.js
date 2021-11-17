@@ -39,8 +39,16 @@ const Page = ({ children, path }) => {
 
       <Main data-scroll-container id="main-container">
         <AnimatePresence exitBeforeEnter custom={{ path, cPath: currentPath, isTop }}>
-          { !backgroundOverlay && <>{children}</>}
+          { !backgroundOverlay &&
+          <React.Fragment key="Main-Content">
+            <AnimatePresence exitBeforeEnter custom={{ path, cPath: currentPath, isTop }}>
+              {children}
+            </AnimatePresence>
+          </React.Fragment>
+          }
         </AnimatePresence>
+
+
       </Main>
 
       {bottomGradient && <BottomGradient />}

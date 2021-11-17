@@ -5,8 +5,9 @@ import {
   smallUp,
   spacing, xLargeUp, text,
 } from '../../../../styles/mixins'
+import { motion } from "framer-motion";
 
-export const HeroContainer = styled.div`
+export const HeroContainer = styled( motion.section )`
   position: relative;
   height: 100vh;
   width: 100%;
@@ -14,7 +15,7 @@ export const HeroContainer = styled.div`
   //overflow: hidden;
 `
 
-export const TextContainer = styled.div`
+export const TextContainer = styled( motion.div )`
   height: 100%;
   width: 100%;
   display: flex;
@@ -49,7 +50,7 @@ export const TextContainer = styled.div`
 
 }`
 
-export const Greeting = styled.div`
+export const Greeting = styled( motion.div )`
   display: flex;
   align-items: center;
 
@@ -109,7 +110,7 @@ export const Greeting = styled.div`
 
 `
 
-export const Intro = styled.div`
+export const Intro = styled( motion.div )`
   display: flex;
   flex-flow: column;
   gap: 4rem;

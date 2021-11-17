@@ -138,7 +138,7 @@ function HeaderAppBar({}) {
 
       <HideOnScroll  >
         <NavContainer isGradient={false} >
-          <HomeLogo  />
+          <HomeLogo  toggleMenu={() => menuIsOpen && toggleMenu() }/>
 
           <NavBtn
             key='nav'

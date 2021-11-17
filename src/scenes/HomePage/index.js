@@ -15,17 +15,20 @@ const HomeContainer = styled( motion.div )`
 
 const containerVariants = {
   initial: {
-    opacity: 0,
+    // opacity: 0,
   },
   animate: {
-    opacity: 1
+    // opacity: 1
+    transition: {
+
+    }
   },
   exit: {
-    opacity: 0
+    // opacity: 0,
   },
 
    transition: {
-    duration: 5
+    // duration: 5
    }
 }
 

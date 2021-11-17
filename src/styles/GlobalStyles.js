@@ -125,11 +125,7 @@ export const GlobalStyle = createGlobalStyle`
       rgba(251, 254, 252, 0));
     }
 
-    --cIndex: 20;
-
-    &.canvas-hover {
-      --cIndex: 10;
-    }
+   
 
   }
 

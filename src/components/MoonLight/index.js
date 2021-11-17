@@ -62,6 +62,7 @@ const MoonBg = styled(motion.div)`
 
 const defaultMoonVariant = {
   transition: {
+    // delay: 1,
     duration: 1,
     ease: [0.6, 0.01, 0, 0.9],
   },

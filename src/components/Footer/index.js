@@ -125,10 +125,13 @@ const Love = styled.div`
   }
 
   b {
-    font-weight: 700;
-    font-style: italic;
-    //font-family: Dancing Script, cursive;
+    font-weight: 900;
+    //font-style: italic;
+
+    //font-family: niagara, serif;
     //font-size: 1.2rem;
+    text-transform: capitalize;
+    letter-spacing: 2px;
   }
 
   @media screen and (min-width: 1600px) {
@@ -150,7 +153,7 @@ const Copy = styled.div`
 
   span {
     font-weight: 300;
-    ${text(1)};
+    ${text(2.5)};
   }
 
   ${largeUp(css`

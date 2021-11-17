@@ -90,7 +90,7 @@ const InnerPointer = ({isPointed, isFocused, pointedColor}) => {
 
   useEffect(() => {
 
-    console.log('isPointed: ' , isPointed);
+    // console.log('isPointed: ' , isPointed);
 
 
     // setTimeout(() => {
@@ -98,12 +98,16 @@ const InnerPointer = ({isPointed, isFocused, pointedColor}) => {
         scale: isPointed ? 3.3 :  1,
       })
 
+      gsap.to('.pointer.inner > *', {
+        color: isPointed ? ( pointedColor || '#a4b5c0' ) : 'var(--theme)',
+      })
+
 
   }, [isPointed])
 
   useEffect(() => {
 
-    console.log('focused :', isFocused, );
+    // console.log('focused :', isFocused, );
 
     gsap.to('.pointer.inner > *', {
       color: isFocused ? ( pointedColor || '#a4b5c0' ) : 'var(--theme)',
@@ -172,97 +176,8 @@ const Cursor = ({ path, loadingOverlay }) => {
 
   const { listenerTargetSelector, } = useContext(AppStateContext)
 
-  /*const cursor = useMemo(() => PaperCursor.getInstance(), [])
-
-  const initHover = useCallback(async () => {
-    cursor.pointed = false
-    cursor.isStuck = false
-    cursor.isPointed = false
-    cursor.focus = false;
-
-    document.body.classList.remove('canvas-hover')
-
-    // console.log('INIT__HOVER: ', path)
-
-    const handleHover = e => {
-      // console.log('enter hover')
-      let type = e.currentTarget.dataset.pointer;
-      if (type === 'stuck') {
-        const rect = e.currentTarget.getBoundingClientRect()
-        let x = Math.round(rect.left + rect.width / 2)
-        let y = Math.round(rect.top + rect.height / 2)
-        cursor.startStuck(x, y)
-      }else if( type === 'focus'){
-        cursor.focus = true;
-      } else {
-        document.body.classList.add('canvas-hover')
-        cursor.isPointed = true
-      }
-    }
-
-    const handleLeave = () => {
-      cursor.pointed = false
-      cursor.isPointed = false;
-      cursor.focus = false;
-
-      document.body.classList.remove('canvas-hover')
-      // console.log('classList: ', document.body.classList)
-    }
-
-    const pointerElements = document.querySelectorAll('[data-pointer]')
-    // console.log(pointerElements)
-
-    pointerElements.forEach(element => {
-      element.removeEventListener('mouseenter', handleHover)
-      element.removeEventListener('mouseleave', handleLeave)
-
-      element.addEventListener('mouseenter', handleHover)
-      const type = element.dataset.pointer
-
-      if (type === 'magnet') {
-        // console.log(element)
-        const attraction = element.dataset.magnetAttraction ?? 1
-        const distance = element.dataset.magnetDistance ?? 0.7
-        new MagnetElement({
-          element: element,
-          stop: attraction,
-          distance: distance,
-        }).on('leave', () => {
-          //if it is magnet no mouseleave needed
-          // console.log('LEAVE invoked')
-          cursor.pointed = false
-          cursor.isPointed = (false)
-          document.body.classList.remove('canvas-hover')
-        })
-      } else if (type !== 'stuck' && type !== 'magnet') {
-        //only pointer
-        element.addEventListener('mouseleave', handleLeave)
-      }
-    })
-
-  }, [path])
-
-  useEffect(() => {
-    const onResize = debounce(cursor.reInit.bind(cursor, []), 1000, {})
-    let onR = () => onResize()
-
-
-    window.addEventListener('resize', onR )
-
-    return () => {
-      window.removeEventListener('resize', onR)
-      cursor.destroy()
-    }
-  }, [])
-
-  useEffect(() => {
-    initHover()
-  }, [path, menuIsOpen])*/
 
   const refreshEventListeners = (selector) => {
-
-    // if ( selectorCheck.get(selector) ) return
-    // selectorCheck.set(selector, true)
 
     const pointerElements = document.querySelectorAll(selector)
     console.log(selector, pointerElements)
@@ -302,12 +217,11 @@ const Cursor = ({ path, loadingOverlay }) => {
     // console.log('enter hover')
     let type = e.currentTarget.dataset.pointer;
     let color = e.currentTarget.dataset.pointerColor;
+    setPointedColor(color || undefined)
+
 
     if ( type === 'focus' )
-    {
       setIsFocused(true);
-      color && setPointedColor(color)
-    }
      else
       setIsPointed(true)
 
@@ -391,12 +305,9 @@ const Cursor = ({ path, loadingOverlay }) => {
         ease: 'power2.out'
       })
 
-
-
      animId = requestAnimationFrame(() => render())
 
     }
-
      animId = requestAnimationFrame(() => render())
   }
 
