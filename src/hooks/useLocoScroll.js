@@ -6,6 +6,7 @@ import 'locomotive-scroll/dist/locomotive-scroll.css'
 import { AppStateContext } from '../contexts/AppStateContext'
 import Cursor from '../components/Cursor/Cursor'
 import { debounce } from "lodash";
+import { useMediaQuery, useTheme } from "@material-ui/core";
 
 let timeout = 0
 
@@ -18,10 +19,14 @@ export default function useLocoScroll (
 
   const locoScroll = useRef(null)
 
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
+
+
   useEffect(() => {
       console.log('LocoInvoked ---- --- --', start)
 
-      if ( !start ) return;
+      if ( !start || matches ) return;
 
       const scrollEl = document.querySelector(elementId);
 

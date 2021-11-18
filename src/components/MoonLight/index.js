@@ -1,21 +1,31 @@
 import React, { useEffect } from 'react'
-import { largeUp, smallUp, xLargeUp } from "../../styles/mixins";
+import { largeUp, mediumUp, smallUp, xLargeUp } from "../../styles/mixins";
 import styled, { css } from 'styled-components'
 import { motion, useSpring } from 'framer-motion'
 import { getMousePos } from '../../helpers/utils'
+import { useMediaQuery, useTheme } from "@material-ui/core";
 
 const MoonBg = styled(motion.div)`
-  position: ${ ({pos}) => pos ?? 'absolute' };
+  position: ${({ pos }) => pos ?? 'absolute'};
   top: 0;
   left: 0;
   right: 0;
-  height: 1185px;
+  height: 100vh;
   width: 100%;
   margin-left: auto;
   //overflow: hidden;
   //z-index: -1;
   pointer-events: none;
-  //border: thick solid red;
+  
+  //display: flex;
+  //align-items: center;
+  //justify-content: center;
+
+  ${mediumUp(css`
+    height: 1185px;
+  `)};
+  
+  
 
   .moonlight {
     //border: thick solid yellow;
@@ -23,40 +33,47 @@ const MoonBg = styled(motion.div)`
     margin: auto;
     height: 1185px;
     bottom: 0;
-    left: -40%;
-    right: -40%;
-    top: -66%;
+    left: -35%;
+    right: -35%;
+    top: -52%;
     width: initial;
     //transform: translateX(-20%);
 
+
     & > svg {
-      .path_73{
+      .path_73 {
         filter: blur(10px);
         transform: scale(.95);
       }
     }
+    
+    ${smallUp( css`
+      top: -40%;
+      left: -25%;
+      right: -25%;
+    ` )};
 
-    ${smallUp(css`
+    ${mediumUp(css`
       transform: translateX(0%);
-      left: 0%;
+      left: 0;
 
       right: -70%;
       width: 170%;
       //top: 0;
       top: -45%;
     `)};
-    
-    ${largeUp( css`
-    
+
+    ${largeUp(css`
+
       right: 0;
       width: 150%;
-    ` )};
-    
-    ${xLargeUp( css`
+    `)};
+
+    ${xLargeUp(css`
       top: -25%;
       right: -65%;
       height: 1500px;
-    ` )};
+    `)};
   }
 `
 
@@ -90,9 +107,13 @@ const config = {
 const MoonLight = ({ zIndex, pos = 'fixed', showMoon = true, show = true, variants = {} }) => {
   const x = useSpring(0, config)
   const y = useSpring(0, config)
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
 
 
   useEffect(() => {
+    if ( !matches ) return
+
     let trackMousePos = ev => {
       x.set((getMousePos(ev).x / 38) * -1)
       y.set((getMousePos(ev).y / 25) * -1)

@@ -9,13 +9,14 @@ const FooterMetaContainer = styled(Container)`
   display: flex;
   flex-flow: wrap;
   justify-content: space-between;
-  //border: thin solid red;
+  margin: 0 auto;
   
-  ${spacing('mb', 4)};
+  
   ${spacing('mt', 14)};
 
 
   ${mediumUp(css`
+    ${spacing('mb', 4)};
     ${spacing('mv', 5)};
     flex-flow: row wrap;
   `)};
@@ -25,13 +26,14 @@ const MetaColumn = styled.div`
   display: flex;
   flex: 50%;
   flex-flow: column;
-  align-items: flex-start;
-  //border: thin solid lightgray;
+  align-items: center;
   
   ${spacing('mb', 10)};
   ${spacing('ph', 4)};
-  
- 
+
+  ${mediumUp(css`
+    align-items: flex-start;
+  `)};
   
   & .title {
     ${spacing('mb', 3.5)};

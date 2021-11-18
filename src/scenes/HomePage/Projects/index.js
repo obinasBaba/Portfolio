@@ -88,8 +88,10 @@ const ScrollPlanet2 = styled.div`
   position: absolute;
   top: 50%;
   right: 30%;
+  display: none;
 
   ${smallUp(css`
+    display: block;
     top: 40%;
     right: 10%;
   `)};

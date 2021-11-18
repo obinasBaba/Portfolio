@@ -89,15 +89,11 @@ const Hero = () => {
 
             <Typography variant="h1"> hi, I am </Typography>
             <H />
-            <Typography  variant="h1">
-              enok
-            </Typography>
+            <Typography  variant="h1">enok</Typography>
 
           </Greeting>
 
-          <Intro variants={introContainerVariants}
-                 transition={introContainerVariants.transition}>
-
+          <Intro variants={introContainerVariants} transition={introContainerVariants.transition}>
             <Typography variant='h3'>
               S-O-L-I-D front-end, <br/> less frame-work, less bugs, more engineering patterns!
             </Typography>

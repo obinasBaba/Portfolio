@@ -10,6 +10,7 @@ import { BottomGradient, Main, PageContainer, SkyColor } from './Styled'
 import useLoadingFonts from "../../hooks/useFonts";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import BackgroundOverlay from "../../components/BackgroundOverlay";
+import { useMediaQuery, useTheme } from "@material-ui/core";
 
 const Page = ({ children, path }) => {
   const {
@@ -22,6 +23,8 @@ const Page = ({ children, path }) => {
 
 
   const [fontFinish, setFontFinish] = useState(fontLoaded.get())
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
   useLoadingFonts(fontLoaded, setFontFinish)
 
@@ -30,7 +33,7 @@ const Page = ({ children, path }) => {
       <SkyColor />
       <BackgroundStars />
 
-      {!backgroundOverlay && <Cursor path={currentPath} loadingOverlay={backgroundOverlay} /> }
+      {!backgroundOverlay && matches && <Cursor path={currentPath} loadingOverlay={backgroundOverlay} /> }
 
       {!backgroundOverlay && <HeaderAppBar />}
 

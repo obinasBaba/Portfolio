@@ -111,6 +111,8 @@ const Social = styled.ul`
 `
 
 const Love = styled.div`
+  
+
   position: absolute;
   font-weight: 300;
   line-height: 0;
@@ -119,7 +121,11 @@ const Love = styled.div`
   ${text(0.7)};
   ${spacing('left', 0)};
 
-
+  ${mediumDown(css`
+    order: 2;
+    position: relative;
+  `)};
+  
   span {
     font-size: 28px;
   }
@@ -138,13 +144,11 @@ const Love = styled.div`
     left: 0;
   }
 
-  ${mediumDown(css`
-    position: relative;
-  `)};
+ 
 `
 
 const Copy = styled.div`
-  //order: 2;
+  order: 1;
   display: flex;
   align-items: center;
   justify-content: center;

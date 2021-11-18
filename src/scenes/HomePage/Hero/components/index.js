@@ -21,15 +21,22 @@ export const TextContainer = styled( motion.div )`
   display: flex;
   flex-flow: column;
   justify-content: flex-end;
+  //align-items: center;
   gap: 1rem;
 
 
+
   ${spacing('pl', 6)};
-  ${spacing('pb', 10)};
+  ${spacing('pb', 18)};
   ${spacing('pt', 12)};
 
+  ${smallUp(css`
+    ${spacing('pb', 8)};
+    ${spacing('pl', 10)};
+    `)};
 
-  ${ smallUp( css`
+
+  ${ mediumUp( css`
     ${spacing('pb', 0)};
     ${spacing('pl', 4)};
     justify-content: center;
@@ -43,7 +50,8 @@ export const TextContainer = styled( motion.div )`
   ` ) };
 
   ${xLargeUp( css`
-    ${spacing('pl', 5)}; 
+    ${spacing('pl', 3)}; 
+    ${spacing('pb', 8)};
   ` )};
 
 
@@ -53,6 +61,7 @@ export const TextContainer = styled( motion.div )`
 export const Greeting = styled( motion.div )`
   display: flex;
   align-items: center;
+  //border: thin solid red;
 
   svg {
     transform: rotate(-10deg);
@@ -60,8 +69,12 @@ export const Greeting = styled( motion.div )`
     
     ${ spacing( 'mr', -2 ) };
     ${ spacing( 'ml', 3 ) };
-    ${ spacing( 'mt', 4 ) };
-    ${ spacing( 'max-width', 8.2 ) };
+    ${ spacing( 'max-width', 10 ) };
+    
+    ${mediumUp( css`
+      ${ spacing( 'mt', 4 ) };
+      ${ spacing( 'max-width', 8.2 ) };
+    ` )};
     
     ${xLargeUp( css`
       ${ spacing( 'mt', 0 ) };
@@ -85,45 +98,40 @@ export const Greeting = styled( motion.div )`
     margin: 0;
     padding: 0;
     line-height: 100%;
-    ${text(4.8  )};
-
 
     @media (max-width: 576px) {
       font-size: clamp(30px, 15vw, 80px);
     }
+
     
-   
+    
+    ${xLargeUp( css`
+      ${text(5.8  )};
+    `)};
+
   }
 
-  ${xLargeUp( css`
-      & h1{
-        ${text(5.8  )};
-      }
-    
-    svg{
-      
-    }
-    
-    
-
-  `)};
+  
 
 `
 
 export const Intro = styled( motion.div )`
   display: flex;
   flex-flow: column;
-  gap: 4rem;
   align-self: flex-start;
-  
+
+  ${ spacing( 'gap', 7 ) };
+
+
   & > :first-child {
     max-width: 20ch;
     font-weight: bold;
     opacity: .8;
     word-spacing: -5px;
     
-    ${text(2.5  )};
-    //color: #6c7b8a;
+    ${mediumUp( css`
+        ${text(2.5  )};
+    ` )};
   }
 
   & > :last-child{
@@ -132,10 +140,15 @@ export const Intro = styled( motion.div )`
     color: var(--medium);
     font-weight: bolder;
     max-width: 22ch;
-    margin-left: auto;
+    //margin-left: auto;
 
     //font-style: italic;
     ${text(1.6 )};
+    
+    ${smallUp( css`
+      margin-left: auto;
+
+    ` )};
 
   }
   
