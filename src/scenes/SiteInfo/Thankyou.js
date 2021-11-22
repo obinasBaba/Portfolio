@@ -8,6 +8,9 @@ const ContactContainer = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: flex-start;
+
+  border: thick solid red;
+
 `
 
 const Content = styled.div`
@@ -16,7 +19,7 @@ const Content = styled.div`
   flex-flow: column;
   justify-content: flex-start;
   
-  border: thin solid red;
+  border: thick solid red;
   
   ${spacing('gap', .1)};
 `

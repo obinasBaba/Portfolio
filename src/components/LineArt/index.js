@@ -10,17 +10,13 @@ const LottiContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: none;
-  padding: 4rem;
-  border-radius: 100px;
-  //border: thin solid green;
   
-  grid-row: 2 / 3;
-  grid-column: 1/ 1;
-  opacity: .3;
   
-  ${length('height', 103)};
-  ${length('width', 103)};
+  // ${length('height', 103)};
+  // ${length('width', 103)};
+  
+  height: 100%;
+  width: 100%;
   
   ${ ({art}) => {
     
@@ -41,7 +37,8 @@ const LottiContainer = styled.div`
     transition: transform 2s ease-out;
 
     path {
-      stroke-width: 4px;
+      stroke-width: 2px;
+      stroke: #434e5e;
     }
   }
 `

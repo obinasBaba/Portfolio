@@ -23,7 +23,7 @@ const useLoadingFonts = ( fontLoaded, setFontFinish ) => {
           fontLoaded.set(true)
           setFontFinish(true)
 
-        }, 1500)
+        }, 100)
       })
       .catch(console.error)
 

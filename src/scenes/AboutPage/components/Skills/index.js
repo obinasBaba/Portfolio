@@ -12,8 +12,20 @@ const SkillsContainer = styled(Container)`
 const SkillTitle = styled(Typography)`
   font-family: Elianto-Regular, serif;
   letter-spacing: -2.2px;
+  margin-top: -5px;
 
-  line-height: 95%;
+  line-height: 108%;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  // this one fixes gradient text line breaks safari bug: https://zellwk.com/blog/multi-line-gradient-links/
+  -webkit-box-decoration-break: clone;
+
+  background-image: linear-gradient(137.81deg,
+  #5d6c7b 3.52%,
+  #a4b5c0 41.89%,
+  #bfd0d9 96.77%);
+  
 `
 const Text = styled(Typography)`
   max-width: 50ch;
@@ -37,7 +49,7 @@ const Skills = () => {
   const { build, prototype} = useLottiAssets()
 
   return (
-    <SkillsContainer data-scroll-section maxWidth="lg">
+    <SkillsContainer data-scroll-section maxWidth="xl">
       <SkillTitle variant="h1">
         Skills &<br />
         expertise

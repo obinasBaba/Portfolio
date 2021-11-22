@@ -53,7 +53,6 @@ const introContainerVariants = {
 
 const textContainerVariants = {
   animate(arg){
-    console.log(window.fromLoading);
     let loading = window.fromLoading
 
     return {

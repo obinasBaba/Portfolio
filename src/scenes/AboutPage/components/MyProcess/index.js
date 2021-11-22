@@ -224,7 +224,7 @@ const MyProcess = () => {
         })
       })
 
-      STrigger.refresh()
+      // STrigger.refresh()
     }, 0)
   }, [mediaMatch, inView])
 

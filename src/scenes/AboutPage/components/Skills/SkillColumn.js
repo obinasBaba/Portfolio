@@ -19,8 +19,11 @@ const List = styled.div`
   //letter-spacing: 1.5px;
   
   font-weight: 300;
-  
-  
+  color: #a4b5c0;
+  opacity: .9;
+
+
+
 
   & > :not(:first-child){
     margin-top: .5rem;
@@ -39,6 +42,15 @@ const Text = styled( Typography )`
 
 const SkillTitle = styled( Typography )`
   font-weight: bolder;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  // this one fixes gradient text line breaks safari bug: https://zellwk.com/blog/multi-line-gradient-links/
+  -webkit-box-decoration-break: clone;
+
+  background-image: linear-gradient(137.81deg,
+  #5d6c7b 3.52%,
+  #a4b5c0 41.89%,
+  #bfd0d9 96.77%);
 `
 
 const Illustration= styled.div`

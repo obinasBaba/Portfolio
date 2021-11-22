@@ -12,13 +12,32 @@ const ThankYouContainer = styled.div`
 
 const Body = styled(Typography)`
   font-weight: lighter;
-  //color: #bac2d3;
+  //color: #bac2d3; // i thought u said u hadnt your ear phone with you
   letter-spacing: 0.6px;
   line-height: 170%;
   //color: #02021e;
 
 
   ${text(1)};
+`
+
+const ArtContainer = styled.div`
+  position: absolute;
+  pointer-events: none;
+  top: -100px;
+  left: -60vw;
+  //right: -30%;
+  z-index: -1;
+  opacity: .8;
+
+  height: 250vh;
+  width: 220vw;
+
+  //border: thick solid red;
+  
+  & * {
+    pointer-events: none;
+  }
 `
 
 const ThankYou = () => {
@@ -40,12 +59,9 @@ const ThankYou = () => {
         </Body>
       </div>
 
-      <LineArt artStyle={css`
-        position: absolute;
-        right: -60%;
-        ${length('height', 143)};
-        ${length('width', 143)};
-      `} />
+      <ArtContainer className='art-container'>
+        <LineArt/>
+      </ArtContainer>
 
     </ThankYouContainer>
   )

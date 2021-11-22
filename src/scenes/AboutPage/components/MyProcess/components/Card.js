@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
-import { mediumUp, spacing, text, title } from '../../../../../styles/mixins'
+import {
+  mediumUp,
+  spacing,
+  text,
+  title,
+  xLargeUp
+} from "../../../../../styles/mixins";
 import { Typography } from '@material-ui/core'
 import { Illustration } from './Icons'
 import useOnScreen from '../../../../../hooks/useOnScreen'
@@ -27,6 +33,10 @@ const StyledCard = styled.div`
     ${spacing('pt', 6.5)};
     ${spacing('pb', 4)};
   `)};
+  
+  ${xLargeUp( css`
+    max-width: 60ch;
+  ` )};
 
   & > * {
     //border: thin solid blueviolet;
@@ -59,7 +69,7 @@ const Num = styled(motion.div)`
   font-family: 'Bodoni Moda', sans-serif;
   font-weight: 900;
   letter-spacing: -3px;
-  -webkit-text-stroke: 2.5px #02021e;
+  -webkit-text-stroke: 2.5px #566373;
   color: transparent;
   ${text(7)};
 
