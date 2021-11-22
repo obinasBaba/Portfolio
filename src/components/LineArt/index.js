@@ -38,7 +38,7 @@ const LottiContainer = styled.div`
 
     path {
       stroke-width: 2px;
-      stroke: #434e5e;
+      stroke: ;
     }
   }
 `

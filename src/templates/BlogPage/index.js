@@ -11,7 +11,7 @@ import {basicVariants, transition} from '../../helpers/variants'
 
 const BlogContainer = styled( motion.div )`
   position: relative;
-  max-width: 1600px;
+  //max-width: 1600px;
   width: 100%;
   overflow: hidden;
   z-index: 0;

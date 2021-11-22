@@ -8,8 +8,8 @@ import {
   mediumUp,
   shadow,
   smallUp,
-  spacing,
-} from '../../../../styles/mixins'
+  spacing, xLargeUp
+} from "../../../../styles/mixins";
 
 const StyledBlogCard = styled(motion.div)`
   position: relative;
@@ -67,6 +67,10 @@ const StyledBlogCard = styled(motion.div)`
     ${spacing('pv', 2.2)};
     ${spacing('ml', 1)};
   `)};
+  
+  ${xLargeUp( css`
+    width: clamp(500px, 78vw, 910px);
+  ` )};
 `
 
 
