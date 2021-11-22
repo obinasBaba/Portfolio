@@ -14,6 +14,7 @@ export const HeadlineTitle = styled(motion.h1)`
   //overflow: hidden;
   font-family: "Poppins Black",serif;
   overflow-wrap: break-word;
+  color: white;
 
   ${spacing('mt', 2)}
   ${ title(3.35) };

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import BackgroundStars from '../../components/BackgroundStars'
 import HeaderAppBar from '../../components/HeaderAppBar'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, useMotionValue } from "framer-motion";
 import ToolTip from '../../components/Fixed/ToolTip'
 import ProgressCircle from '../../components/ScrollProgressCircle'
 import { AppStateContext } from '../../contexts/AppStateContext'
@@ -25,6 +25,8 @@ const Page = ({ children, path }) => {
   const [fontFinish, setFontFinish] = useState(fontLoaded.get())
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
+  const media = useMediaQuery(theme.breakpoints.up('xl'))
+  const mediaLarge = useMotionValue(media)
 
   useLoadingFonts(fontLoaded, setFontFinish)
 
@@ -41,7 +43,7 @@ const Page = ({ children, path }) => {
 
 
       <Main data-scroll-container id="main-container">
-        <AnimatePresence exitBeforeEnter custom={{ path, cPath: currentPath, isTop }}>
+        <AnimatePresence exitBeforeEnter custom={{ path, cPath: currentPath, isTop, mediaLarge }}>
           { !backgroundOverlay &&
           <React.Fragment key="Main-Content">
             <AnimatePresence exitBeforeEnter custom={{ path, cPath: currentPath, isTop }}>

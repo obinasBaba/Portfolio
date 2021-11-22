@@ -9,6 +9,7 @@ import four from './img/5.jpg'
 import { useIntersection } from 'react-use'
 import Item from './components/Item'
 import {distance, lerp, getMousePos} from '../../../../helpers/utils'
+import EventUtil from "../../../../helpers/EventUtil";
 
 
 const imgVariants = {
@@ -47,7 +48,7 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
   const svgRef = useRef(null)
   const svgRect = useRef({width: 0, height: 0})
 
-  const mousePos = useRef({x:  0, y:   0})
+  const mousePos = useRef({mousePos: {x:  0, y:   0}})
 
   const lastMousePos = useRef({
     translation: {
@@ -78,55 +79,48 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
 
     // window.addEventListener('resize', calcWinsize);
 
-    let trackMousePos = ev => {
-      if ( mousePos.current )
-        mousePos.current = getMousePos(ev)
-    }
-
-    window.addEventListener('mousemove', trackMousePos);
+    // let trackMousePos = ev => {
+    //   if ( mousePos.current )
+    //     mousePos.current = getMousePos(ev)
+    // }
+    //
+    // window.addEventListener('mousemove', trackMousePos);
+    mousePos.current = EventUtil.getInstance()
 
     if ( intersection && !intersection.isIntersecting )
       cancelAnimationFrame(cancelId.current)
     else
       track();
 
-    return () => window.removeEventListener('mousemove', trackMousePos)
+    return () => {}
 
   }, [intersection])
 
   const track = () => {
     if ( !svgRef.current ) return;
 
-    lastMousePos.current.translation.x =
-      lerp(lastMousePos.current.translation.x, mousePos.current.x, 0.1);
+    lastMousePos.current.translation.x = lerp(lastMousePos.current.translation.x, mousePos.current.mousePos.x, 0.1);
 
-    lastMousePos.current.translation.y =
-      lerp(lastMousePos.current.translation.y, mousePos.current.y, 0.1);
-
-    // console.log('x:', lastMousePos.current.translation.x, 'y: ', lastMousePos.current.translation.y)
+    lastMousePos.current.translation.y = lerp(lastMousePos.current.translation.y, mousePos.current.mousePos.y, 0.1);
 
     svgRef.current.style.transform =
       `translateX(${(lastMousePos.current.translation.x - window.innerWidth/2 )}px)
        translateY(${lastMousePos.current.translation.y - window.innerHeight/2}px)`;
 
-    // console.log('x:', svgRef.current.getBoundingClientRect().x, 'y: ',
-    //   svgRef.current.getBoundingClientRect().y)
-
-    // console.log('running : ', cancelId.current)
 
     // Scale goes from 0 to 100 for mouseDistance values between 0 to 100
     lastMousePos.current.displacement.x =
-      lerp(lastMousePos.current.displacement.x, mousePos.current.x, 0.1);
+      lerp(lastMousePos.current.displacement.x, mousePos.current.mousePos.x, 0.1);
 
     lastMousePos.current.displacement.y =
-      lerp(lastMousePos.current.displacement.y, mousePos.current.y, 0.1);
+      lerp(lastMousePos.current.displacement.y, mousePos.current.mousePos.y, 0.1);
     // x1,x2,y1,y2
 
     const mouseDistance =
       distance(lastMousePos.current.displacement.x,
         lastMousePos.current.displacement.y,
-        mousePos.current.x,
-         mousePos.current.y);
+        mousePos.current.mousePos.x,
+         mousePos.current.mousePos.y);
 
     dmScale.current = Math.min(mouseDistance, 100);
     feDisplacementMapEl.current.scale.baseVal = dmScale.current;

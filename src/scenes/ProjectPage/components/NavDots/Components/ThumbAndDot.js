@@ -1,8 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from "styled-components";
 import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
 import { AnchorDot, DottedLine, Thumb } from './NavTools'
 import {Link} from 'gatsby'
+import { spacing, xLargeUp } from "../../../../../styles/mixins";
 
 const ThumbAndDotContainer = styled.li`
   //border: thin solid lightblue;
@@ -12,10 +13,13 @@ const ThumbAndDotContainer = styled.li`
   padding: 0;
   margin: 0;
   background-color: white;
-  height: 11px;
-  width: 11px;
+  //height: 11px;
+  //width: 11px;
   border-radius: 50%;
   transition: transform .5s cubic-bezier(0.6, 0.01, 0, 0.9),border .2s ease-in-out;
+  
+  ${spacing('height', 1.2)};
+  ${spacing('width', 1.2)};
   
   & :hover{
     transform: scale(1.4);
@@ -51,6 +55,10 @@ const ThumbAndDotContainer = styled.li`
       line-height: 0;
       margin: 0;
       padding: 0;
+      
+      ${xLargeUp( css`
+        font-size: 1.6rem;
+      ` )};
     }
     
   }
@@ -72,6 +80,7 @@ const spring = {
   // type: 'spring',
   // stiffness: 500,
   // damping: 30,
+  rotation: 360,
 
   ease: [0.6, 0.01, 0, 0.9],
   duration: 1,

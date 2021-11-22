@@ -5,7 +5,7 @@ import { spacing } from '../../styles/mixins'
 export const ProjectContainer = styled(motion.div)`
   position: relative;
   //z-index: 1;
-  max-width: 1600px;
+  //max-width: 1600px;
   width: 100%;
   overflow: hidden;
   

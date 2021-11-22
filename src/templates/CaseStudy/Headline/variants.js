@@ -102,8 +102,10 @@ export const innerVariant = {
     if ( arg && arg.path === '/projects/' ){
       const delay = arg.isTop ? arg.isTop.get() : false;
 
+      console.log(arg);
+
       return{
-        height: 400,
+        height: arg.mediaLarge ? 500 : 400,
         transition: {
           ...transition,
           delay: delay ? 0 : 1,

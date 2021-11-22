@@ -6,7 +6,7 @@ import ThumbAndDot from './Components/ThumbAndDot'
 
 const NavContainer = styled(motion.ul)`
   position: fixed;
-  z-index: 10;
+  z-index: 3;
   bottom: 4%;
   left: 30%;
   
@@ -52,9 +52,13 @@ const parentVariant = {
   initial: {
     x: 'calc((var(--indent) * -4.5rem))',
     y: '-40%',
+    opacity: 0,
   },
+
   animate: {
     x: 0,
+    opacity: 1,
+
     transition: {
       delay: 0.3,
       duration: 1,
@@ -63,6 +67,7 @@ const parentVariant = {
   },
   exit: {
     x: 'calc((var(--indent) * -4.5rem))',
+    opacity: 0,
     transition: {
       delay: 0.1,
       duration: 1,

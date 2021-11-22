@@ -6,7 +6,7 @@ import ScrollDown from '../../../../components/ScrollDown'
 
 const ScrollDownWrapper = styled(motion.div)`
   position: fixed;
-  z-index: 99;
+  //z-index: 3;
   left: 0;
   bottom: 5%;
 
