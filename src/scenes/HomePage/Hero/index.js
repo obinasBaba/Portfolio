@@ -100,7 +100,7 @@ const Hero = () => {
 
         </TextContainer>
 
-        <Moon pos='absolute' />
+        <Moon  />
 
       </HeroContainer>
     </>

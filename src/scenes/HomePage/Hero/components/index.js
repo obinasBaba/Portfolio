@@ -3,7 +3,7 @@ import {
   length, largeUp,
   mediumUp,
   smallUp,
-  spacing, xLargeUp, text, xxLargeUp
+  spacing, xLargeUp, text, xxLargeUp, gridify, gridColWidth
 } from "../../../../styles/mixins";
 import { motion } from "framer-motion";
 
@@ -12,8 +12,8 @@ export const HeroContainer = styled( motion.section )`
   z-index: 1;
   height: 100vh;
   width: 100%;
-
-  //overflow: hidden;
+  
+  ${gridify()};
 `
 
 export const TextContainer = styled( motion.div )`
@@ -21,16 +21,22 @@ export const TextContainer = styled( motion.div )`
   width: 100%;
   display: flex;
   flex-flow: column;
-  justify-content: flex-end;
-  //align-items: center;
-  padding-bottom: 15%;
+  justify-content: center;
+  align-items: center;
+  //padding-bottom: 15%;
   z-index: 2;
-
+  
+  ${ gridColWidth() };
+  grid-row: 2 / 3;
 
   ${spacing('gap', 2)};
   ${spacing('ph', 3)};
 
   @media(min-width: 800px) {
+    grid-row: initial;
+    align-items: flex-start;
+
+
     ${spacing('pb', 0)};
     ${spacing('pl', 4)};
     ${spacing('pr', 0)};
@@ -62,21 +68,19 @@ export const Greeting = styled( motion.div )`
   
   ${mediumUp( css`
     justify-content: flex-start;
-    text-indent: -15px;
   ` )};
 
   svg {
     transform: rotate(-10deg);
     fill: var(--color);
     
-    ${ spacing( 'mr', -2 ) };
+    ${ spacing( 'mr', -1 ) };
     ${ spacing( 'ml', 3 ) };
     ${ spacing( 'max-width', 11 ) };
     
 
     ${largeUp( css`
-      // ${ spacing( 'mt', 0 ) };
-      // ${ spacing( 'max-width', 10 ) };
+      ${ spacing( 'mr', -2 ) };
     ` )};
     
     ${xxLargeUp( css`
@@ -112,8 +116,6 @@ export const Intro = styled( motion.div )`
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  
-
 
   ${mediumUp( css`
     justify-content: flex-start;
@@ -135,22 +137,19 @@ export const Intro = styled( motion.div )`
     max-width: 23ch;
     font-weight: bold;
     color: var(--light_medium_gray);
-    //word-spacing: -2px;
     text-align: center;
-    //line-height: 107%;
-   
     
     @media(max-width: 400px){
       ${text(2.2  )};
     }
 
     ${smallUp( css`
-      ${text(3  )};
+      ${text(2.7  )};
     ` )};
 
     ${mediumUp( css`
       text-align: initial;
-      
+      ${text(2.5  )};
     ` )};
     
     ${xxLargeUp( css`
@@ -164,7 +163,7 @@ export const Intro = styled( motion.div )`
   & > .quote{
     text-align: right;
     letter-spacing: -1px;
-    color: var(--medium);
+    color: var(--light_medium_gray);
     font-weight: bolder;
     max-width: 22ch;
     margin-left: auto;

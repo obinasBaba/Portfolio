@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import {
+  gridColWidth,
   largeUp,
   mediumUp,
   smallUp,
@@ -12,33 +13,33 @@ import { getMousePos } from '../../helpers/utils'
 import { useMediaQuery, useTheme } from "@material-ui/core";
 
 const MoonBg = styled(motion.div)`
-  position: ${({ pos }) => pos ?? 'absolute'};
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-  width: 100%;
-  margin-left: auto;
+  position: relative;
+  display: grid;
+  place-items: center;
   pointer-events: none;
 
-  ${mediumUp(css`
-    height: 1185px;
-  `)};
+  min-height: 40vh;
+  width: 100%;
+  grid-row: 1 / 2;
+
+
+  ${gridColWidth(1)};
   
   
+  @media(min-width: 800px){
+    position: absolute;
+    grid-row: initial;
+    height: 100vh;
+
+    ${ gridColWidth(10) };
+  }
 
   .moonlight {
-    //border: thick solid yellow;
     position: absolute;
-    margin: auto;
-    height: 1185px;
-    bottom: 0;
-    left: -35%;
-    right: -35%;
-    top: -52%;
-    width: initial;
-    //transform: translateX(-20%);
-
+    left: -30%;
+    right: -30%;
+    top: -30vmin;
+    //width: 100%;
 
     & > svg {
       .path_73 {
@@ -48,33 +49,24 @@ const MoonBg = styled(motion.div)`
     }
     
     ${smallUp( css`
-      top: -40%;
-      left: -25%;
-      right: -25%;
+      left: -10%;
+      right: -10%;
     ` )};
 
-    ${mediumUp(css`
-      transform: translateX(0%);
-      left: 0;
-
-      right: -70%;
-      width: 170%;
-      //top: 0;
-      top: -45%;
-    `)};
-
-    ${largeUp(css`
-
-      right: 0;
-      width: 150%;
-    `)};
-
+    @media(min-width: 800px){
+      width: 100%;
+      left: initial;
+      top: initial;
+      right: calc(100vw / 64 * -12);
+    }
+    
     ${xxLargeUp(css`
-      top: -25%;
-      right: -65%;
-      height: 1500px;
+      //top: -25%;
+      //right: -65%;
+      //height: 1500px;
     `)};
   }
+  
 `
 
 const defaultMoonVariant = {
@@ -105,6 +97,7 @@ const config = {
 }
 
 const MoonLight = ({ zIndex, pos = 'fixed', showMoon = true, show = true, variants = {} }) => {
+
   const x = useSpring(0, config)
   const y = useSpring(0, config)
   const theme = useTheme();
@@ -137,13 +130,10 @@ const MoonLight = ({ zIndex, pos = 'fixed', showMoon = true, show = true, varian
       initial="initial"
       animate="animate"
       exit="exit"
-      style={{ x, y }}
+      // style={{ x, y }}
     >
       <div className="moonlight">
-        <svg xmlns="http://www.w3.org/2000/svg"
-             width="100%" height="100%" viewBox="0 0 1302.799 1302.8">
-
-
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1302.799 1302.8">
           <g id="Moon_and_Moonlight" transform="translate(-367 238)">
             <g id="Moonlight" transform="translate(367 -238)">
               <path id="Path_57" data-name="Path 57" d="M651.4,1302.8A651.468,651.468,0,0,1,397.724,51.352a651.465,651.465,0,0,1,507.353,1200.09A647.531,647.531,0,0,1,651.4,1302.8" transform="translate(0 0)" fill="rgba(255,255,250,0.05)" fillRule="evenodd"/>
