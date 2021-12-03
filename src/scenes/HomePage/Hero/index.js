@@ -1,16 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from 'react'
 import { Typography } from '@material-ui/core'
 import H from './H.inline.svg'
-import {
-  Greeting,
-  HeroContainer,
-  Intro, Lines,
-  SvgWithTxt,
-  TextContainer,
-} from './components'
+import { Greeting, HeroContainer, Intro, TextContainer } from './components'
 import Moon from '../../../components/MoonLight'
-import { AppStateContext } from "../../../contexts/AppStateContext";
-
+import { AppStateContext } from '../../../contexts/AppStateContext'
 
 const greetingTextVariants = {
   initial: {
@@ -23,12 +16,12 @@ const greetingTextVariants = {
   },
   exit: {
     opacity: 0,
-    y: -200
+    y: -200,
   },
 
   transition: {
-    duration: .8
-  }
+    duration: 0.8,
+  },
 }
 
 const introContainerVariants = {
@@ -50,9 +43,8 @@ const introContainerVariants = {
   }
 }
 
-
 const textContainerVariants = {
-  animate(arg){
+  animate (arg) {
     let loading = window.fromLoading
 
     return {
@@ -70,34 +62,38 @@ const Hero = () => {
   const { backgroundOverlay, } = useContext(AppStateContext)
 
   useEffect(() => {
-    setTimeout(() => {
-      window.fromLoading = false
-    }, 1000)
-  }, [])
+      setTimeout(() => {
+          window.fromLoading = false
+        },
+        1000)
+    },
+    [])
 
   return (
     <>
       <HeroContainer variants={{}}>
 
         <TextContainer variants={textContainerVariants}
-                       custome={{backgroundOverlay}}
+                       custome={{ backgroundOverlay }}
         >
 
           <Greeting variants={greetingTextVariants}
                     transition={greetingTextVariants.transition}>
 
-            <Typography variant="h1"> hi, I am </Typography>
+            <Typography variant="h1" className='hi-am' > hi, I am </Typography>
             <H />
-            <Typography  variant="h1">enok</Typography>
+            <Typography variant="h1">enok</Typography>
 
           </Greeting>
 
-          <Intro variants={introContainerVariants} transition={introContainerVariants.transition}>
-            <Typography variant='h3'>
-              S-O-L-I-D front-end, <br/> less frame-work, less bugs, more engineering patterns!
+          <Intro variants={introContainerVariants}
+                 transition={introContainerVariants.transition}>
+            <Typography variant='h3' className='intro-txt'>
+              S-O-L-I-D front-end,  less frame-work, less bugs, more
+              engineering patterns!
             </Typography>
 
-            <Typography variant='h5' >
+            <Typography variant='h5' className='quote' >
               Your Mind is the best front-end frame-work - by....
             </Typography>
           </Intro>

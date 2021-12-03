@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react'
-import { largeUp, mediumUp, smallUp, xLargeUp } from "../../styles/mixins";
+import {
+  largeUp,
+  mediumUp,
+  smallUp,
+  xLargeUp,
+  xxLargeUp
+} from "../../styles/mixins";
 import styled, { css } from 'styled-components'
 import { motion, useSpring } from 'framer-motion'
 import { getMousePos } from '../../helpers/utils'
@@ -13,13 +19,7 @@ const MoonBg = styled(motion.div)`
   height: 100vh;
   width: 100%;
   margin-left: auto;
-  //overflow: hidden;
-  //z-index: -1;
   pointer-events: none;
-  
-  //display: flex;
-  //align-items: center;
-  //justify-content: center;
 
   ${mediumUp(css`
     height: 1185px;
@@ -69,7 +69,7 @@ const MoonBg = styled(motion.div)`
       width: 150%;
     `)};
 
-    ${xLargeUp(css`
+    ${xxLargeUp(css`
       top: -25%;
       right: -65%;
       height: 1500px;
@@ -115,8 +115,8 @@ const MoonLight = ({ zIndex, pos = 'fixed', showMoon = true, show = true, varian
     if ( !matches ) return
 
     let trackMousePos = ev => {
-      x.set((getMousePos(ev).x / 38) * -1)
-      y.set((getMousePos(ev).y / 25) * -1)
+      x.set((getMousePos(ev).x / 18) * -1)
+      y.set((getMousePos(ev).y / 15) * -1)
     }
 
     window.addEventListener('mousemove', trackMousePos)

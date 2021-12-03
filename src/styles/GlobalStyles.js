@@ -4,8 +4,12 @@ import {smallUp} from './mixins'
 
 export const GlobalStyle = createGlobalStyle`
 
-  ${responsiveVars};
-  ${webKitInputReset};
+  ${responsiveVars}
+
+  ;
+  ${webKitInputReset}
+
+  ;
 
   canvas[resize] {
     width: 100%;
@@ -60,6 +64,7 @@ export const GlobalStyle = createGlobalStyle`
     //color: #fff;
     --dark-gray: #434e5e;
     --light_gray: #a4b5c0;
+    --light_medium_gray: #83909a;
     --medium: #5d6c7b;
 
     --theme: #a4b5c0;
@@ -67,13 +72,13 @@ export const GlobalStyle = createGlobalStyle`
 
     //--theme: #fff;
     --stroke-bottom: var(--light_gray);
-    --stroke-top: #434e5e;
+    --stroke-top: var(--dark-gray);
     --head-opacity: 0;
 
 
     --gray_gradient: linear-gradient(137.81deg,
     #566373 3.52%,
-    #a4b5c0 45.89%,
+    var(--light_gray) 45.89%,
     #cbd7de 100.77%);
 
     --orage_gradient: linear-gradient(137.81deg,
@@ -99,10 +104,10 @@ export const GlobalStyle = createGlobalStyle`
     rgba(250, 222, 188, 0.8) 0%,
     rgba(243, 243, 243, 0) 94%);
 
-    &.menu_open{
+    &.menu_open {
       --theme: rgba(2, 11, 22, 1);
-      
-      
+
+
     }
 
     &.blog-clr {
@@ -125,7 +130,6 @@ export const GlobalStyle = createGlobalStyle`
       rgba(251, 254, 252, 0));
     }
 
-   
 
   }
 
@@ -146,7 +150,7 @@ export const GlobalStyle = createGlobalStyle`
     color: inherit;
     cursor: none;
   }
-  
-   
-  
+
+
+
 `

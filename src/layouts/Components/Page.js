@@ -40,7 +40,7 @@ const Page = ({ children, path }) => {
 
       {!backgroundOverlay && <HeaderAppBar />}
 
-      <LoadingSpinner key="sakldfja;lskdf" fontFinish={fontFinish} />
+      <LoadingSpinner key="loader" fontFinish={fontFinish} />
 
       <Main data-scroll-container id="main-container">
         <AnimatePresence
