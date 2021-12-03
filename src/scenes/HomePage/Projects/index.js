@@ -76,10 +76,12 @@ const ScrollPlanet = styled.div`
   position: absolute;
   left: -12%;
   bottom: 30%;
+  display: none;
   
   ${largeUp(css`
     left: 6%;
     bottom: 25%;
+    display: initial;
   `)};
 
 `
@@ -90,7 +92,7 @@ const ScrollPlanet2 = styled.div`
   right: 30%;
   display: none;
 
-  ${smallUp(css`
+  ${largeUp(css`
     display: block;
     top: 40%;
     right: 10%;

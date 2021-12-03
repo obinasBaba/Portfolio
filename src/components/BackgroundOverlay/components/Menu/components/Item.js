@@ -8,7 +8,7 @@ import {
   mediumUp,
   spacing,
   text,
-  xLargeUp
+  xLargeUp, xxLargeUp
 } from "../../../../../styles/mixins";
 import {AppStateContext} from '../../../../../contexts/AppStateContext'
 import OverlayController from '../../../OverlayController'
@@ -18,7 +18,7 @@ const hoverMixin = css`
     transform: scale(1.62);
     transition: 1s cubic-bezier(0.6, 0.01, 0, 0.9);
 
-    ${xLargeUp( css`
+    ${xxLargeUp( css`
       transform: scale(1.32);
 
     ` )};
@@ -29,7 +29,7 @@ const hoverMixin = css`
     transform: scale(2.6);
     transition: 1s cubic-bezier(0.6, 0.01, 0, 0.9);
 
-    ${xLargeUp( css`
+    ${xxLargeUp( css`
       transform: scale(1.62);
 
     ` )};
@@ -39,7 +39,7 @@ const hoverMixin = css`
     transform: scale(2);
     transition: 1s cubic-bezier(0.6, 0.01, 0, 0.9);
 
-    ${xLargeUp( css`
+    ${xxLargeUp( css`
       transform: scale(1.7);
 
     ` )};
@@ -119,7 +119,7 @@ const Title = styled.div`
   
   ${text(.86)};
 
-  ${xLargeUp( css`
+  ${xxLargeUp( css`
     ${text(1)};
   
   ` )};
@@ -154,7 +154,7 @@ const Circle = styled( motion.div )`
       height: var(--size);
       
       
-      ${xLargeUp( css`
+      ${xxLargeUp( css`
         --size: 16.24rem;
       ` )};
     }
@@ -165,7 +165,7 @@ const Circle = styled( motion.div )`
       width: var(--size);
       height: var(--size);
 
-      ${xLargeUp( css`
+      ${xxLargeUp( css`
         --size: 11.24rem;
       ` )};
     }
@@ -176,7 +176,7 @@ const Circle = styled( motion.div )`
       width: var(--size);
       height: var(--size);
 
-      ${xLargeUp( css`
+      ${xxLargeUp( css`
         --size: 9.24rem;
       ` )};
     }
@@ -188,7 +188,7 @@ const Circle = styled( motion.div )`
       height: var(--size);
 
 
-      ${xLargeUp( css`
+      ${xxLargeUp( css`
         --size: 11.24rem;
       ` )};
     }

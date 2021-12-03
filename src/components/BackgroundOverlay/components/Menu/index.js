@@ -24,18 +24,19 @@ const MenuItemContainer = styled(motion.ul)`
   padding: 0;
   margin: auto;
   width: 55%;
-  height: 59%;
+  height: 50%;
   //z-index: -1;
-  //border: thin solid black;
 
   ${largeUp(css`
     //margin-top: 0;
+    width: 45%;
+
     height: 80%;
   `)};
 
   ${mediumDown(css`
     //margin-left: -8%;
-    width: 50%;
+    //width: 50%;
   `)};
 
   a {
@@ -52,31 +53,44 @@ const MenuContainer = styled(motion.div)`
   inset: 0;
   //border: thick solid teal;
   display: flex;
+  flex-flow: column;
+  
 `
 
 const MenuMetaRow = styled(motion.div)`
-  position: absolute;
+  //position: absolute;
   bottom: 0;
 
   display: flex;
   gap: 1rem;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   height: max-content;
   overflow: hidden;
 
   width: 100%;
   color: #02021e;
-  //border: thin solid aqua;
-
-  & > :nth-child(4n) {
-    margin-left: auto;
-  }
-
+  
   ${spacing('mv', 3)};
   ${spacing('ph', 5)};
   ${spacing('pv', 0.23)};
+  
+  
+  ${largeUp(  css`
+    position: absolute;
+    justify-content: flex-start;
+
+    &:last-child{
+      justify-content: flex-end;
+    }
+    
+  `  )};
+  
+
+  
 `
+
+
 
 const MetaItem = styled( motion.div )`
   //text-transform: uppercase;
@@ -84,6 +98,8 @@ const MetaItem = styled( motion.div )`
   font-weight: lighter;
   opacity: 1;
   text-shadow: 0 3px 3px rgba(0, 0, 0, 0.51);
+  
+  //border: thin solid red;
 
   ${text(0.9)};
 `
@@ -176,6 +192,10 @@ const Menu = ({ onClick, ...props }) => {
     'Linkedin',
     ' Github',
     'Instagram',
+  ]
+
+  const metaTxt2 = [
+
     '+251 923 36 5539',
     'hi@henzzo.io',
   ]
@@ -188,10 +208,6 @@ const Menu = ({ onClick, ...props }) => {
     return () => setListenerTargetSelector(undefined)
   }, [])
 
-  useEffect(() => {
-    // onClick()
-  }, [currentPath])
-
   return (
     <MenuContainer
       variants={{}}
@@ -199,6 +215,18 @@ const Menu = ({ onClick, ...props }) => {
       animate="animate"
       exit="exit"
     >
+      <MenuMetaRow variants={metaRowVariants}
+                   transition={transition}
+                   isTop={true}
+      >
+        {metaTxt.map((txt, i) => (
+          <MetaItem variants={metaVariant}
+                    transition={transition}
+          >{txt } {i===3 && <> &#160; &#160;</> } </MetaItem>
+        ))}
+
+      </MenuMetaRow>
+
       <MenuItemContainer variants={containerVariants}>
         {items.map(({ icon, link, stars, title }, index) => (
           <Item
@@ -218,7 +246,7 @@ const Menu = ({ onClick, ...props }) => {
       <MenuMetaRow variants={metaRowVariants}
                    transition={transition}
       >
-        {metaTxt.map((txt, i) => (
+        {metaTxt2.map((txt, i) => (
           <MetaItem variants={metaVariant}
                     transition={transition}
           >{txt } {i===3 && <> &#160; &#160;</> } </MetaItem>

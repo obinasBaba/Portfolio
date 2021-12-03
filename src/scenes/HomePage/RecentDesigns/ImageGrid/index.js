@@ -1,12 +1,17 @@
 import React from 'react'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import styled from 'styled-components'
-import {length, spacing} from '../../../../styles/mixins'
+import styled, { css } from "styled-components";
+import { length, spacing, xxLargeUp } from "../../../../styles/mixins";
 
 const ImageWrapper = styled.div`
   flex: 0 0 100%;
-  max-width: calc( 100vw / 64 * 31 );
+  max-width: calc( 100vw / 64 * 26 );
   margin-right: calc( 100vw / 64 * 1 );
+  
+  ${ xxLargeUp( css`
+    max-width: calc( 100vw / 64 * 31 );
+
+  ` ) };
 
   ////todo-start - figure this out
   -webkit-flex-shrink: 0;
@@ -24,10 +29,14 @@ const ImageWrapper = styled.div`
   }
 
   &:nth-child(2n) {  //starting from the parent every even child
-    max-width: calc( 100vw / 64 * 20 );
+    max-width: calc( 100vw / 64 * 17 );
     display: flex;
     flex-flow: wrap;
     justify-content: space-between;
+
+    ${ xxLargeUp( css`
+      max-width: calc( 100vw / 64 * 20 );
+  ` ) };
     
     //every first-child of the parent of .image,// this is equal with ( parent > :first-child )
     .image:first-child {  

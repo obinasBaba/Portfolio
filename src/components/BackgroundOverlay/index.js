@@ -19,6 +19,8 @@ const OverlayContainer = styled.div`
 
   svg{
     pointer-events: none;
+    height: 100%;
+    width: 100%;
     
     .shape-overlays__path:nth-of-type(1) {
       fill: url(#gradient1);

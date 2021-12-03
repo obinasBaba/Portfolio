@@ -22,7 +22,7 @@ const Page = ({ children, path }) => {
 
   const [fontFinish, setFontFinish] = useState(fontLoaded.get())
   const theme = useTheme()
-  const matches = useMediaQuery(theme.breakpoints.up('sm'))
+  const matches = useMediaQuery(theme.breakpoints.up('lg'))
 
   const media = useMediaQuery(theme.breakpoints.up('xl'))
   const mediaLarge = useMotionValue(media)
@@ -68,6 +68,11 @@ const Page = ({ children, path }) => {
           <ProgressCircle />
         </>
       )}
+
+      {
+        (!backgroundOverlay && matches) && <ToolTip />
+      }
+
     </PageContainer>
   )
 }

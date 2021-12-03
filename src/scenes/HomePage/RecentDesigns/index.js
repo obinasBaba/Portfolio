@@ -43,24 +43,8 @@ const RecentWorks = () => {
   ];
 
   const containerRef = useRef(null)
-  const inView = useOnScreen(containerRef,
-    0,
-    '5%')
+  const inView = useOnScreen(containerRef, 0, '5%')
 
-  useLayoutEffect(() => {
-      // console.log('recentDesign', events.addLoader)
-
-      // events.addLoader()
-
-      ImagesLoaded(document.querySelectorAll('.dribble-shots'))
-        .on('done',
-          instance => {
-            // setLoadingPage(false)
-            // events.finishLoading()
-          })
-
-    },
-    [])
 
   return (
     <RecentDesignWrapper id='#design' data-scroll-section ref={containerRef}>

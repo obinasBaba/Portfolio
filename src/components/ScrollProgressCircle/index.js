@@ -31,7 +31,7 @@ const ProgressCircleContainer = styled.div`
   bottom: auto;
   right: 0;
   
-  z-index: 20;
+  //z-index: 10;
 
 `
 

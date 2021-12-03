@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react'
 import styled, { css } from 'styled-components'
-import { Container } from '@material-ui/core'
+import { Container, useMediaQuery, useTheme } from "@material-ui/core";
 import {
   length,
   largeUp,
@@ -82,16 +82,12 @@ const Title = ({ dribbleRed, circledText }) => {
   const { moScroll } = useContext(AppStateContext)
 
   const rotate = useTransform(moScroll.y, [200, 2000], [0, 360])
-
-  useEffect(() => {
-
-
-  }, [])
-  
+  const theme = useTheme()
+  const match = useMediaQuery(theme.breakpoints.up('xxl'))
 
 
   return (
-    <TitleContainer maxWidth={'xl'} fixed={true} >
+    <TitleContainer maxWidth={ match ? 'xl' : 'lg'}  >
       <LogoLink
         href='href="https://dribbble.com/henok500'
         rel="noopener noreferrer"

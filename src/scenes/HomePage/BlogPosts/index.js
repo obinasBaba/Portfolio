@@ -5,7 +5,7 @@ import {
   gridify, largeUp,
   mediumDown, mediumUp,
   smallDown, smallUp,
-  spacing, xLargeUp
+  spacing, xLargeUp, xxLargeUp
 } from "../../../styles/mixins";
 import Info from './components/Info'
 import Previews from './components/Previews'
@@ -36,11 +36,11 @@ const PostsContainer = styled.section`
     `)}
     
     ${largeUp(css`
-      ${gridColWidth(5, 25)};
+      ${gridColWidth(7, 28)};
     ` )};
     
     
-    ${xLargeUp(css`
+    ${xxLargeUp(css`
       ${gridColWidth(3, 25)};
     ` )};
   }
@@ -61,7 +61,7 @@ const PostsContainer = styled.section`
     `)}
 
     ${largeUp(css`
-      ${gridColWidth(35, 59)};
+      ${gridColWidth(36, 57)};
     ` )};
   }
 `
