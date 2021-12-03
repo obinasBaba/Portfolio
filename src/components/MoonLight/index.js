@@ -18,10 +18,13 @@ const MoonBg = styled(motion.div)`
   place-items: center;
   pointer-events: none;
 
-  min-height: 40vh;
+  //min-height: 40vh;
+  //max-height: 650px;
+  
   width: 100%;
   grid-row: 1 / 2;
 
+  //border: thin solid red;
 
   ${gridColWidth(1)};
   
@@ -38,7 +41,7 @@ const MoonBg = styled(motion.div)`
     position: absolute;
     left: -30%;
     right: -30%;
-    top: -30vmin;
+    top: -32vmin;
     //width: 100%;
 
     & > svg {

@@ -13,6 +13,7 @@ import styled from 'styled-components'
 import gsap from 'gsap'
 import { motion } from 'framer-motion'
 import EventUtil from "../../helpers/EventUtil";
+import { spacing, length, text } from "../../styles/mixins";
 
 let show = false
 let Events;
@@ -62,7 +63,9 @@ export const PointerContainer = styled(motion.div)`
     color: var(--theme);
 
 
-    font-size: 3.6rem;
+    //font-size: 3.6rem;
+    ${text(3)};
+
 
     //mix-blend-mode: difference;
   }
@@ -70,7 +73,8 @@ export const PointerContainer = styled(motion.div)`
   &.inner {
     p {
       //transition: color .25s ease-in-out;
-      font-size: .78rem;
+      //font-size: .78rem;
+      ${text(.7)};
     }
   }
 
