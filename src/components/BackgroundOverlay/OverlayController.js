@@ -49,9 +49,15 @@ class OverlayController {
       OverlayController.delayPerPath= options.delayPerPath
     }
 
+    // OverlayController.duration  = .1
+    // OverlayController.delayPerPath = 0
+
     OverlayController.isAnimating = true;
     for (let i = 0; i < this.numPoints; i++) {
-      this.delayPointsArray[i] = Math.random() * OverlayController.delayPointsMax;
+      // const range = 4 * Math.random() + 6;
+      // const radian = i / (this.numPoints - 1) * Math.PI;
+      // this.delayPointsArray[i] = (Math.sin(-radian) + Math.sin(-radian * range) + 2) / 4 * OverlayController.delayPointsMax;
+      this.delayPointsArray[i] = Math.max(Math.random(), 0.2) * OverlayController.delayPointsMax;
     }
 
     if ( open  ){
@@ -87,9 +93,7 @@ class OverlayController {
   updatePath(time) {
     const points = [];
     for (let i = 0; i < this.numPoints; i++) {
-      const max = Math.max(time - this.delayPointsArray[i], 0);
-      const glsEase = ease.cubicInOut(Math.min( max / OverlayController.duration, 1));
-      points[i] = (1 - glsEase ) * 100
+      points[i] = (1 - ease.cubicInOut(Math.min(Math.max(time - this.delayPointsArray[i], 0) / OverlayController.duration, 1))) * 100
     }
 
     let str = '';
@@ -116,9 +120,10 @@ class OverlayController {
     }
   }
 
-  renderLoop() {
+  renderLoop(fast) {
 
     this.render();
+
     if (Date.now() - this.timeStart <
       OverlayController.duration + OverlayController.delayPerPath
       * (this.path.length - 1) + OverlayController.delayPointsMax) {
@@ -129,7 +134,7 @@ class OverlayController {
       OverlayController.isAnimating = false;
     }
   }
-  
+
   click(open){
     if (OverlayController.isAnimating) {
       return false;

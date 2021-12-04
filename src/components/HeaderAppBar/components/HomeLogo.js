@@ -73,7 +73,7 @@ const HomeLogo = ({ isWhite, toggleMenu }) => {
 
 
   return (
-    <Logo isWhite={isWhite}
+    <Logo iswhite={isWhite}
           variants={logoVariant}
           transition={logoVariant.transition}
           initial="initial"

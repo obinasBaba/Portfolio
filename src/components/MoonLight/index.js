@@ -126,8 +126,6 @@ const MoonLight = ({ zIndex, pos = 'fixed', showMoon = true, show = true, varian
     // {
     <MoonBg
       pos={pos}
-      moon={showMoon}
-      zIndex={zIndex}
       variants={{ ...defaultMoonVariant, ...variants }}
       transition={defaultMoonVariant.transition}
       initial="initial"

@@ -47,13 +47,6 @@ export default class MagnetElement extends EventEmitter{
     this.initEvents()
   }
 
-  calculateSizePosition() {
-    // size/position
-    this.rect = this.element.getBoundingClientRect()
-    this.scroll = { x: window.scrollX, y: window.scrollY }
-    this.distanceToStop = this.rect.width * this.stop
-  }
-
   initEvents() {
     this.onResize = () => this.calculateSizePosition()
     window.addEventListener('resize', this.onResize)
@@ -68,44 +61,17 @@ export default class MagnetElement extends EventEmitter{
     })
   }
 
+  calculateSizePosition() {
+    // size/position
+    this.rect = this.element.getBoundingClientRect()
+    this.scroll = { x: window.scrollX, y: window.scrollY }
+    this.distanceToStop = this.rect.width * this.stop
+  }
+
   loopRender(fn?) {
     if (!this.reqAnimationId) {
       this.reqAnimationId = requestAnimationFrame(() => this.render())
     }
-  }
-
-  async initial(){
-    gsap.fromTo(
-      this.element,
-      {
-        x: this.renderedStyles.x.previous,
-        y: this.renderedStyles.y.previous,
-      },
-      {
-        x: 0,
-        y: 0,
-        duration: 0.8,
-        ease: 'power3',
-      }
-    )
-  }
-
-  stopRendering() {
-    if (this.reqAnimationId) {
-      window.cancelAnimationFrame(this.reqAnimationId)
-      this.reqAnimationId = undefined
-
-      this.onLeave()
-
-      this.initial()
-
-      this.renderedStyles.y.previous = this.renderedStyles.x.previous = 0
-      // this.onLeaveListener();
-    }
-  }
-
-  destroy() {
-    window.removeEventListener('resize', this.onResize)
   }
 
   render() {
@@ -128,7 +94,7 @@ export default class MagnetElement extends EventEmitter{
 
     this.renderedStyles.x.current =
       (this.events.mousePos.x -
-        (scrollDif.x + this.rect.left + this.rect.width / 2)) *
+        (scrollDif.x + this.rect.left + (this.rect.width / 2))) *
       this.distance
 
     this.renderedStyles.y.current =
@@ -148,6 +114,42 @@ export default class MagnetElement extends EventEmitter{
 
     this.reqAnimationId = requestAnimationFrame(() => this.render())
   }
+
+
+  stopRendering() {
+    if (this.reqAnimationId) {
+      window.cancelAnimationFrame(this.reqAnimationId)
+      this.reqAnimationId = undefined
+
+      this.onLeave()
+
+      this.initial()
+
+      this.renderedStyles.y.previous = this.renderedStyles.x.previous = 0
+      // this.onLeaveListener();
+    }
+  }
+
+  async initial(){
+    gsap.fromTo(
+      this.element,
+      {
+        x: this.renderedStyles.x.previous,
+        y: this.renderedStyles.y.previous,
+      },
+      {
+        x: 0,
+        y: 0,
+        duration: 0.8,
+        ease: 'power3',
+      }
+    )
+  }
+
+  destroy() {
+    window.removeEventListener('resize', this.onResize)
+  }
+
 
   private onStart(){
     this.emit('start')

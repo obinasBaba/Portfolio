@@ -103,8 +103,8 @@ const MotionBtn = ({
       <Btn
         {...props}
         onClick={onClick}
-        margin={margin}
-        arrow={arrow}
+        margin={margin.toString()}
+        arrow={arrow.toString()}
         clr={clr}
         onTap={() => {
           controls.stop()

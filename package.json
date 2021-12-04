@@ -12,7 +12,7 @@
     "baffle": "^0.3.6",
     "fontfaceobserver": "^2.1.0",
     "formik": "^2.2.9",
-    "framer-motion": "^4.1.16",
+    "framer-motion": "^5.3.3",
     "gatsby": "^3.5.0",
     "gatsby-image": "^3.5.0",
     "gatsby-plugin-gatsby-cloud": "^2.5.0",

@@ -43,7 +43,7 @@ const Btn = styled(motion.button)`
     position: absolute;
     inset: 0;
     
-    ${( {menuIsOpen} ) => menuIsOpen && css`
+    ${( {menu_open} ) => menu_open && css`
       #eye-left, #eye-right{
         fill: #072142;
       }
@@ -117,8 +117,8 @@ const NavBtn = ({ isWhite, toggleMenu, pos, variants = {}, menuIsOpen }) => {
       data-magnet-attraction={1.8}
       data-tooltip
       data-tooltip-text="open my space"
-      isWhite={isWhite}
-      menuIsOpen={menuIsOpen}
+      iswhite={isWhite}
+      menu_open={menuIsOpen.toString()}
       pos={pos}
       initial={{ opacity: 0 }}
       animate={{

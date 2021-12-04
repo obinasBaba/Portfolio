@@ -80,7 +80,7 @@ const Content = styled.div`
 const SmallBall = styled.div`
   height: 50px;
   width: 50px;
-  background-color: white;
+  background-color: #02021e;
   animation: move alternate ease-in-out;
   animation-name: move;
   animation-iteration-count: infinite;
@@ -103,12 +103,9 @@ const SmallBall = styled.div`
 const BigBall = styled.div`
   width: 200px;
   height: 200px;
-  background-color: white;
+  background-color: #02021e;
 `
 
-const OverlayWrapper = styled(motion.div)`
-
-`
 
 const SpinnerWrapper = styled( motion.div )`
   position: absolute;
@@ -183,14 +180,12 @@ const LoadingSpinner = ({ fontFinish }) => {
   }
 
   useLayoutEffect(() => {
-      console.log('loadingSpinner invoked *************************************');
 
       setBackgroundOverlay(true)
 
       OverlayController.getInstance('loading-overlay')
-        .toggle(true,
-          {
-            duration: 0,
+        .toggle(true, {
+            duration: .002,
             delayPointsMax: 0,
             delayPerPath: 0,
           })

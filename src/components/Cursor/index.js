@@ -1,19 +1,13 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React, {
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState
-} from "react";
-import MagnetElement from '../../helpers/MagnetElement'
-import { AppStateContext } from '../../contexts/AppStateContext'
-import styled from 'styled-components'
-import gsap from 'gsap'
-import { motion } from 'framer-motion'
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
+import MagnetElement from "../../helpers/MagnetElement";
+import { AppStateContext } from "../../contexts/AppStateContext";
+import styled from "styled-components";
+import gsap from "gsap";
+import { motion } from "framer-motion";
 import EventUtil from "../../helpers/EventUtil";
-import { spacing, length, text } from "../../styles/mixins";
+import { text } from "../../styles/mixins";
 
 let show = false
 let Events;
