@@ -5,6 +5,7 @@ import LocomotiveScroll from 'locomotive-scroll'
 import 'locomotive-scroll/dist/locomotive-scroll.css'
 import { AppStateContext } from '../contexts/AppStateContext'
 import { useMediaQuery, useTheme } from '@material-ui/core'
+import Cursor from "../components/Cursor";
 
 let timeout = 0
 
@@ -28,21 +29,30 @@ export default function useLocoScroll (
 
       const scrollEl = document.querySelector(elementId);
 
-      locoScroll.current = new LocomotiveScroll({
+      window.locoInstance = locoScroll.current = new LocomotiveScroll({
         el: scrollEl,
         smooth: true,
         multiplier: 1,
         getDirection: true,
-      });
+      })
+
 
       // whenever when we scroll loco update scrollTrigger
       locoScroll.current.on("scroll",
         arg => {
+          // console.time('Single onScroll');
           ScrollTrigger.update();
           moScroll.x.set(arg.scroll.x)
           moScroll.y.set(arg.scroll.y)
           moScroll.limit.set(arg.limit.y)
           moScroll.scrollDirection.set(arg.direction)
+
+         Cursor.stopMouseAnimation()
+
+          // console.log('isScrolling: ', locoScroll.current.scroll.isScrolling);
+          // console.timeEnd('Single onScroll');
+
+
 
           /*setTimeout(() => {
             if ( Cursor.pointing || Cursor.focusing ) return;
@@ -69,10 +79,7 @@ export default function useLocoScroll (
             // console.log('scrollTop', arguments.length)
 
             if ( locoScroll.current ) {
-              let value = arguments.length ? locoScroll.current.scrollTo(value,
-                  0,
-                  0)
-                : locoScroll.current.scroll.instance.scroll.y;
+              let value = arguments.length ? locoScroll.current.scrollTo(value, 0, 0) : locoScroll.current.scroll.instance.scroll.y;
 
               // console.log( 'scrollTOp',  value)
               return value;
@@ -87,9 +94,7 @@ export default function useLocoScroll (
             if ( locoScroll.current ) {
 
               let value = arguments.length
-                ? locoScroll.current.scrollTo(value,
-                  0,
-                  0)
+                ? locoScroll.current.scrollTo(value, 0, 0)
                 : document.querySelector('.track') ?
                   -document.querySelector('.track').getBoundingClientRect().x : 0;
 

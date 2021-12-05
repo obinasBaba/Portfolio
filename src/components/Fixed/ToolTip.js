@@ -1,11 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { spacing, text } from '../../styles/mixins'
-import { motion } from 'framer-motion'
 import Typography from '@material-ui/core/Typography'
-import gsap from 'gsap'
 
-const InfoChipContainer = styled(motion.div)`
+const InfoChipContainer = styled.div`
   position: fixed;
   bottom: 6%;
   left: 4%;
@@ -32,7 +30,7 @@ const Excerpt = styled(Typography)`
   ${text(0.7)};
 `
 
-const ToolTipWrapper = styled(motion.div)`
+const ToolTipWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,72 +53,14 @@ const ToolTipWrapper = styled(motion.div)`
   ${spacing('gap', 0.7)};
 `
 
-const containerVariant = {
-  initial: {
-    opacity: 0,
-    y: 25,
-  },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 1.2 * .5,
-      ease: 'easeIn'
-    }
-  },
-  exit: {
-    y: -25,
-    opacity: 0,
-    transition: {
-      duration: 1.2 * .5,
-      ease: [0.6, 0.01, 0, 0.9],
-    }
-  },
-}
-
 
 
 const ToolTip = () => {
- /* const { toolTip, setToolTip, currentPath } = useContext(AppStateContext)
-
-  const { loadingPage, backgroundOverlay } = useContext(AppStateContext)
-
-  const onEnter = element => setToolTip({
-    text: element.target.dataset.tooltipText,
-    show: true,
-  })
-
-  const onLeave = () =>  setToolTip({
-    text: '',
-    show: false,
-  })
-
-  const initToolTip = (selector='[data-tooltip-text]') => {
-    // if (loadingPage) return
-      onLeave();
-
-      const toolTipElements = document.querySelectorAll(selector)
-      toolTipElements.forEach(el => {
-        el.removeEventListener('mouseenter', onEnter)
-        el.removeEventListener('mouseenter', onEnter)
-        el.addEventListener('mouseenter', onEnter)
-        el.addEventListener('mouseleave', onLeave)
-      })
-  }
-
-  useEffect(() => initToolTip() , [loadingPage, currentPath])
-*/
 
   return (
     <InfoChipContainer>
-      <ToolTipWrapper
-        // variants={containerVariant}
-        // initial="initial"
-        // animate="animate"
-        // exit="exit"
-        className='tool-tip-wrapper'
-      >
-        <motion.span className="dot" />
+      <ToolTipWrapper className='tool-tip-wrapper'>
+        <span className="dot" />
         <Excerpt className='tool-tip-excerpt' />
       </ToolTipWrapper>
     </InfoChipContainer>

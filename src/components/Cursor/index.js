@@ -198,19 +198,37 @@ const Cursor = ({ path, loadingOverlay }) => {
 
   // initial opacity
   useEffect(() => {
+
+    const clearAnim = () => {
+      // console.log('canceling animation : ', animId);
+      cancelAnimationFrame(animId)
+      animId = undefined
+    }
+
       window.addEventListener('mousemove',
         () => {
           if ( show ) return
 
+          console.log('locoInstance :',  window.locoInstance);
+          if ( window.locoInstance && window.locoInstance.scroll.isScrolling )
+            return;
+
           gsap.to('.cursor-container',
             {
               opacity: 1,
-              duration: 1.2,
-              onComplete () {
-                show = true
-              }
+              duration: .4,
             },)
+
+          clearAnim()
+
+          Cursor.updateMousePos()
+
+          show = true;
+
+
         })
+
+    return () => clearAnim()
 
     }, [])
 
@@ -227,7 +245,7 @@ const Cursor = ({ path, loadingOverlay }) => {
 
   // mouse track animation
   useEffect(() => {
-
+    return ;
 
     const clearAnim = () => {
       console.log('canceling animation : ', animId);
@@ -243,6 +261,7 @@ const Cursor = ({ path, loadingOverlay }) => {
   }, [])
 
   useEffect(() => {
+    return;
     console.time('adding-event-listeners')
     setTimeout(refreshEventListeners, 500, '#main-container [data-pointer]')
     console.timeEnd('adding-event-listeners')
@@ -282,6 +301,45 @@ const Cursor = ({ path, loadingOverlay }) => {
       <OuterPointer isPointed={isPointed} isFocused={isFocused} />
     </CursorContainer>
   )
+}
+
+Cursor.updateMousePos = () => {
+
+  const render = () => {
+    if ( !animId ) return;
+
+    gsap.to('.cursor-container .pointer.inner', {
+      x: Events.mousePos.x,
+      y:  Events.mousePos.y ,
+      duration: 0,
+    })
+
+    gsap.to('.cursor-container .pointer.outer', {
+      x: Events.mousePos.x,
+      y:  Events.mousePos.y ,
+      duration: .83,
+      ease: 'power2.out'
+    })
+
+    animId = requestAnimationFrame(() => render())
+
+  }
+  animId = requestAnimationFrame(() => render())
+}
+
+Cursor.stopMouseAnimation = () => {
+  if ( !show ) return
+
+  gsap.to('.cursor-container', {
+    opacity: 0,
+    duration: .3,
+
+    onComplete(){
+      cancelAnimationFrame(animId)
+      animId = undefined
+      show = false
+    }
+  })
 }
 
 export default Cursor
