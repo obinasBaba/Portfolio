@@ -24,6 +24,7 @@ const OuterPointer = ({isFocused, isPointed}) => {
   }, [isPointed])
 
   useEffect(() => {
+
     gsap.to('.pointer.outer > *', {
       rotation:  (e) => e % 2 ? 360 : -360,
       duration: (e) => e % 2 ? 7.5 * 1.2 : 5.8 * 1.2,

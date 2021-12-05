@@ -227,6 +227,8 @@ const Cursor = ({ path, loadingOverlay }) => {
 
   // mouse track animation
   useEffect(() => {
+
+
     const clearAnim = () => {
       console.log('canceling animation : ', animId);
       cancelAnimationFrame(animId)

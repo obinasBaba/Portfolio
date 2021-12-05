@@ -5,6 +5,7 @@ import { PointerContainer } from "./index";
 const InnerPointer = ({isPointed, isFocused, pointedColor}) => {
 
   useEffect(() => {
+
     gsap.to('.pointer.inner > *', {
       rotation:  (e) => e % 2 ? 360 : -360,
       duration: (e) => e % 2 ? 6.6 * 1.2 : 5 * 1.2,

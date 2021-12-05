@@ -3,6 +3,7 @@ import { useContext, useEffect } from 'react'
 import HomePage from '../scenes/HomePage'
 import { AppStateContext } from '../contexts/AppStateContext'
 import useLocoScroll from '../hooks/useLocoScroll'
+import useToolTip from "../hooks/useToolTip";
 
 const IndexPage = ({ path }) => {
   const {
@@ -36,6 +37,8 @@ const IndexPage = ({ path }) => {
       setRegisteredScrollPos(null)
     }
   }, [])
+
+  useToolTip('[data-tooltip-text]')
 
   return (
       <HomePage />

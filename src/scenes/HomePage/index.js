@@ -45,7 +45,7 @@ const HomePage = () => {
         <Hero />
       </SectionWrapper>
 
-      <RecentWorks />
+      {/*<RecentWorks />*/}
 
       <Projects />
 
