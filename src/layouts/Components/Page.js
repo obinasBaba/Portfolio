@@ -4,7 +4,10 @@ import HeaderAppBar from '../../components/HeaderAppBar'
 import { AnimatePresence, useMotionValue } from 'framer-motion'
 import ToolTip from '../../components/Fixed/ToolTip'
 import ProgressCircle from '../../components/ScrollProgressCircle'
-import { AppStateContext } from '../../contexts/AppStateContext'
+import {
+  AppStateContext,
+  BottomGradientContext
+} from "../../contexts/AppStateContext";
 import Cursor from '../../components/Cursor'
 import { BottomGradient, Main, PageContainer, SkyColor } from './Styled'
 import useLoadingFonts from '../../hooks/useFonts'
@@ -15,19 +18,18 @@ const Page = ({ children, path }) => {
   const {
     backgroundOverlay,
     currentPath,
-    bottomGradient,
-    fontLoaded,
     variantsUtil: { isTop },
   } = useContext(AppStateContext)
 
-  const [fontFinish, setFontFinish] = useState(fontLoaded.get())
+
+  // const [fontFinish, setFontFinish] = useState(fontLoaded.get())
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('lg'))
 
   const media = useMediaQuery(theme.breakpoints.up('xl'))
   const mediaLarge = useMotionValue(media)
 
-  useLoadingFonts(fontLoaded, setFontFinish)
+  useLoadingFonts()
 
   return (
     <PageContainer id="page-container">
@@ -40,7 +42,7 @@ const Page = ({ children, path }) => {
 
       {!backgroundOverlay && <HeaderAppBar />}
 
-      <LoadingSpinner key="loader" fontFinish={fontFinish} />
+      <LoadingSpinner key="loader" backgroundOverlay={backgroundOverlay} />
 
       <Main data-scroll-container id="main-container">
         <AnimatePresence
@@ -60,7 +62,7 @@ const Page = ({ children, path }) => {
         </AnimatePresence>
       </Main>
 
-      {bottomGradient && <BottomGradient />}
+      <BottomGradient className='btm-gradient' />
 
       {!backgroundOverlay && <ProgressCircle />}
 

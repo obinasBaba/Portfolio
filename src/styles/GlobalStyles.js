@@ -51,7 +51,7 @@ export const GlobalStyle = createGlobalStyle`
 
     ${mediumUp(css`
       & * {
-        //cursor: none;
+        cursor: none;
       }
     `)};
   }
@@ -86,6 +86,7 @@ export const GlobalStyle = createGlobalStyle`
     #f9d6ac 41.89%,
     #fbfefc 96.77%);
 
+    --bottom-gradient-opacity: 1;
     --bottom-gradient: linear-gradient(to bottom,
     rgba(7, 33, 66, 0),
     rgba(6, 28, 55, 0),

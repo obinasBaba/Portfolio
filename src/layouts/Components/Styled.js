@@ -32,9 +32,13 @@ export const BottomGradient = styled.div`
   bottom: 0;
   right: 0;
   pointer-events: none;
-
+  opacity: 1;
   background-image: var(--bottom-gradient);
   transition: all 0.35s ease-in-out;
+  
+  &.hide-bg{
+    opacity: 0;
+  }
 `
 
 export const Main = styled(motion.main)`

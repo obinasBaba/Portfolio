@@ -154,7 +154,7 @@ const containerVariants = {
   }
 }
 
-const LoadingSpinner = ({ fontFinish }) => {
+const LoadingSpinner = ({ backgroundOverlay }) => {
 
   const smallRef = useRef(null)
   const contentRef = useRef(null)
@@ -180,6 +180,7 @@ const LoadingSpinner = ({ fontFinish }) => {
   }
 
   useLayoutEffect(() => {
+    if ( !backgroundOverlay ) return ;
 
       setBackgroundOverlay(true)
 
@@ -194,20 +195,12 @@ const LoadingSpinner = ({ fontFinish }) => {
 
     }, [])
 
-  useEffect(() => {
-    if ( fontFinish )
-    {
-      setBackgroundOverlay(false)
-      window.fromLoading = true
-    }
-
-  }, [fontFinish])
 
   return (
 
       <AnimatePresence exitBeforeEnter>
         {
-          !fontFinish &&
+          backgroundOverlay &&
           <SpinnerContainer variants={parentVariants}
                             initial='initial'
                             animate='animate'

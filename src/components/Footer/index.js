@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import {
-  length,
   largeUp,
+  length,
   mediumDown,
   mediumUp,
   spacing,
@@ -15,8 +15,8 @@ import Behance from '../../assets/images/brands/behance.inline.svg'
 import Github from '../../assets/images/brands/github.inline.svg'
 import Border from './border.inline.svg'
 import { Container } from '@material-ui/core'
-import { AppStateContext } from "../../contexts/AppStateContext";
-import useOnScreen from "../../hooks/useOnScreen";
+import { BottomGradientContext } from '../../contexts/AppStateContext'
+import useOnScreen from '../../hooks/useOnScreen'
 
 const FooterContainer = styled.div`
   position: relative;
@@ -169,15 +169,22 @@ const Copy = styled.div`
 const Footer = ({ color }) => {
 
   const elRef = React.useRef(null)
-  const { bottomGradient, setBottomGradient, setContactModal } = useContext(AppStateContext)
+  // const { , setContactModal } = useContext(AppStateContext)
+  // const { setBottomGradient} = useContext(BottomGradientContext)
 
   const inView = useOnScreen(elRef, .2);
 
   useEffect(() => {
+    const btm = document.querySelector('.btm-gradient')
+
     if ( inView )
-      setBottomGradient(false)
+      // setBottomGradient(false)
+      btm.classList.add('hide-bg')
+
     else
-      setBottomGradient(true)
+      // setBottomGradient(true)
+      btm.classList.remove('hide-bg')
+
 
   }, [inView])
 

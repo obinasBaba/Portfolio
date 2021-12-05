@@ -3,6 +3,7 @@ import EventSubscribers from '../helpers/EventSubscribers'
 import {useMotionValue, useTransform} from 'framer-motion'
 
 export const AppStateContext = React.createContext(false)
+export const BottomGradientContext = React.createContext({})
 
 
 const AppStateProvider = ( {children} ) => {
@@ -57,18 +58,6 @@ const AppStateProvider = ( {children} ) => {
 
 
 
-  useLayoutEffect(() => {
-
-    // new EventSubscribers().addListener()
-
-   loadingEvents.addListener('finishLoading', () => {
-     setLoadingPage(false)
-   })
-
-
-    }, [])
-
-
   return (
     <AppStateContext.Provider value={{
 
@@ -80,7 +69,6 @@ const AppStateProvider = ( {children} ) => {
       setHeaderGradient,
       isContactOpen, setContactModal,
       menuIsOpen, setMenuIsOpen,
-      bottomGradient, setBottomGradient,
       titleRect, setTitleRect,
       top, setTop,
       loadingPage, setLoadingPage,
@@ -105,8 +93,7 @@ const AppStateProvider = ( {children} ) => {
       // magnet: MagnetElements
 
     }} >
-
-      {children}
+        {children}
 
     </AppStateContext.Provider>
   )

@@ -4,6 +4,7 @@ import HomePage from '../scenes/HomePage'
 import { AppStateContext } from '../contexts/AppStateContext'
 import useLocoScroll from '../hooks/useLocoScroll'
 import useToolTip from "../hooks/useToolTip";
+import useRefreshMouseListeners from "../hooks/useRefreshMouseListeners";
 
 const IndexPage = ({ path }) => {
   const {
@@ -39,6 +40,7 @@ const IndexPage = ({ path }) => {
   }, [])
 
   useToolTip('[data-tooltip-text]')
+  useRefreshMouseListeners('[data-pointer]')
 
   return (
       <HomePage />

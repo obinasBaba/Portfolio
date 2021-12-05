@@ -2,26 +2,8 @@ import React, { useEffect } from "react";
 import gsap from "gsap";
 import { PointerContainer } from "./index";
 
-const OuterPointer = ({isFocused, isPointed}) => {
+const OuterPointer = () => {
 
-  useEffect(() => {
-    gsap.to('.pointer.outer', {
-      scale: isFocused ? 0 : 1,
-      opacity: isFocused ? 0 : 1
-    })
-  }, [isFocused])
-
-  useEffect(() => {
-
-    gsap.to('.cursor-container', {
-      zIndex: isPointed ? 8 : 30
-    })
-
-    gsap.to('.pointer.outer', {
-      scale: isPointed ? .78 :  1,
-      duration: .5
-    })
-  }, [isPointed])
 
   useEffect(() => {
 

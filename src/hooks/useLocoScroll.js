@@ -18,14 +18,8 @@ export default function useLocoScroll (
 
   const locoScroll = useRef(null)
 
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('md'));
-
-
   useEffect(() => {
       console.log('LocoInvoked ---- --- --', start)
-
-      if ( !start || matches ) return;
 
       const scrollEl = document.querySelector(elementId);
 

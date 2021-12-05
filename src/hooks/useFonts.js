@@ -9,8 +9,8 @@ const useLoadingFonts = ( fontLoaded, setFontFinish ) => {
   const {  setBackgroundOverlay } = useContext(AppStateContext)
 
   useLayoutEffect(() => {
-    if ( fontLoaded.get() )
-      return;
+    // if ( fontLoaded.get() )
+    //   return;
 
     let elianto = new FontLoaded('Elianto-Regular')
     let poppins = new FontLoaded('Poppins Black')
@@ -20,8 +20,9 @@ const useLoadingFonts = ( fontLoaded, setFontFinish ) => {
       .then(() => {
         setTimeout(() => {
 
-          fontLoaded.set(true)
-          setFontFinish(true)
+          // fontLoaded.set(true)
+          // setFontFinish(true)
+          setBackgroundOverlay(false)
 
         }, 500)
       })
