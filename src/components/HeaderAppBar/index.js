@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import Slide from '@material-ui/core/Slide'
 import styled, { css } from 'styled-components'
 import HomeLogo from './components/HomeLogo'
@@ -88,7 +88,7 @@ const NavContainer = styled.div`
 `
 
 
-function HeaderAppBar({}) {
+function HeaderAppBar() {
 
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 

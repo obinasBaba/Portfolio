@@ -5,7 +5,6 @@ import { Link } from 'gatsby'
 import { length, mediumUp } from '../../../styles/mixins'
 import { ReactSVG } from 'react-svg'
 import { motion } from 'framer-motion'
-import useMagnet from '../../../hooks/useMagnet'
 
 const Logo = styled(motion.div)`
   position: relative;
@@ -16,23 +15,21 @@ const Logo = styled(motion.div)`
   fill: var(--theme); //todo gradient
   z-index: 50;
   //border: thin solid red;
-  transition: fill .35s ease-in-out;
+  transition: fill 0.35s ease-in-out;
   pointer-events: initial;
-
 
   &::after {
     content: '';
     position: absolute;
     display: block;
-    top: -15px;
-    left: -15px;
-    right: -15px;
-    bottom: -15px;
+    top: -17px;
+    left: -17px;
+    right: -17px;
+    bottom: -17px;
     z-index: -1;
-    
   }
 
-  & .logoSvg {
+  & .logo {
     ${length('max-width', 6)};
 
     ${mediumUp(css`
@@ -40,10 +37,10 @@ const Logo = styled(motion.div)`
     `)};
   }
 
-  a{
+  a {
     position: absolute;
     inset: 0;
-    pointer-events: all ;
+    pointer-events: all;
   }
 `
 
@@ -93,7 +90,7 @@ const HomeLogo = ({ isWhite, toggleMenu }) => {
 
       <Link to={'/'}/>
 
-      <ReactSVG className="logoSvg" src={logo.publicURL} />
+      <ReactSVG className="logo" src={logo.publicURL} />
     </Logo>
   )
 }

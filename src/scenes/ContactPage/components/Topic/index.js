@@ -5,7 +5,6 @@ import { spacing } from '../../../../styles/mixins'
 import TopicItem from './TopicItem'
 import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
 import { Field, useField } from 'formik'
-import Cursor from "../../../../components/Cursor/Cursor";
 
 const TopicContainer = styled.div`
   //border: thin solid red;
@@ -70,10 +69,6 @@ const Topic = ({ values }) => {
   ]
   const { ufo, design, pentool, prototype } = useLottiAssets()
   const iconIll = [ufo, design, pentool, prototype]
-
-  useEffect(() => {
-    Cursor.getInstance().refreshEventListeners('.topic-item')
-  }, [])
 
   return (
     <TopicContainer>

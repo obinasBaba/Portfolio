@@ -4,9 +4,7 @@ import { useContext, useEffect, useRef } from 'react'
 import LocomotiveScroll from 'locomotive-scroll'
 import 'locomotive-scroll/dist/locomotive-scroll.css'
 import { AppStateContext } from '../contexts/AppStateContext'
-import Cursor from '../components/Cursor/Cursor'
-import { debounce } from "lodash";
-import { useMediaQuery, useTheme } from "@material-ui/core";
+import { useMediaQuery, useTheme } from '@material-ui/core'
 
 let timeout = 0
 
@@ -46,12 +44,12 @@ export default function useLocoScroll (
           moScroll.limit.set(arg.limit.y)
           moScroll.scrollDirection.set(arg.direction)
 
-          setTimeout(() => {
+          /*setTimeout(() => {
             if ( Cursor.pointing || Cursor.focusing ) return;
             // clearTimeout(timeout)
             Cursor.hideOnScroll()
 
-            }, 1000)
+            }, 1000)*/
 
         });
 

@@ -1,6 +1,6 @@
 import {createGlobalStyle, css} from 'styled-components'
 import { responsiveVars, webKitInputReset } from './variables/ResponsiveVars'
-import {smallUp} from './mixins'
+import { mediumUp, smallUp } from "./mixins";
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -49,9 +49,9 @@ export const GlobalStyle = createGlobalStyle`
     //overflow: hidden;
 
 
-    ${smallUp(css`
+    ${mediumUp(css`
       & * {
-        cursor: none;
+        //cursor: none;
       }
     `)};
   }

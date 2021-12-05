@@ -1,15 +1,10 @@
-import {
-  motion,
-  useElementScroll, useMotionValue,
-  useTransform,
-  useViewportScroll,
-} from 'framer-motion'
-import React, {useContext, useEffect, useLayoutEffect, useRef} from 'react'
+import { motion, useTransform } from 'framer-motion'
+import React, { useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import { length, spacing } from '../../styles/mixins'
-import {AppStateContext} from '../../contexts/AppStateContext'
-import {map} from '../../helpers/utils'
-import { Link } from "gatsby";
+import { AppStateContext } from '../../contexts/AppStateContext'
+import { map } from '../../helpers/utils'
+import { Link } from 'gatsby'
 
 const RotatingDiv = styled(motion.div)`
   width: 100%;
@@ -22,7 +17,6 @@ const RotatingDiv = styled(motion.div)`
     border-radius: 500px;
     border: 3px solid;
   }
-  
 `
 
 const ProgressCircleContainer = styled.div`
@@ -85,8 +79,6 @@ const ScrollProgressCircle = () => {
 
   const {
     currentPath,
-    isContactOpen,
-    setContactModal,
     moScroll: {y, limit},
   } = useContext(AppStateContext)
 
@@ -112,7 +104,6 @@ const ScrollProgressCircle = () => {
         data-magnet-attraction={1.6}
         data-tooltip
         data-tooltip-text='Write me a poem...'
-        onClick={() => setContactModal(!isContactOpen)}
         initial={{
           opacity: 0,
         }}
@@ -182,4 +173,4 @@ const ScrollProgressCircle = () => {
   )
 }
 
-export default ScrollProgressCircle
+export default React.memo(ScrollProgressCircle, )

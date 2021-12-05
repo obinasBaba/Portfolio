@@ -1,10 +1,5 @@
-import React, {useContext, useEffect, useLayoutEffect, useRef} from 'react'
-import styled, {css} from 'styled-components'
-import { AppStateContext } from '../../contexts/AppStateContext'
-import OverlayController from './OverlayController'
-import LogoBgEffect from './components/LogoBgEffect'
-import {AnimatePresence} from 'framer-motion'
-import Menu from './components/Menu'
+import React from 'react'
+import styled from 'styled-components'
 
 const OverlayContainer = styled.div`
   position: fixed;
@@ -12,16 +7,16 @@ const OverlayContainer = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  
+
   pointer-events: none;
-  
+
   z-index: 7;
 
-  svg{
+  svg {
     pointer-events: none;
     height: 100%;
     width: 100%;
-    
+
     .shape-overlays__path:nth-of-type(1) {
       fill: url(#gradient1);
     }
@@ -34,7 +29,7 @@ const OverlayContainer = styled.div`
       fill: url(#gradient3);
     }
   }
-  
+
   & .shape-overlays {
     position: fixed;
     top: 0;
@@ -44,11 +39,10 @@ const OverlayContainer = styled.div`
     height: 100vh;
     //pointer-events: none;
     //z-index: 1;
-    
-    path{
+
+    path {
       position: relative;
     }
-
 
     //border: thick solid red;
   }

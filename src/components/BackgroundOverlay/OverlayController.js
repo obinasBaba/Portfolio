@@ -43,6 +43,9 @@ class OverlayController {
     delayPerPath: OverlayController.delayPerPath
   }) {
 
+    if ( OverlayController.isAnimating )
+      return
+
     if ( options ) {
       OverlayController.duration = options.duration;
       OverlayController.delayPointsMax= options.delayPointsMax

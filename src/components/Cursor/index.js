@@ -8,6 +8,8 @@ import gsap from "gsap";
 import { motion } from "framer-motion";
 import EventUtil from "../../helpers/EventUtil";
 import { text } from "../../styles/mixins";
+import InnerPointer from "./InnerPointer";
+import OuterPointer from "./OuterPointer";
 
 let show = false
 let Events;
@@ -72,98 +74,9 @@ export const PointerContainer = styled(motion.div)`
     }
   }
 
-
 `
 
-const InnerPointer = ({isPointed, isFocused, pointedColor}) => {
 
-  useEffect(() => {
-    gsap.to('.pointer.inner > *', {
-      rotation:  (e) => e % 2 ? 360 : -360,
-      duration: (e) => e % 2 ? 6.6 * 1.2 : 5 * 1.2,
-      ease: 'none',
-      repeat: -1
-    })
-  }, [])
-
-  useEffect(() => {
-
-    // console.log('isPointed: ' , isPointed);
-
-
-    // setTimeout(() => {
-      gsap.to('.pointer.inner', {
-        scale: isPointed ? 3.3 :  1,
-      })
-
-      gsap.to('.pointer.inner > *', {
-        color: isPointed ? ( pointedColor || '#a4b5c0' ) : 'var(--theme)',
-      })
-
-
-  }, [isPointed])
-
-  useEffect(() => {
-
-    // console.log('focused :', isFocused, );
-
-    gsap.to('.pointer.inner > *', {
-      color: isFocused ? ( pointedColor || '#a4b5c0' ) : 'var(--theme)',
-      duration: gsap.defaults().duration
-    })
-
-    gsap.to('.pointer.inner', {
-      scale: isFocused ? 1.2 : 1,
-    })
-
-  }, [isFocused])
-
-  return (
-    <PointerContainer className='pointer inner'>
-      <p className='inner-one'>h</p>
-      <p className='inner-two'>i</p>
-    </PointerContainer>
-  );
-}
-
-const OuterPointer = ({isFocused, isPointed}) => {
-
-  useEffect(() => {
-    gsap.to('.pointer.outer', {
-      scale: isFocused ? 0 : 1,
-      opacity: isFocused ? 0 : 1
-    })
-  }, [isFocused])
-
-  useEffect(() => {
-
-    gsap.to('.cursor-container', {
-      zIndex: isPointed ? 8 : 30
-    })
-
-    gsap.to('.pointer.outer', {
-      scale: isPointed ? .78 :  1,
-      duration: .5
-    })
-  }, [isPointed])
-
-  useEffect(() => {
-    gsap.to('.pointer.outer > *', {
-      rotation:  (e) => e % 2 ? 360 : -360,
-      duration: (e) => e % 2 ? 7.5 * 1.2 : 5.8 * 1.2,
-      ease: 'none',
-      repeat: -1
-    })
-
-  }, [])
-
-  return (
-    <PointerContainer className='pointer outer'>
-      <p className='outer-one'>f</p>
-      <p className='outer-two'>g</p>
-    </PointerContainer>
-  );
-}
 
 const Cursor = ({ path, loadingOverlay }) => {
 
@@ -176,6 +89,36 @@ const Cursor = ({ path, loadingOverlay }) => {
 
 
   const refreshEventListeners = (selector) => {
+
+    const handleHover = e => {
+      // console.log('enter hover')
+      let type = e.currentTarget.dataset.pointer;
+      let color = e.currentTarget.dataset.pointerColor;
+      setPointedColor(color || undefined)
+
+
+      if ( type === 'focus' ) {
+        setIsFocused(true)
+
+        // animateFocus(true, color)
+      }
+      else
+      {
+
+        // gsap.timeline()
+
+        // animatePointed(true, color)
+        setIsPointed(true)
+
+      }
+
+    }
+
+    const handleLeave = () => {
+      animateFocus(false);
+      // setIsFocused(false);
+      animatePointed(false)
+    }
 
     const pointerElements = document.querySelectorAll(selector)
     console.log(selector, pointerElements)
@@ -202,6 +145,7 @@ const Cursor = ({ path, loadingOverlay }) => {
             //if it is magnet no mouseleave needed
             // console.log('LEAVE invoked')
             setIsPointed(false)
+            // animatePointed(false)
             // document.body.classList.remove('canvas-hover')
           })
       } else {
@@ -211,24 +155,42 @@ const Cursor = ({ path, loadingOverlay }) => {
     })
   }
 
-  const handleHover = e => {
-    // console.log('enter hover')
-    let type = e.currentTarget.dataset.pointer;
-    let color = e.currentTarget.dataset.pointerColor;
-    setPointedColor(color || undefined)
+  const animateFocus = (isFocused, color) => {
+    gsap.to('.pointer.inner > *', {
+      color: isFocused ? ( color || '#a4b5c0' ) : 'var(--theme)',
+      duration: gsap.defaults().duration
+    })
 
+    gsap.to('.pointer.inner', {
+      scale: isFocused ? 1.2 : 1,
+    })
 
-    if ( type === 'focus' )
-      setIsFocused(true);
-     else
-      setIsPointed(true)
-
+    gsap.to('.pointer.outer', {
+      scale: isFocused ? 0 : 1,
+      opacity: isFocused ? 0 : 1
+    })
   }
 
-  const handleLeave = () => {
-    setIsPointed(false);
-    setIsFocused(false);
+  const animatePointed = (isPointed, pointedColor) => {
+    gsap.to('.pointer.inner', {
+      scale: isPointed ? 3.3 :  1,
+    })
+
+    gsap.to('.pointer.inner > *', {
+      color: isPointed ? ( pointedColor || '#a4b5c0' ) : 'var(--theme)',
+    })
+
+    gsap.to('.cursor-container', {
+      zIndex: isPointed ? 8 : 30
+    })
+
+    gsap.to('.pointer.outer', {
+      scale: isPointed ? .78 :  1,
+      duration: .5
+    })
   }
+
+
 
   useLayoutEffect(() => {
     Events = EventUtil.getInstance()
@@ -279,11 +241,13 @@ const Cursor = ({ path, loadingOverlay }) => {
   }, [])
 
   useEffect(() => {
-    setTimeout(() => {
-      refreshEventListeners('#main-container [data-pointer]')
-    }, 500)
-    setIsPointed(false)
-    setIsFocused(false)
+    console.time('adding-event-listeners')
+    setTimeout(refreshEventListeners, 500, '#main-container [data-pointer]')
+    console.timeEnd('adding-event-listeners')
+
+
+    // setIsPointed(false)
+    // setIsFocused(false)
   }, [path])
 
   const updateMousePos = () => {

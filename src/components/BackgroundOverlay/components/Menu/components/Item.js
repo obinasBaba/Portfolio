@@ -1,16 +1,14 @@
-import React, {useContext} from 'react'
-import {itemVariants, transition} from '../variants'
-import {Link, navigate} from 'gatsby'
-import styled, {css} from 'styled-components'
-import {motion} from 'framer-motion'
+import React from 'react'
+import { itemVariants, transition } from '../variants'
+import { Link, navigate } from 'gatsby'
+import styled, { css } from 'styled-components'
+import { motion } from 'framer-motion'
 import {
   largeUp,
   mediumUp,
-  spacing,
   text,
-  xLargeUp, xxLargeUp
-} from "../../../../../styles/mixins";
-import {AppStateContext} from '../../../../../contexts/AppStateContext'
+  xxLargeUp,
+} from '../../../../../styles/mixins'
 import OverlayController from '../../../OverlayController'
 
 const hoverMixin = css`
@@ -18,10 +16,9 @@ const hoverMixin = css`
     transform: scale(1.62);
     transition: 1s cubic-bezier(0.6, 0.01, 0, 0.9);
 
-    ${xxLargeUp( css`
+    ${xxLargeUp(css`
       transform: scale(1.32);
-
-    ` )};
+    `)};
   }
 
   [data-circle='2'],
@@ -29,26 +26,24 @@ const hoverMixin = css`
     transform: scale(2.6);
     transition: 1s cubic-bezier(0.6, 0.01, 0, 0.9);
 
-    ${xxLargeUp( css`
+    ${xxLargeUp(css`
       transform: scale(1.62);
-
-    ` )};
+    `)};
   }
 
   [data-circle='4'] {
     transform: scale(2);
     transition: 1s cubic-bezier(0.6, 0.01, 0, 0.9);
 
-    ${xxLargeUp( css`
+    ${xxLargeUp(css`
       transform: scale(1.7);
-
-    ` )};
+    `)};
   }
 
   .stars {
     opacity: 1;
     //z-index: 1;
-    transform: translate(-50%, -50%) rotate(-20deg) scale(.8);
+    transform: translate(-50%, -50%) rotate(-20deg) scale(0.8);
     transition-delay: 0.2s;
     transition: 1s cubic-bezier(0.6, 0.01, 0, 0.9);
   }
@@ -60,15 +55,13 @@ const hoverMixin = css`
     transform: translate(-50%, -50%) scale(0.8);
     transition: 1s cubic-bezier(0.6, 0.01, 0, 0.9);
 
-
     //@media screen and (max-width: $md) {
     //  display: none;
     //}
   }
 `
 
-
-const ItemContainer = styled( motion.li )`
+const ItemContainer = styled(motion.li)`
   position: relative;
   //border: thin solid red;
 
@@ -78,7 +71,7 @@ const ItemContainer = styled( motion.li )`
   }
 
   ${largeUp(css`
-    
+
     &:nth-child(1) {
       margin-left: 20%;
     }
@@ -92,16 +85,16 @@ const ItemContainer = styled( motion.li )`
       margin-right: 76%;
     }
   `)};
-  
-  ${ ({active}) => active && css`
+
+  ${({ active }) => active && css`
     ${hoverMixin}
   `};
-  
-  &:hover{
-   ${hoverMixin}; 
+
+  &:hover {
+    ${hoverMixin};
   }
-  
- 
+
+
 `
 
 const Title = styled.div`
@@ -116,18 +109,18 @@ const Title = styled.div`
   color: #fafafa;
   text-shadow: 0.1em 0.1em 0.3em #000;
   pointer-events: none;
-  
+
   ${text(.86)};
 
-  ${xxLargeUp( css`
+  ${xxLargeUp(css`
     ${text(1)};
-  
-  ` )};
+
+  `)};
 `
 
-const Circle = styled( motion.div )`
+const Circle = styled(motion.div)`
   --size: 60px;
-  
+
   position: relative;
   transition: 1s cubic-bezier(0.6, 0.01, 0, 0.9);
   border-radius: 50%;
@@ -136,7 +129,7 @@ const Circle = styled( motion.div )`
   background-color: #1e213d;
   //transition: transform 0.5s;
 
-  a{
+  a {
     //position: absolute;
     //top: 0;
     //left: 0;
@@ -145,40 +138,40 @@ const Circle = styled( motion.div )`
     z-index: 20;
   }
 
-  ${mediumUp( css`
-  
+  ${mediumUp(css`
+
     &[data-circle='1'] {
       --size: 10.24rem;
 
       width: var(--size);
       height: var(--size);
-      
-      
-      ${xxLargeUp( css`
+
+
+      ${xxLargeUp(css`
         --size: 16.24rem;
-      ` )};
+      `)};
     }
 
-    &[data-circle='2']{
+    &[data-circle='2'] {
       --size: 5.858rem;
 
       width: var(--size);
       height: var(--size);
 
-      ${xxLargeUp( css`
+      ${xxLargeUp(css`
         --size: 11.24rem;
-      ` )};
+      `)};
     }
-    
+
     &[data-circle='3'] {
       --size: 5.258rem;
 
       width: var(--size);
       height: var(--size);
 
-      ${xxLargeUp( css`
+      ${xxLargeUp(css`
         --size: 9.24rem;
-      ` )};
+      `)};
     }
 
     &[data-circle='4'] {
@@ -188,17 +181,17 @@ const Circle = styled( motion.div )`
       height: var(--size);
 
 
-      ${xxLargeUp( css`
+      ${xxLargeUp(css`
         --size: 11.24rem;
-      ` )};
+      `)};
     }
-    
-    
-    
-  ` )};
+
+
+
+  `)};
 `
 
-const Star = styled( motion.div )`
+const Star = styled(motion.div)`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -217,7 +210,7 @@ const Star = styled( motion.div )`
 
 `
 
-const Icon = styled( motion.div )`
+const Icon = styled(motion.div)`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -249,33 +242,33 @@ const Icon = styled( motion.div )`
   }
 `
 
-const Item = ({currentPath, link, stars, icon, index, title, onClick}) => {
-  const {
-    menuIsOpen, setMenuIsOpen
-  } = useContext(AppStateContext)
+const Item = ({ currentPath, link, stars, icon, index, title, onClick }) => {
+
+
 
   return (
 
     <ItemContainer variants={itemVariants}
                    className='nav-menu-item'
                    data-pointer='focus'
-          transition={transition}
-          active={link === currentPath && currentPath !== '/'}
-          key={link + index + title}
+                   transition={transition}
+                   active={link === currentPath && currentPath !== '/'}
+                   key={link + index + title}
     >
       <Link to={link} onClick={(ev) => {
         ev.preventDefault();
-        if( OverlayController.isAnimating ) return;
+        if ( OverlayController.isAnimating ) return;
 
         if ( link === currentPath ) return;
 
         onClick();
 
-        setTimeout(() => navigate(link), 1300)
+        setTimeout(() => navigate(link),
+          1300)
 
       }}>
 
-        <Circle data-circle={index + 1}/>
+        <Circle data-circle={index + 1} />
 
         <Star bgImg={stars.publicURL}
               className='stars' />

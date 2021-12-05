@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
+import React from 'react'
 import styled, { css } from 'styled-components'
 
 import {
-  length,
   largeUp,
-  mediumUp, smallUp,
+  length,
+  mediumUp,
+  smallUp,
   spacing,
   text,
 } from '../../../../styles/mixins'
 import { Typography } from '@material-ui/core'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { Link } from 'gatsby'
-import Cursor from "../../../../components/Cursor/Cursor";
 
 const PreviewContainer = styled.div`
   position: relative;
@@ -19,14 +19,13 @@ const PreviewContainer = styled.div`
   flex-direction: column;
   margin: 0 auto;
   max-width: 600px;
-  
-  &:hover{
-    img{
+
+  &:hover {
+    img {
       transform: scale(1.3);
       transition: transform 1.6s ease-in-out;
     }
   }
-  
 
   &:not(:first-child) {
     position: relative;
@@ -36,7 +35,7 @@ const PreviewContainer = styled.div`
       // ${spacing('mt', 8)};
 
       // ${spacing('mt', 4)};
-  `)}
+    `)}
 
     &::before {
       content: '';
@@ -56,14 +55,12 @@ const PreviewContainer = styled.div`
     }
   }
 
- 
-
   ${mediumUp(css`
     flex-direction: row;
     align-items: center;
   `)};
-  
-  a{
+
+  a {
     position: absolute;
     top: 0;
     left: 0;

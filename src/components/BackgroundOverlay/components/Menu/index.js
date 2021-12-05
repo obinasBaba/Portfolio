@@ -1,18 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from 'react'
 import useMenuAssets from '../../../../hooks/queries/useMenuAssets'
 import styled, { css } from 'styled-components'
-import {
-  largeUp,
-  mediumDown,
-  spacing,
-  text,
-  xLargeUp
-} from "../../../../styles/mixins";
+import { largeUp, mediumDown, spacing, text } from '../../../../styles/mixins'
 import { motion } from 'framer-motion'
 import { containerVariants } from './variants'
 import { AppStateContext } from '../../../../contexts/AppStateContext'
 import Item from './components/Item'
-import Cursor from "../../../Cursor/Cursor";
 
 const MenuItemContainer = styled(motion.ul)`
   position: relative;
@@ -217,7 +210,6 @@ const Menu = ({ onClick, ...props }) => {
     >
       <MenuMetaRow variants={metaRowVariants}
                    transition={transition}
-                   isTop={true}
       >
         {metaTxt.map((txt, i) => (
           <MetaItem variants={metaVariant}

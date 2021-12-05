@@ -1,27 +1,20 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Headline from './Headline'
 import Intro from './Intro'
-import AnalysisPreparation from './AnalysisPreparation'
-import ColorPalette from './Colors'
-import FontUsed from './FontUsed'
-import MetaTxt from './MetaTxt'
-import Concept from './Concept'
-import Development from './Development'
 import ReturnBtn from '../../components/ReturnBtn'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import { Link } from 'gatsby'
-import useOnScreen from '../../hooks/useOnScreen'
 import useLocoScroll from '../../hooks/useLocoScroll'
 import styled from 'styled-components'
 import ScrollDown from '../../components/ScrollDown'
-import {ProjectContainer} from './components'
-import {useMotionValue, usePresence, useTransform} from 'framer-motion'
-import {HeadLineBG} from './Headline/Components'
-import {bgVariant, transition} from './Headline/variants'
+import { ProjectContainer } from './components'
+import { useMotionValue, useTransform } from 'framer-motion'
+import { HeadLineBG } from './Headline/Components'
+import { bgVariant, transition } from './Headline/variants'
 
 let args = {
   path: undefined,
-  scroll: undefined
+  scroll: undefined,
 }
 
 const BG = styled.div`
@@ -143,9 +136,8 @@ const Project = ({ pageContext, location, path }) => {
   return (
     <>
       <FixedItems>
-        <ReturnBtn to={ location.state.path ?? "/projects" } onClick={() => {
+        <ReturnBtn to={"/projects" } onClick={() => {
           isTop.set( moScroll.y.get() < 10 )
-          console.log( 'pos: ', moScroll.y.get())
         }} />
 
         <ScrollDown/>

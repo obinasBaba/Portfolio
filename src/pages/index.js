@@ -3,7 +3,6 @@ import { useContext, useEffect } from 'react'
 import HomePage from '../scenes/HomePage'
 import { AppStateContext } from '../contexts/AppStateContext'
 import useLocoScroll from '../hooks/useLocoScroll'
-import { AnimatePresence } from 'framer-motion'
 
 const IndexPage = ({ path }) => {
   const {

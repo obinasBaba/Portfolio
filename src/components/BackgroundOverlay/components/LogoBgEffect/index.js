@@ -92,6 +92,6 @@ const LogoBgEffect = () => {
   )
 }
 
-export default LogoBgEffect
+export default React.memo(LogoBgEffect)
 
 

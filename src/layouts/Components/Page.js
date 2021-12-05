@@ -62,16 +62,9 @@ const Page = ({ children, path }) => {
 
       {bottomGradient && <BottomGradient />}
 
-      {!backgroundOverlay && (
-        <>
-          <ToolTip />
-          <ProgressCircle />
-        </>
-      )}
+      {!backgroundOverlay && <ProgressCircle />}
 
-      {
-        (!backgroundOverlay && matches) && <ToolTip />
-      }
+      {(!backgroundOverlay && matches) && <ToolTip />}
 
     </PageContainer>
   )

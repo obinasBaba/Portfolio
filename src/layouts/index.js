@@ -27,12 +27,11 @@ export default function Layout({ children, path }) {
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           <CssBaseline />
-          <canvas className="canvas" key={'pointer-map'} />
-
 
           <AppStateProvider>
             <Page path={path}>{children}</Page>
           </AppStateProvider>
+
         </ThemeProvider>
       </StyledThemeProvider>
 
