@@ -3,10 +3,24 @@ import EventSubscribers from '../helpers/EventSubscribers'
 import {useMotionValue, useTransform} from 'framer-motion'
 
 export const AppStateContext = React.createContext(false)
-export const BottomGradientContext = React.createContext({})
+export const MotionValueContext = React.createContext({})
+
+  /*<MotionValueContext.Provider value={{
+  moScroll: {
+    x, y, yProgress, xProgress, limit, scrollDirection
+  },
+
+  variantsUtil: {
+    fromCaseStudy,
+      fromProjectList,
+      isTop
+  },
+}}>
+{children}
+</MotionValueContext.Provider>*/
 
 
-const AppStateProvider = ( {children} ) => {
+const AppStateWrapper = ( {children} ) => {
 
   const [moonLight, setMoonLight] = useState({
     showMoon: true,
@@ -24,7 +38,6 @@ const AppStateProvider = ( {children} ) => {
   const [currentPath, setCurrentPath] = useState('/')
   const [cursorScaled, setCursorScaled] = useState(false)
   const [menuIsOpen, setMenuIsOpen] = useState(false)
-  const [bottomGradient, setBottomGradient] = useState(false)
   const [listenerTargetSelector, setListenerTargetSelector] = useState('[data-pointer]')
 
   const [backgroundOverlay, setBackgroundOverlay] = useState(true)
@@ -100,12 +113,12 @@ const AppStateProvider = ( {children} ) => {
 }
 
 
-const StateWrapper = ({children}) => {
+const AppStateProvider = ({children}) => {
   return (
-    <AppStateProvider>
+    <AppStateWrapper>
       {children}
-    </AppStateProvider>
+    </AppStateWrapper>
   )
 }
 
-export default StateWrapper
+export default AppStateProvider

@@ -15,7 +15,7 @@ import Behance from '../../assets/images/brands/behance.inline.svg'
 import Github from '../../assets/images/brands/github.inline.svg'
 import Border from './border.inline.svg'
 import { Container } from '@material-ui/core'
-import { BottomGradientContext } from '../../contexts/AppStateContext'
+import { MotionValueContext } from '../../contexts/AppStateContext'
 import useOnScreen from '../../hooks/useOnScreen'
 
 const FooterContainer = styled.div`
@@ -170,7 +170,7 @@ const Footer = ({ color }) => {
 
   const elRef = React.useRef(null)
   // const { , setContactModal } = useContext(AppStateContext)
-  // const { setBottomGradient} = useContext(BottomGradientContext)
+  // const { setBottomGradient} = useContext(MotionValueContext)
 
   const inView = useOnScreen(elRef, .2);
 

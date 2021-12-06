@@ -1,18 +1,14 @@
-import React, { useContext, useEffect, useRef } from 'react'
-import styled, { css } from 'styled-components'
+import React, { useContext, useEffect, useState } from 'react'
+import styled from 'styled-components'
 import { motion, useSpring, useTransform } from 'framer-motion'
 import { AppStateContext } from '../../contexts/AppStateContext'
 import ImageGrid from '../../scenes/HomePage/RecentDesigns/ImageGrid'
-import { Typography } from '@material-ui/core'
 import { spacing } from '../../styles/mixins'
 
 const ScrollContainer = styled.section`
   position: relative;
   width: 100%;
-  
   //border: 3px solid red;
-
-  
 `
 
 const ScrollWrapper = styled.div`
@@ -36,36 +32,38 @@ const ScrollTrack = styled(motion.div)`
   transition: transform cubic-bezier(0.6, 0.01, 0, 0.9);
 `
 
-const ScrollTrackText = styled(Typography)`
-  position: absolute;
-  left: 7%;
-  bottom: 40%;
-
-  font-family: 'Bodoni Moda', serif;
-  font-weight: 900;
-  text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.61);
-  // border: 1px solid black;
-  mix-blend-mode: difference;
-  
-`
 
 const Gallery = ({
   imageRow,
-  speed = 1,
-  delay = 0.03,
   target,
-  right = false,
-  txt=''
 }) => {
+
+  const {
+    moScroll,
+  } = useContext(AppStateContext)
+
+  const [a, setA] = useState(false)
+
+  const mapped = useTransform(moScroll.y, [0, moScroll.limit.get()], [-40, -1300])
+
+  const x = useSpring(mapped, {
+    mass: .5,  damping: 10, stiffness: 50,
+  })
+
+  useEffect(() => {
+    setA(true)
+  }, [])
+
   return (
     <ScrollContainer>
       <ScrollWrapper id={`image_row_container${target}`}>
         <ScrollTrack
-          data-scroll
-          data-scroll-speed={speed}
-          // data-scroll-target={`#image_row_container${target}`}
-          data-scroll-direction="horizontal"
-          data-scroll-delay='.08'
+          // data-scroll
+          // data-scroll-speed={speed}
+          // // data-scroll-target={`#image_row_container${target}`}
+          // data-scroll-direction="horizontal"
+          // data-scroll-delay='.08'
+          style={{x: x}}
         >
           {imageRow.map((item, index) => {
             return <ImageGrid images={item} idx={index} key={item[0].name + index} />
@@ -73,14 +71,6 @@ const Gallery = ({
         </ScrollTrack>
       </ScrollWrapper>
 
-    {/*  <ScrollTrackText
-        variant="h1"
-        data-scroll
-        data-scroll-speed="2"
-        right={right}
-      >
-        {txt}
-      </ScrollTrackText>*/}
     </ScrollContainer>
   )
 }

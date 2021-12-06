@@ -43,7 +43,6 @@ export default function useLocoScroll (
 
          Cursor.stopMouseAnimation()
 
-          // console.log('isScrolling: ', locoScroll.current.scroll.isScrolling);
           // console.timeEnd('Single onScroll');
 
 

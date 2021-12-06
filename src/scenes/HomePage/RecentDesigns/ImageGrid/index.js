@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext, useState } from "react";
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import styled, { css } from "styled-components";
 import { length, spacing, xxLargeUp } from "../../../../styles/mixins";
+import { AppStateContext } from "../../../../contexts/AppStateContext";
+import { useSpring, useTransform } from "framer-motion";
 
 const ImageWrapper = styled.div`
   flex: 0 0 100%;
@@ -79,6 +81,17 @@ const ImageWrapper = styled.div`
 
 const DesignImage = ( { images, idx } ) => {
 
+  /*const {
+    moScroll: {y, limit},
+  } = useContext(AppStateContext)
+
+
+  const mapped = useTransform(y, [0, limit.get()], [-40, -1300])
+
+  const x = useSpring(mapped, {
+    mass: .5,  damping: 10, stiffness: 50,
+  })*/
+
   return (
     <ImageWrapper data-scroll data-scroll-speed={ idx % 2 === 0 ? .5 : -.5 }  >
       {
@@ -94,4 +107,4 @@ const DesignImage = ( { images, idx } ) => {
   )
 }
 
-export default DesignImage
+export default React.memo(DesignImage)

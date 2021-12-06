@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { motion, Variants } from "framer-motion";
+import { motion, useCycle, Variants } from "framer-motion";
 import * as React from "react";
 
 const ST = styled.div`
@@ -25,13 +25,15 @@ const variants : Variants = {
 
 const ScrollTrigger = () => {
 
+  const [x, cycleX] = useCycle(0, 50, 100)
 
   return (
     <ST className='sContainer' >
       {/*<AnimateSharedLayout>*/}
         <motion.div className='in-view'
-                    variants={variants}
-                    whileHover='hover'
+                    animate={{ x: x }}
+
+                    onTap={() => cycleX()}
         />
       {/*</AnimateSharedLayout>*/}
 

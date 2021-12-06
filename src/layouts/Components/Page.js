@@ -6,7 +6,7 @@ import ToolTip from '../../components/Fixed/ToolTip'
 import ProgressCircle from '../../components/ScrollProgressCircle'
 import {
   AppStateContext,
-  BottomGradientContext
+  MotionValueContext
 } from "../../contexts/AppStateContext";
 import Cursor from '../../components/Cursor'
 import { BottomGradient, Main, PageContainer, SkyColor } from './Styled'
