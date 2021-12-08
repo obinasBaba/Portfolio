@@ -7,6 +7,7 @@ import useToolTip from "../hooks/useToolTip";
 import useRefreshMouseListeners from "../hooks/useRefreshMouseListeners";
 
 const IndexPage = ({ path }) => {
+
   const {
     backgroundOverlay,
     setCurrentPath,
@@ -17,15 +18,13 @@ const IndexPage = ({ path }) => {
 
   const loco = useLocoScroll(!backgroundOverlay)
 
+
   useEffect(() => {
-    if (backgroundOverlay) return
+
+    if(backgroundOverlay) return;
 
     setCurrentPath(path)
-    // setListenerTargetSelector('#main-container [data-pointer]')
-    console.log('set listenerTarget in index.js')
-  }, [backgroundOverlay])
 
-  useEffect(() => {
     if (registeredScrollPos !== null) {
       loco.current.update()
       setTimeout(() => {
@@ -37,13 +36,15 @@ const IndexPage = ({ path }) => {
       })
       setRegisteredScrollPos(null)
     }
-  }, [])
+  }, [backgroundOverlay])
 
   useToolTip('[data-tooltip-text]')
   useRefreshMouseListeners('[data-pointer]')
 
   return (
-      <HomePage />
+      <>
+        {!backgroundOverlay && <HomePage />}
+      </>
   )
 }
 

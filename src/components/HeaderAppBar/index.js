@@ -97,6 +97,9 @@ const NavContainer = styled.div`
 function HeaderAppBar() {
 
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const {
+     backgroundOverlay
+  } = useContext(AppStateContext)
 
   useEffect(() => {
     if (menuIsOpen) {
@@ -143,14 +146,19 @@ function HeaderAppBar() {
       </AnimatePresence>
 
       <HideOnScroll  >
-        <NavContainer isGradient={false} >
-          <HomeLogo  toggleMenu={() => menuIsOpen && toggleMenu() }/>
+        <NavContainer  >
+          {
+            !backgroundOverlay &&
+              <>
+                <HomeLogo  toggleMenu={() => menuIsOpen && toggleMenu() }/>
 
-          <NavBtn
-            key='nav'
-            menuIsOpen={menuIsOpen}
-            toggleMenu={ toggleMenu}
-          />
+                <NavBtn
+                  key='nav'
+                  menuIsOpen={menuIsOpen}
+                  toggleMenu={ toggleMenu}
+                />
+              </>
+          }
         </NavContainer>
       </HideOnScroll>
     </>

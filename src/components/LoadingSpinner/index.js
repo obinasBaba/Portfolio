@@ -154,18 +154,14 @@ const containerVariants = {
   }
 }
 
-const LoadingSpinner = ({ backgroundOverlay }) => {
+const LoadingSpinner = () => {
 
   const smallRef = useRef(null)
   const contentRef = useRef(null)
 
-  const [isOpened, setOpened] = useState(false)
-  const { setBackgroundOverlay } = useContext(AppStateContext)
-  // const [isPresent, safeToRemove] = usePresence()
+  const { setBackgroundOverlay, backgroundOverlay } = useContext(AppStateContext)
 
   const cleanUp = async () => {
-
-    // console.log('clean up ', setBackgroundOverlay);
 
     setTimeout(() => {
       OverlayController.getInstance('loading-overlay')
@@ -176,7 +172,6 @@ const LoadingSpinner = ({ backgroundOverlay }) => {
           })
     })
 
-    // setBackgroundOverlay(false)
   }
 
   useLayoutEffect(() => {
@@ -193,7 +188,7 @@ const LoadingSpinner = ({ backgroundOverlay }) => {
 
       return () => {}
 
-    }, [])
+    }, [backgroundOverlay])
 
 
   return (

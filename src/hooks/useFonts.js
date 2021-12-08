@@ -4,7 +4,7 @@ import {AppStateContext} from '../contexts/AppStateContext'
 import OverlayController
   from '../components/BackgroundOverlay/OverlayController'
 
-const useLoadingFonts = ( fontLoaded, setFontFinish ) => {
+const useLoadingFonts = ( setLoading ) => {
 
   const {  setBackgroundOverlay } = useContext(AppStateContext)
 
@@ -18,13 +18,15 @@ const useLoadingFonts = ( fontLoaded, setFontFinish ) => {
 
     Promise.all([elianto.load(), poppins.load(), icons.load()])
       .then(() => {
+        setBackgroundOverlay(false)
         setTimeout(() => {
 
           // fontLoaded.set(true)
           // setFontFinish(true)
-          queueMicrotask(() => setBackgroundOverlay(false))
 
-        }, 500)
+          // queueMicrotask(() => )
+
+        }, 1500)
       })
       .catch(console.error)
 

@@ -1,9 +1,10 @@
 import gsap from "gsap";
 import MagnetElement from "../helpers/MagnetElement";
-import { useEffect } from "react";
+import { useCallback, useContext, useEffect } from "react";
+import { AppStateContext } from "../contexts/AppStateContext";
 
 export default function(selector) {
-  const animateFocus = (isFocused, color) => {
+  const animateFocus = useCallback( (isFocused, color) => {
     gsap.to('.pointer.inner > *', {
       color: isFocused ? ( color || '#a4b5c0' ) : 'var(--theme)',
       duration: gsap.defaults().duration
@@ -17,9 +18,9 @@ export default function(selector) {
       scale: isFocused ? 0 : 1,
       opacity: isFocused ? 0 : 1
     })
-  }
+  }, [] )
 
-  const animatePointed = (isPointed, pointedColor) => {
+  const animatePointed = useCallback((isPointed, pointedColor) => {
     gsap.to('.pointer.inner', {
       scale: isPointed ? 3.17 :  1,
     })
@@ -37,9 +38,9 @@ export default function(selector) {
     gsap.to('.cursor-container', {
       zIndex: isPointed ? 8 : 30
     })
-  }
+  }, [])
 
-  const refreshEventListeners = (selector) => {
+  const refreshEventListeners = useCallback((selector) => {
 
     const handleHover = e => {
       // console.log('enter hover')
@@ -104,11 +105,17 @@ export default function(selector) {
         element.addEventListener('mouseleave', handleLeave)
       }
     })
-  }
+  }, selector)
+
+  const {
+    backgroundOverlay
+  } = useContext(AppStateContext)
 
   useEffect(() => {
+    if ( backgroundOverlay )
+      return
 
     refreshEventListeners(selector)
 
-  }, [selector])
+  }, [selector, backgroundOverlay])
 }

@@ -1,15 +1,14 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
-import MagnetElement from "../../helpers/MagnetElement";
+import React, { useContext, useEffect, useLayoutEffect } from "react";
+import styled from 'styled-components'
+import gsap from 'gsap'
+import { motion } from 'framer-motion'
+import EventUtil from '../../helpers/EventUtil'
+import { text } from '../../styles/mixins'
+import InnerPointer from './InnerPointer'
+import OuterPointer from './OuterPointer'
 import { AppStateContext } from "../../contexts/AppStateContext";
-import styled from "styled-components";
-import gsap from "gsap";
-import { motion } from "framer-motion";
-import EventUtil from "../../helpers/EventUtil";
-import { text } from "../../styles/mixins";
-import InnerPointer from "./InnerPointer";
-import OuterPointer from "./OuterPointer";
 
 let show = false
 let Events;
@@ -76,10 +75,12 @@ export const PointerContainer = styled(motion.div)`
 
 `
 
-
-
 const Cursor = () => {
 
+
+  const {
+    backgroundOverlay,
+  } = useContext(AppStateContext)
 
   useLayoutEffect(() => {
     Events = EventUtil.getInstance()
@@ -87,58 +88,47 @@ const Cursor = () => {
 
   // initial opacity
   useEffect(() => {
+    if ( backgroundOverlay )
+      return
 
-    const clearMouseUpdateAnim = () => {
-      // console.log('canceling animation : ', animId);
-      cancelAnimationFrame(animId)
-      animId = undefined
-    }
+      const clearMouseUpdateAnim = () => {
+        // console.log('canceling animation : ', animId);
+        cancelAnimationFrame(animId)
+        animId = undefined
+      }
+      const showMouse = () => {
+        if ( show ) return
 
-    const showMouse = () => {
-      if ( show ) return
+        if ( window.locoInstance && window.locoInstance.scroll.isScrolling )
+          return;
 
-      if ( window.locoInstance && window.locoInstance.scroll.isScrolling )
-        return;
+        gsap.to('.cursor-container',
+          {
+            opacity: 1,
+            duration: .4,
+          },)
 
-      gsap.to('.cursor-container',
-        {
-          opacity: 1,
-          duration: .4,
-        },)
+        clearMouseUpdateAnim()
 
-      clearMouseUpdateAnim()
+        Cursor.updateMousePos()
 
-      Cursor.updateMousePos()
+        show = true;
+      }
 
-      show = true;
+      window.addEventListener('mousemove', showMouse)
 
+      return () => {
+        clearMouseUpdateAnim()
+        window.removeEventListener('mousemove', showMouse)
+      }
 
-    }
-      window.addEventListener('mousemove', showMouse )
-
-    return () => {
-      clearMouseUpdateAnim()
-      window.removeEventListener('mousemove', showMouse)
-    }
-
-    }, [])
-
-  /*useEffect(() => {
-    if ( !listenerTargetSelector ) return;
-
-      console.log('selector: ', listenerTargetSelector, 'loading: ', loadingOverlay);
-
-      setTimeout(() => {
-        refreshEventListeners(listenerTargetSelector)
-      }, 0)
-
-    }, [listenerTargetSelector])*/
-
+    },
+    [backgroundOverlay])
 
   return (
     <CursorContainer className='cursor-container'>
-      <InnerPointer  />
-      <OuterPointer  />
+      <InnerPointer />
+      <OuterPointer />
     </CursorContainer>
   )
 }
@@ -148,18 +138,20 @@ Cursor.updateMousePos = () => {
   const render = () => {
     if ( !animId ) return;
 
-    gsap.to('.cursor-container .pointer.inner', {
-      x: Events.mousePos.x,
-      y:  Events.mousePos.y ,
-      duration: 0,
-    })
+    gsap.to('.cursor-container .pointer.inner',
+      {
+        x: Events.mousePos.x,
+        y: Events.mousePos.y,
+        duration: 0,
+      })
 
-    gsap.to('.cursor-container .pointer.outer', {
-      x: Events.mousePos.x,
-      y:  Events.mousePos.y ,
-      duration: .83,
-      ease: 'power2.out'
-    })
+    gsap.to('.cursor-container .pointer.outer',
+      {
+        x: Events.mousePos.x,
+        y: Events.mousePos.y,
+        duration: .83,
+        ease: 'power2.out'
+      })
 
     animId = requestAnimationFrame(() => render())
 
@@ -170,16 +162,17 @@ Cursor.updateMousePos = () => {
 Cursor.stopMouseAnimation = () => {
   if ( !show ) return
 
-  gsap.to('.cursor-container', {
-    opacity: 0,
-    duration: .3,
+  gsap.to('.cursor-container',
+    {
+      opacity: 0,
+      duration: .3,
 
-    onComplete(){
-      cancelAnimationFrame(animId)
-      animId = undefined
-      show = false
-    }
-  })
+      onComplete () {
+        cancelAnimationFrame(animId)
+        animId = undefined
+        show = false
+      }
+    })
 }
 
 export default Cursor

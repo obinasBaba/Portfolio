@@ -1,8 +1,16 @@
 import gsap from "gsap";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { AppStateContext } from "../contexts/AppStateContext";
 
 export default (selector) => {
+  const {
+    backgroundOverlay
+  } = useContext(AppStateContext)
+
   useEffect(() => {
+    if ( backgroundOverlay )
+      return
+
     // if ( !selector ) throw Error('Invalid selector in useTOolTIp---------')
     const toolTipTextNode = document.querySelector('.tool-tip-excerpt')
 
@@ -40,5 +48,5 @@ export default (selector) => {
       el.addEventListener('mouseenter', onEnter)
       el.addEventListener('mouseleave', onLeave)
     })
-  }, [selector])
+  }, [selector, backgroundOverlay])
 }

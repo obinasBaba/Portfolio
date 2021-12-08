@@ -4,21 +4,14 @@ import HeaderAppBar from '../../components/HeaderAppBar'
 import { AnimatePresence, useMotionValue } from 'framer-motion'
 import ToolTip from '../../components/Fixed/ToolTip'
 import ProgressCircle from '../../components/ScrollProgressCircle'
-import {
-  AppStateContext
-} from "../../contexts/AppStateContext";
 import Cursor from '../../components/Cursor'
 import { BottomGradient, Main, PageContainer, SkyColor } from './Styled'
 import useLoadingFonts from '../../hooks/useFonts'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import { useMediaQuery, useTheme } from '@material-ui/core'
-import { MotionValueContext } from "../../contexts/MotionStateWrapper";
+import { MotionValueContext } from '../../contexts/MotionStateWrapper'
 
 const Page = ({ children, path }) => {
-  const {
-    backgroundOverlay,
-    currentPath,
-  } = useContext(AppStateContext)
 
   const {
     variantsUtil: { isTop },
@@ -30,46 +23,35 @@ const Page = ({ children, path }) => {
 
   const media = useMediaQuery(theme.breakpoints.up('xl'))
   const mediaLarge = useMotionValue(media)
+  const [loading, setLoading] = useState(true)
 
-  useLoadingFonts()
+  useLoadingFonts(setLoading)
 
   return (
     <PageContainer id="page-container">
       <SkyColor />
       <BackgroundStars />
 
-      {!backgroundOverlay && matches && (
-        <Cursor path={currentPath} loadingOverlay={backgroundOverlay} />
-      )}
+      <Cursor />
 
-      {!backgroundOverlay && <HeaderAppBar />}
+      <HeaderAppBar />
 
-      <LoadingSpinner key="loader" backgroundOverlay={backgroundOverlay} />
+      <LoadingSpinner />
 
       <Main data-scroll-container id="main-container">
         <AnimatePresence
           exitBeforeEnter
-          custom={{ path, cPath: currentPath, isTop, mediaLarge }}
+          custom={{ path, cPath: 'currentPath', isTop, mediaLarge }}
         >
-          {!backgroundOverlay && (
-            <React.Fragment key="Main-Content">
-              <AnimatePresence
-                exitBeforeEnter
-                custom={{ path, cPath: currentPath, isTop }}
-              >
-                {children}
-              </AnimatePresence>
-            </React.Fragment>
-          )}
+          {children}
         </AnimatePresence>
       </Main>
 
-      <BottomGradient className='btm-gradient' />
+      <BottomGradient className="btm-gradient" />
 
-      {!backgroundOverlay && <ProgressCircle />}
+      <ProgressCircle />
 
-      {(!backgroundOverlay && matches) && <ToolTip />}
-
+      <ToolTip />
     </PageContainer>
   )
 }
