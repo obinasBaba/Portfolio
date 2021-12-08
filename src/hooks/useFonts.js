@@ -22,7 +22,7 @@ const useLoadingFonts = ( fontLoaded, setFontFinish ) => {
 
           // fontLoaded.set(true)
           // setFontFinish(true)
-          setBackgroundOverlay(false)
+          queueMicrotask(() => setBackgroundOverlay(false))
 
         }, 500)
       })

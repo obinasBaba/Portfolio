@@ -15,8 +15,8 @@ import Behance from '../../assets/images/brands/behance.inline.svg'
 import Github from '../../assets/images/brands/github.inline.svg'
 import Border from './border.inline.svg'
 import { Container } from '@material-ui/core'
-import { MotionValueContext } from '../../contexts/AppStateContext'
 import useOnScreen from '../../hooks/useOnScreen'
+import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 
 const FooterContainer = styled.div`
   position: relative;

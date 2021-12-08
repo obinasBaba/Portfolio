@@ -29,8 +29,8 @@ export class CircleTextController {
         this.DOM.enterCtrl = document.querySelector('.enter');
         // total
         this.circleTextTotal = this.DOM.circleText.length;
+        this.track = document.querySelector('#projects')
 
-        
         this.setup();
     }
 
@@ -120,8 +120,25 @@ export class CircleTextController {
         }, 'start')
         // at start+1 allow the hover over the enter ctrl
         .add(() => {
+
             gsap.set(this.DOM.enterCtrl, {pointerEvents: 'auto'});
-        }, 'start+=2');
+
+            gsap.timeline()
+              .to([...document.querySelectorAll('.rotation-circle .circles__text')], {
+                    rotation: i => (i % 2 ? '+=60' : '-=60'),
+                    scrollTrigger: {
+                        trigger: '#projects',
+                        scroller: '[data-scroll-container]',
+                        scrub: 1,
+                        start: () => 'top 10',
+                        end: () => '+=' + this.track.offsetHeight,
+                    },
+                })
+
+
+            // STrigger.refresh()
+        }, 'start+=2.5')
+
 
         this.started = true
     }

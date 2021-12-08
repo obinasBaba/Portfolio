@@ -53,6 +53,7 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
+    "@types/styled-components": "^5.1.17",
     "prettier": "2.2.1"
   },
   "keywords": [

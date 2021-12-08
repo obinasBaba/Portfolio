@@ -2,9 +2,12 @@ import { motion, useTransform } from 'framer-motion'
 import React, { useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import { length, spacing } from '../../styles/mixins'
-import { AppStateContext } from '../../contexts/AppStateContext'
+import {
+  AppStateContext
+} from "../../contexts/AppStateContext";
 import { map } from '../../helpers/utils'
 import { Link } from 'gatsby'
+import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 
 const RotatingDiv = styled(motion.div)`
   width: 100%;
@@ -79,8 +82,11 @@ const ScrollProgressCircle = () => {
 
   const {
     currentPath,
-    moScroll: {y, limit},
   } = useContext(AppStateContext)
+
+  const {
+    moScroll: { y, limit },
+  } = useContext(MotionValueContext)
 
   const rotate = useTransform(y, latest => {
     return map(latest, 0, limit.get(), 0, 360)

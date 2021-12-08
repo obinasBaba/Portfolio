@@ -1,9 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import { CircleTextController } from './CircleTextController'
-import { gsap } from "gsap";
-import STrigger from 'gsap/ScrollTrigger'
-
+import { gsap } from 'gsap'
+import { motion } from 'framer-motion'
 
 const vars = css`
   margin: 0;
@@ -36,8 +35,7 @@ const vars = css`
   -moz-osx-font-smoothing: grayscale;
 `
 
-
-const Container = styled.div`
+const Container = styled(motion.div)`
   position: relative;
   grid-row: 2 / 3;
   grid-column: 1/ 1;
@@ -59,12 +57,15 @@ const Container = styled.div`
     background: none;
     color: var(--color-text-button);
     padding: 0;
+
   }
+
   .enter:focus,
   .enter:hover,
   .enter:active {
     outline: none;
   }
+
   .enter__bg {
     position: absolute;
     top: 0;
@@ -74,6 +75,7 @@ const Container = styled.div`
     border-radius: 50%;
     background: var(--color-button);
   }
+
   .enter__text {
     position: relative;
   }
@@ -108,7 +110,7 @@ const Container = styled.div`
   .circles__text {
     transform-origin: 700px 700px;
     will-change: transform, opacity;
-    
+
   }
 
   .circles__text--1 {
@@ -142,58 +144,85 @@ const Container = styled.div`
     font-family: var(--font-circle-4);
     font-weight: var(--font-weight-circle-4);
     fill: var(--color-text-circle-4);
-    
+
     letter-spacing: 50px;
   }
-  
+
 `
 
-
-const RotationCircleText = ({inview}) => {
+const RotationCircleText = () => {
   const circleRef = useRef();
+  const started = useRef();
+  const scrollTriggerRef = useRef(null)
+
+  const texts = [
+    { text: 'Programming is fun&joy .', link: '#circle-1', length: 2830 },
+    {
+      text: 'X Algørithm X Infinitæ X Dæbugging ',
+      link: '#circle-2',
+      length: 2001,
+    },
+    {
+      text: '. It . works . on . my . machinæ ',
+      link: '#circle-3',
+      length: 1341,
+    },
+    {
+      text: 'Køge For Kærlighed Building uI ',
+      link: '#circle-4',
+      length: 836,
+    },
+  ]
 
   useEffect(() => {
       circleRef.current = CircleTextController.getInstance();
-    CircleTextController.getInstance().start()
 
-      return () => {
-      CircleTextController.instance = null
-      }
+      return () => CircleTextController.instance = null
 
-  } , [])
+    },
+    [])
 
   useEffect(() => {
-    return ;
-       inview && !circleRef.current.started &&  CircleTextController.getInstance().start();
-  }, [inview])
-
-  useEffect(() => {
-    const track = document.querySelector('#projects')
 
 
-    setTimeout(() => {
-     gsap
-       .timeline()
-       .to([...document.querySelectorAll('.rotation-circle .circles__text')], {
-         // ease: 'none',
-         rotation: i => i%2 ? '-=60' : '+=60',
+      const track = document.querySelector('#projects')
 
-         scrollTrigger: {
-           trigger: '#projects',
-           scroller: '[data-scroll-container]',
-           scrub: 1,
-           start: () => 'top 10',
-           end: () => '+=' + track.offsetHeight,
-         },
-       })
+      scrollTriggerRef.current = gsap
+        .timeline()
+        .to([...document.querySelectorAll('.rotation-circle .circles__text')],
+          {
+            rotation: i => (i % 2 ? '-=60' : '+=60'),
+            scrollTrigger: {
+              trigger: '#projects',
+              scroller: '[data-scroll-container]',
+              scrub: 1,
+              start: () => 'top 10',
+              end: () => '+=' + track.offsetHeight,
+            },
+          })
+        .pause()
 
-     STrigger.refresh()
-     }, 500)
-  }, [])
+      // STrigger.refresh()
 
+    },
+    [])
 
   return (
-    <Container className='rotation-circle' >
+    <Container className='rotation-circle'
+
+    >
+      <motion.div viewport={{
+        once: true,
+        amount: 'some',
+      }}
+                  onViewportEnter={entry => {
+                    if ( CircleTextController.getInstance().started )
+                      return
+
+                    // CircleTextController.getInstance().start()
+                  }}
+      />
+
       <svg className="circles" width="100%" height="100%"
            viewBox="0 0 1400 1400">
         <def>
@@ -206,29 +235,26 @@ const RotationCircleText = ({inview}) => {
           <path id="circle-4"
                 d="M567.5,700.5A133,133 0 1 1833.5,700.5A133,133 0 1 1567.5,700.5" />
         </def>
-        <text className="circles__text circles__text--1">
-          <textPath className="circles__text-path" xlinkHref="#circle-1"
-                    aria-label="" textLength="2830">Programming can be fun, and &nbsp;</textPath>
-        </text>
-        <text className="circles__text circles__text--2">
-          <textPath className="circles__text-path" xlinkHref="#circle-2"
-                    aria-label="" textLength="2001">X Algørithm X Infinitæ X Dæbugging&nbsp;</textPath>
-        </text>
-        <text className="circles__text circles__text--3">
-          <textPath className="circles__text-path" xlinkHref="#circle-3"
-                    aria-label="" textLength="1341">. It . works . on . my . machinæ&nbsp;</textPath>
-        </text>
-        <text className="circles__text circles__text--4">
-          <textPath className="circles__text-path" xlinkHref="#circle-4"
-                    aria-label="" textLength="836">Køge For Kærlighed Building VI&nbsp;</textPath>
-        </text>
+        {
+          texts.map(({ text, link, length }, index) => (
+            <motion.g style={{opacity: .1}} >
+              <motion.text
+                className={`circles__text circles__text--${index + 1}`}>
+
+                <textPath className="circles__text-path" xlinkHref={link}
+                          aria-label=""
+                          textLength={length}>{text}&nbsp;</textPath>
+              </motion.text>
+            </motion.g>
+          ))
+        }
       </svg>
 
       <button className="enter"
               data-pointer='focus'
               data-pointer-color='#02021e'
       >
-        <div className="enter__bg"/>
+        <div className="enter__bg" />
         <span className="enter__text">Explore</span>
       </button>
 

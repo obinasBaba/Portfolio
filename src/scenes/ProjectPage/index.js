@@ -18,6 +18,7 @@ import ProjectScrollDown from './components/SideBarTools/ProjectScrollDown'
 import SideBarTools from './components/SideBarTools'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import ImgLoaded from 'imagesloaded'
+import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 
 const ProjectContainerGrid = styled(motion.div)`
   ${gridify};
@@ -45,31 +46,15 @@ const ProjectPage = () => {
   const controllers = items.map(({ controller }) => controller)
   const activeNavDotRef = useRef(null)
 
-  const { variantsUtil: {fromCaseStudy}, projectImgLoaded ,setListenerTargetSelector} = useContext(AppStateContext)
+  const {
+    variantsUtil: {fromCaseStudy}
+  } = useContext(MotionValueContext)
 
 
   const moVariants = useMotionValue(fromCaseStudy.get() ? ['initial', 'animate'] : ['initial'])
 
   const [activeIndex, setActiveIndex] = useState(0)
-  const [imgLoaded, setImgLoaded] = useState(projectImgLoaded.get());
 
-  /*useEffect(() => {
-    return ;
-    if ( projectImgLoaded.get() ) return;
-
-    const imgNotifier =  ImgLoaded('#project-img', {})
-    imgNotifier.on('always', self => {
-      setTimeout(() => {
-        setImgLoaded(true)
-        projectImgLoaded.set(true)
-      }, 1000)
-    })
-
-  }, [])
-
-  useEffect(() => {
-    imgLoaded && setListenerTargetSelector('#main-container [data-pointer]')
-  }, [imgLoaded])*/
 
   useEffect(() => {
 

@@ -5,22 +5,24 @@ import { AnimatePresence, useMotionValue } from 'framer-motion'
 import ToolTip from '../../components/Fixed/ToolTip'
 import ProgressCircle from '../../components/ScrollProgressCircle'
 import {
-  AppStateContext,
-  MotionValueContext
+  AppStateContext
 } from "../../contexts/AppStateContext";
 import Cursor from '../../components/Cursor'
 import { BottomGradient, Main, PageContainer, SkyColor } from './Styled'
 import useLoadingFonts from '../../hooks/useFonts'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import { useMediaQuery, useTheme } from '@material-ui/core'
+import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 
 const Page = ({ children, path }) => {
   const {
     backgroundOverlay,
     currentPath,
-    variantsUtil: { isTop },
   } = useContext(AppStateContext)
 
+  const {
+    variantsUtil: { isTop },
+  } = useContext(MotionValueContext)
 
   // const [fontFinish, setFontFinish] = useState(fontLoaded.get())
   const theme = useTheme()

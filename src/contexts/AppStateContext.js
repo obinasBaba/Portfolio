@@ -1,26 +1,10 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react'
+import React, { useState } from 'react'
 import EventSubscribers from '../helpers/EventSubscribers'
-import {useMotionValue, useTransform} from 'framer-motion'
+import { MotionStateWrapper } from './MotionStateWrapper'
 
 export const AppStateContext = React.createContext(false)
-export const MotionValueContext = React.createContext({})
 
-  /*<MotionValueContext.Provider value={{
-  moScroll: {
-    x, y, yProgress, xProgress, limit, scrollDirection
-  },
-
-  variantsUtil: {
-    fromCaseStudy,
-      fromProjectList,
-      isTop
-  },
-}}>
-{children}
-</MotionValueContext.Provider>*/
-
-
-const AppStateWrapper = ( {children} ) => {
+const AppStateWrapper = ({ children }) => {
 
   const [moonLight, setMoonLight] = useState({
     showMoon: true,
@@ -42,7 +26,6 @@ const AppStateWrapper = ( {children} ) => {
 
   const [backgroundOverlay, setBackgroundOverlay] = useState(true)
 
-
   const [registeredScrollPos, setRegisteredScrollPos] = useState(null)
   const [toolTip, setToolTip] = useState({
     text: '',
@@ -54,22 +37,6 @@ const AppStateWrapper = ( {children} ) => {
     width: 0,
     height: 0,
   })
-
-  //using motionValue to avoid rerender
-  const fromProjectList = useMotionValue(false);
-  const fromCaseStudy = useMotionValue(false);
-  const isTop = useMotionValue(true);
-
-  const x= useMotionValue(0)
-  const y= useMotionValue(0)
-  const yProgress= useMotionValue(0);
-  const xProgress= useMotionValue(0);
-  const limit= useMotionValue(0)
-  const projectImgLoaded= useMotionValue(false)
-  const fontLoaded= useMotionValue(false)
-  const scrollDirection = useMotionValue('down')
-
-
 
   return (
     <AppStateContext.Provider value={{
@@ -90,33 +57,23 @@ const AppStateWrapper = ( {children} ) => {
       currentPath, setCurrentPath,
       cursorScaled, setCursorScaled,
       registeredScrollPos, setRegisteredScrollPos,
-      moScroll: {
-        x, y, yProgress, xProgress, limit, scrollDirection
-      },
-
-      variantsUtil: {
-        fromCaseStudy,
-        fromProjectList,
-        isTop
-      },
-      projectImgLoaded,
-      fontLoaded,
       backgroundOverlay, setBackgroundOverlay,
       listenerTargetSelector, setListenerTargetSelector
       // magnet: MagnetElements
 
-    }} >
-        {children}
+    }}>
+      {children}
 
     </AppStateContext.Provider>
   )
 }
 
-
-const AppStateProvider = ({children}) => {
+const AppStateProvider = ({ children }) => {
   return (
     <AppStateWrapper>
-      {children}
+      <MotionStateWrapper>
+        {children}
+      </MotionStateWrapper>
     </AppStateWrapper>
   )
 }

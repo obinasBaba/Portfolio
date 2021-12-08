@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { motion, useSpring, useTransform } from 'framer-motion'
-import { AppStateContext } from '../../contexts/AppStateContext'
 import ImageGrid from '../../scenes/HomePage/RecentDesigns/ImageGrid'
 import { spacing } from '../../styles/mixins'
+import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 
 const ScrollContainer = styled.section`
   position: relative;
@@ -40,7 +40,7 @@ const Gallery = ({
 
   const {
     moScroll,
-  } = useContext(AppStateContext)
+  } = useContext(MotionValueContext)
 
   const [a, setA] = useState(false)
 

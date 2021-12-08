@@ -4,27 +4,12 @@ import {
   gridMultiplayer,
   largeUp,
   length,
-  smallUp,
   spacing,
 } from '../../../styles/mixins'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import useOnScreen from '../../../hooks/useOnScreen'
-import { AppStateContext } from '../../../contexts/AppStateContext'
+import { motion, useSpring, useTransform } from 'framer-motion'
 import HeadlineTitle from '../../../components/Headline'
-import RotationCircleText from './RotationCircleText'
-
-const parentVariant = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-  },
-  exit: {
-    opacity: 0,
-  },
-}
-
+import { MotionValueContext } from '../../../contexts/MotionStateWrapper'
+import RotationTextPath from './RotationTextPath'
 
 const ProjectContainer = styled(motion.section)`
   position: relative;
@@ -33,14 +18,14 @@ const ProjectContainer = styled(motion.section)`
   flex-flow: column;
   place-items: center;
   place-content: center;
-  
+
   align-items: center;
   justify-content: center;
   max-width: 100%;
   min-height: 100vh;
   //border: thick solid red;
   //padding: 2rem 0;
-  
+
   ${spacing('pt', 26)};
   ${spacing('pb', 11)};
 `
@@ -99,30 +84,33 @@ const ScrollPlanet2 = styled.div`
   `)};
 `
 
+const parentVariant = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
+}
+
+const config = {
+  mass: 1,
+  stiffness: 50,
+  damping: 20,
+}
 
 const Projects = () => {
-  const {
-     setRegisteredScrollPos
-  } = useContext( AppStateContext )
 
   const containerRef = useRef(null)
-
-  const moRotate = useMotionValue(0)
-  const moRotate2 = useMotionValue(0)
-
-  const config = {
-    mass: 1,
-    stiffness: 50,
-    damping: 20,
-  }
-
-  const inView = useOnScreen(containerRef, 0)
 
   const yBig = useSpring(0, config)
   const xBig = useSpring(0, config)
 
-  const ySmall = useTransform(yBig, y => y / 6)
-  const xSmall = useTransform(xBig, x => x / 4)
+  const ySmall = useTransform(yBig, y => y / 8)
+  const xSmall = useTransform(xBig, x => x / 6)
 
   const calculateMotionValues = (x, y) => {
     const xPos = (x - window.innerWidth) / 15
@@ -131,24 +119,18 @@ const Projects = () => {
     xBig.set(xPos)
   }
 
-  let handler = async e => {
-    calculateMotionValues(e.clientX, e.clientY)
-    const xPos = (e.x - window.innerWidth / 2) / 50
-    // const yPos =  (e.y - window.innerHeight / 2) / 100;
-    moRotate.set(xPos)
-    moRotate2.set(xPos * -1)
-  }
+
 
   //transform
   useEffect(() => {
-    // return;
-
-    // if (inView) window.addEventListener('mousemove', handler)
-    // else window.removeEventListener('mousemove', handler)
+    const handler = async e => {
+      calculateMotionValues(e.clientX, e.clientY)
+    }
+    
     window.addEventListener('mousemove', handler)
 
     return () => window.removeEventListener('mousemove', handler)
-  }, [inView])
+  }, [])
 
 
 
@@ -177,7 +159,7 @@ const Projects = () => {
       </ScrollPlanet2>
 
 
-      <RotationCircleText inview={inView} />
+      <RotationTextPath />
 
     </ProjectContainer>
   )

@@ -5,11 +5,14 @@ import HomeLogo from './components/HomeLogo'
 import NavBtn from './components/NavBtn'
 import { mediumUp, spacing } from '../../styles/mixins'
 import {AnimatePresence, useMotionValue} from 'framer-motion'
-import { AppStateContext } from '../../contexts/AppStateContext'
+import {
+  AppStateContext
+} from "../../contexts/AppStateContext";
 import NavMenu from '../NavMenu'
 import OverlayController from '../BackgroundOverlay/OverlayController'
 import { debounce } from 'lodash'
 import BackgroundOverlay from "../BackgroundOverlay";
+import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 
 
 function HideOnScroll({ children, window }) {
@@ -17,8 +20,11 @@ function HideOnScroll({ children, window }) {
 
   const {
     currentPath,
-    moScroll: {scrollDirection},
   } = useContext(AppStateContext)
+
+  const {
+    moScroll: {scrollDirection}
+  } = useContext(MotionValueContext)
 
 
 

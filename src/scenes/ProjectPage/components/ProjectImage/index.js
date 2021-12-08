@@ -7,15 +7,15 @@ import {
   effectVariant,
   imgContainerVariant,
   imgCover,
-  imgOverVariants, imgVariant,
+  imgOverVariants,
+  imgVariant,
   innerVariant,
   transition,
 } from './Variants'
 import { InnerWrapper, OverflowWrapper, ProjectImg } from './components'
-import { AppStateContext } from '../../../../contexts/AppStateContext'
-
 
 import StackUsed from '../StackUsed'
+import { MotionValueContext } from '../../../../contexts/MotionStateWrapper'
 
 const ProjectImage = ({
   reversed,
@@ -29,10 +29,10 @@ const ProjectImage = ({
   items,
   custom,
 }) => {
-
   // console.log(preview)
-  const { variantsUtil: {fromProjectList} } = useContext(AppStateContext)
-
+  const {
+    variantsUtil: { fromProjectList },
+  } = useContext(MotionValueContext)
 
   return (
     <ProjectImg
@@ -41,26 +41,24 @@ const ProjectImage = ({
       transition={transition}
       // custom={custom}
     >
-
       <InnerWrapper
         className="inner-div"
         variants={innerVariant}
         transition={transition}
       >
-
-        <Link to={link}
-              state={{ path: url }}
-              onClick={() => fromProjectList.set(true) }
+        <Link
+          to={link}
+          state={{ path: url }}
+          onClick={() => fromProjectList.set(true)}
         />
 
-        <motion.img data-src={preview.publicURL}
-                    variants={imgVariant}
-                    transition={transition}
-
+        <motion.img
+          data-src={preview.publicURL}
+          variants={imgVariant}
+          transition={transition}
         />
 
         <motion.div className="image-over" variants={imgOverVariants}>
-
           <motion.div
             className="image-cover cover-1"
             variants={imgCover}
@@ -71,10 +69,8 @@ const ProjectImage = ({
             className="image-cover cover-2"
             variants={imgCover}
             transition={transition}
-
           />
         </motion.div>
-
       </InnerWrapper>
 
       <OverflowWrapper>
@@ -89,7 +85,6 @@ const ProjectImage = ({
       </OverflowWrapper>
 
       <StackUsed items={items} custom={{ exit: exit }} />
-
     </ProjectImg>
   )
 }

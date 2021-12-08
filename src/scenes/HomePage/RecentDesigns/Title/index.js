@@ -9,9 +9,12 @@ import {
   xLargeUp
 } from "../../../../styles/mixins";
 import HeadlineTitle from '../../../../components/Headline'
-import {AppStateContext} from '../../../../contexts/AppStateContext'
+import {
+  AppStateContext
+} from "../../../../contexts/AppStateContext";
 import {useTransform} from 'framer-motion'
 import {motion} from 'framer-motion'
+import { MotionValueContext } from "../../../../contexts/MotionStateWrapper";
 
 const TitleContainer = styled(Container)`
   display: flex;
@@ -72,14 +75,7 @@ const LogoLink = styled.a`
 
 const Title = ({ dribbleRed, circledText }) => {
 
-  const [dribbleTextTransform, setDribbleTextTransform] = useState(null);
-
-  const handleScroll = () => {
-    setDribbleTextTransform( {
-      transform: `rotate(${window.pageYOffset / 3}deg)`,
-    } );
-  }
-  const { moScroll } = useContext(AppStateContext)
+  const { moScroll } = useContext(MotionValueContext)
 
   const rotate = useTransform(moScroll.y, [200, 2000], [0, 360])
   const theme = useTheme()

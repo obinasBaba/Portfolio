@@ -8,7 +8,7 @@ import useOnScreen from "../../../hooks/useOnScreen";
 
 const RecentDesignWrapper = styled.section`
   //min-height: 100vh;
-  border: thin solid red;
+  //border: thin solid red;
 `
 
 const RecentWorks = () => {

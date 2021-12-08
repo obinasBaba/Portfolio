@@ -2,7 +2,10 @@ import React, { useContext, useEffect, useRef } from 'react'
 import { useSpring, useTransform } from 'framer-motion'
 import useBackgroundsAssets from '../../hooks/queries/useBackgroundsAssets'
 import { Galaxy, Layer, Wrapper } from './components'
-import { AppStateContext } from '../../contexts/AppStateContext'
+import {
+  AppStateContext
+} from "../../contexts/AppStateContext";
+import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 
 const BackgroundStars = () => {
   const {
@@ -31,9 +34,12 @@ const BackgroundStars = () => {
   }
 
   const {
-    moScroll: { y },
     currentPath,
   } = useContext(AppStateContext)
+
+  const {
+    moScroll: { y },
+  } = useContext(MotionValueContext)
 
   const mappedY = useTransform(y, y => Math.ceil((300 / 3400) * -y))
 
@@ -43,9 +49,6 @@ const BackgroundStars = () => {
   useEffect(() => {
     window.addEventListener('mousemove', calcNewMousePos)
 
-    setTimeout(() => {
-      // mappedY.destroy()
-    }, 5000)
 
     return () => {
       window.removeEventListener('mousemove', calcNewMousePos)
