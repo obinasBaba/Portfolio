@@ -3,6 +3,7 @@
     font-family: 'Bodoni Moda';
     font-style: normal;
     font-weight: 900;
+    font-display: swap;
     src: url('./bodoni-moda-v7-latin-900.eot'); /* IE9 Compat Modes */
     src: local(''),
     url('./bodoni-moda-v7-latin-900.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
@@ -15,6 +16,7 @@
 @font-face {
     font-family: 'Bodoni Moda';
     font-style: italic;
+    font-display: swap;
     font-weight: 900;
     src: url('./bodoni-moda-v7-latin-900italic.eot'); /* IE9 Compat Modes */
     src: local(''),

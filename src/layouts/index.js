@@ -19,7 +19,7 @@ export default function Layout({ children, path }) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
 
-        <link rel="stylesheet" href={"https://use.typekit.net/kxo3pgz.css"}/>
+        {/*<link rel="stylesheet" href={"https://use.typekit.net/kxo3pgz.css"}/>*/}
 
       </Helmet>
 
@@ -35,8 +35,8 @@ export default function Layout({ children, path }) {
         </ThemeProvider>
       </StyledThemeProvider>
 
-      <script type="text/javascript" src={"https://unpkg.com/default-passive-events"}/>
-      <script src={"https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"}/>
+      {/*<script type="text/javascript" src={"https://unpkg.com/default-passive-events"}/>*/}
+      {/*<script src={"https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"}/>*/}
 
 
 

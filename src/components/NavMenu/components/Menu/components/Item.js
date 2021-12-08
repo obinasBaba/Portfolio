@@ -9,7 +9,7 @@ import {
   text,
   xxLargeUp,
 } from '../../../../../styles/mixins'
-import OverlayController from '../../../OverlayController'
+import OverlayController from '../../../../BackgroundOverlay/OverlayController'
 
 const hoverMixin = css`
   [data-circle='1'] {

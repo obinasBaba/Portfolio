@@ -48,6 +48,7 @@ const BlogPage = ({data, path, ...other}) => {
   const { title, date, tags, thumbnail } = data.currentBlog.frontmatter;
 
   const { setCurrentPath } = useContext(AppStateContext)
+
   useLayoutEffect( () => {
     setCurrentPath(path)
   }, [] )

@@ -1,8 +1,6 @@
 import {useContext, useLayoutEffect} from 'react'
 import FontLoaded from 'fontfaceobserver'
 import {AppStateContext} from '../contexts/AppStateContext'
-import OverlayController
-  from '../components/BackgroundOverlay/OverlayController'
 
 const useLoadingFonts = ( setLoading ) => {
 

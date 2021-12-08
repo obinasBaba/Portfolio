@@ -11,6 +11,7 @@ import { ProjectContainer } from './components'
 import { useMotionValue, useTransform } from 'framer-motion'
 import { HeadLineBG } from './Headline/Components'
 import { bgVariant, transition } from './Headline/variants'
+import { MotionValueContext } from '../../contexts/MotionStateWrapper'
 
 let args = {
   path: undefined,
@@ -79,9 +80,11 @@ const Project = ({ pageContext, location, path }) => {
   const { headlineImg, publicURL } = pageContext.imageData
   const {
     setCurrentPath,
-    moScroll,
-    variantsUtil: {fromCaseStudy, isTop, fromProjectList}
   } = useContext(AppStateContext)
+
+  const {
+    variantsUtil : {fromCaseStudy, isTop, fromProjectList} , moScroll
+  } = useContext(MotionValueContext)
 
   const [scrolled, setScrolled] = useState(false);
 

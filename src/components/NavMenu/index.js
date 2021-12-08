@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import LogoBgEffect from '../BackgroundOverlay/components/LogoBgEffect'
-import Menu from '../BackgroundOverlay/components/Menu'
+import LogoBgEffect from './components/LogoBgEffect'
+import Menu from './components/Menu'
 import styled from 'styled-components'
 
 const MenuContainer = styled(motion.div)`

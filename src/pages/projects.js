@@ -14,10 +14,7 @@ const Projects = ({ location, path }) => {
 
   useEffect(() => {
     setCurrentPath(path)
-    setBackgroundOverlay(false)
-    setListenerTargetSelector('#main-container [data-pointer]')
 
-    return () => setListenerTargetSelector(undefined)
   }, [])
 
   return (

@@ -56,9 +56,6 @@ const ProjectPage = () => {
   const [activeIndex, setActiveIndex] = useState(0)
 
 
-  useEffect(() => {
-
-  }, [])
 
   return (
     <>

@@ -10,12 +10,12 @@ const vars = css`
   --color-bg: #191613;
   --color-link: #d6af7c;
   --color-link-hover: #fff;
-  --color-text-circle-1: #5d6c7b;
+  --color-text-circle-1: #687685;
   --color-text-circle-2: #566373;
   --color-text-circle-3: #a4b5c0;
   --color-text-circle-4: #434e5e;
 
-  --font-circle-1: ivymode, sans-serif;
+  --font-circle-1: var(--eli), sans-serif;
   --font-weight-circle-1: 300;
   --font-circle-2: modesto-condensed, serif;
   --font-weight-circle-2: 400;
@@ -242,7 +242,7 @@ const RotationCircleText = () => {
   const scrollTween = useRef(gsap.timeline())
   const controller = useAnimation()
   const texts = [
-    { text: 'Programming is fun&joy .', link: '#circle-1', length: 2830 },
+    { text: 'coding^can*be^fun*and^joy*', link: '#circle-1', length: 2830 },
     {
       text: 'X Algørithm X Infinitæ X Dæbugging ',
       link: '#circle-2',
@@ -329,7 +329,7 @@ const RotationCircleText = () => {
               custom={{ idx: index }}
             >
               <textPath className="circles__text-path" xlinkHref={link} aria-label="" textLength={length}>
-                {text}&nbsp;
+                {text}
               </textPath>
             </motion.text>
           </motion.g>

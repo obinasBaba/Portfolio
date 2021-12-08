@@ -1,10 +1,10 @@
-import React, {useContext, useEffect, useRef, useState} from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
-import { mediumUp, smallUp, spacing, xLargeUp } from "../../../../styles/mixins";
-import {Container, Link, Typography} from '@material-ui/core'
+import { mediumUp, smallUp, spacing, xLargeUp } from '../../../../styles/mixins'
+import { Container, Typography } from '@material-ui/core'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import {AnimateSharedLayout, motion, useTransform} from 'framer-motion'
-import {AppStateContext} from '../../../../contexts/AppStateContext'
+import { AnimateSharedLayout, motion, useTransform } from 'framer-motion'
+import { MotionValueContext } from '../../../../contexts/MotionStateWrapper'
 
 const HeadLineContainer = styled(motion.section)`
   //border: thin solid greenyellow;
@@ -12,11 +12,10 @@ const HeadLineContainer = styled(motion.section)`
   display: grid;
 
   &[data-scrolled='true'] {
-    
     .image-box {
       grid-row: 1;
       width: 100%;
-      
+
       .overlay {
         opacity: 1;
         transition: opacity 1s ease-in-out;
@@ -28,15 +27,14 @@ const HeadLineContainer = styled(motion.section)`
       align-content: end;
       align-items: center;
       ${spacing('pl', 1)};
-      
+
       .title {
         text-align: left;
         color: #02021e;
       }
-      .meta{
+      .meta {
         color: #02021e;
       }
-
     }
   }
 `
@@ -156,7 +154,7 @@ const HeadLine = ({ categories, title, imgData, date, tags, thumbnail }) => {
   const [scrolled, setScrolled] = useState(false);
   const [rendered, setRendered] = useState(false)
 
-  const {moScroll} = useContext(AppStateContext)
+  const {moScroll} = useContext(MotionValueContext)
 
 
   useTransform(moScroll.y, latest => {

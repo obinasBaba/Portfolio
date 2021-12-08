@@ -1,15 +1,13 @@
 import React, { useContext, useEffect } from 'react'
 import BlogCard from './components/BlogCard'
 import { graphql } from 'gatsby'
-import styled, { useTheme } from 'styled-components'
+import { useTheme } from 'styled-components'
 import { useMediaQuery } from '@material-ui/core'
 import BlogList from './components/BlogListContainer'
 import { AppStateContext } from '../../contexts/AppStateContext'
-import MailUs from '../../scenes/MailUs'
 import useLocoScroll from '../../hooks/useLocoScroll'
 import Moon from '../../components/MoonLight'
 import PenEffect from './components/BlogListContainer/PenEffect'
-
 
 const BlogListTemplate = ({
   data,
@@ -24,7 +22,6 @@ const BlogListTemplate = ({
 
   useLocoScroll(true)
 
-
   const previousPage = currentPage === 2 ? '/blog' : `/blog/${currentPage - 1}`
   const nextPage = `/blog/${currentPage + 1}`
   const theme = useTheme()
@@ -32,8 +29,8 @@ const BlogListTemplate = ({
 
   return (
     <>
-      <Moon showMoon={false} pos='fixed' />
-      <PenEffect  />
+      <Moon showMoon={false} pos="fixed" />
+      <PenEffect />
       <BlogList>
         {data.allMarkdownRemark.edges.map(
           (
@@ -71,7 +68,6 @@ const BlogListTemplate = ({
         {currentPage < pageCount && <ReadButton txt="Next" to={nextPage} />}
       </PageLinks>*/}
       </BlogList>
-
     </>
   )
 }

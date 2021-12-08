@@ -46,7 +46,9 @@ const LogoLink = styled.a`
   ` )};
   
   img{
-    width: 100%;
+    ${ length('width', 12) };
+    object-fit: cover;
+
   }
   
   .circledText{

@@ -1,14 +1,14 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
-import {motion, useSpring, useTransform} from 'framer-motion'
-import {AppStateContext} from '../../../../contexts/AppStateContext'
-import {transition, basicVariants} from '../../../../helpers/variants'
+import { motion, useSpring, useTransform } from 'framer-motion'
+import { basicVariants, transition } from '../../../../helpers/variants'
+import { MotionValueContext } from '../../../../contexts/MotionStateWrapper'
 
 const penVariant = {
   ...basicVariants,
   animate: {
-    opacity: .7
-  }
+    opacity: 0.7,
+  },
 }
 
 const PenContainer = styled( motion.div )`
@@ -23,7 +23,7 @@ const PenContainer = styled( motion.div )`
 
 const PenEffect = () => {
 
-  const {moScroll} = useContext(AppStateContext)
+  const {moScroll} = useContext(MotionValueContext)
   const progress = useTransform(moScroll.y,
     [0, moScroll.limit.get()], [0, 1]);
 
