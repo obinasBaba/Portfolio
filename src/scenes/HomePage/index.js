@@ -1,17 +1,13 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import Hero from './Hero'
 import RecentWorks from './RecentDesigns'
 import Projects from './Projects'
 import Experiments from './Experiments'
 import { SectionWrapper } from '../../components/Container'
 import BlogPosts from './BlogPosts'
-import MailUs from '../MailUs'
-import styled from 'styled-components'
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
 
-const HomeContainer = styled( motion.div )`
-  
-`
+const MailUs = React.lazy(() => import('../MailUs'))
 
 const containerVariants = {
   initial: {
@@ -33,6 +29,8 @@ const containerVariants = {
 }
 
 const HomePage = () => {
+
+
   return (
     < motion.div variants={containerVariants}
                  transition={containerVariants.transition}
@@ -57,7 +55,10 @@ const HomePage = () => {
         <Experiments />
       </SectionWrapper>
 
-      <MailUs />
+
+      <Suspense fallback={<h1>loading...</h1>}>
+        <MailUs />
+      </Suspense>
 
 
     </motion.div>

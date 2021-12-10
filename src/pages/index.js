@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, {Suspense} from 'react'
 import { useContext, useEffect } from 'react'
 import HomePage from '../scenes/HomePage'
 import { AppStateContext } from '../contexts/AppStateContext'
@@ -16,7 +16,7 @@ const IndexPage = ({ path }) => {
     setListenerTargetSelector,
   } = useContext(AppStateContext)
 
-  const loco = useLocoScroll(!backgroundOverlay)
+  const loco = useLocoScroll(true)
 
 
   useEffect(() => {
@@ -41,9 +41,15 @@ const IndexPage = ({ path }) => {
   useToolTip('[data-tooltip-text]')
   useRefreshMouseListeners('[data-pointer]')
 
+  useEffect(() => {
+     window.locoInstance.update()
+
+  }, [])
+
   return (
       <>
-        {!backgroundOverlay && <HomePage />}
+        <HomePage />
+        {/*{!backgroundOverlay && }*/}
       </>
   )
 }

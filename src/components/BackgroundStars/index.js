@@ -34,10 +34,6 @@ const BackgroundStars = () => {
   }
 
   const {
-    currentPath,
-  } = useContext(AppStateContext)
-
-  const {
     moScroll: { y },
   } = useContext(MotionValueContext)
 
@@ -53,7 +49,7 @@ const BackgroundStars = () => {
     return () => {
       window.removeEventListener('mousemove', calcNewMousePos)
     }
-  }, [currentPath])
+  }, [])
 
   return (
     <Galaxy
@@ -75,4 +71,4 @@ const BackgroundStars = () => {
   )
 }
 
-export default BackgroundStars
+export default React.memo(BackgroundStars)

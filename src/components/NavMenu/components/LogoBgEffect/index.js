@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import {motion} from 'framer-motion'
 
+console.log('imported in navMenu');
+
  const LogoBgEffectContainer = styled(motion.div)`
    position: absolute;
    max-width: 100%;

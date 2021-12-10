@@ -81,15 +81,16 @@ const defaultMoonVariant = {
 
   initial: {
     opacity: 0,
-    scale: 0.95,
+    scale: 0.9,
   },
+
   animate: {
     opacity: 1,
     scale: 1,
   },
   exit: {
     opacity: 0,
-    scale: 0.95,
+    scale: 0.9,
   },
 }
 
@@ -118,7 +119,7 @@ const MoonLight = ({ zIndex, pos = 'fixed', showMoon = true, show = true, varian
     window.addEventListener('mousemove', trackMousePos)
 
     return () => window.removeEventListener('mousemove', trackMousePos)
-  }, [])
+  }, [matches])
 
   return (
     // <AnimatePresence>
@@ -128,10 +129,10 @@ const MoonLight = ({ zIndex, pos = 'fixed', showMoon = true, show = true, varian
       pos={pos}
       variants={{ ...defaultMoonVariant, ...variants }}
       transition={defaultMoonVariant.transition}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      // style={{ x, y }}
+      // initial="initial"
+      // animate="animate"
+      // exit="exit"
+      style={{ x, y }}
     >
       <div className="moonlight">
         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1302.799 1302.8">

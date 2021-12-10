@@ -50,7 +50,11 @@ export const Main = styled(motion.main)`
   width: 100%;
   //z-index: 8;
   height: min-content;
+  opacity: 0;
   
+  &.loaded{
+    opacity: 1;
+  }
   
   & > *{
     //z-index: 1;

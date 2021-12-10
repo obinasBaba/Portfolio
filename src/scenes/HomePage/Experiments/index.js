@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect } from "react";
 import styled from 'styled-components'
 import { spacing } from '../../../styles/mixins'
 import ExperimentTrack from './components/ExperimentTrack'
@@ -18,6 +18,7 @@ const ExperimentsContainer = styled.div`
 
 
 const Experiments = () => {
+
   return (
     <ExperimentsContainer>
 

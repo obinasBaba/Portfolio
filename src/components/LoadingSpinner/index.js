@@ -1,16 +1,10 @@
-import React, {
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState
-} from "react";
+import React, { useContext, useLayoutEffect, useRef } from 'react'
 import styled from 'styled-components'
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from 'framer-motion'
 import { transition } from '../../helpers/variants'
 import OverlayController from '../BackgroundOverlay/OverlayController'
 import BackgroundOverlay from '../BackgroundOverlay'
-import { AppStateContext } from '../../contexts/AppStateContext'
+import { BackgroundOverlayStateContext } from '../../contexts/AppStateContext'
 
 const SpinnerContainer = styled(motion.div)`
   //position: fixed;
@@ -30,7 +24,7 @@ const SpinnerContainer = styled(motion.div)`
   & * {
     pointer-events: none;
   }
-  
+
   //border: thick solid red;
 
   /*background-image: linear-gradient(
@@ -154,25 +148,28 @@ const containerVariants = {
   }
 }
 
+async function cleanUp  () {
+
+  document.body.querySelector('#main-container')
+      .classList.add('loaded')
+
+  OverlayController.getInstance('loading-overlay')
+      .toggle(false, {
+        duration: 900,
+        delayPointsMax: 120,
+        delayPerPath: 120,
+      })
+
+}
+
 const LoadingSpinner = () => {
 
   const smallRef = useRef(null)
   const contentRef = useRef(null)
 
-  const { setBackgroundOverlay, backgroundOverlay } = useContext(AppStateContext)
+  const { setBackgroundOverlay, backgroundOverlay } = useContext(BackgroundOverlayStateContext)
 
-  const cleanUp = async () => {
 
-    setTimeout(() => {
-      OverlayController.getInstance('loading-overlay')
-        .toggle(false, {
-            duration: 900,
-            delayPointsMax: 100,
-            delayPerPath: 100,
-          })
-    })
-
-  }
 
   useLayoutEffect(() => {
     if ( !backgroundOverlay ) return ;
@@ -181,7 +178,7 @@ const LoadingSpinner = () => {
 
       OverlayController.getInstance('loading-overlay')
         .toggle(true, {
-            duration: .002,
+            duration: .0002,
             delayPointsMax: 0,
             delayPerPath: 0,
           })

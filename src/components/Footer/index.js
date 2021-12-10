@@ -25,6 +25,8 @@ const FooterContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 100%;
+  
+  //border: thick solid crimson;
 
   ${spacing('mv', 5)};
   ${spacing('gap', 5)};
@@ -189,7 +191,7 @@ const Footer = ({ color }) => {
   }, [inView])
 
   return (
-    <Container ref={elRef} maxWidth="xl" disableGutters={true} data-scroll={true}>
+    <Container ref={elRef} maxWidth="lg" disableGutters={true} data-scroll={true}>
       <FooterContainer>
         <Copy>
           <span>&copy;</span> 2021 Henzzo.io

@@ -50,9 +50,6 @@ const Gallery = ({
     mass: .5,  damping: 10, stiffness: 50,
   })
 
-  useEffect(() => {
-    setA(true)
-  }, [])
 
   return (
     <ScrollContainer>

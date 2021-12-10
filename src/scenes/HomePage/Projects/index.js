@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import {
   gridMultiplayer,
@@ -8,8 +8,9 @@ import {
 } from '../../../styles/mixins'
 import { motion, useSpring, useTransform } from 'framer-motion'
 import HeadlineTitle from '../../../components/Headline'
-import { MotionValueContext } from '../../../contexts/MotionStateWrapper'
 import RotationTextPath from './RotationTextPath'
+// import './projectFonts.css'
+
 
 const ProjectContainer = styled(motion.section)`
   position: relative;
@@ -26,7 +27,7 @@ const ProjectContainer = styled(motion.section)`
   //border: thick solid red;
   //padding: 2rem 0;
 
-  ${spacing('pt', 26)};
+  ${spacing('pt', 16)};
   ${spacing('pb', 11)};
 `
 
@@ -131,7 +132,6 @@ const Projects = () => {
 
     return () => window.removeEventListener('mousemove', handler)
   }, [])
-
 
 
   return (

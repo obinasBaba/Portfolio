@@ -1,57 +1,43 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import Slide from '@material-ui/core/Slide'
 import styled, { css } from 'styled-components'
 import HomeLogo from './components/HomeLogo'
 import NavBtn from './components/NavBtn'
 import { mediumUp, spacing } from '../../styles/mixins'
-import {AnimatePresence, useMotionValue} from 'framer-motion'
-import {
-  AppStateContext
-} from "../../contexts/AppStateContext";
-import NavMenu from '../NavMenu'
+import { AnimatePresence } from 'framer-motion'
+import { BackgroundOverlayStateContext } from '../../contexts/AppStateContext'
 import OverlayController from '../BackgroundOverlay/OverlayController'
 import { debounce } from 'lodash'
-import BackgroundOverlay from "../BackgroundOverlay";
-import { MotionValueContext } from "../../contexts/MotionStateWrapper";
+import BackgroundOverlay from '../BackgroundOverlay'
+import { MotionValueContext } from '../../contexts/MotionStateWrapper'
 
+import NavMenu from '../NavMenu'
 
 function HideOnScroll({ children, window }) {
   const [slide, setSlide] = useState(true)
 
-  const {
-    currentPath,
-  } = useContext(AppStateContext)
+  const { currentPath } = useContext(BackgroundOverlayStateContext)
 
   const {
-    moScroll: {scrollDirection}
+    moScroll: { scrollDirection },
   } = useContext(MotionValueContext)
-
-
 
   useEffect(() => {
     setSlide(true)
-
   }, [currentPath])
 
   useEffect(() => {
+    let deb = debounce(arg => {
+      if (!arg) return
 
-      let deb = debounce((arg) => {
-        if ( !arg ) return;
+      if (arg === 'up') setSlide(true)
+      else if (arg === 'down') setSlide(false)
+    }, 300)
 
-        if ( arg === 'up' )
-          setSlide(true)
-        else if ( arg === 'down' )
-          setSlide(false)
+    scrollDirection.onChange(deb)
 
-
-      }, 300)
-
-      scrollDirection.onChange(deb)
-
-      return () => {}
-    },
-    [])
-  
+    return () => {}
+  }, [])
 
   return (
     <Slide appear={false} direction="down" in={slide}>
@@ -97,9 +83,10 @@ const NavContainer = styled.div`
 function HeaderAppBar() {
 
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+
   const {
      backgroundOverlay
-  } = useContext(AppStateContext)
+  } = useContext(BackgroundOverlayStateContext)
 
   useEffect(() => {
     if (menuIsOpen) {
@@ -117,7 +104,7 @@ function HeaderAppBar() {
 
   }, [menuIsOpen])
 
-  const toggleMenu = () => {
+  const toggleMenu = useCallback(() => {
     if ( OverlayController.isAnimating )
       return
 
@@ -129,7 +116,9 @@ function HeaderAppBar() {
 
     OverlayController.getInstance('nav-menu-overlay').toggle(!menuIsOpen);
 
-  }
+  }, [ menuIsOpen])
+
+  const toggleMenuForLogo = useCallback(() => menuIsOpen && toggleMenu(), [menuIsOpen])
 
   return (
     <>
@@ -150,7 +139,7 @@ function HeaderAppBar() {
           {
             !backgroundOverlay &&
               <>
-                <HomeLogo  toggleMenu={() => menuIsOpen && toggleMenu() }/>
+                <HomeLogo  toggleMenu={toggleMenuForLogo  }/>
 
                 <NavBtn
                   key='nav'
@@ -165,4 +154,4 @@ function HeaderAppBar() {
   )
 }
 
-export default HeaderAppBar
+export default React.memo(HeaderAppBar)

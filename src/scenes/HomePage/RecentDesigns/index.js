@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import styled from 'styled-components'
 import Title from './Title'
 import { useProjectSvg } from '../../../hooks/queries/useProjectSvg'
 import useHomeWorksAssets from '../../../hooks/queries/useHomeWorksAssets'
 import ScrollGallery from '../../../components/ScrollGallery/ScrollGallery'
 import useOnScreen from "../../../hooks/useOnScreen";
+import LoadStateContext from "../../../contexts/LoadStateContext";
 
 const RecentDesignWrapper = styled.section`
   //min-height: 100vh;
@@ -41,13 +42,6 @@ const RecentWorks = () => {
 
   ];
 
-  // const inView = useOnScreen(containerRef, 0, '5%')
-
-  useEffect(() => {
-
-    // window.locoInstance && window.locoInstance.update()
-
-  }, [])
 
   return (
     <RecentDesignWrapper id='#design' data-scroll-section >

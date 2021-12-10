@@ -1,6 +1,6 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React, { useContext, useEffect, useLayoutEffect } from "react";
+import React, { useContext, useEffect, useLayoutEffect } from 'react'
 import styled from 'styled-components'
 import gsap from 'gsap'
 import { motion } from 'framer-motion'
@@ -8,7 +8,7 @@ import EventUtil from '../../helpers/EventUtil'
 import { text } from '../../styles/mixins'
 import InnerPointer from './InnerPointer'
 import OuterPointer from './OuterPointer'
-import { AppStateContext } from "../../contexts/AppStateContext";
+import { BackgroundOverlayStateContext } from '../../contexts/AppStateContext'
 
 let show = false
 let Events;
@@ -80,7 +80,7 @@ const Cursor = () => {
 
   const {
     backgroundOverlay,
-  } = useContext(AppStateContext)
+  } = useContext(BackgroundOverlayStateContext)
 
   useLayoutEffect(() => {
     Events = EventUtil.getInstance()

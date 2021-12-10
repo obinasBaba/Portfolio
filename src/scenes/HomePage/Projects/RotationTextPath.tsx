@@ -344,11 +344,9 @@ const RotationCircleText = () => {
         transition={transition}
         ref={enterBtn}
         onHoverStart={event => {
-          // enterMouseEnterEv()
           controller.start('startHover')
         }}
         onHoverEnd={event => {
-          // enterMouseLeaveEv()
           controller.start('endHover')
           controller.start('btnHoverEnd')
         }}

@@ -82,6 +82,18 @@ const LogoEffect = styled.div`
 const MailUs = () => {
 
 
+  useEffect(() => {
+    // console.log('heroLoaded : ', heroLoaded);
+      import('../../styles/projectFonts.css')
+          .then(() => {
+              window.locoInstance && window.locoInstance.update()
+          }).catch(() => {
+              console.error('projectFonts fail to load!!! -- tell this via tooltip!!')
+      })
+
+
+
+  }, [])
 
   return (
     <MailUsContainer  data-scroll-section={true} >

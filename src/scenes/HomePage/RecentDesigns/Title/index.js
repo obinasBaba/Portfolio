@@ -15,6 +15,7 @@ import {
 import {useTransform} from 'framer-motion'
 import {motion} from 'framer-motion'
 import { MotionValueContext } from "../../../../contexts/MotionStateWrapper";
+import LoadStateContext from "../../../../contexts/LoadStateContext";
 
 const TitleContainer = styled(Container)`
   display: flex;
@@ -46,17 +47,18 @@ const LogoLink = styled.a`
   ` )};
   
   img{
-    ${ length('width', 12) };
     object-fit: cover;
 
   }
   
   .circledText{
-    width: 100%;
+    //width: 100%;
+    ${ length('width', 12) };
   }
   
   .dribbleRed{
     width: 100%;
+    //display: none;
 
     position: absolute;
     transition: transform 1s ease;
@@ -83,10 +85,13 @@ const Title = ({ dribbleRed, circledText }) => {
   const theme = useTheme()
   const match = useMediaQuery(theme.breakpoints.up('xxl'))
 
+  // const {recentDesign, setRecentDesign} = useContext( LoadStateContext )
+
+
 
   return (
     <TitleContainer maxWidth={ match ? 'xl' : 'lg'}  >
-      <LogoLink
+     {/* <LogoLink
         href='href="https://dribbble.com/henok500'
         rel="noopener noreferrer"
         target="_blank"
@@ -97,6 +102,10 @@ const Title = ({ dribbleRed, circledText }) => {
           src={circledText}
           className="circledText"
           style={{rotate}}
+          // onViewportEnter={entry => {
+          //   if ( !recentDesign )
+          //     setRecentDesign(true)
+          // }}
         />
 
         <img
@@ -105,7 +114,7 @@ const Title = ({ dribbleRed, circledText }) => {
           src={dribbleRed}
           className="dribbleRed"
         />
-      </LogoLink>
+      </LogoLink>*/}
 
 
       <HeadlineTitle title='Designs' subtitle='Recent Designs' />

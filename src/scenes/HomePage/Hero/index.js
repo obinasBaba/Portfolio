@@ -3,7 +3,9 @@ import { Typography } from '@material-ui/core'
 import H from './H.inline.svg'
 import { Greeting, HeroContainer, Intro, TextContainer } from './components'
 import Moon from '../../../components/MoonLight'
-import { AppStateContext } from '../../../contexts/AppStateContext'
+import { BackgroundOverlayStateContext } from '../../../contexts/AppStateContext'
+import LoadStateContext from '../../../contexts/LoadStateContext'
+import { useAnimation } from 'framer-motion'
 
 const greetingTextVariants = {
   initial: {
@@ -59,7 +61,11 @@ const textContainerVariants = {
 const Hero = () => {
   // const { logo } = useHeaderAssets();
 
-  const { backgroundOverlay, } = useContext(AppStateContext)
+  // const { backgroundOverlay, } = useContext(AppStateContext)
+  const control = useAnimation();
+  const {setHeroLoaded} = useContext( LoadStateContext )
+  const {backgroundOverlay} = useContext( BackgroundOverlayStateContext )
+
 
   useEffect(() => {
       setTimeout(() => {
@@ -68,14 +74,27 @@ const Hero = () => {
         1000)
     },
     [])
+  
+  useEffect(() => {
+    if (backgroundOverlay) return;
+
+    setTimeout(() => {
+      control.start('animate')
+          .then(() => {
+            setHeroLoaded(true)
+          })
+    }, 500)
+
+  } ,[backgroundOverlay])
 
   return (
     <>
-      <HeroContainer variants={{}}>
+      <HeroContainer variants={{}}
+                     initial="initial"
+                     animate={control}
+                     exit="exit">
 
-        <TextContainer variants={textContainerVariants}
-                       custome={{ backgroundOverlay }}
-        >
+        <TextContainer variants={textContainerVariants}>
 
           <Greeting variants={greetingTextVariants}
                     transition={greetingTextVariants.transition}>

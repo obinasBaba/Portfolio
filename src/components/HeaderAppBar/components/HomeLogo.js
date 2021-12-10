@@ -64,13 +64,13 @@ const logoVariant = {
   },
 }
 
-const HomeLogo = ({ isWhite, toggleMenu }) => {
+const HomeLogo = ({ toggleMenu }) => {
   const { logo } = useHeaderAssets()
   const logoRef = useRef(null)
 
 
   return (
-    <Logo iswhite={isWhite}
+    <Logo
           variants={logoVariant}
           transition={logoVariant.transition}
           initial="initial"

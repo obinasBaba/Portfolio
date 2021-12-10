@@ -118,7 +118,8 @@ class OverlayController {
       }
     } else {
       for (let i = 0; i < this.path.length; i++) {
-        this.path[i].setAttribute('d', this.updatePath(Date.now() - (this.timeStart + OverlayController.delayPerPath * (this.path.length - i - 1))));
+        let generatedPath = this.updatePath(Date.now() - (this.timeStart + OverlayController.delayPerPath * (this.path.length - i - 1)))
+        this.path[i].setAttribute('d', generatedPath);
       }
     }
   }

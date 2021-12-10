@@ -1,7 +1,13 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Container, Typography } from '@material-ui/core'
-import { mediumUp, spacing, text, xLargeUp } from "../../styles/mixins";
+import {
+  mediumUp,
+  spacing,
+  text,
+  xLargeUp,
+  xxLargeUp
+} from "../../styles/mixins";
 import { motion } from 'framer-motion'
 import { Link } from 'gatsby'
 
@@ -27,7 +33,8 @@ const MetaColumn = styled.div`
   flex: 50%;
   flex-flow: column;
   align-items: center;
-  
+  //border: thin solid red;
+    
   ${spacing('mb', 10)};
   ${spacing('ph', 4)};
 
@@ -51,12 +58,12 @@ const MetaColumn = styled.div`
     flex: 25%;
 
     .link-txt{
-      font-size: .875rem;
+      font-size: .895rem;
     }
 
   `)};
   
-  ${xLargeUp( css`
+  ${xxLargeUp( css`
       ${spacing('ph', 0)};
 
 
@@ -265,6 +272,7 @@ const FooterMeta = () => {
 
   return (
     <FooterMetaContainer maxWidth="lg" disableGutters={true} >
+
       {titleData.map((title, i) => {
         return (
           <MetaColumn key={title + i} data-scroll={true} >
