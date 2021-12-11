@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react'
 import { Typography } from '@material-ui/core'
-import H from './H.inline.svg'
 import { Greeting, HeroContainer, Intro, TextContainer } from './components'
 import Moon from '../../../components/MoonLight'
 import { BackgroundOverlayStateContext } from '../../../contexts/AppStateContext'
@@ -46,7 +45,7 @@ const introContainerVariants = {
 }
 
 const textContainerVariants = {
-  animate (arg) {
+  animate () {
     let loading = window.fromLoading
 
     return {
@@ -100,7 +99,7 @@ const Hero = () => {
                     transition={greetingTextVariants.transition}>
 
             <Typography variant="h1" className='hi-am' > hi, I am </Typography>
-            <H />
+            {/*<H />*/}
             <Typography variant="h1">enok</Typography>
 
           </Greeting>

@@ -11,6 +11,9 @@ module.exports = {
     `gatsby-plugin-sharp`,
 
     `gatsby-plugin-netlify-cms-paths`,
+    {
+      resolve: "gatsby-plugin-no-sourcemaps",
+    },
 
 
     {
@@ -76,7 +79,6 @@ module.exports = {
       },
     },
 
-    `gatsby-plugin-styled-components`,
     `gatsby-plugin-layout`,
     {
       resolve: "gatsby-plugin-material-ui",
@@ -87,6 +89,7 @@ module.exports = {
         }
       }
     },
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

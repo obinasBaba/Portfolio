@@ -1,18 +1,22 @@
 import styled, { css } from 'styled-components'
 import {
-  length, largeUp,
+  gridColWidth,
+  gridify,
+  largeUp,
   mediumUp,
   smallUp,
-  spacing, xLargeUp, text, xxLargeUp, gridify, gridColWidth
-} from "../../../../styles/mixins";
-import { motion } from "framer-motion";
+  spacing,
+  text,
+  xxLargeUp,
+} from '../../../../styles/mixins'
+import { motion } from 'framer-motion'
 
-export const HeroContainer = styled( motion.section )`
+export const HeroContainer = styled(motion.section)`
   position: relative;
   z-index: 1;
   height: 100vh;
   width: 100%;
-  
+
   ${gridify()};
 `
 
@@ -53,7 +57,6 @@ export const TextContainer = styled( motion.div )`
 
   ${xxLargeUp( css`
     ${spacing('pl', 3)}; 
-    // ${spacing('pb', 8)};
     
   ` )};
 

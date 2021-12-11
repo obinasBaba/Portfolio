@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from 'react'
-import AboutPage from '../scenes/AboutPage'
-import useLocoScroll from '../hooks/useLocoScroll'
+// import AboutPage from '../scenes/AboutPage'
+// import useLocoScroll from '../hooks/useLocoScroll'
 import {AppStateContext} from '../contexts/AppStateContext'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
@@ -10,8 +10,10 @@ gsap.registerPlugin(ScrollTrigger)
 
 const About = ({path}) => {
 
+  return <div/>
 
-  const loco = useLocoScroll(true);
+
+  // const loco = useLocoScroll(true);
 
 
   const {
@@ -25,7 +27,7 @@ const About = ({path}) => {
 
   return (
     <>
-      <AboutPage/>
+      {/*<AboutPage/>*/}
     </>
   )
 }

@@ -1,13 +1,11 @@
-import React, {Suspense} from 'react'
-import { useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import HomePage from '../scenes/HomePage'
 import { AppStateContext } from '../contexts/AppStateContext'
 import useLocoScroll from '../hooks/useLocoScroll'
-import useToolTip from "../hooks/useToolTip";
-import useRefreshMouseListeners from "../hooks/useRefreshMouseListeners";
+import useToolTip from '../hooks/useToolTip'
+import useRefreshMouseListeners from '../hooks/useRefreshMouseListeners'
 
 const IndexPage = ({ path }) => {
-
   const {
     backgroundOverlay,
     setCurrentPath,
@@ -18,10 +16,8 @@ const IndexPage = ({ path }) => {
 
   const loco = useLocoScroll(true)
 
-
   useEffect(() => {
-
-    if(backgroundOverlay) return;
+    if (backgroundOverlay) return
 
     setCurrentPath(path)
 
@@ -42,15 +38,15 @@ const IndexPage = ({ path }) => {
   useRefreshMouseListeners('[data-pointer]')
 
   useEffect(() => {
-     window.locoInstance.update()
-
+    window.locoInstance.update()
   }, [])
 
   return (
-      <>
-        <HomePage />
-        {/*{!backgroundOverlay && }*/}
-      </>
+    <>
+      <HomePage />
+      {/*<h1>home page</h1>*/}
+      {/*{!backgroundOverlay && }*/}
+    </>
   )
 }
 

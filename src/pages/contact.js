@@ -1,8 +1,8 @@
 import React, {useContext, useEffect} from 'react'
-import ContactPage from '../scenes/ContactPage'
-import MailUs from '../scenes/MailUs'
+// import ContactPage from '../scenes/ContactPage'
+// import MailUs from '../scenes/MailUs'
 import {AppStateContext} from '../contexts/AppStateContext'
-import useLocoScroll from '../hooks/useLocoScroll'
+// import useLocoScroll from '../hooks/useLocoScroll'
 import {motion} from 'framer-motion'
 
 
@@ -20,7 +20,9 @@ const containerVariants = {
 
 const Contact = ({path}) => {
 
-  const loco = useLocoScroll(true);
+  return (<div/>)
+
+  // const loco = useLocoScroll(true);
 
 
   const {
@@ -43,8 +45,8 @@ const Contact = ({path}) => {
                 animate='animate'
                 exit="exit"
     >
-      <ContactPage/>
-      <MailUs/>
+      {/*<ContactPage/>*/}
+      {/*<MailUs/>*/}
     </motion.div>
   )
 }

@@ -1,7 +1,7 @@
 // noinspection JSIgnoredPromiseFromCall
 
 import React, {useContext, useEffect} from 'react'
-import ProjectPage from '../scenes/ProjectPage'
+// import ProjectPage from '../scenes/ProjectPage'
 import {AppStateContext} from '../contexts/AppStateContext'
 
 const Projects = ({ location, path }) => {
@@ -18,7 +18,7 @@ const Projects = ({ location, path }) => {
   }, [])
 
   return (
-    <ProjectPage/>
+    <div/>
   )
 }
 
