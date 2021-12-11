@@ -87,11 +87,9 @@ const Title = ({ dribbleRed, circledText }) => {
 
   // const {recentDesign, setRecentDesign} = useContext( LoadStateContext )
 
-
-
   return (
     <TitleContainer maxWidth={ match ? 'xl' : 'lg'}  >
-     {/* <LogoLink
+      <LogoLink
         href='href="https://dribbble.com/henok500'
         rel="noopener noreferrer"
         target="_blank"
@@ -114,7 +112,7 @@ const Title = ({ dribbleRed, circledText }) => {
           src={dribbleRed}
           className="dribbleRed"
         />
-      </LogoLink>*/}
+      </LogoLink>
 
 
       <HeadlineTitle title='Designs' subtitle='Recent Designs' />
