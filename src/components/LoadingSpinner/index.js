@@ -194,7 +194,7 @@ const LoadingSpinner = () => {
         {
           backgroundOverlay &&
           <SpinnerContainer variants={parentVariants}
-                            initial='initial'
+                            initial={false}
                             animate='animate'
                             exit='exit'
                             transition={transition}
