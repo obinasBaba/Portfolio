@@ -1,6 +1,6 @@
-import { MotionValue, useMotionValue } from "framer-motion";
+import {MotionValue, useMotionValue, useViewportScroll} from "framer-motion";
 // @ts-ignore
-import  React, { useLayoutEffect, createContext } from 'react'
+import React, {useLayoutEffect, createContext, useEffect} from 'react'
 // @ts-ignore
 
 
@@ -48,6 +48,14 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
   //mouse_event motion_values
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
+
+  const { scrollY, scrollYProgress } =  useViewportScroll()
+
+  useEffect(() => {
+    y.onChange( v => {
+      console.log('scrollY: ', v)
+    } )
+  }, [])
 
   useLayoutEffect(() => {
     const updateMouseMotionValue = (ev : MouseEvent) => {

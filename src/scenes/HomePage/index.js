@@ -30,6 +30,7 @@ const containerVariants = {
 
 const HomePage = () => {
 
+  const isSSR = typeof window === "undefined"
 
   return (
     < motion.div variants={containerVariants}
@@ -56,9 +57,9 @@ const HomePage = () => {
       </SectionWrapper>
 
 
-      <Suspense fallback={<h1>loading...</h1>}>
-        <MailUs />
-      </Suspense>
+      {
+        !isSSR && <Suspense fallback={<h1>loading...</h1>}><MailUs /></Suspense>
+      }
 
 
     </motion.div>

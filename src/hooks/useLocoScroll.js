@@ -41,6 +41,7 @@ export default function useLocoScroll (
           moScroll.scrollDirection.set(arg.direction)
 
           Cursor.stopMouseAnimation()
+            console.log('updated: ', arg.scroll.y)
 
           // console.timeEnd('Single onScroll');
 

@@ -5,6 +5,7 @@ import Moon from '../../../components/MoonLight'
 import { BackgroundOverlayStateContext } from '../../../contexts/AppStateContext'
 import LoadStateContext from '../../../contexts/LoadStateContext'
 import { useAnimation } from 'framer-motion'
+import H from './H.inline.svg'
 
 const greetingTextVariants = {
   initial: {
@@ -99,7 +100,7 @@ const Hero = () => {
                     transition={greetingTextVariants.transition}>
 
             <Typography variant="h1" className='hi-am' > hi, I am </Typography>
-            {/*<H />*/}
+            <H />
             <Typography variant="h1">enok</Typography>
 
           </Greeting>

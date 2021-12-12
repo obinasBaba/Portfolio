@@ -35,7 +35,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 };
 
-/*exports.createPages = async ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   //data for Project case-study page...
@@ -143,4 +143,4 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     });
   }
 
-}*/
+}

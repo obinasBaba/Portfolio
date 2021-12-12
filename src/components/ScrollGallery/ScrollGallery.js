@@ -42,8 +42,6 @@ const Gallery = ({
     moScroll,
   } = useContext(MotionValueContext)
 
-  const [a, setA] = useState(false)
-
   const mapped = useTransform(moScroll.y, [0, moScroll.limit.get()], [-40, -1300])
 
   const x = useSpring(mapped, {
@@ -60,6 +58,7 @@ const Gallery = ({
           // // data-scroll-target={`#image_row_container${target}`}
           // data-scroll-direction="horizontal"
           // data-scroll-delay='.08'
+            className='rd-scroll-track'
           style={{x: x}}
         >
           {imageRow.map((item, index) => {
