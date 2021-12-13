@@ -1,18 +1,21 @@
 import React, { useContext, useEffect } from 'react'
 import HomePage from '../scenes/HomePage'
-import { AppStateContext } from '../contexts/AppStateContext'
+import {AppStateContext, BackgroundOverlayStateContext} from '../contexts/AppStateContext'
 import useLocoScroll from '../hooks/useLocoScroll'
 import useToolTip from '../hooks/useToolTip'
 import useRefreshMouseListeners from '../hooks/useRefreshMouseListeners'
 
 const IndexPage = ({ path }) => {
   const {
-    backgroundOverlay,
     setCurrentPath,
     registeredScrollPos,
     setRegisteredScrollPos,
     setListenerTargetSelector,
   } = useContext(AppStateContext)
+
+  const {
+    backgroundOverlay
+  } = useContext(BackgroundOverlayStateContext)
 
   const loco = useLocoScroll(true)
 

@@ -5,6 +5,7 @@ import { transition } from '../../helpers/variants'
 import OverlayController from '../BackgroundOverlay/OverlayController'
 import BackgroundOverlay from '../BackgroundOverlay'
 import { BackgroundOverlayStateContext } from '../../contexts/AppStateContext'
+import useLoadingFonts from "../../hooks/useFonts";
 
 const SpinnerContainer = styled(motion.div)`
   //position: fixed;
@@ -169,6 +170,7 @@ const LoadingSpinner = () => {
 
   const { setBackgroundOverlay, backgroundOverlay } = useContext(BackgroundOverlayStateContext)
 
+  useLoadingFonts(setBackgroundOverlay)
 
 
   useLayoutEffect(() => {

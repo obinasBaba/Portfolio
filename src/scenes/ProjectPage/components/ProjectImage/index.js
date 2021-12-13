@@ -19,24 +19,24 @@ import { MotionValueContext } from '../../../../contexts/MotionStateWrapper'
 
 const ProjectImage = ({
   reversed,
-  alt,
-  link,
-  preview,
-  title,
+
   index,
-  url,
+
   exit,
   items,
-  custom,
+
+
 }) => {
   // console.log(preview)
   const {
     variantsUtil: { fromProjectList },
   } = useContext(MotionValueContext)
 
+  const { partners, tags, preview, alt, link, title, url } = items
+
   return (
     <ProjectImg
-      reversed={reversed}
+      reversed={true}
       variants={imgContainerVariant}
       transition={transition}
       // custom={custom}
@@ -50,6 +50,10 @@ const ProjectImage = ({
           to={link}
           state={{ path: url }}
           onClick={() => fromProjectList.set(true)}
+          data-pointer='focus'
+          data-pointer-color='#02021e'
+          data-tooltip
+          data-tooltip-text='Let me tell you a story'
         />
 
         <motion.img
@@ -84,9 +88,9 @@ const ProjectImage = ({
         </motion.div>
       </OverflowWrapper>
 
-      <StackUsed items={items} custom={{ exit: exit }} />
+      <StackUsed items={partners} custom={{ exit: exit }} />
     </ProjectImg>
   )
 }
 
-export default ProjectImage
+export default React.memo(ProjectImage)

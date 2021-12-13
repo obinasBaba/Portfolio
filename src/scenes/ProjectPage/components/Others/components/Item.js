@@ -4,11 +4,42 @@ import styled from 'styled-components'
 import {spacing, text} from '../../../../../styles/mixins'
 import { GradientText } from '../../../../../components/GradientText'
 import {Typography} from '@material-ui/core'
+import gsap from "gsap";
+
+const transition = {
+  ease: [0.6, 0.01, 0, 0.9],
+  duration: 1.5,
+}
 
 const itemVariant = {
-  initial: {},
-  animate: {},
-  exit: {},
+  initial(arg){
+    console.log('arg:-- ', arg)
+    return {
+      opacity: 0,
+      y: arg.idx > 1 ? 100 : -100,
+    }
+  },
+
+  animateFp(arg){
+    return {
+      opacity: 1,
+      y: 0,
+
+      transition: {
+        ...transition,
+        delay: .5,
+      }
+
+    }
+  },
+
+  exitFp(arg){
+    return  {
+      opacity: 0,
+      y: arg.idx > 1 ? 100 : -100,
+    }
+  },
+
   hover(c){
 
   },
@@ -80,38 +111,35 @@ const Tags = styled.div`
   
 `
 
-
-
 const DescTxt = styled( Typography )`
   font-weight: lighter;
   max-width: 40ch;
+  text-shadow: 0.1em 0.1em 0.3em #000;
 
   ${text(.9)};
 `
 
 
 
-const Item = ( { onHoverStart, title, customData} ) => {
+const Item = ( { onHoverStart, title, customData, idx} ) => {
 
-  const itemController = useAnimation();
 
 
   return (
     <ListItem variants={itemVariant}
-              animate={itemController}
-              onHoverStart={() => {
-                onHoverStart();
-              }}
+              transition={transition}
+              custom={{idx, }}
+              onHoverStart={() => onHoverStart()}
     >
       <GradientText variant='h3' className='title' >
         {title}
       </GradientText>
 
       <Tags>
-        <p>Identity</p>
-        <p>Cms</p>
-        <p>Prototyping</p>
-        <p>System</p>
+        <p>Identity,</p>
+        <p>Cms,</p>
+        <p>Prototyping,</p>
+        <p>System,</p>
       </Tags>
 
       <DescTxt className='approach-desc' >

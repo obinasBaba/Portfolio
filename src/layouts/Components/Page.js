@@ -23,7 +23,6 @@ const Page = ({ children, path }) => {
   // const mediaLarge = useMotionValue(media)
 
 
-  useLoadingFonts()
 
   return (
     <PageContainer id="page-container">

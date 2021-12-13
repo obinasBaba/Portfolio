@@ -1,24 +1,27 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React, {useContext, useEffect} from 'react'
-// import ProjectPage from '../scenes/ProjectPage'
-import {AppStateContext} from '../contexts/AppStateContext'
+import React, {useContext} from 'react'
+import ProjectPage from '../scenes/ProjectPage'
+import useToolTip from '../hooks/useToolTip'
+import useRefreshMouseListeners from '../hooks/useRefreshMouseListeners'
+import {BackgroundOverlayStateContext} from "../contexts/AppStateContext";
 
-const Projects = ({ location, path }) => {
-
+const Projects = () => {
   // console.log(path)
 
   const {
-    setBackgroundOverlay, setCurrentPath, setListenerTargetSelector
-  } = useContext( AppStateContext )
+    backgroundOverlay
+  } = useContext(BackgroundOverlayStateContext)
 
-  useEffect(() => {
-    setCurrentPath(path)
-
-  }, [])
+  useToolTip('[data-tooltip-text]')
+  useRefreshMouseListeners('[data-pointer]')
 
   return (
-    <div/>
+      <>
+        {
+          !backgroundOverlay && <ProjectPage />
+        }
+      </>
   )
 }
 

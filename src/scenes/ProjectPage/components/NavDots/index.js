@@ -1,37 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import styled, {css} from 'styled-components'
-import { motion, AnimateSharedLayout } from 'framer-motion'
+import {motion, AnimateSharedLayout, useMotionValue, LayoutGroup} from 'framer-motion'
 import { mediumUp, spacing, xLargeUp } from "../../../../styles/mixins";
 import ThumbAndDot from './Components/ThumbAndDot'
 
-const NavContainer = styled(motion.ul)`
+const NavContainer = styled(motion.div)`
   position: fixed;
   z-index: 3;
   bottom: 4%;
   left: 30%;
   
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-  
   ${ mediumUp(css`
-    flex-flow: column;
     top: 40%;
     bottom: initial;
     left: 0;
     
   `) };
-
-  ${spacing('gap', 3.2)};
-
-
-  svg{
-    //display: none;  
-    position: absolute;
-    pointer-events: none;
-  }
 
   ${spacing('ml', 4.5)};
   ${spacing('mb', 3.5)};
@@ -41,6 +25,22 @@ const NavContainer = styled(motion.ul)`
     
   ` )};
 `
+
+const NavWrapper = styled.ul`
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  
+  ${ mediumUp(css`
+    flex-flow: column;
+  `) };
+
+  ${spacing('gap', 3.2)};
+`
+
 
 const parentVariant = {
   transition: {
@@ -76,64 +76,49 @@ const parentVariant = {
   },
 }
 
-const NavDots = React.forwardRef((props, ref) => {
+const NavDots = ({activeIndex}) => {
+  // const {activeIndex} = props;
+
   const [active, setActive] = useState(0)
   const [anchors, setAnchors] = useState(['one', 'two', 'three', 'four'])
 
   useEffect(() => {
-    ref.current = { setActiveAnchors: setActive }
+    // ref.current = { setActiveAnchors: setActive }
+
+    activeIndex.onChange(v => {
+      setActive(v)
+    })
+
   }, [])
 
 
   return (
-    <AnimateSharedLayout   >
+
       <NavContainer
         variants={parentVariant}
         transition={parentVariant.transition}
         initial="initial"
         animate="animate"
         exit="exit"
-        id="navDots"
-        // layout
       >
 
-        {anchors.map((anchor, index) => (
-          <>
-            <ThumbAndDot
-              anchor={anchor}
-              key={anchor + index}
-              hidden={index === active}
-              index={index}
-              dataAnchor={anchor}
-              clickEvent={() => setActive(index)}
-            />
-          </>
-        ))}
+          <NavWrapper>
+            {anchors.map((anchor, index) => (
+                <ThumbAndDot
+                    anchor={anchor}
+                    key={anchor + index}
+                    hidden={index === active}
+                    index={index}
+                    dataAnchor={anchor}
+                    clickEvent={() => setActive(index)}
+                />
+            ))}
+          </NavWrapper>
 
-
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
-          <defs>
-            <filter id="dots-gooey">
-              <feGaussianBlur
-                in="SourceGraphic"
-                stdDeviation="4"
-                result="blur"
-              />
-              <feColorMatrix
-                in="blur"
-                mode="matrix"
-                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
-                result="goo"
-              />
-              <feComposite in="SourceGraphic" in2="goo" operator="atop" />
-            </filter>
-          </defs>
-        </svg>
 
       </NavContainer>
 
-    </AnimateSharedLayout>
   )
-})
+}
 
 export default NavDots

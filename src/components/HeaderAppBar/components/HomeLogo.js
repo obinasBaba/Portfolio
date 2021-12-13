@@ -77,9 +77,9 @@ const HomeLogo = ({ toggleMenu }) => {
           animate="animate"
           className="logo"
           data-pointer='magnet'
-          data-pointer-color='#5d6c7b'
           data-magnet-distance={.8}
           data-magnet-attraction={1.8}
+          data-pointer-color='#5d6c7b'
           data-tooltip
           data-tooltip-text='Where it all started'
           ref={logoRef}

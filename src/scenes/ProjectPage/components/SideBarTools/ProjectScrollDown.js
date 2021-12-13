@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import styled, { css } from "styled-components";
-import { AnimatePresence, motion } from 'framer-motion'
+import {AnimatePresence, motion, useMotionValue} from 'framer-motion'
 import { spacing, xLargeUp } from "../../../../styles/mixins";
 import ScrollDown from '../../../../components/ScrollDown'
 
@@ -67,7 +67,22 @@ const containerVariant = {
   },
 }
 
-const ProjectScrollDown = ({ show }) => {
+const ProjectScrollDown = ({ activeIndex }) => {
+
+  const [show, setShow] =  useState(true)
+
+  useEffect(() => {
+    // activeIndex.clearListeners()
+
+    activeIndex.onChange(v => {
+      if (v > 0)
+        setShow(false)
+      else
+        setShow(true)
+    })
+
+  }, [])
+
   return (
     <ScrollDownWrapper
       variants={containerVariant}

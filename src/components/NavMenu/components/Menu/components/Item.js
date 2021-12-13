@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
 import { itemVariants, transition } from '../variants'
 import { Link, navigate } from 'gatsby'
 import styled, { css } from 'styled-components'
@@ -10,6 +10,7 @@ import {
   xxLargeUp,
 } from '../../../../../styles/mixins'
 import OverlayController from '../../../../BackgroundOverlay/OverlayController'
+import {AppStateContext} from "../../../../../contexts/AppStateContext";
 
 const hoverMixin = css`
   [data-circle='1'] {
@@ -244,6 +245,9 @@ const Icon = styled(motion.div)`
 
 const Item = ({ currentPath, link, stars, icon, index, title, onClick }) => {
 
+    const {
+        setCurrentPath
+    } = useContext( AppStateContext )
 
 
   return (
@@ -257,14 +261,15 @@ const Item = ({ currentPath, link, stars, icon, index, title, onClick }) => {
     >
       <Link to={link} onClick={(ev) => {
         ev.preventDefault();
+        Promise.resolve().then(() => setCurrentPath(link))
         if ( OverlayController.isAnimating ) return;
 
         if ( link === currentPath ) return;
 
         onClick();
 
-        setTimeout(() => navigate(link),
-          1300)
+
+        setTimeout(() => navigate(link), 1300)
 
       }}>
 

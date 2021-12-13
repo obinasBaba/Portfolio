@@ -62,6 +62,7 @@ export const useProjectData = () => {
       partners: [postgres, vue, javascript, css3],
       controller: useAnimation(),
     },
+
     {
       controller: useAnimation(),
     }

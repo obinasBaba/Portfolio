@@ -1,36 +1,22 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, {useEffect, useRef} from 'react'
 import MotionBtn from '../../../../components/MotionBtn'
-import { motion } from 'framer-motion'
-import {
-  btnTxtVariants,
-  containerVariant,
-  tagsVariants,
-  letterVariant,
-  titleVariant,
-  transition,
-} from './Variants'
-import {
-  OverflowWrapper,
-  ProjectDescriptionContainer,
-  Tags,
-} from './components'
+import {btnTxtVariants, containerVariant, letterVariant, tagsVariants, titleVariant, transition,} from './Variants'
+import {ProjectDescriptionContainer, Tags,} from './components'
 import baffle from 'baffle'
-import { AppStateContext } from '../../../../contexts/AppStateContext'
-import RightArrowLink from '../../../HomePage/Experiments/components/ExperimentTrack/RightArrowLink'
 import Title from './components/Title'
 import OverFlowBox from './components/OverFlowBox'
 
 const ProjectDescription = ({
-  link,
   reversed,
-  tags,
-  title,
-  url,
   index,
   exit,
+    items,
 }) => {
   const baffleRef = useRef(null)
   const titleRef = useRef(null)
+
+  const { partners, tags, preview, alt, link, title, url } = items
+
 
   useEffect(() => {
     baffleRef.current = baffle(document.querySelectorAll(`.baffled-${index}`), {
@@ -83,4 +69,4 @@ const ProjectDescription = ({
   )
 }
 
-export default ProjectDescription
+export default React.memo(ProjectDescription)

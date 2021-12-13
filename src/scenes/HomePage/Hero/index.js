@@ -72,10 +72,11 @@ const Hero = () => {
           window.fromLoading = false
         },
         1000)
-    },
-    [])
+    }, [])
   
   useEffect(() => {
+    return ;
+
     if (backgroundOverlay) return;
 
     setTimeout(() => {
@@ -91,7 +92,7 @@ const Hero = () => {
     <>
       <HeroContainer variants={{}}
                      initial="initial"
-                     animate={control}
+                     animate={'animate'}
                      exit="exit">
 
         <TextContainer variants={textContainerVariants}>

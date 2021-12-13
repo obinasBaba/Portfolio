@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
 import { AnchorDot, DottedLine, Thumb } from './NavTools'
 import {Link} from 'gatsby'
-import { spacing, xLargeUp } from "../../../../../styles/mixins";
+import {spacing, xLargeUp, xxLargeUp} from "../../../../../styles/mixins";
 
 const ThumbAndDotContainer = styled.li`
   //border: thin solid lightblue;
@@ -29,13 +29,12 @@ const ThumbAndDotContainer = styled.li`
   }
 
   &::after{
-    z-index: -1;
+    //z-index: -1;
     //content: '';
     display: block;
     position: absolute;
     inset: -30px;
     border-radius: 50%;
-    //border: thin solid yellow;
   }
   
   & .thumb {
@@ -56,7 +55,7 @@ const ThumbAndDotContainer = styled.li`
       margin: 0;
       padding: 0;
       
-      ${xLargeUp( css`
+      ${xxLargeUp( css`
         font-size: 1.6rem;
       ` )};
     }
@@ -77,17 +76,14 @@ const ThumbAndDotContainer = styled.li`
 
 
 const spring = {
-  // type: 'spring',
-  // stiffness: 500,
-  // damping: 30,
-  rotation: 360,
-
-  ease: [0.6, 0.01, 0, 0.9],
-  duration: 1,
+  type: "spring",
+  stiffness: 500,
+  damping: 30
 }
 
 const ThumbAndDot = ({ hidden, clickEvent, index, anchor, dataAnchor }) => {
   return (
+
     <ThumbAndDotContainer onClick={clickEvent}
                           key={anchor}
                           // layout
@@ -98,7 +94,7 @@ const ThumbAndDot = ({ hidden, clickEvent, index, anchor, dataAnchor }) => {
         data-anchor={dataAnchor}
         href={`#${anchor}`}
 
-        data-pointer={true}
+        data-pointer='focus'
         data-tooltip={true}
         data-tooltip-text='Next project'
       />
@@ -107,11 +103,13 @@ const ThumbAndDot = ({ hidden, clickEvent, index, anchor, dataAnchor }) => {
 
         <motion.span
           layoutId="outline"
+          inherit={false}
           initial={false}
+          animate={{ borderColor: '#123' }}
           transition={spring}
           className='thumb'>
 
-          <p>i</p>
+          <motion.p>i</motion.p>
 
         </motion.span>
       )}

@@ -67,7 +67,7 @@ export const PointerContainer = styled(motion.div)`
 
   &.inner {
     p {
-      //transition: color .25s ease-in-out;
+      transition: color .1s ease-in;
       //font-size: .78rem;
       ${text(.7)};
     }

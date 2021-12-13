@@ -24,7 +24,7 @@ export const OthersContainer = styled(motion.div)`
     position: absolute;
     //border: thin solid lightblue;
     pointer-events: none;
-    will-change: transform;
+    //will-change: transform;
     //border: thin solid red;
 
 
@@ -32,6 +32,8 @@ export const OthersContainer = styled(motion.div)`
       //opacity: 0;
       z-index: -1;
       object-fit: cover;
+      //width: 400px;
+      //max-width: 500px;
     }
   }
 `
@@ -46,8 +48,8 @@ export const Title = styled(Typography)`
   text-align: left;
   writing-mode: vertical-lr;
   letter-spacing: 6px;
-
   text-orientation: mixed;
+  
   ${spacing('ml', 1)};
 
   

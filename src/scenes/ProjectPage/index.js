@@ -51,10 +51,8 @@ const ProjectPage = () => {
   } = useContext(MotionValueContext)
 
 
-  const moVariants = useMotionValue(fromCaseStudy.get() ? ['initial', 'animate'] : ['initial'])
-
-  const [activeIndex, setActiveIndex] = useState(0)
-
+    const moVariants = useMotionValue(fromCaseStudy.get() ? ['initial', 'animate'] : ['initial'])
+    const setActiveIndex = useMotionValue(0)
 
 
   return (
@@ -65,12 +63,10 @@ const ProjectPage = () => {
             variants={parentVariant}
             initial={moVariants.get()}
             animate="animate"
-            // key={'as;kldjfa'}
-            // exit='exit'
           >
             <Moon showMoon={false} variants={moonVariants} />
-            <NavDots ref={activeNavDotRef} />
-            <ProjectScrollDown show={activeIndex === 0} />
+            <NavDots  activeIndex={setActiveIndex} />
+            <ProjectScrollDown activeIndex={setActiveIndex} />
 
             <ReactFullpage
               easingcss3="cubic-bezier(0.645, 0.045, 0.355, 1)"
@@ -88,18 +84,13 @@ const ProjectPage = () => {
               menu={'#navDots'} //for dotted navigation
               onLeave={(origin, dist, dir) => {
                 // console.log('onLeave ...')
-                if (
-                  activeNavDotRef.current &&
-                  activeNavDotRef.current.setActiveAnchors
-                )
-                  activeNavDotRef.current.setActiveAnchors(dist.index)
 
-                setActiveIndex(dist.index)
+                setActiveIndex.set(dist.index)
 
-                if (dist.isLast) {
+               /* if (dist.isLast) {
                   controllers[origin.index].start('exitFp')
                   return true
-                }
+                }*/
 
                 controllers[origin.index].start('exitFp')
                 controllers[dist.index].start('animateFp')
@@ -107,13 +98,14 @@ const ProjectPage = () => {
               afterLoad={(origin, dist, dir) => {
                 // console.log('afterLoad ----', dist.index, dir)
 
+                  //load the initial anim for all if it's the first time and not from caseStudy page
                 if (dir === null && !fromCaseStudy.get())
                   controllers.forEach(controller => controller.start('initial'))
               }}
               afterRender={({ index, isLast }) => {
                 // console.log('afterRender .------', index, isLast,fromCaseStudy.get())
                 // setAnchors.current.setAnchors(index)
-                setActiveIndex(index)
+                setActiveIndex.set(index)
 
                 if (fromCaseStudy.get()) {
                   items.forEach(
@@ -136,48 +128,43 @@ const ProjectPage = () => {
                 return (
                   <>
                     {items.map((item, index) => {
-                      if (!item.partners) return
-
-                      const { partners, tags, preview, alt, link, title, url } = item
+                      // if (!item.partners) return
 
                       return (
-                        <div className="section" key={link}>
-                          <ProjectContainerGrid
-                            variants={topVariant}
-                            initial={moVariants.get()}
-                            animate={controllers[index]}
-                            exit={'exit'}
-                            data-scroll
-                          >
-                            <ProjectImage
-                              reversed={true}
-                              link={link}
-                              alt={alt}
-                              title={title}
-                              index={index}
-                              preview={preview}
-                              url={url}
-                              exit={fromCaseStudy.get()}
-                              items={partners}
-                            />
+                        <div className="section" key={index}>
+                            {
+                                (index === (items.length -1)) ?
+                                    <motion.div variants={topVariant}
+                                                initial={moVariants.get()}
+                                                animate={controllers[index]}
+                                                exit='exit'
+                                    >
+                                        <Others {...othersAssets} />
+                                    </motion.div>
+                                :
+                                    <ProjectContainerGrid
+                                    variants={topVariant}
+                                    initial={moVariants.get()}
+                                    animate={controllers[index]}
+                                    exit='exit'>
+                                        <ProjectImage
+                                        items={item}
+                                        index={index}
+                                        exit={fromCaseStudy.get()}
+                                        />
 
-                            <ProjectDescription
-                              link={link}
-                              reversed={true}
-                              title={title}
-                              index={index}
-                              tags={tags}
-                              url={url}
-                              exit={fromCaseStudy.get()}
-                            />
-                          </ProjectContainerGrid>
+                                        <ProjectDescription
+                                        items={item}
+                                        index={index}
+                                        exit={fromCaseStudy.get()}
+                                        />
+                                    </ProjectContainerGrid>
+                            }
+
+
                         </div>
                       )
                     })}
-
-                    <div className="section fp-auto-height">
-                      <Others {...othersAssets} active={activeIndex} />
-                    </div>
                   </>
                 )
               }}
