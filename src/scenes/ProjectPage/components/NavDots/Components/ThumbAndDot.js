@@ -105,7 +105,7 @@ const ThumbAndDot = ({ hidden, clickEvent, index, anchor, dataAnchor }) => {
           layoutId="outline"
           inherit={false}
           initial={false}
-          animate={{ borderColor: '#123' }}
+          animate={{} }
           transition={spring}
           className='thumb'>
 

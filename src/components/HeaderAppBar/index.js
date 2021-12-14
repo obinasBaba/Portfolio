@@ -5,7 +5,7 @@ import HomeLogo from './components/HomeLogo'
 import NavBtn from './components/NavBtn'
 import { mediumUp, spacing } from '../../styles/mixins'
 import { AnimatePresence } from 'framer-motion'
-import { BackgroundOverlayStateContext } from '../../contexts/AppStateContext'
+import {AppStateContext, BackgroundOverlayStateContext} from '../../contexts/AppStateContext'
 import OverlayController from '../BackgroundOverlay/OverlayController'
 import { debounce } from 'lodash'
 import BackgroundOverlay from '../BackgroundOverlay'
@@ -16,7 +16,7 @@ import NavMenu from '../NavMenu'
 function HideOnScroll({ children, window }) {
   const [slide, setSlide] = useState(true)
 
-  const { currentPath } = useContext(BackgroundOverlayStateContext)
+  const { currentPath } = useContext(AppStateContext)
 
   const {
     moScroll: { scrollDirection },

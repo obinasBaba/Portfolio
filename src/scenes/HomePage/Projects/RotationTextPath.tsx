@@ -1,8 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, {useContext, useEffect, useRef} from "react";
 import styled, { css } from "styled-components";
 import { gsap } from "gsap";
 import { motion, useAnimation, Variants } from "framer-motion";
-import { Link } from "gatsby";
+import {Link, navigate} from "gatsby";
+import {AppStateContext} from "../../../contexts/AppStateContext";
+import {MotionValueContext} from "../../../contexts/MotionStateWrapper";
 
 const vars = css`
   margin: 0;
@@ -145,6 +147,8 @@ const containerVariants = {
     },
   },
 
+  startHover: {},
+
   endHover: {
     /*transition:{
       staggerChildren: .2,
@@ -158,6 +162,13 @@ const circleSvgVariants = {
       staggerChildren: 0.02,
     },
   },
+
+  exit: {
+    transition: {
+      staggerChildren: .04,
+      staggerDirection: -1
+    }
+  }
 }
 
 const circleTxtVariants: Variants = {
@@ -203,6 +214,22 @@ const circleTxtVariants: Variants = {
       },
     }
   },
+
+  exit(arg){
+    console.log('exitArg: --- --', arg)
+    // if (arg.inView !== 'projects')
+    //   return {};
+
+    return {
+      scale: .2,
+      opacity: 0,
+      transition: {
+        duration: .9,
+        ease: [0.36, 0, 0.66, -0.56],
+      }
+
+    }
+  }
 }
 
 const btnVariants = {
@@ -215,9 +242,11 @@ const btnVariants = {
     scale: 1,
     opacity: 1,
   },
+
   startHover: {
     scale: 1.35,
     transition: {
+      delay: 0.1,
       duration: 0.9,
       ease: [0.16, 1, 0.3, 1],
     },
@@ -227,9 +256,18 @@ const btnVariants = {
     scale: 1,
     transition: {
       duration: 0.9,
-      ease: [0.16, 1, 0.3, 1],
+
     },
   },
+
+  exit: {
+    scale: 0.2,
+    opacity: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1],
+    }
+  }
 }
 
 const transition = {
@@ -259,6 +297,17 @@ const RotationCircleText = () => {
       length: 836,
     },
   ]
+
+  // @ts-ignore
+  const {
+    setCurrentPath
+  } = useContext( AppStateContext )
+
+  const {
+    inView
+  } = useContext( MotionValueContext )
+
+
 
 
   useEffect(() => {
@@ -299,11 +348,17 @@ const RotationCircleText = () => {
       variants={containerVariants}
       animate={controller}
       initial="initial"
-      exit='exit'
+      // exit='exit'
       whileInView="inView"
       viewport={{
         amount: 'some',
         once: true,
+      }}
+      onViewportEnter={_ => {
+        inView.set('projects')
+      }}
+      onViewportLeave={() => {
+        inView.set(null)
       }}
     >
       <motion.svg
@@ -312,6 +367,7 @@ const RotationCircleText = () => {
         height="100%"
         viewBox="0 0 1400 1400"
         variants={circleSvgVariants}
+
       >
         <defs>
           <path id="circle-1" d="M250,700.5A450.5,450.5 0 1 11151,700.5A450.5,450.5 0 1 1250,700.5" />
@@ -326,7 +382,7 @@ const RotationCircleText = () => {
               className={`circles__text circles__text--${index + 1}`}
               variants={circleTxtVariants}
               transition={transition}
-              custom={{ idx: index }}
+              custom={{ idx: index, inView: inView.get() }}
             >
               <textPath className="circles__text-path" xlinkHref={link} aria-label="" textLength={length}>
                 {text}
@@ -351,7 +407,15 @@ const RotationCircleText = () => {
           controller.start('btnHoverEnd')
         }}
       >
-        <Link to='/projects' className="enter__bg">
+        <Link to='/projects'
+              className="enter__bg"
+        //       onClick={event => {
+        //   event.preventDefault()
+        //   setCurrentPath('/projects')
+        //   navigate('/projects')
+        //
+        // }}
+        >
           <span className="enter__text">Explore</span>
         </Link>
       </motion.button>

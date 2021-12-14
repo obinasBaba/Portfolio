@@ -3,7 +3,7 @@ import EventSubscribers from '../helpers/EventSubscribers'
 import { MotionStateWrapper } from './MotionStateWrapper'
 import { LoadStateWrapper } from './LoadStateContext'
 
-export const AppStateContext = React.createContext(false)
+export const AppStateContext = React.createContext({})
 export const BackgroundOverlayStateContext = React.createContext(true)
 
 const BackgroundOverlayStateWrapper = ({ children }) => {

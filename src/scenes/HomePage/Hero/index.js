@@ -93,7 +93,8 @@ const Hero = () => {
       <HeroContainer variants={{}}
                      initial="initial"
                      animate={'animate'}
-                     exit="exit">
+                     // exit="exit"
+      >
 
         <TextContainer variants={textContainerVariants}>
 

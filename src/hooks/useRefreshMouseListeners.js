@@ -1,9 +1,14 @@
 import gsap from 'gsap'
 import MagnetElement from '../helpers/MagnetElement'
 import { useCallback, useContext, useEffect } from 'react'
-import { BackgroundOverlayStateContext } from '../contexts/AppStateContext'
+import {AppStateContext, BackgroundOverlayStateContext} from '../contexts/AppStateContext'
 
 export default function (selector) {
+
+  const {
+    currentPath
+  } = useContext( AppStateContext )
+
   const animateFocus = useCallback(
     (isFocused, color) => {
       gsap.to('.pointer.inner > *', {
@@ -23,8 +28,7 @@ export default function (selector) {
     [selector]
   )
 
-  const animatePointed = useCallback(
-    (isPointed, pointedColor) => {
+  const animatePointed = useCallback((isPointed, pointedColor) => {
       gsap.to('.pointer.inner', {
         scale: isPointed ? 3.17 : 1,
       })
@@ -42,9 +46,7 @@ export default function (selector) {
       gsap.to('.cursor-container', {
         zIndex: isPointed ? 8 : 30,
       })
-    },
-    [selector]
-  )
+    }, [selector])
 
   const refreshEventListeners = useCallback(selector => {
     const handleHover = e => {
@@ -107,9 +109,16 @@ export default function (selector) {
   const { backgroundOverlay } = useContext(BackgroundOverlayStateContext)
 
   useEffect(() => {
+    animateFocus(false)
+    animatePointed(false)
+  }, [currentPath])
+
+  useEffect(() => {
     if (backgroundOverlay) return
 
     const invoke = () => {
+      animateFocus(false)
+      animatePointed(false)
       refreshEventListeners(selector)
 
       window.removeEventListener('mousemove', invoke)

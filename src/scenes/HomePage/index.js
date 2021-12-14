@@ -10,22 +10,7 @@ import { motion } from 'framer-motion'
 const MailUs = React.lazy(() => import('../MailUs'))
 
 const containerVariants = {
-  initial: {
-    // opacity: 0,
-  },
-  animate: {
-    // opacity: 1
-    transition: {
 
-    }
-  },
-  exit: {
-    // opacity: 0,
-  },
-
-   transition: {
-    // duration: 5
-   }
 }
 
 const HomePage = () => {
@@ -37,28 +22,29 @@ const HomePage = () => {
                  transition={containerVariants.transition}
                  initial="initial"
                  animate="animate"
-                 exit="exit"
+                 // exit="exit"
+                 whileInView="inView"
     >
 
-      <SectionWrapper dataScrollSection={true}>
+      {/*<SectionWrapper dataScrollSection={true}>
         <Hero />
-      </SectionWrapper>
+      </SectionWrapper>*/}
 
-      <RecentWorks />
+      {/*<RecentWorks />*/}
 
       <Projects />
 
-      <SectionWrapper dataScrollSection={true} >
+      {/*<SectionWrapper dataScrollSection={true} >
         <BlogPosts />
       </SectionWrapper>
 
       <SectionWrapper dataScrollSection={true}>
         <Experiments />
-      </SectionWrapper>
+      </SectionWrapper>*/}
 
 
       {
-        !isSSR && <Suspense fallback={<h1>loading...</h1>}><MailUs /></Suspense>
+        // !isSSR && <Suspense fallback={<h1>loading...</h1>}><MailUs /></Suspense>
       }
 
 

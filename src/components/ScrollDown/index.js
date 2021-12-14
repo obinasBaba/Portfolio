@@ -9,7 +9,9 @@ const ScrollTxt = styled(Typography)`
   line-height: 1.6em;
   letter-spacing: 3px;
   color: #fff;
-  display: none;
+  //display: none;
+  position: absolute;
+  top: 115%;
   //z-index: 40;
 
   ${text(0.7)};
@@ -135,7 +137,7 @@ const ScrollDown = () => {
             transform="translate(-2165 10.921)"
             fill="none"
             stroke="#fff"
-            stroke-width="3"
+            stroke-width="2"
           />
 
           <motion.path
@@ -149,7 +151,7 @@ const ScrollDown = () => {
             transform="translate(-2152.458 10.921)"
             fill="none"
             stroke="#fff"
-            stroke-width="3"
+            stroke-width="2"
           />
         </g>
       </motion.svg>

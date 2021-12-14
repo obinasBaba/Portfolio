@@ -261,7 +261,7 @@ const Item = ({ currentPath, link, stars, icon, index, title, onClick }) => {
     >
       <Link to={link} onClick={(ev) => {
         ev.preventDefault();
-        Promise.resolve().then(() => setCurrentPath(link))
+        // Promise.resolve().then(() => setCurrentPath(link))
         if ( OverlayController.isAnimating ) return;
 
         if ( link === currentPath ) return;

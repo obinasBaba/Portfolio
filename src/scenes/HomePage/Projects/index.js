@@ -86,15 +86,6 @@ const ScrollPlanet2 = styled.div`
 `
 
 const parentVariant = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-  },
-  exit: {
-    opacity: 0,
-  },
 }
 
 const config = {
@@ -139,25 +130,17 @@ const Projects = () => {
       id="projects"
       data-scroll-section
       variants={parentVariant}
-      initial="initial"
-      animate="animate"
-      exit="exit"
       ref={containerRef}
     >
       <HeadlineTitle title={'Projects'} mb={3} subtitle={'Case Studies'} />
 
-      <ScrollPlanet data-scroll
-                    // data-scroll-trigger='#projects'
-                    data-scroll-speed='-3'>
+      <ScrollPlanet data-scroll data-scroll-speed='-3'>
         <Planet className='planet-left' style={{ y: yBig, x: xBig }} />
       </ScrollPlanet>
 
-      <ScrollPlanet2 data-scroll
-                     // data-scroll-trigger='#projects'
-                     data-scroll-speed='-6'>
+      <ScrollPlanet2 data-scroll data-scroll-speed='-6'>
         <Planet className="planet-right" style={{ y: ySmall, x: xSmall }} />
       </ScrollPlanet2>
-
 
       <RotationTextPath />
 

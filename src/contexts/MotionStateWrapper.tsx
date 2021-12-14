@@ -7,6 +7,7 @@ import React, {useLayoutEffect, createContext, useEffect} from 'react'
 type MotionValueContextType = {
   projectImgLoaded: MotionValue<boolean>,
   registerScrollRestoration: MotionValue<string >,
+  inView: MotionValue<string | null >,
 
   mouse: {
     mouseX: MotionValue<number>
@@ -44,12 +45,13 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
   const projectImgLoaded = useMotionValue(false)
   const registerScrollRestoration = useMotionValue('')
   const scrollDirection = useMotionValue('down')
+  const inView = useMotionValue(null)
 
   //mouse_event motion_values
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
 
-  const { scrollY, scrollYProgress } =  useViewportScroll()
+  // const { scrollY, scrollYProgress } =  useViewportScroll()
 
   useEffect(() => {
     y.onChange( v => {
@@ -87,7 +89,8 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
           isTop,
         },
         projectImgLoaded,
-        registerScrollRestoration
+        registerScrollRestoration,
+        inView
       }}
     >
       {children}

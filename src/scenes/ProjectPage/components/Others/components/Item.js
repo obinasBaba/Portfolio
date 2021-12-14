@@ -13,7 +13,7 @@ const transition = {
 
 const itemVariant = {
   initial(arg){
-    console.log('arg:-- ', arg)
+    // console.log('arg:-- ', arg)
     return {
       opacity: 0,
       y: arg.idx > 1 ? 100 : -100,
