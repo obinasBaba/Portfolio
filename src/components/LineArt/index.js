@@ -64,7 +64,7 @@ const LineArt = ( {artStyle} ) => {
       lotti.loadAnimation({
         name: 'circle-1',
         container: circle1Ref.current,
-        renderer: 'canvas',
+        renderer: 'svg',
         loop: true,
         autoplay: true,
         path: circle1.publicURL,

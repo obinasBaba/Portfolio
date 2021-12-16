@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import AboutHero from './components/AboutHero'
 import MyProcess from './components/MyProcess'
 import MailUs from '../MailUs'
@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import LineArt from "../../components/LineArt";
 import STrigger from 'gsap/ScrollTrigger'
 import gsap from "gsap";
+import {largeUp, mediumUp, spacing} from "../../styles/mixins";
 
 
 const AboutPageContainer = styled( motion.div )`
@@ -17,7 +18,7 @@ const AboutPageContainer = styled( motion.div )`
 
 const ScrollText = styled.section`
   padding: 3rem;
-  min-height: 90vh;
+  min-height: 40vh;
   display: flex;
   position: relative;
   flex-direction: column;
@@ -26,6 +27,12 @@ const ScrollText = styled.section`
   //opacity: .3;
   filter: blur(.3px);
   font-family: Elianto-Regular,serif;
+  
+  ${spacing( 'p', 5)};
+  
+  ${largeUp( css`
+    min-height: 80vh;
+  ` )};
   
   .content__breakout{
     margin: 0 -3rem;
@@ -57,14 +64,22 @@ const aboutContainerVariants = {
 const ArtContainer = styled.div`
   position: absolute;
   pointer-events: none;
-  top: 200px;
-  left: -40vw;
-  //right: -30%;
   z-index: -1;
-  opacity: .8;
+  //opacity: .8;
 
-  height: 250vh;
-  width: 220vw;
+  height: 250vmax;
+  width: 220vmax;
+  
+  ${spacing( 'top', -20 ) };
+  
+  ${largeUp( css`
+    left: -40vw;
+    height: 250vh;
+    width: 220vw;
+
+    ${spacing( 'top', 20 ) };
+    
+  ` )};
 
   //border: thick solid red;
   

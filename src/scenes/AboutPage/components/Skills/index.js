@@ -1,7 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import { Container, Typography } from '@material-ui/core'
-import { spacing, text } from '../../../../styles/mixins'
+import {largeUp, spacing, text} from '../../../../styles/mixins'
 import SkillColumn from './SkillColumn'
 import {useLottiAssets} from '../../../../hooks/queries/useLottiAssets'
 
@@ -28,20 +28,52 @@ const SkillTitle = styled(Typography)`
   
 `
 const Text = styled(Typography)`
-  max-width: 45ch;
+  
   color: #7b8a9b;
 
 
   ${text(1.2)};
   ${spacing('mt', 6)};
+  ${spacing('mb', 16)};
+
+  ${largeUp( css`
+    max-width: 45ch;
+    ${spacing('mb', 0)};
+  ` )};
+
+
+  
 `
 
 const SkillRow = styled.div`
   display: flex;
   justify-content: space-between;
-  max-width: 83%;
+  gap: .5rem;
+  
 
   ${spacing('mt', 6)};
+  
+  & > :last-child{
+    align-items: flex-end;
+    p{
+      text-align: right;
+    }
+  }
+  
+  ${largeUp( css`
+    max-width: 83%;
+    gap: 0;
+
+    & > :last-child{
+      align-items: flex-start;
+      p{
+        text-align: initial;
+      }
+    }
+
+  ` )};
+  
+  
 
 `
 

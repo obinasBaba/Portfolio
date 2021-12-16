@@ -136,11 +136,11 @@ const Card = ({ txt, title, methodologies, index, path }) => {
       no={index + 1}
       className={`card card-${index}`}
       ref={cardRef}
-      onViewportEnter={ entry => {
+      onViewportEnter={ _ => {
         inView.set(true)
         // lottiRef.current && lottiRef.current.play()
       }}
-      onViewportLeave={_ => {
+      onViewportLeave={ _ => {
         inView.set(false)
         // lottiRef.current && lottiRef.current.pause()
       }}

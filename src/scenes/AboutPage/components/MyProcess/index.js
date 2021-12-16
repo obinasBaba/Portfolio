@@ -7,7 +7,7 @@ import Card from './components/Card'
 import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
 import gsap from 'gsap'
 import STrigger from 'gsap/ScrollTrigger'
-import { mediumUp, smallDown, spacing, text } from '../../../../styles/mixins'
+import {largeUp, mediumUp, smallDown, spacing, text} from '../../../../styles/mixins'
 import BigPlanet from './components/BigPlanet'
 import useOnScreen from '../../../../hooks/useOnScreen'
 
@@ -45,7 +45,7 @@ const ProcessTitle = styled(Typography)`
   ${spacing('pb', 1.7)}
 
   ${smallDown(css`
-    ${text(3.5)};
+    // ${text(3.5)};
   `)};
 
   ${mediumUp(css`
@@ -96,9 +96,13 @@ const ProcessTrack = styled(motion.div)`
 `
 
 const Operate = styled.div`
-  display: flex;
+  display: none;
   flex-flow: column;
   align-self: center;
+  
+  ${largeUp( css`
+    display: flex;
+  ` )};
 `
 const OperateTxt = styled(Typography)`
   color: transparent;
@@ -142,7 +146,7 @@ const MyProcess = () => {
 
 
   useEffect(() => {
-    // if (!mediaMatch) return
+    if (!mediaMatch) return
 
     const mask = document.querySelector('.mask')
     const track = document.querySelector('.track')
@@ -182,32 +186,6 @@ const MyProcess = () => {
 
     setTimeout(() => {
 
-
-        // gsap.timeline()
-          /*  .to(track, {
-              ease: 'none',
-              scrollTrigger: {
-                trigger: mask,
-                pin: true,
-                scroller: '[data-scroll-container]',
-                start: () => 'top 20%',
-                end: () => '+=' + (track.offsetWidth - 400),
-              },
-            })
-            .to(track, {
-              x: -(track.offsetWidth - 200),
-              ease: 'none',
-              scrollTrigger: {
-                trigger: '.mask',
-                scrub: 1,
-                scroller: '[data-scroll-container]',
-                start: () => 'top 70%',
-                end: () => '+=' + track.offsetWidth,
-                onUpdate(self) {
-                  progress.set(self.progress)
-                },
-              },
-            })*/
             timeline.to('.title-wrapper', {
               scrollTrigger: {
                 pin: true,
@@ -218,61 +196,33 @@ const MyProcess = () => {
                 end: () => '+=' + track.offsetWidth,
               },
             })
-         /*   .to('.planet_wrapper', {
-              scrollTrigger: {
-                pin: true,
-                pinSpacing: false,
-                trigger: '.planet_wrapper',
-                scroller: '[data-scroll-container]',
-                start: 'top 15%',
-                end: () => '+=' + track.offsetWidth,
-              },
-            })
-            .to('.big_planet', {
-                  scale: 1.1,
-                  y: -10,
-                  rotate: 20,
-                  ease: 'none',
-
-                  scrollTrigger: {
-                    scrub: 1,
-                    trigger: '.planet_wrapper',
-                    scroller: '[data-scroll-container]',
-                    start: 'top 15%',
-                    end: () => '+=' + track.offsetWidth,
-                  },
-                })*/
-
       },)
 
-    setTimeout(() => {
       txt.forEach((txt, idx) => {
-        gsap.to(txt, {
-          // rotate: rotationsArr[cards.indexOf(card)],
-          y: idx % 2 === 0 ? -300 : 300,
-          scrollTrigger: {
-            trigger: track,
-            // endTrigger: 'card-1',
-            horizontal: true,
-            invalidateOnRefresh: true,
-            scrub: 0.1,
-            scroller: '[data-scroll-container]',
-            start: () => 'left 20%',
-            end: () => '+=1510',
-          },
+        setTimeout(() => {
+          gsap.to(txt, {
+            // rotate: rotationsArr[cards.indexOf(card)],
+            y: idx % 2 === 0 ? -300 : 300,
+            scrollTrigger: {
+              trigger: track,
+              // endTrigger: 'card-1',
+              horizontal: true,
+              invalidateOnRefresh: true,
+              scrub: 0.1,
+              scroller: '[data-scroll-container]',
+              start: () => 'left 20%',
+              end: () => '+=1510',
+            },
+          })
         })
       })
-    })
 
     setTimeout(() => {
       window.locoInstance && window.locoInstance.update()
     }, 3000 )
 
-    setTimeout(() => {
-      // STrigger.refresh()
-    }, 3000)
 
-  }, [])
+  }, [mediaMatch])
 
   useEffect(() => {
 

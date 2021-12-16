@@ -1,38 +1,53 @@
 import React from 'react'
-import styled from 'styled-components'
-import {spacing, text} from '../../../../styles/mixins'
+import styled, {css} from 'styled-components'
+import {largeUp, mediumUp, spacing, text} from '../../../../styles/mixins'
 import {Container, Typography} from '@material-ui/core'
 import {motion} from "framer-motion";
 
 const AboutHeroContainer = styled.div`
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
   
-  ${spacing('mt', 16)};
+  ${largeUp( css`
+    ${spacing('mt', 10)};
+    
+  ` )};
 `
 
 const Hello = styled( Typography )`
   font-family: Elianto-Regular,serif;
   font-weight: bolder;
   margin-bottom: 2rem;
-  //transform-origin: left ;
 `
 
 const Motto = styled( Typography )`
   font-weight: bolder;
   color: #7b8a9b;
-  line-height: 110%;
+  //line-height: 110%;
+    ${spacing('mb', 8)};
+
+  ${largeUp( css`
+    
+    line-height: 110%;
+  ` )};
 
 
 `
 
 const Text = styled( Typography )`
-  max-width: 36ch;
   color: #7b8a9b;;
 
 
   ${text(1)};
-  ${spacing('mt', 6)};
+  
+  ${largeUp( css`
+    max-width: 36ch;
+    ${spacing('mt', 6)};
+
+  ` )};
 `
 
 const helloTxtVariants = {

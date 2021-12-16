@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import { Typography } from '@material-ui/core'
-import {spacing, text} from '../../../../styles/mixins'
+import {largeUp, spacing, text} from '../../../../styles/mixins'
 import useLotti from '../../../../helpers/useLotti'
 import { motion } from 'framer-motion'
 
@@ -33,9 +33,13 @@ const List = styled.div`
 const Text = styled(Typography)`
   max-width: 36ch;
   color: #7b8a9b;
-  letter-spacing: 1.05px;
 
   ${text(0.95)};
+  
+  ${largeUp( css`
+    letter-spacing: 1.05px;
+
+  ` )};
 `
 
 const SkillTitle = styled(Typography)`
