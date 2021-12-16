@@ -23,7 +23,7 @@ const ScrollText = styled.section`
   flex-direction: column;
   align-content: center;
   justify-content: space-evenly;
-  opacity: .3;
+  //opacity: .3;
   filter: blur(.3px);
   font-family: Elianto-Regular,serif;
   
@@ -33,8 +33,9 @@ const ScrollText = styled.section`
     text-transform: uppercase;
     font-weight: 200;
     font-style: italic;
-    opacity: .3;
+    //opacity: .3;
     font-family: Elianto-Regular,serif;
+    color: #434e5e;
   }
   
   .content__breakout--big {
@@ -44,6 +45,8 @@ const ScrollText = styled.section`
 
   .content__breakout--medium {
     font-size: 5vw;
+    color: #5d6c7b;
+
   }
 `
 
@@ -73,27 +76,25 @@ const ArtContainer = styled.div`
 const AboutPage = () => {
 
   useEffect(() => {
+    let artContainer = document.body.querySelector('.art-container')
 
     setTimeout(() => {
-      gsap
-        .to('.art-container', {
-          y: -500,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '#about',
-            scrub: true,
-            scroller: '[data-scroll-container]',
-            start: () => 'top 0%',
-            // markers: true,
-            end: () => '+=' + 3600,
-          },
-        })
-    })
+      gsap.to(artContainer, {
+        y: -500,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#about',
+          scrub: true,
+          scroller: '[data-scroll-container]',
+          start: () => 'top 0%',
+          // markers: true,
+          end: () => '+=' + 1600,
+        },
+      })
+    });
 
-    setTimeout(() => {
-      STrigger.refresh()
 
-    }, 1000)
+    // STrigger.refresh()
 
   }, [])
 
@@ -123,7 +124,9 @@ const AboutPage = () => {
       </ScrollText>
 
       <Skills/>
+
       <MyProcess/>
+
       <MailUs/>
 
     </AboutPageContainer>

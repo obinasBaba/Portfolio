@@ -2,9 +2,11 @@ import React, {useEffect, useRef} from 'react'
 import lotti  from  'lottie-web';
 import styled, {css} from 'styled-components'
 import useOnScreen from '../../../../../hooks/useOnScreen'
+import {motion, useMotionValue} from "framer-motion";
+import useLotti from "../../../../../helpers/useLotti";
 
 
-const IllustrationContainer = styled.div`
+const IllustrationContainer = styled( motion.div )`
   //z-index: -1;
   position: absolute;
   left: 4%;
@@ -34,34 +36,36 @@ const IllustrationContainer = styled.div`
   ` };
 `
 
-export const Illustration = ({path, rocket}) => {
+const LottiIcon = ({path, rocket, inView}) => {
 
-  const iconRef = useRef(null)
-  const lottiRef= useRef(null)
-  const inView = useOnScreen(iconRef, 0, )
+  const lottiContainerRef = useRef(null)
+  const lottiRef= useLotti(path, lottiContainerRef )
+  // const inView = useOnScreen(lottiContainerRef, 0, )
 
   useEffect(() => {
-    if ( !lottiRef.current ) return;
+    inView.onChange(v => {
+      if (!lottiRef.current) return
 
-    if ( !inView )
-      lottiRef.current.pause()
-    else
-      lottiRef.current.play()
+      if (v)
+        lottiRef.current.play()
+      else
+        lottiRef.current.pause()
+    })
 
   }, [inView])
 
 
-  useEffect(() => {
+  /*useEffect(() => {
     lotti.destroy(path)
 
     let r = 1;
     if (path) {
       lottiRef.current = lotti.loadAnimation({
         name: path,
-        container: iconRef.current,
+        container: lottiContainerRef.current,
         renderer: 'svg',
         loop: false,
-        autoplay: true,
+        autoplay: false,
         path: path,
         // animationData: build
       })
@@ -74,9 +78,11 @@ export const Illustration = ({path, rocket}) => {
       })
 
     }
-  }, [])
+  }, [])*/
 
   return (
-    <IllustrationContainer ref={iconRef} rocket={rocket} />
+    <IllustrationContainer ref={lottiContainerRef} rocket={rocket}/>
   )
 }
+
+export default LottiIcon

@@ -6,7 +6,7 @@ import SkillColumn from './SkillColumn'
 import {useLottiAssets} from '../../../../hooks/queries/useLottiAssets'
 
 const SkillsContainer = styled(Container)`
-  ${spacing('mt', 6)};
+  ${spacing('mt', 10)};
   
 `
 const SkillTitle = styled(Typography)`
@@ -28,7 +28,7 @@ const SkillTitle = styled(Typography)`
   
 `
 const Text = styled(Typography)`
-  max-width: 50ch;
+  max-width: 45ch;
   color: #7b8a9b;
 
 
@@ -39,6 +39,7 @@ const Text = styled(Typography)`
 const SkillRow = styled.div`
   display: flex;
   justify-content: space-between;
+  max-width: 83%;
 
   ${spacing('mt', 6)};
 
@@ -49,7 +50,7 @@ const Skills = () => {
   const { build, prototype} = useLottiAssets()
 
   return (
-    <SkillsContainer data-scroll-section maxWidth="xl">
+    <SkillsContainer data-scroll-section maxWidth="lg">
       <SkillTitle variant="h1">
         Skills &<br />
         expertise

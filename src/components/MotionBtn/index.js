@@ -10,10 +10,9 @@ const Btn = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  //cursor: pointer;
   width: fit-content;
   letter-spacing: 2px;
-  font-family: var(--sofia-soft);
   font-weight: 300;
   transition: all 0.3s;
   padding: 0.7rem;
@@ -21,15 +20,8 @@ const Btn = styled(motion.div)`
   //border: thin solid red;
 
   ${spacing('m', 1)};
-
-  ${ ({arrow}) => arrow && spacing('mr', 1.9) };
+  ${spacing('mr', 1.9)};
   
-
-  ${ ( {margin} ) => margin ? '' : spacing('mv', 0) };
-  
-  svg{
-    //margin-top: 10px;
-  }
 
   &::before {
     content: '';
@@ -47,18 +39,25 @@ const Btn = styled(motion.div)`
   }
 
   & > :first-child {
-    ${spacing('mr', 1.5)};
+    // ${spacing('mr', 1.5)};
   }
 
   & > :nth-child(2n) {
     //margin-top: 4.5px;
   }
+  
+  & .btn-txt{
+    margin: 0;
+    padding: 0;
+    //line-height: 0;
+  }
 
   &:hover {
     transform: translateX(15px);
+    color: #02021e;
 
     &::before {
-      width: ${({ arrow }) => (arrow ? '105%' : '100%')};
+      width: 115%;
       border-radius: 30px;
       transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
     }
@@ -71,6 +70,7 @@ const Btn = styled(motion.div)`
     bottom: 0;
     right: 0;
     z-index: 999;
+    cursor: none;
   }
 `
 
@@ -98,36 +98,25 @@ const MotionBtn = ({
   const controls = useAnimation()
 
   return (
-    <motion.div layoutId={layoutId}>
 
       <Btn
         {...props}
         onClick={onClick}
         margin={margin.toString()}
-        arrow={arrow.toString()}
         clr={clr}
-        onTap={() => {
-          controls.stop()
-        }}
-        onHoverEnd={() => {
-          controls.set({ x: 0 })
-          controls.stop()
-        }}
-        onHoverStart={() => {
-          controls.start({
-            x: [0, 15, 0],
-            transition: {
-              repeat: Infinity,
-              repeatType: 'mirror',
-            },
-          })
-        }}
+
       >
 
-        {to &&  <Link to={to} state={state}/>}
+        {to &&  <Link to={to} state={state}
+                      data-pointer='focus'
+                      data-pointer-color='#02021e'
+                      data-tooltip
+                      data-tooltip-text='wanna visit my contact page?'
+        />}
 
         <Typography
           variant="body1"
+          className='btn-txt'
           style={{
             letterSpacing: '3px',
             textShadow: '0.1em 0.1em 0.3em #000',
@@ -136,36 +125,8 @@ const MotionBtn = ({
         >
           {text}
         </Typography>
-
-        {arrow && (
-
-            <motion.svg
-              width="21"
-              animate={controls}
-              height="12"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g transform="translate(0 1)" fill={arrowClr}>
-                <rect
-                  transform="rotate(180 10 5)"
-                  y="4"
-                  width="29"
-                  height="2"
-                  rx="1"
-                />
-                <path
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15 10l5-5-5-5"
-                />
-              </g>
-            </motion.svg>
-
-        )}
       </Btn>
 
-     </motion.div>
   )
 }
 

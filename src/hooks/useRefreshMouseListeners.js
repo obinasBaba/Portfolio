@@ -74,7 +74,7 @@ export default function (selector) {
     }
 
     const pointerElements = document.querySelectorAll(selector)
-    console.log(selector, pointerElements)
+    // console.log(selector, pointerElements)
 
     pointerElements.forEach(element => {
       element.removeEventListener('mouseenter', handleHover)

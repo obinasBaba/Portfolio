@@ -1,21 +1,22 @@
 import {useEffect, useRef} from 'react'
 import lotti from 'lottie-web'
 
-const useLotti = (path, ref, loopReverse=false) => {
+const useLotti = (path, ref, loopReverse=false, autoPlay=false, inView=true) => {
 
   const lottiRef = useRef(null)
 
   useEffect(() => {
+      if (!inView) return;
+
     lotti.destroy(path)
 
     setTimeout(() => {
-      if (true ) {
         lottiRef.current = lotti.loadAnimation({
           name: path,
           container: ref.current,
           renderer: 'svg',
           loop: loopReverse,
-          autoplay: true,
+          autoplay: autoPlay,
           path: path,
         })
 
@@ -29,15 +30,13 @@ const useLotti = (path, ref, loopReverse=false) => {
           })
         }
 
-      }
-
-    }, 1000)
+    })
 
     // return ( ) => lotti.destroy(path)
 
-  }, [])
+  }, [inView])
 
-  return lottiRef.current;
+  return lottiRef;
 }
 
 export default useLotti;

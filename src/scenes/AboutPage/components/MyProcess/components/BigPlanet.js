@@ -6,7 +6,8 @@ const BigPlanetContainer = styled( motion.div )`
   position: absolute;
   left: -20%;
   perspective: 1000px;
-  //transform: scale(.9);
+  //transform: scale(.9);3
+  display: none;
 `
 
 const Planet = styled.div`

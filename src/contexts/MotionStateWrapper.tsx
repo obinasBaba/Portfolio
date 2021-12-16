@@ -53,12 +53,6 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
 
   // const { scrollY, scrollYProgress } =  useViewportScroll()
 
-  useEffect(() => {
-    y.onChange( v => {
-      console.log('scrollY: ', v)
-    } )
-  }, [])
-
   useLayoutEffect(() => {
     const updateMouseMotionValue = (ev : MouseEvent) => {
       mouseX.set(ev.clientX)

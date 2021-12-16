@@ -38,7 +38,6 @@ const LottiContainer = styled.div`
 
     path {
       stroke-width: 2px;
-      stroke: ;
     }
   }
 `
@@ -65,10 +64,13 @@ const LineArt = ( {artStyle} ) => {
       lotti.loadAnimation({
         name: 'circle-1',
         container: circle1Ref.current,
-        renderer: 'svg',
+        renderer: 'canvas',
         loop: true,
         autoplay: true,
         path: circle1.publicURL,
+          rendererSettings: {
+            progressiveLoad: true
+          }
       })
     )
 

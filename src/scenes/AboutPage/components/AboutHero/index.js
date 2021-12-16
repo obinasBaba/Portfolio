@@ -21,6 +21,7 @@ const Hello = styled( Typography )`
 const Motto = styled( Typography )`
   font-weight: bolder;
   color: #7b8a9b;
+  line-height: 110%;
 
 
 `
@@ -37,14 +38,10 @@ const Text = styled( Typography )`
 const helloTxtVariants = {
   initial: {
     opacity: 0,
-    originX: 0,
-    scale: 1.3,
     y: -200
   },
   animate: {
     opacity: 1,
-    scale: 1,
-    originX: 1,
     y: 0,
     transitionEnd: {
       // opacity: 0,
@@ -94,10 +91,11 @@ const aboutHeroVariants = {
 
 
 const AboutHero = () => {
+
   return (
     <AboutHeroContainer data-scroll-section variants={aboutHeroVariants}>
 
-      <Container maxWidth='xl' >
+      <Container maxWidth='lg' >
         <motion.div variants={aboutHeroVariants} >
 
           <motion.div variants={helloTxtVariants}

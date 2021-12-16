@@ -1,18 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import {
   mediumUp,
   spacing,
   text,
-  title,
-  xLargeUp
-} from "../../../../../styles/mixins";
+  xxLargeUp,
+} from '../../../../../styles/mixins'
 import { Typography } from '@material-ui/core'
-import { Illustration } from './Icons'
-import useOnScreen from '../../../../../hooks/useOnScreen'
-import { motion, useAnimation } from 'framer-motion'
+import LottiIcon from './LottiIcon'
+import { motion, useAnimation, useMotionValue } from 'framer-motion'
 
-const StyledCard = styled.div`
+const StyledCard = styled(motion.div)`
   position: relative;
   max-width: 54ch;
   border-radius: 20px;
@@ -24,19 +22,19 @@ const StyledCard = styled.div`
   display: flex;
   flex-flow: column;
 
-  ${spacing('ph', 6)};
+  ${spacing('ph', 5)};
   ${spacing('pt', 8)};
   ${spacing('pb', 7)};
   ${spacing('mt', 8)};
 
   ${mediumUp(css`
-    ${spacing('pt', 6.5)};
+    ${spacing('pt', 6)};
     ${spacing('pb', 4)};
   `)};
-  
-  ${xLargeUp( css`
+
+  ${xxLargeUp(css`
     max-width: 60ch;
-  ` )};
+  `)};
 
   & > * {
     //border: thin solid blueviolet;
@@ -52,7 +50,7 @@ const StyledCard = styled.div`
   }
 
   .approach-desc {
-    ${text(1.02)};
+    ${text(1)};
     color: #1e213d;
   }
 
@@ -115,25 +113,37 @@ const keysVariants = {
   },
 }
 
+
 const Card = ({ txt, title, methodologies, index, path }) => {
   const cardRef = useRef(null)
-  let intersecting = useOnScreen(cardRef, 0, '0% -42% 0% 0%')
-  const [inView, setInView] = useState(false)
+  // let intersecting = useOnScreen(cardRef, 0, '0% -42% 0% 0%')
+  // const [inView, setInView] = useState(false)
   const controller = useAnimation()
+  let firstTimeOnly = false;
+
+  const inView = useMotionValue(false)
 
   useEffect(() => {
-    if (!inView) setInView(intersecting)
-  }, [intersecting])
-
-  useEffect(() => {
-    if (intersecting) controller.start('animate')
-  }, [intersecting])
+    inView.onChange(v => {
+      if (firstTimeOnly) return
+      firstTimeOnly = true
+      if (v) controller.start('animate')
+    })
+  }, [])
 
   return (
     <StyledCard
       no={index + 1}
       className={`card card-${index}`}
       ref={cardRef}
+      onViewportEnter={ entry => {
+        inView.set(true)
+        // lottiRef.current && lottiRef.current.play()
+      }}
+      onViewportLeave={_ => {
+        inView.set(false)
+        // lottiRef.current && lottiRef.current.pause()
+      }}
     >
       <Num
         variants={keysVariants}
@@ -144,11 +154,17 @@ const Card = ({ txt, title, methodologies, index, path }) => {
         0{index + 1}
       </Num>
 
-      <Illustration path={path} rocket={index === 4} design={index === 1} />
+      {
+        path &&
+        <LottiIcon
+            inView={inView}
+            path={path}
+            rocket={index === 4}
+            design={index === 1}
+        />
+      }
 
-      <Typography variant="h3" className="card-title">
-        {title}
-      </Typography>
+      <Typography variant="h3" className="card-title">{title}</Typography>
 
       <Typography className="approach-desc">{txt}</Typography>
 

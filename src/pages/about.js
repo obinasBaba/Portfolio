@@ -1,33 +1,40 @@
 import React, {useContext, useEffect} from 'react'
-// import AboutPage from '../scenes/AboutPage'
-// import useLocoScroll from '../hooks/useLocoScroll'
-import {AppStateContext} from '../contexts/AppStateContext'
+import AboutPage from '../scenes/AboutPage'
+import useLocoScroll from '../hooks/useLocoScroll'
+import {AppStateContext, BackgroundOverlayStateContext} from '../contexts/AppStateContext'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
+import useToolTip from "../hooks/useToolTip";
+import useRefreshMouseListeners from "../hooks/useRefreshMouseListeners";
 
 
 gsap.registerPlugin(ScrollTrigger)
 
 const About = ({path}) => {
 
-  return <div/>
-
-
-  // const loco = useLocoScroll(true);
-
+  const loco = useLocoScroll(true);
 
   const {
-    setCurrentPath, setBackgroundOverlay
+    setCurrentPath
   } = useContext( AppStateContext )
+
+  const {
+    backgroundOverlay
+  } = useContext( BackgroundOverlayStateContext )
+
 
   useEffect(() => {
     setCurrentPath(path)
-    setBackgroundOverlay(false)
   }, [])
+
+  useToolTip('[data-tooltip-text]')
+  useRefreshMouseListeners('[data-pointer]')
 
   return (
     <>
-      {/*<AboutPage/>*/}
+      {
+        !backgroundOverlay && <AboutPage/>
+      }
     </>
   )
 }
