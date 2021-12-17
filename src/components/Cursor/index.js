@@ -99,7 +99,7 @@ const Cursor = () => {
       const showMouse = () => {
         if ( show ) return
 
-        if ( window.locoInstance && window.locoInstance.scroll.isScrolling )
+        if ( window.locoInstance && (Math.abs(window.locoInstance.scroll.instance.speed) > 2) )
           return;
 
         gsap.to('.cursor-container',

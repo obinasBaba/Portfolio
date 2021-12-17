@@ -9,7 +9,7 @@ import Topic from './components/Topic'
 import Message from './components/Message'
 import Email from './components/Email'
 import Check from './components/Check'
-import { AnimatePresence, motion, useMotionValue, AnimateSharedLayout } from 'framer-motion'
+import {AnimatePresence, motion, useMotionValue, AnimateSharedLayout, useAnimation} from 'framer-motion'
 import { Formik, Form } from 'formik'
 import * as yup from 'yup'
 import ThankYou from './components/ThankYou'
@@ -68,8 +68,38 @@ const ContactPage = () => {
   const [idx, setIdx] = useState(0)
 
   const stepMotionValue = useMotionValue(1)
+  const control = useMotionValue('');
 
-  const nextStep = () => {
+  const nextStep = arg => {
+    console.log('nextStep::::: ,', arg)
+    if (steps[idx].stepName === 'check') {
+
+      if (control.get() === 'loading' || control.get().startsWith('error'))
+        return control.set('errorClick' + Math.random() * Math.random())
+      else
+      {
+        control.set('loading')
+        fetch("https://formsubmit.co/ajax/henokgetachew500@gmail.com", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            ...arg
+          })
+        })
+            .then(response => response.json())
+            .then(data => {
+              console.log( 'adata: ', data)
+              setIdx(idx + 1)
+              stepMotionValue.set(stepMotionValue.get() + 1)
+
+            })
+            .catch(error => console.log(error));
+      }
+    }
+
     if (idx + 1 !== steps.length) {
       {
         setIdx(idx + 1)
@@ -79,6 +109,8 @@ const ContactPage = () => {
   }
 
   const backStep = () => {
+    if (control.get() === 'loading') return;
+
     if (idx !== 0) {
       setIdx(idx - 1)
       stepMotionValue.set(stepMotionValue.get() - 1)
@@ -86,7 +118,8 @@ const ContactPage = () => {
   }
 
   const steps = [
-    {
+   /* {
+      stepName: '',
       schema: yup.object({
         name: yup.string().required('Please tell me who you are'),
         company: yup.string().notRequired(),
@@ -95,13 +128,15 @@ const ContactPage = () => {
       component: props => <WhoAreYou {...props} />,
     },
     {
+      stepName: '',
       schema: yup.object({
         topic: yup.array().min(1, 'Please select at least one item'),
       }),
       fields: ['topic'],
       component: props => <Topic {...props} />,
-    },
+    },*/
     {
+      stepName: '',
       schema: yup.object({
         message: yup
           .string()
@@ -112,6 +147,7 @@ const ContactPage = () => {
       component: props => <Message {...props} />,
     },
     {
+      stepName: '',
       schema: yup.object({
         email: yup
           .string()
@@ -127,11 +163,14 @@ const ContactPage = () => {
       component: props => <Email {...props} />,
     },
     {
+      stepName: 'check',
       schema: yup.object({}),
       fields: [''],
       component: props => <Check {...props} />,
     },
     {
+            stepName: '',
+
       schema: yup.object({}),
       fields: [''],
       component: props => <ThankYou {...props} />,
@@ -162,7 +201,7 @@ const ContactPage = () => {
           onSubmit={nextStep}
           render={({ values, submitForm, errors, validateField }) => {
             return (
-              <Form>
+              <Form >
                 <AnimateSharedLayout type='crossfade' >
 
                   <AnimatePresence exitBeforeEnter>
@@ -198,15 +237,8 @@ const ContactPage = () => {
                       >
                         <BottomBar
                           step={stepMotionValue}
+                          control={control}
                           nextProps={{
-                            onClick: () => {
-                              if (idx === steps.length - 1) submitForm()
-                              else
-                                steps[idx].fields.forEach(field =>
-                                  validateField(field)
-                                )
-                            },
-
                             text: idx === steps.length - 2 ? 'Send' : 'Next',
                           }}
                           backProps={{

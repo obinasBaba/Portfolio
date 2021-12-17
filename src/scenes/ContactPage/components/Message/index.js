@@ -24,7 +24,7 @@ const Message = ({ ...props }) => {
           name="message"
           multiline={true}
           fullWidth={true}
-          rows={4}
+          rows={3}
           label="Tell me about your project"
           as={CustomTextField}
         />

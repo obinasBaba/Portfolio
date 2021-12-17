@@ -16,17 +16,16 @@ const BottomContainer = styled.div`
   ${spacing('ph', 5)};
 `
 
-const BottomBar = ({nextProps, backProps, step, ...props}) => {
+const BottomBar = ({nextProps, backProps, step, control}) => {
 
-  const rendered = useRef(0)
 
   return (
     <BottomContainer  >
-      <GalaxyButton text='Back' {...backProps} />
+      <GalaxyButton text='Back' stateValue={control} {...backProps} />
 
       <Progress step={step}/>
 
-      <GalaxyButton  {...nextProps} />
+      <GalaxyButton stateValue={control}  {...nextProps} />
 
     </BottomContainer>
   )

@@ -16,7 +16,12 @@ export const HeadLineTitle = styled( Typography )`
   
 `
 
-export const CustomTextField = styled( MuiTextField )`
+export const CustomTextField = styled( MuiTextField ).attrs(() => {
+    return {
+        'data-pointer' : 'focus',
+        'data-pointer-color': '#5d6c7b'
+    }
+})`
   position: relative;
   flex: 1;
   -webkit-appearance: none;
@@ -41,9 +46,16 @@ export const CustomTextField = styled( MuiTextField )`
     //color: #eec5b9;
     line-height: 200%;
     padding-bottom: .5rem;
+    
 
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      transition: background-color 5000s ease-in-out 5000s !important;
+    }
 
-    &:focus {
+      &:focus {
       border-bottom: 2px solid #a4b5c0;
     }
   }

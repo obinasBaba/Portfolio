@@ -1,9 +1,11 @@
 import React, {useContext, useEffect} from 'react'
-// import ContactPage from '../scenes/ContactPage'
-// import MailUs from '../scenes/MailUs'
-import {AppStateContext} from '../contexts/AppStateContext'
-// import useLocoScroll from '../hooks/useLocoScroll'
+import ContactPage from '../scenes/ContactPage'
+import MailUs from '../scenes/MailUs'
+import {AppStateContext, BackgroundOverlayStateContext} from '../contexts/AppStateContext'
+import useLocoScroll from '../hooks/useLocoScroll'
 import {motion} from 'framer-motion'
+import useToolTip from "../hooks/useToolTip";
+import useRefreshMouseListeners from "../hooks/useRefreshMouseListeners";
 
 
 const containerVariants = {
@@ -20,34 +22,44 @@ const containerVariants = {
 
 const Contact = ({path}) => {
 
-  return (<div/>)
-
-  // const loco = useLocoScroll(true);
+  const loco = useLocoScroll(true);
 
 
   const {
-    setCurrentPath, setBackgroundOverlay
+    setCurrentPath
   } = useContext( AppStateContext )
 
+  const {
+    backgroundOverlay
+  } = useContext( BackgroundOverlayStateContext )
+
   useEffect(() => {
-    console.log(path)
     setCurrentPath(path)
-    setBackgroundOverlay(false)
   }, [])
 
+
+  useToolTip('[data-tooltip-text]')
+  useRefreshMouseListeners('[data-pointer]')
+
   return (
-    <motion.div variants={containerVariants}
-                transition={{
-                  duration: 1.3,
-                  ease: 'easeOut'
-                }}
-                initial="initial"
-                animate='animate'
-                exit="exit"
-    >
-      {/*<ContactPage/>*/}
-      {/*<MailUs/>*/}
-    </motion.div>
+      <>
+        {
+          !backgroundOverlay &&
+          <motion.div variants={containerVariants}
+                      transition={{
+                        duration: 1.3,
+                        ease: 'easeOut'
+                      }}
+                      initial="initial"
+                      animate='animate'
+                      exit="exit"
+          >
+            <ContactPage/>
+            <MailUs/>
+          </motion.div>
+        }
+      </>
+
   )
 }
 

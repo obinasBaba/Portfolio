@@ -2,8 +2,13 @@ import React, {useEffect, useLayoutEffect, useRef} from 'react'
 import lotti from 'lottie-web'
 import styled from 'styled-components'
 import {spacing} from '../../../../styles/mixins'
+import useLotti from "../../../../helpers/useLotti";
 
 const IllustrationContainer = styled.div`
+  position: absolute;
+  top: 13%;
+  //left: 0;
+  
   max-width: 75px;
   //border: thin solid red;
 
@@ -19,6 +24,7 @@ const IllustrationContainer = styled.div`
 
 const TopicIllustration = ({path}) => {
   const iconRef = useRef(null)
+  // const lottiRef = useLotti(path, iconRef)
 
 
   useLayoutEffect(() => {
@@ -32,18 +38,19 @@ const TopicIllustration = ({path}) => {
         name: path.publicURL,
         container: iconRef.current,
         renderer: 'svg',
-        loop: true,
+        loop: false,
         autoplay: true,
         path: path.publicURL,
         // animationData: build
       })
 
+      let r = 1
       // l.addEventListener('data_ready', () => {})
       lottiRef.addEventListener('complete', () => {
-        1 === r ? r = -1 : -1 === r && (r = 1);
-        lottiRef.setDirection(r);
-        lottiRef.play();
-      })
+          1 === r ? (r = -1) : -1 === r && (r = 1)
+        lottiRef.setDirection(r)
+        lottiRef.play()
+        })
 
     }
   }, [])

@@ -23,14 +23,14 @@ const useLoadingFonts = setBackgroundOverlay => {
 
     Promise.all([elianto.load(), poppins.load(), icons.load()])
       .then(() => {
-        // setTimeout(() => {
+        setTimeout(() => {
         //   setBackgroundOverlay(false)
         setLoaded(true)
           // fontLoaded.set(true)
           // setFontFinish(true)
 
           // queueMicrotask(() => )
-        // }, 1500)
+        }, 1500)
       })
       .catch(console.error)
 

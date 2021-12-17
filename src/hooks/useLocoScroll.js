@@ -18,8 +18,7 @@ export default function useLocoScroll (
   const locoScroll = useRef(null)
 
   useEffect(() => {
-      console.log('LocoInvoked ---- --- --',
-        start)
+      console.log('LocoInvoked ---- --- --', start)
 
       const scrollEl = document.querySelector(elementId);
 
@@ -28,7 +27,9 @@ export default function useLocoScroll (
         smooth: true,
         multiplier: 1,
         getDirection: true,
+          getSpeed: true
       })
+          console.log('locoInstance : ', window.locoInstance)
 
       // whenever when we scroll loco update scrollTrigger
       locoScroll.current.on("scroll",
@@ -38,12 +39,10 @@ export default function useLocoScroll (
           moScroll.x.set(arg.scroll.x)
           moScroll.y.set(arg.scroll.y)
           moScroll.limit.set(arg.limit.y)
-          moScroll.scrollDirection.set(arg.direction)
+          moScroll.scrollDirection.set(arg.direction);
 
-          Cursor.stopMouseAnimation()
-            // console.log('updated: ', arg.scroll.y)
-
-          // console.timeEnd('Single onScroll');
+          (Math.abs(window.locoInstance.scroll.instance.speed) > 2) && Cursor.stopMouseAnimation()
+            // console.log('ticking', window.locoInstance.scroll.instance.speed)
 
           /*setTimeout(() => {
             if ( Cursor.pointing || Cursor.focusing ) return;
@@ -70,9 +69,7 @@ export default function useLocoScroll (
             // console.log('scrollTop', arguments.length)
 
             if ( locoScroll.current ) {
-              let value = arguments.length ? locoScroll.current.scrollTo(value,
-                0,
-                0) : locoScroll.current.scroll.instance.scroll.y;
+              let value = arguments.length ? locoScroll.current.scrollTo(value, 0, 0) : locoScroll.current.scroll.instance.scroll.y;
 
               // console.log( 'scrollTOp',  value)
               return value;
@@ -86,10 +83,7 @@ export default function useLocoScroll (
             // console.log('scrollLeft', arguments.length)
             if ( locoScroll.current ) {
 
-              let value = arguments.length
-                ? locoScroll.current.scrollTo(value,
-                  0,
-                  0)
+              let value = arguments.length ? locoScroll.current.scrollTo(value, 0, 0)
                 : document.querySelector('.track') ?
                   -document.querySelector('.track').getBoundingClientRect().x : 0;
 
@@ -107,10 +101,8 @@ export default function useLocoScroll (
         }
       };
 
-      window.addEventListener('resize',
-        lsUpdate)
-      ScrollTrigger.addEventListener("refresh",
-        lsUpdate);
+      window.addEventListener('resize',lsUpdate)
+      ScrollTrigger.addEventListener("refresh",lsUpdate);
       ScrollTrigger.refresh();
 
       setTimeout(() => {
@@ -120,14 +112,11 @@ export default function useLocoScroll (
 
       return () => {
         if ( locoScroll.current ) {
-          window.removeEventListener('resize',
-            lsUpdate)
-          ScrollTrigger.removeEventListener("refresh",
-            lsUpdate);
+          window.removeEventListener('resize', lsUpdate)
+          ScrollTrigger.removeEventListener("refresh", lsUpdate);
           locoScroll.current.destroy();
           locoScroll.current = null;
-          console.log("Kill",
-            locoScroll.current);
+          console.log("Kill", locoScroll.current);
         }
       };
     },

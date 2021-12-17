@@ -1,10 +1,11 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import {Typography} from '@material-ui/core'
 import {text} from '../../../../../styles/mixins'
-import {motion} from 'framer-motion'
+import {motion, useAnimation, useCycle, useMotionValue} from 'framer-motion'
 
 const GalaxyButtonContainer = styled( motion.button )`
+  position: relative;
   background-color: transparent;
   border: none;
   max-width: 120px;
@@ -25,12 +26,23 @@ const GalaxyButtonContainer = styled( motion.button )`
     transform: rotate(-62deg);
   }
   
+  &:hover{
+    .btn-txt{
+      //transform: translateX(0%);
+      //transition: transform .6s cubic-bezier(0.6, 0.01, 0, 0.9);
+
+    }
+  }
+  
 `
 
 const ButtonTxt = styled( Typography )`
+  z-index: 2;
   color: #a4b5c0;
   justify-self: end;
-  transform: translateX(45%);
+  //transform: translateX(45%);
+  //transition: transform .6s cubic-bezier(0.6, 0.01, 0, 0.9);
+  
   ${text(1.3)};
 `
 
@@ -40,35 +52,101 @@ const moWrapperVariants = {
     rotate: 0,
   },
 
-  hover: {
-    // rotate: [null, 360],
-    scale: .84,
-    x: '27%',
+  loading: {
+    rotate: [null, 360],
     transition: {
-      duration: 1,
+      duration: 1.5,
+      ease: [0.6, 0.01, 0, 0.9],
+      repeat: Infinity,
+    }
+  },
+
+  hover: {
+    rotate: [null, 60],
+  }
+}
+
+const btnTxtVariants = {
+  initial: {
+    x: '50%'
+  },
+  hover: {
+    x: '10%',
+  },
+  click: {
+    x: [ null, '20%', '70%', '20%', '70%', '50%' ],
+    transition: {
+      repeat: 1,
+      // repeatType: "reverse",
+      duration: .5,
+      ease: [0.6, 0.01, 0, 0.9],
+    }
+  }
+}
+
+const errorVariants = {
+  initial: {
+    x: 0,
+  },
+
+  errorClick: {
+    x: [ null, '20%', '-20%', '0%'  ],
+    transition: {
+      repeat: 1,
+      // repeatType: "reverse",
+      duration: .5,
       ease: [0.6, 0.01, 0, 0.9],
     }
   }
 }
 
 const transition = {
-  duration: 1,
+  duration: .6,
+  ease: [0.6, 0.01, 0, 0.9]
 }
 
-const GalaxyButton = ({text, buttonType=1, ...props}) => {
+const GalaxyButton = ({text, buttonType=1, stateValue, ...props}) => {
+
+  const control = useAnimation()
+  const errorControl = useAnimation()
+  const [hoverVariantLabel, setHoverLabel] = useState('hover')
+
+  useEffect(() => {
+    stateValue.onChange(v => {
+
+      if (v.startsWith('error'))
+        errorControl.start('errorClick')
+      else if (v === 'loading'){
+        setHoverLabel('no')
+        control.start('initial')
+            .then(() => {
+              control.start('loading')
+            })
+      }
+    })
+  }, [])
+
   return (
     <GalaxyButtonContainer
                   variants={{}}
                   initial='initial'
-                  animate='animate'
+                  animate={control ?? ''}
                   data-pointer='focus'
+                  data-pointer-color='#ffe336'
                   exit='exit'
-                  whileHover='hover'
+                  whileHover={hoverVariantLabel}
                   {...props}
-
     >
 
-      <ButtonTxt>{text}</ButtonTxt>
+      <motion.div variants={btnTxtVariants}
+                  transition={transition}
+      >
+        <motion.div variants={errorVariants} animate={errorControl}>
+          <ButtonTxt className='btn-txt' >
+            {text}
+          </ButtonTxt>
+        </motion.div>
+      </motion.div>
 
 
       <motion.div variants={moWrapperVariants}
@@ -108,4 +186,4 @@ const GalaxyButton = ({text, buttonType=1, ...props}) => {
   )
 }
 
-export default GalaxyButton
+export default React.memo(GalaxyButton)

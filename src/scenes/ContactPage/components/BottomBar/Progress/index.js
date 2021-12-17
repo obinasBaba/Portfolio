@@ -30,4 +30,4 @@ const Progress = ({ step  }) => {
   )
 }
 
-export default Progress
+export default React.memo(Progress)

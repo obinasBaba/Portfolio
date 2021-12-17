@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import styled, { css } from 'styled-components'
 import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
 import {Button, Typography} from '@material-ui/core'
-import { spacing, text, xLargeUp } from "../../../../styles/mixins";
+import {spacing, text, xLargeUp, xxLargeUp} from "../../../../styles/mixins";
 import TopicIllustration from './Topicillustration'
 
 const TopicItemContainer = styled.div`
@@ -23,8 +23,9 @@ const TopicItemContainer = styled.div`
   }
 
   ${spacing('p', 2.7)};
+  ${spacing('pt', 6.7)};
 
-  ${xLargeUp(css`
+  ${xxLargeUp(css`
 
     ${spacing('p', 2)};
 
