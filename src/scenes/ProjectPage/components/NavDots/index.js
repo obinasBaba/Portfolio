@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled, {css} from 'styled-components'
 import {motion, AnimateSharedLayout, useMotionValue, LayoutGroup} from 'framer-motion'
-import { mediumUp, spacing, xLargeUp } from "../../../../styles/mixins";
+import {mediumUp, spacing, xLargeUp, xxLargeUp} from "../../../../styles/mixins";
 import ThumbAndDot from './Components/ThumbAndDot'
 
 const NavContainer = styled(motion.div)`

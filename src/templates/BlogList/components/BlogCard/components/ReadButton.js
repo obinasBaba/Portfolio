@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, {css} from 'styled-components'
 import { Typography } from '@material-ui/core'
-import { spacing } from '../../../../../styles/mixins'
+import {length, spacing} from '../../../../../styles/mixins'
 import { Link } from 'gatsby'
 
 const ReadButtonContainer = styled.div`
@@ -50,10 +50,11 @@ const ReadButtonContainer = styled.div`
     grid-row: 1 /1;
     grid-column: 1/ 1;
     background-color: #e7a28f;
-    width: 50px;
-    height: 50px;
     border-radius: 50%;
     transform: translateX(-50%);
+    
+    ${length( 'width', 5 )};
+    ${length( 'height', 5 )};
   }
 `
 
@@ -63,13 +64,15 @@ const ReadButton = ( {txt, to, index, style} ) => {
     <ReadButtonContainer  data-tooltip
                           styl={style}
                           data-tooltip-text='Read Blog'
+                          data-pointer='focus'
+                          data-pointer-color='#02021e'
     >
       <div className="bg" />
 
-      <div className={`read-txt`}
-            data-pointer='magnet'
-      >
-        <Link to={to}  className='link'>
+      <div className={`read-txt`}>
+        <Link to={to}  className='link'
+
+        >
           <Typography variant="body2">{txt}</Typography>
         </Link>
 

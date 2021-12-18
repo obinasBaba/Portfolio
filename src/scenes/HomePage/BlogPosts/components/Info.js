@@ -1,11 +1,11 @@
 import React, {useLayoutEffect} from 'react'
 import styled, {css} from 'styled-components'
 import {
-  length, largeUp,
-  smallUp,
-  spacing,
-  text,
-  title, xLargeUp
+    length, largeUp,
+    smallUp,
+    spacing,
+    text,
+    title, xLargeUp, xxLargeUp
 } from "../../../../styles/mixins";
 import SlideHover from '../../../../components/SlideHover'
 import {Link} from 'gatsby'
@@ -73,7 +73,7 @@ const BlogEffect = styled.div`
   ${ length('width', 70) };
   ${ length('height', 70) };
   
-  ${xLargeUp( css`
+  ${xxLargeUp( css`
     left: -100%;
 
 

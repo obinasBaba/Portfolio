@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Container, Typography } from '@material-ui/core'
 import styled, { css } from 'styled-components'
-import { mediumUp, spacing, text } from '../../../../styles/mixins'
+import {gridColWidth, largeUp, mediumUp, spacing, text} from '../../../../styles/mixins'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 import gsap from 'gsap'
 import STrigger from 'gsap/ScrollTrigger'
@@ -13,25 +13,34 @@ const BlogListContainer = styled( Container )`
   flex-flow: column;
   align-items: center;
   //border: thin solid red;
+  width: 100%;
 
-  ${ spacing('mt', 10) };
+  ${ gridColWidth() };
+  grid-row: 1 / 2;
+
+  
+  ${ spacing('mt', 20) };
   ${ spacing('mb', 10) };
+
+  ${largeUp(css`
+    ${ spacing('mt', 13) };
+  `)}
 `;
 
 const Title = styled( Typography )`
   align-self: flex-start;
   color: transparent;
-  -webkit-text-stroke: 1.5px white;
-  font-family: 'Bodoni Moda', serif;
+  -webkit-text-stroke: 2.5px #becdd5;
+  font-family: Elianto-Regular, serif;
   width: 100%;
-  
+
   //border: thin solid red;
 
-  ${ text(4) };
-  
-  ${ mediumUp( css`
-    ${ text(6) };
-  ` ) }
+    // ${text(4)};
+
+  ${mediumUp(css`
+    // ${text(6)};
+  `)}
 `;
 
 const BlogListWrapper = styled( motion.div )`
@@ -47,9 +56,16 @@ const BlogListWrapper = styled( motion.div )`
 `
 
 const CardContainer = styled.div`
-  margin-left: auto;
+  //border: thick solid red;
+  margin: auto;
   display: flex;
   flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  
+  ${largeUp( css`
+    ${spacing( 'mr', 8 )};
+  ` )};
 `
 
 
@@ -58,15 +74,15 @@ const BlogList = ({ children}) => {
   const progress = useMotionValue(0);
   // const rotate =  useTransform(rotateValue, [.2, .23], [0, 90]);
   // const opacity =  useTransform(rotateValue, [0, .2, .35], [1, 0, 1]);
-  const opacity =  useTransform(progress, [0, .07], [1, 0]);
+  const opacity =  useTransform(progress, [0, .08], [1, 0]);
 
 
   useEffect(() => {
+
+    const pageTitle = document.querySelector('.page-title')
+    const cardContainer = document.querySelector('.card-container')
+
     setTimeout(() => {
-
-      const pageTitle = document.querySelector('.page-title')
-      const cardContainer = document.querySelector('.card-container')
-
       gsap.to(pageTitle, {
         scrollTrigger: {
           trigger: pageTitle,
@@ -81,8 +97,6 @@ const BlogList = ({ children}) => {
           },
         },
       })
-
-      STrigger.refresh()
     })
 
   }, [])

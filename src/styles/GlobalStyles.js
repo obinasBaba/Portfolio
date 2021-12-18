@@ -112,7 +112,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     &.blog-clr {
-      --theme: #02021e;
+      //--theme: #02021e;
       --stroke-top: #f9d6ac;
       --stroke-bottom: #02021e;
       --head-opacity: 1;

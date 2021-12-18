@@ -6,7 +6,7 @@ import {
   largeUp,
   spacing,
   smallUp,
-  xLargeUp
+  xLargeUp, xxLargeUp
 } from "../../../../styles/mixins";
 import HeadlineTitle from '../../../../components/Headline'
 import {
@@ -42,7 +42,7 @@ const LogoLink = styled.a`
     margin-right: -30px;
   ` ) };
   
-  ${xLargeUp( css`
+  ${xxLargeUp( css`
     margin-right: -100px;
   ` )};
   

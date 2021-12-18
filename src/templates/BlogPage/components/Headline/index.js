@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
-import { mediumUp, smallUp, spacing, xLargeUp } from '../../../../styles/mixins'
+import {mediumUp, smallUp, spacing, xLargeUp, xxLargeUp} from '../../../../styles/mixins'
 import { Container, Typography } from '@material-ui/core'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { AnimateSharedLayout, motion, useTransform } from 'framer-motion'
@@ -52,7 +52,7 @@ const ImageBox = styled( motion.div )`
   margin: 0 auto;
   max-height: 580px;
   
-  ${xLargeUp( css`
+  ${xxLargeUp( css`
     max-height: 690px;
   ` )};
   

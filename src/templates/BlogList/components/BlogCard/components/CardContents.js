@@ -2,7 +2,7 @@ import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
-import { smallDown, smallUp, spacing, text } from '../../../../../styles/mixins'
+import {largeUp, smallDown, smallUp, spacing, text} from '../../../../../styles/mixins'
 import { Button } from '@material-ui/core'
 import CardContent from '@material-ui/core/CardContent'
 import MotionBtn from '../../../../../components/MotionBtn'
@@ -32,7 +32,11 @@ const Heading = styled( Typography )`
     color: inherit;
   }
 
-  ${ spacing( "mt", 1.5 ) };
+  ${ spacing( "mt", 2.5 ) };
+  
+  ${largeUp( css`
+    ${ spacing( "mt", 1.5 ) };
+  ` )};
 
 `;
 
@@ -61,10 +65,13 @@ const ContentWrapper = styled.div `
   align-self: stretch;
   
   color: #02021e;
-  padding-bottom: 0;
 
   ${ spacing( "pv", 2 ) };
   ${ spacing( "ph", 3 ) };
+  
+  ${largeUp( css`
+    padding-bottom: 0;
+  ` )};
  
 `;
 
@@ -80,11 +87,16 @@ const CardContents = ({ index, overline, title, body, link, tags }) => {
         <MetaTxt> #React, #Js </MetaTxt>
       </MetaWrapper>
 
-      <Heading variant="h3"> <Link to={ link }>{ title }</Link> </Heading>
+      <Heading variant="h3"
+               data-pointer='focus'
+               data-pointer-color='#02021e'
+      > <Link to={ link }>{ title }</Link> </Heading>
 
       <Excerpt gutterBottom={ true }>{ body }</Excerpt>
 
-      <ReadButton index={index} txt='read' to={link} />
+      <ReadButton index={index} txt='read' to={link}
+
+      />
 
     </ContentWrapper>
   );

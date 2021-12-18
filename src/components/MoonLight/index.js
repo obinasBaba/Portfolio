@@ -24,7 +24,7 @@ const MoonBg = styled(motion.div)`
   width: 100%;
   grid-row: 1 / 2;
 
-  //border: thin solid red;
+  //border: thick solid green;
 
   ${gridColWidth(1)};
   
@@ -70,6 +70,10 @@ const MoonBg = styled(motion.div)`
     `)};
   }
   
+  ${ ({moonstyle}) => css`
+    ${moonstyle};
+  ` };
+  
 `
 
 const defaultMoonVariant = {
@@ -100,7 +104,10 @@ const config = {
   damping: 10,
 }
 
-const MoonLight = ({ zIndex, pos = 'fixed', showMoon = true, show = true, variants = {} }) => {
+const defaultStyle  = css``
+
+
+const MoonLight = ({ moonStyle = defaultStyle , zIndex, pos = 'fixed', showMoon = true, show = true, variants = {} }) => {
 
   const x = useSpring(0, config)
   const y = useSpring(0, config)
@@ -113,7 +120,7 @@ const MoonLight = ({ zIndex, pos = 'fixed', showMoon = true, show = true, varian
 
     let trackMousePos = ev => {
       x.set((getMousePos(ev).x / 18) * -1)
-      y.set((getMousePos(ev).y / 15) * -1)
+      y.set((getMousePos(ev).y / 16) * -1)
     }
 
     window.addEventListener('mousemove', trackMousePos)
@@ -133,6 +140,7 @@ const MoonLight = ({ zIndex, pos = 'fixed', showMoon = true, show = true, varian
       // animate="animate"
       // exit="exit"
       style={{ x, y }}
+      moonstyle={moonStyle}
     >
       <div className="moonlight">
         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1302.799 1302.8">

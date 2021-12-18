@@ -16,9 +16,7 @@ const StyledThumbnail = styled(CardMedia)`
   width: 88%;
   margin-left: auto; //center it
   margin-right: auto;
-  height: 0;
   background-color: #fff;
-  //padding-bottom: 40%;
   
   ${spacing('mt', -7)};
   ${spacing('br', 2)};

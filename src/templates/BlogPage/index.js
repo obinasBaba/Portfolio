@@ -79,7 +79,7 @@ const BlogPage = ({data, path, ...other}) => {
 
       <MoreBlog data={data.nextBlog.frontmatter} slug={data.nextBlog.fields.slug}/>
 
-      <GradientBg />
+      {/*<GradientBg />*/}
 
     </BlogContainer>
   )

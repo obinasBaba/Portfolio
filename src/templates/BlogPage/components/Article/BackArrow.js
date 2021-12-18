@@ -25,7 +25,7 @@ const BackArrow = () => {
           pinSpacing: false,
           pin: true,
           scrub: 2,
-          start: 'top 30%',
+          start: 'top 20%',
           scroller: '#blog-container',
           end: () => '+=' + wrapper.offsetHeight,
           onUpdate(self) {

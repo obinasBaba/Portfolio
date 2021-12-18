@@ -17,7 +17,7 @@ import BackArrow from './BackArrow'
 
 const ArticleContainer = styled.section`
   position: relative;
-  color: var(--theme);
+  //color: var(--theme);
 
   ${ spacing( "pt", 22 ) };
   ${ spacing( "pb", 10 ) };
