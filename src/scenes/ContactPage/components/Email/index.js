@@ -1,7 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import {HeadLineTitle, CustomTextField} from '../shared'
-import {spacing} from '../../../../styles/mixins'
+import {largeUp, spacing} from '../../../../styles/mixins'
 import {FieldArray, Field} from 'formik'
 
 const EmailContainer = styled.div`
@@ -10,11 +10,20 @@ const EmailContainer = styled.div`
 
 const EmailInputContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-flow: column;
+  
   justify-content: space-between;
-  width: 70%;
+  
   
   ${spacing('gap', 6)};
+  
+  ${largeUp( css`
+    width: 70%;
+    flex-flow: row;
+    align-items: center;
+
+  ` )};
 
 `
 
@@ -29,9 +38,6 @@ const Email = ({ ...props}) => {
       <EmailInputContainer >
         <Field name='email' label='email address' type='text' as={CustomTextField} />
         <Field name='phone' label='phone no'  as={CustomTextField}/>
-
-        {/*<CustomTextField label='e-mail address'   />*/}
-        {/*<CustomTextField label='phone number'  />*/}
       </EmailInputContainer>
 
     </EmailContainer>

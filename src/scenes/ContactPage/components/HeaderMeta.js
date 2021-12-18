@@ -1,6 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
-import { spacing } from '../../../styles/mixins'
+import styled, {css} from 'styled-components'
+import {largeUp, mediumUp, spacing} from '../../../styles/mixins'
 import { Typography } from '@material-ui/core'
 import {motion} from 'framer-motion'
 import {transition} from './shared'
@@ -9,15 +9,22 @@ const HeaderMetaContainer = styled( motion.div )`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-flow: column;
 
   ${spacing('gap', 3)};
-  ${spacing('mt', 3)};
+  ${spacing('mt', 15)};
+  
+  ${largeUp( css`
+    flex-flow: row;
+    ${spacing('mt', 5)};
+  ` )};
 
   & * {
     font-weight: lighter;
     color: #617683;
     letter-spacing: 1px;
   }
+  
 `
 
 const metaVariants = {

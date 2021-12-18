@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import styled from 'styled-components'
-import { spacing, text } from '../../../../styles/mixins'
+import styled, {css} from 'styled-components'
+import {largeUp, spacing, text} from '../../../../styles/mixins'
 import { Button, TextField, Typography } from '@material-ui/core'
 import Form from './components/form'
 import {CustomTextField, HeadLineTitle} from '../shared'
@@ -12,8 +12,16 @@ const WhoContainer = styled.div``
 const FormContainer = styled.div`
   width: 80%;
   display: flex;
+  flex-flow: column;
   align-items: center;
-  gap: 5rem;
+  ${spacing('gap', 7)};
+
+
+  ${largeUp( css`
+    gap: 5rem;
+    flex-flow: row;
+    
+  ` )};
 
   ${spacing('mt', 6)};
 `

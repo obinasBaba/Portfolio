@@ -118,7 +118,7 @@ const ContactPage = () => {
   }
 
   const steps = [
-   /* {
+      /*{
       stepName: '',
       schema: yup.object({
         name: yup.string().required('Please tell me who you are'),
@@ -134,7 +134,7 @@ const ContactPage = () => {
       }),
       fields: ['topic'],
       component: props => <Topic {...props} />,
-    },*/
+    },
     {
       stepName: '',
       schema: yup.object({
@@ -145,7 +145,7 @@ const ContactPage = () => {
       }),
       fields: ['message'],
       component: props => <Message {...props} />,
-    },
+    },*/
     {
       stepName: '',
       schema: yup.object({

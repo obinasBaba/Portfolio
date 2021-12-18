@@ -1,12 +1,12 @@
 import React, {useEffect, useLayoutEffect, useRef} from 'react'
 import lotti from 'lottie-web'
-import styled from 'styled-components'
-import {spacing} from '../../../../styles/mixins'
+import styled, {css} from 'styled-components'
+import {largeUp, spacing} from '../../../../styles/mixins'
 import useLotti from "../../../../helpers/useLotti";
 
 const IllustrationContainer = styled.div`
   position: absolute;
-  top: 13%;
+  top: 3%;
   //left: 0;
   
   max-width: 75px;
@@ -19,6 +19,11 @@ const IllustrationContainer = styled.div`
   
   ${spacing('mt', -2.7)};
   ${spacing('ml', -2.7)};
+  
+  ${largeUp( css`
+    top: 13%;
+
+  ` )};
 
 `
 

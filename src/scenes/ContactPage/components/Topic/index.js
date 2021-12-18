@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import { Typography, Checkbox } from '@material-ui/core'
-import { spacing } from '../../../../styles/mixins'
+import {largeUp, spacing} from '../../../../styles/mixins'
 import TopicItem from './TopicItem'
 import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
 import { Field, useField } from 'formik'
@@ -28,10 +28,19 @@ const HeadLineTitle = styled(Typography)`
 
 const CardRow = styled.div`
   display: flex;
-  align-items: center;
-  gap: 2rem;
+  align-items: stretch;
+  
+  flex-wrap: wrap;
 
-  ${spacing('mt', 6)};
+  ${spacing('mt', 10)};
+  ${spacing('gap', 3)};
+
+  ${largeUp( css`
+    flex-wrap: nowrap;
+    align-items: center;
+
+    ${spacing('mt', 6)};
+  ` )};
 `
 
 const TopicItemMap = ({ body, title, path, ...props }) => {

@@ -2,17 +2,19 @@ import React, { useRef } from 'react'
 import styled, { css } from 'styled-components'
 import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
 import {Button, Typography} from '@material-ui/core'
-import {spacing, text, xLargeUp, xxLargeUp} from "../../../../styles/mixins";
+import {largeUp, spacing, text, xLargeUp, xxLargeUp} from "../../../../styles/mixins";
 import TopicIllustration from './Topicillustration'
 
 const TopicItemContainer = styled.div`
   position: relative;
   //height: 200px;
   //width: 300px;
-  
+
   display: flex;
   flex-flow: column;
   align-items: flex-start;
+  flex-grow: 1;
+  flex-basis: calc(50% - calc(1.875rem * var(--indent)));
 
   border-radius: 20px;
   background-color: #485564;
@@ -22,8 +24,17 @@ const TopicItemContainer = styled.div`
     cursor: none;
   }
 
-  ${spacing('p', 2.7)};
-  ${spacing('pt', 6.7)};
+  ${spacing('p', 2)};
+  ${spacing('pt', 12)};
+
+  ${largeUp(css`
+    flex-grow: initial;
+    flex-basis: initial;
+    
+    ${spacing('p', 2.7)};
+    ${spacing('pt', 6.7)};
+
+  `)};
 
   ${xxLargeUp(css`
 
@@ -36,27 +47,27 @@ const TopicItemContainer = styled.div`
   &:hover {
     background-color: #5d6c7b;;
 
-    ${({ selected }) =>
-      !selected &&
-      css`
-        background-color: #758593;
-        transition: background-color 0.3s ease-out;
-      `};
+    ${({selected}) =>
+        !selected &&
+        css`
+          background-color: #758593;
+          transition: background-color 0.3s ease-out;
+        `};
   }
 
-  ${({ selected }) =>
-    selected &&
-    css`
-      background-color: #758593;
-    `};
+  ${({selected}) =>
+      selected &&
+      css`
+        background-color: #758593;
+      `};
 
 
   & .topic_checkbox {
     position: absolute;
     visibility: hidden;
   }
-  
-  button{
+
+  button {
     position: absolute;
     inset: 0;
     width: 100%;

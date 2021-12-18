@@ -1,7 +1,7 @@
 import React, {useRef} from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import Progress from './Progress'
-import {spacing} from '../../../../styles/mixins'
+import {largeUp, spacing} from '../../../../styles/mixins'
 import GalaxyButton from './GalaxyButton'
 
 const BottomContainer = styled.div`
@@ -11,9 +11,18 @@ const BottomContainer = styled.div`
   //border: thin solid red;
   
   width: 100%;
+  padding: 0;
   
-  ${spacing('mt', 9)};
-  ${spacing('ph', 5)};
+  ${spacing('mt', 19)};
+  ${spacing('gap', 7)};
+  
+  ${largeUp( css`
+    gap: 0;
+
+    ${spacing('mt', 11.5)};
+    ${spacing('ph', 5)};
+
+  ` )};
 `
 
 const BottomBar = ({nextProps, backProps, step, control}) => {

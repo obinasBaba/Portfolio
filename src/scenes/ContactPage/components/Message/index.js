@@ -1,14 +1,18 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import { HeadLineTitle, CustomTextField } from '../shared'
 import { TextField as MuiTextField } from '@material-ui/core'
-import { spacing, text } from '../../../../styles/mixins'
+import {largeUp, spacing, text} from '../../../../styles/mixins'
 import { FieldArray, Field } from 'formik'
 
 const MessageContainer = styled.div``
 
 const MessageInput = styled.div`
-  max-width: 60%;
+  max-width: 70%;
+
+  ${largeUp( css`
+    max-width: 60%;
+  ` )};
 
 `
 
