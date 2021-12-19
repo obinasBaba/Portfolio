@@ -1,4 +1,6 @@
-import React, {useContext, useEffect, useRef} from 'react'
+// noinspection JSIgnoredPromiseFromCall
+
+import React, { useContext, useEffect, useRef } from 'react'
 import { List, OthersContainer, Title } from './components'
 import { motion, useAnimation, useMotionValue } from 'framer-motion'
 
@@ -6,13 +8,9 @@ import one from './img/img.png'
 import two from './img/img_4.png'
 import three from './img/img_5.png'
 import four from './img/img_6.png'
-import { useIntersection } from 'react-use'
 import Item from './components/Item'
-import {distance, lerp, getMousePos} from '../../../../helpers/utils'
-import EventUtil from "../../../../helpers/EventUtil";
-import {MotionValueContext} from "../../../../contexts/MotionStateWrapper";
-import gsap from 'gsap'
-
+import { lerp } from '../../../../helpers/utils'
+import { MotionValueContext } from '../../../../contexts/MotionStateWrapper'
 
 const imgVariants = {
   initial: {
@@ -21,25 +19,33 @@ const imgVariants = {
   animate: {},
   exit: {},
 
-  hover(c){
-    return{
+  hover(c) {
+    return {
       opacity: c.hovering() ? 1 : 0,
-      scale: c.hovering() ? 1 : .9,
+      scale: c.hovering() ? 1 : 0.9,
     }
   },
 
   hoverEnd: {
     opacity: 0,
-    scale: .9,
+    scale: 0.9,
     transition: {
-      duration: .5,
-      ease: 'easeOut'
-    }
-  }
+      duration: 0.5,
+      ease: 'easeOut',
+    },
+  },
 }
 
 const containerVariants = {
 
+}
+
+const transition = {
+  ease: [0.6, 0.01, 0, 0.9],
+  duration: 1.5,
+
+  // repeat: Infinity,
+  // repeatType: 'mirror',
 }
 
 const titleVariants = {
@@ -70,13 +76,7 @@ const titleVariants = {
   }
 }
 
-const transition = {
-  ease: [0.6, 0.01, 0, 0.9],
-  duration: 1.5,
 
-  // repeat: Infinity,
-  // repeatType: 'mirror',
-}
 
 const Others = ({ auth, kklLuzern, udemy, active }) => {
 
