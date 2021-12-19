@@ -1,29 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import styled, {css} from 'styled-components'
-import {motion, AnimateSharedLayout, useMotionValue, LayoutGroup} from 'framer-motion'
-import {mediumUp, spacing, xLargeUp, xxLargeUp} from "../../../../styles/mixins";
+import styled, { css } from 'styled-components'
+import { motion } from 'framer-motion'
+import { mediumUp, spacing, xLargeUp } from '../../../../styles/mixins'
 import ThumbAndDot from './Components/ThumbAndDot'
 
-const NavContainer = styled(motion.div)`
+const NavContainer = styled.div`
   position: fixed;
   z-index: 3;
   bottom: 4%;
   left: 30%;
-  
-  ${ mediumUp(css`
+
+  ${mediumUp(css`
     top: 40%;
     bottom: initial;
     left: 0;
-    
-  `) };
+  `)};
 
   ${spacing('ml', 4.5)};
   ${spacing('mb', 3.5)};
-  
-  ${xLargeUp( css`
+
+  ${xLargeUp(css`
     ${spacing('ml', 6.7)};
-    
-  ` )};
+  `)};
 `
 
 const NavWrapper = styled.ul`
@@ -76,11 +74,12 @@ const parentVariant = {
   },
 }
 
+const anchors = ['one', 'two', 'three', 'four']
+
 const NavDots = ({activeIndex}) => {
   // const {activeIndex} = props;
 
   const [active, setActive] = useState(0)
-  const [anchors, setAnchors] = useState(['one', 'two', 'three', 'four'])
 
   useEffect(() => {
     // ref.current = { setActiveAnchors: setActive }

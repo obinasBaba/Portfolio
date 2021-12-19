@@ -4,6 +4,7 @@ import { motion, useSpring, useTransform } from 'framer-motion'
 import ImageGrid from '../../scenes/HomePage/RecentDesigns/ImageGrid'
 import { spacing } from '../../styles/mixins'
 import { MotionValueContext } from "../../contexts/MotionStateWrapper";
+import useHomeWorksAssets from "../../hooks/queries/useHomeWorksAssets";
 
 const ScrollContainer = styled.section`
   position: relative;
@@ -33,14 +34,37 @@ const ScrollTrack = styled(motion.div)`
 `
 
 
-const Gallery = ({
-  imageRow,
-  target,
-}) => {
+const Gallery = () => {
 
   const {
     moScroll,
   } = useContext(MotionValueContext)
+
+  const {
+    Art,
+    eScooter,
+    Web,
+    Hommy,
+    Investments,
+    Lazy,
+    Starbank,
+    Teampoint,
+    Travel,
+    Tude,
+    Realty,
+    North,
+  } = useHomeWorksAssets();
+
+  const imageList = [
+    [Web],
+    [Investments, Travel, Starbank],
+    [eScooter],
+    [Art, Lazy, Teampoint],
+    [North],
+    [Realty, Hommy, Tude],
+    [Web],
+
+  ];
 
   const mapped = useTransform(moScroll.y, [0, moScroll.limit.get()], [-40, -1300])
 
@@ -48,22 +72,23 @@ const Gallery = ({
     mass: .5,  damping: 10, stiffness: 50,
   })
 
+  const [refresh, setRefresh] = useState(false)
+
+  useEffect(() => {
+    setRefresh(true)
+  }, [refresh])
+
 
   return (
     <ScrollContainer>
-      <ScrollWrapper id={`image_row_container${target}`}>
+      <ScrollWrapper id={`image_row_container`}>
         <ScrollTrack
-          // data-scroll
-          // data-scroll-speed={speed}
-          // // data-scroll-target={`#image_row_container${target}`}
-          // data-scroll-direction="horizontal"
-          // data-scroll-delay='.08'
             className='rd-scroll-track'
-          style={{x: x}}
+            style={{x}}
         >
-          {imageRow.map((item, index) => {
-            return <ImageGrid images={item} idx={index} key={item[0].name + index} />
-          })}
+          {imageList.map((item, index) =>
+              <ImageGrid images={item} idx={index} key={item[0].name + index} />
+          )}
         </ScrollTrack>
       </ScrollWrapper>
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import {
   gridMultiplayer,
@@ -9,8 +9,8 @@ import {
 import { motion, useSpring, useTransform } from 'framer-motion'
 import HeadlineTitle from '../../../components/Headline'
 import RotationTextPath from './RotationTextPath'
+import { MotionValueContext } from '../../../contexts/MotionStateWrapper'
 // import './projectFonts.css'
-
 
 const ProjectContainer = styled(motion.section)`
   position: relative;
@@ -32,7 +32,6 @@ const ProjectContainer = styled(motion.section)`
 `
 
 const Planet = styled(motion.div)`
- 
   position: absolute;
   border-radius: 50%;
   z-index: 110;
@@ -63,13 +62,12 @@ const ScrollPlanet = styled.div`
   left: -12%;
   bottom: 30%;
   display: none;
-  
+
   ${largeUp(css`
     left: 6%;
     bottom: 25%;
     display: initial;
   `)};
-
 `
 
 const ScrollPlanet2 = styled.div`
@@ -85,8 +83,7 @@ const ScrollPlanet2 = styled.div`
   `)};
 `
 
-const parentVariant = {
-}
+const parentVariant = {}
 
 const config = {
   mass: 1,
@@ -95,8 +92,10 @@ const config = {
 }
 
 const Projects = () => {
-
   const containerRef = useRef(null)
+  const {
+    mouse: { mouseY, mouseX },
+  } = useContext(MotionValueContext)
 
   const yBig = useSpring(0, config)
   const xBig = useSpring(0, config)
@@ -104,27 +103,32 @@ const Projects = () => {
   const ySmall = useTransform(yBig, y => y / 8)
   const xSmall = useTransform(xBig, x => x / 6)
 
-  const calculateMotionValues = (x, y) => {
-    const xPos = (x - window.innerWidth) / 15
-    const yPos = (y - window.innerHeight) / 15
-    yBig.set(yPos)
-    xBig.set(xPos)
-  }
-
-
-
   //transform
   useEffect(() => {
-    const handler = async e => {
-      calculateMotionValues(e.clientX, e.clientY)
+    const yChangeHandler = y => {
+      const yPos = (y - window.innerHeight) / 15
+      yBig.set(yPos)
     }
-    
-    window.addEventListener('mousemove', handler)
+    const xChangeHandler = x => {
+      const xPos = (x - window.innerWidth) / 15
+      xBig.set(xPos)
+    }
 
-    return () => window.removeEventListener('mousemove', handler)
+    mouseY.onChange(yChangeHandler)
+
+    mouseX.onChange(xChangeHandler)
+
   }, [])
 
+  let planetVariants = {
+    initial: {
+      scale: 1,
+    },
 
+    exit: {
+      scale: 0
+    }
+  };
   return (
     <ProjectContainer
       id="projects"
@@ -134,16 +138,19 @@ const Projects = () => {
     >
       <HeadlineTitle title={'Projects'} mb={3} subtitle={'Case Studies'} />
 
-      <ScrollPlanet data-scroll data-scroll-speed='-3'>
-        <Planet className='planet-left' style={{ y: yBig, x: xBig }} />
+      <ScrollPlanet data-scroll data-scroll-speed="-3">
+        <Planet className="planet-left" style={{ y: yBig, x: xBig }}
+                variants={planetVariants}
+        />
       </ScrollPlanet>
 
-      <ScrollPlanet2 data-scroll data-scroll-speed='-6'>
-        <Planet className="planet-right" style={{ y: ySmall, x: xSmall }} />
+      <ScrollPlanet2 data-scroll data-scroll-speed="-6">
+        <Planet className="planet-right" style={{ y: ySmall, x: xSmall }}
+                variants={planetVariants}
+        />
       </ScrollPlanet2>
 
       <RotationTextPath />
-
     </ProjectContainer>
   )
 }

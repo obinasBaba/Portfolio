@@ -10,14 +10,13 @@ const IndexPage = ({ path }) => {
     setCurrentPath,
     registeredScrollPos,
     setRegisteredScrollPos,
-    setListenerTargetSelector,
   } = useContext(AppStateContext)
 
   const {
     backgroundOverlay
   } = useContext(BackgroundOverlayStateContext)
 
-  const loco = useLocoScroll(true)
+  const loco = useLocoScroll(!backgroundOverlay)
 
   useEffect(() => {
     if (backgroundOverlay) return
@@ -41,15 +40,17 @@ const IndexPage = ({ path }) => {
   useRefreshMouseListeners('[data-pointer]')
 
   useEffect(() => {
-    window.locoInstance.update()
+    setTimeout(() => {
+      window.locoInstance.update()
+    }, 1000)
   }, [])
 
   return (
-    <>
-      <HomePage />
-      {/*<h1>home page</h1>*/}
-      {/*{!backgroundOverlay && }*/}
-    </>
+     <>
+       {
+         !backgroundOverlay && <HomePage />
+       }
+     </>
   )
 }
 

@@ -216,7 +216,7 @@ const circleTxtVariants: Variants = {
   },
 
   exit(arg){
-    console.log('exitArg: --- --', arg)
+    // console.log('exitArg: --- --', arg)
     // if (arg.inView !== 'projects')
     //   return {};
 
@@ -298,10 +298,10 @@ const RotationCircleText = () => {
     },
   ]
 
-  // @ts-ignore
+ /* // @ts-ignore
   const {
     setCurrentPath
-  } = useContext( AppStateContext )
+  } = useContext( AppStateContext )*/
 
   const {
     inView
@@ -316,7 +316,7 @@ const RotationCircleText = () => {
 
     const track = document.querySelector<HTMLElement>('#projects')
 
-    queueMicrotask(() => {
+    setTimeout(() => {
       scrollTween.current =
         gsap.timeline().to(
           [
@@ -337,9 +337,6 @@ const RotationCircleText = () => {
         )
     })
 
-    // STrigger.refresh()
-
-
   }, [])
 
   return (
@@ -348,18 +345,18 @@ const RotationCircleText = () => {
       variants={containerVariants}
       animate={controller}
       initial="initial"
-      // exit='exit'
+      exit='exit'
       whileInView="inView"
       viewport={{
         amount: 'some',
         once: true,
       }}
-      onViewportEnter={_ => {
+     /* onViewportEnter={_ => {
         inView.set('projects')
       }}
       onViewportLeave={() => {
         inView.set(null)
-      }}
+      }}*/
     >
       <motion.svg
         className="circles"
@@ -407,7 +404,7 @@ const RotationCircleText = () => {
           controller.start('btnHoverEnd')
         }}
       >
-        <Link to='/projects'
+        <Link to='/projects/#one'
               className="enter__bg"
         //       onClick={event => {
         //   event.preventDefault()

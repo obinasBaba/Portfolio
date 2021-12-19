@@ -47,11 +47,10 @@ const introContainerVariants = {
 
 const textContainerVariants = {
   animate () {
-    let loading = window.fromLoading
 
     return {
       transition: {
-        delayChildren: loading ? .8 : 0,
+        delayChildren: .8,
         staggerChildren: 0.2,
       }
     }
@@ -62,10 +61,6 @@ const Hero = () => {
   // const { logo } = useHeaderAssets();
 
   // const { backgroundOverlay, } = useContext(AppStateContext)
-  const control = useAnimation();
-  const {setHeroLoaded} = useContext( LoadStateContext )
-  const {backgroundOverlay} = useContext( BackgroundOverlayStateContext )
-
 
   useEffect(() => {
       setTimeout(() => {
@@ -74,26 +69,12 @@ const Hero = () => {
         1000)
     }, [])
   
-  useEffect(() => {
-    return ;
-
-    if (backgroundOverlay) return;
-
-    setTimeout(() => {
-      control.start('animate')
-          .then(() => {
-            setHeroLoaded(true)
-          })
-    }, 500)
-
-  } ,[backgroundOverlay])
-
   return (
     <>
       <HeroContainer variants={{}}
                      initial="initial"
                      animate={'animate'}
-                     // exit="exit"
+                     exit="exit"
       >
 
         <TextContainer variants={textContainerVariants}>

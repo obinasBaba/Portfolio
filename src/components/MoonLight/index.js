@@ -78,8 +78,8 @@ const MoonBg = styled(motion.div)`
 
 const defaultMoonVariant = {
   transition: {
-    // delay: 1,
-    duration: 1,
+    delay: .8,
+    duration: 1.2,
     ease: [0.6, 0.01, 0, 0.9],
   },
 
@@ -136,9 +136,9 @@ const MoonLight = ({ moonStyle = defaultStyle , zIndex, pos = 'fixed', showMoon 
       pos={pos}
       variants={{ ...defaultMoonVariant, ...variants }}
       transition={defaultMoonVariant.transition}
-      // initial="initial"
-      // animate="animate"
-      // exit="exit"
+      initial="initial"
+      animate="animate"
+      exit="exit"
       style={{ x, y }}
       moonstyle={moonStyle}
     >

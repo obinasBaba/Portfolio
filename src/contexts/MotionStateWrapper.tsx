@@ -7,7 +7,7 @@ import React, {useLayoutEffect, createContext, useEffect} from 'react'
 type MotionValueContextType = {
   projectImgLoaded: MotionValue<boolean>,
   registerScrollRestoration: MotionValue<string >,
-  inView: MotionValue<string | null >,
+  inView: MotionValue<any >,
 
   mouse: {
     mouseX: MotionValue<number>

@@ -16,6 +16,7 @@ import {useTransform} from 'framer-motion'
 import {motion} from 'framer-motion'
 import { MotionValueContext } from "../../../../contexts/MotionStateWrapper";
 import LoadStateContext from "../../../../contexts/LoadStateContext";
+import {useProjectSvg} from "../../../../hooks/queries/useProjectSvg";
 
 const TitleContainer = styled(Container)`
   display: flex;
@@ -42,7 +43,7 @@ const LogoLink = styled.a`
     margin-right: -30px;
   ` ) };
   
-  ${xxLargeUp( css`
+  ${xLargeUp( css`
     margin-right: -100px;
   ` )};
   
@@ -77,9 +78,11 @@ const LogoLink = styled.a`
   
 `
 
-const Title = ({ dribbleRed, circledText }) => {
+const Title = () => {
 
   const { moScroll } = useContext(MotionValueContext)
+  const { circledText, dribbleRed } = useProjectSvg();
+
 
   const rotate = useTransform(moScroll.y, [200, 2000], [0, 360])
   const theme = useTheme()
@@ -97,19 +100,15 @@ const Title = ({ dribbleRed, circledText }) => {
         <motion.img
           alt="Web App, Mobile"
           loading="lazy"
-          src={circledText}
+          src={circledText.publicURL}
           className="circledText"
           style={{rotate}}
-          // onViewportEnter={entry => {
-          //   if ( !recentDesign )
-          //     setRecentDesign(true)
-          // }}
         />
 
         <img
           loading="lazy"
           alt="Web App, Mobile"
-          src={dribbleRed}
+          src={dribbleRed.publicURL}
           className="dribbleRed"
         />
       </LogoLink>
