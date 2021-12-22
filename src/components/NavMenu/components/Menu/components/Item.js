@@ -68,7 +68,7 @@ const ItemContainer = styled(motion.li)`
 
   &:nth-child(even) {
     align-self: flex-end;
-    margin-right: 10%;
+    margin-right: 5%;
   }
 
   ${largeUp(css`
@@ -245,16 +245,13 @@ const Icon = styled(motion.div)`
 
 const Item = ({ currentPath, link, stars, icon, index, title, onClick }) => {
 
-    const {
-        setCurrentPath
-    } = useContext( AppStateContext )
 
 
   return (
 
     <ItemContainer variants={itemVariants}
                    className='nav-menu-item'
-                   data-pointer='focus'
+                   data-pointer={ link !== currentPath && 'focus' }
                    transition={transition}
                    active={link === currentPath && currentPath !== '/'}
                    key={link + index + title}

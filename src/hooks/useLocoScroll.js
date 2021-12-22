@@ -107,14 +107,18 @@ export default function useLocoScroll (
 
       setTimeout(() => {
           locoScroll.current && locoScroll.current.update()
-        },
-        500)
+              window.locoInstance.update();
+
+          },
+        1500)
 
       return () => {
         if ( locoScroll.current ) {
           window.removeEventListener('resize', lsUpdate)
           ScrollTrigger.removeEventListener("refresh", lsUpdate);
           locoScroll.current.destroy();
+            window.locoInstance.destroy()
+            window.locoInstance = null
           locoScroll.current = null;
           console.log("Kill", locoScroll.current);
         }

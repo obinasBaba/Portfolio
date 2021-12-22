@@ -9,8 +9,9 @@ export default function (selector) {
     currentPath
   } = useContext( AppStateContext )
 
-  const animateFocus = useCallback(
-    (isFocused, color) => {
+  const { backgroundOverlay } = useContext(BackgroundOverlayStateContext)
+
+  const animateFocus = useCallback((isFocused, color) => {
       gsap.to('.pointer.inner > *', {
         color: isFocused ? color || '#a4b5c0' : 'var(--theme)',
         duration: gsap.defaults().duration,
@@ -80,14 +81,17 @@ export default function (selector) {
       element.removeEventListener('mouseenter', handleHover)
       element.removeEventListener('mouseleave', handleLeave)
 
-      element.addEventListener('mouseenter', handleHover)
 
       const type = element.dataset.pointer
 
       if (type === 'magnet') {
         // console.log(element)
+
         const attraction = element.dataset.magnetAttraction ?? 1
         const distance = element.dataset.magnetDistance ?? 0.7
+
+        element.addEventListener('mouseenter', handleHover)
+
         new MagnetElement({
           element: element,
           stop: attraction,
@@ -99,14 +103,16 @@ export default function (selector) {
           animatePointed(false)
           // document.body.classList.remove('canvas-hover')
         })
-      } else {
+      } else if (type === 'focus') {
         //only for pointer and focused add mouseleave
+        element.addEventListener('mouseenter', handleHover)
+
         element.addEventListener('mouseleave', handleLeave)
       }
     })
   }, selector)
 
-  const { backgroundOverlay } = useContext(BackgroundOverlayStateContext)
+
 
   useEffect(() => {
     animateFocus(false)

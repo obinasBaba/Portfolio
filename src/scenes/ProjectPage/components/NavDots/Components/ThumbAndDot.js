@@ -76,9 +76,12 @@ const ThumbAndDotContainer = styled.li`
 
 
 const spring = {
-  type: "spring",
-  stiffness: 500,
-  damping: 30
+
+    ease: [0.6, 0.01, 0, 0.9],
+    duration: 1.5,
+
+    // repeat: Infinity,
+    // repeatType: 'mirror',
 }
 
 const ThumbAndDot = ({ hidden, clickEvent, index, anchor, dataAnchor }) => {
@@ -103,7 +106,7 @@ const ThumbAndDot = ({ hidden, clickEvent, index, anchor, dataAnchor }) => {
 
         <motion.span
           layoutId="outline"
-          inherit={false}
+          // inherit={false}
           initial={false}
           animate={{} }
           transition={spring}

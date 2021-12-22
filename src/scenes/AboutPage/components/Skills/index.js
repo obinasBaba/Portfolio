@@ -10,7 +10,7 @@ const SkillsContainer = styled(Container)`
   
 `
 const SkillTitle = styled(Typography)`
-  font-family: Elianto-Regular, serif;
+  font-family: 'Elianto-Regular', serif;
   letter-spacing: -2.2px;
   margin-top: -5px;
 

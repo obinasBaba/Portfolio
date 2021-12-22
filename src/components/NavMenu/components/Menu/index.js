@@ -18,7 +18,7 @@ const MenuItemContainer = styled(motion.ul)`
   margin: auto;
   width: 55%;
   height: 50%;
-  //z-index: -1;
+  z-index: 11;
 
   ${largeUp(css`
     //margin-top: 0;
@@ -47,6 +47,7 @@ const MenuContainer = styled(motion.div)`
   //border: thick solid teal;
   display: flex;
   flex-flow: column;
+  z-index: 11;
   
 `
 
@@ -170,7 +171,7 @@ const Menu = ({ onClick, ...props }) => {
     },
     {
       title: 'Blog',
-      link: '/blog/',
+      link: '/blog',
       icon: blogIcon,
       stars: blogStars,
     },
@@ -201,6 +202,7 @@ const Menu = ({ onClick, ...props }) => {
     return () => setListenerTargetSelector(undefined)
   }, [])
 
+
   return (
     <MenuContainer
       variants={{}}
@@ -208,9 +210,8 @@ const Menu = ({ onClick, ...props }) => {
       animate="animate"
       exit="exit"
     >
-      <MenuMetaRow variants={metaRowVariants}
-                   transition={transition}
-      >
+
+      <MenuMetaRow variants={metaRowVariants} transition={transition}>
         {metaTxt.map((txt, i) => (
           <MetaItem variants={metaVariant}
                     transition={transition}
@@ -235,9 +236,7 @@ const Menu = ({ onClick, ...props }) => {
         ))}
       </MenuItemContainer>
 
-      <MenuMetaRow variants={metaRowVariants}
-                   transition={transition}
-      >
+      <MenuMetaRow variants={metaRowVariants} transition={transition}>
         {metaTxt2.map((txt, i) => (
           <MetaItem variants={metaVariant}
                     transition={transition}
@@ -245,6 +244,7 @@ const Menu = ({ onClick, ...props }) => {
         ))}
 
       </MenuMetaRow>
+
     </MenuContainer>
   )
 }

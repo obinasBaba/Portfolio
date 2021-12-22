@@ -12,7 +12,7 @@ const TopicContainer = styled.div`
 `
 
 const HeadLineTitle = styled(Typography)`
-  font-family: Elianto-Regular, serif;
+  font-family: 'Elianto-Regular', serif;
   font-weight: bolder;
   line-height: 150%;
   //color: #617683;

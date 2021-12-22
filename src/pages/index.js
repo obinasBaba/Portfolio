@@ -41,7 +41,7 @@ const IndexPage = ({ path }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      window.locoInstance.update()
+      // window.locoInstance.update()
     }, 1000)
   }, [])
 

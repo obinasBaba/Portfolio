@@ -2,8 +2,7 @@ import React, {useContext, useEffect, useRef} from "react";
 import styled, { css } from "styled-components";
 import { gsap } from "gsap";
 import { motion, useAnimation, Variants } from "framer-motion";
-import {Link, navigate} from "gatsby";
-import {AppStateContext} from "../../../contexts/AppStateContext";
+import {Link} from "gatsby";
 import {MotionValueContext} from "../../../contexts/MotionStateWrapper";
 
 const vars = css`
@@ -178,7 +177,6 @@ const circleTxtVariants: Variants = {
   },
 
   inView(custom) {
-    console.log('inView Animation start----', custom);
     return {
       scale: 1,
       opacity: 1,
@@ -275,8 +273,10 @@ const transition = {
   ease: [0.87, 0, 0.13, 1],
 }
 
+
 const RotationCircleText = () => {
   const enterBtn = useRef(null)
+  const clicked = useRef(false)
   const scrollTween = useRef(gsap.timeline())
   const controller = useAnimation()
   const texts = [
@@ -298,10 +298,6 @@ const RotationCircleText = () => {
     },
   ]
 
- /* // @ts-ignore
-  const {
-    setCurrentPath
-  } = useContext( AppStateContext )*/
 
   const {
     inView
@@ -351,12 +347,6 @@ const RotationCircleText = () => {
         amount: 'some',
         once: true,
       }}
-     /* onViewportEnter={_ => {
-        inView.set('projects')
-      }}
-      onViewportLeave={() => {
-        inView.set(null)
-      }}*/
     >
       <motion.svg
         className="circles"
@@ -393,6 +383,8 @@ const RotationCircleText = () => {
         className="enter"
         data-pointer="focus"
         data-pointer-color="#02021e"
+        data-tooltip
+        data-tooltip-text='explore my works'
         variants={btnVariants}
         transition={transition}
         ref={enterBtn}
@@ -400,18 +392,20 @@ const RotationCircleText = () => {
           controller.start('startHover')
         }}
         onHoverEnd={event => {
+          if (clicked.current) return;
           controller.start('endHover')
           controller.start('btnHoverEnd')
         }}
       >
         <Link to='/projects/#one'
               className="enter__bg"
-        //       onClick={event => {
-        //   event.preventDefault()
-        //   setCurrentPath('/projects')
-        //   navigate('/projects')
-        //
-        // }}
+              onClick={event => {
+                clicked.current = true
+          // event.preventDefault()
+          // setCurrentPath('/projects')
+          // navigate('/projects')
+
+        }}
         >
           <span className="enter__text">Explore</span>
         </Link>

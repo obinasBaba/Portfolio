@@ -13,6 +13,7 @@ export const Track = styled.section`
 
   ${mediumUp(css`
     flex-flow: nowrap;
+    justify-content: space-evenly;
   `)};
   
   

@@ -12,7 +12,7 @@ import { motion } from 'framer-motion'
 import { Link } from 'gatsby'
 
 const FooterMetaContainer = styled(Container)`
-  display: flex;
+  display: flex !important;
   flex-flow: wrap;
   justify-content: space-between;
   margin: 0 auto;

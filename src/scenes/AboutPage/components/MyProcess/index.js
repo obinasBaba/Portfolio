@@ -25,7 +25,7 @@ const ProcessTitle = styled(Typography)`
   display: block;
 
   font-weight: 900;
-  font-family: Elianto-Regular,serif;
+  font-family: 'Elianto-Regular',serif;
   //line-height: 100%;
   letter-spacing: -2px;
   margin: 0 auto;
@@ -107,7 +107,7 @@ const Operate = styled.div`
 const OperateTxt = styled(Typography)`
   color: transparent;
   font-weight: 900;
-  font-family: Elianto-Regular, serif;
+  font-family: 'Elianto-Regular', serif;
   margin: 0 auto;
   -webkit-text-stroke: 1.5px #5d6c7b;
   line-height: 90%;

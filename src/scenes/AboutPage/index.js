@@ -26,7 +26,7 @@ const ScrollText = styled.section`
   justify-content: space-evenly;
   //opacity: .3;
   filter: blur(.3px);
-  font-family: Elianto-Regular,serif;
+  font-family: 'Elianto-Regular',serif;
   
   ${spacing( 'p', 5)};
   
@@ -41,7 +41,7 @@ const ScrollText = styled.section`
     font-weight: 200;
     font-style: italic;
     //opacity: .3;
-    font-family: Elianto-Regular,serif;
+    font-family: 'Elianto-Regular',serif;
     color: #434e5e;
   }
   

@@ -17,7 +17,7 @@ const SiteInfoContainer = styled(Container)`
   ${spacing('gap', 10)};
 
   .site-info {
-    font-family: Elianto-Regular, serif;
+    font-family: 'Elianto-Regular', serif;
     font-weight: 900;
     ${spacing('mb', 5)};
 

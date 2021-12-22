@@ -27,7 +27,7 @@ const ProgressCircleContainer = styled.div`
   
   ${spacing('right', 6)};
 
-  z-index: 9;
+  z-index: 8;
   
   svg.circle{
     transition: opacity 100ms ease-out;

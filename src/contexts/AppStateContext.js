@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import EventSubscribers from '../helpers/EventSubscribers'
 import { MotionStateWrapper } from './MotionStateWrapper'
 import { LoadStateWrapper } from './LoadStateContext'
@@ -53,6 +53,10 @@ const AppStateWrapper = ({ children }) => {
     width: 0,
     height: 0,
   })
+
+    useEffect(() => {
+        console.log('currentPath :' ,currentPath)
+    }, [currentPath])
 
   return (
     <AppStateContext.Provider

@@ -31,7 +31,7 @@ const Title = styled( Typography )`
   align-self: flex-start;
   color: transparent;
   -webkit-text-stroke: 2.5px #becdd5;
-  font-family: Elianto-Regular, serif;
+  font-family: 'Elianto-Regular', serif;
   width: 100%;
 
   //border: thin solid red;

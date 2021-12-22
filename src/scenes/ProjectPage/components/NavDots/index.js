@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
-import { mediumUp, spacing, xLargeUp } from '../../../../styles/mixins'
+import {largeUp, mediumUp, spacing, xLargeUp} from '../../../../styles/mixins'
 import ThumbAndDot from './Components/ThumbAndDot'
 
-const NavContainer = styled.div`
+const NavContainer = styled( motion.div )`
   position: fixed;
   z-index: 3;
   bottom: 4%;
@@ -15,9 +15,6 @@ const NavContainer = styled.div`
     bottom: initial;
     left: 0;
   `)};
-
-  ${spacing('ml', 4.5)};
-  ${spacing('mb', 3.5)};
 
   ${xLargeUp(css`
     ${spacing('ml', 6.7)};
@@ -49,7 +46,7 @@ const parentVariant = {
 
   initial: {
     x: 'calc((var(--indent) * -4.5rem))',
-    y: '-40%',
+    // y: '-40%',
     opacity: 0,
   },
 
@@ -74,15 +71,16 @@ const parentVariant = {
   },
 }
 
-const anchors = ['one', 'two', 'three', 'four']
 
 const NavDots = ({activeIndex}) => {
   // const {activeIndex} = props;
+  const anchors = ['one', 'two', 'three', 'four']
 
   const [active, setActive] = useState(0)
 
   useEffect(() => {
     // ref.current = { setActiveAnchors: setActive }
+    console.log('navDots initiated --- ', activeIndex)
 
     activeIndex.onChange(v => {
       setActive(v)

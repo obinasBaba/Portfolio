@@ -39,7 +39,7 @@ const NotFoundTxtContainer = styled( Container )`
     font-weight: 900;
     letter-spacing: 2px;
     color: #a4b5c0 ;
-    font-family: Elianto-Regular,serif;
+    font-family: 'Elianto-Regular',serif;
   }
   
   p{

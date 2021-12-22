@@ -40,7 +40,8 @@ module.exports = {
         name: `img`,
         path: `${__dirname}/static/img`
       }
-    }, { //blog
+    },
+    { //blog
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `cms`,
@@ -74,13 +75,16 @@ module.exports = {
         },
       },
     },
-    `gatsby-plugin-styled-components`,
-
     `gatsby-plugin-layout`,
-    {
-      resolve: "gatsby-plugin-material-ui",
-      // If you want to use styled components you should change the injection order.
+      {
+      resolve: `gatsby-plugin-material-ui`,
+      options: {
+        stylesProvider: {
+          injectFirst: true,
+        },
+      },
     },
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

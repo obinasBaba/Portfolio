@@ -6,7 +6,7 @@ import useToolTip from '../hooks/useToolTip'
 import useRefreshMouseListeners from '../hooks/useRefreshMouseListeners'
 import {AppStateContext, BackgroundOverlayStateContext} from "../contexts/AppStateContext";
 
-const Projects = () => {
+const Projects = ({path}) => {
   // console.log(path)
 
   const {
@@ -18,7 +18,7 @@ const Projects = () => {
   } = useContext( AppStateContext )
 
   useLayoutEffect(() => {
-    setCurrentPath('/projects')
+    setCurrentPath(path)
   }, [])
 
   useToolTip('[data-tooltip-text]')

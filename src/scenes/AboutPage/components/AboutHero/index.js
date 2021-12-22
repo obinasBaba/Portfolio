@@ -18,7 +18,7 @@ const AboutHeroContainer = styled.div`
 `
 
 const Hello = styled( Typography )`
-  font-family: Elianto-Regular,serif;
+  font-family: 'Elianto-Regular',serif;
   font-weight: bolder;
   margin-bottom: 2rem;
 `
@@ -27,7 +27,7 @@ const Motto = styled( Typography )`
   font-weight: bolder;
   color: #7b8a9b;
   //line-height: 110%;
-    ${spacing('mb', 8)};
+    ${spacing('mb', 8.2)};
 
   ${largeUp( css`
     
@@ -122,7 +122,8 @@ const AboutHero = () => {
 
           <motion.div variants={introTxtVariants}
                       transition={introTxtVariants.transition}>
-            <Motto variant='h2' gutterBottom>
+
+            <Motto variant='h2' >
               I create progress by designing and developing digital experiences,
             </Motto>
 

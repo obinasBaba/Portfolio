@@ -1,17 +1,16 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import {
+  largeUp,
   mediumUp,
   smallDown,
   spacing,
-  xLargeUp
-} from "../../../../../styles/mixins";
-import { Typography } from '@material-ui/core'
-import {motion} from 'framer-motion'
-import {useProjectSvg} from '../../../../../hooks/queries/useProjectSvg'
-import RightArrowLink from './RightArrowLink'
+  xxLargeUp,
+} from '../../../../../styles/mixins'
+import { motion } from 'framer-motion'
 
-export const ExperimentItem = styled( motion.div )`
+export const ExperimentItem = styled(motion.div)`
+  position: relative;
   //border: 1px solid red;
   flex: 1 1 50%;
   display: flex;
@@ -21,13 +20,8 @@ export const ExperimentItem = styled( motion.div )`
 
   ${spacing('mv', 5)};
   ${spacing('mb', 3)};
-  
-  .focus{
-    //border: thin solid green;
-    z-index: 10;
-  }
-  
-  video{
+
+  video {
     //border: thin solid red;
 
     width: clamp(100px, 35vw, 230px);
@@ -38,33 +32,17 @@ export const ExperimentItem = styled( motion.div )`
     box-shadow: 0 15px 40px 1px rgb(0 0 0 / 25%);
 
     ${spacing('mb', 5)};
-    
+
     ${smallDown(css`
       width: clamp(150px, 36vw, 230px);
       height: clamp(150px, 36vw, 230px);
     `)};
-    
-    ${ xLargeUp( css`
+
+    ${xxLargeUp(css`
       width: clamp(100px, 35vw, 270px);
       height: clamp(100px, 35vw, 270px);
-    ` ) };
+    `)};
   }
-
-  .title{
-    transition: transform .5s cubic-bezier(0.6, 0.01, 0, 0.9), color .3s ease-in;
-    transform: scale(1);
-    color: white;
-  }
-
-  &:hover{
-    .title{
-      transition: transform .5s cubic-bezier(0.6, 0.01, 0, 0.9) .1s, color .3s ease-in;
-      color: navajowhite;
-      transform: scale(1.1);
-    }
-
-  }
-  
 
   ${mediumUp(css`
     ${spacing('mv', 5)};
@@ -73,18 +51,39 @@ export const ExperimentItem = styled( motion.div )`
     flex: 1 1 25%;
   `)};
   
-  
+  ${largeUp( css`
+    flex: initial;
+
+  ` )};
+
+  &:hover{
+    svg{
+      transform: rotate(-20deg) translateY(10px);
+      transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9);
+
+      & *{
+        fill:  white;
+        transition: fill .3s ease-in-out;
+
+      }
+    }
+  }
+
 `
 
 const InfoBar = styled.div`
-  position: relative;
+  position: absolute;
+  top: 10%;
+  z-index: 10;
+  
+  
   display: flex;
   flex-flow: column;
   justify-content: space-between;
   align-items: flex-start;
   
   //border: thin solid lightcoral;
-  width: 85%;
+  width: 100%;
   margin: 0 auto;
   // ${spacing('ph', 1)};
   
@@ -92,24 +91,11 @@ const InfoBar = styled.div`
     font-weight: lighter;
     //letter-spacing: 1px;
   }
-  
-  & :hover{
-    svg{
-      transform: rotate(-20deg) translateY(15px);
-      transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9);
-      
-      & *{
-        fill:  #e7a28f;
-        transition: fill .3s ease-in-out;
 
-      }
-    }
-  }
-  
   svg{
     //border: thin solid red;
-    position: absolute;
-    bottom: 11px;
+    //position: absolute;
+    //bottom: 11px;
     transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9);
 
 
@@ -118,6 +104,9 @@ const InfoBar = styled.div`
       transition: fill .3s ease-in-out;
     }
   }
+
+
+  
   
 `
 
@@ -128,12 +117,13 @@ const Item = ({  imgUrl, title, index}) => {
 
   return (
     <ExperimentItem
-                    data-scroll
-                    data-scroll-speed={index}
+                    // data-scroll
+                    // data-scroll-speed={index}
+                    data-pointer='focus'
                     // data-scroll-delay={index * Math.random()}
     >
 
-      <div className='focus' data-pointer='focus'>
+      <div  >
         <video autoPlay loop muted playsInline >
           <source src={imgUrl.webm.publicURL} type="video/webm" />
           <source src={imgUrl.mp4.publicURL} type="video/mp4" />

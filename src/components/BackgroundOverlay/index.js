@@ -10,7 +10,7 @@ const OverlayContainer = styled.div`
 
   pointer-events: none;
 
-  z-index: 7;
+  z-index: 9;
 
   svg {
     pointer-events: none;

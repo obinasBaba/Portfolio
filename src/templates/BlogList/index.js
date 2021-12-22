@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, {useContext, useEffect, useLayoutEffect} from 'react'
 import BlogCard from './components/BlogCard'
 import { graphql } from 'gatsby'
 import styled, {css} from 'styled-components'

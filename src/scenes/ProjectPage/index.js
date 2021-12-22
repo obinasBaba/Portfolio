@@ -31,13 +31,15 @@ const ProjectContainerGrid = styled(motion.div)`
 const ProjectPageContainer = styled(motion.main)`
   position: relative;
   max-width: 100%;
+  min-height: 100vh ;
   overflow: hidden;
 
   ${gridify()};
 
   & .rf-wrapper {
-    ${gridColWidth()};
+    ${gridColWidth(1 ,65)};
 
+    height: 100vh;
     grid-row: 1 / 2;
   }
 `
