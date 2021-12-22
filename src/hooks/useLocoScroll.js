@@ -6,7 +6,6 @@ import 'locomotive-scroll/dist/locomotive-scroll.css'
 import Cursor from '../components/Cursor'
 import { MotionValueContext } from "../contexts/MotionStateWrapper";
 
-let timeout = 0
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -29,7 +28,7 @@ export default function useLocoScroll (
         getDirection: true,
           getSpeed: true
       })
-          console.log('locoInstance : ', window.locoInstance)
+          // console.log('locoInstance : ', window.locoInstance)
 
       // whenever when we scroll loco update scrollTrigger
       locoScroll.current.on("scroll",

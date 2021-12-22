@@ -71,7 +71,8 @@ const ContactPage = () => {
   const control = useMotionValue('');
 
   const nextStep = arg => {
-    console.log('nextStep::::: ,', arg)
+
+
     if (steps[idx].stepName === 'check') {
 
       if (control.get() === 'loading' || control.get().startsWith('error'))

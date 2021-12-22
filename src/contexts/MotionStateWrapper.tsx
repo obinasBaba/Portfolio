@@ -1,7 +1,6 @@
 import {MotionValue, useMotionValue, useViewportScroll} from "framer-motion";
 // @ts-ignore
 import React, {useLayoutEffect, createContext, useEffect} from 'react'
-// @ts-ignore
 
 
 type MotionValueContextType = {
@@ -46,6 +45,8 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
   const registerScrollRestoration = useMotionValue('')
   const scrollDirection = useMotionValue('down')
   const inView = useMotionValue(null)
+  const locoInstance = useMotionValue(null)
+  const locoInstanceHelpers = useMotionValue(null)
 
   //mouse_event motion_values
   const mouseX = useMotionValue(0)

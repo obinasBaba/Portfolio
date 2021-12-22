@@ -56,7 +56,7 @@ export const TextContainer = styled( motion.div )`
   ` ) };
 
   ${xxLargeUp( css`
-    ${spacing('pl', 3)}; 
+    // ${spacing('pl', 3)}; 
     
   ` )};
 
@@ -87,7 +87,7 @@ export const Greeting = styled( motion.div )`
     ` )};
     
     ${xxLargeUp( css`
-      ${ spacing( 'max-width', 12 ) };
+      // ${ spacing( 'max-width', 12 ) };
     ` )};
    
   }
@@ -108,7 +108,7 @@ export const Greeting = styled( motion.div )`
     }
     
     ${xxLargeUp( css`
-      ${text(5.8  )};
+      // ${text(5.8  )};
     `)};
   }
 
@@ -130,8 +130,8 @@ export const Intro = styled( motion.div )`
   ${ spacing( 'mt', 1 ) };
 
   ${xxLargeUp( css`
-    margin-top: 2rem;
-    ${ spacing( 'gap', 7 ) };
+    //margin-top: 2rem;
+    // ${ spacing( 'gap', 7 ) };
 
   ` )};
 
@@ -156,10 +156,10 @@ export const Intro = styled( motion.div )`
     ` )};
     
     ${xxLargeUp( css`
-      max-width: 21ch;
-      word-spacing: 0;
+      //max-width: 21ch;
+      //word-spacing: 0;
 
-      ${text(3  )};
+      // ${text(3  )};
     ` )};
   }
 
