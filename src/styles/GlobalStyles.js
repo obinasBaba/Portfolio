@@ -130,6 +130,12 @@ export const GlobalStyle = createGlobalStyle`
       rgba(6, 18, 32, 0),
       rgba(251, 254, 252, 0));
     }
+    
+    &.loading-done{
+      .background-overlay-container path.loading-bg{
+        display: none;
+      }
+     }
 
 
   }
@@ -153,5 +159,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
 
+  
 
 `

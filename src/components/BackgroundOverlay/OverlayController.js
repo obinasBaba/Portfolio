@@ -83,6 +83,9 @@ class OverlayController {
     this.elm.classList.add('is-opened');
     this.timeStart = Date.now();
     this.renderLoop();
+
+    document.body.classList.add('loading-done')
+
   }
 
   close() {

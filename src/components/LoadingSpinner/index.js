@@ -112,9 +112,13 @@ const SpinnerWrapper = styled( motion.div )`
   z-index: 10;
 `
 const parentVariants = {
-  initial: {},
-  animate :{},
-  exit: {}
+  initial: {
+  },
+  animate :{
+  },
+  exit: {
+    // opacity: 0
+  }
 }
 
 let exited = false;
@@ -196,7 +200,7 @@ const LoadingSpinner = () => {
         {
           backgroundOverlay &&
           <SpinnerContainer variants={parentVariants}
-                            initial={false}
+                            initial='initial'
                             animate='animate'
                             exit='exit'
                             transition={transition}
