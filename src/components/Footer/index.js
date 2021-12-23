@@ -200,7 +200,7 @@ const Footer = ({ color }) => {
         <Social>
           <li>
             <a
-              href="https://github.com/Halo-Lab"
+              href="https://readers-corner.netlify.app"
               target="_blank"
               rel="noopener noreferrer"
               data-pointer='focus'
@@ -213,7 +213,7 @@ const Footer = ({ color }) => {
 
           <li>
             <a
-              href="https://www.instagram.com/halolabteam/"
+              href="https://readers-corner.netlify.app"
               target="_blank"
               rel="noopener noreferrer"
               data-pointer='focus'
@@ -225,7 +225,7 @@ const Footer = ({ color }) => {
           </li>
           <li>
             <a
-              href="https://www.behance.net/halolab"
+              href="https://readers-corner.netlify.app"
               target="_blank"
               rel="noopener noreferrer"
               data-pointer='focus'
@@ -237,7 +237,7 @@ const Footer = ({ color }) => {
           </li>
           <li>
             <a
-              href="https://dribbble.com/halolab"
+              href="https://readers-corner.netlify.app"
               target="_blank"
               rel="noopener noreferrer"
               data-pointer='focus'

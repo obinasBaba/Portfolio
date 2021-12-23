@@ -2,6 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { Container, Typography } from '@material-ui/core'
 import {
+  largeUp,
   mediumUp,
   spacing,
   text,
@@ -62,6 +63,13 @@ const MetaColumn = styled.div`
     }
 
   `)};
+
+  ${largeUp( css`
+    & .title{
+      ${spacing('mb', 1.5)};
+    }
+     
+  ` )};
   
   ${xxLargeUp( css`
       ${spacing('ph', 0)};
@@ -215,22 +223,22 @@ const FooterMeta = () => {
       },
       {
         txt: 'about',
-        link: '/',
+        link: '/about',
       },
       {
         txt: 'projects',
         link: '/projects',
       },
-      'blogs',
       {
         txt: 'contact',
-        link: '/',
+        link: '/contact',
       },
     ],
     [
       {
         txt: 'Dribble',
-        link: '/',
+        link: 'https://dribbble.com/henok500',
+        target: '_blank'
       },
       {
         txt: 'Linkedin',
@@ -242,17 +250,18 @@ const FooterMeta = () => {
       },
       {
         txt: 'Readers-Corner',
-        link: '/',
+        link: 'https://readers-corner.netlify.app',
+        target: '_blank'
       },
     ],
     [
       {
         txt: 'hi@henzzo.io',
-        link: '/',
+        mailTo: 'mailto:henokgetachew500@gmail.com'
       },
       {
         txt: '+251-923-3655-39',
-        link: '/',
+        tel: 'tel:+251 923 3655 39'
       },
     ],
     [
@@ -275,46 +284,51 @@ const FooterMeta = () => {
 
       {titleData.map((title, i) => {
         return (
-          <MetaColumn key={title + i} data-scroll={true} >
+          <MetaColumn key={title + i}  >
             <Typography variant="h5" className="title">
               {title}
             </Typography>
 
-            {data[i].map(({ txt, link }) => (
-              <Hover
-                key={txt + title}
-                variants={{}}
-                whileHover="hover"
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                data-pointer='focus'
+            {data[i].map(({ txt, link, target, mailTo, tel }) => {
 
-              >
-                {link && <Link to={'link'} />}
+              return (
+                  <Hover
+                      key={txt + title}
+                      variants={{}}
+                      whileHover="hover"
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      data-pointer='focus'
 
-                <Typography
-                  key={link + txt + i}
-                  className="link-txt"
-                  variant="subtitle2"
-                >
-                  {txt}
-                </Typography>
+                  >
+                    {link && <Link to={link} target={target}  />}
+                    {mailTo && <a href={mailTo}  />}
+                    {tel && <a href={tel}  />}
 
-                <motion.div className="wrapper">
-                  <motion.div
-                    className="line top"
-                    variants={line1Variants}
-                    transition={line1Variants.transition}
-                  />
-                  <motion.div
-                    className="line bottom"
-                    variants={line2Variant}
-                    transition={line1Variants.transition}
-                  />
-                </motion.div>
-              </Hover>
-            ))}
+                    <Typography
+                        key={link + txt + i}
+                        className="link-txt"
+                        variant="subtitle2"
+                    >
+                      {txt}
+                    </Typography>
+
+                    <motion.div className="wrapper">
+                      <motion.div
+                          className="line top"
+                          variants={line1Variants}
+                          transition={line1Variants.transition}
+                      />
+                      <motion.div
+                          className="line bottom"
+                          variants={line2Variant}
+                          transition={line1Variants.transition}
+                      />
+                    </motion.div>
+                  </Hover>
+              )
+            })}
           </MetaColumn>
         )
       })}

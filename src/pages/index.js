@@ -16,14 +16,14 @@ const IndexPage = ({ path }) => {
     backgroundOverlay
   } = useContext(BackgroundOverlayStateContext)
 
-  const loco = useLocoScroll(!backgroundOverlay)
+  // const loco = useLocoScroll(!backgroundOverlay)
 
   useEffect(() => {
     if (backgroundOverlay) return
 
     setCurrentPath(path)
 
-    if (registeredScrollPos !== null) {
+    /*if (registeredScrollPos !== null) {
       loco.current.update()
       setTimeout(() => {
         loco.current.scrollTo(registeredScrollPos, {
@@ -33,7 +33,7 @@ const IndexPage = ({ path }) => {
         })
       })
       setRegisteredScrollPos(null)
-    }
+    }*/
   }, [backgroundOverlay])
 
   useToolTip('[data-tooltip-text]')

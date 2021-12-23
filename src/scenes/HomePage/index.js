@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React, {Suspense, useContext} from 'react'
 import Hero from './Hero'
 import RecentWorks from './RecentDesigns'
 import Projects from './Projects'
@@ -6,16 +6,30 @@ import Experiments from './Experiments'
 import { SectionWrapper } from '../../components/Container'
 import BlogPosts from './BlogPosts'
 import { motion } from 'framer-motion'
+import {MotionValueContext} from "../../contexts/MotionStateWrapper";
 
 const MailUs = React.lazy(() => import('../MailUs'))
 
 const containerVariants = {
+  initial: {
+    opacity :1,
+  },
+  exit(arg){
+    // opacity : 0,
+    if (arg && arg.exitPresent)
+      return {}
 
+    return {
+      opacity: 0,
+    }
+  },
 }
 
 const HomePage = () => {
 
   const isSSR = typeof window === "undefined"
+
+  const { inView } = useContext(MotionValueContext)
 
   return (
     < motion.div variants={containerVariants}
@@ -23,6 +37,7 @@ const HomePage = () => {
                  initial="initial"
                  animate="animate"
                  exit="exit"
+                 custom={{exitPresent: inView.get()}}
                  whileInView="inView"
     >
 

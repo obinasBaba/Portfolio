@@ -11,7 +11,7 @@ import { motion } from 'framer-motion'
 
 export const ExperimentItem = styled(motion.div)`
   position: relative;
-  //border: 1px solid red;
+  border-radius: 50%;
   flex: 1 1 50%;
   display: flex;
   flex-flow: column;
@@ -20,7 +20,7 @@ export const ExperimentItem = styled(motion.div)`
 
   ${spacing('mv', 5)};
   ${spacing('mb', 3)};
-
+  
   video {
     //border: thin solid red;
 
@@ -74,7 +74,7 @@ export const ExperimentItem = styled(motion.div)`
 const InfoBar = styled.div`
   position: absolute;
   top: 10%;
-  z-index: 10;
+  z-index: 1;
   
   
   display: flex;
@@ -123,7 +123,7 @@ const Item = ({  imgUrl, title, index}) => {
                     // data-scroll-delay={index * Math.random()}
     >
 
-      <div  >
+      <div className='video-div'  >
         <video autoPlay loop muted playsInline >
           <source src={imgUrl.webm.publicURL} type="video/webm" />
           <source src={imgUrl.mp4.publicURL} type="video/mp4" />

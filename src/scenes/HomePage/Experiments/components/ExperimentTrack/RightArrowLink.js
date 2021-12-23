@@ -16,6 +16,14 @@ const RightArrowContainer = styled(motion.div)`
     ${spacing('mt', mt)}
   `};
   
+  &:hover{
+    .svg-wrapper {
+      transform: scale(1.25) translateX(-17%);
+      transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9);
+    }
+    
+  }
+  
 `
 
 const ArrowContainer = styled.div`
@@ -23,10 +31,6 @@ const ArrowContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-
-  //border: thin solid red;
-  margin-top: -5px;
-  //gap: .5rem;
 `
 
 const ArrowLine = styled.div`
@@ -42,7 +46,6 @@ const ArrowLine = styled.div`
 `
 
 const Arrow = styled.div`
-  //border: thin solid green;
   position: relative;
   z-index: 0;
   margin: 0 auto;
@@ -57,14 +60,11 @@ const Arrow = styled.div`
   
 
   & :hover {
-    .svg-wrapper {
-      transform: scale(1.1) translateX(0);
-      transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9);
-    }
+    
   }
 
   &::after {
-    content: '';
+    //content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -77,27 +77,25 @@ const Arrow = styled.div`
   & .svg-wrapper {
     width: 50%;
     margin: 0 auto;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9);
-    transform: translateX(-12px);
-    //border: thin solid black;
+    transform: translateX(-60%);
+    
+    div{
+      display: grid;
+      place-items: center;
+    }
+    
 
     svg {
       max-width: 100%;
       width: 100%;
+      display: inline;
     }
   }
 
-  a {
-    position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    //z-index: 1;
-  }
 `
 
 const Text = styled.p`
@@ -122,31 +120,27 @@ const RightArrowLink = ({
   txtStyle,
   link = '/',
   target,
-  tooTipTxt,
+  tooTipTxt=false,
 }) => {
   const { rightArrow } = useProjectSvg()
 
   return (
-    <RightArrowContainer len={lineLength} mt={mt}>
+    <RightArrowContainer len={lineLength} mt={mt}
+                         data-pointer='focus'
+                         data-tooltip={!!tooTipTxt}
+                         data-tooltip-text={tooTipTxt}
+    >
       <Text txtStyle={txtStyle}>{txt}</Text>
 
       <ArrowContainer>
-        <ArrowLine />
+        <ArrowLine className='arrow-line' />
         <Arrow
           className="arrow"
           data-tooltip
           data-pointer='stuck'
           data-tooltip-text={tooTipTxt}
         >
-          {target ? (
-            <a href={link} target={target}>
-              <ReactSVG className="svg-wrapper" src={rightArrow.publicURL} />
-            </a>
-          ) : (
-            <Link to={link}>
-              <ReactSVG className="svg-wrapper" src={rightArrow.publicURL} />
-            </Link>
-          )}
+          <ReactSVG className="svg-wrapper" src={rightArrow.publicURL} />
         </Arrow>
       </ArrowContainer>
     </RightArrowContainer>

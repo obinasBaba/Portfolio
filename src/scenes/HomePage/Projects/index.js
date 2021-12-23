@@ -34,7 +34,7 @@ const ProjectContainer = styled(motion.section)`
 const Planet = styled(motion.div)`
   position: absolute;
   border-radius: 50%;
-  z-index: 110;
+  z-index: 1;
   background: linear-gradient(
     36.99deg,
     rgba(1, 1, 18, 0) 27.49%,

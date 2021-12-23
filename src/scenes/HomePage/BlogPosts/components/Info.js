@@ -94,20 +94,21 @@ const Info = () => {
         to problems that we face when building great web products.
       </Desc>
 
-      <RightArrowLink lineLength='75%'
-                      txt='checkout my blog site.'
-                      target='_blank'
-                      link='https://readers-corner.netlify.app'
-                      tooTipTxt='i built my own blog-site'
-      />
+        <a href='https://readers-corner.netlify.app' target='_blank'  rel="noopener noreferrer" >
+          <RightArrowLink lineLength='75%'
+                          txt='checkout my blog site.'
+                          tooTipTxt='i built my own blog-site!'
+          />
+        </a>
 
-      <RightArrowLink lineLength='86%'
-                      mt={3}
-                      txt='MORE BLOG POSTS'
-                      link='/blog'
-                      txtStyle={txtStyle}
-                      tooTipTxt='Have lil sec? read my blogs.'
-      />
+      <Link to='/blog'>
+          <RightArrowLink lineLength='86%'
+                          mt={3}
+                          txt='MORE BLOG POSTS'
+                          txtStyle={txtStyle}
+                          tooTipTxt='more blogs?'
+          />
+      </Link>
 
     </InfoTxt>
   )

@@ -8,6 +8,7 @@ const InfoChipContainer = styled.div`
   bottom: 6%;
   left: 4%;
   pointer-events: none;
+  z-index: 20;
 
   & * {
     pointer-events: none;
