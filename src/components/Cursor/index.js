@@ -9,6 +9,7 @@ import { text } from '../../styles/mixins'
 import InnerPointer from './InnerPointer'
 import OuterPointer from './OuterPointer'
 import { BackgroundOverlayStateContext } from '../../contexts/AppStateContext'
+import {useMediaQuery, useTheme} from "@material-ui/core";
 
 let show = false
 let Events;
@@ -82,13 +83,16 @@ const Cursor = () => {
     backgroundOverlay,
   } = useContext(BackgroundOverlayStateContext)
 
+    const theme = useTheme()
+    const matches = useMediaQuery(theme.breakpoints.up('md'))
+
   useLayoutEffect(() => {
     Events = EventUtil.getInstance()
   }, [ ])
 
   // initial opacity
   useEffect(() => {
-    if ( backgroundOverlay )
+    if ( backgroundOverlay || !matches )
       return
 
       const clearMouseUpdateAnim = () => {
@@ -126,10 +130,14 @@ const Cursor = () => {
     [backgroundOverlay])
 
   return (
-    <CursorContainer className='cursor-container'>
-      <InnerPointer />
-      <OuterPointer />
-    </CursorContainer>
+    <>
+        {
+            matches && <CursorContainer className='cursor-container'>
+                <InnerPointer />
+                <OuterPointer />
+            </CursorContainer>
+        }
+    </>
   )
 }
 

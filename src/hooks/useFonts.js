@@ -16,21 +16,25 @@ const useLoadingFonts = setBackgroundOverlay => {
   useLayoutEffect(() => {
     // if ( fontLoaded.get() )
     //   return;
+    document.body.classList.remove('no-cursor')
 
     let elianto = new FontLoaded('Elianto-Regular')
     let poppins = new FontLoaded('Poppins Black')
     let icons = new FontLoaded('shapes')
 
-    Promise.all([elianto.load(), poppins.load(), icons.load()])
+    Promise.all([elianto.load(), poppins.load(),])
       .then(() => {
         setTimeout(() => {
-        //   setBackgroundOverlay(false)
-        setLoaded(true)
-          // fontLoaded.set(true)
-          // setFontFinish(true)
-
-          // queueMicrotask(() => )
+          setLoaded(true)
         }, 1500)
+
+        setTimeout(() => {
+          Promise.all([icons.load()])
+              .then(() => {
+                document.body.classList.add('no-cursor')
+              })
+        })
+
       })
       .catch(console.error)
 

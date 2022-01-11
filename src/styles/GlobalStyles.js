@@ -49,11 +49,7 @@ export const GlobalStyle = createGlobalStyle`
     //overflow: hidden;
 
 
-    ${mediumUp(css`
-      & * {
-        cursor: none;
-      }
-    `)};
+    
   }
 
   body {
@@ -104,6 +100,14 @@ export const GlobalStyle = createGlobalStyle`
     --head-gradient: linear-gradient(180deg,
     rgba(250, 222, 188, 0.8) 0%,
     rgba(243, 243, 243, 0) 94%);
+
+    ${mediumUp(css`
+      &.no-cursor{
+        & * {
+          cursor: none;
+        }
+      }
+    `)};
 
     &.menu_open {
       --theme: rgba(2, 11, 22, 1);

@@ -7,8 +7,9 @@ import { SectionWrapper } from '../../components/Container'
 import BlogPosts from './BlogPosts'
 import { motion } from 'framer-motion'
 import {MotionValueContext} from "../../contexts/MotionStateWrapper";
+import MailUs from "../MailUs";
 
-const MailUs = React.lazy(() => import('../MailUs'))
+// const MailUs = React.lazy(() => import('../MailUs'))
 
 const containerVariants = {
   initial: {
@@ -38,7 +39,7 @@ const HomePage = () => {
                  animate="animate"
                  exit="exit"
                  custom={{exitPresent: inView.get()}}
-                 whileInView="inView"
+                 // whileInView="inView"
     >
 
       <SectionWrapper dataScrollSection={true}>
@@ -49,18 +50,21 @@ const HomePage = () => {
 
       <Projects />
 
-      <SectionWrapper dataScrollSection={true} >
-        <BlogPosts />
-      </SectionWrapper>
-
       <SectionWrapper dataScrollSection={true}>
         <Experiments />
       </SectionWrapper>
 
 
+      <SectionWrapper dataScrollSection={true} >
+        <BlogPosts />
+      </SectionWrapper>
+
+
       {
-        !isSSR && <Suspense fallback={<h1>loading...</h1>}><MailUs /></Suspense>
+        // !isSSR && <Suspense fallback={<h1>loading...</h1>}><MailUs /></Suspense>
       }
+
+      <MailUs />
 
 
     </motion.div>

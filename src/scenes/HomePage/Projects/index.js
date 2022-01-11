@@ -91,6 +91,16 @@ const config = {
   damping: 20,
 }
 
+let planetVariants = {
+  initial: {
+    scale: 1,
+  },
+
+  exit: {
+    scale: 0
+  }
+};
+
 const Projects = () => {
   const containerRef = useRef(null)
   const {
@@ -120,34 +130,22 @@ const Projects = () => {
 
   }, [])
 
-  let planetVariants = {
-    initial: {
-      scale: 1,
-    },
 
-    exit: {
-      scale: 0
-    }
-  };
   return (
     <ProjectContainer
       id="projects"
-      data-scroll-section
+      data-scroll-section={true}
       variants={parentVariant}
       ref={containerRef}
     >
       <HeadlineTitle title={'Projects'} mb={3} subtitle={'Case Studies'} />
 
       <ScrollPlanet data-scroll data-scroll-speed="-3">
-        <Planet className="planet-left" style={{ y: yBig, x: xBig }}
-                variants={planetVariants}
-        />
+        <Planet className="planet-left" style={{ y: yBig, x: xBig }} variants={planetVariants}/>
       </ScrollPlanet>
 
       <ScrollPlanet2 data-scroll data-scroll-speed="-6">
-        <Planet className="planet-right" style={{ y: ySmall, x: xSmall }}
-                variants={planetVariants}
-        />
+        <Planet className="planet-right" style={{ y: ySmall, x: xSmall }} variants={planetVariants}/>
       </ScrollPlanet2>
 
       <RotationTextPath />

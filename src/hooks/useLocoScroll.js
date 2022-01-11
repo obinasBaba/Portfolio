@@ -10,7 +10,7 @@ import { MotionValueContext } from "../contexts/MotionStateWrapper";
 gsap.registerPlugin(ScrollTrigger)
 
 export default function useLocoScroll (
-  start, elementId = '[data-scroll-container="true"]') {
+    start, elementId = '[data-scroll-container="true"]') {
 
   const { moScroll } = useContext(MotionValueContext)
 
@@ -43,17 +43,10 @@ export default function useLocoScroll (
           (Math.abs(window.locoInstance.scroll.instance.speed) > 2) && Cursor.stopMouseAnimation()
             // console.log('ticking', window.locoInstance.scroll.instance.speed)
 
-          /*setTimeout(() => {
-            if ( Cursor.pointing || Cursor.focusing ) return;
-            // clearTimeout(timeout)
-            Cursor.hideOnScroll()
-
-            }, 1000)*/
 
         });
 
-      ScrollTrigger.scrollerProxy(scrollEl,
-        {
+      ScrollTrigger.scrollerProxy(scrollEl, {
           getBoundingClientRect () {
             return {
               top: 0,

@@ -4,6 +4,7 @@ import {AppStateContext, BackgroundOverlayStateContext} from '../contexts/AppSta
 import useLocoScroll from '../hooks/useLocoScroll'
 import useToolTip from '../hooks/useToolTip'
 import useRefreshMouseListeners from '../hooks/useRefreshMouseListeners'
+import {useMediaQuery, useTheme} from "@material-ui/core";
 
 const IndexPage = ({ path }) => {
   const {
@@ -16,7 +17,10 @@ const IndexPage = ({ path }) => {
     backgroundOverlay
   } = useContext(BackgroundOverlayStateContext)
 
-  // const loco = useLocoScroll(!backgroundOverlay)
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('md'))
+
+  // const loco = useLocoScroll(!backgroundOverlay && matches )
 
   useEffect(() => {
     if (backgroundOverlay) return
@@ -37,7 +41,7 @@ const IndexPage = ({ path }) => {
   }, [backgroundOverlay])
 
   useToolTip('[data-tooltip-text]')
-  useRefreshMouseListeners('[data-pointer]')
+  useRefreshMouseListeners('[data-pointer]', !matches)
 
   useEffect(() => {
     setTimeout(() => {

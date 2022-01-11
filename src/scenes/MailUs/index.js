@@ -10,7 +10,7 @@ import GalaxyButton from '../ContactPage/components/BottomBar/GalaxyButton'
 import useOnScreen from '../../hooks/useOnScreen'
 import MotionBtn from "../../components/MotionBtn";
 
-const MailUsContainer = styled.div`
+const MailUsContainer = styled.section`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -86,7 +86,9 @@ const MailUs = () => {
     // console.log('heroLoaded : ', heroLoaded);
       import('../../styles/projectFonts.css')
           .then(() => {
-              window.locoInstance && window.locoInstance.update()
+              setTimeout(() => {
+                  // window.locoInstance && window.locoInstance.update()
+              }, 3000)
           }).catch(() => {
               console.error('projectFonts fail to load!!! -- tell this via tooltip!!')
       })

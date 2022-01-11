@@ -12,7 +12,6 @@ gsap.registerPlugin(ScrollTrigger)
 
 const About = ({path}) => {
 
-  const loco = useLocoScroll(true);
 
   const {
     setCurrentPath
@@ -26,6 +25,9 @@ const About = ({path}) => {
   useEffect(() => {
     setCurrentPath(path)
   }, [])
+
+  const loco = useLocoScroll(!backgroundOverlay);
+
 
   useToolTip('[data-tooltip-text]')
   useRefreshMouseListeners('[data-pointer]')

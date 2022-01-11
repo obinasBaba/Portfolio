@@ -61,7 +61,7 @@ const aboutContainerVariants = {
 
 }
 
-const ArtContainer = styled.div`
+const ArtContainer = styled( motion.div )`
   position: absolute;
   pointer-events: none;
   z-index: -1;
@@ -88,6 +88,24 @@ const ArtContainer = styled.div`
   }
 `
 
+const artContainerVariant = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
+
+  transition: {
+    delay: 1.1,
+    duration: 1,
+    ease: [0.6, 0.01, 0, 0.9],
+  }
+}
+
 const AboutPage = () => {
 
   useEffect(() => {
@@ -106,7 +124,7 @@ const AboutPage = () => {
           end: () => '+=' + 1600,
         },
       })
-    });
+    }, 1000);
 
 
     // STrigger.refresh()
@@ -123,7 +141,10 @@ const AboutPage = () => {
     >
       <AboutHero/>
 
-      <ArtContainer className='art-container'>
+      <ArtContainer className='art-container'
+                    variants={artContainerVariant}
+                    transition={artContainerVariant.transition}
+      >
         <LineArt/>
       </ArtContainer>
 

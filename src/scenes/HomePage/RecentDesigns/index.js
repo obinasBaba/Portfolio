@@ -12,7 +12,7 @@ const RecentWorks = () => {
 
 
   return (
-    <RecentDesignWrapper id='#design' data-scroll-section >
+    <RecentDesignWrapper id='#design' data-scroll-section={true} >
       <Title />
       <ScrollGallery />
     </RecentDesignWrapper>

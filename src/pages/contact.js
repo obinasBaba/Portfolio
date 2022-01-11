@@ -22,7 +22,7 @@ const containerVariants = {
 
 const Contact = ({path}) => {
 
-  const loco = useLocoScroll(true);
+  // const loco = useLocoScroll(true);
 
 
   const {

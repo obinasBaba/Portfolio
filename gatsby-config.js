@@ -1,8 +1,15 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Henzzo portfolio website `,
+    titleTemplate: "%s · The Real Hero",
+    url: "https://www.netlify.henzzo.app",
+    description: `
+      This site is crafted by me the owner, Henzzo
+       and i use it to show my skill through my projects and
+        hope to inspire and motivate developers like me. I talk about 
+        how i made it in my blogs.
+    `,
+    author: `Henzzo`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
