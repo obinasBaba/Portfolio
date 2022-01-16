@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger)
 export default function useLocoScroll (
     start, elementId = '[data-scroll-container="true"]') {
 
-  const { moScroll } = useContext(MotionValueContext)
+  const { moScroll, locoInstance } = useContext(MotionValueContext)
 
   const locoScroll = useRef(null)
 
@@ -27,7 +27,10 @@ export default function useLocoScroll (
         multiplier: 1,
         getDirection: true,
           getSpeed: true
-      })
+      });
+
+          locoInstance.set(true)
+
           // console.log('locoInstance : ', window.locoInstance)
 
       // whenever when we scroll loco update scrollTrigger
@@ -101,8 +104,7 @@ export default function useLocoScroll (
           locoScroll.current && locoScroll.current.update()
               window.locoInstance.update();
 
-          },
-        1500)
+          }, 1500)
 
       return () => {
         if ( locoScroll.current ) {
@@ -110,7 +112,8 @@ export default function useLocoScroll (
           ScrollTrigger.removeEventListener("refresh", lsUpdate);
           locoScroll.current.destroy();
             window.locoInstance.destroy()
-            window.locoInstance = null
+            window.locoInstance = false
+            locoInstance.set(false)
           locoScroll.current = null;
           console.log("Kill", locoScroll.current);
         }

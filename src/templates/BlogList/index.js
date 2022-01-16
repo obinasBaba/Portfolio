@@ -47,9 +47,9 @@ const BlogListTemplate = ({
   const match = useMediaQuery(theme.breakpoints.up('sm'))
 
   return (
-    <>
+    <div>
         {
-            !backgroundOverlay && <Container>
+            !backgroundOverlay && <Container  >
                 <Moon showMoon={false} pos="fixed" moonStyle={moonStyle} />
                 <PenEffect />
                 <BlogList>
@@ -91,7 +91,7 @@ const BlogListTemplate = ({
                 </BlogList>
             </Container>
         }
-    </>
+    </div>
   )
 }
 

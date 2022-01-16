@@ -8,6 +8,11 @@ import useLocoScroll from '../../hooks/useLocoScroll'
 import {AppStateContext} from '../../contexts/AppStateContext'
 import {motion} from 'framer-motion'
 import {basicVariants, transition} from '../../helpers/variants'
+import useToolTip from "../../hooks/useToolTip";
+import useRefreshMouseListeners from "../../hooks/useRefreshMouseListeners";
+import {MotionStateWrapper} from "../../contexts/MotionStateWrapper";
+
+
 
 const BlogContainer = styled( motion.div )`
   position: relative;
@@ -52,6 +57,9 @@ const BlogPage = ({data, path, ...other}) => {
   useLayoutEffect( () => {
     setCurrentPath(path)
   }, [] )
+
+  useToolTip('[data-tooltip-text]')
+  useRefreshMouseListeners('[data-pointer]')
 
 
   return (

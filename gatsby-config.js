@@ -62,11 +62,20 @@ module.exports = {
         plugins: [
           "gatsby-remark-relative-images",
           `gatsby-plugin-netlify-cms-paths`,
+
           {
             resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 1024,
               withWebp: true
+            }
+          },
+          {
+            resolve: `gatsby-remark-highlight-code`,
+            options: {
+              terminal: 'carbon',
+              theme: 'solarized-light',
+              lineNumbers: true
             }
           },
 

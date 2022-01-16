@@ -15,6 +15,9 @@ import {
 import { Container } from '@material-ui/core'
 import BackArrow from './BackArrow'
 
+import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
+deckDeckGoHighlightElement();
+
 const ArticleContainer = styled.section`
   position: relative;
   //color: var(--theme);
@@ -48,8 +51,9 @@ const ArticleWrapper = styled ( Container ) `
 
   }
 
-  code.code-snippet{
-    border: thin solid red;
+  deckgo-highlight-code{
+    ${spacing('mb', 4)};
+    ${spacing('mt', 1.5)};
   }
 
   blockquote{

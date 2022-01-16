@@ -12,18 +12,36 @@ import BackgroundOverlay from '../BackgroundOverlay'
 import { MotionValueContext } from '../../contexts/MotionStateWrapper'
 
 import NavMenu from '../NavMenu'
+import {useScrollTrigger} from "@material-ui/core";
 
 function HideOnScroll({ children, window }) {
-  const [slide, setSlide] = useState(true)
 
   const { currentPath } = useContext(AppStateContext)
+  const [slide, setSlide] = useState(true)
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+  });
+
+  const [isLoco, setIsLoco] = useState(true)
+
 
   const {
-    moScroll: { scrollDirection },
+    moScroll: { scrollDirection }, locoInstance
   } = useContext(MotionValueContext)
+
+
 
   useEffect(() => {
     setSlide(true)
+
+    setTimeout(() => {
+      if (locoInstance.get()){
+        setIsLoco(true)
+      }else
+        setIsLoco(false)
+    }, 1200)
+
+
   }, [currentPath])
 
   useEffect(() => {
@@ -32,15 +50,17 @@ function HideOnScroll({ children, window }) {
 
       if (arg === 'up') setSlide(true)
       else if (arg === 'down') setSlide(false)
-    }, 300)
+    }, 350)
 
     scrollDirection.onChange(deb)
 
     return () => {}
   }, [])
 
+
+
   return (
-    <Slide appear={false} direction="down" in={slide}>
+    <Slide appear={false} direction="down" in={isLoco? slide : !trigger}>
       {children}
     </Slide>
   )

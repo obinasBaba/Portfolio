@@ -89,7 +89,7 @@ const CardContents = ({ index, overline, title, body, link, tags }) => {
 
       <Heading variant="h3"
                data-pointer='focus'
-               data-pointer-color='#02021e'
+               data-pointer-color='#dbe1e5'
       > <Link to={ link }>{ title }</Link> </Heading>
 
       <Excerpt gutterBottom={ true }>{ body }</Excerpt>

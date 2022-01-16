@@ -1,4 +1,4 @@
-import { motion, useTransform } from 'framer-motion'
+import {motion, useTransform, useViewportScroll} from 'framer-motion'
 import React, { useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import { length, spacing } from '../../styles/mixins'
