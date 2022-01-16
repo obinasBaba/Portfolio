@@ -20,7 +20,7 @@ const IndexPage = ({ path }) => {
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('md'))
 
-  // const loco = useLocoScroll(!backgroundOverlay && matches )
+  const loco = useLocoScroll(!backgroundOverlay && matches )
 
   useEffect(() => {
     if (backgroundOverlay) return

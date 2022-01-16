@@ -74,6 +74,8 @@ const Hero = () => {
                      initial="initial"
                      animate={'animate'}
                      exit="exit"
+                     data-scroll
+                     data-scroll-class='hero'
       >
 
         <TextContainer variants={textContainerVariants}>

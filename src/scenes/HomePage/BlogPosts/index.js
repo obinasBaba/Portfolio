@@ -69,7 +69,7 @@ const PostsContainer = styled.section`
 
 const BlogPosts = () => {
   return (
-    <BlogPostContainer>
+    <BlogPostContainer data-scroll data-scroll-class='blog'>
       <HeadlineTitle
         className="blog-headline"
         title='My Blogs'
@@ -77,7 +77,7 @@ const BlogPosts = () => {
         mb={10}
       />
 
-      <PostsContainer>
+      <PostsContainer >
         <aside>
           <Info />
         </aside>

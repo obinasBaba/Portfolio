@@ -33,11 +33,12 @@ const HomePage = () => {
   const { inView } = useContext(MotionValueContext)
 
   return (
-    < motion.div variants={containerVariants}
+    < motion.main variants={containerVariants}
                  transition={containerVariants.transition}
                  initial="initial"
                  animate="animate"
                  exit="exit"
+                 data-scroll-section={true}
                  custom={{exitPresent: inView.get()}}
                  // whileInView="inView"
     >
@@ -67,7 +68,7 @@ const HomePage = () => {
       <MailUs />
 
 
-    </motion.div>
+    </motion.main>
   )
 }
 

@@ -31,7 +31,7 @@ export const SectionWrapper = ({
         background: `${ bg ? bg : 'initial' }`
       }}
 
-      data-scroll-section={dataScrollSection}
+      // data-scroll-section={dataScrollSection}
     >
       {children}
     </StyledSectionWrapper>

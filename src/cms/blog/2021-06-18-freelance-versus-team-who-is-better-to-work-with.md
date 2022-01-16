@@ -1,6 +1,6 @@
 ---
 contentKey: blog
-title: "Freelance versus Team: who is better to work with?"
+title: "Javascript Event Loop Simplified"
 date: 2021-06-18T08:45:54.969Z
 tags:
   - tag: "#react"
@@ -8,76 +8,157 @@ thumbnail: /img/moon.png
 ---
 <!--StartFragment-->
 
-When you have an idea, which you would like to implement, you start looking for a specialist to make it. The main question is who that expert or probably it is a team of them? In this article, we would like to discuss all the pain points of interaction with freelancers and when and why it is better to work with a team.
 
-## Statement 1: it is cheaper to work with a freelancer
+instead of a single event queue, which holds only events, the event loop has at least two queues that, in addition to
+events, hold other actions performed by the browser. These actions are called tasks and are grouped into two categories:
+macrotasks (or often just called tasks) and microtasks.
 
-While wandering through freelance workplaces you may come to the conclusion that a freelancer’s work is less costly. Main arguments in favour of freelance are:
+Examples of macrotasks include creating the main document object, parsing
 
-* you don’t have to maintain documentation;
-* you can forget about keeping accounting; 
-* the price of their work is so affordable.
+HTML, executing mainline (or global) JavaScript code, changing the current URL, as
 
-**But the question is: are you sure?**
+well as various events such as page loading, input, network events, and timer events.From the browser's perspective, a
+macrotask represents one discrete, self-contained unit of work. After running a task, the browser can continue with
+other assignments such as re-rendering the UI of the page, or performing garbage collection.
 
-Let’s discuss. Can we really compare the quality of a teamwork product with a freelance experts’ one? A team is a group of people who create a multidimensional and multi-layered product and each member of this group has unique experience when a freelancer is a niche expert. Sometimes for a project implementation, you need several freelancers. As a result, the sum of the project will be an equivalent unless the freelancer’s service doesn’t come out more expensive and you won’t need to spend a lot of time searching, everything is at your disposal in a team.
+Microtasks, on the other hand, are smaller tasks that update the application state and should be executed before the
+browser continues with other assignments such as re-rendering the UI. Examples include promise callbacks and DOM
+mutation changes.
 
-## Statement 2: clear accounting
+Microtasks should be executed as soon as possible, in an asynchronous way, but without the cost of executing a whole new
+macrotask. Microtasks enable us to execute certain actions before the UI is re-rendered, thereby avoiding unnecessary UI
+rendering that might show inconsistent application states.
 
-The freelancer’s client could check how fast their work is done. After matching needed time frames with the expected result both communicators continue their activity without continuous reporting.
+The implementation of an event loop should use at least one queue for macrotasks and at least one queue for microtasks.
+Event loop implementations usually go beyond that, and have several queues for different types of macro- and microtasks.
+This enables the event loop to prioritize types of tasks; for example, giving priority to performance sensitive tasks
+such as user input. On the other hand, because there are many browsers and JavaScript execution environments out in the
+wild, you shouldn't be surprised if you run into event loops with only a single queue for both types of tasks together.
 
-But could anyone be completely sure about deadlines? The timing may have been agreed and in the tracking app everything is alright, however, the overall project duration may be moved for an indeterminate time lag. 
+The event loop is based on two fundamental principles:
 
-When the team knows exactly what they should do. Transparency is the most important component when working with a team. The crew can deliver results iteratively, which allows you to track progress and understand the next period of development.
+■ Tasks are handled one at a time.
 
-![](http://api.halo-lab.com/wp-content/uploads/2019/07/austin-distel-wD1LRb9OeEo-unsplash-1024x768.jpg)
+■ A task runs to completion and can't be interrupted by another task.
 
-During the work on the project, it is recommended to arrange daily mini-meetings for 15 minutes
+Let's take a look at figure 13.1, which depicts these two principles.
 
-## **S**tatement 3: the freelancer focuses on the client’s task that he is working with
+![](file:////tmp/wps-obinas/ksohtml/wpsWZx9ZY.jpg)
 
-It usually looks like a freelance specialist works with one and only project, yours. And they should pay full attention to it. 
+On a high level, figure 13.1 shows that in a single iteration, the event loop first checks the macrotask queue, and if
+there's a macrotask waiting to be executed, starts its execution. Only after the task is fully processed (or if there
+were no tasks in the queue), the event loop moves onto processing the microtask queue. If there's a task waiting in that
+queue, the event loop takes it and executes it to completion. This is performed for all microtasks in the queue. Note
+the difference between handling the macrotask and microtask queues: In a single loop iteration, one macrotask at most is
+processed (others are left waiting in the queue), whereas all microtasks are processed.
 
-In most cases, freelancers have several projects with which they are working at the same time. A responsible person will do his best to be caught up with every client’s task. But when he is in a hurry his attention is dissipating and errors present in the work. It will be nice if the customer will be able to find out problems and fix them, but you should not count on it. In the team the art director will promptly correct the result or set the desired vector of work. This significantly reduces the final edits and accelerates the execution process.
+When the microtask queue is finally empty, the event loop checks whether a UI
 
-![](http://api.halo-lab.com/wp-content/uploads/2019/07/domenico-loia-hGV2TfOh0ns-unsplash-1024x683.jpg)
+render update is required, and if it is, the UI is re-rendered. This ends the current iteration of the event loop, which
+goes back to the beginning and checks the macrotask queue again.
 
-Pay attention to details and you will not have awkward moments with customers
+Now that we have a high-level understanding of the event loop, let's check some of
 
-## Statement 4: the freelancer can work directly with customers from any country in the world
+the interesting details shown in figure 13.1:
 
-The team does the same, but with a project manager, who will take into account the time difference, catch up with deadlines and take into consideration the rest of the external factors that may affect the work. Don’t forget that there are regular calls from clients to performers for a direct discussion about the key points of a project. 
+■ Both task queues are placed outside the event loop, to indicate that the act of adding tasks to their matching queues
+happens outside the event loop. If this wasn't the case, any events that occur while JavaScript code is being executed
+would be ignored. Because we most definitely don't want to do this, the acts of detecting and adding tasks are done
+separately from the event loop.
 
-Working with a designer directly means you are the last stand. You will need to understand how to form tasks, how to give the right feedback, how to evaluate aesthetics. And we know how busy are start-up founder’s lives are. Illustration director’s participation will ease some of this pain. Of course not all of it, because you understand your business better than anyone. But if it will reduce your headache by 50% surely it’s worth it?
+■ Both types of tasks are executed one at a time, because JavaScript is based on a singlethreaded execution model. When
+a task starts executing, it's executed to its
 
-## **Statement 5: a freelancer is a creative person who is not always ready for harsh criticism of his work by the client**
+completion, without being interrupted by another task. Only the browser can
 
-In any creative profession there exists a pretty big risk of accidentally hurting the feelings of the performer. A freelancer, unlike the “team player”, needs to communicate with customers on their own. It is not worth mentioning that not it is not easy to keep in touch with everyone. In the team for this type of activity is a project manager who, as a diplomat, will settle all existing issues and do his best to reach a beneficial solution. A PM has clear functions and experience in communication with various clients.
+stop the execution of a task; for example, if the task starts being too selfish by
 
-Also, when a designer is one and only in the product team he is often losing his grip. Really, we interviewed designers with 10 years’ experience whose works were horrifying. When a team has a pretty big group of experts with different skill sets, cultivating a routine to make shots on Dribbble and regularly hit the top with them, making creative challenges and design battles. So experience exchange and competition are circulating in the air and designer will not rust and becomes sharper and sharper.
+taking up too much time or memory.
 
-## **Statement 6: freelancers may be tempted by procrastinate**
+■ All microtasks should be executed before the next rendering, because their goal is to update the application state
+before rendering occurs.
 
-On the whole, freelancers think that they have enough time to complete a task. If they schedule a task for slightly later, nothing terrible will happen. In such a case, procrastination is the most dangerous enemy.
+■ The browser usually tries to render the page 60 times per second, to achieve 60 frames per second (60 fps), a frame
+rate that's often considered ideal for smooth
 
-It’s often in start-ups when there is a need to produce more design stuff urgently. Pitch a presentation, conference materials, marketing landing pages. All this needs to be done without the main product design process suffering. One designer can’t rule them all. But as a team, we can add a fighter with a needed skillset and cover it really quickly. And no urgent hiring from your side. We just add count in on an hourly basis.
+motion, such as animations---meaning, the browser tries to render a frame every 16 ms. Notice how the "Update rendering"
+action, shown in figure 13.1, happens
 
-Then, for the team, there is such an irreplaceable figure as the project manager above the performer. This thoughtful and dedicated person will definitely bring this through. Laziness and procrastination are absolutely out of the question.
+inside the event loop, because the page content shouldn't be modified by
 
-## **S**tatement 7: sometimes the freelancer vanishes after receiving the prepayment
+another task while the page is being rendered. This all means that, if we want to
 
-On the Internet, you could find an extensive portfolio of a qualified specialist. But it may turn out that it is a fake and this performer may disappear after the advance payment. You can only guess that the person did not have the desire or the proper experience to get the job done, but things are messy.
+achieve smooth-running applications, we don't have much time to process tasks
 
-When it comes to the team you have an opportunity to check their work and look at the reviews at various sites, go through to a portfolio with links. It could become a guarantor of competent investments and further cooperation. After weighing up all the pros and cons, you can come to a reasonable conclusion that it is safer to give the same advance payment to the team and be sure that the work will be done.
+in a single event-loop iteration. A single task and all microtasks generated by that task should ideally complete within
+16 ms.
 
-![](http://api.halo-lab.com/wp-content/uploads/2019/07/annie-spratt-QckxruozjRg-unsplash-1024x683.jpg)
+Now, let's consider three situations that can occur in the next event-loop iteration,
 
-If you run out of ideas – look around
+after the browser has completed a page render:
 
-## **C**onclusion
+■ The event loop reaches the "Is rendering required?" decision point before
 
-Finally, it all depends specifically on the project that the person wants to implement and on the task which need to be done. If you need a logo, then using a freelancer is naturally more profitable than hiring a team. But when it comes to product development, it is much more reasonable to get in touch with a cool well-coordinated team that knows how to work with each other. Because one person couldn’t cope with such a “giant” in a short time. On top of that, should be understood that occasionally such things as the time zone and the lack of proper skills in organizing your personal time can eventually lead to deadlines not being met. And the key – with a freelancer you work at your own risk, you risk nothing with the team.
+another 16 ms has elapsed. Because updating the UI is a complex operation, if
 
-Reading this article gave you little insight into whom you exactly need for your project to be successful? Let`s sort it out together. **You can send [an email](mailto:mail@halo-lab.com) or just DM on one of our [social accounts](https://www.facebook.com/halolabteam/). We promise to answer during a day.**
+there isn't an explicit need to render the page, the browser may choose not to
 
-<!--EndFragment-->
+perform the UI rendering in this loop iteration.
+
+■ The event loop reaches the "Is rendering required?" decision point roughly
+
+around 16 ms after the last rendering. In this case, the browser updates the UI,
+
+and users will experience a smooth-running application.
+
+■ Executing the next task (and all related microtasks) takes much more than 16
+
+ms. In this case, the browser won't be able to re-render the page at the target
+
+frame rate, and the UI won't be updated. If running the task code doesn't take
+
+up too much time (more than a couple of hundred milliseconds), this delay
+
+might not even be perceivable, especially if there isn't much motion going on
+
+in the page. On the other hand, if we take too much time, or animations are
+
+running on the page, users will probably perceive the web page as slow and
+
+nonresponsive. In a worst-case scenario, in which a task gets executed for more
+
+than a couple of seconds, the user's browser shows the dreaded "Unresponsive
+
+script" message. (Don't worry, later in the blog I'll show you a technique
+
+for breaking complex tasks into smaller ones that won't clog the event loop.)
+
+**Dealing with computationally expensive processing**
+
+The single-threaded nature of JavaScript is probably the largest gotcha in complex
+
+JavaScript application development. While JavaScript is busy executing, user interaction in the browser can become, at
+best, sluggish, and, at worst, unresponsive.
+
+The browser may stutter or seem to hang, because all updates to the rendering of a page are suspended while JavaScript
+is executing.
+
+Reducing all complex operations that take any more than a few hundred milliseconds into manageable portions becomes a
+necessity if we want to keep the interface responsive. Additionally, most browsers will produce a dialog box warning the
+user that a script has become "unresponsive" if it has run nonstop for at least 5 seconds, while some other browsers
+will even silently kill any script running for more than 5 seconds. You may have been to a family reunion where a
+garrulous uncle won't stop talking and insists on telling the same stories over and over again. If no one else gets a
+chance to break in and get a word in edgewise, the conversation's not going to be pleasant for anyone (except for Uncle
+Bruce). Likewise, code that hogs all the processing time
+
+results in an outcome that's less than desirable; producing an unresponsive user interface is never good. But situations
+will almost certainly arise that require us to process a significant amount of data, situations such as manipulating a
+couple of thousand DOM elements, for example.
+
+On these occasions, timers can come to the rescue and become especially useful.
+
+Because timers are capable of effectively suspending the execution of a piece of
+
+JavaScript until a later time, they can also break individual pieces of code into fragments that aren't long enough to
+cause the browser to hang. Taking this into account, we can convert intensive loops and operations into nonblocking
+operations. Let's look at the following example of a task that's likely to take a long time.

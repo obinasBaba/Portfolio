@@ -10,7 +10,7 @@ import { motion, useSpring, useTransform } from 'framer-motion'
 import HeadlineTitle from '../../../components/Headline'
 import RotationTextPath from './RotationTextPath'
 import { MotionValueContext } from '../../../contexts/MotionStateWrapper'
-// import './projectFonts.css'
+import '../../../styles/projectFonts.css'
 
 const ProjectContainer = styled(motion.section)`
   position: relative;
@@ -134,7 +134,8 @@ const Projects = () => {
   return (
     <ProjectContainer
       id="projects"
-      data-scroll-section={true}
+      // data-scroll-section={true}
+      data-scroll data-scroll-class='experiment'
       variants={parentVariant}
       ref={containerRef}
     >

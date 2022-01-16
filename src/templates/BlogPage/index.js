@@ -54,9 +54,6 @@ const BlogPage = ({data, path, ...other}) => {
   }, [] )
 
 
-  useLocoScroll(true, '#blog-container')
-
-
   return (
     <BlogContainer data-scroll-container id='blog-container'
                    variants={containerVariant}
@@ -66,7 +63,7 @@ const BlogPage = ({data, path, ...other}) => {
                    exit='exit'
     >
 
-     <div data-scroll-section={true}>
+     <div >
        <HeadLine
          title={title}
          date={date}

@@ -1,6 +1,6 @@
 ---
 contentKey: blog
-title: "Branding brief: all you need to know"
+title: "Generators Simplified"
 date: 2021-06-18T08:40:33.120Z
 tags:
   - tag: "#devlopment"
@@ -9,86 +9,262 @@ tags:
 thumbnail: /img/screenshot-49-.png
 ---
 <!--StartFragment-->
+**Generators, advanced iteration**
 
-Communication with the customer is really important for the designer. A proper briefing is half the design work, and it’s the first contact with your customer when he sees you “in business.” You should treat the first brief as your first acquaintance.
 
-## Some introduction information
+Regular functions return only one, single value (or nothing).
 
-Many people do not pay enough attention to a brief because they think that a brief is only necessary to understand the client’s task. *This is one of his functions, although it is the main, but not the only one.* In addition to getting to know the client and his task, you also make contact with him. It is at the moment of the briefing that the client evaluates you as a professional.
+Generators can return ("yield") multiple values, possibly an infinite number of values, one after another, on-demand. They work great with iterables, allowing to create data streams with ease.
 
-The brief has one more function, with his help, we can typify the client. When the client answers our questions, he talks a lot about himself. The customer who answers your questions tells a lot of ways to work with him and how to interact with him.
+**Generator functions**
 
-Before the call, we try to find as much information about the client as possible, so that when we ask business questions on the call, they will provide more details. And we have approximately ready answers to these questions, which we supplement. The client likes to talk about himself and his project, so this is an excellent opportunity to create a “full picture” of his business. Using this method, it’s always easier to prepare questions that we can ask the client to show their competence and orientation in their business. 
+To create a generator, we need a special syntax construct: function* , so-called "generator function". It looks like this:
 
-The further course of events depends on how much information the client has provided before the call. If he has his brief, you can walk through the summary on the call and clarify the points that seem to be controversial. *The main point of this call is to know the maximum information, which then will help to give the most transparent possible details.* Since, at first glance, it usually seems that the client, in his brief, presents only the structure of the product. But the estimation depends heavily on the amount of content and complexity of functionality.The client, for his part, can not always understand that the structure of his product is complex. And often in his brief, he may miss it. 
+<code >
+function* generateSequence() {
 
-![people sitting near table with laptop computer](https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjF9&auto=format&fit=crop&w=1000&q=80)
+yield 1;
 
-Ideally, to discuss the project with the person who makes the decision.
+yield 2;
 
-## Three critical functions of the brief
+return 3;
 
-**Understand the task:** Maximize the client’s goal regarding the project, clearly form the TOR.
+}
+</code>
 
-**Build a relationship:** Briefing helps you to show your competence and understand whether we will work with the client or not. 
 
-**Typify the client:** We can conditionally identify three types of clients: win-win, lose-win, win-lose, lose-lose: 
+when generateSequence() is called, it does not execute the code. Instead, it returns a special object, called "generator".
 
-* **Win-win** – is when everyone should get the benefits, the performer quality work in the portfolio, the customer – a cool product.
-* **Lose-win** – in this case, the client is passive about his product, and the executor includes all his creativity for the portfolio. 
-* **Win-lose** – this option works when the client makes a product by the designer’s hands, continuously adjusts all the work, and does not take advice from specialists.
-* **Lose-lose** is a losing option. At the briefing, it helps to determine what the client and the customer will not work, for example, the vision of the product realization is different, or the work that the client wants requires resources that the company does not possess. And many other options. 
+// "generator function" creates "generator object"
 
-## There are two other not so obvious problems related to the brief:
+let generator = generateSequence();
 
-#### **It’s worth taking it as a rough draft**
+The generator object can be perceived as a "frozen function call":
 
-The man sees your questions for the first time, many of them he may never have thought about. We return to this draft a few more times to clarify the details.
+Upon creation, the code execution is paused at the very beginning.
 
-#### **It’s essential to understand who your client is**
+The main method of a generator is next() . When called, it resumes execution till the nearest yield <value> statement. Then the execution pauses, and the value is returned to the outer code.
 
-Very often, designers do not notice that they are not talking to the decision-maker. And this is the person on whom the whole fate of the project depends. Ideally, to discuss the project with the person who makes the decision.
+For instance, here we create the generator and get its first yielded value:
 
-## How to create the perfect brief?
+function* generateSequence() {
 
-Properly designed brief eliminates many communication problems with the client and speeds up the work process. But the other question is: how do you make it so that it is an advantage, not an obstacle?* **We have a couple of rules on how to create a brief.*** 
+yield 1;
 
-#### **Information structure**
+yield 2;
 
-The order of the current information makes sense.Set out the necessary data consistently and clearly, so that no further questions arise with it.
+return 3;
 
-#### **Limit yourself to the data you need**
+}
 
-A person who genuinely loves his project, like any seller, can talk about it endlessly. And for the formation of a clear TOR, it is necessary to remove excess and pass only the most essential to the performer. 
+let generator = generateSequence();
 
-#### **Be attentive to the details**
+let one = generator.next();
 
-Details are the key to success. You need to understand: branding for a company is a balloon or anchor. Initially, we get answers to the list of questions in a short form, after a conversation with the client. We ask leading questions on the e-meeting, and if necessary, additional calls are possible to clarify details. When we work with a client, *we adhere to the following factors:* 
+alert(JSON.stringify(one)); // {value: 1, done: false}
 
-* we fix the criteria in the most detailed way possible;
-* check them, standards, references or mudboards;
-* we use these criteria in our design;
-* we speak in the client’s words in the presentation.
+The result of next() is always an object:
 
-#### **Correctly set goals and objectives**
+● value : the yielded value.
 
-The goals and objectives may coincide, in fact, but not in approach. What do we mean? It is essential to understand what a person is motivated to do and formulate a goal based on it. This helps us to understand the points of interaction with the client. In other words, if he is interested in the money and safety of the business, we should not tell him about the image and innovation.
+● done : false if the code is not finished yet, otherwise true .
 
-#### **Limit the responsibility**
+As of now, we got the first value only:
 
-Write the desired format of the work: how all materials are accepted and discussed, in what terms the work is considered. The project should agree on a schedule of the main stages of the project, in which all deadlines for each participant would be approved.
+Let's call generator.next() again. It resumes the execution and returns the next yield :
 
-![](http://api.halo-lab.com/wp-content/uploads/2020/06/Branding-1024x683.png)
+let two = generator.next();
 
-## Necessary questions for the Brief
+alert(JSON.stringify(two));
 
-* **Why do you need the design now?** Why do you need the design now? This wording is essential, as the client begins to answer the question and describe the situation in the business. There is no such thing that the design was needed all of a sudden. If the client responds with general phrases, it is better to ask clarifying questions.
-* **Why does your project have such naming?** We use this question when the client has difficulty answering the positioning questions.
-* **What is the “Logo Location” of the logo?** The term “Logo Location” means that this is the place where the logo will be seen most often. If it is a digital product, it is most likely a company website. Or maybe the company’s focus is on social media, and then it should already be considered what the logo will look like to be located in the interface of a particular social network. Logo Location is the place where the logo will look perfect.
-* **Have you already tried to develop a design for this project?** You may come across a client who has already been to various agencies and, for some reason, did not like their concepts. In this case, it is necessary to see the results of other agencies’ work so that your approach to design does not coincide with an already “unsuccessful” one.
+And, if we call it the third time, then the execution reaches return statement that finishes the
 
-## Let’s sum it up
+function:
 
-The brief is the first professional contact between a customer and a contractor. The information that the company receives after the brief session is likely to be supplemented, as clarifying questions are necessary, and it is extremely undesirable to miss details in this case. Therefore, it should be expanded. *When creating a brief for branding, it is necessary to understand its primary purpose.* For example, do we just launch a product on the market to get acquainted with it, or do we already form some image of the company? And, of course, we should not miss the above recommendations for creating a brief. **If you have a desire to see a cool briefing, [mail us](<mailto: mail@halo-lab.com>) and we’ll show you what we meant in this article.**
+Now the generator is done. We should see it from done:true and process value:3 as the final result. New calls generator.next() don't make sense any more. If we make them, they return the same object: {done: true} .
 
-<!--EndFragment-->
+There's no way to "roll back" a generator. But we can create another one by calling
+
+generateSequence() .
+
+So far, the most important thing to understand is that generator functions, unlike regular function, do not run the code. They serve as "generator factories". Running function* returns a generator, and then we ask it for values.
+
+ **function* f(...) or function *f(...) ?**
+
+That's a minor religious question, both syntaxes are correct.
+
+But usually the first syntax is preferred, as the star * denotes that it's a generator function, it describes the kind, not the name, so it should stick with the function keyword.
+
+**Generators are iterable**
+
+As you probably already guessed looking at the next() method, generators are iterable. We can get loop over values by for..of :
+
+function* generateSequence() {
+
+yield 1;
+
+yield 2;
+
+return 3;
+
+}
+
+let generator = generateSequence();
+
+for(let value of generator) {
+
+alert(value); // 1, then 2
+
+}
+
+That's a much better-looking way to work with generators than calling .next().value , right? ...But please note: the example above shows 1 , then 2 , and that's all. It doesn't show 3 !
+
+It's because for-of iteration ignores the last value , when done: true . So, if we want all results to be shown by for..of , we must return them with yield :
+
+function* generateSequence() {
+
+yield 1;
+
+yield 2;
+
+yield 3;
+
+}
+
+let generator = generateSequence();
+
+for(let value of generator) {
+
+alert(value); // 1, then 2, then 3
+
+}
+
+Naturally, as generators are iterable, we can call all related functionality, e.g. the spread operator ... :
+
+function* generateSequence() {
+
+yield 1;
+
+yield 2;
+
+yield 3;
+
+}
+
+let sequence = [0, ...generateSequence()];
+
+alert(sequence); // 0, 1, 2, 3
+
+In the code above, ...generateSequence() turns the iterable into array of items.
+
+**Using generators instead of iterables**
+
+Some time ago, in the chapter Iterables we created an iterable range object that returns values from..to .
+
+Here, let's remember the code:
+
+let range = {
+
+from: 1,
+
+to: 5,
+
+// for..of calls this method once in the very beginning
+
+[Symbol.iterator]() {
+
+// ...it returns the iterator object:
+
+// onward, for..of works only with that object, asking it for next values
+
+return {
+
+current: this.from,
+
+last: this.to,
+
+// next() is called on each iteration by the for..of loop
+
+next() {
+
+// it should return the value as an object {done:.., value :...}
+
+if (this.current <= this.last) {
+
+return { done: false, value: this.current++ };
+
+} else {
+
+return { done: true };
+
+}
+
+}
+
+};
+
+}
+
+};
+
+alert([...range]); // 1,2,3,4,5
+
+Using a generator to make iterable sequences is so much more elegant:
+
+function* generateSequence(start, end) {
+
+for (let i = start; i <= end; i++) {
+
+yield i;
+
+}
+
+}
+
+let sequence = [...generateSequence(1,5)];
+
+alert(sequence); // 1, 2, 3, 4, 5
+
+...But what if we'd like to keep a custom range object?
+
+**Converting Symbol.iterator to generator**
+
+We can get the best from both worlds by providing a generator as Symbol.iterator :
+
+let range = {
+
+from: 1,
+
+to: 5,
+
+*[Symbol.iterator]() { // a shorthand for [Symbol.iterator]: function*()
+
+for(let value = this.from; value <= this.to; value++) {
+
+yield value;
+
+}
+
+}
+
+};
+
+alert( [...range] ); // 1,2,3,4,5
+
+The range object is now iterable.
+
+That works pretty well, because when range[Symbol.iterator] is called:
+
+l it returns an object (now a generator)
+
+l that has .next() method (yep, a generator has it)
+
+l that returns values in the form {value: ..., done: true/false} (check, exactly what generator does).
+
+That's not a coincidence, of course. Generators aim to make iterables easier, so we can see that. The last variant with a generator is much more concise than the original iterable code, and keeps the same functionality.
+
+ **Generators may continue forever**
+
+In the examples above we generated finite sequences, but we can also make a generator that yields values forever. For instance, an unending sequence of pseudo-random numbers.
+
+That surely would require a break in for..of , otherwise the loop would repeat forever and hang.

@@ -48,6 +48,9 @@ const ArticleWrapper = styled ( Container ) `
 
   }
 
+  code.code-snippet{
+    border: thin solid red;
+  }
 
   blockquote{
     max-width: 35rem;

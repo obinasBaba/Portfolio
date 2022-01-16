@@ -87,7 +87,7 @@ const MailUs = () => {
       import('../../styles/projectFonts.css')
           .then(() => {
               setTimeout(() => {
-                  // window.locoInstance && window.locoInstance.update()
+                  window.locoInstance && window.locoInstance.update()
               }, 3000)
           }).catch(() => {
               console.error('projectFonts fail to load!!! -- tell this via tooltip!!')
@@ -98,7 +98,11 @@ const MailUs = () => {
   }, [])
 
   return (
-    <MailUsContainer  data-scroll-section={true} >
+    <MailUsContainer
+        // data-scroll-section={true}
+        data-scroll data-scroll-class='footer'
+
+    >
       <Background />
       <LogoEffect />
 
