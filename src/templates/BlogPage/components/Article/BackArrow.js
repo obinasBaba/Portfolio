@@ -26,7 +26,7 @@ const BackArrow = () => {
           pin: true,
           scrub: 2,
           start: 'top 20%',
-          scroller: '#blog-container',
+          scroller: '[data-scroll-container]',
           end: () => '+=' + wrapper.offsetHeight,
           onUpdate(self) {
             // progress.set(self.progress)

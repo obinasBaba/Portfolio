@@ -1,9 +1,8 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import styled from 'styled-components'
 import { motion, useSpring, useTransform } from 'framer-motion'
-import { basicVariants, transition } from '../../../../helpers/variants'
-import { MotionValueContext } from '../../../../contexts/MotionStateWrapper'
-import {spacing} from "../../../../styles/mixins";
+import { basicVariants, transition } from '../../../helpers/variants'
+import { MotionValueContext } from '../../../contexts/MotionStateWrapper'
 
 const penVariant = {
   ...basicVariants,
@@ -14,29 +13,46 @@ const penVariant = {
 
 const PenContainer = styled( motion.div )`
   position: fixed;
-  top: 0%;
-  bottom: 81%;
-  left: 5%;
+  top: 17%;
+  left: 1%;
+  bottom: -14%;
   pointer-events: none;
   //z-index: -1;
-  
-  // ${spacing('width', 30)};
+  //border: thin solid rebeccapurple;
 `
 
 const PenEffect = () => {
 
-  const {moScroll} = useContext(MotionValueContext)
-  const progress = useTransform(moScroll.y, [0, moScroll.limit.get()], [0, 1]);
 
-  const yTransform = useTransform(progress, [0, 1], [0, -125]);
+  const {moScroll} = useContext(MotionValueContext)
+  const progress = useTransform(moScroll.y,
+      [0, moScroll.limit.get()], [0, 1]);
+
+  const yTransform =
+      useTransform(progress, [0, 1], [0, -125]);
+
   const y = useSpring(yTransform, {
     mass: .5,  damping: 10, stiffness: 50,
   })
 
-  const rTransform = useTransform(progress, [0, .4, .45, .95 ], [0, -15, 0, -15]);
+  const rTransform = useTransform(progress,
+      [0, .4, .45, .95 ],
+      [0, -15, 0, -15]);
   const rotate = useSpring(rTransform, {
     mass: .5,  damping: 10, stiffness: 50,
   })
+
+  const [refresh, setRefresh] = useState(false)
+
+  useEffect(() => {
+   setTimeout(() => {
+     // window.locoInstance && window.locoInstance.update()
+   }, 1000)
+
+    setRefresh(true)
+
+  }, [])
+
 
   return (
       <PenContainer style={{y, rotate}}
@@ -45,7 +61,6 @@ const PenEffect = () => {
                     initial='initial'
                     animate='animate'
                     exit='exit'
-
       >
 
 

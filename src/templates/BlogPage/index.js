@@ -5,7 +5,7 @@ import Article from './components/Article'
 import MoreBlog from './components/MoreBlog'
 import styled from 'styled-components'
 import useLocoScroll from '../../hooks/useLocoScroll'
-import {AppStateContext} from '../../contexts/AppStateContext'
+import {AppStateContext, BackgroundOverlayStateContext} from '../../contexts/AppStateContext'
 import {motion} from 'framer-motion'
 import {basicVariants, transition} from '../../helpers/variants'
 import useToolTip from "../../hooks/useToolTip";
@@ -54,8 +54,16 @@ const BlogPage = ({data, path, ...other}) => {
 
   const { setCurrentPath } = useContext(AppStateContext)
 
+  const { backgroundOverlay } = useContext(BackgroundOverlayStateContext)
+
+  useLocoScroll(!backgroundOverlay)
+
+
   useLayoutEffect( () => {
     setCurrentPath(path)
+    setTimeout(() => {
+      window.locoInstance && window.locoInstance.update()
+    }, 5000)
   }, [] )
 
   useToolTip('[data-tooltip-text]')
@@ -63,30 +71,35 @@ const BlogPage = ({data, path, ...other}) => {
 
 
   return (
-    <BlogContainer data-scroll-container id='blog-container'
-                   variants={containerVariant}
-                   transition={transition}
-                   initial='initial'
-                   animate='animate'
-                   exit='exit'
-    >
+      <>
 
-     <div >
-       <HeadLine
-         title={title}
-         date={date}
-         tags={tags ? tags : []}
-         thumbnail={thumbnail}
-       />
-     </div>
+      {
+        !backgroundOverlay && <BlogContainer id='blog-container'
+                                             variants={containerVariant}
+                                             transition={transition}
+                                             initial='initial'
+                                             animate='animate'
+                                             exit='exit'
+        >
 
-      <Article html={data.currentBlog.html} />
+          <div >
+            <HeadLine
+                title={title}
+                date={date}
+                tags={tags ? tags : []}
+                thumbnail={thumbnail}
+            />
+          </div>
 
-      <MoreBlog data={data.nextBlog.frontmatter} slug={data.nextBlog.fields.slug}/>
+          <Article html={data.currentBlog.html} />
 
-      {/*<GradientBg />*/}
+          <MoreBlog data={data.nextBlog.frontmatter} slug={data.nextBlog.fields.slug}/>
 
-    </BlogContainer>
+          {/*<GradientBg />*/}
+
+        </BlogContainer>
+      }
+      </>
   )
 }
 

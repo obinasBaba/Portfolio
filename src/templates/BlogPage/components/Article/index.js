@@ -262,7 +262,7 @@ const ArticleWrapper = styled ( Container ) `
 
 const Article = ({ html }) => {
   return (
-    <ArticleContainer data-scroll-section>
+    <ArticleContainer>
 
       <BackArrow to='/blog' />
 

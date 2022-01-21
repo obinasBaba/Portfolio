@@ -79,9 +79,6 @@ const NavDots = ({activeIndex}) => {
   const [active, setActive] = useState(0)
 
   useEffect(() => {
-    // ref.current = { setActiveAnchors: setActive }
-    console.log('navDots initiated --- ', activeIndex)
-
     activeIndex.onChange(v => {
       setActive(v)
     })

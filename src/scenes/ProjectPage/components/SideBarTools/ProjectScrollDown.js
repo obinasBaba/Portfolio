@@ -6,7 +6,7 @@ import ScrollDown from '../../../../components/ScrollDown'
 
 const ScrollDownWrapper = styled(motion.div)`
   position: fixed;
-  //z-index: 3;
+  z-index: 33;
   left: 0;
   bottom: 5%;
 
@@ -57,7 +57,9 @@ const containerVariant = {
     x: 0,
   },
   exit: {
-    x: 'calc( -100% + (var(--indent) * -2.25rem))',
+    // x: 'calc( -100% + (var(--indent) * -2.25rem))',
+    x: 'calc((var(--indent) * -4.5rem))',
+
   },
 
   transition: {

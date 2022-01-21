@@ -91,7 +91,7 @@ const MoreBlog = ( {data, slug} ) => {
 
 
   return (
-    <MoreBlogContainer data-scroll-section>
+    <MoreBlogContainer >
 
       <GatsbyImage className='img-box' objectFit='cover' alt={'next blog'} image={getImage(thumbnail)}/>
 

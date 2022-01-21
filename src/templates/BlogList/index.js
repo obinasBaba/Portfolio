@@ -7,7 +7,7 @@ import BlogList from './components/BlogListContainer'
 import {AppStateContext, BackgroundOverlayStateContext} from '../../contexts/AppStateContext'
 import useLocoScroll from '../../hooks/useLocoScroll'
 import Moon from '../../components/MoonLight'
-import PenEffect from './components/BlogListContainer/PenEffect'
+import PenEffect from './components/PenEffect'
 import {gridify} from "../../styles/mixins";
 import useToolTip from "../../hooks/useToolTip";
 import useRefreshMouseListeners from "../../hooks/useRefreshMouseListeners";
@@ -34,12 +34,6 @@ const BlogListTemplate = ({
 
   useEffect(() => {
     setCurrentPath(path)
-
-    setTimeout(() => {
-      console.log( 'height: ', document.body.querySelector('.blog-container-temp')
-          .getBoundingClientRect().height);
-
-    }, 2000)
 
   }, [])
 
