@@ -71,17 +71,16 @@ const Hero = () => {
   
   return (
       <HeroContainer variants={{}}
-                     initial="initial"
-                     animate={'animate'}
-                     exit="exit"
-                     data-scroll
-                     data-scroll-class='hero'
+                     // initial="initial"
+                     // animate={'animate'}
+                     // exit="exit"
       >
 
         <TextContainer variants={textContainerVariants}>
 
           <Greeting variants={greetingTextVariants}
-                    transition={greetingTextVariants.transition}>
+                    transition={greetingTextVariants.transition}
+          >
 
             <Typography variant="h1" className='hi-am' > hi, I am </Typography>
             <div className='h-icon'>

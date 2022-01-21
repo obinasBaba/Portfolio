@@ -8,29 +8,19 @@ import BlogPosts from './BlogPosts'
 import { motion } from 'framer-motion'
 import {MotionValueContext} from "../../contexts/MotionStateWrapper";
 import MailUs from "../MailUs";
+import {Link} from "gatsby";
 
 // const MailUs = React.lazy(() => import('../MailUs'))
 
 const containerVariants = {
-  initial: {
-    opacity :1,
-  },
-  exit(arg){
-    // opacity : 0,
-    if (arg && arg.exitPresent)
-      return {}
 
-    return {
-      opacity: 0,
-    }
-  },
 }
 
 const HomePage = () => {
 
   const isSSR = typeof window === "undefined"
 
-  const { inView } = useContext(MotionValueContext)
+  // const { inView } = useContext(MotionValueContext)
 
   return (
     < motion.main variants={containerVariants}
@@ -38,9 +28,8 @@ const HomePage = () => {
                  initial="initial"
                  animate="animate"
                  exit="exit"
-                 data-scroll-section={true}
-                 custom={{exitPresent: inView.get()}}
-                 // whileInView="inView"
+                 // custom={{exitPresent: inView.get()}}
+                 whileInView="inView"
     >
 
       <SectionWrapper dataScrollSection={true}>
@@ -61,11 +50,8 @@ const HomePage = () => {
       </SectionWrapper>
 
 
-      {
-        // !isSSR && <Suspense fallback={<h1>loading...</h1>}><MailUs /></Suspense>
-      }
-
       <MailUs />
+
 
 
     </motion.main>

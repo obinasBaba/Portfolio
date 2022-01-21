@@ -299,13 +299,6 @@ const RotationCircleText = () => {
   ]
 
 
-  const {
-    inView
-  } = useContext( MotionValueContext )
-
-
-
-
   useEffect(() => {
 
     gsap.set('svg.circles .circle-g', { transformOrigin: '50% 50%' })
@@ -369,7 +362,7 @@ const RotationCircleText = () => {
               className={`circles__text circles__text--${index + 1}`}
               variants={circleTxtVariants}
               transition={transition}
-              custom={{ idx: index, inView: inView.get() }}
+              custom={{ idx: index }}
             >
               <textPath className="circles__text-path" xlinkHref={link} aria-label="" textLength={length}>
                 {text}
@@ -393,11 +386,12 @@ const RotationCircleText = () => {
         }}
         onHoverEnd={event => {
           if (clicked.current) return;
+
           controller.start('endHover')
           controller.start('btnHoverEnd')
         }}
       >
-        <Link to='/projects/#one'
+        <Link to='/projects'
               className="enter__bg"
               onClick={event => {
                 clicked.current = true

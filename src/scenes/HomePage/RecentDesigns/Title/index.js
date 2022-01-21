@@ -26,7 +26,6 @@ const TitleContainer = styled(Container)`
 @include hl-padding(top, 75px);*/
   
   ${ spacing( 'mb', 11 )};
-  ${ spacing( 'pt', 7.5 ) };
 `
 
 const LogoLink = styled.a`
@@ -49,6 +48,7 @@ const LogoLink = styled.a`
   
   img{
     object-fit: cover;
+    position: absolute;
 
   }
   
@@ -110,6 +110,13 @@ const Title = () => {
           alt="Web App, Mobile"
           src={dribbleRed.publicURL}
           className="dribbleRed"
+          onLoad={() => {
+            setTimeout(() => {
+              window.locoInstance && window.locoInstance.update()
+            }, 500)
+          }}
+
+
         />
       </LogoLink>
 

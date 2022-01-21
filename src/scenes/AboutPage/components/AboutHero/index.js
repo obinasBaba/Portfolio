@@ -108,7 +108,7 @@ const aboutHeroVariants = {
 const AboutHero = () => {
 
   return (
-    <AboutHeroContainer data-scroll-section variants={aboutHeroVariants}>
+    <AboutHeroContainer   variants={aboutHeroVariants}>
 
       <Container maxWidth='lg' >
         <motion.div variants={aboutHeroVariants} >

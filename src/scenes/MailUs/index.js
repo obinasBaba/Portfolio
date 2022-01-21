@@ -9,6 +9,7 @@ import Footer from '../../components/Footer'
 import GalaxyButton from '../ContactPage/components/BottomBar/GalaxyButton'
 import useOnScreen from '../../hooks/useOnScreen'
 import MotionBtn from "../../components/MotionBtn";
+import {Typography} from "@material-ui/core";
 
 const MailUsContainer = styled.section`
   position: relative;
@@ -84,14 +85,14 @@ const MailUs = () => {
 
   useEffect(() => {
     // console.log('heroLoaded : ', heroLoaded);
-      import('../../styles/projectFonts.css')
+      /*import('../../styles/projectFonts.css')
           .then(() => {
               setTimeout(() => {
                   window.locoInstance && window.locoInstance.update()
               }, 3000)
           }).catch(() => {
               console.error('projectFonts fail to load!!! -- tell this via tooltip!!')
-      })
+      })*/
 
 
 
@@ -100,7 +101,7 @@ const MailUs = () => {
   return (
     <MailUsContainer
         // data-scroll-section={true}
-        data-scroll data-scroll-class='footer'
+        // data-scroll data-scroll-class='footer'
 
     >
       <Background />
@@ -118,6 +119,7 @@ const MailUs = () => {
       <FooterMeta />
 
       <Footer />
+
 
     </MailUsContainer>
   )

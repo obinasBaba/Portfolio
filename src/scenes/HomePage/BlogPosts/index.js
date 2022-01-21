@@ -12,7 +12,7 @@ import Previews from './components/Previews'
 import HeadlineTitle from '../../../components/Headline'
 
 const BlogPostContainer = styled.section`
-  ${spacing('mt', 5)};
+  ${spacing('mt', 15)};
 `
 
 const PostsContainer = styled.section`

@@ -34,6 +34,13 @@ const BlogListTemplate = ({
 
   useEffect(() => {
     setCurrentPath(path)
+
+    setTimeout(() => {
+      console.log( 'height: ', document.body.querySelector('.blog-container-temp')
+          .getBoundingClientRect().height);
+
+    }, 2000)
+
   }, [])
 
     useToolTip('[data-tooltip-text]')
@@ -49,7 +56,7 @@ const BlogListTemplate = ({
   return (
     <div>
         {
-            !backgroundOverlay && <Container  >
+            !backgroundOverlay && <Container className='blog-container-temp'  >
                 <Moon showMoon={false} pos="fixed" moonStyle={moonStyle} />
                 <PenEffect />
                 <BlogList>

@@ -11,6 +11,8 @@ import HeadlineTitle from '../../../components/Headline'
 import RotationTextPath from './RotationTextPath'
 import { MotionValueContext } from '../../../contexts/MotionStateWrapper'
 import '../../../styles/projectFonts.css'
+import {Link} from "gatsby";
+
 
 const ProjectContainer = styled(motion.section)`
   position: relative;
@@ -150,6 +152,11 @@ const Projects = () => {
       </ScrollPlanet2>
 
       <RotationTextPath />
+
+    {/*  <Link to='/projects'>
+        <h1>To Projects</h1>
+      </Link>*/}
+
     </ProjectContainer>
   )
 }

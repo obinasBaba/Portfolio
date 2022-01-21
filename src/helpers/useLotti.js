@@ -13,7 +13,7 @@ const useLotti = (
     useEffect(() => {
         if (!inView) return
 
-        lotti.destroy(path)
+        // lotti.destroy(path)
 
         setTimeout(() => {
             lottiRef.current = lotti.loadAnimation({

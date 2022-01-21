@@ -18,9 +18,9 @@ const IndexPage = ({ path }) => {
   } = useContext(BackgroundOverlayStateContext)
 
   const theme = useTheme()
-  const matches = useMediaQuery(theme.breakpoints.up('md'))
+  // const matches = useMediaQuery(theme.breakpoints.up('md'))
 
-  const loco = useLocoScroll(!backgroundOverlay && matches )
+  const loco = useLocoScroll(!backgroundOverlay )
 
   useEffect(() => {
     if (backgroundOverlay) return
@@ -41,7 +41,7 @@ const IndexPage = ({ path }) => {
   }, [backgroundOverlay])
 
   useToolTip('[data-tooltip-text]')
-  useRefreshMouseListeners('[data-pointer]', !matches)
+  useRefreshMouseListeners('[data-pointer]', )
 
   useEffect(() => {
     setTimeout(() => {

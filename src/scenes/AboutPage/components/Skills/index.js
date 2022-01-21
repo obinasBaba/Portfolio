@@ -82,7 +82,7 @@ const Skills = () => {
   const { build, prototype} = useLottiAssets()
 
   return (
-    <SkillsContainer data-scroll-section maxWidth="lg">
+    <SkillsContainer  maxWidth="lg">
       <SkillTitle variant="h1">
         Skills &<br />
         expertise

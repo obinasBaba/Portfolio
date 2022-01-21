@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { motion, useSpring, useTransform } from 'framer-motion'
 import { basicVariants, transition } from '../../../../helpers/variants'
 import { MotionValueContext } from '../../../../contexts/MotionStateWrapper'
+import {spacing} from "../../../../styles/mixins";
 
 const penVariant = {
   ...basicVariants,
@@ -13,11 +14,13 @@ const penVariant = {
 
 const PenContainer = styled( motion.div )`
   position: fixed;
-  top: 17%;
-  left: 1%;
-  bottom: -14%;
+  top: 0%;
+  bottom: 81%;
+  left: 5%;
   pointer-events: none;
   //z-index: -1;
+  
+  // ${spacing('width', 30)};
 `
 
 const PenEffect = () => {
@@ -36,7 +39,6 @@ const PenEffect = () => {
   })
 
   return (
-    <div>
       <PenContainer style={{y, rotate}}
                     variants={penVariant}
                     transition={{...transition, delay: .5}}
@@ -67,7 +69,6 @@ const PenEffect = () => {
         </svg>
 
       </PenContainer>
-    </div>
   )
 }
 

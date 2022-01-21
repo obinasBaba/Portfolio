@@ -50,6 +50,10 @@ const BlogListWrapper = styled( motion.div )`
   width: 100%;
   max-width: 1050px;
   
+  ${largeUp( css`
+    ${spacing( 'ml', 7 )};
+  ` )};
+  
   & > :not(:first-child){
     margin-left: auto;
   }

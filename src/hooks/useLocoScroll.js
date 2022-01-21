@@ -100,21 +100,24 @@ export default function useLocoScroll (
       ScrollTrigger.addEventListener("refresh",lsUpdate);
       ScrollTrigger.refresh();
 
-      setTimeout(() => {
+  /*    setTimeout(() => {
           locoScroll.current && locoScroll.current.update()
-              window.locoInstance.update();
+          locoScroll.current.update();
 
-          }, 1500)
 
+      }, 1500)
+*/
       return () => {
         if ( locoScroll.current ) {
           window.removeEventListener('resize', lsUpdate)
           ScrollTrigger.removeEventListener("refresh", lsUpdate);
           locoScroll.current.destroy();
-            window.locoInstance.destroy()
-            window.locoInstance = false
-            locoInstance.set(false)
+          window.locoInstance.destroy();
+          window.locoInstance = false;
+          locoInstance.set(false);
           locoScroll.current = null;
+          scrollEl.style.transform = 'initial'
+          // docu
           console.log("Kill", locoScroll.current);
         }
       };

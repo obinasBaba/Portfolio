@@ -190,6 +190,8 @@ const Footer = ({ color }) => {
 
   }, [inView])
 
+
+
   return (
     <Container ref={elRef} maxWidth="lg" disableGutters={true} >
       <FooterContainer>

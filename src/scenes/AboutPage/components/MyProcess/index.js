@@ -232,7 +232,6 @@ const MyProcess = () => {
   return (
     <ProcessContainer
       ref={containerRef}
-      data-scroll-section
       id="process-container"
 
       onViewportEnter={_ => {

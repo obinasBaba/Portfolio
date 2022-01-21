@@ -148,7 +148,7 @@ const AboutPage = () => {
         <LineArt/>
       </ArtContainer>
 
-      <ScrollText className="content content--feature" data-scroll-section>
+      <ScrollText className="content content--feature" >
 
         <p className="content__breakout content__breakout--big" data-scroll={true}
            data-scroll-speed="3" data-scroll-direction="horizontal">endless
