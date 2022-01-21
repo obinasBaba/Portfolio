@@ -6,6 +6,7 @@ import { BackgroundOverlayStateContext } from '../../../contexts/AppStateContext
 import LoadStateContext from '../../../contexts/LoadStateContext'
 import { useAnimation } from 'framer-motion'
 import H from './H.inline.svg'
+import {MotionStateWrapper, MotionValueContext} from "../../../contexts/MotionStateWrapper";
 
 const greetingTextVariants = {
   initial: {
@@ -16,9 +17,18 @@ const greetingTextVariants = {
     opacity: 1,
     y: 0,
   },
-  exit: {
-    opacity: 0,
-    y: -200,
+  exit(arg){
+
+    console.log('heroExit ::' , arg)
+    if ( arg && arg.inView && arg.inView.get() === 'hero'){
+      return {
+        opacity: 0,
+        y: -200,
+      }
+    }
+
+    return {}
+
   },
 
   transition: {
@@ -60,7 +70,8 @@ const textContainerVariants = {
 const Hero = () => {
   // const { logo } = useHeaderAssets();
 
-  // const { backgroundOverlay, } = useContext(AppStateContext)
+  const { inView } = useContext(MotionValueContext)
+
 
   useEffect(() => {
       setTimeout(() => {
@@ -74,6 +85,15 @@ const Hero = () => {
                      // initial="initial"
                      // animate={'animate'}
                      // exit="exit"
+
+                     onViewportEnter={ e => {
+                       inView.set('hero')
+                     } }
+
+                     onViewportLeave={ e => {
+                       inView.set(false)
+
+                     }}
       >
 
         <TextContainer variants={textContainerVariants}>

@@ -86,7 +86,7 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
         },
         projectImgLoaded,
         registerScrollRestoration,
-        // inView,
+        inView,
         locoInstance
       }}
     >

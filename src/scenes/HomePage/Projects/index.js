@@ -31,6 +31,16 @@ const ProjectContainer = styled(motion.section)`
 
   ${spacing('pt', 16)};
   ${spacing('pb', 11)};
+  
+  .inview-detector{
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    //background: navajowhite;
+    z-index: 999;
+    pointer-events: none;
+    
+  }
 `
 
 const Planet = styled(motion.div)`
@@ -106,8 +116,10 @@ let planetVariants = {
 const Projects = () => {
   const containerRef = useRef(null)
   const {
-    mouse: { mouseY, mouseX },
+    mouse: { mouseY, mouseX }, inView
   } = useContext(MotionValueContext)
+
+
 
   const yBig = useSpring(0, config)
   const xBig = useSpring(0, config)
@@ -136,11 +148,27 @@ const Projects = () => {
   return (
     <ProjectContainer
       id="projects"
-      // data-scroll-section={true}
       data-scroll data-scroll-class='experiment'
       variants={parentVariant}
       ref={containerRef}
     >
+
+      <motion.div className='inview-detector'
+                  onViewportEnter={ e => {
+                    inView.set('project-section')
+                  } }
+
+                  onViewportLeave={ e => {
+                    inView.set(false)
+
+                  }}
+
+                  viewport={{
+                    amount: 'some',
+                    // once: true,
+                  }}
+      />
+
       <HeadlineTitle title={'Projects'} mb={3} subtitle={'Case Studies'} />
 
       <ScrollPlanet data-scroll data-scroll-speed="-3">
@@ -152,10 +180,6 @@ const Projects = () => {
       </ScrollPlanet2>
 
       <RotationTextPath />
-
-    {/*  <Link to='/projects'>
-        <h1>To Projects</h1>
-      </Link>*/}
 
     </ProjectContainer>
   )

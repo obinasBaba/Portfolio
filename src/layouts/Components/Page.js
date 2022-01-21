@@ -12,7 +12,7 @@ import { MotionValueContext } from '../../contexts/MotionStateWrapper'
 
 const Page = ({ children, path }) => {
   const {
-    variantsUtil: { isTop },
+    variantsUtil: { isTop }, inView
   } = useContext(MotionValueContext)
 
   // const [fontFinish, setFontFinish] = useState(fontLoaded.get())
@@ -39,7 +39,7 @@ const Page = ({ children, path }) => {
       <Main data-scroll-container id="main-container">
         <AnimatePresence
           exitBeforeEnter
-          custom={{ path, cPath: undefined, isTop }}
+          custom={{ path, cPath: undefined, isTop, inView }}
         >
           {children}
         </AnimatePresence>

@@ -218,15 +218,21 @@ const circleTxtVariants: Variants = {
     // if (arg.inView !== 'projects')
     //   return {};
 
-    return {
-      scale: .2,
-      opacity: 0,
-      transition: {
-        duration: .9,
-        ease: [0.36, 0, 0.66, -0.56],
-      }
+    if ( arg && arg.inView && arg.inView.get() === 'project-section'){
+      return {
+        scale: .2,
+        opacity: 0,
+        transition: {
+          duration: .9,
+          ease: [0.36, 0, 0.66, -0.56],
+        }
 
+      }
     }
+
+    return {}
+
+
   }
 }
 
