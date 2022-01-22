@@ -5,6 +5,7 @@ import useLocoScroll from '../hooks/useLocoScroll'
 import useToolTip from '../hooks/useToolTip'
 import useRefreshMouseListeners from '../hooks/useRefreshMouseListeners'
 import {useMediaQuery, useTheme} from "@material-ui/core";
+import Seo from "../components/seo";
 
 const IndexPage = ({ path }) => {
   const {
@@ -51,6 +52,7 @@ const IndexPage = ({ path }) => {
 
   return (
      <>
+       <Seo title='homepage' description='this is homepage of my portfolio site'/>
        {
          !backgroundOverlay && <HomePage />
        }

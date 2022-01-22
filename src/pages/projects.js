@@ -5,6 +5,7 @@ import ProjectPage from '../scenes/ProjectPage'
 import useToolTip from '../hooks/useToolTip'
 import useRefreshMouseListeners from '../hooks/useRefreshMouseListeners'
 import {AppStateContext, BackgroundOverlayStateContext} from "../contexts/AppStateContext";
+import Seo from "../components/seo";
 
 const Projects = ({path}) => {
   // console.log(path)
@@ -26,6 +27,8 @@ const Projects = ({path}) => {
 
   return (
       <>
+        <Seo title='projects' description='this are featured project i have worked on.'/>
+
         {
           !backgroundOverlay && <ProjectPage />
         }

@@ -6,6 +6,7 @@ import useLocoScroll from '../hooks/useLocoScroll'
 import {motion} from 'framer-motion'
 import useToolTip from "../hooks/useToolTip";
 import useRefreshMouseListeners from "../hooks/useRefreshMouseListeners";
+import Seo from "../components/seo";
 
 
 const containerVariants = {
@@ -43,6 +44,8 @@ const Contact = ({path}) => {
 
   return (
       <>
+        <Seo title='contact' description='this is the contact page where my visitors can contact me.'/>
+
         {
           !backgroundOverlay &&
           <motion.div variants={containerVariants}

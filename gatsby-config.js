@@ -1,8 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Henzzo portfolio website `,
-    titleTemplate: "%s · The Real Hero",
+    title: ` henzzo.com`,
+    titleTemplate: "The Real Hero · %s",
     url: "https://www.netlify.henzzo.app",
+    email: `henokgetachew500@gmail.com`,
     description: `
       This site is crafted by me the owner, Henzzo
        and i use it to show my skill through my projects and

@@ -6,6 +6,7 @@ import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import useToolTip from "../hooks/useToolTip";
 import useRefreshMouseListeners from "../hooks/useRefreshMouseListeners";
+import Seo from "../components/seo";
 
 
 gsap.registerPlugin(ScrollTrigger)
@@ -34,6 +35,8 @@ const About = ({path}) => {
 
   return (
     <>
+      <Seo title='about' description='this is where i talk about my skills, about me and my process of getting work done'/>
+
       {
         !backgroundOverlay && <AboutPage/>
       }
