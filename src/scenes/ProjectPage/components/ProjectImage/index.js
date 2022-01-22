@@ -51,7 +51,7 @@ const ProjectImage = ({
           state={{ path: url }}
           onClick={() => fromProjectList.set(true)}
           data-pointer='focus'
-          data-pointer-color='#02021e'
+          data-pointer-color='#3719ca'
           data-tooltip
           data-tooltip-text='Let me tell you a story'
         />

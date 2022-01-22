@@ -10,8 +10,8 @@ const ReturnBtnContainer = styled( motion.div )`
   display: grid;
   place-items: center;
 
-  ${length('height', 6)};
-  ${length('width', 6)};
+  ${length('height', 5)};
+  ${length('width', 5)};
   
   & > *{
     grid-row: 1;
@@ -25,7 +25,7 @@ const ReturnBtnContainer = styled( motion.div )`
   
   & :hover{
     svg #border{
-      fill: transparent;
+      fill: #3719ca;
       transition: fill .6s ease-in-out, stroke .6s ease-in-out;
     }
   }
@@ -42,9 +42,9 @@ const ReturnBtnContainer = styled( motion.div )`
 `
 
 const transition = {
-  type: 'tween',
-  duration: 0.4,
-  ease: 'easeOut',
+  ease: [0.6, 0.01, 0, 0.9],
+  duration: 1,
+  delay: .2
 };
 
 const pathTransition = {
@@ -57,7 +57,19 @@ const containerVariant = {
     transition: {
       staggerChildren: .05,
     }
-  }
+  },
+
+  initial : {
+    opacity: 0,
+  },
+
+  animate: {
+    opacity: 1,
+  },
+
+  exit: {
+    opacity: 0,
+  },
 }
 
 
@@ -90,26 +102,29 @@ const pathVariant = {
 }
 
 
-const ReturnBtn = ( { onClick, to } ) => {
+const ReturnBtn = ( { onClick, to, tooltip='Blog-list' } ) => {
 
   return (
     <ReturnBtnContainer onClick={onClick}
-             data-pointer
-             data-tooltip
-             data-stuck
-             data-tooltip-text='Blog-list'
-             className='exitBtn'
+                        data-tooltip
+                        data-pointer='focus'
+                        data-pointer-color='#3719ca'
+                        data-tooltip-text={tooltip}
+                        className='exitBtn'
     >
 
       <Link to={to}>
 
       <motion.svg xmlns="http://www.w3.org/2000/svg"
-                  width="60" height="60" viewBox="0 0 60 60"
+                  width="100%" height="100%" viewBox="0 0 60 60"
                   variants={containerVariant}
                   initial='initial'
                   animate='animate'
                   exit='exit'
                   whileHover='hover'
+                  onAnimationEnd={ event => {
+                    console.log('animationEvent ;', event)
+                  } }
                   transition={transition}
       >
 

@@ -70,7 +70,7 @@ const Container = styled(motion.section)`
     height: var(--dim-button);
     font: inherit;
     font-weight: 500;
-    cursor: pointer;
+    //cursor: none;
     background: none;
     color: var(--color-text-button);
     padding: 0;

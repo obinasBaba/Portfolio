@@ -100,6 +100,8 @@ const ThumbAndDot = ({ hidden, clickEvent, index, anchor, dataAnchor }) => {
         data-pointer='focus'
         data-tooltip={true}
         data-tooltip-text='Next project'
+        data-pointer-color='#3719ca'
+
       />
 
       {hidden && (

@@ -4,12 +4,8 @@ import { mediumUp, smallUp } from "./mixins";
 
 export const GlobalStyle = createGlobalStyle`
 
-  ${responsiveVars}
-
-  ;
-  ${webKitInputReset}
-
-  ;
+  ${responsiveVars}  ;
+  ${webKitInputReset} ;
 
   canvas[resize] {
     width: 100%;

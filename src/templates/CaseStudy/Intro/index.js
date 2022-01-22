@@ -118,7 +118,7 @@ const Intro = ({ intro }) => {
 
       <Typography gutterBottom={true} className='reason' >
         This is relatively a new project I just finished, so am
-        putting together some bits and pieces to prepare an in-depth
+        putting some bits and pieces together to prepare an in-depth,
         walk-through story to tell.
       </Typography>
 

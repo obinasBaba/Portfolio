@@ -6,9 +6,9 @@ import ScrollDown from '../../../../components/ScrollDown'
 
 const ScrollDownWrapper = styled(motion.div)`
   position: fixed;
-  z-index: 33;
+  z-index: 13;
   left: 0;
-  bottom: 5%;
+  bottom: 7%;
 
   display: flex;
   flex-flow: column;
@@ -51,14 +51,16 @@ const wrapperVariants = {
 
 const containerVariant = {
   initial: {
-    x: 'calc( -100% + (var(--indent) * -2.25rem))',
+    y: '100%',
+    opacity: 0,
   },
   animate: {
-    x: 0,
+    y: 0,
+    opacity: 1,
   },
   exit: {
-    // x: 'calc( -100% + (var(--indent) * -2.25rem))',
-    x: 'calc((var(--indent) * -4.5rem))',
+    y: '100%',
+    opacity: 0,
 
   },
 
@@ -75,6 +77,10 @@ const ProjectScrollDown = ({ activeIndex }) => {
 
   useEffect(() => {
     // activeIndex.clearListeners()
+    if (!activeIndex) return ;
+
+   /* if (activeIndex.get() === 0)
+      setShow(true)*/
 
     activeIndex.onChange(v => {
       if (v > 0)

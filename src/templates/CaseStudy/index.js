@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Headline from './Headline'
 import Intro from './Intro'
 import ReturnBtn from '../../components/ReturnBtn'
-import { AppStateContext } from '../../contexts/AppStateContext'
+import {AppStateContext, BackgroundOverlayStateContext} from '../../contexts/AppStateContext'
 import { Link } from 'gatsby'
 import useLocoScroll from '../../hooks/useLocoScroll'
 import styled from 'styled-components'
@@ -12,6 +12,9 @@ import { useMotionValue, useTransform } from 'framer-motion'
 import { HeadLineBG } from './Headline/Components'
 import { bgVariant, transition } from './Headline/variants'
 import { MotionValueContext } from '../../contexts/MotionStateWrapper'
+import useToolTip from "../../hooks/useToolTip";
+import useRefreshMouseListeners from "../../hooks/useRefreshMouseListeners";
+import ProjectScrollDown from "../../scenes/ProjectPage/components/SideBarTools/ProjectScrollDown";
 
 let args = {
   path: undefined,
@@ -33,7 +36,7 @@ const BG = styled.div`
 
 const FixedItems = styled.div`
   position: fixed;
-  left: 3%;
+  left: 3.8%;
   top: 29%;
   bottom: 5%;
   z-index: 11;
@@ -86,17 +89,24 @@ const Project = ({ pageContext, location, path }) => {
     variantsUtil : {fromCaseStudy, isTop, fromProjectList} , moScroll
   } = useContext(MotionValueContext)
 
+  const {
+    backgroundOverlay
+  } = useContext(BackgroundOverlayStateContext)
+
   const [scrolled, setScrolled] = useState(false);
 
-  const loco =  useLocoScroll(true, '.projectContainer')
+  const loco =  useLocoScroll(!backgroundOverlay, )
+  useToolTip('[data-tooltip-text]')
+  useRefreshMouseListeners('[data-pointer]')
+
   const moInitial = useMotionValue(fromProjectList.get() ? ['fromProjectsInitial'] : ['initial'])
   const moAnimate = useMotionValue(fromProjectList.get() ? ['fromProjectsAnimate'] : ['animate'])
 
   useEffect(() => {
-    // console.log('fromProject : ', fromProjectList)
+    console.log('fromProject : ', location, path)
+    setCurrentPath(location.pathname)
     fromProjectList.set(false)
     fromCaseStudy.set(true)
-    setCurrentPath(location.pathname)
 
   }, [])
 
@@ -135,18 +145,21 @@ const Project = ({ pageContext, location, path }) => {
     return () => document.body.classList.remove('blog-clr')
   }, [scrolled])
 
+  const returnClick = () => {
+    isTop.set( moScroll.y.get() < 10 )
+  }
 
   return (
     <>
       <FixedItems>
-        <ReturnBtn to={"/projects" } onClick={() => {
-          isTop.set( moScroll.y.get() < 10 )
-        }} />
+        <ReturnBtn to={location.state.path} onClick={returnClick} />
 
-        <ScrollDown/>
+        {/*<ScrollDown/>      */}
+        <ProjectScrollDown  />
+
       </FixedItems>
 
-      <ProjectContainer className='projectContainer' data-scroll-container
+      <ProjectContainer className='projectContainer'
                         variants={containerVariants}
                         initial={moInitial.get()}
                         animate={moAnimate.get()}
