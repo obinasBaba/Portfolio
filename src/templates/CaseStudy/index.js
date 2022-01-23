@@ -152,7 +152,7 @@ const Project = ({ pageContext, location, path }) => {
   return (
     <>
       <FixedItems>
-        <ReturnBtn to={location.state.path} onClick={returnClick} />
+        <ReturnBtn to={location?.state?.path || '/projects'} onClick={returnClick} />
 
         {/*<ScrollDown/>      */}
         <ProjectScrollDown  />

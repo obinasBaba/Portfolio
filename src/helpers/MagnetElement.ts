@@ -42,6 +42,8 @@ export default class MagnetElement extends EventEmitter{
     this.element = el.element
     this.stop = el.stop
     this.distance = el.distance
+    this.rect = this.element.getBoundingClientRect()
+
     // this.onLeaveListener = el.onLeave
 
     this.initEvents()
@@ -63,9 +65,10 @@ export default class MagnetElement extends EventEmitter{
 
   calculateSizePosition() {
     // size/position
-    this.rect = this.element.getBoundingClientRect()
     this.scroll = { x: window.scrollX, y: window.scrollY }
     this.distanceToStop = this.rect.width * this.stop
+    this.rect = this.element.getBoundingClientRect()
+
   }
 
   loopRender(fn?) {
@@ -110,11 +113,28 @@ export default class MagnetElement extends EventEmitter{
       )
     }
 
-    this.element.style.transform = `translate(${this.renderedStyles.x.previous}px, ${this.renderedStyles.y.previous}px)`
+    this.element.style.transform =
+        `translate(${this.renderedStyles.x.previous}px, ${this.renderedStyles.y.previous}px)`;
 
     this.reqAnimationId = requestAnimationFrame(() => this.render())
   }
 
+
+  async initial(){
+    gsap.fromTo(
+        this.element,
+        {
+          x: this.renderedStyles.x.previous,
+          y: this.renderedStyles.y.previous,
+        },
+        {
+          x: 0,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3',
+        }
+    )
+  }
 
   stopRendering() {
     if (this.reqAnimationId) {
@@ -130,21 +150,6 @@ export default class MagnetElement extends EventEmitter{
     }
   }
 
-  async initial(){
-    gsap.fromTo(
-      this.element,
-      {
-        x: this.renderedStyles.x.previous,
-        y: this.renderedStyles.y.previous,
-      },
-      {
-        x: 0,
-        y: 0,
-        duration: 0.8,
-        ease: 'power3',
-      }
-    )
-  }
 
   destroy() {
     window.removeEventListener('resize', this.onResize)
