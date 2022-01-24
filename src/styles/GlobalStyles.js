@@ -53,6 +53,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     margin: 0;
     color: var(--light_gray);
+    
     //color: #fff;
     --dark-gray: #434e5e;
     --light_gray: #a4b5c0;

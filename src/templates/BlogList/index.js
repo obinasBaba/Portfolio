@@ -11,6 +11,7 @@ import PenEffect from './components/PenEffect'
 import {gridify} from "../../styles/mixins";
 import useToolTip from "../../hooks/useToolTip";
 import useRefreshMouseListeners from "../../hooks/useRefreshMouseListeners";
+import Seo from "../../components/seo";
 
 const moonStyle = css`
     
@@ -49,7 +50,9 @@ const BlogListTemplate = ({
 
   return (
     <div>
-        {
+      <Seo title='Blog' description='this is a blog list page where i share my experience as developer'/>
+
+      {
             !backgroundOverlay && <Container className='blog-container-temp'  >
                 <Moon showMoon={false} pos="fixed" moonStyle={moonStyle} />
                 <PenEffect />

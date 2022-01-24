@@ -1,4 +1,4 @@
-import React, {useContext, useLayoutEffect} from 'react'
+import React, {useContext, useEffect, useLayoutEffect} from 'react'
 import { graphql } from 'gatsby'
 import HeadLine from './components/Headline'
 import Article from './components/Article'
@@ -11,6 +11,7 @@ import {basicVariants, transition} from '../../helpers/variants'
 import useToolTip from "../../hooks/useToolTip";
 import useRefreshMouseListeners from "../../hooks/useRefreshMouseListeners";
 import {MotionStateWrapper} from "../../contexts/MotionStateWrapper";
+import Seo from "../../components/seo";
 
 
 
@@ -49,6 +50,8 @@ export const containerVariant = {
   }
 }
 
+let previousHeight = 0;
+
 const BlogPage = ({data, path, ...other}) => {
   const { title, date, tags, thumbnail } = data.currentBlog.frontmatter;
 
@@ -62,18 +65,36 @@ const BlogPage = ({data, path, ...other}) => {
   useLayoutEffect( () => {
     setCurrentPath(path)
     setTimeout(() => {
-      window.locoInstance && window.locoInstance.update()
+
     }, 5000)
   }, [] )
 
   useToolTip('[data-tooltip-text]')
   useRefreshMouseListeners('[data-pointer]')
 
+  useEffect(() => {
+    let intervalId =  setInterval(() => {
+      let container = document.body.querySelector('#blog-container');
+      if (!container) return;
+
+      if (previousHeight !== container.offsetHeight) {
+        window.locoInstance && window.locoInstance.update()
+        previousHeight = container.offsetHeight
+      }
+
+    }, 3000)
+
+    return () => clearInterval(intervalId)
+  }, [])
+
 
   return (
       <>
 
-      {
+        <Seo title={title || 'blog'} description='this is a blog list page where i share my experience as developer'/>
+
+
+        {
         !backgroundOverlay && <BlogContainer id='blog-container'
                                              variants={containerVariant}
                                              transition={transition}
