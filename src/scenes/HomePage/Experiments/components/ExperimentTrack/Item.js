@@ -73,7 +73,7 @@ export const ExperimentItem = styled(motion.div)`
 
 const InfoBar = styled.div`
   position: absolute;
-  top: 10%;
+  top: -6%;
   z-index: 1;
   
   
@@ -87,6 +87,11 @@ const InfoBar = styled.div`
   margin: 0 auto;
   // ${spacing('ph', 1)};
   
+  ${largeUp( css`
+    top: 10%;
+
+  ` )};
+  
   .title{
     font-weight: lighter;
     //letter-spacing: 1px;
@@ -97,12 +102,18 @@ const InfoBar = styled.div`
     //position: absolute;
     //bottom: 11px;
     transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9);
+    
+    text{
+      
+    }
 
 
     & *{
       filter: drop-shadow( 0px 7px 2px rgba(0, 0, 0, .7));
       transition: fill .3s ease-in-out;
     }
+    
+    
   }
 
 

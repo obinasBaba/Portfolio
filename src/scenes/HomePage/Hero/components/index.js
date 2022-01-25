@@ -30,8 +30,11 @@ export const TextContainer = styled( motion.div )`
   //padding-bottom: 15%;
   z-index: 2;
   
+  
   ${ gridColWidth() };
-  grid-row: 2 / 3;
+  grid-row: 3 / 4;
+  align-self: end;  
+
 
   ${spacing('gap', 2)};
   ${spacing('ph', 3)};
@@ -50,6 +53,8 @@ export const TextContainer = styled( motion.div )`
   
 
   ${ largeUp( css`
+    grid-row: 2 / 3;
+
     ${spacing('pl', 11)}; 
     ${spacing('pt', 3)};
 

@@ -1,12 +1,8 @@
-import React, { useContext, useEffect } from 'react'
-import { Typography } from '@material-ui/core'
-import { Greeting, HeroContainer, Intro, TextContainer } from './components'
+import React, {useContext, useEffect} from 'react'
+import {Typography} from '@material-ui/core'
+import {Greeting, HeroContainer, Intro, TextContainer} from './components'
 import Moon from '../../../components/MoonLight'
-import { BackgroundOverlayStateContext } from '../../../contexts/AppStateContext'
-import LoadStateContext from '../../../contexts/LoadStateContext'
-import { useAnimation } from 'framer-motion'
-import H from './H.inline.svg'
-import {MotionStateWrapper, MotionValueContext} from "../../../contexts/MotionStateWrapper";
+import {MotionValueContext} from "../../../contexts/MotionStateWrapper";
 
 const greetingTextVariants = {
   initial: {

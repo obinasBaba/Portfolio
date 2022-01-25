@@ -1,14 +1,19 @@
 import React, { useContext, useState } from "react";
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import styled, { css } from "styled-components";
-import { length, spacing, xxLargeUp } from "../../../../styles/mixins";
+import {largeUp, length, spacing, xxLargeUp} from "../../../../styles/mixins";
 import { AppStateContext } from "../../../../contexts/AppStateContext";
 import { useSpring, useTransform } from "framer-motion";
 
 const ImageWrapper = styled.div`
   flex: 0 0 100%;
-  max-width: calc( 100vw / 64 * 26 );
+  max-width: calc( 100vw / 64 * 40 );
   margin-right: calc( 100vw / 64 * 1 );
+  
+  
+  ${ largeUp( css`
+    max-width: calc( 100vw / 64 * 26 );
+  ` ) };
   
   ${ xxLargeUp( css`
     max-width: calc( 100vw / 64 * 31 );
@@ -31,10 +36,14 @@ const ImageWrapper = styled.div`
   }
 
   &:nth-child(2n) {  //starting from the parent every even child
-    max-width: calc( 100vw / 64 * 17 );
+    max-width: calc( 100vw / 64 * 28 );
     display: flex;
     flex-flow: wrap;
     justify-content: space-between;
+
+    ${ largeUp( css`
+      max-width: calc( 100vw / 64 * 17 );
+  ` ) };
 
     ${ xxLargeUp( css`
       max-width: calc( 100vw / 64 * 20 );
@@ -51,21 +60,17 @@ const ImageWrapper = styled.div`
   }
 
   @media screen and (min-width: 1600px) {
-  //@include hl-max-width(620px);
     
     ${ length( 'max-width', 62 ) };
     
     &.item {
-    //@include hl-margin(right, 20px);
       ${ spacing( 'mr', 2 ) };
     }
     &:nth-child(2n) {
       
-    //@include hl-max-width(400px);
       ${ length( 'max-width', 40 ) };
 
       .image:first-child {
-      //@include hl-margin(bottom, 20px);
         ${ spacing('mb', 2) };
       }
       .image:nth-child(n + 2) {
