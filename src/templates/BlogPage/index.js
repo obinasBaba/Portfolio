@@ -10,8 +10,9 @@ import {motion} from 'framer-motion'
 import {basicVariants, transition} from '../../helpers/variants'
 import useToolTip from "../../hooks/useToolTip";
 import useRefreshMouseListeners from "../../hooks/useRefreshMouseListeners";
-import {MotionStateWrapper} from "../../contexts/MotionStateWrapper";
 import Seo from "../../components/seo";
+import STrigger from 'gsap/ScrollTrigger'
+
 
 
 
@@ -79,6 +80,8 @@ const BlogPage = ({data, path, ...other}) => {
 
       if (previousHeight !== container.offsetHeight) {
         window.locoInstance && window.locoInstance.update()
+        STrigger.refresh()
+
         previousHeight = container.offsetHeight
       }
 
