@@ -1,37 +1,24 @@
 import gsap from 'gsap'
 import {useCallback, useContext, useEffect, useRef} from 'react'
 import { BackgroundOverlayStateContext } from '../contexts/AppStateContext'
+import {MotionValueContext} from "../contexts/MotionStateWrapper";
 
 export default selector => {
   const { backgroundOverlay } = useContext(BackgroundOverlayStateContext)
+  const { toolTipsData } = useContext(MotionValueContext)
   const toolTipTextNode = useRef(null)
 
   const onEnter = el => {
-    toolTipTextNode.current.textContent = el.target.dataset.tooltipText
-    gsap.fromTo(
-        '.tool-tip-wrapper',
-        {
-          opacity: 0,
-          y: 25,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.2 * 0.5,
-          ease: 'easeIn',
-        }
-    )
+    toolTipsData.set({
+      text: el.target.dataset.tooltipText,
+      show: true,
+    })
   }
 
   const onLeave = () => {
-    gsap.to('.tool-tip-wrapper', {
-      opacity: 0,
-      y: -25,
-      duration: 1.2 * 0.5,
-      ease: '[0.6, 0.01, 0, 0.9]',
-      onComplete() {
-        // toolTipTextNode.textContent = ''
-      },
+    toolTipsData.set({
+      text: '',
+      show: false,
     })
   }
 
@@ -51,12 +38,8 @@ export default selector => {
   useEffect(() => {
     if (backgroundOverlay) return
 
-    // if ( !selector ) throw Error('Invalid selector in useTOolTIp---------')
     toolTipTextNode.current = document.querySelector('.tool-tip-excerpt')
     onLeave()
-
-
-
     window.addEventListener('mousemove', addListener)
 
   }, [selector, backgroundOverlay])

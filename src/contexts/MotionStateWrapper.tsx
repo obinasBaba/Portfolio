@@ -8,6 +8,7 @@ type MotionValueContextType = {
   registerScrollRestoration: MotionValue<string >,
   inView: MotionValue<any >,
   locoInstance: MotionValue<boolean >,
+  toolTipsData: MotionValue<{ text: string, show: boolean }>,
 
   mouse: {
     mouseX: MotionValue<number>
@@ -48,6 +49,10 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
   const inView = useMotionValue(null)
   const locoInstance = useMotionValue(false)
   const locoInstanceHelpers = useMotionValue(null)
+  const toolTipsData = useMotionValue ({
+    text: '',
+    show: false,
+  })
 
   //mouse_event motion_values
   const mouseX = useMotionValue(0)
@@ -87,7 +92,8 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
         projectImgLoaded,
         registerScrollRestoration,
         inView,
-        locoInstance
+        locoInstance,
+        toolTipsData,
       }}
     >
       {children}
