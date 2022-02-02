@@ -37,7 +37,7 @@ const FontSample = styled.div`
 
 const FontUsed = () => {
   return (
-    <FontContainer maxWidth={'xl'} fixed={true} data-scroll-section >
+    <FontContainer maxWidth={'xl'} fixed={true} >
       <FontSample className='abyssopelagic'  >
         <Typography variant='h4' noWrap className='abyssopelagic' > Abyssopelagic </Typography>
         <Typography variant='h6' noWrap className='abyssopelagic'> abcdefghijkl </Typography>

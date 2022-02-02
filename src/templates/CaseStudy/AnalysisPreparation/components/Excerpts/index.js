@@ -21,7 +21,7 @@ const Technology = styled( Typography )`
 
 
   ${ smallUp( css`
-    ${ text(1.2) };
+    ${ text(.6) };
 
   ` ) };
 `
@@ -80,7 +80,7 @@ const Excerpts = () => {
 
   return (
     <>
-      <Technology variant='subtitle2'> { technologies.join(', ') } </Technology>
+      <Technology className='tech-used' variant='subtitle2'> { technologies.join(', ') } </Technology>
       <Title  variant="h4"> The Power of the cloud. </Title>
       <Description>
         In this project, as a front-end developer and gaphic & UI Designer, i

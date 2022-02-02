@@ -13,7 +13,7 @@ const ConceptContainer = styled.div`
     background: url( ${cover} ) no-repeat center;
     background-size: cover;
     //background-repeat: no-repeat;
-    height: 70rem;
+    height: 55rem;
     width: 100%;
   }
   
@@ -28,11 +28,10 @@ const ConceptTxtWrapper = styled( Container ) `
   
   .concept{
     letter-spacing: .2em;
-    font-family: var(--sofia-soft);
   }
   
   .concept-desc{
-    max-width: 53ch;
+    max-width: 46ch;
     line-height: 160%;
   }
   
@@ -40,7 +39,7 @@ const ConceptTxtWrapper = styled( Container ) `
 
 const Concept = () => {
   return (
-    <ConceptContainer data-scroll-section>
+    <ConceptContainer >
       <ConceptTxtWrapper maxWidth='xl' fixed={true} >
 
         <Typography variant='h3' className="concept">CONCEPT</Typography>

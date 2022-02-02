@@ -9,6 +9,7 @@ import {
   text,
 } from '../../../styles/mixins'
 import Logo from './vigoza-logo.svg'
+import MotionBtn from "../../../components/MotionBtn";
 
 const IntroContainer = styled(Container)`
   position: relative;
@@ -24,18 +25,17 @@ const IntroContainer = styled(Container)`
 
   width: 100%;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
   flex-flow: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   
   ${spacing('pv', 10)};
-  ${spacing('pl', 20)};
   ${spacing('mb', 10)};
   ${spacing('mt', 30)};
 
   &::after {
-    // content: url(${Logo});
+     content: url(${Logo});
     position: absolute;
     display: block;
     bottom: -35%;
@@ -45,7 +45,7 @@ const IntroContainer = styled(Container)`
   }
 
   & > :not(:first-child) {
-    ${length('margin-containerVariant', 3)};
+    ${length('margin', 3)};
   }
 
   ${mediumUp(css`
@@ -60,7 +60,7 @@ const IntroContainer = styled(Container)`
     justify-content: center;
 
     & > :not(:first-child) {
-      ${length('margin-containerVariant', 3)};
+      ${length('margin', 3)};
     }
   }
   
@@ -102,18 +102,17 @@ const Intro = ({ intro }) => {
 
   return (
     <IntroContainer
-      // themeCrl={themeColor}
-      // logoUrl={logoUrl}
-      // color={color}
+      themeCrl={themeColor}
+      logoUrl={logoUrl}
+      color={color}
       maxWidth={false}
       fixed={false}
       component={'section'}
-      data-scroll-section
     >
 
 
 
-      <Typography className='title'
+     {/* <Typography className='title'
                   variant={'h1'}>Thanks for stopping by Alien.</Typography>
 
       <Typography gutterBottom={true} className='reason' >
@@ -124,15 +123,15 @@ const Intro = ({ intro }) => {
 
       <Typography className='bye' >
         Aside that enjoy other places of my space.
-      </Typography>
+      </Typography>*/}
 
 
 
-      {/*<div className='desc' >*/}
-      {/*  <Description>{desc}</Description>*/}
+      <div className='desc' >
+        <Description>{desc}</Description>
 
-      {/*  /!*<MotionBtn text={'Visit Website'} to={siteLink} />*!/*/}
-      {/*</div>*/}
+        <MotionBtn text={'Visit Website'} to={'siteLink'} />
+      </div>
 
     </IntroContainer>
   )

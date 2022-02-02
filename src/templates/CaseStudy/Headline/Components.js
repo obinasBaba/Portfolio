@@ -116,5 +116,6 @@ export const HeadLineBG = styled(motion.div)`
   bottom: 0;
   background-color: var(--contentBg);
   transition: background-color .8s ease-in-out ;
+  z-index: -1;
 
 `

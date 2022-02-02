@@ -15,6 +15,12 @@ import { MotionValueContext } from '../../contexts/MotionStateWrapper'
 import useToolTip from "../../hooks/useToolTip";
 import useRefreshMouseListeners from "../../hooks/useRefreshMouseListeners";
 import ProjectScrollDown from "../../scenes/ProjectPage/components/SideBarTools/ProjectScrollDown";
+import MetaTxt from "./MetaTxt";
+import AnalysisPreparation from "./AnalysisPreparation";
+import ColorPalette from "./Colors";
+import FontUsed from "./FontUsed";
+import Concept from "./Concept";
+import Development from "./Development";
 
 let args = {
   path: undefined,
@@ -110,8 +116,6 @@ const Project = ({ pageContext, location, path }) => {
 
   }, [])
 
-
-
   useTransform(moScroll.y, latest => {
     if ( latest > 450 ){
       if ( !scrolled  )
@@ -182,12 +186,13 @@ const Project = ({ pageContext, location, path }) => {
 
         <HeadLineBG  variants={bgVariant} transition={transition} />
 
+        <MetaTxt />
+
 
         <div className="line" />
 
         <Intro intro={intro}/>
 
-        {/*<MetaTxt />
 
         <AnalysisPreparation />
 
@@ -198,7 +203,7 @@ const Project = ({ pageContext, location, path }) => {
         <Concept />
 
         <Development />
-*/}
+
 
         <Link to={'/projects'} state={{ path: 'location.pathname' }}>
           <ReturnBtn key="return" />

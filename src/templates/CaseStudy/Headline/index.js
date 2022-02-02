@@ -22,7 +22,7 @@ import Title from '../../../scenes/ProjectPage/components/ProjectDescription/com
 
 const Headline = ({ subTitle, title, about, media }) => {
   return (
-    <HeadlineContainer variants={containerVariants} data-scroll-section>
+    <HeadlineContainer variants={containerVariants} >
       <Texts variants={textsVariant} transition={transition}>
         <Tags txt="Analytics, UX, UI, Icons, Front-end" />
 

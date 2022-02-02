@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Container } from '@material-ui/core'
-import { mediumUp, spacing } from '../../../styles/mixins'
+import {mediumUp, spacing, text} from '../../../styles/mixins'
 import wireFrame from './components/photo_2021-06-10_05-58-23.jpg'
 import Excerpts from './components/Excerpts'
 import Title from './components/Title'
@@ -13,6 +13,7 @@ const AnalysisContainer = styled(Container)`
   justify-content: center;
   align-items: center;
   letter-spacing: 0.5px;
+  
 `
 
 const Flex = styled.div`
@@ -29,7 +30,7 @@ const Flex = styled.div`
     flex-flow: row;
 
     & > :last-child {
-      ${spacing('mt', 0)};
+      
     }
   `)};
 `
@@ -37,7 +38,7 @@ const Flex = styled.div`
 const BrandingTxt = styled.div`
   //border: thin solid greenyellow;
   flex: 1.3;
-  background-color: #f3f3f3;
+  //background-color: #f3f3f3; 
 
 `
 
@@ -66,7 +67,7 @@ const WireFrame = styled.div`
 
 const AnalysisPreparation = () => {
   return (
-    <AnalysisContainer fixed={false} maxWidth="xl" component="section" data-scroll-section>
+    <AnalysisContainer fixed={false} maxWidth="xl" component="section" >
       <Title />
 
       <Flex>
