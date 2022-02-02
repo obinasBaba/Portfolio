@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useContext, useEffect, useRef} from 'react'
 import styled from 'styled-components'
 import { spacing, text } from '../../styles/mixins'
 import Typography from '@material-ui/core/Typography'
+import {MotionValueContext} from "../../contexts/MotionStateWrapper";
+import {useAnimation, motion} from "framer-motion";
 
 const InfoChipContainer = styled.div`
   position: fixed;
@@ -32,7 +34,7 @@ const Excerpt = styled(Typography)`
   ${text(0.7)};
 `
 
-const ToolTipWrapper = styled.div`
+const ToolTipWrapper = styled( motion.div )`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,14 +58,65 @@ const ToolTipWrapper = styled.div`
 `
 
 
+const containerVariant = {
+
+  initial: {
+    opacity: 0,
+    y: 25,
+  },
+
+  enter: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1.2 * .5,
+      ease: 'easeIn'
+    }
+  },
+
+  hide: {
+    y: -25,
+    opacity: 0,
+    transition: {
+      duration: 1.2 * .5,
+      ease: [0.6, 0.01, 0, 0.9],
+    }
+  },
+}
 
 const ToolTip = () => {
 
+  const { toolTipsData } = useContext(MotionValueContext)
+  const toolTipTextNode = useRef(null)
+
+  const controller = useAnimation()
+
+
+  useEffect(() => {
+    toolTipsData.onChange(v => {
+      if (v.show){
+        toolTipTextNode.current.textContent = v.text
+        controller.start('enter')
+      }else{
+        controller.start('hide')
+            .then(() => {
+              // toolTipTextNode.current.textContent = ''
+            })
+
+      }
+    })
+  }, [])
+
   return (
     <InfoChipContainer>
-      <ToolTipWrapper className='tool-tip-wrapper'>
+      <ToolTipWrapper className='tool-tip-wrapper'
+                      variants={containerVariant}
+                      initial="initial"
+                      animate={controller}
+                      exit="exit"
+      >
         <span className="dot" />
-        <Excerpt className='tool-tip-excerpt' />
+        <Excerpt className='tool-tip-excerpt' ref={toolTipTextNode}  />
       </ToolTipWrapper>
     </InfoChipContainer>
   )
