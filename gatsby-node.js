@@ -39,7 +39,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   //data for Project case-study page...
-  const data = await graphql(`
+  /*const data = await graphql(`
     query {
       preview1: file(relativePath: { eq: "sections/projects/linkedin.jpg" }) {
         publicURL
@@ -81,7 +81,7 @@ exports.createPages = async ({ graphql, actions }) => {
         },
       },
     })
-  })
+  })*/
   // end of project page creation
 
   //creating pages for each blog post markdown file

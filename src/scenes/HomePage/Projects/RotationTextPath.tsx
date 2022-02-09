@@ -363,7 +363,7 @@ const RotationCircleText = () => {
         </defs>
 
         {texts.map(({ text, link, length }, index) => (
-          <motion.g className="circle-g">
+          <motion.g className="circle-g" key={index}>
             <motion.text
               className={`circles__text circles__text--${index + 1}`}
               variants={circleTxtVariants}

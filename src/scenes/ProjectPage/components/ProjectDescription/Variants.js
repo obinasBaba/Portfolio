@@ -34,7 +34,7 @@ export const btnTxtVariants = {
 
   exit( c ){
 
-    if (c && c.path && c && c.path.startsWith('/portfolio'))
+    if (c && c.path && c && c.path.startsWith('/projects'))
       return {}
     else
       return {
@@ -127,7 +127,7 @@ export const letterVariant = {
 
   exit( c ){
 
-    if (c && c.path && c && c.path.startsWith('/portfolio'))
+    if (c && c.path && c && c.path.startsWith('/projects'))
       return {}
     else
       return {

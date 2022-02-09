@@ -10,7 +10,9 @@ class OverlayController {
 
 
   static getInstance(name){
-    if ( !name ) return null;
+    const el = document.body.querySelector(`.${name}`); // the parent SVG
+
+    if ( !el ) return null;
 
     this.duration = 900; //Animation duration of one path element.
 
@@ -22,13 +24,13 @@ class OverlayController {
     if( this.instance.get(name)){
       return this.instance.get(name)
     }else{
-      this.instance.set(name, new OverlayController(name))
+      this.instance.set(name, new OverlayController(el))
       return this.instance.get(name);
     }
   }
 
-  constructor(name) {
-    this.elm = document.body.querySelector(`.${name}`); // the parent SVG
+  constructor(el) {
+    this.elm = el
     this.path = this.elm.querySelectorAll('path'); //// Path elements in parent SVG. These are the layers of the overlay.
     this.numPoints = 10; //Number of control points for Bezier Curve.
     this.delayPointsArray = []; // Array of control points for Bezier Curve
@@ -43,7 +45,7 @@ class OverlayController {
     delayPerPath: OverlayController.delayPerPath
   }) {
 
-    if ( OverlayController.isAnimating )
+    if ( OverlayController.isAnimating || open === this.isOpened )
       return
 
     if ( options ) {
@@ -60,7 +62,8 @@ class OverlayController {
       // const range = 4 * Math.random() + 6;
       // const radian = i / (this.numPoints - 1) * Math.PI;
       // this.delayPointsArray[i] = (Math.sin(-radian) + Math.sin(-radian * range) + 2) / 4 * OverlayController.delayPointsMax;
-      this.delayPointsArray[i] = Math.max(Math.random(), 0.2) * OverlayController.delayPointsMax;
+      this.delayPointsArray[i] =
+          Math.max(Math.random(), 0.2) * OverlayController.delayPointsMax;
     }
 
     if ( open  ){

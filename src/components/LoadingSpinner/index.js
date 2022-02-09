@@ -118,6 +118,11 @@ const parentVariants = {
   },
   exit: {
     // opacity: 0
+  },
+  transition: {
+    duration: 1.21,
+    delay: .2,
+    ease: [0.6, 0.01, 0, 0.9],
   }
 }
 
@@ -160,7 +165,7 @@ async function cleanUp  () {
 
   OverlayController.getInstance('loading-overlay')
       .toggle(false, {
-        duration: 900,
+        duration: 920,
         delayPointsMax: 120,
         delayPerPath: 120,
       })
@@ -203,7 +208,7 @@ const LoadingSpinner = () => {
                             initial='initial'
                             animate='animate'
                             exit='exit'
-                            transition={transition}
+                            transition={parentVariants.transition}
 
           >
 
@@ -214,7 +219,7 @@ const LoadingSpinner = () => {
               <SpinnerWrapper  variants={containerVariants}
                                key='contentwrapp'
                                custom={{cleanUp}}
-                               transition={transition}>
+                               transition={parentVariants.transition}>
 
                 <Content ref={contentRef}>
                   <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">

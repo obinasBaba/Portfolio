@@ -13,7 +13,7 @@ export const projectsPreviewFragment = graphql`
 const useProjectsAssets = () => {
   return useStaticQuery(graphql`
     query {
-      preview1: file(relativePath: { eq: "sections/projects/linkedin.jpg" }) {
+      preview1: file(relativePath: { eq: "sections/projects/auction.jpeg" }) {
         name
         publicURL
       }

@@ -24,7 +24,7 @@ export const imgContainerVariant = {
   },
 
   exit(c) {
-    if (c && c.path && c && c.path.startsWith('/portfolio')) return {}
+    if (c && c.path && c && c.path.startsWith('/projects')) return {}
     else
       return {
         opacity: 0,
