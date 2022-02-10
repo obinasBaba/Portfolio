@@ -1,24 +1,32 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import {motion} from 'framer-motion'
 
 const OverflowOuter = styled( motion.div )`
   overflow: hidden;
   width: max-content;
   pointer-events: initial;
+  
+  //border: thin solid red;
+  
+  
+  ${({cstyle}) => css`
+    ${cstyle}
+  `};
 `
 
 const OverFlowInner = styled( motion.div )`
 
 `
 
-const OverFlowBox = ({children, variants}) => {
+const OverFlowBox = ({children, variants, customStyle}) => {
   return (
-    <OverflowOuter
-    >
+    <OverflowOuter  cstyle={customStyle}>
+
       <OverFlowInner variants={variants.inner}
                      custom={variants.custom}
-                     transition={variants.transition}>
+                     transition={variants.transition}
+      >
 
         {children}
 
