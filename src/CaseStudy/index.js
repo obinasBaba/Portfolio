@@ -2,14 +2,15 @@ import React, { useContext, useEffect, useState } from 'react'
 import Headline from './Headline'
 import ReturnBtn from '../components/ReturnBtn'
 import { AppStateContext } from '../contexts/AppStateContext'
-import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { ProjectContainer } from './components'
-import { useMotionValue, useTransform } from 'framer-motion'
+import {useMotionValue, usePresence, useTransform} from 'framer-motion'
 import { HeadLineBG } from './Headline/Components'
 import { bgVariant, transition } from './Headline/variants'
 import { MotionValueContext } from '../contexts/MotionStateWrapper'
 import ProjectScrollDown from '../scenes/ProjectPage/components/SideBarTools/ProjectScrollDown'
+import { createPortal } from 'react-dom'
+import {navigate} from "gatsby";
 
 let args = {
   path: undefined,
@@ -87,6 +88,10 @@ const projectDataDefault = {
   },
 }
 
+const FixedPortal = ({children}) => {
+  return createPortal(children, document.body);
+}
+
 const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
   const { title, subTitle, about } = projectData
   // const { headlineImg, publicURL } = projectData.imageData
@@ -95,15 +100,15 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
   } = useContext(AppStateContext)
 
   const {
-    variantsUtil : {fromCaseStudy, isTop, fromProjectList} , moScroll
+    variantsUtil : {fromCaseStudy, isTop, fromProjectList} , moScroll, locoInstance
   } = useContext(MotionValueContext)
 
-
   const [scrolled, setScrolled] = useState(false);
-
-
   const moInitial = useMotionValue(fromProjectList.get() ? ['fromProjectsInitial'] : ['initial'])
   const moAnimate = useMotionValue(fromProjectList.get() ? ['fromProjectsAnimate'] : ['animate'])
+  const showScrollDown = useMotionValue(0)
+  // const [isPresent, safeToRemove] = usePresence()
+
 
   useEffect(() => {
     // console.log('fromProject : ', location, path)
@@ -127,13 +132,13 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
   useEffect(() => {
 
     if ( scrolled ) {
-      document.body
-        .querySelector('.projectContainer')
-        .classList.add('container-scrolled');
-      
+      showScrollDown.set(1)
+      document.body.querySelector('.projectContainer').classList.add('container-scrolled');
       document.body.classList.add('blog-clr')
     }
     else {
+      showScrollDown.set(0)
+
       document.body
         .querySelector('.projectContainer')
         .classList.remove('container-scrolled')
@@ -146,20 +151,28 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
     return () => document.body.classList.remove('blog-clr')
   }, [scrolled])
 
-  const returnClick = () => {
-    isTop.set( moScroll.y.get() < 10 )
+  const returnClick = (ev) => {
+    ev.preventDefault()
+    let s = scrolled;
+    console.log('scrolled : ', s)
+    locoInstance.get().scrollTo(0, {
+      easing: [0.6, 0.01, 0, 0.9],
+      callback: () => setTimeout(() => navigate(projectData?.backUrl), s ? 350 : 0)
+    })
   }
 
   return (
     <>
-      <FixedItems>
-        <ReturnBtn to={projectData?.location?.state?.path || '/projects'}
-                   onClick={returnClick} />
 
-        {/*<ScrollDown/>      */}
-        <ProjectScrollDown  />
+      <FixedPortal>
+        <FixedItems>
+          <ReturnBtn to={projectData?.backUrl || '/projects'}
+                     onClick={returnClick} />
 
-      </FixedItems>
+          <ProjectScrollDown activeIndex={showScrollDown} />
+
+        </FixedItems>
+      </FixedPortal>
 
       <ProjectContainer className='projectContainer'
                         variants={containerVariants}
@@ -184,6 +197,8 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
         />
 
 
+
+
         <HeadLineBG  variants={bgVariant} transition={transition} />
 
         {
@@ -191,9 +206,9 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
         }
 
 
-        <Link to={'/projects'} state={{ path: 'location.pathname' }}>
+      {/*  <Link to={'/projects'} state={{ path: 'location.pathname' }}>
           <ReturnBtn key="return" />
-        </Link>
+        </Link>*/}
       </ProjectContainer>
     </>
 

@@ -77,12 +77,14 @@ const ProjectScrollDown = ({ activeIndex }) => {
 
   useEffect(() => {
     // activeIndex.clearListeners()
+    console.log('activeIndex: ', activeIndex)
     if (!activeIndex) return ;
 
-   /* if (activeIndex.get() === 0)
-      setShow(true)*/
+    if (activeIndex.get() === 0)
+      setShow(true)
 
     activeIndex.onChange(v => {
+      console.log('onChange : ', v)
       if (v > 0)
         setShow(false)
       else

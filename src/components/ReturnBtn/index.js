@@ -105,7 +105,7 @@ const pathVariant = {
 const ReturnBtn = ( { onClick, to, tooltip='Blog-list' } ) => {
 
   return (
-    <ReturnBtnContainer onClick={onClick}
+    <ReturnBtnContainer
                         data-tooltip
                         data-pointer='focus'
                         data-pointer-color='#3719ca'
@@ -113,7 +113,7 @@ const ReturnBtn = ( { onClick, to, tooltip='Blog-list' } ) => {
                         className='exitBtn'
     >
 
-      <Link to={to}>
+      <Link to={to} onClick={onClick}>
 
       <motion.svg xmlns="http://www.w3.org/2000/svg"
                   width="100%" height="100%" viewBox="0 0 60 60"

@@ -80,6 +80,7 @@ export const GlobalStyle = createGlobalStyle`
     #fbfefc 96.77%);
 
     --bottom-gradient-opacity: 1;
+    --btm-gradient-opacity: 1;
     --bottom-gradient: linear-gradient(to bottom,
     rgba(7, 33, 66, 0),
     rgba(6, 28, 55, 0),
@@ -122,14 +123,9 @@ export const GlobalStyle = createGlobalStyle`
       #fbfefc 0%,
       rgba(243, 243, 243, 0) 94%);
 
-      --bottom-gradient: linear-gradient(to bottom,
-      rgba(7, 33, 66, 0),
-      rgba(6, 28, 55, 0),
-      rgba(7, 24, 43, 0),
-      rgba(6, 18, 32, 0),
-      rgba(6, 18, 32, 0),
-      rgba(6, 18, 32, 0),
-      rgba(251, 254, 252, 0));
+      --btm-gradient-opacity: 0;
+      
+      
     }
     
     &.loading-done{

@@ -51,7 +51,6 @@ export const containerVariant = {
   }
 }
 
-let previousHeight = 0;
 
 const BlogPage = ({data, path, ...other}) => {
   const { title, date, tags, thumbnail } = data.currentBlog.frontmatter;
@@ -72,23 +71,6 @@ const BlogPage = ({data, path, ...other}) => {
 
   useToolTip('[data-tooltip-text]')
   useRefreshMouseListeners('[data-pointer]')
-
-  useEffect(() => {
-    let intervalId =  setInterval(() => {
-      let container = document.body.querySelector('#blog-container');
-      if (!container) return;
-
-      if (previousHeight !== container.offsetHeight) {
-        window.locoInstance && window.locoInstance.update()
-        STrigger.refresh()
-
-        previousHeight = container.offsetHeight
-      }
-
-    }, 3000)
-
-    return () => clearInterval(intervalId)
-  }, [])
 
 
   return (

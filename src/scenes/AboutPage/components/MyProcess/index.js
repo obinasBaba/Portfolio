@@ -217,10 +217,6 @@ const MyProcess = () => {
         })
       })
 
-    setTimeout(() => {
-      window.locoInstance && window.locoInstance.update()
-    }, 3000 )
-
 
   }, [mediaMatch])
 

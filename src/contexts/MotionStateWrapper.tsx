@@ -1,13 +1,15 @@
 import {MotionValue, useMotionValue, useViewportScroll} from "framer-motion";
 // @ts-ignore
 import React, {useLayoutEffect, createContext, useEffect} from 'react'
+// @ts-ignore
+import LocomotiveScroll from "locomotive-scroll";
 
 
 type MotionValueContextType = {
   projectImgLoaded: MotionValue<boolean>,
   registerScrollRestoration: MotionValue<string >,
-  inView: MotionValue<any >,
-  locoInstance: MotionValue<boolean >,
+  inView: MotionValue,
+  locoInstance: MotionValue<LocomotiveScroll>,
   toolTipsData: MotionValue<{ text: string, show: boolean }>,
 
   mouse: {
@@ -47,7 +49,8 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
   const registerScrollRestoration = useMotionValue('')
   const scrollDirection = useMotionValue('down')
   const inView = useMotionValue(null)
-  const locoInstance = useMotionValue(false)
+  const locoInstance = useMotionValue<LocomotiveScroll>(null)
+
   const locoInstanceHelpers = useMotionValue(null)
   const toolTipsData = useMotionValue ({
     text: '',

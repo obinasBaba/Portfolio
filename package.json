@@ -49,6 +49,7 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^4.2.0",
     "react-locomotive-scroll": "^0.2.0",
+    "react-portal": "^4.2.1",
     "react-svg": "^14.1.4",
     "react-use": "^17.2.4",
     "simplex-noise": "^2.4.0",

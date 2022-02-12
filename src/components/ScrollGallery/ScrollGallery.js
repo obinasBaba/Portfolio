@@ -80,10 +80,6 @@ const Gallery = () => {
   useEffect(() => {
     setRefresh(true)
 
-    mapped.onChange(v => {
-      console.log('mapped : ', v)
-    })
-
   }, [refresh])
 
 

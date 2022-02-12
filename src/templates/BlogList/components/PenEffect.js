@@ -45,9 +45,6 @@ const PenEffect = () => {
   const [refresh, setRefresh] = useState(false)
 
   useEffect(() => {
-   setTimeout(() => {
-     // window.locoInstance && window.locoInstance.update()
-   }, 1000)
 
     setRefresh(true)
 

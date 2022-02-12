@@ -110,11 +110,7 @@ const Title = () => {
           alt="Web App, Mobile"
           src={dribbleRed.publicURL}
           className="dribbleRed"
-          onLoad={() => {
-            setTimeout(() => {
-              window.locoInstance && window.locoInstance.update()
-            }, 500)
-          }}
+          onLoad={() => {}}
 
 
         />

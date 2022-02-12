@@ -17,6 +17,8 @@ const projectDataDefault = {
         period: 'End 2018',
     },
     intro: {},
+    backUrl: '/projects#two'
+
 }
 
 
