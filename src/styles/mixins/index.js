@@ -14,11 +14,15 @@ export function gridColWidth(from = 1, to = 65) {
     grid-column-end: ${to};
   `
 }
-
 export function gridify() {
   return css`
     display: grid;
     grid-template-columns: repeat(64, calc(100% / 64));
+  `
+}
+export const gridMultiplayer = (key, value=1) => {
+  return css`
+    ${key}: 100vw / 64 * ${value};
   `
 }
 
@@ -35,72 +39,74 @@ export const shadow = depth => {
 }
 
 export const spacing = (key, value) => {
-  let propKey;
+  let propKey = key;
   let temp;
 
-  switch (key) {
-    case 'mt':
-      propKey = 'margin-top'
-      break
-    case 'mr':
-      propKey = 'margin-right'
-      break
-    case 'mb':
-      propKey = 'margin-bottom'
-      break
-    case 'ml':
-      propKey = 'margin-left'
-      break
-    case 'm':
-      propKey = 'margin'
-      break
-  case 'mv':
-    temp = (value * 10) / 16;
-    return css`
+  if (key.length <= 2){
+    switch (key) {
+      case 'mt':
+        propKey = 'margin-top'
+        break
+      case 'mr':
+        propKey = 'margin-right'
+        break
+      case 'mb':
+        propKey = 'margin-bottom'
+        break
+      case 'ml':
+        propKey = 'margin-left'
+        break
+      case 'm':
+        propKey = 'margin'
+        break
+      case 'mv':
+        temp = (value * 10) / 16;
+        return css`
         margin-top: calc(${temp}rem * var(--indent));
         margin-bottom: calc(${temp}rem * var(--indent));
       `
-  case 'mh':
-    temp = (value * 10) / 16
-    return css`
+      case 'mh':
+        temp = (value * 10) / 16
+        return css`
         margin-right: calc(${temp}rem * var(--indent));
         margin-left: calc(${temp}rem * var(--indent));
       `
 
-    case 'pt':
-      propKey = 'padding-top'
-      break
-    case 'pr':
-      propKey = 'padding-right'
-      break
-    case 'pb':
-      propKey = 'padding-bottom'
-      break
-    case 'pl':
-      propKey = 'padding-left'
-      break
-    case 'p':
-      propKey = 'padding'
-      break
-    case 'ph':
-      temp = (value * 10) / 16
-      return css`
+      case 'pt':
+        propKey = 'padding-top'
+        break
+      case 'pr':
+        propKey = 'padding-right'
+        break
+      case 'pb':
+        propKey = 'padding-bottom'
+        break
+      case 'pl':
+        propKey = 'padding-left'
+        break
+      case 'p':
+        propKey = 'padding'
+        break
+      case 'ph':
+        temp = (value * 10) / 16
+        return css`
         padding-right: calc(${temp}rem * var(--indent));
         padding-left: calc(${temp}rem * var(--indent));
       `
 
-    case 'pv':
-      temp = (value * 10) / 16;
-      return css`
+      case 'pv':
+        temp = (value * 10) / 16;
+        return css`
         padding-top: calc(${temp}rem * var(--indent));
         padding-bottom: calc(${temp}rem * var(--indent));
       `
 
-    case 'br':
-      propKey = 'border-radius'
-      break
-    default:
-      propKey = key
+      case 'br':
+        propKey = 'border-radius'
+        break
+      default:
+        propKey = key
+    }
   }
 
   return css`
@@ -128,88 +134,5 @@ export const title= ( value ) => {
   `
 }
 
-export const gridMultiplayer = (key, value=1) => {
-  return css`
-    ${key}: 100vw / 64 * ${value};
-  `
-}
 
-export const smallUp = content => {
-  return css`
-    ${({ theme }) => css`
-      ${theme.breakpoints.up('sm')} {
-        ${content}
-      }
-    `}
-  `
-}
 
-export const smallDown = content => {
-  return css`
-    ${({ theme }) => css`
-      ${theme.breakpoints.down('sm')} {
-        ${content}
-      }
-    `}
-  `
-}
-
-export const mediumUp = content => {
-  return css`
-    ${({ theme }) => css`
-      ${theme.breakpoints.up('md')} {
-        ${content}
-      }
-    `}
-  `
-}
-
-export const mediumDown = content => {
-  return css`
-    ${({ theme }) => css`
-      ${theme.breakpoints.down('md')} {
-        ${content}
-      }
-    `}
-  `
-}
-
-export const largeUp = content => {
-  return css`
-    ${({ theme }) => css`
-      ${theme.breakpoints.up('lg')} {
-        ${content};
-      }
-    `}
-  `
-}
-
-export const xLargeDown = content => {
-  return css`
-    ${({ theme }) => css`
-      ${theme.breakpoints.down('xl')} {
-        ${content};
-      }
-    `}
-  `
-}
-
-export const xLargeUp = content => {
-  return css`
-    ${({ theme }) => css`
-      ${theme.breakpoints.up('xl')} {
-        ${content};
-      }
-    `}
-  `
-}
-
-export const xxLargeUp = content => {
-  return css`
-    ${({ theme }) => css`
-      ${theme.breakpoints.up('xxl')} {
-        ${content};
-      }
-    `}
-  `
-}

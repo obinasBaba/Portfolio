@@ -1,11 +1,12 @@
 import React, { useContext, useEffect } from 'react'
 import useMenuAssets from '../../../../hooks/queries/useMenuAssets'
 import styled, { css } from 'styled-components'
-import { largeUp, mediumDown, spacing, text } from '../../../../styles/mixins'
+import { spacing, text } from '../../../../styles/mixins'
 import { motion } from 'framer-motion'
 import { containerVariants } from './variants'
 import { AppStateContext } from '../../../../contexts/AppStateContext'
 import Item from './components/Item'
+import {largeUp, mediumDown} from "../../../../styles/mixins/breakpoints";
 
 const MenuItemContainer = styled(motion.ul)`
   position: relative;

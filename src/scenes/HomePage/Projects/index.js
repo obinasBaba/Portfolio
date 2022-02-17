@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import {
   gridMultiplayer,
-  largeUp,
   length,
   spacing,
 } from '../../../styles/mixins'
@@ -12,6 +11,7 @@ import RotationTextPath from './RotationTextPath'
 import { MotionValueContext } from '../../../contexts/MotionStateWrapper'
 import '../../../styles/projectFonts.css'
 import {Link} from "gatsby";
+import {largeUp} from "../../../styles/mixins/breakpoints";
 
 
 const ProjectContainer = styled(motion.section)`

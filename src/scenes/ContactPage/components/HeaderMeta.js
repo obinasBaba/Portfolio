@@ -1,9 +1,10 @@
 import React from 'react'
 import styled, {css} from 'styled-components'
-import {largeUp, mediumUp, spacing} from '../../../styles/mixins'
+import {spacing} from '../../../styles/mixins'
 import { Typography } from '@material-ui/core'
 import {motion} from 'framer-motion'
 import {transition} from './shared'
+import {largeUp, mediumUp} from "../../../styles/mixins/breakpoints";
 
 const HeaderMetaContainer = styled( motion.div )`
   display: flex;

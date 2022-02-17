@@ -2,14 +2,12 @@ import styled, { css } from 'styled-components'
 import {
   gridColWidth,
   gridify,
-  largeUp,
-  mediumUp,
-  smallUp,
   spacing,
   text,
-  xxLargeUp,
+
 } from '../../../../styles/mixins'
 import { motion } from 'framer-motion'
+import {largeUp, mediumUp, smallUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
 
 export const HeroContainer = styled(motion.section)`
   position: relative;

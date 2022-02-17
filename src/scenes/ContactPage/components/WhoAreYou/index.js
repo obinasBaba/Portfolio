@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled, {css} from 'styled-components'
-import {largeUp, spacing, text} from '../../../../styles/mixins'
+import {spacing, text} from '../../../../styles/mixins'
 import { Button, TextField, Typography } from '@material-ui/core'
 import Form from './components/form'
 import {CustomTextField, HeadLineTitle} from '../shared'
 import { Formik, Field, useField, FieldArray } from 'formik'
 import * as yup from 'yup'
+import {largeUp} from "../../../../styles/mixins/breakpoints";
 
 const WhoContainer = styled.div``
 

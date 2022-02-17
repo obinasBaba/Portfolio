@@ -1,16 +1,12 @@
 import React, { useEffect } from 'react'
 import {
-  gridColWidth,
-  largeUp,
-  mediumUp,
-  smallUp,
-  xLargeUp,
-  xxLargeUp
+  gridColWidth
 } from "../../styles/mixins";
 import styled, { css } from 'styled-components'
 import { motion, useSpring } from 'framer-motion'
 import { getMousePos } from '../../helpers/utils'
 import { useMediaQuery, useTheme } from "@material-ui/core";
+import {largeUp, mediumUp, smallUp, xLargeUp, xxLargeUp} from "../../styles/mixins/breakpoints";
 
 const MoonBg = styled(motion.div)`
   position: relative;

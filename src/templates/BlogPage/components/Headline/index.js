@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
-import {mediumUp, smallUp, spacing, xLargeUp, xxLargeUp} from '../../../../styles/mixins'
+import {spacing} from '../../../../styles/mixins'
 import { Container, Typography } from '@material-ui/core'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { AnimateSharedLayout, motion, useTransform } from 'framer-motion'
 import { MotionValueContext } from '../../../../contexts/MotionStateWrapper'
+import {mediumUp, smallUp, xLargeUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
 
 const HeadLineContainer = styled(motion.section)`
   //border: thin solid greenyellow;

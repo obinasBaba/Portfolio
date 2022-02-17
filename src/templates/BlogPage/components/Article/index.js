@@ -2,20 +2,16 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import {
   length,
-  largeUp,
-  mediumDown,
-  mediumUp,
-  smallDown,
-  smallUp,
   spacing,
   text,
   title,
-  xxLargeUp,
+
 } from '../../../../styles/mixins'
 import { Container } from '@material-ui/core'
 import BackArrow from './BackArrow'
 
 import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
+import {largeUp, mediumDown, mediumUp, smallDown, smallUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
 deckDeckGoHighlightElement();
 
 const ArticleContainer = styled.section`

@@ -2,8 +2,9 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import Companies from '../Companies'
 import { Typography } from '@material-ui/core'
-import { mediumUp, smallUp, spacing, text } from '../../../styles/mixins'
+import { spacing, text } from '../../../styles/mixins'
 import {motion} from 'framer-motion'
+import {mediumUp, smallUp} from "../../../styles/mixins/breakpoints";
 
 const AboutMetaContainer = styled( motion.div )`
   position: relative;

@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import { Container, Typography } from '@material-ui/core'
 import styled, { css } from 'styled-components'
-import {gridColWidth, largeUp, mediumUp, spacing, text} from '../../../../styles/mixins'
+import {gridColWidth, spacing, text} from '../../../../styles/mixins'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 import gsap from 'gsap'
 import STrigger from 'gsap/ScrollTrigger'
 import { basicVariants, transition } from '../../../../helpers/variants'
+import {largeUp, mediumUp} from "../../../../styles/mixins/breakpoints";
 
 const BlogListContainer = styled( Container )`
   position: relative;

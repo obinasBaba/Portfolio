@@ -1,10 +1,11 @@
 import React from 'react'
 import styled, {css} from 'styled-components'
 import {Typography} from '@material-ui/core'
-import {mediumUp, spacing} from '../../../styles/mixins'
+import {spacing} from '../../../styles/mixins'
 import Form from './Form'
 import CloseBtn from '../../HeaderAppBar/components/CloseBtn'
 import {motion} from 'framer-motion'
+import {mediumUp} from "../../../styles/mixins/breakpoints";
 
 
 

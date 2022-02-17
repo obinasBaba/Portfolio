@@ -2,7 +2,7 @@ import React from 'react'
 import { useExperimentAssets } from '../../../../../hooks/queries/useExperimentAssets'
 import Item from './Item'
 import styled, { css } from 'styled-components'
-import { mediumUp } from '../../../../../styles/mixins'
+import {mediumUp} from "../../../../../styles/mixins/breakpoints";
 
 export const Track = styled.section`
   width: 100%;

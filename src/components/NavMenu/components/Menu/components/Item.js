@@ -4,13 +4,12 @@ import { Link, navigate } from 'gatsby'
 import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
 import {
-  largeUp,
-  mediumUp,
   text,
-  xxLargeUp,
+
 } from '../../../../../styles/mixins'
 import OverlayController from '../../../../BackgroundOverlay/OverlayController'
 import {AppStateContext} from "../../../../../contexts/AppStateContext";
+import {largeUp, mediumUp, xxLargeUp} from "../../../../../styles/mixins/breakpoints";
 
 const hoverMixin = css`
   [data-circle='1'] {

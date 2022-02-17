@@ -1,13 +1,11 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import {
-  largeUp,
-  mediumUp,
-  smallDown,
   spacing,
-  xxLargeUp,
+
 } from '../../../../../styles/mixins'
 import { motion } from 'framer-motion'
+import {largeUp, mediumUp, smallDown, xxLargeUp} from "../../../../../styles/mixins/breakpoints";
 
 export const ExperimentItem = styled(motion.div)`
   position: relative;

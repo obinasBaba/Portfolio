@@ -2,8 +2,9 @@ import React from 'react'
 import styled, {css} from 'styled-components'
 import { HeadLineTitle, CustomTextField } from '../shared'
 import { TextField as MuiTextField } from '@material-ui/core'
-import {largeUp, spacing, text} from '../../../../styles/mixins'
+import {spacing, text} from '../../../../styles/mixins'
 import { FieldArray, Field } from 'formik'
+import {largeUp} from "../../../../styles/mixins/breakpoints";
 
 const MessageContainer = styled.div``
 

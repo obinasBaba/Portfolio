@@ -1,3 +1,5 @@
+import {css} from 'styled-components'
+
 const mainColor = '#3719ca'
 const yellowColor = '#ffe336'
 const darkColor = '#02021e'
@@ -6,6 +8,10 @@ const greyColor = '#80808e'
 const darkGreyColor = '#32344d'
 const darkBlueColor = '#1e213d'
 const lightGreyColor = '#f5f3f4'
+
+const color = css`
+
+`
 
 export {
   mainColor,

@@ -1,8 +1,9 @@
 import React, {useEffect, useLayoutEffect, useRef} from 'react'
 import lotti from 'lottie-web'
 import styled, {css} from 'styled-components'
-import {largeUp, spacing} from '../../../../styles/mixins'
+import {spacing} from '../../../../styles/mixins'
 import useLotti from "../../../../helpers/useLotti";
+import {largeUp} from "../../../../styles/mixins/breakpoints";
 
 const IllustrationContainer = styled.div`
   position: absolute;

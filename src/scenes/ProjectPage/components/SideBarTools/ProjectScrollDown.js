@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import styled, { css } from "styled-components";
 import {AnimatePresence, motion, useMotionValue} from 'framer-motion'
-import { spacing, xLargeUp } from "../../../../styles/mixins";
+import { spacing} from "../../../../styles/mixins";
 import ScrollDown from '../../../../components/ScrollDown'
+import {xLargeUp} from "../../../../styles/mixins/breakpoints";
 
 const ScrollDownWrapper = styled(motion.div)`
   position: fixed;

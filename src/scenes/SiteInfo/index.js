@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Container, Typography } from '@material-ui/core'
-import { spacing, text } from '../../styles/mixins'
+import {spacing, testUnitValue, text} from '../../styles/mixins'
 import ContactInfo from './ContactInfo'
 import ThankYou from './Thankyou'
 
@@ -29,7 +29,9 @@ const SiteInfoContainer = styled(Container)`
     max-width: 40ch;
     align-self: flex-end;
     
-    ${text(1.2)};
+    // ${text(1.2)};
+    
+    ${testUnitValue(105, 'font-size', '%')};
   }
 `
 

@@ -3,7 +3,8 @@ import styled, { css } from "styled-components";
 import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
 import { AnchorDot, DottedLine, Thumb } from './NavTools'
 import {Link} from 'gatsby'
-import {spacing, xLargeUp, xxLargeUp} from "../../../../../styles/mixins";
+import {spacing} from "../../../../../styles/mixins";
+import {xLargeUp, xxLargeUp} from "../../../../../styles/mixins/breakpoints";
 
 const ThumbAndDotContainer = styled.li`
   //border: thin solid lightblue;

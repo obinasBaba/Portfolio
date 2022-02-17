@@ -2,8 +2,9 @@ import React, { useRef } from 'react'
 import styled, { css } from 'styled-components'
 import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
 import {Button, Typography} from '@material-ui/core'
-import {largeUp, spacing, text, xLargeUp, xxLargeUp} from "../../../../styles/mixins";
+import {spacing, text} from "../../../../styles/mixins";
 import TopicIllustration from './Topicillustration'
+import {largeUp, xLargeUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
 
 const TopicItemContainer = styled.div`
   position: relative;

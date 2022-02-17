@@ -2,11 +2,12 @@ import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
-import {largeUp, smallDown, smallUp, spacing, text} from '../../../../../styles/mixins'
+import {spacing, text} from '../../../../../styles/mixins'
 import { Button } from '@material-ui/core'
 import CardContent from '@material-ui/core/CardContent'
 import MotionBtn from '../../../../../components/MotionBtn'
 import ReadButton from './ReadButton'
+import {largeUp, smallDown, smallUp} from "../../../../../styles/mixins/breakpoints";
 
 const MetaWrapper = styled.div`
   display: flex;

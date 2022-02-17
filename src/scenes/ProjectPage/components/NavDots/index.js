@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
-import {largeUp, mediumUp, spacing, xLargeUp} from '../../../../styles/mixins'
+import {spacing} from '../../../../styles/mixins'
 import ThumbAndDot from './Components/ThumbAndDot'
+import {largeUp, mediumUp, xLargeUp} from "../../../../styles/mixins/breakpoints";
 
 const NavContainer = styled( motion.div )`
   position: fixed;

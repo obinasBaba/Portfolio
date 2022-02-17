@@ -3,9 +3,9 @@ import useLocoScroll from '../../../hooks/useLocoScroll'
 import useToolTip from '../../../hooks/useToolTip'
 import useRefreshMouseListeners from '../../../hooks/useRefreshMouseListeners'
 import {BackgroundOverlayStateContext} from '../../../contexts/AppStateContext'
-import CaseStudy from '../../../CaseStudy'
+import CaseStudy from '../../../components/CaseStudy'
 import useVigozaAssets from '../../../hooks/queries/useVigozaAssets'
-import ComingSoon from '../../../CaseStudy/ComingSoon'
+import ComingSoon from '../../../components/CaseStudy/ComingSoon'
 import useProject2Assets from "../../../hooks/queries/useProject2Assets";
 
 const projectDataDefault = {
@@ -17,7 +17,7 @@ const projectDataDefault = {
         period: 'End 2018',
     },
     intro: {},
-    backUrl: '/projects#two'
+    backUrl: '/projects#one'
 
 }
 

@@ -1,8 +1,9 @@
 import React from 'react'
 import styled, {css} from 'styled-components'
 import {HeadLineTitle, CustomTextField} from '../shared'
-import {largeUp, spacing} from '../../../../styles/mixins'
+import {spacing} from '../../../../styles/mixins'
 import {FieldArray, Field} from 'formik'
+import {largeUp} from "../../../../styles/mixins/breakpoints";
 
 const EmailContainer = styled.div`
   

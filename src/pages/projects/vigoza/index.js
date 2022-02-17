@@ -3,15 +3,16 @@ import useLocoScroll from "../../../hooks/useLocoScroll";
 import useToolTip from "../../../hooks/useToolTip";
 import useRefreshMouseListeners from "../../../hooks/useRefreshMouseListeners";
 import {AppStateContext, BackgroundOverlayStateContext} from "../../../contexts/AppStateContext";
-import CaseStudy from "../../../CaseStudy";
-import MetaTxt from "../../../CaseStudy/MetaTxt";
-import Intro from "../../../CaseStudy/Intro";
-import AnalysisPreparation from "../../../CaseStudy/AnalysisPreparation";
-import ColorPalette from "../../../CaseStudy/Colors";
-import FontUsed from "../../../CaseStudy/FontUsed";
-import Concept from "../../../CaseStudy/Concept";
-import Development from "../../../CaseStudy/Development";
+import CaseStudy from "../../../components/CaseStudy";
+import MetaTxt from "../../../components/CaseStudy/MetaTxt";
+import Intro from "../../../components/CaseStudy/Intro";
+import AnalysisPreparation from "../../../components/CaseStudy/AnalysisPreparation";
+import ColorPalette from "../../../components/CaseStudy/Colors";
+import FontUsed from "../../../components/CaseStudy/FontUsed";
+import Concept from "../../../components/CaseStudy/Concept";
+import Development from "../../../components/CaseStudy/Development";
 import useVigozaAssets from "../../../hooks/queries/useVigozaAssets";
+import NextProject from "../../../components/CaseStudy/NextProject";
 
 const projectDataDefault = {
     title: 'Vigoza Digital Agency',
@@ -22,19 +23,19 @@ const projectDataDefault = {
         period: 'End 2018',
     },
     intro: {
-        themeColor: '#f1c9b3',
         color: '#02021e',
-        logoUrl: '/projects/honey-logo.png',
+        themeColor: '#973c22',
+        logoUrl: '/projects/vigoza-logo.svg',
         // imageData: preview2,
-        link: 'https://www.prosapient.com',
+        link: '/',
         title: 'The Project',
         desc:
             `
-        Honey is an outstanding Beauty and Hair space in Addis Abeba, Ethiopia.
-        They include a variety of services including professional hair cutting and
-        styling, manicures , pedicures, cosmetics, makeup and makeovers to say a few.
-        This WebApp(PWA) makes their client to keep up and admire their daily post as
-        well us to easily make an appointment despite the massive no of client.   
+        Vigoza is a full-service digital agency that builds immersive user experience.
+        The Team create an exceptional visualization and thought-out functionality.
+        The studio develops the products people appreciate all around the world.
+        This project is made to make it easy to witness and follow-up their work and to keep their clients
+        more close
         `,
     },
     backUrl: '/projects#two'
@@ -89,6 +90,8 @@ const Vigoza = ({location}) => {
                     <Concept />
 
                     <Development />
+
+                    <NextProject/>
 
                 </CaseStudy>
             }

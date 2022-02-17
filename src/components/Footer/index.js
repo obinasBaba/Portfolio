@@ -1,10 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import {
-  largeUp,
   length,
-  mediumDown,
-  mediumUp,
   spacing,
   text,
 } from '../../styles/mixins'
@@ -17,6 +14,7 @@ import Border from './border.inline.svg'
 import { Container } from '@material-ui/core'
 import useOnScreen from '../../hooks/useOnScreen'
 import { MotionValueContext } from "../../contexts/MotionStateWrapper";
+import {largeUp, mediumDown, mediumUp} from "../../styles/mixins/breakpoints";
 
 const FooterContainer = styled.div`
   position: relative;

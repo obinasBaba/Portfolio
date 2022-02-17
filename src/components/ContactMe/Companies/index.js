@@ -1,7 +1,8 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { smallDown, spacing } from '../../../styles/mixins'
+import { spacing } from '../../../styles/mixins'
 import {Css, Js, UiUx, ReactSvg} from './icons'
+import {smallDown} from "../../../styles/mixins/breakpoints";
 
 const List = styled.ul`
   margin: auto 0;

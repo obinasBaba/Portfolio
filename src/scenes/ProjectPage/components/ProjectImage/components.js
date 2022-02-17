@@ -2,10 +2,9 @@ import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
 import {
   gridColWidth, gridMultiplayer,
-  largeUp,
-  mediumUp,
-  spacing, xLargeUp
+  spacing
 } from "../../../../styles/mixins";
+import {largeUp, mediumUp, xLargeUp} from "../../../../styles/mixins/breakpoints";
 
 export const ProjectImg = styled(motion.div)`
   ${gridColWidth(6, 60)}; //mobile-first

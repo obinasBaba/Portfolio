@@ -3,11 +3,10 @@ import styled, { css } from 'styled-components'
 import {
   gridColWidth,
   length,
-  largeUp,
-  mediumUp,
   spacing,
 } from '../../../../styles/mixins'
 import { motion } from 'framer-motion'
+import {largeUp, mediumUp} from "../../../../styles/mixins/breakpoints";
 
 const StackList = styled(motion.ul)`
   position: absolute;

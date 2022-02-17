@@ -1,9 +1,9 @@
-import React, { useRef } from 'react'
-import { Typography } from '@material-ui/core'
-import { motion, useAnimation } from 'framer-motion'
+import React, {useRef} from 'react'
+import {Typography} from '@material-ui/core'
+import {motion, useAnimation} from 'framer-motion'
 import styled from 'styled-components'
-import { spacing } from '../../styles/mixins'
-import { Link } from 'gatsby'
+import {spacing} from '../../styles/mixins'
+import {Link} from 'gatsby'
 
 const Btn = styled(motion.div)`
   position: relative;
@@ -28,7 +28,7 @@ const Btn = styled(motion.div)`
     z-index: -1;
     position: absolute;
     display: block;
-    background: ${({ clr }) => (clr ? clr : '#e7a28f')};
+    background: ${({clr}) => (clr ? clr : '#e7a28f')};
     border-radius: 50%;
 
     ${spacing('left', -1)};
@@ -39,7 +39,7 @@ const Btn = styled(motion.div)`
   }
 
   & > :first-child {
-    // ${spacing('mr', 1.5)};
+      // ${spacing('mr', 1.5)};
   }
 
   & > :nth-child(2n) {
@@ -49,6 +49,10 @@ const Btn = styled(motion.div)`
   & .btn-txt {
     margin: 0;
     padding: 0;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
     //line-height: 0;
   }
 
@@ -74,70 +78,74 @@ const Btn = styled(motion.div)`
     right: 0;
     z-index: 999;
     cursor: none;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
   }
 `
 
 const tempVar = {
-  initial: {
-    x: 250,
-  },
+    initial: {
+        x: 250,
+    },
 }
 
 const MotionBtn = ({
-  text = 'CASE-STUDY',
-  arrow = true,
-  to,
-  state = {},
-  fontLarge,
-  clr,
-  variants = {},
-  external = false,
-  margin = true,
-  layoutId = false,
-  arrowClr = '#fff',
-  onClick,
-  ...props
-}) => {
-  const controls = useAnimation()
-  const btnRef = useRef(null)
+                       text = 'CASE-STUDY',
+                       arrow = true,
+                       to,
+                       state = {},
+                       fontLarge,
+                       clr,
+                       variants = {},
+                       external = false,
+                       margin = true,
+                       layoutId = false,
+                       arrowClr = '#fff',
+                       onClick,
+                       tooltiptext,
+                       ...props
+                   }) => {
+    const btnRef = useRef(null)
 
-  return (
-    <Btn
-      {...props}
-      margin={margin.toString()}
-      clr={clr}
-      ref={btnRef}
-      onClick={() => {
-        if (onClick) {
-          onClick()
-          btnRef.current.classList.add('no-hover')
-        }
-      }}
-    >
-      {to && (
-        <Link
-          to={to}
-          state={state}
-          data-pointer="focus"
-          data-pointer-color="#02021e"
-          data-tooltip
-          data-tooltip-text="wanna visit my contact page?"
-        />
-      )}
+    return (
+        <Btn
+            {...props}
+            margin={margin.toString()}
+            clr={clr}
+            ref={btnRef}
+            onClick={() => {
+                if (onClick) {
+                    onClick()
+                    btnRef.current.classList.add('no-hover')
+                }
+            }}
+        >
+            {to && (
+                <Link
+                    to={to}
+                    state={state}
+                    data-pointer="focus"
+                    data-pointer-color="#02021e"
+                    data-tooltip
+                    data-tooltip-text={tooltiptext}
+                />
+            )}
 
-      <Typography
-        variant="body1"
-        className="btn-txt"
-        style={{
-          letterSpacing: '3px',
-          textShadow: '0.1em 0.1em 0.3em #000',
-        }}
-        noWrap={true}
-      >
-        {text}
-      </Typography>
-    </Btn>
-  )
+            <Typography
+                variant="body1"
+                className="btn-txt"
+                style={{
+                    letterSpacing: '3px',
+                    textShadow: '0.1em 0.1em 0.3em #000',
+                }}
+                noWrap={true}
+            >
+                {text}
+            </Typography>
+        </Btn>
+    )
 }
 
 export default MotionBtn

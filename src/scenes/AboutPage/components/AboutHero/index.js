@@ -1,8 +1,9 @@
 import React from 'react'
 import styled, {css} from 'styled-components'
-import {largeUp, mediumUp, spacing, text} from '../../../../styles/mixins'
+import {spacing, text} from '../../../../styles/mixins'
 import {Container, Typography} from '@material-ui/core'
 import {motion} from "framer-motion";
+import {largeUp, mediumUp} from "../../../../styles/mixins/breakpoints";
 
 const AboutHeroContainer = styled.div`
   min-height: 100vh;

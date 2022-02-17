@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import styled, { css } from "styled-components";
-import {largeUp, length, spacing, xxLargeUp} from "../../../../styles/mixins";
+import {length, spacing} from "../../../../styles/mixins";
 import { AppStateContext } from "../../../../contexts/AppStateContext";
 import { useSpring, useTransform } from "framer-motion";
+import {largeUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
 
 const ImageWrapper = styled.div`
   flex: 0 0 100%;

@@ -7,9 +7,10 @@ import Card from './components/Card'
 import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
 import gsap from 'gsap'
 import STrigger from 'gsap/ScrollTrigger'
-import {largeUp, mediumUp, smallDown, spacing, text} from '../../../../styles/mixins'
+import {spacing, text} from '../../../../styles/mixins'
 import BigPlanet from './components/BigPlanet'
 import useOnScreen from '../../../../hooks/useOnScreen'
+import {largeUp, mediumUp, smallDown} from "../../../../styles/mixins/breakpoints";
 
 const ProcessContainer = styled( motion.section )`
   position: relative;

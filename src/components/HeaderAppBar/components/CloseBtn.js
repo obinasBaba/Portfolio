@@ -1,7 +1,8 @@
 import React from 'react'
 import {motion} from 'framer-motion'
-import {length, mediumUp, spacing} from '../../../styles/mixins'
+import {length, spacing} from '../../../styles/mixins'
 import styled, {css} from 'styled-components'
+import {mediumUp} from "../../../styles/mixins/breakpoints";
 
 const CloseContainer = styled( motion.div )`
   //border: thin solid crimson;

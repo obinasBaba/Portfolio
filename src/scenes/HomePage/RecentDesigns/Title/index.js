@@ -3,10 +3,7 @@ import styled, { css } from 'styled-components'
 import { Container, useMediaQuery, useTheme } from "@material-ui/core";
 import {
   length,
-  largeUp,
-  spacing,
-  smallUp,
-  xLargeUp, xxLargeUp
+  spacing
 } from "../../../../styles/mixins";
 import HeadlineTitle from '../../../../components/Headline'
 import {
@@ -17,6 +14,7 @@ import {motion} from 'framer-motion'
 import { MotionValueContext } from "../../../../contexts/MotionStateWrapper";
 import LoadStateContext from "../../../../contexts/LoadStateContext";
 import {useProjectSvg} from "../../../../hooks/queries/useProjectSvg";
+import {largeUp, smallUp, xLargeUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
 
 const TitleContainer = styled(Container)`
   display: flex;

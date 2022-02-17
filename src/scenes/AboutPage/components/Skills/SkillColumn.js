@@ -1,9 +1,10 @@
 import React, {useRef, useState} from 'react'
 import styled, {css} from 'styled-components'
 import { Typography } from '@material-ui/core'
-import {largeUp, spacing, text} from '../../../../styles/mixins'
+import {spacing, text} from '../../../../styles/mixins'
 import useLotti from '../../../../helpers/useLotti'
 import { motion } from 'framer-motion'
+import {largeUp} from "../../../../styles/mixins/breakpoints";
 
 const Container = styled(motion.div)`
   position: relative;

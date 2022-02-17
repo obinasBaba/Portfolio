@@ -2,9 +2,10 @@ import React, { useRef } from 'react'
 import styled, { css } from 'styled-components'
 import useHeaderAssets from '../../../hooks/queries/useHeaderAssets'
 import { Link } from 'gatsby'
-import { length, mediumUp } from '../../../styles/mixins'
+import { length} from '../../../styles/mixins'
 import { ReactSVG } from 'react-svg'
 import { motion } from 'framer-motion'
+import {mediumUp} from "../../../styles/mixins/breakpoints";
 
 const Logo = styled(motion.div)`
   position: relative;

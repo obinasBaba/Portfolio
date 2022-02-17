@@ -1,33 +1,29 @@
-import React, {useLayoutEffect} from 'react'
-import styled, {css} from 'styled-components'
-import {
-    length, largeUp,
-    smallUp,
-    spacing,
-    text,
-    title, xLargeUp, xxLargeUp
-} from "../../../../styles/mixins";
-import SlideHover from '../../../../components/SlideHover'
-import {Link} from 'gatsby'
+import React from 'react'
+import styled, { css } from 'styled-components'
+import { length, spacing, text, title } from '../../../../styles/mixins'
+import { Link } from 'gatsby'
 import logo from './images/logo.svg'
-import RightArrowLink
-  from '../../Experiments/components/ExperimentTrack/RightArrowLink'
+import RightArrowLink from '../../Experiments/components/ExperimentTrack/RightArrowLink'
+import {
+  largeUp,
+  smallUp,
+  xxLargeUp,
+} from '../../../../styles/mixins/breakpoints'
 
 const InfoTxt = styled.div`
   position: relative;
   z-index: 0;
   //border: thin solid red;
-  
-  ${ spacing('pt', 2) };
+
+  ${spacing('pt', 2)};
 
   ${largeUp(css`
-     ${spacing('mt', 3)};
+    ${spacing('mt', 3)};
   `)};
-  
+
   @media screen and (max-width: 768px) {
     --indent: 0.7;
   }
-    
 `
 
 const Desc = styled.p`
@@ -94,7 +90,7 @@ const Info = () => {
         to problems that we face when building great web products.
       </Desc>
 
-        <a href='https://readers-corner.netlify.app' target='_blank'  rel="noopener noreferrer" >
+        <a href='/' target='_blank'  rel="noopener noreferrer" >
           <RightArrowLink lineLength='75%'
                           txt='checkout my blog site.'
                           tooTipTxt='i built my own blog-site!'

@@ -2,15 +2,12 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { Container, Typography } from '@material-ui/core'
 import {
-  largeUp,
-  mediumUp,
   spacing,
-  text,
-  xLargeUp,
-  xxLargeUp
+  text
 } from "../../styles/mixins";
 import { motion } from 'framer-motion'
 import { Link } from 'gatsby'
+import {largeUp, mediumUp, xLargeUp, xxLargeUp} from "../../styles/mixins/breakpoints";
 
 const FooterMetaContainer = styled(Container)`
   display: flex !important;

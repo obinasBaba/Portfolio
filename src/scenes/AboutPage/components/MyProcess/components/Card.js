@@ -1,14 +1,14 @@
 import React, { useEffect, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import {
-  mediumUp,
   spacing,
   text,
-  xxLargeUp,
+
 } from '../../../../../styles/mixins'
 import { Typography } from '@material-ui/core'
 import LottiIcon from './LottiIcon'
 import { motion, useAnimation, useMotionValue } from 'framer-motion'
+import {mediumUp, xxLargeUp} from "../../../../../styles/mixins/breakpoints";
 
 const StyledCard = styled(motion.div)`
   position: relative;

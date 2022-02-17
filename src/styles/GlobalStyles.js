@@ -1,6 +1,6 @@
 import {createGlobalStyle, css} from 'styled-components'
-import { responsiveVars, webKitInputReset } from './variables/ResponsiveVars'
-import { mediumUp, smallUp } from "./mixins";
+import { responsiveVars, webKitInputReset } from './variables/responsiveVars'
+import {mediumUp, smallUp} from "./mixins/breakpoints";
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -124,8 +124,7 @@ export const GlobalStyle = createGlobalStyle`
       rgba(243, 243, 243, 0) 94%);
 
       --btm-gradient-opacity: 0;
-      
-      
+      --theme: rgba(2, 11, 22, 1);
     }
     
     &.loading-done{

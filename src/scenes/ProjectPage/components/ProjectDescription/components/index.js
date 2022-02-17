@@ -1,11 +1,10 @@
 import styled, {css} from 'styled-components'
 import {motion} from 'framer-motion'
 import {
-  gridColWidth, largeUp, mediumUp,
-  smallUp,
-  spacing, title,
+  gridColWidth, spacing, title,
 } from '../../../../../styles/mixins'
 import {Typography} from '@material-ui/core'
+import {largeUp, mediumUp, smallUp} from "../../../../../styles/mixins/breakpoints";
 
 export const ProjectDescriptionContainer = styled(motion.div)`
   display: flex;

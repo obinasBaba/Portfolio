@@ -3,13 +3,11 @@ import styled, { css } from 'styled-components'
 import CardMedia from '@material-ui/core/CardMedia'
 import {
   length,
-  largeUp,
-  mediumUp,
-  smallUp,
   spacing,
 } from '../../../../../styles/mixins'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import {Link} from 'gatsby'
+import {largeUp, mediumUp, smallUp} from "../../../../../styles/mixins/breakpoints";
 
 const StyledThumbnail = styled(CardMedia)`
   position: relative;

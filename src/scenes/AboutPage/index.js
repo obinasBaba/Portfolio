@@ -8,7 +8,8 @@ import { motion } from "framer-motion";
 import LineArt from "../../components/LineArt";
 import STrigger from 'gsap/ScrollTrigger'
 import gsap from "gsap";
-import {largeUp, mediumUp, spacing} from "../../styles/mixins";
+import {spacing} from "../../styles/mixins";
+import {largeUp, mediumUp} from "../../styles/mixins/breakpoints";
 
 
 const AboutPageContainer = styled( motion.div )`

@@ -1,8 +1,9 @@
 import React, {useRef} from 'react'
 import styled, {css} from 'styled-components'
 import Progress from './Progress'
-import {largeUp, spacing} from '../../../../styles/mixins'
+import {spacing} from '../../../../styles/mixins'
 import GalaxyButton from './GalaxyButton'
+import {largeUp} from "../../../../styles/mixins/breakpoints";
 
 const BottomContainer = styled.div`
   display: flex;

@@ -1,9 +1,10 @@
 import React from 'react'
 import styled, {css} from 'styled-components'
 import { Container, Typography } from '@material-ui/core'
-import {largeUp, spacing, text} from '../../../../styles/mixins'
+import {spacing, text} from '../../../../styles/mixins'
 import SkillColumn from './SkillColumn'
 import {useLottiAssets} from '../../../../hooks/queries/useLottiAssets'
+import {largeUp} from "../../../../styles/mixins/breakpoints";
 
 const SkillsContainer = styled(Container)`
   ${spacing('mt', 10)};

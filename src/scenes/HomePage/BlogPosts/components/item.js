@@ -2,16 +2,14 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 
 import {
-  largeUp,
   length,
-  mediumUp,
-  smallUp,
   spacing,
   text,
 } from '../../../../styles/mixins'
 import { Typography } from '@material-ui/core'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { Link } from 'gatsby'
+import {largeUp, mediumUp, smallUp} from "../../../../styles/mixins/breakpoints";
 
 const PreviewContainer = styled.div`
   position: relative;

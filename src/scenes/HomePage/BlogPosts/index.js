@@ -2,14 +2,20 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import {
   gridColWidth,
-  gridify, largeUp,
-  mediumDown, mediumUp,
-  smallDown, smallUp,
-  spacing, xLargeUp, xxLargeUp
+  gridify, spacing
 } from "../../../styles/mixins";
 import Info from './components/Info'
 import Previews from './components/Previews'
 import HeadlineTitle from '../../../components/Headline'
+import {
+    largeUp,
+    mediumDown,
+    mediumUp,
+    smallDown,
+    smallUp,
+    xLargeUp,
+    xxLargeUp
+} from "../../../styles/mixins/breakpoints";
 
 const BlogPostContainer = styled.section`
   ${spacing('mt', 15)};
@@ -61,7 +67,7 @@ const PostsContainer = styled.section`
     `)}
 
     ${largeUp(css`
-      ${gridColWidth(36, 57)};
+      ${gridColWidth(37, 58)};
     ` )};
   }
 `
@@ -69,7 +75,7 @@ const PostsContainer = styled.section`
 
 const BlogPosts = () => {
   return (
-    <BlogPostContainer data-scroll data-scroll-class='blog'>
+    <BlogPostContainer >
       <HeadlineTitle
         className="blog-headline"
         title='My Blogs'

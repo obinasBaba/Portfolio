@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
-import { length, mediumUp, spacing } from '../../../styles/mixins'
+import { length, spacing } from '../../../styles/mixins'
 import { motion } from 'framer-motion'
 import MagnetElement from '../../../helpers/MagnetElement'
 import useMagnet from '../../../hooks/useMagnet'
+import {mediumUp} from "../../../styles/mixins/breakpoints";
 
 // const headerTransition = 'all .3s'
 

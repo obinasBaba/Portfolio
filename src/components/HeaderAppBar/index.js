@@ -3,7 +3,7 @@ import Slide from '@material-ui/core/Slide'
 import styled, { css } from 'styled-components'
 import HomeLogo from './components/HomeLogo'
 import NavBtn from './components/NavBtn'
-import { mediumUp, spacing } from '../../styles/mixins'
+import { spacing } from '../../styles/mixins'
 import { AnimatePresence } from 'framer-motion'
 import {AppStateContext, BackgroundOverlayStateContext} from '../../contexts/AppStateContext'
 import OverlayController from '../BackgroundOverlay/OverlayController'
@@ -13,6 +13,7 @@ import { MotionValueContext } from '../../contexts/MotionStateWrapper'
 
 import NavMenu from '../NavMenu'
 import {useScrollTrigger} from "@material-ui/core";
+import {mediumUp} from "../../styles/mixins/breakpoints";
 
 function HideOnScroll({ children, window }) {
 

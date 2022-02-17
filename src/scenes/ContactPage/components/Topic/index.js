@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import styled, {css} from 'styled-components'
 import { Typography, Checkbox } from '@material-ui/core'
-import {largeUp, spacing} from '../../../../styles/mixins'
+import {spacing} from '../../../../styles/mixins'
 import TopicItem from './TopicItem'
 import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
 import { Field, useField } from 'formik'
+import {largeUp} from "../../../../styles/mixins/breakpoints";
 
 const TopicContainer = styled.div`
   //border: thin solid red;

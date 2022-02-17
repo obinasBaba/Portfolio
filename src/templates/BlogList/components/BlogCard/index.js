@@ -4,13 +4,11 @@ import Thumbnail from './components/Thumbnail'
 import { motion } from 'framer-motion'
 import styled, { css } from 'styled-components'
 import {
-  largeUp,
   length,
-  mediumUp,
   shadow,
-  smallUp,
-  spacing, xLargeUp, xxLargeUp
+  spacing
 } from "../../../../styles/mixins";
+import {largeUp, mediumUp, smallUp, xLargeUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
 
 const StyledBlogCard = styled(motion.div)`
   position: relative;

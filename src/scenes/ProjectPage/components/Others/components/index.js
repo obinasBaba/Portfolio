@@ -4,11 +4,10 @@ import {
   gridColWidth,
   gridify,
   length,
-  largeUp,
-  mediumUp,
   spacing, text,
 } from '../../../../../styles/mixins'
 import { motion } from 'framer-motion'
+import {largeUp, mediumUp} from "../../../../../styles/mixins/breakpoints";
 
 export const OthersContainer = styled(motion.div)`
   position: relative;
