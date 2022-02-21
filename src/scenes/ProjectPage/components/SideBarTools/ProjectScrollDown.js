@@ -3,21 +3,27 @@ import styled, { css } from "styled-components";
 import {AnimatePresence, motion, useMotionValue} from 'framer-motion'
 import { spacing} from "../../../../styles/mixins";
 import ScrollDown from '../../../../components/ScrollDown'
-import {xLargeUp} from "../../../../styles/mixins/breakpoints";
+import {largeUp, xLargeUp} from "../../../../styles/mixins/breakpoints";
 
 const ScrollDownWrapper = styled(motion.div)`
   position: fixed;
   z-index: 13;
-  left: 0;
-  bottom: 7%;
+  left: 2%;
+  bottom: 2%;
 
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-items: center;
   grid-gap: 0.6rem;
+  //border: thin solid red;
 
   ${spacing('ml', 2.25)};
+  
+  ${largeUp( css`
+    left: 0;
+    bottom: 7%;
+  ` )};
 
   ${xLargeUp( css`
     ${spacing('ml', 6.35)};

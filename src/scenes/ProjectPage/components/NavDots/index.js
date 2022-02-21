@@ -9,7 +9,7 @@ const NavContainer = styled( motion.div )`
   position: fixed;
   z-index: 3;
   bottom: 4%;
-  left: 30%;
+  left: 50%;
 
   ${mediumUp(css`
     top: 40%;
@@ -29,9 +29,13 @@ const NavWrapper = styled.ul`
   justify-content: center;
   padding: 0;
   margin: 0;
-  
+  transform: translateX(-50%);
+
+
   ${ mediumUp(css`
     flex-flow: column;
+    transform: initial;
+
   `) };
 
   ${spacing('gap', 3.2)};

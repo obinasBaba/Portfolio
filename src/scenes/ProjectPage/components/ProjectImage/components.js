@@ -6,39 +6,6 @@ import {
 } from "../../../../styles/mixins";
 import {largeUp, mediumUp, xLargeUp} from "../../../../styles/mixins/breakpoints";
 
-export const ProjectImg = styled(motion.div)`
-  ${gridColWidth(6, 60)}; //mobile-first
-  position: relative;
-
-  padding: calc(100vw / 64 * 0.5) calc(100vw / 64 * 0.5) calc(100vw / 64 * 0.5) calc(100vw / 64 * 4);
-  ${gridMultiplayer('padding', .5)};
-  ${gridMultiplayer('padding-left', 4)};
-
-  & .effect {
-    color: tomato;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-box-decoration-break: clone;
-    background-image: linear-gradient(137.81deg,
-    #e7a28f 3.52%,
-      //#f9d6ac 41.89%, 
-    #fbfefc 96.77%);
-  }
-
-  ${mediumUp(css`
-    grid-row: 1;
-    margin-right: calc(100vw / 64 * 6);;
-    background: ${({ theme }) => theme.palette.secondary.main};
-
-
-    ${gridColWidth(25, 65)};
-
-  `)};
-
-  //border: thin solid rebeccapurple;
-`
-
-
 export const InnerWrapper = styled(motion.div)`
   //display: none;
   position: relative;
@@ -119,6 +86,39 @@ export const InnerWrapper = styled(motion.div)`
     bottom: 0;
     z-index: 10;
   }
+`
+
+
+export const ProjectImg = styled(motion.div)`
+  ${gridColWidth(6, 60)}; //mobile-first
+  position: relative;
+
+  ${gridMultiplayer('padding', .5)};
+  ${gridMultiplayer('padding-left', 4)};
+
+  & .effect {
+    color: tomato;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone;
+    background-image: linear-gradient(137.81deg,
+    #e7a28f 3.52%,
+      //#f9d6ac 41.89%, 
+    #fbfefc 96.77%);
+  }
+
+  ${mediumUp(css`
+    grid-row: 1;
+    margin-right: calc(100vw / 64 * 6);;
+    padding: calc(100vw / 64 * 0.5) calc(100vw / 64 * 0.5) calc(100vw / 64 * 0.5) calc(100vw / 64 * 4);
+    background: ${({ theme }) => theme.palette.secondary.main};
+
+
+    ${gridColWidth(25, 65)};
+
+  `)};
+
+  //border: thin solid rebeccapurple;
 `
 
 export const OverflowWrapper = styled(motion.div)`

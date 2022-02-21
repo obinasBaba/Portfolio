@@ -1,7 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import {motion} from 'framer-motion'
 import {spacing, title} from '../../../../../../styles/mixins'
+import {largeUp} from "../../../../../../styles/mixins/breakpoints";
 
 
 export const HeadlineTitle = styled(motion.h1)`
@@ -10,15 +11,20 @@ export const HeadlineTitle = styled(motion.h1)`
   font-weight: 700;
   margin: 0;
   line-height: 1.3; 
-  letter-spacing: 2.5px;
+  //letter-spacing: 2.5px;
   //overflow: hidden;
   font-family: "Poppins Black",serif;
   overflow-wrap: break-word;
   color: white;
 
   ${spacing('mt', 2)}
-  ${ title(3.35) };
+  ${ title(5) };
   //word-spacing: 2px;
+  
+  ${largeUp( css`
+    // ${ title(3.45) };
+
+  ` )};
 `
 
 const Word = styled( motion.span )`

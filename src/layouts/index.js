@@ -34,12 +34,6 @@ export default function Layout({ children, path }) {
 
         </ThemeProvider>
       </StyledThemeProvider>
-
-      {/*<script type="text/javascript" src={"https://unpkg.com/default-passive-events"}/>*/}
-      {/*<script src={"https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"}/>*/}
-
-
-
     </React.Fragment>
 
   )

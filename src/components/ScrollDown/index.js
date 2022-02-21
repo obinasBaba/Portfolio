@@ -10,7 +10,7 @@ const ScrollTxt = styled(Typography)`
   letter-spacing: 3px;
   color: #fff;
   //display: none;
-  position: absolute;
+  //position: absolute;
   top: 115%;
   //z-index: 40;
 
