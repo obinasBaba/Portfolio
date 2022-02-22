@@ -91,7 +91,7 @@ const Title = () => {
   return (
     <TitleContainer maxWidth={ match ? 'xl' : 'lg'}  >
       <LogoLink
-        href='href="https://dribbble.com/henok500'
+        href='https://dribbble.com/henok500'
         rel="noopener noreferrer"
         target="_blank"
       >

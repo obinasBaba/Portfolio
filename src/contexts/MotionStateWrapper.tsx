@@ -3,6 +3,7 @@ import {MotionValue, useMotionValue, useViewportScroll} from "framer-motion";
 import React, {useLayoutEffect, createContext, useEffect} from 'react'
 // @ts-ignore
 import LocomotiveScroll from "locomotive-scroll";
+import {useMediaQuery, useTheme} from "@material-ui/core";
 
 
 type MotionValueContextType = {
@@ -11,6 +12,7 @@ type MotionValueContextType = {
   inView: MotionValue,
   locoInstance: MotionValue<LocomotiveScroll>,
   toolTipsData: MotionValue<{ text: string, show: boolean }>,
+  largeUp: MotionValue<boolean>,
 
   mouse: {
     mouseX: MotionValue<number>
@@ -50,6 +52,7 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
   const scrollDirection = useMotionValue('down')
   const inView = useMotionValue(null)
   const locoInstance = useMotionValue<LocomotiveScroll>(null)
+  const largeUp = useMotionValue(false)
 
   const locoInstanceHelpers = useMotionValue(null)
   const toolTipsData = useMotionValue ({
@@ -60,6 +63,14 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
   //mouse_event motion_values
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
+
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('lg'))
+
+  useEffect(() => {
+    largeUp.set(matches)
+  }, [matches])
+
 
   // const { scrollY, scrollYProgress } =  useViewportScroll()
 
@@ -97,6 +108,8 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
         inView,
         locoInstance,
         toolTipsData,
+        largeUp
+
       }}
     >
       {children}

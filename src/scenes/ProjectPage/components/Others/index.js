@@ -11,6 +11,7 @@ import four from './img/img_6.png'
 import Item from './components/Item'
 import { lerp } from '../../../../helpers/utils'
 import { MotionValueContext } from '../../../../contexts/MotionStateWrapper'
+import data from "./data";
 
 const imgVariants = {
   initial: {
@@ -100,7 +101,8 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
     displacement: { x: 0, y: 0 },
   })
 
-  const titles = ['Watchbox', 'Landing-page', 'Following Filmore', 'Kayam' ]
+  const titles = data;
+
   const svgController = useAnimation();
   const hoverIndex = useMotionValue(-1);
 
@@ -222,14 +224,16 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
         >
 
           {
-            titles.map((word, idx) => {
+            titles.map(({title, tags, desc}, idx) => {
               let onHoverStart = () => {
                 hoverIndex.set(idx)
                 svgController.start('hover')
               }
 
-              return <Item title={word}
-                           key={word + idx}
+              return <Item title={title}
+                           desc={desc}
+                           tags={tags}
+                           key={title}
                            idx={idx}
                            onHoverStart={onHoverStart}
                            // customData={{ hovering: () => hoverIndex.get() === idx }}

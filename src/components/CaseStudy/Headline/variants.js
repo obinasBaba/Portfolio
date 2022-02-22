@@ -5,42 +5,6 @@ export const transition = {
 
 export const containerVariants = {}
 
-export const textsVariant = {
-  initial: {
-    x: 'calc(100vw / 64 * -2)',
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-  },
-
-  fromProjectsInitial: {
-    x: 0,
-  },
-  fromProjectsAnimate: {
-    x: 'calc(100vw / 64 * -2)'
-  },
-
-
-  exit(arg){
-    if ( arg && arg.path === '/projects/' ){
-      const delay = arg.isTop ? arg.isTop.get() : false;
-
-      return{
-        x: 0,
-        transition: {
-          ...transition,
-          delay: delay ? 0 : 1,
-        }
-      }
-    }
-
-    return {
-      opacity: 0,
-      scale: .9
-    }
-  }
-}
 
 export const btnVariant = {
   initial: {},
@@ -49,6 +13,16 @@ export const btnVariant = {
 }
 
 export const imgWrapperVariant = {
+  fromProjectsSmallInitial: {
+    ['margin-right']: 'calc(100vw / 64 * 5)',
+    ['margin-left']: 'calc(100vw / 64 * 5)',
+  },
+
+  fromProjectsSmallAnimate: {
+    ['margin-left']: 0,
+    ['margin-right']: 0,
+  },
+
   fromProjectsInitial: {
     ['margin-right']: 'calc(100vw / 64 * 6)',
     // background: 'transparent',
@@ -62,31 +36,44 @@ export const imgWrapperVariant = {
     padding: 'calc(100vw / 64 * 0)',
     ['padding-left']: 'calc(100vw / 64 * 0)',
   },
+
   exit(arg){
 
     if ( arg && arg.path === '/projects/' ){
       const delay = arg.isTop ? arg.isTop.get() : false;
 
-      return{
-        // height: '400px',
-        // background: '#3719ca',
-        ['margin-right']: 'calc(100vw / 64 * 6)',
-        padding: 'calc(100vw / 64 * .5)',
-        ['padding-left']: 'calc(100vw / 64 * 4)',
+      if (arg.largeUp && arg.largeUp.get())
+        return{
+          // height: '400px',
+          // background: '#3719ca',
+          ['margin-right']: 'calc(100vw / 64 * 6)',
+          padding: 'calc(100vw / 64 * .5)',
+          ['padding-left']: 'calc(100vw / 64 * 4)',
 
-        transition: {
-          ...transition,
-          delay: delay ? 0 : 1,
+          transition: {
+            ...transition,
+            delay: delay ? 0 : 1,
+          }
+
         }
 
+      return {
+        ['margin-right']: 'calc(100vw / 64 * 5)',
+        ['margin-left']: 'calc(100vw / 64 * 5)',
       }
     }
 
     return {}
   },
 
-  initial: {},
-  animate: {},
+  initial: {
+    scale: .9,
+    filter: 'grayscale(100%) sepia(20%) brightness(80%)',
+  },
+  animate: {
+    scale: 1,
+    filter: 'grayscale(0) sepia(0) brightness(80%)',
+  },
 }
 
 export const innerVariant = {
@@ -102,15 +89,14 @@ export const innerVariant = {
     if ( arg && arg.path === '/projects/' ){
       const delay = arg.isTop ? arg.isTop.get() : false;
 
-      console.log(arg);
-
-      return{
-        height: arg.mediaLarge ? 500 : 400,
-        transition: {
-          ...transition,
-          delay: delay ? 0 : 1,
+      if (arg.largeUp && arg.largeUp.get())
+        return{
+          height: arg.mediaLarge ? 500 : 400,
+          transition: {
+            ...transition,
+            delay: delay ? 0 : 1,
+          }
         }
-      }
 
     }
 
@@ -155,6 +141,53 @@ export const bgVariant = {
     }
   },
 
+}
+
+export const textsVariant = {
+  initial: {
+    x: 'calc(100vw / 64 * -2)',
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+
+  fromProjectsSmallInitial: {},
+
+  fromProjectsSmallAnimate: {},
+
+  fromProjectsInitial: {
+    x: 0,
+  },
+
+  fromProjectsAnimate: {
+    x: 'calc(100vw / 64 * -2)'
+  },
+
+
+  exit(arg){
+    if ( arg && arg.path === '/projects/' ){
+      const delay = arg.isTop ? arg.isTop.get() : false;
+
+      if (arg.largeUp && arg.largeUp.get())
+        return{
+          x: 0,
+          transition: {
+            ...transition,
+            delay: delay ? 0 : 1,
+          }
+        }
+
+      return {
+
+      }
+    }
+
+    return {
+      opacity: 0,
+      scale: .9
+    }
+  }
 }
 
 export const titleVariant = {

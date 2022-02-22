@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {useContext, useEffect, useRef, useState} from 'react'
 import Headline from './Headline'
 import ReturnBtn from '../ReturnBtn'
 import { AppStateContext } from '../../contexts/AppStateContext'
@@ -100,18 +100,27 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
   } = useContext(AppStateContext)
 
   const {
-    variantsUtil : {fromCaseStudy, isTop, fromProjectList} , moScroll, locoInstance
+    variantsUtil : {fromCaseStudy, isTop, fromProjectList} , moScroll, locoInstance, largeUp
   } = useContext(MotionValueContext)
 
   const [scrolled, setScrolled] = useState(false);
-  const moInitial = useMotionValue(fromProjectList.get() ? ['fromProjectsInitial'] : ['initial'])
-  const moAnimate = useMotionValue(fromProjectList.get() ? ['fromProjectsAnimate'] : ['animate'])
+  const bgRef = useRef(null)
+
+  const moInitial = useMotionValue(fromProjectList.get() ?
+      (largeUp.get() ? ['fromProjectsInitial'] : ['fromProjectsSmallInitial'])
+      : largeUp.get() ? ['initial'] : ['smallInitial'])
+
+  const moAnimate = useMotionValue(fromProjectList.get() ?
+      (largeUp.get() ? ['fromProjectsAnimate'] : ['fromProjectsSmallAnimate'])
+      : largeUp.get() ? ['animate'] : ['smallAnimate'])
+
   const showScrollDown = useMotionValue(0)
   // const [isPresent, safeToRemove] = usePresence()
 
 
   useEffect(() => {
     // console.log('fromProject : ', location, path)
+    bgRef.current = document.body.querySelector('.projectContainer')
     setCurrentPath(path)
     fromProjectList.set(false)
     fromCaseStudy.set(true)
@@ -130,18 +139,20 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
   })
 
   useEffect(() => {
+    console.log('scrolled : ', bgRef.current)
 
     if ( scrolled ) {
       showScrollDown.set(1)
-      document.body.querySelector('.projectContainer').classList.add('container-scrolled');
+      bgRef.current
+          ?.classList.add('container-scrolled');
+
       document.body.classList.add('blog-clr')
     }
     else {
       showScrollDown.set(0)
 
-      document.body
-        .querySelector('.projectContainer')
-        .classList.remove('container-scrolled')
+      bgRef.current
+          ?.classList.remove('container-scrolled')
 
       document.body.classList.remove('blog-clr')
 

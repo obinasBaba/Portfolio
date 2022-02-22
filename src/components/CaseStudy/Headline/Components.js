@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import {
   gridColWidth,
-  gridify,
+  gridify, gridMultiplayer,
   spacing,
   title,
 } from '../../../styles/mixins'
@@ -52,12 +52,15 @@ export const InnerWrapper = styled(motion.div)`
   overflow: hidden;
   display: flex;
   align-items: center;
-  height: 100vh;
 
   img {
     width: 100%;
     object-fit: cover;
   }
+  
+  ${largeUp( css`
+    height: 100vh;
+  ` )};
 `
 
 export const Texts = styled(motion.div)`
@@ -72,7 +75,7 @@ export const Texts = styled(motion.div)`
   //margin-left: calc(100vw / 64 * 2);
 
   ${gridColWidth(8, 58)}
-  ${spacing('pt', 6)};
+  ${spacing('pt', 1.7)};
   ${spacing('pb', 6)};
 
   & > * + * {
@@ -114,6 +117,6 @@ export const HeadLineBG = styled(motion.div)`
   bottom: 0;
   background-color: var(--contentBg);
   transition: background-color .8s ease-in-out ;
-  z-index: -1;
+  z-index: 0;
 
 `

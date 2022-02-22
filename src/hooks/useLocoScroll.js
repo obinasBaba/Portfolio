@@ -16,7 +16,6 @@ export default function useLocoScroll(
 
   const locoScroll = useRef(null)
 
-  useEffect(() => {}, [])
 
   useEffect(() => {
     console.log('LocoInvoked ---- --- --', start)
@@ -28,6 +27,7 @@ export default function useLocoScroll(
       multiplier: 1,
       getDirection: true,
       getSpeed: true,
+
     })
       locoInstance.set(window.locoInstance)
 
@@ -111,7 +111,7 @@ export default function useLocoScroll(
         locoScroll.current.destroy()
         window.locoInstance.destroy()
         window.locoInstance = false
-        locoInstance.set(false)
+        locoInstance.set(null)
         locoScroll.current = null
         scrollEl.style.transform = 'initial'
         // docu
@@ -145,7 +145,7 @@ export default function useLocoScroll(
             }
             // console.timeEnd('refresh loco')
 
-        }, 2000)
+        }, 2400)
 
         return () => clearInterval(intervalId)
     }, [])

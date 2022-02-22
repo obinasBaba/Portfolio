@@ -11,8 +11,7 @@ export default function (selector, isMobile) {
 
   const { backgroundOverlay } = useContext(BackgroundOverlayStateContext)
 
-  const animateFocus = useCallback(
-    (isFocused, color) => {
+  const animateFocus = (isFocused, color) => {
       if (isMobile) return
 
       gsap.to('.pointer.inner > *', {
@@ -28,10 +27,10 @@ export default function (selector, isMobile) {
         scale: isFocused ? 0 : 1,
         opacity: isFocused ? 0 : 1,
       })
-    }, [selector, isMobile])
+  }
 
-  const animatePointed = useCallback(
-    (isPointed, pointedColor) => {
+
+  const animatePointed = (isPointed, pointedColor) => {
         if (isMobile) return;
 
       gsap.to('.pointer.inner', {
@@ -51,9 +50,7 @@ export default function (selector, isMobile) {
       gsap.to('.cursor-container', {
         zIndex: isPointed ? 8 : 30,
       })
-    },
-    [selector, isMobile]
-  )
+    }
 
   const refreshEventListeners = useCallback(selector => {
 
@@ -119,11 +116,13 @@ export default function (selector, isMobile) {
   )
 
   useEffect(() => {
+      if (backgroundOverlay) return
+
       if (isMobile) return;
 
     animateFocus(false)
     animatePointed(false)
-  }, [currentPath, isMobile])
+  }, [currentPath, isMobile, backgroundOverlay])
 
   useEffect(() => {
 

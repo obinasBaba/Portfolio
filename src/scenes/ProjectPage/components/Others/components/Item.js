@@ -121,7 +121,7 @@ const DescTxt = styled( Typography )`
 
 
 
-const Item = ( { onHoverStart, title, customData, idx} ) => {
+const Item = ( { onHoverStart, title, tags, desc, idx} ) => {
 
 
 
@@ -136,15 +136,11 @@ const Item = ( { onHoverStart, title, customData, idx} ) => {
       </GradientText>
 
       <Tags>
-        <p>Identity,</p>
-        <p>Cms,</p>
-        <p>Prototyping,</p>
-        <p>System,</p>
+        {tags.map( tag => <p>{tag}</p> )}
       </Tags>
 
       <DescTxt className='approach-desc' >
-        a fairly unique movie streaming service that intends to cover the niche of rather
-        uncoventional treasures.
+        {desc}
       </DescTxt>
 
 

@@ -21,12 +21,12 @@ const ScrollDownWrapper = styled(motion.div)`
   ${spacing('ml', 2.25)};
   
   ${largeUp( css`
-    left: 0;
-    bottom: 7%;
+    left: 2%;
+    bottom: 4%;
   ` )};
 
   ${xLargeUp( css`
-    ${spacing('ml', 6.35)};
+    // ${spacing('ml', 6.35)};
     
   ` )};
 
@@ -84,7 +84,6 @@ const ProjectScrollDown = ({ activeIndex }) => {
 
   useEffect(() => {
     // activeIndex.clearListeners()
-    console.log('activeIndex: ', activeIndex)
     if (!activeIndex) return ;
 
     if (activeIndex.get() === 0)

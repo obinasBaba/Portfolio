@@ -22,7 +22,7 @@ export const HeadlineTitle = styled(motion.h1)`
   //word-spacing: 2px;
   
   ${largeUp( css`
-    // ${ title(3.45) };
+    ${ title(3.35) };
 
   ` )};
 `
