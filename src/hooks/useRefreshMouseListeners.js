@@ -57,8 +57,6 @@ export default function (selector, isMobile) {
         if (isMobile) return;
 
       const handleHover = e => {
-
-
         // console.log('enter hover')
         let type = e.currentTarget.dataset.pointer
         let color = e.currentTarget.dataset.pointerColor

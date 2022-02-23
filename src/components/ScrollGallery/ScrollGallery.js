@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import {motion, useMotionTemplate, useSpring, useTransform} from 'framer-motion'
+import {animate, motion, useMotionTemplate, useSpring, useTransform} from 'framer-motion'
 import ImageGrid from '../../scenes/HomePage/RecentDesigns/ImageGrid'
 import { spacing } from '../../styles/mixins'
 import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 import useHomeWorksAssets from "../../hooks/queries/useHomeWorksAssets";
+import { map } from '../../helpers/utils';
+import useMo from "./useMo";
 
 const ScrollContainer = styled.section`
   position: relative;
@@ -66,28 +68,50 @@ const Gallery = () => {
 
   ];
 
-  const mapped = useTransform(moScroll.y, [0, moScroll.limit.get()], [0, -100])
+ /* const mapped = useTransform(moScroll.y , v => {
+    // [0, moScroll.limit.get()], [0, -100]
+    let m = map(v, 0, moScroll.limit.get(), 0, -100);
+    console.log('maped: ', m)
+    return m;
 
-  const x = useSpring(mapped, {
+  } )
+
+  const x = useSpring( refresh ? mapped : 0, {
     mass: .5,  damping: 10, stiffness: 50,
-  })
-
-  const template = useMotionTemplate`${x}%`
-
-
+  })*/
   const [refresh, setRefresh] = useState(false)
 
-  useEffect(() => {
-    setRefresh(true)
+  // const template = useMotionTemplate`${x}%`
+  const template = useMo(refresh)
 
-  }, [refresh])
+
+
+  useEffect(() => {
+
+
+  }, [])
+
+  useEffect(() => {
+    setRefresh(!refresh)
+    console.log('moFirst: ', moScroll.y.get())
+    moScroll.y.onChange(v => {
+      // console.log('yScroll: ', v)
+
+    })
+  }, [])
 
 
   return (
     <ScrollContainer>
       <ScrollWrapper id={`image_row_container`}>
+
+        {/*<motion.div />*/}
         <ScrollTrack
             className='rd-scroll-track'
+            transition={{
+              type: 'spring',
+              mass: .5,  damping: 10, stiffness: 50,
+            }}
             style={{x: template}}
         >
           {imageList.map((item, index) =>
