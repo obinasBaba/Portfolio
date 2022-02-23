@@ -6,10 +6,10 @@ import MailUs from '../MailUs'
 import Skills from './components/Skills'
 import { motion } from "framer-motion";
 import LineArt from "../../components/LineArt";
-import STrigger from 'gsap/ScrollTrigger'
 import gsap from "gsap";
 import {spacing} from "../../styles/mixins";
 import {largeUp, mediumUp} from "../../styles/mixins/breakpoints";
+import {useMediaQuery, useTheme} from "@material-ui/core";
 
 
 const AboutPageContainer = styled( motion.div )`
@@ -109,7 +109,11 @@ const artContainerVariant = {
 
 const AboutPage = () => {
 
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('lg'))
+
   useEffect(() => {
+    if (!matches) return;
     let artContainer = document.body.querySelector('.art-container')
 
     setTimeout(() => {
@@ -130,7 +134,7 @@ const AboutPage = () => {
 
     // STrigger.refresh()
 
-  }, [])
+  }, [matches])
 
   return (
     <AboutPageContainer variants={aboutContainerVariants}
