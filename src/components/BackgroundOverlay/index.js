@@ -29,9 +29,17 @@ const OverlayContainer = styled.div`
       fill: url(#gradient3);
     }
     
-    .loading-bg {
-      fill: url(#gradient3);
-    }
+    
+  }
+
+  .loading-bg {
+    //fill: url(#gradient3);
+    background-image: linear-gradient(137.81deg,
+    #5d6c7b 3.52%,
+    #a4b5c0 48.89%,
+    #bfd0d9 100.77%);;
+    width: 100%;
+    height: 100%;
   }
 
   & .shape-overlays {
@@ -56,6 +64,8 @@ const BackgroundOverlay = ({ loading = true, clsName }) => {
 
   return (
     <OverlayContainer className='background-overlay-container' >
+
+      <div className="loading-bg"/>
 
       <svg className={clsName} viewBox="0 0 100 100" preserveAspectRatio="none">
         <defs>
@@ -86,7 +96,7 @@ const BackgroundOverlay = ({ loading = true, clsName }) => {
         <path className="shape-overlays__path" />
         <path className="shape-overlays__path" />
 
-        <path className="loading-bg" d="M 0 0C 5.555555555555555 0 5.555555555555555 0 11.11111111111111 0 C 16.666666666666664 0 16.666666666666664 0 22.22222222222222 0 C 27.77777777777777 0 27.77777777777777 0 33.33333333333333 0 C 38.888888888888886 0 38.888888888888886 0 44.44444444444444 0 C 50 0 50 0 55.55555555555556 0 C 61.1111111111111 0 61.1111111111111 0 66.66666666666666 0 C 72.22222222222223 0 72.22222222222223 0 77.77777777777779 0 C 83.33333333333333 0 83.33333333333333 0 88.88888888888889 0 C 94.44444444444444 0 94.44444444444444 0 100 0 V 100 H 0" />
+        {/*<path className="loading-bg" d="M 0 0C 5.555555555555555 0 5.555555555555555 0 11.11111111111111 0 C 16.666666666666664 0 16.666666666666664 0 22.22222222222222 0 C 27.77777777777777 0 27.77777777777777 0 33.33333333333333 0 C 38.888888888888886 0 38.888888888888886 0 44.44444444444444 0 C 50 0 50 0 55.55555555555556 0 C 61.1111111111111 0 61.1111111111111 0 66.66666666666666 0 C 72.22222222222223 0 72.22222222222223 0 77.77777777777779 0 C 83.33333333333333 0 83.33333333333333 0 88.88888888888889 0 C 94.44444444444444 0 94.44444444444444 0 100 0 V 100 H 0" />*/}
 
       </svg>
 

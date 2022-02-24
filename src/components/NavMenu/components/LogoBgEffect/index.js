@@ -1,16 +1,22 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import {motion} from 'framer-motion'
+import {largeUp} from "../../../../styles/mixins/breakpoints";
 
 console.log('imported in navMenu');
 
  const LogoBgEffectContainer = styled(motion.div)`
    position: absolute;
    max-width: 100%;
-   width: 65%;
-   height: 89%;
+   width: 90%;
+   //height: 89%;
    opacity: 0.2;
    //z-index: -1;
+   
+   ${largeUp( css`
+     width: 65%;
+     height: 89%;
+   ` )};
 
    //border: thin solid red;
 

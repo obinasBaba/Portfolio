@@ -71,7 +71,7 @@ export const GlobalStyle = createGlobalStyle`
 
     --gray_gradient: linear-gradient(137.81deg,
     #566373 3.52%,
-    var(--light_gray) 45.89%,
+    #a4b5c0 45.89%,
     #cbd7de 100.77%);
 
     --orage_gradient: linear-gradient(137.81deg,
@@ -128,7 +128,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     
     &.loading-done{
-      .background-overlay-container path.loading-bg{
+      .background-overlay-container .loading-bg{
         display: none;
       }
      }

@@ -17,9 +17,11 @@ const MenuItemContainer = styled(motion.ul)`
   list-style-type: none;
   padding: 0;
   margin: auto;
-  width: 55%;
-  height: 50%;
+  width: 70%;
+  height: 55%;
   z-index: 11;
+  
+  //border: thin solid red;
 
   ${largeUp(css`
     //margin-top: 0;

@@ -2,14 +2,15 @@ import React, {useContext, useEffect} from 'react'
 import { itemVariants, transition } from '../variants'
 import { Link, navigate } from 'gatsby'
 import styled, { css } from 'styled-components'
-import { motion } from 'framer-motion'
+import {motion, useMotionValue} from 'framer-motion'
 import {
-  text,
+    length,
+    text,
 
 } from '../../../../../styles/mixins'
 import OverlayController from '../../../../BackgroundOverlay/OverlayController'
-import {AppStateContext} from "../../../../../contexts/AppStateContext";
 import {largeUp, mediumUp, xxLargeUp} from "../../../../../styles/mixins/breakpoints";
+import {MotionStateWrapper, MotionValueContext} from "../../../../../contexts/MotionStateWrapper";
 
 const hoverMixin = css`
   [data-circle='1'] {
@@ -110,7 +111,11 @@ const Title = styled.div`
   text-shadow: 0.1em 0.1em 0.3em #000;
   pointer-events: none;
 
-  ${text(.86)};
+  ${text(1)};
+
+  ${largeUp( css`
+    ${text(.86)};
+  ` )};
 
   ${xxLargeUp(css`
     ${text(1)};
@@ -119,17 +124,37 @@ const Title = styled.div`
 `
 
 const Circle = styled(motion.div)`
-  --size: 60px;
+  //--size: 60px;
 
   position: relative;
   transition: 1s cubic-bezier(0.6, 0.01, 0, 0.9);
   border-radius: 50%;
-  width: var(--size);
-  height: var(--size);
+  //width: var(--size);
+  //height: var(--size);
   background-color: #1e213d;
   //transition: transform 0.5s;
 
-  a {
+  &[data-circle='1'] {
+    ${length('width', 15)};
+    ${length('height', 15)};
+  }
+
+  &[data-circle='2'] {
+    ${length('width', 11)};
+    ${length('height', 11)};
+  }
+
+  &[data-circle='3'] {
+    ${length('width', 10)};
+    ${length('height', 10)};
+  }
+
+  &[data-circle='4'] {
+    ${length('width', 13)};
+    ${length('height', 13)};
+  }
+
+    a {
     //position: absolute;
     //top: 0;
     //left: 0;
@@ -244,6 +269,7 @@ const Icon = styled(motion.div)`
 
 const Item = ({ currentPath, link, stars, icon, index, title, onClick }) => {
 
+    const {largeUp} = useContext( MotionValueContext )
 
 
   return (
@@ -265,7 +291,7 @@ const Item = ({ currentPath, link, stars, icon, index, title, onClick }) => {
         onClick();
 
 
-        setTimeout(() => navigate(link), 1300)
+        setTimeout(() => navigate(link),  largeUp.get() ?  1300 : 2000)
 
       }}>
 

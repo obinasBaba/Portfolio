@@ -6,6 +6,7 @@ import OverlayController from '../BackgroundOverlay/OverlayController'
 import BackgroundOverlay from '../BackgroundOverlay'
 import { BackgroundOverlayStateContext } from '../../contexts/AppStateContext'
 import useLoadingFonts from "../../hooks/useFonts";
+import {spacing, length} from "../../styles/mixins";
 
 const SpinnerContainer = styled(motion.div)`
   //position: fixed;
@@ -26,16 +27,7 @@ const SpinnerContainer = styled(motion.div)`
     pointer-events: none;
   }
 
-  //border: thick solid red;
-
-  /*background-image: linear-gradient(
-    to bottom,
-    #072142,
-    #061c37,
-    #07182b,
-    #061220,
-    #020b16
-  );*/
+  
 `
 
 const Content = styled.div`
@@ -99,6 +91,8 @@ const BigBall = styled.div`
   width: 200px;
   height: 200px;
   background-color: #02021e;
+  
+  
 `
 
 
