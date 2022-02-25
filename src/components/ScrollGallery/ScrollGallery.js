@@ -57,7 +57,7 @@ const Gallery = () => {
     North,
   } = useHomeWorksAssets();
 
-  const imageList = [
+  const imageList = [ //useMemo
     [Web],
     [Investments, Travel, Starbank],
     [eScooter],
@@ -65,39 +65,15 @@ const Gallery = () => {
     [North],
     [Realty, Hommy, Tude],
     [Web],
-
   ];
 
- /* const mapped = useTransform(moScroll.y , v => {
-    // [0, moScroll.limit.get()], [0, -100]
-    let m = map(v, 0, moScroll.limit.get(), 0, -100);
-    console.log('maped: ', m)
-    return m;
-
-  } )
-
-  const x = useSpring( refresh ? mapped : 0, {
-    mass: .5,  damping: 10, stiffness: 50,
-  })*/
   const [refresh, setRefresh] = useState(false)
 
-  // const template = useMotionTemplate`${x}%`
   const template = useMo(refresh)
 
 
-
-  useEffect(() => {
-
-
-  }, [])
-
   useEffect(() => {
     setRefresh(!refresh)
-    console.log('moFirst: ', moScroll.y.get())
-    moScroll.y.onChange(v => {
-      // console.log('yScroll: ', v)
-
-    })
   }, [])
 
 
@@ -106,14 +82,7 @@ const Gallery = () => {
       <ScrollWrapper id={`image_row_container`}>
 
         {/*<motion.div />*/}
-        <ScrollTrack
-            className='rd-scroll-track'
-            transition={{
-              type: 'spring',
-              mass: .5,  damping: 10, stiffness: 50,
-            }}
-            style={{x: template}}
-        >
+        <ScrollTrack className='rd-scroll-track' style={{x: template}}>
           {imageList.map((item, index) =>
               <ImageGrid images={item} idx={index} key={item[0].name + index} />
           )}

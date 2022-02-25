@@ -7,7 +7,6 @@ export default start => {
   const { moScroll } = useContext(MotionValueContext)
 
   const mapped = useTransform(moScroll.y, v => {
-    // [0, moScroll.limit.get()], [0, -100]
     return map(v, 0, moScroll.limit.get(), 0, -100)
   })
 

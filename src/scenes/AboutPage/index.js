@@ -109,10 +109,11 @@ const artContainerVariant = {
 
 const AboutPage = () => {
 
-  const theme = useTheme()
+  /*const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('lg'))
 
   useEffect(() => {
+    return;
     if (!matches) return;
     let artContainer = document.body.querySelector('.art-container')
 
@@ -134,7 +135,7 @@ const AboutPage = () => {
 
     // STrigger.refresh()
 
-  }, [matches])
+  }, [matches])*/
 
   return (
     <AboutPageContainer variants={aboutContainerVariants}
@@ -146,12 +147,12 @@ const AboutPage = () => {
     >
       <AboutHero/>
 
-      <ArtContainer className='art-container'
+     {/* <ArtContainer className='art-container'
                     variants={artContainerVariant}
                     transition={artContainerVariant.transition}
       >
         <LineArt/>
-      </ArtContainer>
+      </ArtContainer>*/}
 
       <ScrollText className="content content--feature" >
 
@@ -164,7 +165,7 @@ const AboutPage = () => {
 
       </ScrollText>
 
-      <Skills/>
+      {/*<Skills/>*/}
 
       <MyProcess/>
 

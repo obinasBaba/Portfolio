@@ -138,7 +138,7 @@ const Hero = () => {
             </Typography>
 
             <Typography variant='h5' className='quote' >
-              Your Mind is the best front-end frame-work - by....
+              Simplicity transforms ordinary into amazing - by scott adams
             </Typography>
           </Intro>
 

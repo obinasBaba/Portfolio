@@ -291,7 +291,7 @@ const Item = ({ currentPath, link, stars, icon, index, title, onClick }) => {
         onClick();
 
 
-        setTimeout(() => navigate(link),  largeUp.get() ?  1300 : 2000)
+        setTimeout(() => navigate(link),  1400)
 
       }}>
 
