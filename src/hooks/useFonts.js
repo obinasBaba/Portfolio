@@ -1,4 +1,4 @@
-import {useContext, useLayoutEffect, useState} from 'react'
+import {useContext, useEffect, useLayoutEffect, useState} from 'react'
 import FontLoaded from 'fontfaceobserver'
 import { BackgroundOverlayStateContext } from '../contexts/AppStateContext'
 
@@ -6,14 +6,14 @@ const useLoadingFonts = setBackgroundOverlay => {
   // const { setBackgroundOverlay } = useContext(BackgroundOverlayStateContext)
   const [loaded, setLoaded] = useState(false)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!loaded) return;
     setBackgroundOverlay(false)
     // window.requestIdleCallback(() => setBackgroundOverlay(false));
 
   }, [loaded])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     // if ( fontLoaded.get() )
     //   return;
     document.body.classList.remove('no-cursor')

@@ -1,4 +1,4 @@
-import React, { useContext, useLayoutEffect, useRef } from 'react'
+import React, {useContext, useEffect, useLayoutEffect, useRef} from 'react'
 import styled from 'styled-components'
 import { AnimatePresence, motion } from 'framer-motion'
 import { transition } from '../../helpers/variants'
@@ -176,7 +176,7 @@ const LoadingSpinner = () => {
   useLoadingFonts(setBackgroundOverlay)
 
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if ( !backgroundOverlay ) return ;
 
       setBackgroundOverlay(true)

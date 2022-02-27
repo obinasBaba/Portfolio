@@ -90,20 +90,21 @@ const Skills = () => {
       </SkillTitle>
 
       <Text>
-        as a developer, i stand where creativity meets technology. i am deeply
-        connected to the digital world, but at the same time rooted in nature
-        combining both areas is what is enjoy most in my work
+            as a developer, working through structured
+          design and development processes which help me crafting beautiful
+          web product focused on simplicity and purpose is what i enjoy most in my work
       </Text>
 
       <SkillRow>
         <SkillColumn
           path={prototype.publicURL}
           title="design"
-          text="i am curious to go beyond ordinary boundaries
-         and create memorable & usable experiences by melding
-         design with function."
+          text="I like finding my self in a process of changing an idea,thoughts or plan in to
+                something engaging and memorable experience that can tell the aesthetic quality of it's
+                intention, and share it with people who care.
+                "
 
-          list={['Web', 'interaction', 'systems']}
+          list={['wireframe', 'interaction', 'motion-design']}
         />
 
         <SkillColumn
@@ -112,7 +113,7 @@ const Skills = () => {
           text="always starting from scratch, i aim to build innovative &
            flexible solutions that are both flawless and capable of growing with time"
 
-          list={['front-end', 'cms', 'e-commerce', 'api']}
+          list={['pwa', 'cms', 'security', 'api']}
         />
 
       </SkillRow>

@@ -117,7 +117,7 @@ const AboutHero = () => {
           <motion.div variants={helloTxtVariants}
                       transition={helloTxtVariants.transition}>
             <Hello variant='h1'>
-              Hello.
+              Supp.
             </Hello>
           </motion.div>
 
