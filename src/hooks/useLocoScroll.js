@@ -1,6 +1,6 @@
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
-import { useContext, useEffect, useRef } from 'react'
+import {useContext, useEffect, useLayoutEffect, useRef} from 'react'
 import LocomotiveScroll from 'locomotive-scroll'
 import 'locomotive-scroll/dist/locomotive-scroll.css'
 import Cursor from '../components/Cursor'
@@ -17,7 +17,7 @@ export default function useLocoScroll(
   const locoScroll = useRef(null)
 
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     console.log('LocoInvoked ---- --- --', start)
 
     const scrollEl = document.body.querySelector(elementId)
@@ -97,13 +97,6 @@ export default function useLocoScroll(
     ScrollTrigger.addEventListener('refresh', lsUpdate)
     ScrollTrigger.refresh()
 
-    /*    setTimeout(() => {
-                    locoScroll.current && locoScroll.current.update()
-                    locoScroll.current.update();
-          
-          
-                }, 1500)
-          */
     return () => {
       if (locoScroll.current) {
         window.removeEventListener('resize', lsUpdate)

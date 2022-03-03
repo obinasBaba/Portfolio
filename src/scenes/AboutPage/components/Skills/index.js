@@ -55,20 +55,22 @@ const SkillRow = styled.div`
   ${spacing('mt', 6)};
   
   & > :last-child{
-    align-items: flex-end;
+    //align-items: flex-end;
     p{
-      text-align: right;
+      //text-align: right;
     }
   }
   
   ${largeUp( css`
-    max-width: 83%;
-    gap: 0;
+    //max-width: 83%;
+    gap: 1rem;
+    
+    
 
     & > :last-child{
-      align-items: flex-start;
+      //align-items: flex-start;
       p{
-        text-align: initial;
+        //text-align: initial;
       }
     }
 
@@ -90,7 +92,7 @@ const Skills = () => {
       </SkillTitle>
 
       <Text>
-            as a developer, working through structured
+            As a developer, working through structured
           design and development processes which help me crafting beautiful
           web product focused on simplicity and purpose is what i enjoy most in my work
       </Text>
@@ -101,7 +103,7 @@ const Skills = () => {
           title="design"
           text="I like finding my self in a process of changing an idea,thoughts or plan in to
                 something engaging and memorable experience that can tell the aesthetic quality of it's
-                intention, and share it with people who care.
+                intention then share it with people who care.
                 "
 
           list={['wireframe', 'interaction', 'motion-design']}
@@ -110,8 +112,9 @@ const Skills = () => {
         <SkillColumn
           path={build.publicURL}
           title="development"
-          text="always starting from scratch, i aim to build innovative &
-           flexible solutions that are both flawless and capable of growing with time"
+          text='I write a beautiful code - delivered on time, on budget, and in full.
+                my production philosophy is simple: hit milestones with
+                reliability, with deliverables that exceed expectations'
 
           list={['pwa', 'cms', 'security', 'api']}
         />

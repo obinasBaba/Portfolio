@@ -3,19 +3,17 @@ export const processData = [
   {
     keys: '#kick-off | #Surveys',
     no: '01',
-    title: 'Discovery Call',
-    txt: `This is the phase where i dive deep into your world and
-              get to know you. Before i can properly design your
-              good-looking website, i need to understand you,
-              you pain-points, and you audience.`,
+    title: 'Insight',
+    txt: `I believe understanding and having a clean image of the domain is essential. Before i can properly design your
+              good-looking website, I need to know your brand, goals, expectations and your audience    
+        `,
   },
   {
     keys: '#Strategy | #Identity',
     no: '02',
-    title: 'Design Phase',
+    title: 'Design',
     txt: `I take what i've learned about you and craft a
-              bespoke product that's tailored to meet your
-              specific needs, All while accurately representing your
+              beautiful product to meet your specific needs, All while accurately representing your
               brand and keeping things aesthetically pleasing and usable
               for you purpose.`,
   },{
@@ -33,17 +31,17 @@ export const processData = [
     path: 'https://assets.website-files.com/5e0f6cce946b126508a0d575/5f43f2c2b496a8e317cb250b_illus_small_development.json',
     keys: '#Codding | #Security',
     no: '03',
-    title: 'Build Phase',
-    txt: `Once you're happy with the designs, i will proceed to building them
-              making sure everyting is optimised to follow modern web practices,
+    title: 'Build ',
+    txt: `After checking your idea about the design, i will proceed to building them
+              making sure everything is optimised to follow modern web practices,
               such as speed, security and reliability.`,
   },
 
   {
     keys: '#Optimization | #Feedback',
     no: '04',
-    title: 'Launch Phase',
-    txt: `After i double checked everything, it's time to launch your
+    title: 'Launch ',
+    txt: `Once i have confidence by testing everything, it's time to launch your
               website. in this phase i will also provide same training videos
               on how you can add content to your website so you can do it yourself.`,
   },

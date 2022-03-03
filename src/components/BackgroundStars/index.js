@@ -7,6 +7,8 @@ import {
 } from "../../contexts/AppStateContext";
 import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 
+
+//todo -> use the composition pattern
 const BackgroundStars = () => {
   const {
     starsBig,
@@ -26,12 +28,7 @@ const BackgroundStars = () => {
   const yMouse = useSpring(0, config)
   const xMouse = useSpring(0, config)
 
-  const calcNewMousePos = ev => {
-    const xPos = (ev.clientX - window.innerWidth / 2) / 80
-    const yPos = (ev.clientY - window.innerHeight / 2) / 80
-    yMouse.set(yPos)
-    xMouse.set(xPos)
-  }
+
 
   const {
     moScroll: { y },
@@ -43,6 +40,13 @@ const BackgroundStars = () => {
   const yScrollSmall = useTransform(yScrollBig, latest => latest / 1.5)
 
   useEffect(() => {
+    const calcNewMousePos = ev => {
+      const xPos = (ev.clientX - window.innerWidth / 2) / 80
+      const yPos = (ev.clientY - window.innerHeight / 2) / 80
+      yMouse.set(yPos)
+      xMouse.set(xPos)
+    }
+
     window.addEventListener('mousemove', calcNewMousePos)
 
 

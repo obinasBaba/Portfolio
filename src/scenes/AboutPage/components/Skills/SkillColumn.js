@@ -1,34 +1,33 @@
 import React, {useRef, useState} from 'react'
 import styled, {css} from 'styled-components'
 import { Typography } from '@material-ui/core'
-import {spacing, text} from '../../../../styles/mixins'
+import {spacing, length, text} from '../../../../styles/mixins'
 import useLotti from '../../../../helpers/useLotti'
 import { motion } from 'framer-motion'
 import {largeUp} from "../../../../styles/mixins/breakpoints";
+import Card from "../MyProcess/components/Card";
+import {GradientText, GradientTextStyle} from "../../../../components/GradientText";
 
 const Container = styled(motion.div)`
+  //border: thin solid red;
   position: relative;
   display: flex;
   flex-flow: column;
   align-items: flex-start;
-
-  gap: 1.5rem;
+  
+  //gap: 1.5rem;
 
   ${spacing('mt', 6)};
+  ${length('gap', 2.3)};
 
 `
 
-const List = styled.div`
-  //margin-top: 2rem;
-  //letter-spacing: 1.5px;
-
-  font-weight: 300;
-  color: #a4b5c0;
-  opacity: 0.9;
-
-  & > :not(:first-child) {
-    margin-top: 0.5rem;
-  }
+const SkillTitle = styled(Typography)`
+ ${GradientTextStyle};
+  font-weight: bolder;
+  letter-spacing: 1.3px;
+  text-transform: capitalize;
+  
 `
 
 const Text = styled(Typography)`
@@ -43,20 +42,24 @@ const Text = styled(Typography)`
   ` )};
 `
 
-const SkillTitle = styled(Typography)`
-  font-weight: bolder;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  // this one fixes gradient text line breaks safari bug: https://zellwk.com/blog/multi-line-gradient-links/
-  -webkit-box-decoration-break: clone;
 
-  background-image: linear-gradient(
-    137.81deg,
-    #5d6c7b 3.52%,
-    #a4b5c0 41.89%,
-    #bfd0d9 96.77%
-  );
+const List = styled.div`
+  margin-top: auto;
+  //letter-spacing: 1.5px;
+  
+  display: flex;
+
+  font-weight: 300;
+  color: #a4b5c0;
+  opacity: 0.9;
+
+  & > :not(:first-child) {
+    ${spacing('ml', 1)};
+  }
 `
+
+
+
 
 const Illustration = styled.div`
   position: absolute;
@@ -83,14 +86,15 @@ const SkillColumn = ({ path, title, text, list }) => {
         lottiRef.current && lottiRef.current.pause()
       }}
     >
+
       <Illustration className={title} ref={lottiContainerRef} />
 
-      <SkillTitle variant="h4">{title}</SkillTitle>
+      <SkillTitle variant="h3">{title}</SkillTitle>
       <Text>{text}</Text>
 
       <List>
         {list.map(txt => (
-          <Typography>{txt}</Typography>
+          <Typography variant='body2'  >#{txt},</Typography>
         ))}
       </List>
     </Container>

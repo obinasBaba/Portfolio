@@ -117,22 +117,17 @@ const AboutHero = () => {
           <motion.div variants={helloTxtVariants}
                       transition={helloTxtVariants.transition}>
             <Hello variant='h1'>
-              Supp.
+              Hello.
             </Hello>
           </motion.div>
 
           <motion.div variants={introTxtVariants}
                       transition={introTxtVariants.transition}>
 
-            <Motto variant='h2' >
+            <Motto variant='h3' >
               I create progress by designing and developing digital experiences,
             </Motto>
 
-            <Text>
-              I believe that we can live in a world when every
-              product or service has an easy to use experience on platforms and
-              my mission is to make it happen.
-            </Text>
           </motion.div>
 
         </motion.div>

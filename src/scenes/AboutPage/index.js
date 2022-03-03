@@ -10,6 +10,7 @@ import gsap from "gsap";
 import {spacing} from "../../styles/mixins";
 import {largeUp, mediumUp} from "../../styles/mixins/breakpoints";
 import {useMediaQuery, useTheme} from "@material-ui/core";
+import HorizontalScrollText from "./components/HorizontalScrollText";
 
 
 const AboutPageContainer = styled( motion.div )`
@@ -17,46 +18,6 @@ const AboutPageContainer = styled( motion.div )`
   z-index: 1;
 `
 
-const ScrollText = styled.section`
-  padding: 3rem;
-  min-height: 40vh;
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  align-content: center;
-  justify-content: space-evenly;
-  //opacity: .3;
-  filter: blur(.3px);
-  font-family: 'Elianto-Regular',serif;
-  
-  ${spacing( 'p', 5)};
-  
-  ${largeUp( css`
-    min-height: 80vh;
-  ` )};
-  
-  .content__breakout{
-    margin: 0 -3rem;
-    white-space: nowrap;
-    text-transform: uppercase;
-    font-weight: 200;
-    font-style: italic;
-    //opacity: .3;
-    font-family: 'Elianto-Regular',serif;
-    color: #434e5e;
-  }
-  
-  .content__breakout--big {
-    font-size: 10vw;
-    font-weight: 200;
-  }
-
-  .content__breakout--medium {
-    font-size: 5vw;
-    color: #5d6c7b;
-
-  }
-`
 
 const aboutContainerVariants = {
 
@@ -147,25 +108,9 @@ const AboutPage = () => {
     >
       <AboutHero/>
 
-     {/* <ArtContainer className='art-container'
-                    variants={artContainerVariant}
-                    transition={artContainerVariant.transition}
-      >
-        <LineArt/>
-      </ArtContainer>*/}
+      <HorizontalScrollText/>
 
-      <ScrollText className="content content--feature" >
-
-        <p className="content__breakout content__breakout--big" data-scroll={true}
-           data-scroll-speed="3" data-scroll-direction="horizontal">endless
-          acceleration toward infinity</p>
-        <p className="content__breakout content__breakout--medium" data-scroll={true}
-           data-scroll-speed="-1" data-scroll-direction="horizontal">the
-          greatest barrier to your enlightenment</p>
-
-      </ScrollText>
-
-      {/*<Skills/>*/}
+      <Skills/>
 
       <MyProcess/>
 

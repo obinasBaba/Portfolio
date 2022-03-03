@@ -270,10 +270,10 @@ const MyProcess = () => {
         <ProcessTrack ref={trackRef} className="track">
           <Operate>
             <OperateTxt className="operate_txt" variant="h1">
-              How I
+              Thinking
             </OperateTxt>
             <OperateTxt className="operate_txt" variant="h1">
-              Operate
+              Process
             </OperateTxt>
           </Operate>
 

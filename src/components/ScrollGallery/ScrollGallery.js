@@ -38,9 +38,6 @@ const ScrollTrack = styled(motion.div)`
 
 const Gallery = () => {
 
-  const {
-    moScroll,
-  } = useContext(MotionValueContext)
 
   const {
     Art,
@@ -67,22 +64,16 @@ const Gallery = () => {
     [Web],
   ];
 
-  const [refresh, setRefresh] = useState(false)
 
-  const template = useMo(refresh)
+  const x = useMo()
 
-
-  useEffect(() => {
-    setRefresh(!refresh)
-  }, [])
 
 
   return (
     <ScrollContainer>
       <ScrollWrapper id={`image_row_container`}>
 
-        {/*<motion.div />*/}
-        <ScrollTrack className='rd-scroll-track' style={{x: template}}>
+        <ScrollTrack className='rd-scroll-track' style={{x: useMotionTemplate`${x}%`}}>
           {imageList.map((item, index) =>
               <ImageGrid images={item} idx={index} key={item[0].name + index} />
           )}
