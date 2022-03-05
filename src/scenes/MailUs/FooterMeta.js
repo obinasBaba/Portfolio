@@ -20,8 +20,8 @@ const FooterMetaContainer = styled(Container)`
 
 
   ${mediumUp(css`
-    ${spacing('mb', 4)};
-    ${spacing('mv', 5)};
+    // ${spacing('mb', 4)};
+    ${spacing('mv', 0)};
     flex-flow: row wrap;
   `)};
 `
@@ -33,7 +33,7 @@ const MetaColumn = styled.div`
   align-items: center;
   //border: thin solid red;
     
-  ${spacing('mb', 10)};
+  ${spacing('mb', 7)};
   ${spacing('ph', 4)};
 
   ${mediumUp(css`

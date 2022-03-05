@@ -65,8 +65,6 @@ const SkillRow = styled.div`
     //max-width: 83%;
     gap: 1rem;
     
-    
-
     & > :last-child{
       //align-items: flex-start;
       p{

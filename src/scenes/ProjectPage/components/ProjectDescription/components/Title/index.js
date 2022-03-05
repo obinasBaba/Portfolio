@@ -22,7 +22,7 @@ export const HeadlineTitle = styled(motion.h1)`
   //word-spacing: 2px;
   
   ${largeUp( css`
-    ${ title(3.35) };
+    ${ title(3.65) };
 
   ` )};
 `
@@ -37,7 +37,9 @@ const Word = styled( motion.span )`
 `
 
 const Letter = styled( motion.span )`
-  font-family: "Poppins Black",serif;
+  font-family: var(--eli);
+  font-weight: bolder;
+  letter-spacing: 3px;
   display: inline-block;
   //border: thin solid tomato;
 `

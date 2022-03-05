@@ -61,7 +61,8 @@ const TitleWrapper = styled.div`
   ${spacing('gap', 5)};
 
   .title {
-    font-weight: 900;
+    //font-weight: 900;
+    font-family: var(--eli);
     // ${text(5)};
   }
 `

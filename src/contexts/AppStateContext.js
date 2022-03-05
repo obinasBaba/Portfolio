@@ -7,7 +7,7 @@ export const AppStateContext = React.createContext({})
 export const BackgroundOverlayStateContext = React.createContext(true)
 
 const BackgroundOverlayStateWrapper = ({ children }) => {
-  const [backgroundOverlay, setBackgroundOverlay] = useState(false)
+  const [backgroundOverlay, setBackgroundOverlay] = useState(true)
 
   return (
     <BackgroundOverlayStateContext.Provider

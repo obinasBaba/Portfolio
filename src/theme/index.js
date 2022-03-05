@@ -23,7 +23,7 @@ const theme = createTheme({
     fontFamily: ['Elianto-Regular'].join(','),
 
     h1: {
-      fontFamily: 'Poppins Black',
+      fontFamily: 'Elianto-Regular',
       fontWeight: 'bolder',
       lineHeight: '1.27'
       // fontSize: '3.3rem',

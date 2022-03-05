@@ -1,0 +1,20 @@
+<svg width="148" height="197" viewBox="0 0 148 197" fill="#pattern" xmlns="http://www.w3.org/2000/svg">
+    <pattern id="pattern" patternUnits="userSpaceOnUse"
+             width="100%" height="100%">
+        <image
+
+                href="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTPp7UQ5G0rhPhv6YmpJaW_10JHbxI7sdzcYIEQGTrVPxhBcxV9"
+                width="100%" height="100%"/>
+    </pattern>
+<rect y="41" width="55" height="54" rx="4" fill="#DA4040" fill-opacity="0.65"/>
+<rect x="19" y="97" width="36" height="41" rx="4" fill="#EC3232" fill-opacity="0.25"/>
+<rect x="19" y="5" width="36" height="33" rx="4" fill="#EC3232" fill-opacity="0.25"/>
+<rect x="58" width="40" height="83" rx="4" fill="#EC3232" fill-opacity="0.25"/>
+<rect x="101" y="23" width="28" height="42" rx="4" fill="#EC3232" fill-opacity="0.25"/>
+<path d="M58 89C58 86.7909 59.7909 85 62 85H78H94C96.2091 85 98 86.7909 98 89V122C98 124.209 96.2091 126 94 126H78H62C59.7909 126 58 124.209 58 122V89Z" fill="#EC3232" fill-opacity="0.25"/>
+<rect x="58" y="129" width="40" height="68" rx="4" fill="#EC3232" fill-opacity="0.25"/>
+<rect x="101" y="67" width="43" height="52" rx="4" fill="#EC3232" fill-opacity="0.25"/>
+<rect x="101" y="121" width="47" height="43" rx="4" fill="#EC3232" fill-opacity="0.25"/>
+<rect x="101" y="167" width="20" height="19" rx="4" fill="#EC3232" fill-opacity="0.25"/>
+<rect x="19" y="141" width="36" height="39" rx="4" fill="#EC3232" fill-opacity="0.25"/>
+</svg>

@@ -140,7 +140,7 @@ const MyProcess = () => {
   const mediaMatch = useMediaQuery(useTheme().breakpoints.up('md'))
 
   const progress = useMotionValue(0)
-  const opacity = useTransform(progress, [0.69, 0.93], [1, 0])
+  const opacity = useTransform(progress, [0.69, 0.98], [1, 0])
 
   const [ inView, setInView ] = useState(false)
 

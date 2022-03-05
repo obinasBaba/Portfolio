@@ -11,7 +11,7 @@ import {spacing} from "../../styles/mixins";
 import {largeUp, mediumUp} from "../../styles/mixins/breakpoints";
 import {useMediaQuery, useTheme} from "@material-ui/core";
 import HorizontalScrollText from "./components/HorizontalScrollText";
-
+import img from './components/AboutHero/about-hero-paths.svg'
 
 const AboutPageContainer = styled( motion.div )`
   position: relative;
@@ -107,6 +107,7 @@ const AboutPage = () => {
                         id='#about'
     >
       <AboutHero/>
+
 
       <HorizontalScrollText/>
 

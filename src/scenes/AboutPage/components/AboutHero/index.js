@@ -1,21 +1,68 @@
 import React from 'react'
 import styled, {css} from 'styled-components'
-import {spacing, text} from '../../../../styles/mixins'
+import {gridColWidth, gridify, spacing, text} from '../../../../styles/mixins'
 import {Container, Typography} from '@material-ui/core'
 import {motion} from "framer-motion";
 import {largeUp, mediumUp} from "../../../../styles/mixins/breakpoints";
+import AboutHeroPicture from "./AboutHeroPicture";
+import TextWrapper from "./TextContainer";
 
 const AboutHeroContainer = styled.div`
+  position: relative;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+
+  ${gridify()};
+
+
+  //place-items: start;
+  //flex-flow: column;
+  //align-items: center;
+  //justify-content: center;
+  
+  //border: thick solid green;
+  
+  ${mediumUp( css`
+    flex-flow: row;
+    justify-content: flex-start;
+
+  ` )  };
   
   
   ${largeUp( css`
     ${spacing('mt', 10)};
-    
   ` )};
+  
+  .text-container{
+    //position: absolute;
+    width: 100%;
+    grid-row: 2 / 4;
+    display: grid;
+    place-items: center;
+    //align-items: end;
+    
+    //border: thin solid red;
+    //padding-left: 15%;
+
+    ${ gridColWidth() };
+
+
+    svg{
+      max-width: 100%;
+    }
+
+    ${mediumUp( css`
+      width: 60%;
+      grid-row: initial;
+
+      svg{
+        width: 80%;
+      }
+
+    `)};
+    
+  }
+  
 `
 
 const Hello = styled( Typography )`
@@ -25,10 +72,14 @@ const Hello = styled( Typography )`
 `
 
 const Motto = styled( Typography )`
-  font-weight: bolder;
+  //font-weight: bolder;
   color: #7b8a9b;
+  max-width: 30ch;
   //line-height: 110%;
-    ${spacing('mb', 8.2)};
+  //   ${spacing('mb', 8.2)};
+  
+  //border: thin solid red;
+  align-self: flex-end; 
 
   ${largeUp( css`
     
@@ -51,46 +102,7 @@ const Text = styled( Typography )`
   ` )};
 `
 
-const helloTxtVariants = {
-  initial: {
-    opacity: 0,
-    y: -200
-  },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transitionEnd: {
-      // opacity: 0,
-    },
-  },
-  exit: {
-    opacity: 0,
-    y: -200
-  },
 
-  transition: {
-    duration: 1
-  }
-}
-
-const introTxtVariants = {
-  initial: {
-    opacity: 0,
-    y: 200,
-  },
-  animate: {
-    opacity: 1,
-    y: 0,
-  },
-  exit: {
-    opacity: 0,
-    y: 200
-  },
-
-  transition: {
-    duration: 1
-  }
-}
 
 const aboutHeroVariants = {
   animate(arg){
@@ -109,32 +121,31 @@ const aboutHeroVariants = {
 const AboutHero = () => {
 
   return (
-    <AboutHeroContainer   variants={aboutHeroVariants}>
+    <AboutHeroContainer maxWidth='lg'  >
 
-      <Container maxWidth='lg' >
-        <motion.div variants={aboutHeroVariants} >
+        <motion.div className='text-container'  >
 
-          <motion.div variants={helloTxtVariants}
-                      transition={helloTxtVariants.transition}>
-            <Hello variant='h1'>
-              Hello.
-            </Hello>
-          </motion.div>
+           {/* <motion.div variants={helloTxtVariants}
+                        transition={helloTxtVariants.transition}>
+              <Hello variant='h1'>
+                Hello.
+              </Hello>
+            </motion.div>
 
-          <motion.div variants={introTxtVariants}
-                      transition={introTxtVariants.transition}>
+            <motion.div className='motto-container' variants={introTxtVariants} transition={introTxtVariants.transition}>
 
-            <Motto variant='h3' >
+            <Motto variant='h4' >
               I create progress by designing and developing digital experiences,
             </Motto>
 
-          </motion.div>
+            </motion.div>*/}
+
+         <TextWrapper />
+
 
         </motion.div>
 
-
-      </Container>
-
+        <AboutHeroPicture/>
 
     </AboutHeroContainer>
   )

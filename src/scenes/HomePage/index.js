@@ -51,9 +51,9 @@ const HomePage = () => {
                  whileInView="inView"
     >
 
-      <SectionWrapper dataScrollSection={true}>
+      {/*<SectionWrapper dataScrollSection={true}>*/}
         <Hero />
-      </SectionWrapper>
+      {/*</SectionWrapper>*/}
 
       <RecentWorks />
 

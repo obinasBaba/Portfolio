@@ -31,7 +31,7 @@ const Page = ({ children, path }) => {
 
       <HeaderAppBar />
 
-      {/*<LoadingSpinner />*/}
+      <LoadingSpinner />
 
       <Main data-scroll-container id="main-container">
         <AnimatePresence
