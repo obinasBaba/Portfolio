@@ -49,7 +49,7 @@ const ReadButtonContainer = styled.div`
   .bg {
     grid-row: 1 /1;
     grid-column: 1/ 1;
-    background-color: #e7a28f;
+    background-color: var(--theme);
     border-radius: 50%;
     transform: translateX(-50%);
     

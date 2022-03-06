@@ -11,7 +11,7 @@ import Instagram from '../../assets/images/brands/instagram.inline.svg'
 import Behance from '../../assets/images/brands/behance.inline.svg'
 import Github from '../../assets/images/brands/github.inline.svg'
 import Border from './border.inline.svg'
-import { Container } from '@material-ui/core'
+import {Container, useMediaQuery, useTheme} from '@material-ui/core'
 import useOnScreen from '../../hooks/useOnScreen'
 import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 import {largeUp, mediumDown, mediumUp} from "../../styles/mixins/breakpoints";
@@ -172,6 +172,8 @@ const Footer = ({ color }) => {
   // const { , setContactModal } = useContext(AppStateContext)
   // const { setBottomGradient} = useContext(MotionValueContext)
 
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('xxl'))
   const inView = useOnScreen(elRef, .2);
 
   useEffect(() => {
@@ -191,7 +193,7 @@ const Footer = ({ color }) => {
 
 
   return (
-    <Container ref={elRef} maxWidth="lg" disableGutters={true} >
+    <Container ref={elRef} maxWidth={matches ? 'xl' : 'lg'} disableGutters={true} >
       <FooterContainer>
         <Copy>
           <span>&copy;</span> 2021 Henzzo.io

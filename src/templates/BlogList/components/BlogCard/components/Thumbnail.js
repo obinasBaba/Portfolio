@@ -57,11 +57,11 @@ const StyledThumbnail = styled(CardMedia)`
     height: 100%;
     //background-image: linear-gradient(147deg, #fe8a39 0%, #fd3838 74%);
     background-blend-mode: soft-light;
-    background-image: linear-gradient(147deg, #fe8a39 0%, #fd3838 74%);
+    background-image: var(--gray_gradient);
 
 
     ${spacing('br', 2)};
-    opacity: 0.5;
+    opacity: 0.3;
   }
 `
 

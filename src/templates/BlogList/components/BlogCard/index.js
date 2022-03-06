@@ -32,12 +32,7 @@ const StyledBlogCard = styled(motion.div)`
     display: block;
     //overflow: hidden;
     backdrop-filter: blur(5px);
-    background-image: linear-gradient(
-      137.81deg,
-      rgba(231, 162, 143, 0.92) 3.52%,
-      rgba(249, 214, 172, 0.88) 41.89%,
-      rgba(251, 254, 252, 0.88) 96.77%
-    );
+    background-image: var(--gray_gradient);
 
     ${spacing('br', 3)};
   }

@@ -17,6 +17,7 @@ const PenContainer = styled( motion.div )`
   left: 1%;
   bottom: -14%;
   pointer-events: none;
+  //color: #c9d8e0;
   //z-index: -1;
   //border: thin solid rebeccapurple;
 `
@@ -29,7 +30,7 @@ const PenEffect = () => {
       [0, moScroll.limit.get()], [0, 1]);
 
   const yTransform =
-      useTransform(progress, [0, 1], [0, -125]);
+      useTransform(progress, [0, 1], [0, -145]);
 
   const y = useSpring(yTransform, {
     mass: .5,  damping: 10, stiffness: 50,
@@ -66,9 +67,9 @@ const PenEffect = () => {
              viewBox="0 0 323.091 369.629">
           <defs>
             <linearGradient id="linear-gradient" x1="0.033" y1="1" x2="1.262" y2="0.319" gradientUnits="objectBoundingBox">
-              <stop offset="0" stopColor="#e7a28f"/>
-              <stop offset="0.464" stopColor="#f9d6ac"/>
-              <stop offset="1" stopColor="#fbfefc"/>
+              <stop offset="0" stopColor="#5d6c7b" />
+              <stop offset="0.382" stopColor="#a4b5c0" />
+              <stop offset="1" stopColor="#c9d8e0" />
             </linearGradient>
           </defs>
           <g id="pen" transform="translate(-122.469 460.082)">

@@ -8,7 +8,7 @@ const RecentDesignWrapper = styled.section`
   //min-height: 100vh;
   //border: thin solid red;
 
-    ${ spacing( 'mt', 7.5 ) };
+    ${ spacing( 'mt', 20 ) };
 
 `
 

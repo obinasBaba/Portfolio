@@ -48,7 +48,7 @@ The main method of a generator is `next()` . When called, it resumes execution t
 
 For instance, here we create the generator and get its first yielded value:
 
-```
+```javascript
 function* generateSequence() {
 
 yield 1;

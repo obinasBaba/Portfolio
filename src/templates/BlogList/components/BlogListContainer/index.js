@@ -6,7 +6,7 @@ import { motion, useMotionValue, useTransform } from 'framer-motion'
 import gsap from 'gsap'
 import STrigger from 'gsap/ScrollTrigger'
 import { basicVariants, transition } from '../../../../helpers/variants'
-import {largeUp, mediumUp} from "../../../../styles/mixins/breakpoints";
+import {largeUp, mediumUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
 
 const BlogListContainer = styled( Container )`
   position: relative;
@@ -32,7 +32,7 @@ const Title = styled( Typography )`
   align-self: flex-start;
   color: transparent;
   -webkit-text-stroke: 2.5px #becdd5;
-  font-family: 'Elianto-Regular', serif;
+  //font-family: 'Elianto-Regular', serif;
   width: 100%;
 
   //border: thin solid red;
@@ -40,8 +40,18 @@ const Title = styled( Typography )`
     // ${text(4)};
 
   ${mediumUp(css`
-    // ${text(6)};
+    ${text(7)};
   `)}
+  
+  ${largeUp(css`
+    ${ spacing('ml', -6) };
+  `)} 
+  
+  ${xxLargeUp(css`
+    ${ spacing('ml', -10) };
+  `)}
+  
+  
 `;
 
 const BlogListWrapper = styled( motion.div )`
