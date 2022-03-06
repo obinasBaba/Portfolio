@@ -7,6 +7,7 @@ import BackgroundOverlay from '../BackgroundOverlay'
 import { BackgroundOverlayStateContext } from '../../contexts/AppStateContext'
 import useLoadingFonts from "../../hooks/useFonts";
 import {spacing, length} from "../../styles/mixins";
+import {EventEmitter} from "events";
 
 const SpinnerContainer = styled(motion.div)`
   //position: fixed;
@@ -25,6 +26,10 @@ const SpinnerContainer = styled(motion.div)`
   pointer-events: none;
   & * {
     pointer-events: none;
+  }
+  
+  &.loaded .loading-backup{
+    display: none;
   }
 
   
@@ -91,8 +96,6 @@ const BigBall = styled.div`
   width: 200px;
   height: 200px;
   background-color: #02021e;
-  
-  
 `
 
 
@@ -105,6 +108,16 @@ const SpinnerWrapper = styled( motion.div )`
   place-items: center;
   z-index: 10;
 `
+
+const LoadingBgBackup = styled.div`
+  background-image: linear-gradient(137.81deg,
+  #5d6c7b 3.52%,
+    #a4b5c0 48.89%,
+  #bfd0d9 100.77%);;
+  width: 100%;
+  height: 100%;
+`
+
 const parentVariants = {
   initial: {
   },
@@ -113,6 +126,7 @@ const parentVariants = {
   exit: {
     // opacity: 0
   },
+
   transition: {
     duration: 1.21,
     delay: .2,
@@ -170,6 +184,7 @@ const LoadingSpinner = () => {
 
   const smallRef = useRef(null)
   const contentRef = useRef(null)
+  const containerRef = useRef(null)
 
   const { setBackgroundOverlay, backgroundOverlay } = useContext(BackgroundOverlayStateContext)
 
@@ -181,12 +196,16 @@ const LoadingSpinner = () => {
 
       setBackgroundOverlay(true)
 
-      OverlayController.getInstance('loading-overlay')
-        .toggle(true, {
+      const ov = OverlayController.getInstance('loading-overlay')
+      ov.on('loading', () => {
+        containerRef.current?.classList.add('loaded')
+      })
+    ov.toggle(true, {
             duration: .0002,
             delayPointsMax: 0,
             delayPerPath: 0,
           })
+
 
       return () => {}
 
@@ -198,13 +217,16 @@ const LoadingSpinner = () => {
       <AnimatePresence exitBeforeEnter>
         {
           backgroundOverlay &&
-          <SpinnerContainer variants={parentVariants}
+          <SpinnerContainer  ref={containerRef}
+                             variants={parentVariants}
                             initial='initial'
                             animate='animate'
                             exit='exit'
                             transition={parentVariants.transition}
 
           >
+
+            {backgroundOverlay && <LoadingBgBackup className='loading-backup' /> }
 
 
              <BackgroundOverlay clsName={'loading-overlay'} key='loading-overlay' />

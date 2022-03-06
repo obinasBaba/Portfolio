@@ -23,11 +23,7 @@ const Container = styled(motion.div)`
 `
 
 const SkillTitle = styled(Typography)`
- ${GradientTextStyle};
-  font-weight: bolder;
-  letter-spacing: 1.3px;
   text-transform: capitalize;
-  
 `
 
 const Text = styled(Typography)`
@@ -51,7 +47,6 @@ const List = styled.div`
 
   font-weight: 300;
   color: #a4b5c0;
-  opacity: 0.9;
 
   & > :not(:first-child) {
     ${spacing('ml', 1)};

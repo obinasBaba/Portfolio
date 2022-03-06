@@ -1,89 +1,58 @@
-import React from 'react'
+import React, {useContext, useState} from 'react'
 import styled, {css} from 'styled-components'
-import { Container, Typography } from '@material-ui/core'
+import {Container, Typography, useMediaQuery, useTheme} from '@material-ui/core'
 import {spacing, text} from '../../../../styles/mixins'
 import SkillColumn from './SkillColumn'
 import {useLottiAssets} from '../../../../hooks/queries/useLottiAssets'
-import {largeUp} from "../../../../styles/mixins/breakpoints";
+import {largeUp, mediumUp} from "../../../../styles/mixins/breakpoints";
+import {GradientTextStyle} from "../../../../components/GradientText";
+import {MotionValueContext} from "../../../../contexts/MotionStateWrapper";
 
 const SkillsContainer = styled(Container)`
   ${spacing('mt', 10)};
   
 `
 const SkillTitle = styled(Typography)`
-  font-family: 'Elianto-Regular', serif;
-  letter-spacing: -2.2px;
-  margin-top: -5px;
-
+  ${GradientTextStyle};
   line-height: 108%;
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  // this one fixes gradient text line breaks safari bug: https://zellwk.com/blog/multi-line-gradient-links/
-  -webkit-box-decoration-break: clone;
-
-  background-image: linear-gradient(137.81deg,
-  #5d6c7b 3.52%,
-  #a4b5c0 41.89%,
-  #bfd0d9 96.77%);
   
 `
 const Text = styled(Typography)`
   
   color: #7b8a9b;
+  ${spacing('mt', 3)};
 
-
-  ${text(1.2)};
-  ${spacing('mt', 6)};
-  ${spacing('mb', 16)};
-
-  ${largeUp( css`
+  ${mediumUp( css`
     max-width: 45ch;
-    ${spacing('mb', 0)};
   ` )};
-
-
-  
 `
 
 const SkillRow = styled.div`
   display: flex;
-  justify-content: space-between;
-  gap: .5rem;
-  
+  flex-flow: column;
+  gap: 10vmax;
+  align-items: center;  
 
-  ${spacing('mt', 6)};
+  ${spacing('mt', 12)};
   
-  & > :last-child{
-    //align-items: flex-end;
-    p{
-      //text-align: right;
-    }
-  }
-  
-  ${largeUp( css`
-    //max-width: 83%;
-    gap: 1rem;
-    
-    & > :last-child{
-      //align-items: flex-start;
-      p{
-        //text-align: initial;
-      }
-    }
-
+  ${mediumUp( css`
+    gap: 0;
+    flex-flow: row;
+    justify-content: space-evenly;
+    align-items: stretch;
   ` )};
-  
-  
 
 `
 
 const Skills = () => {
 
-  const { build, prototype} = useLottiAssets()
+    const theme = useTheme()
+    const matches = useMediaQuery(theme.breakpoints.up('xxl'))
+    const { build, prototype} = useLottiAssets()
+
 
   return (
-    <SkillsContainer  maxWidth="lg">
+    <SkillsContainer  maxWidth={matches ? 'xl' : 'lg'}>
       <SkillTitle variant="h1">
         Skills &<br />
         expertise

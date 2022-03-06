@@ -2,8 +2,8 @@ import {useContext, useEffect, useLayoutEffect, useState} from 'react'
 import FontLoaded from 'fontfaceobserver'
 import { BackgroundOverlayStateContext } from '../contexts/AppStateContext'
 
-const useLoadingFonts = setBackgroundOverlay => {
-  // const { setBackgroundOverlay } = useContext(BackgroundOverlayStateContext)
+const useLoadingFonts = () => {
+  const { setBackgroundOverlay, backgroundOverlay } = useContext(BackgroundOverlayStateContext)/*
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
@@ -11,29 +11,31 @@ const useLoadingFonts = setBackgroundOverlay => {
     setBackgroundOverlay(false)
     // window.requestIdleCallback(() => setBackgroundOverlay(false));
 
-  }, [loaded])
+  }, [loaded])*/
 
   useEffect(() => {
-    // if ( fontLoaded.get() )
-    //   return;
+    if ( !backgroundOverlay )
+      return;
+
     document.body.classList.remove('no-cursor')
 
     let elianto = new FontLoaded('Elianto-Regular')
-    let poppins = new FontLoaded('Poppins Black')
+    // let poppins = new FontLoaded('Poppins Black')
     let icons = new FontLoaded('shapes')
 
-    Promise.all([elianto.load(), poppins.load(),])
+    Promise.all([elianto.load(),])
       .then(() => {
         setTimeout(() => {
-          setLoaded(true)
+            setBackgroundOverlay(false)
+            // setLoaded(true)
         }, 1500)
 
-        setTimeout(() => {
+        // setTimeout(() => {
           Promise.all([icons.load()])
               .then(() => {
                 document.body.classList.add('no-cursor')
               })
-        })
+        // })
 
       })
       .catch(console.error)

@@ -32,7 +32,7 @@ const OverlayContainer = styled.div`
     
   }
 
-  .loading-bg {
+ /* .loading-bg {
     //fill: url(#gradient3);
     background-image: linear-gradient(137.81deg,
     #5d6c7b 3.52%,
@@ -40,7 +40,7 @@ const OverlayContainer = styled.div`
     #bfd0d9 100.77%);;
     width: 100%;
     height: 100%;
-  }
+  }*/
 
   & .shape-overlays {
     position: fixed;
@@ -65,7 +65,7 @@ const BackgroundOverlay = ({ loading = true, clsName }) => {
   return (
     <OverlayContainer className='background-overlay-container' >
 
-      <div className="loading-bg"/>
+      {/*<div className="loading-bg"/>*/}
 
       <svg className={clsName} viewBox="0 0 100 100" preserveAspectRatio="none">
         <defs>

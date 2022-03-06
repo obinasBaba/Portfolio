@@ -1,6 +1,7 @@
 import {ease} from '../../helpers/glsEasings'
+import {EventEmitter} from "events";
 
-class OverlayController {
+class OverlayController extends EventEmitter{
 
   static instance = new Map();
   static isAnimating = false;
@@ -30,6 +31,7 @@ class OverlayController {
   }
 
   constructor(el) {
+    super()
     this.elm = el
     this.path = this.elm.querySelectorAll('path'); //// Path elements in parent SVG. These are the layers of the overlay.
     this.numPoints = 10; //Number of control points for Bezier Curve.
@@ -82,13 +84,14 @@ class OverlayController {
 
   open() {
 
+
     this.isOpened = true;
     this.elm.classList.add('is-opened');
     this.timeStart = Date.now();
     this.renderLoop();
 
-    document.body.classList.add('loading-done')
-
+    // document.body.classList.add('loading-done')
+    this.emit('loading')
   }
 
   close() {

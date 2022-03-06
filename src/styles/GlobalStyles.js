@@ -43,9 +43,6 @@ export const GlobalStyle = createGlobalStyle`
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     //overflow: hidden;
-
-
-    
   }
 
   body {
@@ -109,8 +106,6 @@ export const GlobalStyle = createGlobalStyle`
 
     &.menu_open {
       --theme: rgba(2, 11, 22, 1);
-
-
     }
 
     &.blog-clr {
@@ -127,11 +122,11 @@ export const GlobalStyle = createGlobalStyle`
       --theme: rgba(2, 11, 22, 1);
     }
     
-    &.loading-done{
+   /* &.loading-done{
       .background-overlay-container .loading-bg{
         display: none;
       }
-     }
+     }*/
 
 
   }

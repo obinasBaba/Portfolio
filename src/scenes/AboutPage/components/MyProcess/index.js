@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
-import { Typography, useMediaQuery, useTheme } from '@material-ui/core'
+import {Container, Typography, useMediaQuery, useTheme} from '@material-ui/core'
 import { processData } from './data'
 import Card from './components/Card'
 import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
@@ -10,13 +10,21 @@ import STrigger from 'gsap/ScrollTrigger'
 import {spacing, text} from '../../../../styles/mixins'
 import BigPlanet from './components/BigPlanet'
 import useOnScreen from '../../../../hooks/useOnScreen'
-import {largeUp, mediumUp, smallDown} from "../../../../styles/mixins/breakpoints";
+import {largeUp, mediumUp, smallDown, xLargeUp} from "../../../../styles/mixins/breakpoints";
 
 const ProcessContainer = styled( motion.section )`
   position: relative;
   min-height: 100vh;
+  //max-width: 1300px;
+  //margin: 0 auto;
+  width: 100%;
   //border: thin solid red;
+  ${spacing('mt', 25.4)};
+  ${spacing('mb', 16)};
+ 
+`
 
+const ProcessC = styled( Container )`
   ${spacing('mt', 25.4)};
   ${spacing('mb', 16)};
 `
@@ -43,7 +51,7 @@ const ProcessTitle = styled(Typography)`
   //border: thin dashed burlywood;
 
   ${spacing('pl', 3)};
-  ${spacing('pb', 1.7)}
+  ${spacing('pb', 1.7)};
 
   ${smallDown(css`
     // ${text(3.5)};
@@ -51,6 +59,10 @@ const ProcessTitle = styled(Typography)`
 
   ${mediumUp(css`
     ${spacing('pl', 7)};
+  `)};
+  
+  ${xLargeUp(css`
+    ${spacing('pl', 17)};
   `)};
   
   &:first-child{
@@ -227,70 +239,72 @@ const MyProcess = () => {
 
 
   return (
-    <ProcessContainer
-      ref={containerRef}
-      id="process-container"
 
-      onViewportEnter={_ => {
-        setInView(true)
-      }}
-    >
-      <div className="planet_wrapper">
-        <div className="big_planet">
-          <BigPlanet />
-        </div>
-      </div>
+     <ProcessContainer
+         ref={containerRef}
+         id="process-container"
 
-      <div className="title-wrapper">
-        <motion.div style={{ opacity }}>
-          <ProcessTitle
-            ref={titleRef}
-            variant="h1"
-            className="title"
-            noWrap={true}
-          >
-            Approach
-          </ProcessTitle>
+         onViewportEnter={_ => {
+           setInView(true)
+         }}
+     >
+       <div className="planet_wrapper">
+         <div className="big_planet">
+           <BigPlanet />
+         </div>
+       </div>
 
-          <ProcessTitle
-            ref={titleRef}
-            variant="h1"
-            className="title"
-            noWrap={true}
-          >
-            & vision
-          </ProcessTitle>
-        </motion.div>
+       <div className="title-wrapper">
+         <motion.div style={{ opacity }}>
+           <ProcessTitle
+               ref={titleRef}
+               variant="h1"
+               className="title"
+               noWrap={true}
+           >
+             Approach
+           </ProcessTitle>
 
-      </div>
+           <ProcessTitle
+               ref={titleRef}
+               variant="h1"
+               className="title"
+               noWrap={true}
+           >
+             & vision
+           </ProcessTitle>
+         </motion.div>
+
+       </div>
 
 
 
-      <ProcessMask ref={maskRef} className="mask">
-        <ProcessTrack ref={trackRef} className="track">
-          <Operate>
-            <OperateTxt className="operate_txt" variant="h1">
-              Thinking
-            </OperateTxt>
-            <OperateTxt className="operate_txt" variant="h1">
-              Process
-            </OperateTxt>
-          </Operate>
+       <ProcessMask ref={maskRef} className="mask">
+         <ProcessTrack ref={trackRef} className="track">
+           <Operate>
+             <OperateTxt className="operate_txt" variant="h1">
+               Thinking
+             </OperateTxt>
+             <OperateTxt className="operate_txt" variant="h1">
+               Process
+             </OperateTxt>
+           </Operate>
 
-          {processData.map(({ no, title, txt, keys }, index) => (
-            <Card
-              key={title}
-              no={no}
-              title={title}
-              txt={txt}
-              index={index}
-              path={ inView && icons[index].publicURL}
-              methodologies={keys}
-            />
-          ))}
-        </ProcessTrack>
-      </ProcessMask>
-    </ProcessContainer>
+           {processData.map(({ no, title, txt, keys }, index) => (
+               <Card
+                   key={title}
+                   no={no}
+                   title={title}
+                   txt={txt}
+                   index={index}
+                   path={ inView && icons[index].publicURL}
+                   methodologies={keys}
+               />
+           ))}
+         </ProcessTrack>
+       </ProcessMask>
+     </ProcessContainer>
+
   )
 }
 
