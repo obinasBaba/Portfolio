@@ -1,7 +1,6 @@
 import React, {useContext, useEffect} from 'react'
 import {Typography} from '@material-ui/core'
 import {Greeting, HeroContainer, Intro, TextContainer} from './components'
-import Moon from '../../../components/MoonLight'
 import {MotionValueContext} from "../../../contexts/MotionStateWrapper";
 import HeroLotti from "./components/HeroLotti";
 
@@ -141,7 +140,6 @@ const Hero = () => {
 
         </TextContainer>
 
-        {/*<Moon  />*/}
         <HeroLotti/>
 
       </HeroContainer>
