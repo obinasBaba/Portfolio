@@ -8,6 +8,7 @@ import { BackgroundOverlayStateContext } from '../../contexts/AppStateContext'
 import useLoadingFonts from "../../hooks/useFonts";
 import {spacing, length} from "../../styles/mixins";
 import {EventEmitter} from "events";
+import {MotionValueContext} from "../../contexts/MotionStateWrapper";
 
 const SpinnerContainer = styled(motion.div)`
   //position: fixed;
@@ -111,9 +112,9 @@ const SpinnerWrapper = styled( motion.div )`
 
 const LoadingBgBackup = styled.div`
   background-image: linear-gradient(137.81deg,
-  #5d6c7b 3.52%,
-    #a4b5c0 48.89%,
-  #bfd0d9 100.77%);;
+  #5d6c7b 0%,
+    #a4b5c0 50.89%,
+  #bfd0d9 120.77%);;
   width: 100%;
   height: 100%;
 `
@@ -187,8 +188,17 @@ const LoadingSpinner = () => {
   const containerRef = useRef(null)
 
   const { setBackgroundOverlay, backgroundOverlay } = useContext(BackgroundOverlayStateContext)
+  const { toolTipsData } = useContext(MotionValueContext);
 
   useLoadingFonts(setBackgroundOverlay)
+
+  useEffect(() => {
+    toolTipsData.set({
+      text: ' ⌛ getting things ready...',
+      show: true,
+    })
+
+  }, [])
 
 
   useEffect(() => {
@@ -214,22 +224,24 @@ const LoadingSpinner = () => {
 
   return (
 
-      <AnimatePresence exitBeforeEnter>
-        {
-          backgroundOverlay &&
-          <SpinnerContainer  ref={containerRef}
-                             variants={parentVariants}
-                            initial='initial'
-                            animate='animate'
-                            exit='exit'
-                            transition={parentVariants.transition}
+      <>
+        <LoadingBgBackup className='loading-backup' />
 
-          >
+        <AnimatePresence exitBeforeEnter>
+          {
+            backgroundOverlay &&
+            <SpinnerContainer  ref={containerRef}
+                               variants={parentVariants}
+                               initial='initial'
+                               animate='animate'
+                               exit='exit'
+                               transition={parentVariants.transition}
 
-            {backgroundOverlay && <LoadingBgBackup className='loading-backup' /> }
+            >
 
 
-             <BackgroundOverlay clsName={'loading-overlay'} key='loading-overlay' />
+
+              <BackgroundOverlay clsName={'loading-overlay'} key='loading-overlay' />
 
 
               <SpinnerWrapper  variants={containerVariants}
@@ -254,9 +266,10 @@ const LoadingSpinner = () => {
               </SpinnerWrapper>
 
 
-          </SpinnerContainer>
-        }
-      </AnimatePresence>
+            </SpinnerContainer>
+          }
+        </AnimatePresence>
+      </>
 
   )
 }

@@ -81,8 +81,8 @@ const BackgroundOverlay = ({ loading = true, clsName }) => {
           <linearGradient id="gradient3" x1="0.177" y1="0.104" x2="0.949"
                           y2="0.947" gradientUnits="objectBoundingBox">
             <stop offset="0" stopColor="#5d6c7b" />
-            <stop offset="0.482" stopColor="#a4b5c0" />
-            <stop offset="1" stopColor="#bfd0d9" />
+            <stop offset="0.5" stopColor="#a4b5c0" />
+            <stop offset="1.3" stopColor="#bfd0d9" />
           </linearGradient>
 
           <linearGradient id="gradient4" x1="0%" y1="0%" x2="0%" y2="100%">

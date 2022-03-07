@@ -39,7 +39,7 @@ export default selector => {
     if (backgroundOverlay) return
 
     toolTipTextNode.current = document.querySelector('.tool-tip-excerpt')
-    onLeave()
+    // onLeave()
     window.addEventListener('mousemove', addListener)
 
   }, [selector, backgroundOverlay])

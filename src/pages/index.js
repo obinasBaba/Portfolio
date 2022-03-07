@@ -10,16 +10,11 @@ import Seo from "../components/seo";
 const IndexPage = ({ path }) => {
   const {
     setCurrentPath,
-    registeredScrollPos,
-    setRegisteredScrollPos,
   } = useContext(AppStateContext)
 
   const {
     backgroundOverlay
   } = useContext(BackgroundOverlayStateContext)
-
-  const theme = useTheme()
-  // const matches = useMediaQuery(theme.breakpoints.up('md'))
 
   const loco = useLocoScroll(!backgroundOverlay )
 
@@ -44,11 +39,6 @@ const IndexPage = ({ path }) => {
   useToolTip('[data-tooltip-text]')
   useRefreshMouseListeners('[data-pointer]', )
 
-  useEffect(() => {
-    setTimeout(() => {
-      // window.locoInstance.update()
-    }, 1000)
-  }, [])
 
   return (
      <>

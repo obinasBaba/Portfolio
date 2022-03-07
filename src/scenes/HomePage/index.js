@@ -55,7 +55,7 @@ const HomePage = () => {
         <Hero />
       {/*</SectionWrapper>*/}
 
-      <RecentWorks />
+      {/*<RecentWorks />
 
       <Projects />
 
@@ -66,7 +66,7 @@ const HomePage = () => {
 
       <SectionWrapper dataScrollSection={true} >
         <BlogPosts />
-      </SectionWrapper>
+      </SectionWrapper>*/}
 
 
       <MailUs />

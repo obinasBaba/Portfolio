@@ -1,8 +1,11 @@
 import {useContext, useEffect, useLayoutEffect, useState} from 'react'
 import FontLoaded from 'fontfaceobserver'
 import { BackgroundOverlayStateContext } from '../contexts/AppStateContext'
+import {MotionValueContext} from "../contexts/MotionStateWrapper";
 
 const useLoadingFonts = () => {
+
+    const { toolTipsData } = useContext(MotionValueContext);
   const { setBackgroundOverlay, backgroundOverlay } = useContext(BackgroundOverlayStateContext)/*
   const [loaded, setLoaded] = useState(false)
 
@@ -26,9 +29,12 @@ const useLoadingFonts = () => {
     Promise.all([elianto.load(),])
       .then(() => {
         setTimeout(() => {
+             toolTipsData.set({
+                 show: false,
+             })
             setBackgroundOverlay(false)
             // setLoaded(true)
-        }, 1500)
+        }, 3500)
 
         // setTimeout(() => {
           Promise.all([icons.load()])

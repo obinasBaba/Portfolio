@@ -28,7 +28,6 @@ const AppStateWrapper = ({ children }) => {
     position: 'absolute',
   })
 
-  const loadingEvents = EventSubscribers.getInstance()
 
   const [isWhite, setIsWhite] = useState(false)
   const [isHeaderGradient, setHeaderGradient] = useState(false)
@@ -77,7 +76,6 @@ const AppStateWrapper = ({ children }) => {
         setTop,
         loadingPage,
         setLoadingPage,
-        events: loadingEvents,
         toolTip,
         setToolTip,
         currentPath,
