@@ -8,7 +8,6 @@ import BlogPosts from './BlogPosts'
 import { motion } from 'framer-motion'
 import {MotionValueContext} from "../../contexts/MotionStateWrapper";
 import MailUs from "../MailUs";
-import {Link} from "gatsby";
 
 let doExit = true;
 
@@ -55,7 +54,7 @@ const HomePage = () => {
         <Hero />
       {/*</SectionWrapper>*/}
 
-      {/*<RecentWorks />
+      <RecentWorks />
 
       <Projects />
 
@@ -66,7 +65,7 @@ const HomePage = () => {
 
       <SectionWrapper dataScrollSection={true} >
         <BlogPosts />
-      </SectionWrapper>*/}
+      </SectionWrapper>
 
 
       <MailUs />
