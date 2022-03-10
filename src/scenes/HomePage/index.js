@@ -1,4 +1,4 @@
-import React, {Suspense, useContext, useEffect} from 'react'
+import React, { useContext, useEffect} from 'react'
 import Hero from './Hero'
 import RecentWorks from './RecentDesigns'
 import Projects from './Projects'
@@ -14,7 +14,7 @@ let doExit = true;
 // const MailUs = React.lazy(() => import('../MailUs'))
 
 const containerVariants = {
-  exit(arg){
+  exit(){
     if(!doExit)
       return {
         opacity: 0,

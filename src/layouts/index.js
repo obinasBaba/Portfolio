@@ -7,7 +7,7 @@ import theme from '../theme'
 import '../styles/fontFace.css'
 import AppStateProvider from '../contexts/AppStateContext'
 import Page from './Components/Page'
-import {GlobalStyle} from '../styles/GlobalStyles'
+import {GlobalStyle} from '../styles/GlobalStyles';
 
 export default function Layout({ children, path }) {
   return (
