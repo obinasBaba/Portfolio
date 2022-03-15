@@ -6,9 +6,9 @@ import {
   text,
 } from '../../styles/mixins'
 
-import Dribbble from '../../assets/images/brands/dribbble.inline.svg'
-import Instagram from '../../assets/images/brands/instagram.inline.svg'
-import Behance from '../../assets/images/brands/behance.inline.svg'
+import Hashnode from '../../assets/images/brands/hashnode.inline.svg'
+import Linkedin from '../../assets/images/brands/linkedin.inline.svg'
+import Twitter from '../../assets/images/brands/twitter.inline.svg'
 import Github from '../../assets/images/brands/github.inline.svg'
 import Border from './border.inline.svg'
 import {Container, useMediaQuery, useTheme} from '@material-ui/core'
@@ -202,7 +202,7 @@ const Footer = ({ color }) => {
         <Social>
           <li>
             <a
-              href="https://readers-corner.netlify.app"
+              href="https://github.com/obinasBaba"
               target="_blank"
               rel="noopener noreferrer"
               data-pointer='focus'
@@ -215,38 +215,38 @@ const Footer = ({ color }) => {
 
           <li>
             <a
-              href="https://readers-corner.netlify.app"
+              href="https://www.linkedin.com/in/henok-getachew-b125b3126/"
               target="_blank"
               rel="noopener noreferrer"
               data-pointer='focus'
             >
               <Border />
-              <span>Instagram</span>
-              <Instagram />
+              <span>linkedin</span>
+              <Linkedin />
             </a>
           </li>
           <li>
             <a
-              href="https://readers-corner.netlify.app"
+              href="https://twitter.com/@henzzo_com"
               target="_blank"
               rel="noopener noreferrer"
               data-pointer='focus'
             >
               <Border />
-              <span> Behance</span>
-              <Behance />
+              <span> Twitter</span>
+              <Twitter />
             </a>
           </li>
           <li>
             <a
-              href="https://readers-corner.netlify.app"
+              href="https://hashnode.com/@henzzo"
               target="_blank"
               rel="noopener noreferrer"
               data-pointer='focus'
             >
               <Border />
-              <span>Dribbble</span>
-              <Dribbble />
+              <span>Hashnode</span>
+              <Hashnode />
             </a>
           </li>
         </Social>

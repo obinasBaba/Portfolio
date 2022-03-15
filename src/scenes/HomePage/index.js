@@ -23,11 +23,13 @@ const containerVariants = {
     return {}
   },
 
-  transition :{
-    duration: .3,
-    ease: [0.6, 0.01, 0, 0.9],
-  },
+
 }
+
+const  transition = {
+  duration: .3,
+  ease: [0.6, 0.01, 0, 0.9],
+};
 
 const HomePage = () => {
 
@@ -42,7 +44,7 @@ const HomePage = () => {
 
   return (
     < motion.main variants={containerVariants}
-                 transition={containerVariants.transition}
+                 transition={transition}
                  initial="initial"
                  animate="animate"
                  exit="exit"
@@ -53,6 +55,7 @@ const HomePage = () => {
       {/*<SectionWrapper dataScrollSection={true}>*/}
         <Hero />
       {/*</SectionWrapper>*/}
+
 
       <RecentWorks />
 

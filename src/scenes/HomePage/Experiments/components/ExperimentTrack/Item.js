@@ -6,6 +6,8 @@ import {
 } from '../../../../../styles/mixins'
 import { motion } from 'framer-motion'
 import {largeUp, mediumUp, smallDown, xxLargeUp} from "../../../../../styles/mixins/breakpoints";
+import Border from "../../../../../components/Footer/border.inline.svg";
+import Dribbble from "../../../../../assets/images/brands/dribbble.inline.svg";
 
 export const ExperimentItem = styled(motion.div)`
   position: relative;
@@ -18,6 +20,14 @@ export const ExperimentItem = styled(motion.div)`
 
   ${spacing('mv', 5)};
   ${spacing('mb', 3)};
+  
+  a{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    z-index: 10;
+  }
   
   video {
     //border: thin solid red;
@@ -121,7 +131,7 @@ const InfoBar = styled.div`
 
 
 
-const Item = ({  imgUrl, title, index}) => {
+const Item = ({  imgUrl, title, index, link}) => {
 
 
   return (
@@ -131,6 +141,14 @@ const Item = ({  imgUrl, title, index}) => {
                     data-pointer='focus'
                     // data-scroll-delay={index * Math.random()}
     >
+
+      <a
+          href="https://codesandbox.io/s/gracious-sanne-wo337b?file=/src/App.js"
+          target="_blank"
+          rel="noopener noreferrer"
+          // data-pointer='focus'
+      />
+
 
       <div className='video-div'  >
         <video autoPlay loop muted playsInline >

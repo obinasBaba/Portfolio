@@ -19,7 +19,6 @@ export default function Layout({ children, path }) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
 
-        {/*<link rel="stylesheet" href={"https://use.typekit.net/kxo3pgz.css"}/>*/}
 
       </Helmet>
 

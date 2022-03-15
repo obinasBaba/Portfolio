@@ -102,7 +102,7 @@ export const Intro = styled( motion.div )`
 
 
   & .intro-txt {
-    max-width: 33ch;
+    max-width: 30ch;
     //font-weight: bold;
     color: var(--light_medium_gray);
     

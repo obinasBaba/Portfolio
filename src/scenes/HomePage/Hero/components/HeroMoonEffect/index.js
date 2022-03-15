@@ -4,7 +4,7 @@ import styled, {css} from "styled-components";
 import { mediumUp, xLargeUp} from "../../../../../styles/mixins/breakpoints";
 import {motion} from 'framer-motion';
 
-const HeroLottiContainer = styled( motion.div )`
+const HeroMoonEffectContainer = styled( motion.div )`
   position: relative;
   display: grid;
   justify-self: end;
@@ -69,8 +69,8 @@ const moonAndStarVariants = {
     initial: {},
     animate: {
         transition: {
-            delayChildren: .5,
-            staggerChildren: .5
+            delayChildren: .2,
+            staggerChildren: .1
         }
     },
 }
@@ -85,6 +85,16 @@ const moonVariants = {
         scale: 1,
         opacity: 1,
     },
+    exit: {
+        y: '100%',
+        scale: .3,
+        opacity: 0,
+        transition: {
+            duration: 1,
+            delay: .5,
+            ease: [0.6, 0.01, 0, 0.9],
+        }
+    }
 }
 const starVariants = {
     initial: {},
@@ -93,6 +103,11 @@ const starVariants = {
             staggerChildren: .2
         }
     },
+    exit: {
+        transition: {
+            staggerChildren: .04
+        }
+    }
 }
 const starItemVariants = {
     initial: {
@@ -103,6 +118,10 @@ const starItemVariants = {
         scale: 1,
         opacity: 1,
     },
+    exit: {
+        scale: 0,
+        opacity: 0,
+    }
 }
 
 const mountainVariants = {
@@ -112,6 +131,11 @@ const mountainVariants = {
             staggerChildren: .21,
         }
     },
+    exit: {
+        transition: {
+            staggerChildren: .21,
+        }
+    }
 }
 const mountainItemVariants = {
     initial: {
@@ -125,6 +149,10 @@ const mountainItemVariants = {
             duration: .8,
             ease: [0.6, 0.01, 0, 0.9],
         }
+    },
+    exit: {
+        y: '100%',
+        opacity: .5,
     }
 }
 
@@ -136,23 +164,29 @@ const containerVariant = {
     }
 }
 
+const moonTransition = {
+    duration: 1,
+    ease: [0.6, 0.01, 0, 0.9],
+}
+
  const transition = {
     duration: 2,
     ease: [0.6, 0.01, 0, 0.9],
 
 }
 
-const HeroLotti = () => {
+const HeroMoonEffect = () => {
 
     const lottiRef = useRef(null)
     const ref = useRef(null)
 
 
     return (
-        <HeroLottiContainer variants={containerVariant}>
+        <HeroMoonEffectContainer variants={containerVariant}>
             <motion.svg variants={moonAndStarVariants} className='moon' width="539" height="291" viewBox="0 0 539 291" fill="none" xmlns="http://www.w3.org/2000/svg">
+
                 <motion.g  variants={moonVariants}
-                           transition={transition}
+                           transition={moonTransition}
                 >
                     <g filter="url(#filter0_df_151_75)">
                         <path d="M422.905 135.731C426.209 189.2 388.552 236.86 329.248 240.524C296.933 242.521 259.419 230.089 238.473 210.94C251.21 214.733 264.993 216.403 279.27 215.521C338.576 211.856 383.965 165.546 380.661 112.077C379.158 87.7565 367.837 66.1308 350.349 50.1411C390.54 62.092 420.397 95.1363 422.905 135.731Z"
@@ -163,6 +197,7 @@ const HeroLotti = () => {
                               fill="white"/>
                     </g>
                 </motion.g>
+
                 <motion.g filter="url(#filter2_df_151_75)"
                           variants={starVariants}
                 >
@@ -205,7 +240,7 @@ const HeroLotti = () => {
                 <defs>
                     <filter id="filter0_df_151_75" x="188.473" y="0.141052" width="284.633" height="290.593"
                             filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <feFlood floodOpacity="0" result="BackgroundImageFix"/>
                         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
                                        result="hardAlpha"/>
                         <feOffset/>
@@ -218,7 +253,7 @@ const HeroLotti = () => {
                     </filter>
                     <filter id="filter1_df_151_75" x="233.473" y="45.1411" width="202.633" height="208.593"
                             filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <feFlood floodOpacity="0" result="BackgroundImageFix"/>
                         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
                                        result="hardAlpha"/>
                         <feOffset dx="4" dy="4"/>
@@ -231,7 +266,7 @@ const HeroLotti = () => {
                     </filter>
                     <filter id="filter2_df_151_75" x="0" y="65" width="539" height="195" filterUnits="userSpaceOnUse"
                             color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <feFlood floodOpacity="0" result="BackgroundImageFix"/>
                         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
                                        result="hardAlpha"/>
                         <feOffset/>
@@ -263,8 +298,8 @@ const HeroLotti = () => {
                    />
             </motion.svg>
 
-        </HeroLottiContainer>
+        </HeroMoonEffectContainer>
     );
 };
 
-export default HeroLotti;
+export default HeroMoonEffect;

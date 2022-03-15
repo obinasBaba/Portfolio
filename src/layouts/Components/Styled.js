@@ -35,6 +35,7 @@ export const BottomGradient = styled.div`
   opacity: var(--btm-gradient-opacity);
   background-image: var(--bottom-gradient);
   transition: all 0.35s ease-in-out;
+  //opacity: .4;
   
   &.hide-bg{
     opacity: 0;

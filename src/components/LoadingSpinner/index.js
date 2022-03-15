@@ -6,8 +6,6 @@ import OverlayController from '../BackgroundOverlay/OverlayController'
 import BackgroundOverlay from '../BackgroundOverlay'
 import { BackgroundOverlayStateContext } from '../../contexts/AppStateContext'
 import useLoadingFonts from "../../hooks/useFonts";
-import {spacing, length} from "../../styles/mixins";
-import {EventEmitter} from "events";
 import {MotionValueContext} from "../../contexts/MotionStateWrapper";
 
 const SpinnerContainer = styled(motion.div)`
@@ -110,14 +108,6 @@ const SpinnerWrapper = styled( motion.div )`
   z-index: 10;
 `
 
-const LoadingBgBackup = styled.div`
-  background-image: linear-gradient(137.81deg,
-  #5d6c7b 0%,
-    #a4b5c0 50.89%,
-  #bfd0d9 120.77%);;
-  width: 100%;
-  height: 100%;
-`
 
 const parentVariants = {
   initial: {
@@ -185,6 +175,7 @@ const LoadingSpinner = () => {
 
   const smallRef = useRef(null)
   const contentRef = useRef(null)
+  const loadingBgBackup = useRef(null)
   const containerRef = useRef(null)
 
   const { setBackgroundOverlay, backgroundOverlay } = useContext(BackgroundOverlayStateContext)
@@ -200,6 +191,9 @@ const LoadingSpinner = () => {
 
   }, [])
 
+  useLayoutEffect(() => {
+    loadingBgBackup.current = document.body.querySelector('#page-container .loading-backup')
+  }, [])
 
   useEffect(() => {
     if ( !backgroundOverlay ) return ;
@@ -208,7 +202,7 @@ const LoadingSpinner = () => {
 
       const ov = OverlayController.getInstance('loading-overlay')
       ov.on('loading', () => {
-        containerRef.current?.classList.add('loaded')
+        loadingBgBackup.current?.classList.add('loaded')
       })
     ov.toggle(true, {
             duration: .0002,
@@ -225,7 +219,6 @@ const LoadingSpinner = () => {
   return (
 
       <>
-        <LoadingBgBackup className='loading-backup' />
 
         <AnimatePresence exitBeforeEnter>
           {
