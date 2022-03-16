@@ -1,17 +1,34 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import { spacing } from '../../../styles/mixins'
-import { Typography } from '@material-ui/core'
+import {Container, Typography, useMediaQuery, useTheme} from '@material-ui/core'
+import useColorAssets from '../../../pages/projects/vigoza/useColorAssets'
+import {largeUp} from "../../../styles/mixins/breakpoints";
 
-const ColorsPaletteFlex = styled.div `
+const ColorsPaletteFlex = styled( Container )`
   width: 100%;
   display: flex;
   flex-flow: wrap;
   //z-index: 111;
   justify-content: space-evenly;
-  ${ spacing('mt', 17) };
 
-  color: ${ ({theme}) => theme.palette.primary.main };
+  ${spacing('mt', 17)};
+
+  
+  img{
+    max-width: 33%;
+  }
+  
+  ${largeUp( css`
+    justify-content: space-between;
+    flex-flow: nowrap;
+
+    img{
+      max-width: 200px;
+    }
+
+  ` )};
+  
 `
 
 const ColorBox = styled.div`
@@ -22,9 +39,8 @@ const ColorBox = styled.div`
   ${spacing('ph', 1)};
   //border: thin solid red;
 
-
   & > :last-child {
-    transition: all .3s;
+    transition: all 0.3s;
     ${spacing('mt', 4)};
   }
 
@@ -37,7 +53,6 @@ const ColorBox = styled.div`
     text-shadow: 0em 0.1em 0.3em rgba(0, 0, 0, 0.52);
     //display: none;
   }
-
 `
 
 const Color = styled.div`
@@ -46,10 +61,15 @@ const Color = styled.div`
   width: clamp(130px, 15vw, 160px);
   height: clamp(130px, 15vw, 160px);
   box-shadow: 0 5px 10px 0 rgba(0 0 0 / 33%);
-  transition: all .3s;
+  transition: all 0.3s;
 `
 
 const ColorPalette = ({ colors, themeColor }) => {
+
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('xxl'))
+
+
   const tempColors = [
     { name: '$amber', hex: '#ff4200' },
     { name: '$flame-pea', hex: '#373839' },
@@ -59,14 +79,9 @@ const ColorPalette = ({ colors, themeColor }) => {
   ]
 
   return (
-    <ColorsPaletteFlex maxWidth={false} fixed={true}  >
-      {tempColors.map(({ name, hex }) => (
-        <ColorBox themeColor='rgba(255,66,0,0.84)' key={hex} >
-          <Color hex={hex} />
-          <Typography variant="subtitle2" style={{
-            letterSpacing: 1,
-          }} > {name} </Typography>
-        </ColorBox>
+    <ColorsPaletteFlex  maxWidth={matches ? 'xl' : 'lg'}  >
+      {colors.map(({ publicURL }) => (
+          <img src={publicURL} alt="" key={publicURL}/>
       ))}
     </ColorsPaletteFlex>
   )

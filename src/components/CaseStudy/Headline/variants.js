@@ -19,8 +19,8 @@ export const imgWrapperVariant = {
   },
 
   fromProjectsSmallAnimate: {
-    ['margin-left']: 0,
-    ['margin-right']: 0,
+    ['margin-right']: 'calc(100vw / 64 * 0)',
+    ['margin-left']: 'calc(100vw / 64 * 0)',
   },
 
   fromProjectsInitial: {
@@ -32,7 +32,8 @@ export const imgWrapperVariant = {
 
   fromProjectsAnimate: {
     // height: '100vh',
-    ['margin-right']: 0,
+    // ['margin-right']: 0,
+    ['margin-right']: 'calc(100vw / 64 * 0)',
     padding: 'calc(100vw / 64 * 0)',
     ['padding-left']: 'calc(100vw / 64 * 0)',
   },

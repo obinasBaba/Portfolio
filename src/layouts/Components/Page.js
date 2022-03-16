@@ -12,6 +12,8 @@ import { BackgroundOverlayStateContext } from '../../contexts/AppStateContext'
 import styled from 'styled-components'
 
 const LoadingBgBackup = styled.div`
+  position: fixed;
+  z-index: 1000;
   background-image: linear-gradient(
     137.81deg,
     #5d6c7b 0%,
@@ -57,7 +59,7 @@ const Page = ({ children, path }) => {
 
   return (
     <PageContainer id="page-container">
-      <LoadingBgBackup className="loading-backup" />
+      {/*<LoadingBgBackup className="loading-backup" />*/}
 
       <SkyColor />
 

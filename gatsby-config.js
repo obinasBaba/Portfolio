@@ -48,14 +48,6 @@ module.exports = {
     `gatsby-plugin-sharp`,
 
     `gatsby-plugin-netlify-cms-paths`,
-    {
-      resolve: `gatsby-plugin-hotjar`,
-      options: {
-        includeInDevelopment: true, // optional parameter to include script in development
-        id: 2840337,
-        sv: 6,
-      },
-    },
 
     {
       resolve: `gatsby-source-filesystem`,

@@ -11,8 +11,9 @@ import ColorPalette from "../../../components/CaseStudy/Colors";
 import FontUsed from "../../../components/CaseStudy/FontUsed";
 import Concept from "../../../components/CaseStudy/Concept";
 import Development from "../../../components/CaseStudy/Development";
-import useVigozaAssets from "../../../hooks/queries/useVigozaAssets";
+import useVigozaAssets from "./useVigozaAssets";
 import NextProject from "../../../components/CaseStudy/NextProject";
+import useColorAssets from "./useColorAssets";
 
 const projectDataDefault = {
     title: 'Vigoza Digital Agency',
@@ -47,6 +48,8 @@ const Vigoza = ({location}) => {
     // console.log('vigozaArg: ', arg)
 
     const { headlineImage } = useVigozaAssets();
+    const { amber, flame, pearl, spartan, white, fontAby, fontRai } = useColorAssets()
+    const colors = [amber, flame, pearl, spartan, white];
 
     const {
         backgroundOverlay
@@ -76,18 +79,16 @@ const Vigoza = ({location}) => {
                     <MetaTxt />
 
 
-                    <div className="line" />
-
                     <Intro intro={projectDataDefault.intro}/>
 
 
-                    <AnalysisPreparation />
+                    {/*<AnalysisPreparation />*/}
 
-                    <ColorPalette />
+                    <ColorPalette colors={colors} />
 
-                    <FontUsed />
+                    <FontUsed fonts={[fontAby, fontRai]} />
 
-                    <Concept />
+                    {/*<Concept />*/}
 
                     <Development />
 

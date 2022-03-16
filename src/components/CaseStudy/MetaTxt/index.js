@@ -4,10 +4,12 @@ import { Container, Typography } from '@material-ui/core'
 import { motion } from 'framer-motion'
 import { spacing } from '../../../styles/mixins'
 import mockup from './Showcase.png'
+import ResponsiveContainer from "../../ResponsiveContainer";
 
-const MetaContainer = styled(Container)`
-  display: flex;
-  flex-flow: column;
+const MetaContainer = styled( ResponsiveContainer )`
+  //display: flex;
+  //justify-content: start;
+  //flex-flow: column;
 
   ${spacing('mt', 6)};
   ${spacing('mb', 10)};
@@ -27,26 +29,35 @@ const MetaContainer = styled(Container)`
   }
 `
 
-export const Role = styled(motion.ul)`
+export const MetaTextContainer = styled(motion.ul)`
+  //border: thin solid red;
+
+  max-width: 70%;
   display: flex;
-  align-items: center;
-  text-align: center;
+  flex-flow: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
   list-style-type: none;
   padding: 0;
   color: #02021e;
-  max-width: 1000px;
-  margin: 0 0 0 12%;
+  //margin: 0 0 0 12%;
 
   //border: thin solid red;
 
-  ${spacing('mb', 10)};
+  ${spacing('mt', 16)};
 
   li {
     display: flex;
     flex-flow: column;
     align-items: flex-start;
     justify-content: center;
-    ${spacing('mr', 10)};
+    //border: thin solid teal;
+
+    flex-basis: 33%;
+    
+    
+    // ${spacing('mr', 10)};
+    ${spacing('mt', 4.5)};
 
     &:not(:last-child) {
     }
@@ -72,24 +83,24 @@ const MetaTxt = () => {
     { q: 'Role -', a: 'UI design / Coding' },
     { q: 'Period -', a: 'End 2020' },
     { q: 'Context -', a: 'Illustration, Illustration and Lettering' },
-    // { q: 'tools', a: 'sketch, photoshop, webflow, javascript' },
-    // { q: 'clients', a:'Vigoza inc.' },
+    { q: 'tools -', a: 'figma, illustrator, react, javascript' },
+    { q: 'clients -', a:'Vigoza inc.' },
   ]
 
   return (
-    <MetaContainer maxWidth="xxl" fixed={false}>
-      <Role>
+    <MetaContainer  >
+      <MetaTextContainer>
         {about.map(({ q, a }) => (
           <li key={q}>
-            <Q variant="h5"> {q} </Q>
+            <Q variant="h5"> {q}</Q>
             <A variant="subtitle"> {a} </A>
           </li>
         ))}
-      </Role>
+      </MetaTextContainer>
 
-      <div className="mock-wrapper">
-        <img src={mockup} alt={'mock-up-pic'} loading="eager" />
-      </div>
+      {/*<div className="mock-wrapper">*/}
+      {/*  <img src={mockup} alt={'mock-up-pic'} loading="eager" />*/}
+      {/*</div>*/}
     </MetaContainer>
   )
 }

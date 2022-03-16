@@ -168,7 +168,7 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
     console.log('scrolled : ', s)
     locoInstance.get().scrollTo(0, {
       easing: [0.6, 0.01, 0, 0.9],
-      callback: () => setTimeout(() => navigate(projectData?.backUrl), s ? 350 : 0)
+      callback: () => setTimeout(() => navigate(projectData?.backUrl), scrolled ? 350 : 0)
     })
   }
 

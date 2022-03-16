@@ -4,7 +4,7 @@ import useToolTip from '../../../hooks/useToolTip'
 import useRefreshMouseListeners from '../../../hooks/useRefreshMouseListeners'
 import {BackgroundOverlayStateContext} from '../../../contexts/AppStateContext'
 import CaseStudy from '../../../components/CaseStudy'
-import useVigozaAssets from '../../../hooks/queries/useVigozaAssets'
+import useVigozaAssets from '../vigoza/useVigozaAssets'
 import ComingSoon from '../../../components/CaseStudy/ComingSoon'
 import useProject2Assets from "../../../hooks/queries/useProject2Assets";
 
