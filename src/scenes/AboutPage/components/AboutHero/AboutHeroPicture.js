@@ -3,6 +3,7 @@ import styled, {css} from 'styled-components'
 import useAboutHeroAssets from './useAboutHeroAssets'
 import {mediumUp} from "../../../../styles/mixins/breakpoints";
 import {gridColWidth} from "../../../../styles/mixins";
+import {motion} from 'framer-motion';
 
 const HeroPictureContainer = styled.div`
   //position: absolute;
@@ -45,13 +46,32 @@ const HeroPictureContainer = styled.div`
   ` )  };
 `
 
+const aboutSvgVariants = {
+  initial: {
+    opacity: 0
+  },
+  animate: {
+    opacity: 1,
+  },
+}
+
+const pathVariants = {
+  initial: {
+    scale:.6
+  },
+  animate: {
+    scale: 1
+  },
+}
+
 const AboutHeroPicture = () => {
   const { photo } = useAboutHeroAssets()
   // xlinkHref={photo.publicURL}
 
   return (
     <HeroPictureContainer className="photo-container">
-      <svg
+      <motion.svg
+
         width="100%"
         height="100%"
         viewBox="0 0 393 521"
@@ -68,10 +88,10 @@ const AboutHeroPicture = () => {
           width="100%"
           height="100%"
         >
-          <path
+          <motion.path
             d="M0 120C0 114.477 4.47715 110 10 110H120C125.523 110 130 114.477 130 120V244C130 249.523 125.523 254 120 254H10C4.47715 254 0 249.523 0 244V120Z"
             fill="#EC3232"
-            fill-opacity="0.4"
+            fillOpacity="0.4"
           />
           <path
             d="M30 269C30 263.477 34.4772 259 40 259H120C125.523 259 130 263.477 130 269V358C130 363.523 125.523 368 120 368H40C34.4772 368 30 363.523 30 358V269Z"
@@ -153,7 +173,7 @@ const AboutHeroPicture = () => {
             xlinkHref={photo.publicURL}
           />
         </defs>
-      </svg>
+      </motion.svg>
 
     </HeroPictureContainer>
   )

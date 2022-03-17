@@ -20,87 +20,31 @@ const AboutPageContainer = styled( motion.div )`
 
 
 const aboutContainerVariants = {
-
-}
-
-const ArtContainer = styled( motion.div )`
-  position: absolute;
-  pointer-events: none;
-  z-index: -1;
-  //opacity: .8;
-
-  height: 250vmax;
-  width: 220vmax;
-  
-  ${spacing( 'top', -20 ) };
-  
-  ${largeUp( css`
-    left: -40vw;
-    height: 250vh;
-    width: 220vw;
-
-    ${spacing( 'top', 20 ) };
-    
-  ` )};
-
-  //border: thick solid red;
-  
-  & * {
-    pointer-events: none;
-  }
-`
-
-const artContainerVariant = {
   initial: {
-    opacity: 0,
+    opacity: 0
   },
   animate: {
     opacity: 1,
   },
   exit: {
-    opacity: 0,
+    exit: 0,
   },
 
   transition: {
-    delay: 1.1,
     duration: 1,
     ease: [0.6, 0.01, 0, 0.9],
   }
+
 }
+
+
 
 const AboutPage = () => {
 
-  /*const theme = useTheme()
-  const matches = useMediaQuery(theme.breakpoints.up('lg'))
-
-  useEffect(() => {
-    return;
-    if (!matches) return;
-    let artContainer = document.body.querySelector('.art-container')
-
-    setTimeout(() => {
-      gsap.to(artContainer, {
-        y: -500,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '#about',
-          scrub: true,
-          scroller: '[data-scroll-container]',
-          start: () => 'top 0%',
-          // markers: true,
-          end: () => '+=' + 1600,
-        },
-      })
-    }, 1000);
-
-
-    // STrigger.refresh()
-
-  }, [matches])*/
 
   return (
     <AboutPageContainer variants={aboutContainerVariants}
-                        transition={{}}
+                        transition={aboutContainerVariants.transition}
                         initial="initial"
                         animate="animate"
                         exit="exit"

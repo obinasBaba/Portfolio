@@ -59,7 +59,7 @@ const Page = ({ children, path }) => {
 
   return (
     <PageContainer id="page-container">
-      {/*<LoadingBgBackup className="loading-backup" />*/}
+      <LoadingBgBackup className="loading-backup" />
 
       <SkyColor />
 
