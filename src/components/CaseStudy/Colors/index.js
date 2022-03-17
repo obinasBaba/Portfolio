@@ -4,21 +4,27 @@ import { spacing } from '../../../styles/mixins'
 import {Container, Typography, useMediaQuery, useTheme} from '@material-ui/core'
 import useColorAssets from '../../../pages/projects/vigoza/useColorAssets'
 import {largeUp} from "../../../styles/mixins/breakpoints";
+import ResponsiveContainer from "../../ResponsiveContainer";
 
-const ColorsPaletteFlex = styled( Container )`
+const ColorsPaletteContainer = styled( Container )`
+  width: 100%;
+
+  ${spacing('mt', 20)};
+
+  //border: thin solid rebeccapurple;
+`
+
+const ColorWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-flow: wrap;
   //z-index: 111;
   justify-content: space-evenly;
 
-  ${spacing('mt', 17)};
-
-  
   img{
     max-width: 33%;
-  }
-  
+  };
+
   ${largeUp( css`
     justify-content: space-between;
     flex-flow: nowrap;
@@ -70,20 +76,16 @@ const ColorPalette = ({ colors, themeColor }) => {
   const matches = useMediaQuery(theme.breakpoints.up('xxl'))
 
 
-  const tempColors = [
-    { name: '$amber', hex: '#ff4200' },
-    { name: '$flame-pea', hex: '#373839' },
-    { name: '$pearl-bush', hex: '#b3b3b3' },
-    { name: '$white', hex: '#ffffff' },
-    { name: '$spartan', hex: '#737373' },
-  ]
 
   return (
-    <ColorsPaletteFlex  maxWidth={matches ? 'xl' : 'lg'}  >
-      {colors.map(({ publicURL }) => (
-          <img src={publicURL} alt="" key={publicURL}/>
-      ))}
-    </ColorsPaletteFlex>
+    <ColorsPaletteContainer maxWidth={matches ? 'xl' : 'lg'} >
+        {/*<Typography variant='h2'> Colors </Typography>*/}
+        <ColorWrapper   >
+            {colors.map(({ publicURL }) => (
+                <img src={publicURL} alt="" key={publicURL}/>
+            ))}
+        </ColorWrapper>
+    </ColorsPaletteContainer>
   )
 }
 

@@ -17,7 +17,12 @@ const projectDataDefault = {
         period: 'End 2018',
     },
     intro: {},
-    backUrl: '/projects#one'
+    backUrl: '/projects#one',
+    nextProject: {
+        title: 'Atgebe',
+        url: '/projects/project3',
+        thumbnailUrl: '',
+    }
 
 }
 

@@ -31,7 +31,7 @@ export const imgWrapperVariant = {
   },
 
   fromProjectsAnimate: {
-    // height: '100vh',
+    // height: '30vmax',
     // ['margin-right']: 0,
     ['margin-right']: 'calc(100vw / 64 * 0)',
     padding: 'calc(100vw / 64 * 0)',
@@ -45,7 +45,7 @@ export const imgWrapperVariant = {
 
       if (arg.largeUp && arg.largeUp.get())
         return{
-          // height: '400px',
+          // height: '30vmax',
           // background: '#3719ca',
           ['margin-right']: 'calc(100vw / 64 * 6)',
           padding: 'calc(100vw / 64 * .5)',
@@ -79,7 +79,7 @@ export const imgWrapperVariant = {
 
 export const innerVariant = {
   fromProjectsInitial: {
-    height: 400
+    height: '30vmax'
   },
   fromProjectsAnimate: {
     height: '100vh'
@@ -92,7 +92,7 @@ export const innerVariant = {
 
       if (arg.largeUp && arg.largeUp.get())
         return{
-          height: arg.mediaLarge ? 500 : 400,
+          height: '30vmax',
           transition: {
             ...transition,
             delay: delay ? 0 : 1,

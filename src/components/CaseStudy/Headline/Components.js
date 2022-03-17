@@ -119,6 +119,39 @@ export const HeadLineBG = styled(motion.div)`
   transition: background-color .8s ease-in-out ;
   z-index: -1;
   
+  ${mediumUp( css`
+    //z-index: -1;
+  ` )};
+  
   //display: none;
+  
+  &::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 30%;
+    width: 2px;
+    z-index: 1;
+    
+    background-color: var(--medium);
+    opacity: .05;
+    
+  }
+  &::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 30%;
+    width: 2px;
+    z-index: 1;
+    opacity: .05;
+
+
+    background-color: var(--medium);
+  }
   
 `

@@ -9,6 +9,9 @@ const DevelopmentContainer = styled( Container )`
   align-items: center;
   justify-content: center;
   flex-flow: column;
+
+  ${spacing('mt', 20)};
+
 `
 
 const TitleWrapper = styled.div`
@@ -16,7 +19,7 @@ const TitleWrapper = styled.div`
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  ${spacing('mb', 10)};
+  ${spacing('mb', 9)};
 
   & > :last-child {
     align-self: flex-end;

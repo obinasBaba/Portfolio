@@ -110,7 +110,7 @@ const Intro = ({ intro }) => {
     >
 
       <div className='desc' >
-        <Description>{desc}</Description>
+        <Description variant={'body'} >{desc}</Description>
 
         <MotionBtn text={'Visit Website'} to={'siteLink'} />
       </div>

@@ -1,10 +1,11 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import { Container, Typography } from '@material-ui/core'
 import { motion } from 'framer-motion'
 import { spacing } from '../../../styles/mixins'
 import mockup from './Showcase.png'
 import ResponsiveContainer from "../../ResponsiveContainer";
+import {largeUp, mediumUp} from "../../../styles/mixins/breakpoints";
 
 const MetaContainer = styled( ResponsiveContainer )`
   //display: flex;
@@ -32,11 +33,11 @@ const MetaContainer = styled( ResponsiveContainer )`
 export const MetaTextContainer = styled(motion.ul)`
   //border: thin solid red;
 
-  max-width: 70%;
+  max-width: 100%;
   display: flex;
   flex-flow: wrap;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
   list-style-type: none;
   padding: 0;
   color: #02021e;
@@ -45,6 +46,11 @@ export const MetaTextContainer = styled(motion.ul)`
   //border: thin solid red;
 
   ${spacing('mt', 16)};
+  
+  ${ mediumUp( css`
+    max-width: 70%;
+    justify-content: flex-start;
+  ` ) };
 
   li {
     display: flex;
@@ -92,11 +98,12 @@ const MetaTxt = () => {
       <MetaTextContainer>
         {about.map(({ q, a }) => (
           <li key={q}>
-            <Q variant="h5"> {q}</Q>
+            <Q noWrap  variant="h5"> {q}</Q>
             <A variant="subtitle"> {a} </A>
           </li>
         ))}
       </MetaTextContainer>
+
 
       {/*<div className="mock-wrapper">*/}
       {/*  <img src={mockup} alt={'mock-up-pic'} loading="eager" />*/}

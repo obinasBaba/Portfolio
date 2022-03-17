@@ -39,7 +39,12 @@ const projectDataDefault = {
         more close
         `,
     },
-    backUrl: '/projects#two'
+    backUrl: '/projects#two',
+    nextProject: {
+        title: 'Gebeya',
+        url: '/projects/project2',
+        thumbnailUrl: '',
+    }
 }
 
 
@@ -64,6 +69,7 @@ const Vigoza = ({location}) => {
     }, [])
 
     projectDataDefault.headlineImage = headlineImage.publicURL
+    projectDataDefault.nextProject.thumbnailUrl = headlineImage.publicURL;
     projectDataDefault.location = location;
 
     const loco =  useLocoScroll(!backgroundOverlay, )
@@ -91,8 +97,6 @@ const Vigoza = ({location}) => {
                     {/*<Concept />*/}
 
                     <Development />
-
-                    <NextProject/>
 
                 </CaseStudy>
             }

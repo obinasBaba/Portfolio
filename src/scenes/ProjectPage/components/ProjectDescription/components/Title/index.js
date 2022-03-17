@@ -18,7 +18,7 @@ export const HeadlineTitle = styled(motion.h1)`
   color: white;
 
   ${spacing('mt', 2)}
-  ${ title(5) };
+  ${ title(4) };
   //word-spacing: 2px;
   
   ${largeUp( css`

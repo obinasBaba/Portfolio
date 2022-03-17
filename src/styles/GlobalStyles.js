@@ -60,7 +60,7 @@ export const GlobalStyle = createGlobalStyle`
     --theme: #a4b5c0;
     //color: rgb(120, 128, 158);
 
-    //--theme: #fff;
+    --dark: #02021e;
     --stroke-bottom: var(--light_gray);
     --stroke-top: var(--dark-gray);
     --head-opacity: 0;

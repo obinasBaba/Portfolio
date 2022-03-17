@@ -11,6 +11,7 @@ import { MotionValueContext } from '../../contexts/MotionStateWrapper'
 import ProjectScrollDown from '../../scenes/ProjectPage/components/SideBarTools/ProjectScrollDown'
 import { createPortal } from 'react-dom'
 import {navigate} from "gatsby";
+import NextProject from "./NextProject";
 
 let args = {
   path: undefined,
@@ -27,6 +28,7 @@ const FixedItems = styled.div`
   flex-flow: column;
   align-items: center;
   justify-content: space-between;
+  
   
   //border: thin solid red;
 `
@@ -86,6 +88,11 @@ const projectDataDefault = {
         well us to easily make an appointment despite the massive no of client.   
         `,
   },
+  nextProject: {
+    title: 'next title',
+    url: '/',
+    thumbnailUrl: '/'
+  }
 }
 
 const FixedPortal = ({children}) => {
@@ -94,6 +101,7 @@ const FixedPortal = ({children}) => {
 
 const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
   const { title, subTitle, about } = projectData
+  const { thumbnailUrl, title : nextProjectTitle , url } = projectData.nextProject;
   // const { headlineImg, publicURL } = projectData.imageData
   const {
     setCurrentPath,
@@ -128,7 +136,7 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
   }, [])
 
   useTransform(moScroll.y, latest => {
-    if ( latest > 450 ){
+    if ( latest > 510 ){
       if ( !scrolled  )
         setScrolled( true )
 
@@ -139,7 +147,6 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
   })
 
   useEffect(() => {
-    console.log('scrolled : ', bgRef.current)
 
     if ( scrolled ) {
       showScrollDown.set(1)
@@ -147,8 +154,7 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
           ?.classList.add('container-scrolled');
 
       document.body.classList.add('blog-clr')
-    }
-    else {
+    } else {
       showScrollDown.set(0)
 
       bgRef.current
@@ -216,10 +222,8 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
           children
         }
 
+        <NextProject thumbnailUrl={thumbnailUrl} title={nextProjectTitle} url={url} />
 
-      {/*  <Link to={'/projects'} state={{ path: 'location.pathname' }}>
-          <ReturnBtn key="return" />
-        </Link>*/}
       </ProjectContainer>
     </>
 

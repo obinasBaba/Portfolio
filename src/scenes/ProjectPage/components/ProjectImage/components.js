@@ -4,7 +4,7 @@ import {
   gridColWidth, gridMultiplayer,
   spacing
 } from "../../../../styles/mixins";
-import {largeUp, mediumUp, xLargeUp} from "../../../../styles/mixins/breakpoints";
+import {largeUp, mediumUp, xLargeUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
 
 export const ProjectImg = styled(motion.div)`
   position: relative;
@@ -51,12 +51,12 @@ export const InnerWrapper = styled(motion.div)`
   height: 100%;
 
   ${mediumUp( css`
-    height: 400px;
+    height: 30vmax;
   ` )};
 
-  ${xLargeUp( css`
+  ${xxLargeUp( css`
     //height: 500px;
-    
+    //height: 30vmax;
   ` )};
 
   &::after{

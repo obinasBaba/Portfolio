@@ -6,16 +6,20 @@ import {  spacing } from '../../../styles/mixins'
 import MotionBtn from '../../MotionBtn'
 import {mediumUp} from "../../../styles/mixins/breakpoints";
 
-const NextProjectContainer = styled(Container)`
+const NextProjectContainer = styled.section`
   position: relative;
   display: flex;
   flex-flow: column;
-  background-image: url(${BG});
+  background-image: url(${({url}) => url});
+  
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
-  color: #c9dae5 !important;
+  color: white !important;
+
+  ${spacing('mt', 25)};
+
 
   &::after {
     content: '';
@@ -28,13 +32,13 @@ const NextProjectContainer = styled(Container)`
     z-index: 1;
     backdrop-filter: blur(5px);
     background-image: linear-gradient(130deg,
-      #02021eff -10%,
+      #02021eff 10%,
     rgba(2, 2, 30, 0));
   }
 
-  ${spacing('pv', 10)};
-  ${spacing('ph', 10)};
-  ${spacing('pr', 0)};
+  ${spacing('pv', 15)};
+  // ${spacing('ph', 10)};
+  // ${spacing('pr', 0)};
 
   ${spacing('gap', 2)};
 
@@ -50,13 +54,23 @@ const NextProjectContainer = styled(Container)`
   }
 `
 
-const NextProject = () => {
-  return (
-    <NextProjectContainer maxWidth={false} fixed={false} component={'section'}>
-      <Typography noWrap> Next Work </Typography>
-      <Typography variant="h1" className='title'> Project Lato </Typography>
+const NextProjectWrapper = styled.div`
+    //max-width: 80%;
+  margin-left: 10%;
+`
 
-      <MotionBtn text="Next Work"   />
+const NextProject = ({title, url, thumbnailUrl}) => {
+  return (
+    <NextProjectContainer maxWidth={'xl'} component={'section'} url={thumbnailUrl}>
+
+
+        <NextProjectWrapper maxWidth='xl'>
+            <Typography noWrap> Next Work </Typography>
+            <Typography variant="h1" className='title'> {title} </Typography>
+
+            <MotionBtn text="Go to next"  to={url} />
+        </NextProjectWrapper>
+
     </NextProjectContainer>
   )
 }
