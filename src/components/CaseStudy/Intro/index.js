@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Typography } from '@material-ui/core'
+import {Container, Typography, useMediaQuery, useTheme} from '@material-ui/core'
 import styled, { css } from 'styled-components'
 import {
   length,
@@ -9,6 +9,8 @@ import {
 import Logo from './vigoza-logo.svg'
 import MotionBtn from "../../MotionBtn";
 import {largeUp, mediumUp} from "../../../styles/mixins/breakpoints";
+import Border from "../../Footer/border.inline.svg";
+import Github from "../../../assets/images/brands/github.inline.svg";
 
 const IntroContainer = styled(Container)`
   position: relative;
@@ -31,7 +33,7 @@ const IntroContainer = styled(Container)`
   
   ${spacing('pv', 10)};
   ${spacing('mb', 10)};
-  ${spacing('mt', 30)};
+  ${spacing('mt', 22)};
 
   &::after {
      content: url(${Logo});
@@ -99,6 +101,9 @@ const Description = styled(Typography)`
 const Intro = ({ intro }) => {
   const { desc, themeColor, title, logoUrl, color,  } = intro
 
+  const theme = useTheme()
+  const matches = useMediaQuery(theme.breakpoints.up('md'))
+
   return (
     <IntroContainer
       themeCrl={themeColor}
@@ -110,9 +115,17 @@ const Intro = ({ intro }) => {
     >
 
       <div className='desc' >
-        <Description variant={'body'} >{desc}</Description>
+        <Description variant={ matches && 'body1'} >{desc}</Description>
 
-        <MotionBtn text={'Visit Website'} to={'siteLink'} />
+        <a
+            href="https://vigoza.henzzo.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-pointer='focus'
+        >
+          <MotionBtn text={'Visit Website'}  />
+        </a>
+
       </div>
 
     </IntroContainer>

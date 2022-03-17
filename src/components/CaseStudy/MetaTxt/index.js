@@ -3,7 +3,7 @@ import styled, {css} from 'styled-components'
 import { Container, Typography } from '@material-ui/core'
 import { motion } from 'framer-motion'
 import { spacing } from '../../../styles/mixins'
-import mockup from './Showcase.png'
+import mockup from '../../../assets/images/vigoza/Showcase.png'
 import ResponsiveContainer from "../../ResponsiveContainer";
 import {largeUp, mediumUp} from "../../../styles/mixins/breakpoints";
 
@@ -15,19 +15,7 @@ const MetaContainer = styled( ResponsiveContainer )`
   ${spacing('mt', 6)};
   ${spacing('mb', 10)};
 
-  .mock-wrapper {
-    max-width: 90%;
-    overflow: hidden;
-    z-index: 999;
-    margin: 0 auto;
-
-    img {
-      object-fit: cover;
-      max-width: 100%;
-      max-height: 100%;
-      margin: 0 auto 0 -20px;
-    }
-  }
+  
 `
 
 export const MetaTextContainer = styled(motion.ul)`
@@ -105,9 +93,7 @@ const MetaTxt = () => {
       </MetaTextContainer>
 
 
-      {/*<div className="mock-wrapper">*/}
-      {/*  <img src={mockup} alt={'mock-up-pic'} loading="eager" />*/}
-      {/*</div>*/}
+
     </MetaContainer>
   )
 }

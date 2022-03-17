@@ -1,5 +1,18 @@
 import { graphql, useStaticQuery } from 'gatsby'
 
+
+export const webView = graphql`
+  fragment webView on File {
+    childImageSharp {
+      gatsbyImageData(
+        quality: 100
+        placeholder: BLURRED
+        webpOptions: { quality: 100 }
+      )
+    }
+  }
+`
+
 const useVigozaAssets = () => {
 
   return useStaticQuery(graphql`
@@ -7,20 +20,21 @@ const useVigozaAssets = () => {
       headlineImage: file(relativePath: { eq: "sections/projects/preview-11.jpg" }) {
         publicURL
       }
+      webView: file(relativePath: { eq: "vigoza/webview.png" }) {
+        publicURL        
+        ...webView
+      }
       
-      starsSmall: file(relativePath: { eq: "backgrounds/stars-small.svg" }) {
-        publicURL
+       mobileView: file(relativePath: { eq: "vigoza/mobileview.png" }) {
+        publicURL        
+        ...webView
       }
-
-      starsBigOld: file(relativePath: { eq: "backgrounds/stars-bigold.svg" }) {
-        publicURL
+      
+       showcase: file(relativePath: { eq: "vigoza/Showcase.png" }) {
+        publicURL        
+        ...webView
       }
-
-      starsSmallOld: file(
-        relativePath: { eq: "backgrounds/stars-smallold.svg" }
-      ) {
-        publicURL
-      }
+      
     }
   `)
 }
