@@ -5,7 +5,7 @@ date: 2021-06-18T08:38:57.675Z
 tags:
 - tag: "#Js"
 - tag: "#React"
-  thumbnail: /img/screenshot-54-.png
+thumbnail: /img/screenshot-54-.png
 ---
 
 

@@ -26,7 +26,7 @@ const MetaTxt = styled( Typography )`
 const Heading = styled( Typography )`
   font-weight: 900;
   line-height: 1;
-  letter-spacing: -2px;
+  letter-spacing: 0;
 
   a {
     text-decoration: none;

@@ -194,7 +194,7 @@ const circleTxtVariants: Variants = {
       rotate: custom.idx % 2 ? -90 : 90,
       opacity: 0.4,
       transition: {
-        duration: 1,
+        duration: 1.14,
         ease: [0.16, 1, 0.3, 1],
       },
     }

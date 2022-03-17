@@ -42,6 +42,8 @@ const BlogListTemplate = ({
     useRefreshMouseListeners('[data-pointer]')
   useLocoScroll(!backgroundOverlay)
 
+  console.log('bloglistDat :', data)
+
 
   const previousPage = currentPage === 2 ? '/blog' : `/blog/${currentPage - 1}`
   const nextPage = `/blog/${currentPage + 1}`
