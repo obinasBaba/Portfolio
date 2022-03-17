@@ -44,10 +44,11 @@ const WebView = ({web, mobile, tempWebView}) => {
         <WebViewContainer>
 
             <div className="mock-wrapper">
-                <GatsbyImage alt={tempWebView.publicURL}
+              {/*  <GatsbyImage alt={tempWebView.publicURL}
                              className={'web-view'}
                              objectFit='cover'
-                             image={getImage(tempWebView)}/>
+                             image={getImage(tempWebView)}/>*/}
+                <img src={tempWebView.publicURL} alt=""/>
             </div>
 
            {/* <WebContainer>

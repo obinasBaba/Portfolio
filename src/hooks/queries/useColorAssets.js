@@ -1,16 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby'
 
-const colorFrag = graphql`
-  fragment colorFrag on File {
-    childImageSharp {
-      gatsbyImageData(
-        quality: 100
-        placeholder: BLURRED
-        webpOptions: { quality: 100 }
-      )
-    }
-  }
-`
 
 const useColorAssets = () => {
   return useStaticQuery(graphql`

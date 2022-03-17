@@ -2,7 +2,7 @@ import React from 'react'
 import styled, {css} from 'styled-components'
 import { spacing } from '../../../styles/mixins'
 import {Container, Typography, useMediaQuery, useTheme} from '@material-ui/core'
-import useColorAssets from '../../../pages/projects/vigoza/useColorAssets'
+import useColorAssets from '../../../hooks/queries/useColorAssets'
 import {largeUp} from "../../../styles/mixins/breakpoints";
 import ResponsiveContainer from "../../ResponsiveContainer";
 

@@ -12,8 +12,8 @@ import Intro from '../../../components/CaseStudy/Intro'
 import ColorPalette from '../../../components/CaseStudy/Colors'
 import FontUsed from '../../../components/CaseStudy/FontUsed'
 import Development from '../../../components/CaseStudy/Development'
-import useVigozaAssets from './useVigozaAssets'
-import useColorAssets from './useColorAssets'
+import useVigozaAssets from '../../../hooks/queries/useVigozaAssets'
+import useColorAssets from '../../../hooks/queries/useColorAssets'
 import WebView from '../../../components/CaseStudy/WebView'
 
 const projectDataDefault = {

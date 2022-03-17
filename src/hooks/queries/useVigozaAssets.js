@@ -1,8 +1,8 @@
 import { graphql, useStaticQuery } from 'gatsby'
 
 
-export const webView = graphql`
-  fragment webView on File {
+/*export const showcaseFrag = graphql`
+  fragment showcaseFrag on File {
     childImageSharp {
       gatsbyImageData(
         quality: 100
@@ -11,7 +11,7 @@ export const webView = graphql`
       )
     }
   }
-`
+`*/
 
 const useVigozaAssets = () => {
 
@@ -22,17 +22,14 @@ const useVigozaAssets = () => {
       }
       webView: file(relativePath: { eq: "vigoza/webview.png" }) {
         publicURL        
-        ...webView
       }
       
        mobileView: file(relativePath: { eq: "vigoza/mobileview.png" }) {
         publicURL        
-        ...webView
       }
       
        showcase: file(relativePath: { eq: "vigoza/Showcase.png" }) {
         publicURL        
-        ...webView
       }
       
     }
