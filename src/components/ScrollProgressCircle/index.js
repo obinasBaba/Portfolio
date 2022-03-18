@@ -1,8 +1,8 @@
-import {motion, useTransform, useViewportScroll} from 'framer-motion'
+import { motion, useTransform } from 'framer-motion'
 import React, { useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import { length, spacing } from '../../styles/mixins'
-import { BackgroundOverlayStateContext } from '../../contexts/AppStateContext'
+import { AppStateContext } from '../../contexts/AppStateContext'
 import { map } from '../../helpers/utils'
 import { Link } from 'gatsby'
 import { MotionValueContext } from '../../contexts/MotionStateWrapper'
@@ -106,7 +106,7 @@ const containerVariants = {
 }
 
 const ScrollProgressCircle = () => {
-  const { currentPath, backgroundOverlay } = useContext(BackgroundOverlayStateContext)
+  const {currentPath} = useContext(AppStateContext);
 
   const {
     moScroll: { y, limit },
@@ -122,7 +122,7 @@ const ScrollProgressCircle = () => {
     pathLength.set(0)
     rotate.set(0)
     y.set(0)
-  }, [currentPath, backgroundOverlay])
+  }, [currentPath])
 
   return (
    

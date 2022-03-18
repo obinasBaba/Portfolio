@@ -24,6 +24,7 @@ type MotionValueContextType = {
   screenOverlayProxy: MotionValue< {state: boolean, config: { [key: string]: any }} >,
   menuIsOpen: MotionValue<boolean>,
   screenOverlayEvent: MotionValue<string>,
+  refreshCursorEventListeners: MotionValue<string>,
 
 
   mouse: {
@@ -71,6 +72,8 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
   const screenOverlayProxy = useMotionValue( { state: false, config: {} }  );
   const screenOverlayEvent = useMotionValue( ''  );
   const menuIsOpen = useMotionValue(false);
+
+  const refreshCursorEventListeners = useMotionValue('[data-pointer]');
 
   const locoInstanceHelpers = useMotionValue(null)
   const toolTipsData = useMotionValue ({
@@ -133,6 +136,7 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
         screenOverlayProxy,
         screenOverlayEvent,
         menuIsOpen,
+        refreshCursorEventListeners
 
       }}
     >

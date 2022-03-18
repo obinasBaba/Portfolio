@@ -9,7 +9,7 @@ import { MotionValueContext } from '../contexts/MotionStateWrapper'
 gsap.registerPlugin(ScrollTrigger)
 
 export default function useLocoScroll(
-  start,
+  start = true,
   elementId = '[data-scroll-container="true"]'
 ) {
   const { moScroll, locoInstance } = useContext(MotionValueContext)

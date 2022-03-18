@@ -56,7 +56,7 @@ const textContainerVariants = {
 
     return {
       transition: {
-        delayChildren: .8,
+        // delayChildren: .8,
         staggerChildren: 0.2,
       }
     }
@@ -78,9 +78,6 @@ const Hero = () => {
   
   return (
       <HeroContainer variants={{}}
-                     // initial="initial"
-                     // animate={'animate'}
-                     // exit="exit"
 
                      onViewportEnter={ e => {
                        inView.set('hero')

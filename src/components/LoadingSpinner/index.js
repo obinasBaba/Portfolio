@@ -215,8 +215,10 @@ const LoadingSpinner = () => {
             delayPerPath: 120,
           }} )
   
-    mainAnimationController.start('animate');
-    screenOverlayEvent.set('close')
+    setTimeout(() => {
+      mainAnimationController.start('animate');
+      screenOverlayEvent.set('close')
+    }, 700)
   
   }
 

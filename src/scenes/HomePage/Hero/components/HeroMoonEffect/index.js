@@ -159,7 +159,7 @@ const mountainItemVariants = {
 const containerVariant = {
     animate: {
         transition: {
-            delayChildren: .8,
+            // delayChildren: .8,
         }
     }
 }

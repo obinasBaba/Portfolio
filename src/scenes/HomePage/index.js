@@ -8,6 +8,7 @@ import BlogPosts from './BlogPosts'
 import { motion } from 'framer-motion'
 import {MotionValueContext} from "../../contexts/MotionStateWrapper";
 import loadable from '@loadable/component';
+import {AppStateContext} from "../../contexts/AppStateContext";
 // import MailUs from "../MailUs";
 
 let doExit = true;
@@ -35,12 +36,11 @@ const  transition = {
 const HomePage = () => {
 
 
-  const { inView, mainAnimationController } = useContext(MotionValueContext)
+
+  const { mainAnimationController } = useContext(MotionValueContext)
 
   useEffect(() => {
-    inView.onChange(v => {
-      doExit = v
-    })
+
   }, [])
 
   return (
@@ -49,7 +49,6 @@ const HomePage = () => {
                  initial="initial"
                  animate={mainAnimationController}
                  exit="exit"
-                 custom={{inView: () => inView.get()}}
                  whileInView="inView"
     >
 

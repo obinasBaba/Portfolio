@@ -117,7 +117,6 @@ class OverlayController extends EventEmitter{
     }
     str += (this.isOpened) ? `V 100 H 0` : `V 0 H 0`;
 
-    this.emit('close')
     return str;
   }
 

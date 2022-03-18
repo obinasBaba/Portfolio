@@ -39,7 +39,7 @@ const Page = ({ children, path }) => {
     }, 2000)
   }, [])
 
-  // const media = useMediaQuery(theme.breakpoints.up('xl'))
+  // const media = useMediaQuery(theme.breakpoints.down('md'))
   // const mediaLarge = useMotionValue(media)
 
   return (

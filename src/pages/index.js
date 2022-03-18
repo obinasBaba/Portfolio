@@ -1,52 +1,37 @@
-import React, { useContext, useEffect } from 'react'
+import React, {useContext, useEffect} from 'react'
 import HomePage from '../scenes/HomePage'
-import {AppStateContext, BackgroundOverlayStateContext} from '../contexts/AppStateContext'
+import {AppStateContext} from '../contexts/AppStateContext'
 import useLocoScroll from '../hooks/useLocoScroll'
 import useToolTip from '../hooks/useToolTip'
 import useRefreshMouseListeners from '../hooks/useRefreshMouseListeners'
-import {useMediaQuery, useTheme} from "@material-ui/core";
-import Seo from "../components/seo";
+import Seo from '../components/seo'
+import {MotionValueContext} from '../contexts/MotionStateWrapper'
 
-const IndexPage = ({ path }) => {
-  const {
-    setCurrentPath,
-  } = useContext(AppStateContext)
+const IndexPage = ({path}) => {
+    const {setCurrentPath, currentPath} = useContext(AppStateContext)
 
-  const {
-    backgroundOverlay
-  } = useContext(BackgroundOverlayStateContext)
+    const {mainAnimationController} = useContext(MotionValueContext)
 
-  const loco = useLocoScroll(!backgroundOverlay )
+    const loco = useLocoScroll()
 
-  useEffect(() => {
-    if (backgroundOverlay) return
+    useEffect(() => {
+        if (path !== currentPath) mainAnimationController.start('animate');
 
-    setCurrentPath(path)
+        setCurrentPath(path)
+    }, [])
 
-    /*if (registeredScrollPos !== null) {
-      loco.current.update()
-      setTimeout(() => {
-        loco.current.scrollTo(registeredScrollPos, {
-          duration: 0,
-          disableLerp: true,
-          offset: 300,
-        })
-      })
-      setRegisteredScrollPos(null)
-    }*/
-  }, [backgroundOverlay])
+    useToolTip('[data-tooltip-text]')
+    useRefreshMouseListeners('[data-pointer]')
 
-  useToolTip('[data-tooltip-text]')
-  useRefreshMouseListeners('[data-pointer]', )
-
-
-  return (
-     <>
-       <Seo title='homepage' description='this is homepage of my portfolio site'/>
-       <HomePage />
-
-     </>
-  )
+    return (
+        <>
+            <Seo
+                title="homepage"
+                description="this is homepage of my portfolio site"
+            />
+            <HomePage/>
+        </>
+    )
 }
 
 export default IndexPage

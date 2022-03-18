@@ -10,6 +10,7 @@ import InnerPointer from './InnerPointer'
 import OuterPointer from './OuterPointer'
 import { useMediaQuery, useTheme } from '@material-ui/core'
 import {MotionValueContext} from "../../contexts/MotionStateWrapper";
+import CursorEventComponent from "./CursorEventComponent";
 
 let show = false;
 let Events;
@@ -33,7 +34,6 @@ const Cursor = () => {
   
   const { mouse: { mouseX,  mouseY }, screenOverlayEvent } = useContext( MotionValueContext );
 
-  
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   const [ready, setReady] = useState(false);
@@ -70,11 +70,10 @@ const Cursor = () => {
   useEffect(() => {
     screenOverlayEvent.onChange(v => {
       if (v === 'close')
-        setTimeout(() => setReady(true), 1000)
+        setReady(true)
     })
   }, [])
 
-  // initial opacity
   useEffect(() => {
     if (!matches || !ready) return;
 
@@ -112,10 +111,14 @@ const Cursor = () => {
   return (
     <>
       {(ready && matches) && (
-        <CursorContainer className="cursor-container">
-          <InnerPointer />
-          <OuterPointer />
-        </CursorContainer>
+        <>
+          <CursorContainer className="cursor-container">
+            <InnerPointer />
+            <OuterPointer />
+          </CursorContainer>
+          <CursorEventComponent/>
+        </>
+
       )}
     </>
   )

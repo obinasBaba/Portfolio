@@ -50,7 +50,7 @@ const ProjectPage = () => {
   const controllers = items.map(({ controller }) => controller)
 
   const {
-    variantsUtil: { fromCaseStudy },
+    variantsUtil: { fromCaseStudy }, mainAnimationController
   } = useContext(MotionValueContext)
 
   const moVariants = useMotionValue(
