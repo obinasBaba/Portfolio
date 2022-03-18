@@ -166,11 +166,11 @@ const LoadingSpinner = () => {
 
   const smallRef = useRef(null)
   const contentRef = useRef(null)
-  const loadingBgBackup = useRef(null)
+  const loadingBgBackup = useRef( null)
   const containerRef = useRef(null)
   
   const [backgroundOverlay, setBackgroundOverlay] = useState(true);
-  const { toolTipsData, mainAnimationController, screenOverlayProxy } = useContext(MotionValueContext);
+  const { toolTipsData, mainAnimationController, screenOverlayProxy, screenOverlayEvent } = useContext(MotionValueContext);
 
   useLoadingFonts({ setBackgroundOverlay, backgroundOverlay })
 
@@ -215,7 +215,8 @@ const LoadingSpinner = () => {
             delayPerPath: 120,
           }} )
   
-    mainAnimationController.start('animate')
+    mainAnimationController.start('animate');
+    screenOverlayEvent.set('close')
   
   }
 

@@ -1,6 +1,6 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React, { useContext, useEffect, useLayoutEffect } from 'react'
+import React, {useContext, useEffect, useLayoutEffect, useState} from 'react'
 import styled from 'styled-components'
 import gsap from 'gsap'
 import { motion } from 'framer-motion'
@@ -8,12 +8,12 @@ import EventUtil from '../../helpers/EventUtil'
 import { text } from '../../styles/mixins'
 import InnerPointer from './InnerPointer'
 import OuterPointer from './OuterPointer'
-import { BackgroundOverlayStateContext } from '../../contexts/AppStateContext'
-import {useMediaQuery, useTheme} from "@material-ui/core";
+import { useMediaQuery, useTheme } from '@material-ui/core'
+import {MotionValueContext} from "../../contexts/MotionStateWrapper";
 
-let show = false
+let show = false;
 let Events;
-let animId;
+let animId
 
 const CursorContainer = styled.div`
   position: fixed;
@@ -28,159 +28,112 @@ const CursorContainer = styled.div`
   }
 `
 
-export const PointerContainer = styled(motion.div)`
-  //display: g;
-  position: absolute;
-  //border: thin solid lightcoral;
-  height: 1rem;
-  width: 1rem;
-  top: calc(-1rem / 2);
-  left: calc(-1rem / 2);
-  right: auto;
-  bottom: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  will-change: transform;
-  //transform: translate(-50%, -50%);
-
-  p {
-
-    position: absolute;
-    font-family: 'shapes', serif;
-    line-height: 0;
-    padding: 0;
-    margin: 0;
-    top: -50%;
-    left: -50%;
-    inset: auto;
-    //color: #b9c8d3;
-    //color: rgba(2, 11, 22, 1);
-    color: var(--theme);
-
-
-    //font-size: 3.6rem;
-    ${text(3)};
-
-
-    //mix-blend-mode: difference;
-  }
-
-  &.inner {
-    p {
-      transition: color .1s ease-in;
-      //font-size: .78rem;
-      ${text(.7)};
-    }
-  }
-
-`
 
 const Cursor = () => {
+  
+  const { mouse: { mouseX,  mouseY }, screenOverlayEvent } = useContext( MotionValueContext );
+
+  
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
+  const [ready, setReady] = useState(false);
 
 
-  const {
-    backgroundOverlay,
-  } = useContext(BackgroundOverlayStateContext)
+  const trackMouse = () => {
+    const render = () => {
+      if (!animId) return;
 
-    const theme = useTheme()
-    const matches = useMediaQuery(theme.breakpoints.up('md'))
+      gsap.to('.cursor-container .pointer.inner', {
+        x: mouseX.get(),
+        y: mouseY.get(),
+        duration: 0,
+      })
 
-  useLayoutEffect(() => {
-    Events = EventUtil.getInstance()
-  }, [ ])
+      gsap.to('.cursor-container .pointer.outer', {
+        x: mouseX.get(),
+        y: mouseY.get(),
+        duration: 0.83,
+        ease: 'power2.out',
+      })
+
+      animId = requestAnimationFrame(() => render())
+    }
+    animId = requestAnimationFrame(() => render())
+  }
+
+  const clearMouseUpdateAnim = () => {
+    // console.log('canceling animation : ', animId);
+    cancelAnimationFrame(animId)
+    animId = undefined
+  }
+
+  useEffect(() => {
+    screenOverlayEvent.onChange(v => {
+      if (v === 'close')
+        setTimeout(() => setReady(true), 1000)
+    })
+  }, [])
 
   // initial opacity
   useEffect(() => {
-    if ( backgroundOverlay || !matches )
-      return
+    if (!matches || !ready) return;
 
-      const clearMouseUpdateAnim = () => {
-        // console.log('canceling animation : ', animId);
-        cancelAnimationFrame(animId)
-        animId = undefined
-      }
-      const showMouse = () => {
-        if ( show ) return
+    const showMouse = () => {
+      if (show) return;
+      show = true;
 
-        if ( window.locoInstance && (Math.abs(window.locoInstance.scroll.instance.speed) > 2) )
-          return;
+      if (
+        window.locoInstance &&
+        Math.abs(window.locoInstance.scroll.instance.speed) > 2
+      )
+        return;
 
-        gsap.to('.cursor-container',
-          {
-            opacity: 1,
-            duration: .4,
-          },)
 
-        clearMouseUpdateAnim()
+      gsap.to('.cursor-container', {
+        opacity: 1,
+        duration: 0.4,
+      })
 
-        Cursor.updateMousePos()
+      clearMouseUpdateAnim()
 
-        show = true;
-      }
+      // Cursor.updateMousePos()
+      trackMouse()
 
-      window.addEventListener('mousemove', showMouse)
+    }
 
-      return () => {
-        clearMouseUpdateAnim()
-        window.removeEventListener('mousemove', showMouse)
-      }
+    window.addEventListener('mousemove', showMouse)
 
-    },
-    [backgroundOverlay])
+    return () => {
+      clearMouseUpdateAnim()
+      window.removeEventListener('mousemove', showMouse)
+    }
+  }, [matches, ready])
 
   return (
     <>
-        {
-            matches && <CursorContainer className='cursor-container'>
-                <InnerPointer />
-                <OuterPointer />
-            </CursorContainer>
-        }
+      {(ready && matches) && (
+        <CursorContainer className="cursor-container">
+          <InnerPointer />
+          <OuterPointer />
+        </CursorContainer>
+      )}
     </>
   )
 }
 
-Cursor.updateMousePos = () => {
-
-  const render = () => {
-    if ( !animId ) return;
-
-    gsap.to('.cursor-container .pointer.inner',
-      {
-        x: Events.mousePos.x,
-        y: Events.mousePos.y,
-        duration: 0,
-      })
-
-    gsap.to('.cursor-container .pointer.outer',
-      {
-        x: Events.mousePos.x,
-        y: Events.mousePos.y,
-        duration: .83,
-        ease: 'power2.out'
-      })
-
-    animId = requestAnimationFrame(() => render())
-
-  }
-  animId = requestAnimationFrame(() => render())
-}
-
 Cursor.stopMouseAnimation = () => {
-  if ( !show ) return
+  if (!show) return
 
-  gsap.to('.cursor-container',
-    {
-      opacity: 0,
-      duration: .3,
+  gsap.to('.cursor-container', {
+    opacity: 0,
+    duration: 0.3,
 
-      onComplete () {
-        cancelAnimationFrame(animId)
-        animId = undefined
-        show = false
-      }
-    })
+    onComplete() {
+      cancelAnimationFrame(animId)
+      animId = undefined;
+      show = false;
+    },
+  })
 }
 
 export default Cursor

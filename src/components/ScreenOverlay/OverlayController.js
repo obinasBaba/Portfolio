@@ -116,6 +116,8 @@ class OverlayController extends EventEmitter{
       str += `C ${cp} ${points[i]} ${cp} ${points[i + 1]} ${p} ${points[i + 1]} `;
     }
     str += (this.isOpened) ? `V 100 H 0` : `V 0 H 0`;
+
+    this.emit('close')
     return str;
   }
 

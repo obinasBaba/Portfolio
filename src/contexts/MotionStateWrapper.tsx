@@ -1,4 +1,11 @@
-import {AnimationControls, MotionValue, useAnimation, useMotionValue, useViewportScroll} from "framer-motion";
+import {
+  AnimationControls,
+  MotionValue,
+  useAnimation,
+  useMotionValue,
+  useTransform,
+  useViewportScroll
+} from "framer-motion";
 // @ts-ignore
 import React, {useLayoutEffect, createContext, useEffect} from 'react'
 // @ts-ignore
@@ -16,6 +23,7 @@ type MotionValueContextType = {
   mainAnimationController: AnimationControls
   screenOverlayProxy: MotionValue< {state: boolean, config: { [key: string]: any }} >,
   menuIsOpen: MotionValue<boolean>,
+  screenOverlayEvent: MotionValue<string>,
 
 
   mouse: {
@@ -60,12 +68,9 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
 
   const mainAnimationController = useAnimation();
 
-  const screenOverlayProxy = useMotionValue( { state: false, config: {} }  )
-  const menuIsOpen = useMotionValue(false)
-
-
-
-
+  const screenOverlayProxy = useMotionValue( { state: false, config: {} }  );
+  const screenOverlayEvent = useMotionValue( ''  );
+  const menuIsOpen = useMotionValue(false);
 
   const locoInstanceHelpers = useMotionValue(null)
   const toolTipsData = useMotionValue ({
@@ -126,7 +131,8 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
         largeUp,
         mainAnimationController,
         screenOverlayProxy,
-        menuIsOpen
+        screenOverlayEvent,
+        menuIsOpen,
 
       }}
     >
