@@ -217,8 +217,8 @@ const LoadingSpinner = () => {
   
     setTimeout(() => {
       mainAnimationController.start('animate');
-      screenOverlayEvent.set('close')
-    }, 700)
+      screenOverlayEvent.set('closed')
+    }, 750)
   
   }
 

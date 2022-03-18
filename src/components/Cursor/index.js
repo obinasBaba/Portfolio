@@ -68,8 +68,8 @@ const Cursor = () => {
   }
 
   useEffect(() => {
-    screenOverlayEvent.onChange(v => {
-      if (v === 'close')
+    screenOverlayEvent.onChange(state => {
+      if (state === 'closed')
         setReady(true)
     })
   }, [])

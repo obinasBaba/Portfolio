@@ -128,7 +128,6 @@ export const OverflowWrapper = styled(motion.div)`
   display: none;
   position: absolute;
   font-size: 9rem;
-  font-family: Poppins Black, serif;
   font-weight: 900;
   bottom: 2%;
   right: -5%;

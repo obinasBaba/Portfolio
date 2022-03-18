@@ -7,39 +7,26 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 import useToolTip from "../hooks/useToolTip";
 import useRefreshMouseListeners from "../hooks/useRefreshMouseListeners";
 import Seo from "../components/seo";
+import useUpdatePath from "../hooks/useUpdatePath";
 
 
 gsap.registerPlugin(ScrollTrigger)
 
 const About = ({path}) => {
 
+  useUpdatePath(path)
 
-  const {
-    setCurrentPath
-  } = useContext( AppStateContext )
+  const loco = useLocoScroll();
 
-  const {
-    backgroundOverlay
-  } = useContext( BackgroundOverlayStateContext )
+  useToolTip('[data-tooltip-text]');
+  useRefreshMouseListeners('[data-pointer]');
 
 
-  useEffect(() => {
-    setCurrentPath(path)
-  }, [])
-
-  const loco = useLocoScroll(!backgroundOverlay);
-
-
-  useToolTip('[data-tooltip-text]')
-  useRefreshMouseListeners('[data-pointer]')
 
   return (
     <>
       <Seo title='about' description='this is where i talk about my skills, about me and my process of getting work done'/>
-
-      {
-        !backgroundOverlay && <AboutPage/>
-      }
+      <AboutPage/>
     </>
   )
 }

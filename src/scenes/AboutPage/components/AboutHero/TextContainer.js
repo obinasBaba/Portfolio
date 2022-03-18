@@ -28,14 +28,10 @@ const TextWrapperContainer = styled.div`
     `)};
   }
 
-  h4 {
-    //line-height: 1.2;
-    //word-spacing:1px;
-  }
-
-  & > :last-child {
+  .hero-intro{
     max-width: 32ch;
     color: #7b8a9b;
+    display: block;
 
     ${text(1.1)};
   }
@@ -48,7 +44,7 @@ const TextWrapperContainer = styled.div`
       ${spacing('ml', 5)};
     }
 
-    & > :last-child {
+    .hero-intro {
       ${spacing('ml', 8.5)};
       ${spacing('mt', 3)};
     }
@@ -63,9 +59,7 @@ const helloTxtVariants = {
     animate: {
         opacity: 1,
         y: 0,
-        transitionEnd: {
-            // opacity: 0,
-        },
+        transitionEnd: {},
     },
     exit: {
         opacity: 0,
@@ -73,7 +67,8 @@ const helloTxtVariants = {
     },
 
     transition: {
-        duration: 1
+        duration: 1,
+        ease: [0.6, 0.01, 0, 0.9],
     }
 }
 
@@ -92,29 +87,32 @@ const introTxtVariants = {
     },
 
     transition: {
-        duration: 1
+        duration: 1,
+        ease: [0.6, 0.01, 0, 0.9],
     }
 }
 
 const TextWrapper = () => {
     return (
         <TextWrapperContainer>
-            {/*<motion.div variants={helloTxtVariants}>*/}
+            <motion.div variants={helloTxtVariants}
+                        transition={helloTxtVariants.transition}
+            >
                 <Typography variant="h1">Hello</Typography>
-            {/*</motion.div>*/}
+            </motion.div>
 
-            {/*<motion.div className='motto-container' variants={introTxtVariants} transition={introTxtVariants.transition}>*/}
+            <motion.div className='intro-container' variants={introTxtVariants} transition={introTxtVariants.transition}>
 
                 <Typography variant="h4" gutterBottom={true}>
                     I create progress by designing and developing digital experiences,
                 </Typography>
 
-                <Typography variant='bodysdf'>
+                <Typography className='hero-intro'   variant='body'>
                     I believe that we can live in a world in which every product or service
                     has an easy to use experience on platforms and my mission is to
                     contribute to it to make it happen
                 </Typography>
-            {/*</motion.div>*/}
+            </motion.div>
 
         </TextWrapperContainer>
     )

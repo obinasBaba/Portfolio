@@ -42,7 +42,6 @@ const StyledCard = styled(motion.div)`
 
   & .card-title {
     z-index: 1;
-    font-family: var(--poppins);
     letter-spacing: -1px;
     font-weight: 900;
 
@@ -64,7 +63,6 @@ const Num = styled(motion.div)`
   position: absolute;
   top: -24%;
   right: -4%;
-  font-family: 'Bodoni Moda', sans-serif;
   font-weight: 900;
   letter-spacing: -3px;
   -webkit-text-stroke: 2.5px #566373;

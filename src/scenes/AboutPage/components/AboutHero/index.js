@@ -30,7 +30,7 @@ const AboutHeroContainer = styled.div`
   
   
   ${largeUp( css`
-    ${spacing('mt', 10)};
+    ${spacing('mt', 4)};
   ` )};
   
   .text-container{
@@ -124,25 +124,7 @@ const AboutHero = () => {
     <AboutHeroContainer maxWidth='lg'  >
 
         <motion.div className='text-container'  >
-
-           {/* <motion.div variants={helloTxtVariants}
-                        transition={helloTxtVariants.transition}>
-              <Hello variant='h1'>
-                Hello.
-              </Hello>
-            </motion.div>
-
-            <motion.div className='motto-container' variants={introTxtVariants} transition={introTxtVariants.transition}>
-
-            <Motto variant='h4' >
-              I create progress by designing and developing digital experiences,
-            </Motto>
-
-            </motion.div>*/}
-
-         <TextWrapper />
-
-
+          <TextWrapper />
         </motion.div>
 
         <AboutHeroPicture/>

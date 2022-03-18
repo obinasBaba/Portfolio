@@ -6,19 +6,13 @@ import useToolTip from '../hooks/useToolTip'
 import useRefreshMouseListeners from '../hooks/useRefreshMouseListeners'
 import Seo from '../components/seo'
 import {MotionValueContext} from '../contexts/MotionStateWrapper'
+import useUpdatePath from "../hooks/useUpdatePath";
 
 const IndexPage = ({path}) => {
-    const {setCurrentPath, currentPath} = useContext(AppStateContext)
-
-    const {mainAnimationController} = useContext(MotionValueContext)
 
     const loco = useLocoScroll()
 
-    useEffect(() => {
-        if (path !== currentPath) mainAnimationController.start('animate');
-
-        setCurrentPath(path)
-    }, [])
+    useUpdatePath(path);
 
     useToolTip('[data-tooltip-text]')
     useRefreshMouseListeners('[data-pointer]')

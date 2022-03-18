@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
-import styled, {css} from 'styled-components'
+import React, { useContext } from 'react'
+import styled from 'styled-components'
 import AboutHero from './components/AboutHero'
 import MyProcess from './components/MyProcess'
-import MailUs from '../MailUs'
+// import MailUs from '../MailUs'
 import Skills from './components/Skills'
-import { motion } from "framer-motion";
-import LineArt from "../../components/LineArt";
-import gsap from "gsap";
-import {spacing} from "../../styles/mixins";
-import {largeUp, mediumUp} from "../../styles/mixins/breakpoints";
-import {useMediaQuery, useTheme} from "@material-ui/core";
-import HorizontalScrollText from "./components/HorizontalScrollText";
-import img from './components/AboutHero/about-hero-paths.svg'
+import { motion } from 'framer-motion'
+import HorizontalScrollText from './components/HorizontalScrollText'
+import { MotionValueContext } from '../../contexts/MotionStateWrapper'
+import loadable from "@loadable/component";
 
-const AboutPageContainer = styled( motion.div )`
+
+const MailUs = loadable(() => import('../MailUs'))
+
+
+const AboutPageContainer = styled(motion.div)`
   position: relative;
   z-index: 1;
 `
@@ -21,13 +21,13 @@ const AboutPageContainer = styled( motion.div )`
 
 const aboutContainerVariants = {
   initial: {
-    opacity: 0
+    // opacity: 0
   },
   animate: {
-    opacity: 1,
+    // opacity: 1,
   },
   exit: {
-    exit: 0,
+    // exit: 0,
   },
 
   transition: {
@@ -41,12 +41,14 @@ const aboutContainerVariants = {
 
 const AboutPage = () => {
 
+    const { mainAnimationController, screenOverlayEvent } = useContext(MotionValueContext)
+
 
   return (
     <AboutPageContainer variants={aboutContainerVariants}
                         transition={aboutContainerVariants.transition}
                         initial="initial"
-                        animate="animate"
+                        animate={ screenOverlayEvent.get() === 'closed' ? 'animate' :  mainAnimationController}
                         exit="exit"
                         id='#about'
     >

@@ -8,7 +8,6 @@ import BlogPosts from './BlogPosts'
 import { motion } from 'framer-motion'
 import {MotionValueContext} from "../../contexts/MotionStateWrapper";
 import loadable from '@loadable/component';
-import {AppStateContext} from "../../contexts/AppStateContext";
 // import MailUs from "../MailUs";
 
 let doExit = true;
@@ -37,7 +36,7 @@ const HomePage = () => {
 
 
 
-  const { mainAnimationController } = useContext(MotionValueContext)
+  const { mainAnimationController, screenOverlayEvent } = useContext(MotionValueContext)
 
   useEffect(() => {
 
@@ -47,14 +46,12 @@ const HomePage = () => {
     < motion.main variants={containerVariants}
                  transition={transition}
                  initial="initial"
-                 animate={mainAnimationController}
-                 exit="exit"
+                  animate={ screenOverlayEvent.get() === 'closed' ? 'animate' :  mainAnimationController}
+                  exit="exit"
                  whileInView="inView"
     >
 
-      {/*<SectionWrapper dataScrollSection={true}>*/}
         <Hero />
-      {/*</SectionWrapper>*/}
 
 
      <RecentWorks />
