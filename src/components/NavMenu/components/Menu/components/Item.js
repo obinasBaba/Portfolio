@@ -8,7 +8,7 @@ import {
     text,
 
 } from '../../../../../styles/mixins'
-import OverlayController from '../../../../BackgroundOverlay/OverlayController'
+import OverlayController from '../../../../ScreenOverlay/OverlayController'
 import {largeUp, mediumUp, xxLargeUp} from "../../../../../styles/mixins/breakpoints";
 import {MotionStateWrapper, MotionValueContext} from "../../../../../contexts/MotionStateWrapper";
 

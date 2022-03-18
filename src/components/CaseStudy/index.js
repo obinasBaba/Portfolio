@@ -96,7 +96,7 @@ const projectDataDefault = {
 }
 
 const FixedPortal = ({children}) => {
-  return createPortal(children, document.body);
+  return createPortal(children, document && document.body);
 }
 
 const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
@@ -181,7 +181,7 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
   return (
     <>
 
-      <FixedPortal>
+      <div>
         <FixedItems>
           <ReturnBtn to={projectData?.backUrl || '/projects'}
                      onClick={returnClick} />
@@ -189,7 +189,7 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
           <ProjectScrollDown activeIndex={showScrollDown} />
 
         </FixedItems>
-      </FixedPortal>
+      </div>
 
       <ProjectContainer className='projectContainer'
                         variants={containerVariants}

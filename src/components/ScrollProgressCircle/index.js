@@ -125,8 +125,7 @@ const ScrollProgressCircle = () => {
   }, [currentPath, backgroundOverlay])
 
   return (
-    <>
-      {!backgroundOverlay && (
+   
         <ProgressCircleContainer
             data-pointer="magnet"
             data-pointer-color="#5d6c7b"
@@ -138,8 +137,6 @@ const ScrollProgressCircle = () => {
           <ProgressCircleWrapper
 
             variants={containerVariants}
-            initial="initial"
-            animate="animate"
             transition={containerVariants.transition}
           >
             <Link to={'/contact'} />
@@ -223,8 +220,7 @@ const ScrollProgressCircle = () => {
             </RotatingDiv>
           </ProgressCircleWrapper>
         </ProgressCircleContainer>
-      )}
-    </>
+      
   )
 }
 

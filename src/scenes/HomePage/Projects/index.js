@@ -9,7 +9,6 @@ import { motion, useSpring, useTransform } from 'framer-motion'
 import HeadlineTitle from '../../../components/Headline'
 import RotationTextPath from './RotationTextPath'
 import { MotionValueContext } from '../../../contexts/MotionStateWrapper'
-import '../../../styles/projectFonts.css'
 import {Link} from "gatsby";
 import {largeUp} from "../../../styles/mixins/breakpoints";
 
@@ -129,6 +128,12 @@ const Projects = () => {
 
   //transform
   useEffect(() => {
+
+     import( '../../../styles/projectFonts.css').then( v => {
+       console.log('fontloaded in project: ', v)
+     } )
+
+
     const yChangeHandler = y => {
       const yPos = (y - window.innerHeight) / 15
       yBig.set(yPos)

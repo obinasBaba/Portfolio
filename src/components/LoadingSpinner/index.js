@@ -1,17 +1,22 @@
-import React, {useContext, useEffect, useLayoutEffect, useRef} from 'react'
+import React, {
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react'
 import styled from 'styled-components'
 import { AnimatePresence, motion } from 'framer-motion'
 import { transition } from '../../helpers/variants'
-import OverlayController from '../BackgroundOverlay/OverlayController'
-import BackgroundOverlay from '../BackgroundOverlay'
-import { BackgroundOverlayStateContext } from '../../contexts/AppStateContext'
-import useLoadingFonts from "../../hooks/useFonts";
-import {MotionValueContext} from "../../contexts/MotionStateWrapper";
+import OverlayController from '../ScreenOverlay/OverlayController'
+import BackgroundOverlay from '../ScreenOverlay'
+import useLoadingFonts from '../../hooks/useFonts'
+import { MotionValueContext } from '../../contexts/MotionStateWrapper'
 
 const SpinnerContainer = styled(motion.div)`
   //position: fixed;
   position: absolute;
-  z-index: 50;
+  z-index: 150;
   height: 100vh;
   width: 100vw;
   top: 0;
@@ -26,12 +31,10 @@ const SpinnerContainer = styled(motion.div)`
   & * {
     pointer-events: none;
   }
-  
-  &.loaded .loading-backup{
+
+  &.loaded .loading-backup {
     display: none;
   }
-
-  
 `
 
 const Content = styled.div`
@@ -120,7 +123,7 @@ const parentVariants = {
 
   transition: {
     duration: 1.21,
-    delay: .2,
+    delay: .0821,
     ease: [0.6, 0.01, 0, 0.9],
   }
 }
@@ -157,19 +160,7 @@ const containerVariants = {
   }
 }
 
-async function cleanUp  () {
 
-  document.body.querySelector('#main-container')
-      .classList.add('loaded')
-
-  OverlayController.getInstance('loading-overlay')
-      .toggle(false, {
-        duration: 920,
-        delayPointsMax: 120,
-        delayPerPath: 120,
-      })
-
-}
 
 const LoadingSpinner = () => {
 
@@ -177,11 +168,11 @@ const LoadingSpinner = () => {
   const contentRef = useRef(null)
   const loadingBgBackup = useRef(null)
   const containerRef = useRef(null)
+  
+  const [backgroundOverlay, setBackgroundOverlay] = useState(true);
+  const { toolTipsData, mainAnimationController, screenOverlayProxy } = useContext(MotionValueContext);
 
-  const { setBackgroundOverlay, backgroundOverlay } = useContext(BackgroundOverlayStateContext)
-  const { toolTipsData } = useContext(MotionValueContext);
-
-  useLoadingFonts(setBackgroundOverlay)
+  useLoadingFonts({ setBackgroundOverlay, backgroundOverlay })
 
   useEffect(() => {
     toolTipsData.set({
@@ -196,31 +187,43 @@ const LoadingSpinner = () => {
   }, [])
 
   useEffect(() => {
-    if ( !backgroundOverlay ) return ;
 
-      setBackgroundOverlay(true)
+    screenOverlayProxy.set( {
+      state: true,
+      config: {
+        duration: 0.0002,
+        delayPointsMax: 0,
+        delayPerPath: 0,
+      }
+    } )
 
-      const ov = OverlayController.getInstance('loading-overlay')
-      ov.on('loading', () => {
-        loadingBgBackup.current?.classList.add('loaded')
-      })
-    ov.toggle(true, {
-            duration: .0002,
-            delayPointsMax: 0,
-            delayPerPath: 0,
-          })
+    return () => {}
+  }, [])
 
 
-      return () => {}
+  async function cleanUp  () {
 
-    }, [backgroundOverlay])
+    document.body.querySelector('#main-container')
+        .classList.add('loaded')
+  
+
+        screenOverlayProxy.set( {
+          state: false,
+          config:  {
+            duration: 920,
+            delayPointsMax: 120,
+            delayPerPath: 120,
+          }} )
+  
+    mainAnimationController.start('animate')
+  
+  }
 
 
   return (
 
-      <>
+      <AnimatePresence exitBeforeEnter>
 
-        <AnimatePresence exitBeforeEnter>
           {
             backgroundOverlay &&
             <SpinnerContainer  ref={containerRef}
@@ -234,7 +237,6 @@ const LoadingSpinner = () => {
 
 
 
-              <BackgroundOverlay clsName={'loading-overlay'} key='loading-overlay' />
 
 
               <SpinnerWrapper  variants={containerVariants}
@@ -261,8 +263,7 @@ const LoadingSpinner = () => {
 
             </SpinnerContainer>
           }
-        </AnimatePresence>
-      </>
+      </AnimatePresence>
 
   )
 }

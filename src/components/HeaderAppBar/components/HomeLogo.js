@@ -61,7 +61,6 @@ const logoVariant = {
   transition: {
     ease: [0.6, 0.01, 0, 0.9],
     duration: 3,
-    delay: 0,
   },
 }
 
@@ -74,8 +73,8 @@ const HomeLogo = ({ toggleMenu }) => {
     <Logo
           variants={logoVariant}
           transition={logoVariant.transition}
-          initial="initial"
-          animate="animate"
+        /*   initial="initial"
+          animate="animate" */
           className="logo"
           data-pointer='magnet'
           data-magnet-distance={.8}

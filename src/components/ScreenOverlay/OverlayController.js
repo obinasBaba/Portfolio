@@ -41,7 +41,7 @@ class OverlayController extends EventEmitter{
     // this.isAnimating = false;
   }
 
-  toggle(open, options = {
+  async toggle(open, options = {
     duration: OverlayController.duration,
     delayPointsMax: OverlayController.delayPointsMax,
     delayPerPath: OverlayController.delayPerPath

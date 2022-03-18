@@ -1,4 +1,4 @@
-import {MotionValue, useMotionValue, useViewportScroll} from "framer-motion";
+import {AnimationControls, MotionValue, useAnimation, useMotionValue, useViewportScroll} from "framer-motion";
 // @ts-ignore
 import React, {useLayoutEffect, createContext, useEffect} from 'react'
 // @ts-ignore
@@ -13,6 +13,10 @@ type MotionValueContextType = {
   locoInstance: MotionValue<LocomotiveScroll>,
   toolTipsData: MotionValue<{ text: string | string[], show: boolean, timer: number[] | null  }>,
   largeUp: MotionValue<boolean>,
+  mainAnimationController: AnimationControls
+  screenOverlayProxy: MotionValue< {state: boolean, config: { [key: string]: any }} >,
+  menuIsOpen: MotionValue<boolean>,
+
 
   mouse: {
     mouseX: MotionValue<number>
@@ -54,6 +58,15 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
   const locoInstance = useMotionValue<LocomotiveScroll>(null)
   const largeUp = useMotionValue(false)
 
+  const mainAnimationController = useAnimation();
+
+  const screenOverlayProxy = useMotionValue( { state: false, config: {} }  )
+  const menuIsOpen = useMotionValue(false)
+
+
+
+
+
   const locoInstanceHelpers = useMotionValue(null)
   const toolTipsData = useMotionValue ({
     text: '',
@@ -70,6 +83,7 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
 
   useEffect(() => {
     largeUp.set(matches)
+
   }, [matches])
 
 
@@ -109,7 +123,10 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
         inView,
         locoInstance,
         toolTipsData,
-        largeUp
+        largeUp,
+        mainAnimationController,
+        screenOverlayProxy,
+        menuIsOpen
 
       }}
     >

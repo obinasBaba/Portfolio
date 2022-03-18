@@ -3,22 +3,11 @@ import FontLoaded from 'fontfaceobserver'
 import { BackgroundOverlayStateContext } from '../contexts/AppStateContext'
 import {MotionValueContext} from "../contexts/MotionStateWrapper";
 
-const useLoadingFonts = () => {
-
-    const { toolTipsData } = useContext(MotionValueContext);
-  const { setBackgroundOverlay, backgroundOverlay } = useContext(BackgroundOverlayStateContext)/*
-  const [loaded, setLoaded] = useState(false)
+const useLoadingFonts = ({ setBackgroundOverlay, backgroundOverlay }) => {
+  const { toolTipsData } = useContext(MotionValueContext)
 
   useEffect(() => {
-    if (!loaded) return;
-    setBackgroundOverlay(false)
-    // window.requestIdleCallback(() => setBackgroundOverlay(false));
-
-  }, [loaded])*/
-
-  useEffect(() => {
-    if ( !backgroundOverlay )
-      return;
+    if (!backgroundOverlay) return
 
     document.body.classList.remove('no-cursor')
 
@@ -26,23 +15,18 @@ const useLoadingFonts = () => {
     // let poppins = new FontLoaded('Poppins Black')
     let icons = new FontLoaded('shapes')
 
-    Promise.all([elianto.load(),])
+    Promise.all([elianto.load()])
       .then(() => {
         setTimeout(() => {
-             toolTipsData.set({
-                 show: false,
-             })
-            setBackgroundOverlay(false)
-            // setLoaded(true)
-        }, 3500)
+          toolTipsData.set({
+            show: false,
+          })
+          setBackgroundOverlay(false)
+        }, 1700)
 
-        // setTimeout(() => {
-          Promise.all([icons.load()])
-              .then(() => {
-                document.body.classList.add('no-cursor')
-              })
-        // })
-
+        Promise.all([icons.load()]).then(() => {
+          document.body.classList.add('no-cursor')
+        })
       })
       .catch(console.error)
 

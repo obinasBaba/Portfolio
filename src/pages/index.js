@@ -43,9 +43,8 @@ const IndexPage = ({ path }) => {
   return (
      <>
        <Seo title='homepage' description='this is homepage of my portfolio site'/>
-       {
-         !backgroundOverlay && <HomePage />
-       }
+       <HomePage />
+
      </>
   )
 }

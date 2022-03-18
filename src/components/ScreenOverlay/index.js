@@ -1,16 +1,23 @@
-import React from 'react'
+import React, {useContext, useLayoutEffect} from 'react'
 import styled from 'styled-components'
+import { motion, useAnimation } from 'framer-motion';
+import { MotionValueContext } from '../../contexts/MotionStateWrapper';
+import OverlayController from './OverlayController';
 
-const OverlayContainer = styled.div`
+let first = true;
+
+const OverlayContainer = styled( motion.div )`
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
+  
+  //opacity: .3;
 
   pointer-events: none;
 
-  z-index: 9;
+  z-index: 8;
 
   svg {
     pointer-events: none;
@@ -58,16 +65,62 @@ const OverlayContainer = styled.div`
 
     //border: thick solid red;
   }
-`
+`;
 
-const BackgroundOverlay = ({ loading = true, clsName }) => {
+const LoadingBgBackup = styled( motion.div )`
+  position: fixed;
+  z-index: 1000;
+  background-image: linear-gradient(
+    137.81deg,
+    #5d6c7b 0%,
+    #a4b5c0 50%,
+    #bfd0d9 120%
+  );
+  width: 100%;
+  height: 100%;
+
+  &.loaded {
+    display: none;
+  }
+`;
+
+const ScreenOverlay = ({ loading = true, clsName }) => {
+
+  const controller = useAnimation();
+  const { screenOverlayProxy } = useContext(MotionValueContext);
+
+
+  useLayoutEffect(() => {
+
+    const overlayController = OverlayController.getInstance('loading-overlay');
+    
+    screenOverlayProxy.onChange(v => {
+      
+      overlayController.toggle( v.state, v.config );
+      controller.start({ display: 'none' });
+
+    })
+
+
+    return () => {};
+  }, []);
+  
+
+  
 
   return (
-    <OverlayContainer className='background-overlay-container' >
+    <OverlayContainer className='background-overlay-container'
+                      variants={{}}
+    >
 
-      {/*<div className="loading-bg"/>*/}
+        <LoadingBgBackup className="loading-backup" 
+                          variants={{}}
+                          animate={controller}
 
-      <svg className={clsName} viewBox="0 0 100 100" preserveAspectRatio="none">
+        />
+      
+
+      <svg className={'loading-overlay'} viewBox="0 0 100 100" preserveAspectRatio="none">
         <defs>
           <linearGradient id="gradient1" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor="#00c99b" />
@@ -78,9 +131,8 @@ const BackgroundOverlay = ({ loading = true, clsName }) => {
             <stop offset="100%" stopColor="#ff3898" />
           </linearGradient>
 
-          <linearGradient id="gradient3" x1="0.177" y1="0.104" x2="0.949"
-                          y2="0.947" gradientUnits="objectBoundingBox">
-            <stop offset="0" stopColor="#5d6c7b" />
+          <linearGradient id="gradient3" x1="0.177" y1="0.104" x2="0.949"y2="0.947" gradientUnits="objectBoundingBox">
+            <stop offset="-.2" stopColor="#5d6c7b" />
             <stop offset="0.5" stopColor="#a4b5c0" />
             <stop offset="1.2" stopColor="#bfd0d9" />
           </linearGradient>
@@ -104,4 +156,4 @@ const BackgroundOverlay = ({ loading = true, clsName }) => {
   )
 }
 
-export default BackgroundOverlay
+export default ScreenOverlay

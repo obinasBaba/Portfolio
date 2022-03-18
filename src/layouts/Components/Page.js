@@ -8,25 +8,11 @@ import Cursor from '../../components/Cursor'
 import { BottomGradient, Main, PageContainer, SkyColor } from './Styled'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import { MotionValueContext } from '../../contexts/MotionStateWrapper'
-import { BackgroundOverlayStateContext } from '../../contexts/AppStateContext'
 import styled from 'styled-components'
+import BackgroundOverlay from '../../components/ScreenOverlay'
+import NavigationMenu from '../../components/NavigationMenu'
 
-const LoadingBgBackup = styled.div`
-  position: fixed;
-  z-index: 1000;
-  background-image: linear-gradient(
-    137.81deg,
-    #5d6c7b 0%,
-    #a4b5c0 50.89%,
-    #bfd0d9 120.77%
-  );
-  width: 100%;
-  height: 100%;
 
-  &.loaded {
-    display: none;
-  }
-`
 
 const Page = ({ children, path }) => {
   const {
@@ -34,12 +20,11 @@ const Page = ({ children, path }) => {
     inView,
     largeUp,
     toolTipsData,
+    mainAnimationController,
   } = useContext(MotionValueContext)
 
-  const { backgroundOverlay } = useContext(BackgroundOverlayStateContext)
-
   useEffect(() => {
-    if (backgroundOverlay) return
+    return
 
     setTimeout(() => {
       toolTipsData.set({
@@ -52,24 +37,33 @@ const Page = ({ children, path }) => {
         show: true,
       })
     }, 2000)
-  }, [backgroundOverlay])
+  }, [])
 
   // const media = useMediaQuery(theme.breakpoints.up('xl'))
   // const mediaLarge = useMotionValue(media)
 
   return (
-    <PageContainer id="page-container">
-      <LoadingBgBackup className="loading-backup" />
+      <PageContainer
+        id="page-container"
+        variants={{}}
+        initial="initial"
+        exit="exit"
+        animate={mainAnimationController}
+      >
 
-      <SkyColor />
+        <LoadingSpinner />
 
-      <BackgroundStars />
+        <BackgroundOverlay />
 
-      <Cursor />
+        <SkyColor />
 
-      <HeaderAppBar />
+        <BackgroundStars />
 
-      <LoadingSpinner />
+        <Cursor />
+
+        <NavigationMenu />
+
+        <HeaderAppBar />
 
       <Main data-scroll-container id="main-container">
         <AnimatePresence
@@ -80,12 +74,12 @@ const Page = ({ children, path }) => {
         </AnimatePresence>
       </Main>
 
-      <BottomGradient className="btm-gradient" />
+        <BottomGradient className="btm-gradient" />
 
-      <ProgressCircle />
+        <ProgressCircle />
 
-      <ToolTip />
-    </PageContainer>
+        <ToolTip />
+      </PageContainer>
   )
 }
 

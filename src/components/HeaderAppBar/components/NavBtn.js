@@ -105,7 +105,18 @@ const HiddenText = styled.p`
   text-indent: 99999px;
   pointer-events: none;
 
-`
+`;
+
+const navBtnVariants = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: 1,
+  },
+  transition: {
+    ease: [0.6, 0.01, 0, 0.9],
+    duration: 3,
+  },
+}
 
 const NavBtn = ({ isWhite, toggleMenu, pos, variants = {}, menuIsOpen }) => {
   // useMagnet('.nav-btn', 1.6, 0.51)
@@ -121,20 +132,10 @@ const NavBtn = ({ isWhite, toggleMenu, pos, variants = {}, menuIsOpen }) => {
       iswhite={isWhite}
       menu_open={menuIsOpen.toString()}
       pos={pos}
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity:  1,
-        transition: {
-          delay: 0.6,
-        },
-      }}
-      exit={{
-        opacity: 0,
-        transition: {
-          delay: 0,
-        },
-      }}
       onClick={toggleMenu}
+      
+      variants={navBtnVariants}
+      transition={navBtnVariants.transition}
     >
       {/*<Bars opened={toggleMenu.menuIsOpen} />*/}
 

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect} from 'react'
+import React, { useContext, useEffect, Suspense} from 'react'
 import Hero from './Hero'
 import RecentWorks from './RecentDesigns'
 import Projects from './Projects'
@@ -7,11 +7,12 @@ import { SectionWrapper } from '../../components/Container'
 import BlogPosts from './BlogPosts'
 import { motion } from 'framer-motion'
 import {MotionValueContext} from "../../contexts/MotionStateWrapper";
-import MailUs from "../MailUs";
+import loadable from '@loadable/component';
+// import MailUs from "../MailUs";
 
 let doExit = true;
 
-// const MailUs = React.lazy(() => import('../MailUs'))
+const MailUs = loadable(() => import('../MailUs'))
 
 const containerVariants = {
   exit(){
@@ -34,7 +35,7 @@ const  transition = {
 const HomePage = () => {
 
 
-  const { inView } = useContext(MotionValueContext)
+  const { inView, mainAnimationController } = useContext(MotionValueContext)
 
   useEffect(() => {
     inView.onChange(v => {
@@ -46,7 +47,7 @@ const HomePage = () => {
     < motion.main variants={containerVariants}
                  transition={transition}
                  initial="initial"
-                 animate="animate"
+                 animate={mainAnimationController}
                  exit="exit"
                  custom={{inView: () => inView.get()}}
                  whileInView="inView"
@@ -57,7 +58,7 @@ const HomePage = () => {
       {/*</SectionWrapper>*/}
 
 
-      <RecentWorks />
+     <RecentWorks />
 
       <Projects />
 
@@ -72,6 +73,9 @@ const HomePage = () => {
 
 
       <MailUs />
+      {/* <Suspense  fallback={<footer> fotter is loading </footer>}>
+      <MailUs />
+        </Suspense> */}
 
 
 

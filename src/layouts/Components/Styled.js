@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {motion} from 'framer-motion'
 
-export const PageContainer = styled.div`
+export const PageContainer = styled(motion.div)`
   position: relative;
   display: flex;
   flex-flow: column;
