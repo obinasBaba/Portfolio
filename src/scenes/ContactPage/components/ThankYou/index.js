@@ -1,9 +1,8 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { HeadLineTitle } from '../shared'
 import { Typography } from '@material-ui/core'
-import { length, text } from '../../../../styles/mixins'
-import LineArt from '../../../../components/LineArt'
+import { text } from '../../../../styles/mixins'
 
 const ThankYouContainer = styled.div`
   //border: thin solid red;
@@ -58,10 +57,6 @@ const ThankYou = () => {
           I'll be with you soon.
         </Body>
       </div>
-
-      <ArtContainer className='art-container'>
-        <LineArt/>
-      </ArtContainer>
 
     </ThankYouContainer>
   )

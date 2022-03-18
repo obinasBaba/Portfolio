@@ -19,7 +19,6 @@ export const HeadLineTitle = styled( Typography )`
 export const CustomTextField = styled( MuiTextField ).attrs(() => {
     return {
         'data-pointer' : 'focus',
-        'data-pointer-color': '#5d6c7b'
     }
 })`
   position: relative;

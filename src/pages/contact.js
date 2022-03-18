@@ -7,6 +7,8 @@ import {motion} from 'framer-motion'
 import useToolTip from "../hooks/useToolTip";
 import useRefreshMouseListeners from "../hooks/useRefreshMouseListeners";
 import Seo from "../components/seo";
+import {MotionValueContext} from "../contexts/MotionStateWrapper";
+import useUpdatePath from "../hooks/useUpdatePath";
 
 
 const containerVariants = {
@@ -23,21 +25,11 @@ const containerVariants = {
 
 const Contact = ({path}) => {
 
-  // const loco = useLocoScroll(true);
+  const { mainAnimationController, screenOverlayEvent } = useContext(MotionValueContext)
 
+  const loco = useLocoScroll();
 
-  const {
-    setCurrentPath
-  } = useContext( AppStateContext )
-
-  const {
-    backgroundOverlay
-  } = useContext( BackgroundOverlayStateContext )
-
-  useEffect(() => {
-    setCurrentPath(path)
-  }, [])
-
+  useUpdatePath(path);
 
   useToolTip('[data-tooltip-text]')
   useRefreshMouseListeners('[data-pointer]')
@@ -46,21 +38,19 @@ const Contact = ({path}) => {
       <>
         <Seo title='contact' description='this is the contact page where my visitors can contact me.'/>
 
-        {
-          !backgroundOverlay &&
           <motion.div variants={containerVariants}
                       transition={{
                         duration: 1.3,
                         ease: 'easeOut'
                       }}
                       initial="initial"
-                      animate='animate'
+                      animate={ screenOverlayEvent.get() === 'closed' ? 'animate' :  mainAnimationController}
                       exit="exit"
           >
             <ContactPage/>
             <MailUs/>
           </motion.div>
-        }
+
       </>
 
   )

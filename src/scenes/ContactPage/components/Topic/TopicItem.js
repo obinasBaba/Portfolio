@@ -5,6 +5,7 @@ import {Button, Typography} from '@material-ui/core'
 import {spacing, text} from "../../../../styles/mixins";
 import TopicIllustration from './Topicillustration'
 import {largeUp, xLargeUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
+import useRefreshMouseListeners from "../../../../hooks/useRefreshMouseListeners";
 
 const TopicItemContainer = styled.div`
   position: relative;
@@ -105,6 +106,9 @@ const TopicBody = styled(Typography)`
 
 const TopicItem = ({ title, body, path, selected, ...props }) => {
   const checkboxRef = useRef(null)
+
+
+  useRefreshMouseListeners('.topic-container [data-pointer]')
 
 
   return (

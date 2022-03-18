@@ -5,6 +5,7 @@ import { TextField as MuiTextField } from '@material-ui/core'
 import {spacing, text} from '../../../../styles/mixins'
 import { FieldArray, Field } from 'formik'
 import {largeUp} from "../../../../styles/mixins/breakpoints";
+import useRefreshMouseListeners from "../../../../hooks/useRefreshMouseListeners";
 
 const MessageContainer = styled.div``
 
@@ -18,8 +19,12 @@ const MessageInput = styled.div`
 `
 
 const Message = ({ ...props }) => {
-  return (
-    <MessageContainer>
+
+    useRefreshMouseListeners('.message-container [data-pointer]')
+
+
+    return (
+    <MessageContainer className='message-container' >
       <HeadLineTitle variant="h2">
         cool. What can you tell me about your project?
       </HeadLineTitle>

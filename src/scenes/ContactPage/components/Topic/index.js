@@ -6,6 +6,7 @@ import TopicItem from './TopicItem'
 import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
 import { Field, useField } from 'formik'
 import {largeUp} from "../../../../styles/mixins/breakpoints";
+import useRefreshMouseListeners from "../../../../hooks/useRefreshMouseListeners";
 
 const TopicContainer = styled.div`
   //border: thin solid red;
@@ -47,6 +48,8 @@ const CardRow = styled.div`
 const TopicItemMap = ({ body, title, path, ...props }) => {
   const [field, meta, helpers] = useField(props)
 
+
+
   return (
     <TopicItem
       body={body}
@@ -78,10 +81,12 @@ const Topic = ({ values }) => {
     },
   ]
   const { ufo, design, pentool, prototype } = useLottiAssets()
-  const iconIll = [ufo, design, pentool, prototype]
+  const iconIll = [ufo, design, pentool, prototype];
+
+
 
   return (
-    <TopicContainer>
+    <TopicContainer className='topic-container' >
       <HeadLineTitle variant="h2">
         nice to meet you <span>{values.name}</span>, what can i help you with?
       </HeadLineTitle>

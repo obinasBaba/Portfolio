@@ -78,7 +78,7 @@ const HeaderMeta = () => {
       <motion.div variants={childVariants}
                   transition={transition}
       >
-        <Typography variant="body2">hi@henzzo.space</Typography>
+        <Typography variant="body2">hi@henzzo.com</Typography>
       </motion.div>
 
       <motion.div variants={childVariants}

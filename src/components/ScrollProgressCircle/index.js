@@ -27,16 +27,19 @@ const ProgressCircleContainer = styled.div`
   
   ${spacing('right', 6)};
 
-  z-index: 8;
+  z-index: 7;
+  
+  
   
   svg.circle{
     transition: opacity 100ms ease-out;
   }
   
   &:hover{
+    z-index: 8;
+    
     svg.circle{
-      transition: opacity 100ms ease-in;
-
+      //transition: opacity 100ms ease-in;
       opacity: 0;
     }
   }
@@ -129,7 +132,7 @@ const ScrollProgressCircle = () => {
         <ProgressCircleContainer
             data-pointer="magnet"
             data-pointer-color="#5d6c7b"
-            data-magnet-distance={0.6}
+            data-magnet-distance={0.7}
             data-magnet-attraction={1.6}
             data-tooltip
             data-tooltip-text="Write me a poem..."
@@ -148,22 +151,10 @@ const ScrollProgressCircle = () => {
               height="27"
               viewBox="0 0 27 27"
             >
-              <defs>
-                <clipPath id="clip-path">
-                  <rect
-                    id="Rectangle_1289"
-                    data-name="Rectangle 1289"
-                    width="27"
-                    height="27"
-                    transform="translate(0.5)"
-                  />
-                </clipPath>
-              </defs>
               <g
                 id="Mask_Group_6"
                 data-name="Mask Group 6"
                 transform="translate(-0.5)"
-                clipPath="url(#clip-path)"
               >
                 <g id="phone">
                   <path

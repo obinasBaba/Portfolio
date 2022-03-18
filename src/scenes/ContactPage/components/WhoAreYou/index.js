@@ -31,9 +31,20 @@ const WhoAreYou = ({ errors, ...props }) => {
   const inputLength = useRef(0)
   const [helperTxt, setHelperTxt] = useState('')
 
+  const getGreeting = () => {
+    let hrs = new Date().getHours();
+
+    if (hrs < 12)
+      return 'Good Morning';
+    else if (hrs >= 12 && hrs <= 17)
+      return 'Good Afternoon';
+    else if (hrs >= 17 && hrs <= 24)
+      return 'Good Evening';
+  }
+
   return (
     <WhoContainer>
-      <HeadLineTitle variant="h2">good day human. who are you?</HeadLineTitle>
+      <HeadLineTitle variant="h2">{ getGreeting() } human. who are you?</HeadLineTitle>
 
       <FormContainer>
         <Field

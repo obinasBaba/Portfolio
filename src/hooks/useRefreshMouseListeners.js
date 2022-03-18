@@ -11,5 +11,5 @@ export default function (selector) {
 
     useEffect(() => {
         refreshCursorEventListeners.set(selector)
-    }, [])
+    }, [selector])
 }

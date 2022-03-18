@@ -89,10 +89,8 @@ const ContactPage = () => {
           body: JSON.stringify({
             ...arg
           })
-        })
-            .then(response => response.json())
+        }).then(response => response.json())
             .then(data => {
-              console.log( 'adata: ', data)
               setIdx(idx + 1)
               stepMotionValue.set(stepMotionValue.get() + 1)
 

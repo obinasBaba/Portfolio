@@ -4,6 +4,7 @@ import {HeadLineTitle, CustomTextField} from '../shared'
 import {spacing} from '../../../../styles/mixins'
 import {FieldArray, Field} from 'formik'
 import {largeUp} from "../../../../styles/mixins/breakpoints";
+import useRefreshMouseListeners from "../../../../hooks/useRefreshMouseListeners";
 
 const EmailContainer = styled.div`
   
@@ -29,16 +30,20 @@ const EmailInputContainer = styled.div`
 `
 
 const Email = ({ ...props}) => {
-  return (
-    <EmailContainer>
+
+    useRefreshMouseListeners('.email-container [data-pointer]');
+
+
+    return (
+    <EmailContainer className='email-container'>
 
       <HeadLineTitle variant='h2'>
         Nearly there. How can i reach you ,
       </HeadLineTitle>
 
       <EmailInputContainer >
-        <Field name='email' label='email address' type='text' as={CustomTextField} />
-        <Field name='phone' label='phone no'  as={CustomTextField}/>
+        <Field  data-pointer="focus" name='email' label='email address' type='text' as={CustomTextField} />
+        <Field  data-pointer="focus" name='phone' label='phone no'  as={CustomTextField}/>
       </EmailInputContainer>
 
     </EmailContainer>

@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import styled, { css } from 'styled-components'
-import { length, spacing } from '../../../styles/mixins'
-import { motion } from 'framer-motion'
-import MagnetElement from '../../../helpers/MagnetElement'
-import useMagnet from '../../../hooks/useMagnet'
-import {mediumUp} from "../../../styles/mixins/breakpoints";
+import React from 'react'
+import styled, {css} from 'styled-components'
+import {length} from '../../../styles/mixins'
+import {motion} from 'framer-motion'
 
 // const headerTransition = 'all .3s'
 
@@ -62,44 +59,6 @@ const Btn = styled(motion.button)`
   
 `
 
-const Bars = styled.span`
-  position: absolute;
-  //border: thin solid crimson;
-  height: 3px;
-  left: 0;
-  right: 0;
-  width: 40%;
-  top: 50%;
-  display: block;
-  background-color: var(--theme);
-  margin: auto;
-  border-radius: 550px;
-
-  transition: background-color .35s ease-in-out;
-
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    display: block;
-    border-radius: 555px;
-    background-color: var(--theme);
-    transform: translateX(-50%);
-    transition: background-color .35s ease-in-out;
-    height: 3px;
-    width: 70%;
-  }
-
-  &::before {
-    margin-top: -0.5rem;
-  }
-
-  &::after {
-    margin-top: 0.5rem;
-  }
-`
 
 const HiddenText = styled.p`
   text-indent: 99999px;
