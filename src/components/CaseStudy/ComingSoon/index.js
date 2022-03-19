@@ -26,7 +26,7 @@ const ComingSoonContainer = styled(Container)`
   
 
   ${spacing('pv', 10)};
-  ${spacing('mb', 10)};
+  ${spacing('mb', 20)};
   ${spacing('mt', 30)};
 
   & > :not(:first-child) {

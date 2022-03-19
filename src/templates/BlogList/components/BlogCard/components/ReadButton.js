@@ -65,7 +65,7 @@ const ReadButton = ( {txt, to, index, style} ) => {
                           styl={style}
                           data-tooltip-text='Read Blog'
                           data-pointer='focus'
-                          data-pointer-color='#dbe1e5'
+                          data-pointer-color='#02021e'
 
     >
       <div className="bg" />

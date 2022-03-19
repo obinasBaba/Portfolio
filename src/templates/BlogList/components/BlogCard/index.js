@@ -75,7 +75,7 @@ const BlogCard = ({
   featuredMedia: { publicURL, childImageSharp },
 }) => {
   return (
-    <motion.div>
+    <motion.div >
       <StyledBlogCard media={publicURL}>
         <Thumbnail media={childImageSharp} link={slug} />
         <CardContents

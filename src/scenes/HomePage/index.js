@@ -44,6 +44,7 @@ const HomePage = () => {
 
   return (
     < motion.main variants={containerVariants}
+                  className='homepage-container'
                  transition={transition}
                  initial="initial"
                   animate={ screenOverlayEvent.get() === 'closed' ? 'animate' :  mainAnimationController}

@@ -8,6 +8,7 @@ import useVigozaAssets from '../../../hooks/queries/useVigozaAssets'
 import ComingSoon from '../../../components/CaseStudy/ComingSoon'
 import useProject2Assets from "../../../hooks/queries/useProject2Assets";
 import useProject3Assets from "../../../hooks/queries/useProject3Assets";
+import useUpdatePath from "../../../hooks/useUpdatePath";
 
 const projectDataDefault = {
     title: 'Atgbe Food Delivery',
@@ -28,33 +29,29 @@ const projectDataDefault = {
 }
 
 
-const Project2 = () => {
+const Project3 = ({location}) => {
 
     const {headlineImage} = useProject3Assets();
 
-    const {
-        backgroundOverlay
-    } = useContext(BackgroundOverlayStateContext)
+    useUpdatePath(location.pathname)
+
 
     projectDataDefault.headlineImage = headlineImage.publicURL
 
-    const loco = useLocoScroll(!backgroundOverlay,)
+    const loco = useLocoScroll()
     useToolTip('[data-tooltip-text]')
     useRefreshMouseListeners('[data-pointer]')
 
     return (
-        <>
-            {
-                !backgroundOverlay &&
+
                 <CaseStudy projectData={projectDataDefault}>
 
                     <ComingSoon/>
 
 
                 </CaseStudy>
-            }
-        </>
+
     );
 };
 
-export default Project2;
+export default Project3;

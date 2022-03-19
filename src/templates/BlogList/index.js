@@ -1,21 +1,22 @@
-import React, {useContext, useEffect, useLayoutEffect} from 'react'
+import React, { useContext, useEffect } from 'react'
 import BlogCard from './components/BlogCard'
 import { graphql } from 'gatsby'
-import styled, {css} from 'styled-components'
-import {useMediaQuery, useTheme} from '@material-ui/core'
+import styled, { css } from 'styled-components'
+import { useMediaQuery, useTheme } from '@material-ui/core'
 import BlogList from './components/BlogListContainer'
-import {AppStateContext, BackgroundOverlayStateContext} from '../../contexts/AppStateContext'
+import {
+  AppStateContext,
+  BackgroundOverlayStateContext,
+} from '../../contexts/AppStateContext'
 import useLocoScroll from '../../hooks/useLocoScroll'
 import Moon from '../../components/MoonLight'
 import PenEffect from './components/PenEffect'
-import {gridify} from "../../styles/mixins";
-import useToolTip from "../../hooks/useToolTip";
-import useRefreshMouseListeners from "../../hooks/useRefreshMouseListeners";
-import Seo from "../../components/seo";
+import { gridify } from '../../styles/mixins'
+import useToolTip from '../../hooks/useToolTip'
+import useRefreshMouseListeners from '../../hooks/useRefreshMouseListeners'
+import Seo from '../../components/seo'
 
-const moonStyle = css`
-    
-`
+const moonStyle = css``
 
 const Container = styled.div`
   position: relative;
@@ -52,54 +53,56 @@ const BlogListTemplate = ({
 
   return (
     <div>
-      <Seo title='Blog' description='this is a blog list page where i share my experience as developer'/>
+      <Seo
+        title="Blog"
+        description="this is a blog list page where i share my experience as developer"
+      />
 
-      {
-            !backgroundOverlay && <Container className='blog-container-temp'  >
-                <Moon showMoon={false} pos="fixed" moonStyle={moonStyle} />
-                <PenEffect />
-                <BlogList>
-                    {data.allMarkdownRemark.edges.map(
-                        (
-                            {
-                                node: {
-                                    id,
-                                    excerpt,
-                                    fields: { slug },
-                                    frontmatter: {
-                                        title,
-                                        thumbnail: { publicURL, childImageSharp },
-                                        date,
-                                    },
-                                },
-                            },
-                            index
-                        ) => {
-                            return (
-                                <BlogCard
-                                    title={title}
-                                    date={date}
-                                    key={excerpt}
-                                    featuredMedia={{ publicURL, childImageSharp }}
-                                    body={`${excerpt.substr(0, match ? 250 : 190)} ...`}
-                                    slug={slug}
-                                    index={index}
-                                />
-                            )
-                        }
-                    )}
+        <Container className="blog-container-temp">
+          <Moon showMoon={false} pos="fixed" moonStyle={moonStyle} />
+          <PenEffect />
+          <BlogList>
+            {data.allMarkdownRemark.edges.map(
+              (
+                {
+                  node: {
+                    id,
+                    excerpt,
+                    fields: { slug },
+                    frontmatter: {
+                      title,
+                      thumbnail: { publicURL, childImageSharp },
+                      date,
+                    },
+                  },
+                },
+                index
+              ) => {
+                return (
+                  <BlogCard
+                    title={title}
+                    date={date}
+                    key={excerpt}
+                    featuredMedia={{ publicURL, childImageSharp }}
+                    body={`${excerpt.slice(0, match ? 250 : 190)} ...`}
+                    slug={slug}
+                    index={index}
+                  />
+                )
+              }
+            )}
 
-                    {/*<PageLinks>
+            {/*<PageLinks>
         {currentPage > 1 && <ReadButton txt="Prev" to={previousPage} />}
 
         {currentPage < pageCount && <ReadButton txt="Next" to={nextPage} />}
       </PageLinks>*/}
-                </BlogList>
-            </Container>
-        }
+          </BlogList>
+        </Container>
     </div>
   )
 }
+
 
 // The Page query that accept parameter.
 export const query = graphql`

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useRef, useState} from 'react'
+import React, {useContext, useEffect, useLayoutEffect, useRef, useState} from 'react'
 import Headline from './Headline'
 import ReturnBtn from '../ReturnBtn'
 import { AppStateContext } from '../../contexts/AppStateContext'
@@ -10,8 +10,9 @@ import { bgVariant, transition } from './Headline/variants'
 import { MotionValueContext } from '../../contexts/MotionStateWrapper'
 import ProjectScrollDown from '../../scenes/ProjectPage/components/SideBarTools/ProjectScrollDown'
 import { createPortal } from 'react-dom'
-import {navigate} from "gatsby";
+import {Link, navigate} from "gatsby";
 import NextProject from "./NextProject";
+import useRefreshMouseListeners from "../../hooks/useRefreshMouseListeners";
 
 let args = {
   path: undefined,
@@ -23,12 +24,15 @@ const FixedItems = styled.div`
   left: 3.8%;
   top: 29%;
   bottom: 5%;
-  z-index: 11;
+  z-index: 7;
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: space-between;
   
+  a{
+    
+  }
   
   //border: thin solid red;
 `
@@ -95,9 +99,7 @@ const projectDataDefault = {
   }
 }
 
-const FixedPortal = ({children}) => {
-  return createPortal(children, document && document.body);
-}
+
 
 const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
   const { title, subTitle, about } = projectData
@@ -107,11 +109,14 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
     setCurrentPath,
   } = useContext(AppStateContext)
 
+  useRefreshMouseListeners('[data-pointer]')
+
   const {
     variantsUtil : {fromCaseStudy, isTop, fromProjectList} , moScroll, locoInstance, largeUp
   } = useContext(MotionValueContext)
 
   const [scrolled, setScrolled] = useState(false);
+  const bodyRef =  useRef(null)
   const bgRef = useRef(null)
 
   const moInitial = useMotionValue(fromProjectList.get() ?
@@ -124,6 +129,10 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
 
   const showScrollDown = useMotionValue(0)
   // const [isPresent, safeToRemove] = usePresence()
+
+  useLayoutEffect(() => {
+    bodyRef.current = document.body;
+  }, [])
 
 
   useEffect(() => {
@@ -168,30 +177,28 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
     return () => document.body.classList.remove('blog-clr')
   }, [scrolled])
 
+
+
   const returnClick = (ev) => {
-    ev.preventDefault()
-    let s = scrolled;
-    console.log('scrolled : ', s)
     locoInstance.get().scrollTo(0, {
       easing: [0.6, 0.01, 0, 0.9],
       callback: () => setTimeout(() => navigate(projectData?.backUrl), scrolled ? 350 : 0)
     })
   }
 
+  const FixedPortal = ({children}) => {
+    return createPortal(children, document.body);
+  }
+
   return (
     <>
 
-      <div>
-        <FixedItems>
-          <ReturnBtn to={projectData?.backUrl || '/projects'}
-                     onClick={returnClick} />
+      <>
 
-          <ProjectScrollDown activeIndex={showScrollDown} />
+      </>
 
-        </FixedItems>
-      </div>
 
-      <ProjectContainer className='projectContainer'
+      <ProjectContainer className='projectContainer case-study-container'
                         variants={containerVariants}
                         initial={moInitial.get()}
                         animate={moAnimate.get()}
@@ -204,6 +211,21 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
                           }
                         }}
       >
+
+        {
+            (typeof document !== `undefined`)&& <FixedPortal>
+              <FixedItems>
+                {/*<Link to={projectData?.backUrl || '/projects'}  >*/}
+                <ReturnBtn to={projectData?.backUrl || '/projects'}
+                           tooltip='project list'
+                           onClick={returnClick} />
+                {/*</Link>*/}
+
+                <ProjectScrollDown activeIndex={showScrollDown} />
+
+              </FixedItems>
+            </FixedPortal>
+        }
 
 
         <Headline

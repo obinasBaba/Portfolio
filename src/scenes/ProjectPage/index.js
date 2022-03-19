@@ -60,6 +60,7 @@ const ProjectPage = () => {
 
   return (
     <ProjectPageContainer
+        className='project-work-container'
       variants={parentVariant}
       initial={moVariants.get()}
       animate="animate"

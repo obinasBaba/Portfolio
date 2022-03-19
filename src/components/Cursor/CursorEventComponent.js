@@ -67,10 +67,10 @@ const CursorEventComponent = () => {
     }
 
     const refreshEventListeners = selector => {
-
+        console.log('reresh callback ', selector)
             const pointerElements = document.querySelectorAll(selector)
 
-            pointerElements.forEach(element => {
+            pointerElements?.forEach(element => {
                 element.removeEventListener('mouseenter', handleHover)
                 element.removeEventListener('mouseleave', handleLeave)
 
@@ -100,20 +100,22 @@ const CursorEventComponent = () => {
         }
 
     useEffect(() => {
-        animateFocus(false)
-        animatePointed(false)
+        handleLeave()
     }, [currentPath])
 
     useEffect(() => {
         if (isMobile) return;
 
-        const unsub = refreshCursorEventListeners.onChange(selector => {
-            refreshEventListeners(selector)
+        refreshCursorEventListeners.set('[data-pointer]')
+         refreshCursorEventListeners.attach((selector, reset) => {
+             console.log('passiveEffect: ', selector)
+             handleLeave()
+             refreshEventListeners(selector)
         })
 
-        refreshEventListeners(refreshCursorEventListeners.get())
+        refreshEventListeners('[data-pointer]')
 
-        return () => unsub()
+        // return () => unsub()
 
     }, [isMobile])
 

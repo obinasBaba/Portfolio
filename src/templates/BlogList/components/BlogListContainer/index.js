@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, {useContext, useEffect} from 'react'
 import { Container, Typography } from '@material-ui/core'
 import styled, { css } from 'styled-components'
 import {gridColWidth, spacing, text} from '../../../../styles/mixins'
@@ -7,6 +7,7 @@ import gsap from 'gsap'
 import STrigger from 'gsap/ScrollTrigger'
 import { basicVariants, transition } from '../../../../helpers/variants'
 import {largeUp, mediumUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
+import {MotionValueContext} from "../../../../contexts/MotionStateWrapper";
 
 const BlogListContainer = styled( Container )`
   position: relative;
@@ -86,6 +87,8 @@ const CardContainer = styled.div`
 
 const BlogList = ({ children}) => {
 
+  const { mainAnimationController, screenOverlayEvent } = useContext(MotionValueContext)
+
   const progress = useMotionValue(0);
   // const rotate =  useTransform(rotateValue, [.2, .23], [0, 90]);
   // const opacity =  useTransform(rotateValue, [0, .2, .35], [1, 0, 1]);
@@ -123,8 +126,9 @@ const BlogList = ({ children}) => {
         <BlogListWrapper variants={basicVariants}
                     transition={transition}
                     initial='initial'
-                    animate='animate'
-                    exit='exit'
+                         animate={ screenOverlayEvent.get() === 'closed' ? 'animate' :  mainAnimationController}
+
+                         exit='exit'
         >
 
           <div className="page-title">

@@ -32,13 +32,14 @@ const Contact = ({path}) => {
   useUpdatePath(path);
 
   useToolTip('[data-tooltip-text]')
-  useRefreshMouseListeners('[data-pointer]')
+  useRefreshMouseListeners('.contact-container [data-pointer]')
 
   return (
       <>
         <Seo title='contact' description='this is the contact page where my visitors can contact me.'/>
 
           <motion.div variants={containerVariants}
+                      className='contact-container'
                       transition={{
                         duration: 1.3,
                         ease: 'easeOut'

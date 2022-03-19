@@ -160,7 +160,6 @@ const ToolTip = () => {
     useLayoutEffect(() => {
         // return;
         toolTipsData.onChange(async v => {
-            return;
             if (v.show) {
                 if (v.text instanceof Array) {
                     const {text, timer} = v;

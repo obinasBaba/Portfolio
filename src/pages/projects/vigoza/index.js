@@ -1,11 +1,7 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 import useLocoScroll from '../../../hooks/useLocoScroll'
 import useToolTip from '../../../hooks/useToolTip'
 import useRefreshMouseListeners from '../../../hooks/useRefreshMouseListeners'
-import {
-  AppStateContext,
-  BackgroundOverlayStateContext,
-} from '../../../contexts/AppStateContext'
 import CaseStudy from '../../../components/CaseStudy'
 import MetaTxt from '../../../components/CaseStudy/MetaTxt'
 import Intro from '../../../components/CaseStudy/Intro'
@@ -15,6 +11,7 @@ import Development from '../../../components/CaseStudy/Development'
 import useVigozaAssets from '../../../hooks/queries/useVigozaAssets'
 import useColorAssets from '../../../hooks/queries/useColorAssets'
 import WebView from '../../../components/CaseStudy/WebView'
+import useUpdatePath from '../../../hooks/useUpdatePath'
 
 const projectDataDefault = {
   title: 'Vigoza Digital Agency',
@@ -47,62 +44,49 @@ const projectDataDefault = {
   },
 }
 
+const Vigoza = ({ location }) => {
+  // console.log('vigozaArg: ', arg)
 
-const Vigoza = ({location}) => {
+  const { headlineImage, webView, mobileView, showcase } = useVigozaAssets()
+  const {
+    amber,
+    flame,
+    pearl,
+    spartan,
+    white,
+    fontAby,
+    fontRai,
+  } = useColorAssets()
+  const colors = [amber, flame, pearl, spartan, white]
 
-    // console.log('vigozaArg: ', arg)
+  useUpdatePath(location.pathname)
 
-    const { headlineImage, webView, mobileView, showcase } = useVigozaAssets();
-    const { amber, flame, pearl, spartan, white, fontAby, fontRai } = useColorAssets()
-    const colors = [amber, flame, pearl, spartan, white];
+  projectDataDefault.nextProject.thumbnailUrl = projectDataDefault.headlineImage =
+    headlineImage.publicURL;
+  projectDataDefault.location = location
 
-    const {
-        backgroundOverlay
-    } = useContext(BackgroundOverlayStateContext)
+  const loco = useLocoScroll()
+  useToolTip('[data-tooltip-text]')
 
-    const {
-        setCurrentPath,
-    } = useContext(AppStateContext)
+  return (
+    <CaseStudy projectData={projectDataDefault}>
+      <MetaTxt />
 
-    useEffect(() => {
-        setCurrentPath(location.pathname)
-    }, [])
+      <WebView web={webView} mobile={mobileView} tempWebView={showcase} />
 
-    projectDataDefault.nextProject.thumbnailUrl = projectDataDefault.headlineImage = headlineImage.publicURL
-    projectDataDefault.location = location;
+      <Intro intro={projectDataDefault.intro} />
 
-    const loco =  useLocoScroll(!backgroundOverlay, )
-    useToolTip('[data-tooltip-text]')
-    useRefreshMouseListeners('[data-pointer]')
+      {/*<AnalysisPreparation />*/}
 
-    return (
-        <>
-            {
-                !backgroundOverlay &&
-                <CaseStudy projectData={projectDataDefault} >
+      <ColorPalette colors={colors} />
 
-                    <MetaTxt />
+      <FontUsed fonts={[fontAby, fontRai]} />
 
-                    <WebView web={webView} mobile={mobileView} tempWebView={showcase} />
+      {/*<Concept />*/}
 
+      <Development />
+    </CaseStudy>
+  )
+}
 
-                    <Intro intro={projectDataDefault.intro}/>
-
-
-                    {/*<AnalysisPreparation />*/}
-
-                    <ColorPalette colors={colors} />
-
-                    <FontUsed fonts={[fontAby, fontRai]} />
-
-                    {/*<Concept />*/}
-
-                    <Development />
-
-                </CaseStudy>
-            }
-        </>
-    );
-};
-
-export default Vigoza;
+export default Vigoza

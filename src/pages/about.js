@@ -19,7 +19,7 @@ const About = ({path}) => {
   const loco = useLocoScroll();
 
   useToolTip('[data-tooltip-text]');
-  useRefreshMouseListeners('[data-pointer]');
+  useRefreshMouseListeners('#about [data-pointer]');
 
 
 

@@ -1,12 +1,11 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import useLocoScroll from '../../../hooks/useLocoScroll'
 import useToolTip from '../../../hooks/useToolTip'
 import useRefreshMouseListeners from '../../../hooks/useRefreshMouseListeners'
-import {BackgroundOverlayStateContext} from '../../../contexts/AppStateContext'
 import CaseStudy from '../../../components/CaseStudy'
-import useVigozaAssets from '../../../hooks/queries/useVigozaAssets'
 import ComingSoon from '../../../components/CaseStudy/ComingSoon'
-import useProject2Assets from "../../../hooks/queries/useProject2Assets";
+import useProject2Assets from '../../../hooks/queries/useProject2Assets'
+import useUpdatePath from '../../../hooks/useUpdatePath'
 
 const projectDataDefault = {
     title: 'Gebeya',
@@ -22,37 +21,31 @@ const projectDataDefault = {
         title: 'Atgebe',
         url: '/projects/project3',
         thumbnailUrl: '',
-    }
-
+    },
 }
 
 
-const Project2 = () => {
+const Project2 = ({location}) => {
 
     const {headlineImage} = useProject2Assets();
 
-    const {
-        backgroundOverlay
-    } = useContext(BackgroundOverlayStateContext)
+    useUpdatePath(location.pathname)
+
 
     projectDataDefault.headlineImage = headlineImage.publicURL
 
-    const loco = useLocoScroll(!backgroundOverlay,)
+    const loco = useLocoScroll()
     useToolTip('[data-tooltip-text]')
     useRefreshMouseListeners('[data-pointer]')
 
     return (
-        <>
-            {
-                !backgroundOverlay &&
-                <CaseStudy projectData={projectDataDefault}>
 
-                    <ComingSoon/>
+        <CaseStudy projectData={projectDataDefault}>
 
+            <ComingSoon/>
 
-                </CaseStudy>
-            }
-        </>
+        </CaseStudy>
+
     );
 };
 

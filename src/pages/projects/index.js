@@ -19,8 +19,8 @@ const Projects = ({path}) => {
     setCurrentPath(path)
   }, [])
 
-  useToolTip('[data-tooltip-text]')
-  useCursorEventRefresher('[data-pointer]')
+  useToolTip(' [data-tooltip-text]')
+  useCursorEventRefresher('.project-work-container [data-pointer]')
 
   return (
       <>

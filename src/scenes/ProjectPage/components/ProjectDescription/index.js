@@ -74,6 +74,7 @@ const ProjectDescription = ({ reversed, index, exit, items }) => {
       >
         <MotionBtn
           text="Case-Study"
+          tooltiptext='explore my journey'
           to={link}
           state={{ path: url }}
           margin={false}

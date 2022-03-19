@@ -114,6 +114,10 @@ const MotionBtn = ({
             {...props}
             margin={margin.toString()}
             clr={clr}
+            data-pointer="focus"
+            data-pointer-color="#02021e"
+            data-tooltip
+            data-tooltip-text={tooltiptext}
             ref={btnRef}
             onClick={() => {
                 if (onClick) {
@@ -126,10 +130,6 @@ const MotionBtn = ({
                 <Link
                     to={to}
                     state={state}
-                    data-pointer="focus"
-                    data-pointer-color="#02021e"
-                    data-tooltip
-                    data-tooltip-text={tooltiptext}
                 />
             )}
 

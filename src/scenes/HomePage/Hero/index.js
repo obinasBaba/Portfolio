@@ -14,6 +14,10 @@ const greetingTextVariants = {
     y: 0,
   },
   exit(arg){
+    return {
+      opacity: 0,
+      y: -200,
+    }
 
     console.log('heroExit ::' , arg)
     if ( arg && arg.inView && arg.inView.get() === 'hero'){
@@ -68,25 +72,18 @@ const Hero = () => {
 
   const { inView } = useContext(MotionValueContext)
 
-
-  useEffect(() => {
-      setTimeout(() => {
-          window.fromLoading = false
-        },
-        1000)
-    }, [])
   
   return (
       <HeroContainer variants={{}}
 
-                     onViewportEnter={ e => {
+                /*     onViewportEnter={ e => {
                        inView.set('hero')
                      } }
 
                      onViewportLeave={ e => {
                        inView.set(false)
 
-                     }}
+                     }}*/
       >
 
         <TextContainer variants={textContainerVariants}>

@@ -15,7 +15,7 @@ const IndexPage = ({path}) => {
     useUpdatePath(path);
 
     useToolTip('[data-tooltip-text]')
-    useRefreshMouseListeners('[data-pointer]')
+    useRefreshMouseListeners('.homepage-container [data-pointer]')
 
     return (
         <>
