@@ -20,7 +20,7 @@ function Seo({ description, lang = 'en', meta, title, pathname }) {
             defaultDescription
             siteUrl
             twitterUsername
-            twitterImage
+            thumbnail
             titleTemplate
             image
             author
@@ -33,7 +33,6 @@ function Seo({ description, lang = 'en', meta, title, pathname }) {
 
   const {
     defaultTitle,
-    titleTemplate,
     defaultDescription,
     siteUrl,
     image,
@@ -41,7 +40,7 @@ function Seo({ description, lang = 'en', meta, title, pathname }) {
     twitterUsername,
     thumbnail,
 
-  } = site.siteMetadata
+  } = site.siteMetadata;
 
   const seoMapping = {
     title: title || defaultTitle,
