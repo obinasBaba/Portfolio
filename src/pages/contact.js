@@ -36,7 +36,9 @@ const Contact = ({path}) => {
 
   return (
       <>
-        <Seo title='contact' description='this is the contact page where my visitors can contact me.'/>
+        <Seo title='Contacts' description={`If you want to create a product or you would like to discuss how it could be realized,
+         you're exactly where you're supposed to be to
+          receive advice from experienced specialist.`}/>
 
           <motion.div variants={containerVariants}
                       className='contact-container'

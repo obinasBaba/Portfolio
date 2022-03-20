@@ -25,7 +25,7 @@ const About = ({path}) => {
 
   return (
     <>
-      <Seo title='about' description='this is where i talk about my skills, about me and my process of getting work done'/>
+      <Seo title='About' description='let me tell you about me, my skills and my process of getting work done'/>
       <AboutPage/>
     </>
   )

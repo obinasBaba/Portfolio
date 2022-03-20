@@ -194,7 +194,20 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
     <>
 
       <>
+        {
+            (typeof document !== `undefined`)&& <FixedPortal>
+              <FixedItems>
+                {/*<Link to={projectData?.backUrl || '/projects'}  >*/}
+                <ReturnBtn to={projectData?.backUrl || '/projects'}
+                           tooltip='project list'
+                           onClick={returnClick} />
+                {/*</Link>*/}
 
+                <ProjectScrollDown activeIndex={showScrollDown} />
+
+              </FixedItems>
+            </FixedPortal>
+        }
       </>
 
 
@@ -212,31 +225,12 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
                         }}
       >
 
-        {
-            (typeof document !== `undefined`)&& <FixedPortal>
-              <FixedItems>
-                {/*<Link to={projectData?.backUrl || '/projects'}  >*/}
-                <ReturnBtn to={projectData?.backUrl || '/projects'}
-                           tooltip='project list'
-                           onClick={returnClick} />
-                {/*</Link>*/}
-
-                <ProjectScrollDown activeIndex={showScrollDown} />
-
-              </FixedItems>
-            </FixedPortal>
-        }
-
-
         <Headline
           title={title}
           subTitle={subTitle}
           about={about}
           media={projectData.headlineImage}
         />
-
-
-
 
         <HeadLineBG  variants={bgVariant} transition={transition} />
 

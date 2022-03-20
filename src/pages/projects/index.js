@@ -24,7 +24,8 @@ const Projects = ({path}) => {
 
   return (
       <>
-        <Seo title='projects' description='this are featured project i have worked on.'/>
+        <Seo title='Projects' description='A destination of aesthetic pleasure, here you will get your
+   dose of inspiration, as well as find a possible way to implement your business idea.'/>
         <ProjectPage />
       </>
   )

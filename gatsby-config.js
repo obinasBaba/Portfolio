@@ -1,16 +1,18 @@
 module.exports = {
   siteMetadata: {
-    title: ` henzzo.com`,
+    defaultTitle: ` henzzo.com`,
     titleTemplate: "The Real Hero · %s",
-    url: "https://www.netlify.henzzo.app",
     email: `henokgetachew500@gmail.com`,
-    description: `
-      This site is crafted by me the owner, Henzzo
-       and i use it to show my skill through my projects and
-        hope to inspire and motivate developers like me. I talk about 
-        how i made it in my blogs.
+    defaultDescription: ` 
+      Hi🖖, i am henok, a digital designer &amp; 
+      developer based in addis. I build websites of a different 
+      kind with a design that capture your imagination.
     `,
-    author: `Henzzo`,
+    author: `henzzo`,
+    twitterUsername: "@henzzo_com",
+    siteUrl: "https://henzzo.com",
+    thumbnail: "/thumbnail.jpg",
+    image: "/favicon.svg",
   },
   plugins: [
     {
@@ -143,8 +145,12 @@ module.exports = {
     },
     `gatsby-plugin-gatsby-cloud`,
 
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    // {
+    //   resolve: `gatsby-plugin-canonical-urls`,
+    //   options: {
+    //     siteUrl: `https://henzzo.com`,
+    //   },
+    // },
+
   ],
 }

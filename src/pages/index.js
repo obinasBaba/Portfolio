@@ -21,7 +21,6 @@ const IndexPage = ({path}) => {
         <>
             <Seo
                 title="homepage"
-                description="this is homepage of my portfolio site"
             />
             <HomePage/>
         </>
