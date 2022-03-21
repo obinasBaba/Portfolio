@@ -1,18 +1,18 @@
 module.exports = {
   siteMetadata: {
     defaultTitle: ` henzzo.com`,
-    titleTemplate: "The Real Hero · %s",
+    titleTemplate: 'The Real Hero · %s',
     email: `henokgetachew500@gmail.com`,
     defaultDescription: ` 
-      Hi🖖, i am henok, a digital designer &amp; 
-      developer based in addis. I build websites of a different 
+      Hi🖖,am henok, a digital designer &amp; 
+      developer based in Addis. I build websites of a different 
       kind with a design that capture your imagination.
     `,
     author: `henzzo`,
-    twitterUsername: "@henzzo_com",
-    siteUrl: "https://henzzo.com",
-    thumbnail: "/thumbnail.jpg",
-    image: "/favicon.svg",
+    twitterUsername: '@henzzo_com',
+    siteUrl: 'https://henzzo.com',
+    thumbnail: '/thumbnail.jpg',
+    image: '/favicon.svg',
   },
   plugins: [
     {
@@ -20,7 +20,7 @@ module.exports = {
       options: {
         // You can add multiple tracking ids and a pageview event will be fired for all of them.
         trackingIds: [
-          "G-Y2SV1LE72G", // Google Analytics / GA
+          'G-Y2SV1LE72G', // Google Analytics / GA
           // "AW-CONVERSION_ID", // Google Ads / Adwords / AW
           // "DC-FLOODIGHT_ID", // Marketing Platform advertising products (Display & Video 360, Search Ads 360, and Campaign Manager)
         ],
@@ -73,46 +73,48 @@ module.exports = {
       },
     },
 
-    { //sourcing markdown images
+    {
+      //sourcing markdown images
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `img`,
-        path: `${__dirname}/static/img`
-      }
+        path: `${__dirname}/static/img`,
+      },
     },
-    { //blog
+    {
+      //blog
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `cms`,
-        path: `${__dirname}/src/cms`
-      }
+        path: `${__dirname}/src/cms`,
+      },
     },
 
-    {  // markdown file transformer
+    {
+      // markdown file transformer
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-          "gatsby-remark-relative-images",
+          'gatsby-remark-relative-images',
           `gatsby-plugin-netlify-cms-paths`,
 
           {
             resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 1024,
-              withWebp: true
-            }
+              withWebp: true,
+            },
           },
           {
             resolve: `gatsby-remark-highlight-code`,
             options: {
               terminal: 'carbon',
               theme: 'solarized-light',
-              lineNumbers: true
-            }
+              lineNumbers: true,
+            },
           },
-
-        ]
-      }
+        ],
+      },
     },
 
     {
@@ -124,7 +126,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-layout`,
-      {
+    {
       resolve: `gatsby-plugin-material-ui`,
       options: {
         stylesProvider: {
@@ -136,11 +138,44 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Henzzo Portfolio`,
+        short_name: `henzzo.com`,
         start_url: `/`,
+        background_color: `#02021e`,
+        theme_color: `#02021e`,
         display: `minimal-ui`,
-        icon: `src/images/logo.svg`, // This path is relative to the root of the site.
+        scope: '/',
+        icons: [
+          {
+            src: 'static/logo(513).svg',
+            type: 'image/svg+xml',
+            sizes: '514x546',
+          },{
+            src: 'static/favicon.ico',
+            type: 'image/x-icon',
+            sizes: '241x256',
+          },
+          {
+            src: 'static/logo(197).png',
+            type: 'image/png',
+            sizes: '197x210',
+          },
+          {
+            src: 'static/logo(513).png',
+            type: 'image/png',
+            sizes: '513x546',
+          },
+        ],
+        description: `Hi, am henok, a digital designer &amp; 
+                      developer based in Addis. I build websites of a different 
+                      kind with a design that capture your imagination.`,
+        screenshots: [
+          {
+            src: 'static/thumbnail.jpg',
+            type: 'image/jpg',
+            sizes: '608x322',
+          },
+        ],
       },
     },
     `gatsby-plugin-gatsby-cloud`,
@@ -151,6 +186,5 @@ module.exports = {
     //     siteUrl: `https://henzzo.com`,
     //   },
     // },
-
   ],
 }
