@@ -10,6 +10,7 @@
 //   <AnimatePresence exitBeforeEnter >{element}</AnimatePresence>
 // );
 
+/*
 export const shouldUpdateScroll = ( obj ) => {
 
 
@@ -17,7 +18,7 @@ export const shouldUpdateScroll = ( obj ) => {
   const {pathname, routerProps: { location }, getSavedScrollPosition} = obj;
 
 
-  /*if ( location.action === 'PUSH' )
+  if ( location.action === 'PUSH' )
   {
     console.log('push delayed')
     setTimeout( () => window.scrollTo(0,0), 1000 )
@@ -28,7 +29,7 @@ export const shouldUpdateScroll = ( obj ) => {
     console.log(location, '-- Location')
     console.log(saved, '-- Saved')
     setTimeout( () => window.scrollTo( ...(saved) ), 1000)
-  }*/
+  }
 
   // console.log(pathname)
   // console.log(obj)
@@ -69,3 +70,4 @@ export const shouldUpdateScroll = ( obj ) => {
   return false;
 
 }
+*/

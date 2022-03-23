@@ -8,11 +8,8 @@ import Cursor from '../../components/Cursor'
 import { BottomGradient, Main, PageContainer, SkyColor } from './Styled'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import { MotionValueContext } from '../../contexts/MotionStateWrapper'
-import styled from 'styled-components'
 import BackgroundOverlay from '../../components/ScreenOverlay'
 import NavigationMenu from '../../components/NavigationMenu'
-
-
 
 const Page = ({ children, path }) => {
   const {
@@ -24,8 +21,6 @@ const Page = ({ children, path }) => {
   } = useContext(MotionValueContext)
 
   useEffect(() => {
-    return
-
     setTimeout(() => {
       toolTipsData.set({
         text: [
@@ -36,34 +31,33 @@ const Page = ({ children, path }) => {
         timer: [3500, 4400, 4000],
         show: true,
       })
-    }, 2000)
+    }, 1800)
   }, [])
 
   // const media = useMediaQuery(theme.breakpoints.down('md'))
   // const mediaLarge = useMotionValue(media)
 
   return (
-      <PageContainer
-        id="page-container"
-        variants={{}}
-        initial="initial"
-        exit="exit"
-        animate={mainAnimationController}
-      >
+    <PageContainer
+      id="page-container"
+      variants={{}}
+      initial="initial"
+      exit="exit"
+      animate={mainAnimationController}
+    >
+      <LoadingSpinner />
 
-        <LoadingSpinner />
+      <BackgroundOverlay />
 
-        <BackgroundOverlay />
+      <SkyColor />
 
-        <SkyColor />
+      <BackgroundStars />
 
-        <BackgroundStars />
+      <Cursor />
 
-        <Cursor />
+      <NavigationMenu />
 
-        <NavigationMenu />
-
-        <HeaderAppBar />
+      <HeaderAppBar />
 
       <Main data-scroll-container id="main-container">
         <AnimatePresence
@@ -74,12 +68,12 @@ const Page = ({ children, path }) => {
         </AnimatePresence>
       </Main>
 
-        <BottomGradient className="btm-gradient" />
+      <BottomGradient className="btm-gradient" />
 
-        <ProgressCircle />
+      <ProgressCircle />
 
-        <ToolTip />
-      </PageContainer>
+      <ToolTip />
+    </PageContainer>
   )
 }
 
