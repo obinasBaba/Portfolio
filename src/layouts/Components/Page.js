@@ -17,21 +17,32 @@ const Page = ({ children, path }) => {
     inView,
     largeUp,
     toolTipsData,
-    mainAnimationController,
+    mainAnimationController, screenOverlayEvent,
   } = useContext(MotionValueContext)
 
   useEffect(() => {
-    setTimeout(() => {
-      toolTipsData.set({
-        text: [
-          '🖖 hello human, welcome to my space.',
-          "careful, i haven't done building this ship, you may find some broken parts",
-          'aside from that enjoy..,',
-        ],
-        timer: [3500, 4400, 4000],
-        show: true,
-      })
-    }, 1800)
+
+    const sayHello = () => {
+      setTimeout(() => {
+
+        toolTipsData.set({
+          text: [
+            '🖖 hello human, welcome to my space.',
+            "careful, i haven't done building this ship, you may find some broken parts",
+            'aside from that enjoy..,',
+          ],
+          timer: [3500, 4400, 4000],
+          show: true,
+        })
+      }, 2000)
+    }
+
+    screenOverlayEvent.onChange(state => {
+      if (state !== 'closed') return;
+      sayHello()
+    })
+
+
   }, [])
 
   // const media = useMediaQuery(theme.breakpoints.down('md'))

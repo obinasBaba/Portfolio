@@ -11,7 +11,7 @@ module.exports = {
     author: `henzzo`,
     twitterUsername: '@henzzo_com',
     siteUrl: 'https://henzzo.com',
-    thumbnail: '/thumbnail.jpg',
+    thumbnail: '/thumbnail2.jpg',
     image: '/favicon.svg',
   },
   plugins: [
@@ -147,23 +147,27 @@ module.exports = {
         scope: '/',
         icons: [
           {
-            src: 'static/logo(513).svg',
+            src: 'logo(513).svg',
             type: 'image/svg+xml',
             sizes: '514x546',
           },{
-            src: 'static/favicon.ico',
+            src: 'favicon.ico',
             type: 'image/x-icon',
             sizes: '241x256',
           },
           {
-            src: 'static/logo(197).png',
+            src: 'logo(197).png',
             type: 'image/png',
             sizes: '197x210',
+          },{
+            src: 'logo_194.png',
+            type: 'image/png',
+            sizes: '194x194',
           },
           {
-            src: 'static/logo(513).png',
+            src: 'logo(513).png',
             type: 'image/png',
-            sizes: '513x546',
+            sizes: '514x546',
           },
         ],
         description: `Hi, am henok, a digital designer &amp; 
@@ -171,7 +175,7 @@ module.exports = {
                       kind with a design that capture your imagination.`,
         screenshots: [
           {
-            src: 'static/thumbnail.jpg',
+            src: 'thumbnail.jpg',
             type: 'image/jpg',
             sizes: '608x322',
           },
