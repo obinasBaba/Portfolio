@@ -130,7 +130,6 @@ const Projects = () => {
   useEffect(() => {
 
      import( '../../../styles/projectFonts.css').then( v => {
-       console.log('fontloaded in project: ', v)
      } )
 
 

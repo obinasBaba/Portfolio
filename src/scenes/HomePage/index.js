@@ -12,7 +12,7 @@ import loadable from '@loadable/component';
 
 let doExit = true;
 
-const MailUs = loadable(() => import('../MailUs'))
+const MailUs = loadable(() => import('../../components/MailUs'))
 
 const containerVariants = {
   exit(){
