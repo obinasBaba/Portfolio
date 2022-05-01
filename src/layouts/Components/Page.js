@@ -28,13 +28,12 @@ const Page = ({ children, path }) => {
         toolTipsData.set({
           text: [
             '🖖 hello human, welcome to my space.',
-            "careful, i haven't done building this ship, you may find some broken parts",
-            'aside from that enjoy..,',
+            "i haven't done building this ship, you may find some broken parts",
           ],
-          timer: [3500, 4400, 4000],
+          timer: [3500, 4400],
           show: true,
         })
-      }, 2000)
+      }, 1800)
     }
 
     screenOverlayEvent.onChange(state => {

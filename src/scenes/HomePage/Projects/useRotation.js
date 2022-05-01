@@ -16,21 +16,26 @@ export default function () {
     const [refresh, setRefresh] = useState(false)
 
     const rotate = useTransform(y, latest => {
-        return map(latest, 0, limit.get(), 0,   matches ? 360 : 50)
+        return map(latest, 0, limit.get(), 0,   matches ? 360 : 70)
     })
 
     const x = useSpring( refresh ? rotate : new MotionValue(0) , {
-        mass: 1,
-        damping: 15,
+        mass: 0.5,
+        damping: 10,
         stiffness: 50,
     })
 
     useEffect(() => {
+        if (matches)
+            x.destroy();
+
         setRefresh(!refresh)
     }, [])
 
-    if (matches)
+    if (matches) {
+        x.destroy();
         return rotate
+    }
 
     return x;
 

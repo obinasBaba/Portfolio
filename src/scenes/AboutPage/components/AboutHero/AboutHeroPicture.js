@@ -28,10 +28,21 @@ const HeroPictureContainer = styled.div`
     padding-top: 5vmax;
     //max-width: 100%;
     
+    path{
+      fill-opacity: .4;
+    }
+    
 
-    image#image0_159_105 {
+    image {
       filter: grayscale(150%);
     }
+    
+   g#mix-blend{
+      mix-blend-mode: luminosity;
+    }
+    mask{
+     mask-type: alpha;
+   };
   }
 
   ${mediumUp( css`
@@ -106,7 +117,7 @@ const AboutHeroPicture = () => {
       >
         <mask
           id="mask0_159_105"
-          style={{ ['mask-type']: 'alpha' }}
+          // style={{ ['mask-type']: 'alpha' }}
           maskUnits="userSpaceOnUse"
           x="0"
           y="0"
@@ -181,7 +192,9 @@ const AboutHeroPicture = () => {
           />
         </mask>
         <g mask="url(#mask0_159_105)">
-          <g style={{ ['mix-blend-mode']: 'luminosity' }}>
+          <g id='mix-blend'
+             // style={{ ['mix-blend-mode']: 'luminosity' }}
+          >
             <rect
               width="533.684"
               height="650.932"

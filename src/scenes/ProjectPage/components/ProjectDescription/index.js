@@ -70,6 +70,8 @@ const ProjectDescription = ({ reversed, index, exit, items }) => {
         customStyle={css`
           //overflow: initial;
           padding-right: 15px;
+          color: white;
+          margin-top: 3px;
         `}
       >
         <MotionBtn

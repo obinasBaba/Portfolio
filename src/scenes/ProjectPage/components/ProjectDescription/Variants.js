@@ -15,7 +15,7 @@ export const containerVariant = {
 
 export const btnTxtVariants = {
   initial :{
-    y: '120%',
+    y: '125%',
   },
 
   animate: {
@@ -23,13 +23,13 @@ export const btnTxtVariants = {
   },
 
   initialFp: {
-    y: '120%',
+    y: '125%',
   },
   animateFp: {
     y: '0%',
   },
   exitFp: {
-    y: '120%',
+    y: '125%',
   },
 
   exit( c ){

@@ -41,11 +41,11 @@ const TextWrapperContainer = styled.div`
     ${spacing('gap', 1)};
 
     h4 {
-      ${spacing('ml', 5)};
+      ${spacing('ml', 4)};
     }
 
     .hero-intro {
-      ${spacing('ml', 8.5)};
+      ${spacing('ml', 4)};
       ${spacing('mt', 3)};
     }
   `)};
