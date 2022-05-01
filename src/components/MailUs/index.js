@@ -3,12 +3,12 @@ import styled from 'styled-components'
 import { spacing, text } from '../../styles/mixins'
 import Logo from './logo.svg'
 import { AppStateContext } from '../../contexts/AppStateContext'
-import { GradientText } from '../../components/GradientText'
+import { GradientText } from '../GradientText'
 import FooterMeta from './FooterMeta'
-import Footer from '../../components/Footer'
-import GalaxyButton from '../ContactPage/components/BottomBar/GalaxyButton'
+import Footer from '../Footer'
+import GalaxyButton from '../../scenes/ContactPage/components/BottomBar/GalaxyButton'
 import useOnScreen from '../../hooks/useOnScreen'
-import MotionBtn from "../../components/MotionBtn";
+import MotionBtn from "../MotionBtn";
 import {Typography} from "@material-ui/core";
 
 const MailUsContainer = styled.section`

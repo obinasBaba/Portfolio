@@ -22,7 +22,7 @@ const useLoadingFonts = ({ setBackgroundOverlay, backgroundOverlay }) => {
             show: false,
           })
           setBackgroundOverlay(false)
-        }, 1700)
+        }, 2700)
 
         Promise.all([icons.load()]).then(() => {
           document.body.classList.add('no-cursor')

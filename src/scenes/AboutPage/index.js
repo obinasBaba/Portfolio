@@ -10,7 +10,7 @@ import { MotionValueContext } from '../../contexts/MotionStateWrapper'
 import loadable from "@loadable/component";
 
 
-const MailUs = loadable(() => import('../MailUs'))
+const MailUs = loadable(() => import('../../components/MailUs'))
 
 
 const AboutPageContainer = styled(motion.div)`

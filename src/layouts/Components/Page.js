@@ -17,7 +17,7 @@ const Page = ({ children, path }) => {
     inView,
     largeUp,
     toolTipsData,
-    mainAnimationController, screenOverlayEvent
+    mainAnimationController, screenOverlayEvent,
   } = useContext(MotionValueContext)
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const Page = ({ children, path }) => {
     }
 
     screenOverlayEvent.onChange(state => {
-      if (state != 'closed') return;
+      if (state !== 'closed') return;
       sayHello()
     })
 

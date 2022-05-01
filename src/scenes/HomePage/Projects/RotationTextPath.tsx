@@ -1,9 +1,15 @@
-import React, {useContext, useEffect, useRef} from "react";
-import styled, { css } from "styled-components";
-import { gsap } from "gsap";
-import { motion, useAnimation, Variants } from "framer-motion";
-import {Link} from "gatsby";
-import {MotionValueContext} from "../../../contexts/MotionStateWrapper";
+import React, { useContext, useRef } from 'react'
+import styled, { css } from 'styled-components'
+import { gsap } from 'gsap'
+import {
+  motion,
+  useAnimation,
+  useMotionTemplate,
+  Variants,
+} from 'framer-motion'
+import { Link } from 'gatsby'
+import { MotionValueContext } from '../../../contexts/MotionStateWrapper'
+import useRotation from './useRotation'
 
 const vars = css`
   margin: 0;
@@ -57,6 +63,12 @@ const Container = styled(motion.section)`
 
     .circles__text-path {
       border: thin solid red;
+    }
+  }
+  
+  svg{
+    g.circle-g{
+      transition: transform .200ms ease-in-out !important;
     }
   }
 
@@ -172,11 +184,11 @@ const circleSvgVariants = {
 
 const circleTxtVariants: Variants = {
   initial: {
-    opacity: 0,
-    scale: 0.75,
+    opacity: 1,
+    scale: 1,
   },
 
-  inView(custom) {
+  inView(custom) { // not using this
     return {
       scale: 1,
       opacity: 1,
@@ -238,11 +250,11 @@ const circleTxtVariants: Variants = {
 
 const btnVariants = {
   initial: {
-    opacity: 0,
-    scale: 0.8,
+    opacity: 1,
+    scale: 1,
   },
 
-  inView: {
+  inView: {  // not using this
     scale: 1,
     opacity: 1,
   },
@@ -303,36 +315,18 @@ const RotationCircleText = () => {
       length: 836,
     },
   ]
+  const {
+    moScroll: { y, limit },
+  } = useContext(MotionValueContext)
 
 
-  useEffect(() => {
+ /* const rotate = useTransform(y, latest => {
+    return map(latest, 0, limit.get(), 0, 360)
+  })*/
 
-    gsap.set('svg.circles .circle-g', { transformOrigin: '50% 50%' })
+  const rotate = useRotation()
 
-    const track = document.querySelector<HTMLElement>('#projects')
 
-    setTimeout(() => {
-      scrollTween.current =
-        gsap.timeline().to(
-          [
-            ...Array.from(
-              document.querySelectorAll('.rotation-circle g.circle-g')
-            ),
-          ],
-          {
-            rotation: i => (i % 2 ? '-=60' : '+=60'),
-            scrollTrigger: {
-              trigger: '#projects',
-              scroller: '[data-scroll-container]',
-              scrub: 1,
-              start: () => 'top 10',
-              end: () => '+=' + track?.offsetHeight,
-            },
-          }
-        )
-    })
-
-  }, [])
 
   return (
     <Container
@@ -341,11 +335,11 @@ const RotationCircleText = () => {
       animate={controller}
       initial="initial"
       exit='exit'
-      whileInView="inView"
-      viewport={{
+      // whileInView="inView"
+      /*viewport={{
         amount: 'some',
         once: true,
-      }}
+      }}*/
     >
       <motion.svg
         className="circles"
@@ -362,20 +356,23 @@ const RotationCircleText = () => {
           <path id="circle-4" d="M567.5,700.5A133,133 0 1 1833.5,700.5A133,133 0 1 1567.5,700.5" />
         </defs>
 
-        {texts.map(({ text, link, length }, index) => (
-          <motion.g className="circle-g" key={index}>
-            <motion.text
-              className={`circles__text circles__text--${index + 1}`}
-              variants={circleTxtVariants}
-              transition={transition}
-              custom={{ idx: index }}
-            >
-              <textPath className="circles__text-path" xlinkHref={link} aria-label="" textLength={length}>
-                {text}
-              </textPath>
-            </motion.text>
-          </motion.g>
-        ))}
+        {texts.map(({ text, link, length }, index) => {
+
+          let dir =  index % 2 === 0 ? useMotionTemplate`-${rotate}deg` : useMotionTemplate`${rotate}deg`;
+
+              return <motion.g className="circle-g" style={{rotate: dir}}   key={index}>
+                <motion.text
+                    className={`circles__text circles__text--${index + 1}`}
+                    variants={circleTxtVariants}
+                    transition={transition}
+                    custom={{ idx: index }}
+                >
+                  <textPath className="circles__text-path" xlinkHref={link} aria-label="" textLength={length}>
+                    {text}
+                  </textPath>
+                </motion.text>
+              </motion.g>
+        })}
       </motion.svg>
 
       <motion.button
