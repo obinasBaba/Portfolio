@@ -1,15 +1,11 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { spacing, text } from '../../styles/mixins'
 import Logo from './logo.svg'
-import { AppStateContext } from '../../contexts/AppStateContext'
 import { GradientText } from '../GradientText'
 import FooterMeta from './FooterMeta'
 import Footer from '../Footer'
-import GalaxyButton from '../../scenes/ContactPage/components/BottomBar/GalaxyButton'
-import useOnScreen from '../../hooks/useOnScreen'
-import MotionBtn from "../MotionBtn";
-import {Typography} from "@material-ui/core";
+import MotionBtn from '../MotionBtn'
 
 const MailUsContainer = styled.section`
   position: relative;

@@ -127,7 +127,7 @@ const Hero = () => {
           <Intro variants={introContainerVariants}
                  transition={introContainerVariants.transition}>
             <Typography className='intro-txt' variant={'h5'}>
-              I strongly believe in S-O-L-I-D front-end, less frame-work, more
+              ...Firmly standing in S-O-L-I-D front-end, <br/> less frame-work, more
               engineering patterns!
             </Typography>
           </Intro>

@@ -37,7 +37,6 @@ const Desc = styled.p`
   
   ${smallUp( css`
     font-weight: 900;
-    ${ title( 2 ) };
 
   ` )};
   
@@ -93,7 +92,7 @@ const Info = () => {
         <a href='/' target='_blank'  rel="noopener noreferrer" >
           <RightArrowLink lineLength='75%'
                           txt='checkout my blog site.'
-                          tooTipTxt='i built my own blog-site!'
+                          tooTipTxt='sry, my blog-site is temporarily down'
           />
         </a>
 

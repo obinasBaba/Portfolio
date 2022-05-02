@@ -1,20 +1,15 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import styled, { css } from 'styled-components'
-import {
-  length,
-  spacing,
-  text,
-} from '../../styles/mixins'
+import { length, spacing, text } from '../../styles/mixins'
 
 import Hashnode from '../../assets/images/brands/hashnode.inline.svg'
 import Linkedin from '../../assets/images/brands/linkedin.inline.svg'
 import Twitter from '../../assets/images/brands/twitter.inline.svg'
 import Github from '../../assets/images/brands/github.inline.svg'
 import Border from './border.inline.svg'
-import {Container, useMediaQuery, useTheme} from '@material-ui/core'
+import { Container, useMediaQuery, useTheme } from '@material-ui/core'
 import useOnScreen from '../../hooks/useOnScreen'
-import { MotionValueContext } from "../../contexts/MotionStateWrapper";
-import {largeUp, mediumDown, mediumUp} from "../../styles/mixins/breakpoints";
+import { largeUp, mediumDown, mediumUp } from '../../styles/mixins/breakpoints'
 
 const FooterContainer = styled.div`
   position: relative;
@@ -23,7 +18,7 @@ const FooterContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  
+
   //border: thick solid crimson;
 
   ${spacing('mv', 5)};
@@ -32,7 +27,7 @@ const FooterContainer = styled.div`
   ${largeUp(css`
     flex-direction: row;
     ${spacing('mb', 3)};
-    ${spacing('mt', 0)};
+    ${spacing('mt', 5)};
   `)};
 
   @media screen and (min-width: 768px) {
@@ -73,6 +68,7 @@ const Social = styled.ul`
     text-indent: -9999px;
     width: 40px;
     height: 40px;
+    max-width: 3.5vmax;
 
     ${mediumUp(css`
       ${length('width', 6)}
