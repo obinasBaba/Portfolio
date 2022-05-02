@@ -37,7 +37,6 @@ const Desc = styled.p`
   
   ${smallUp( css`
     font-weight: 900;
-    ${ title( 2 ) };
 
   ` )};
   

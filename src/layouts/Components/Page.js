@@ -55,9 +55,9 @@ const Page = ({ children, path }) => {
       exit="exit"
       animate={mainAnimationController}
     >
-      {/*<LoadingSpinner />*/}
+      <LoadingSpinner />
 
-      {/*<BackgroundOverlay />*/}
+      <BackgroundOverlay />
 
       <SkyColor />
 

@@ -21,7 +21,7 @@ const FooterMetaContainer = styled(Container)`
 
   ${mediumUp(css`
     // ${spacing('mb', 4)};
-    ${spacing('mv', 0)};
+    ${spacing('mv', )};
     flex-flow: row wrap;
   `)};
 `
