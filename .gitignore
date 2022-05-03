@@ -5,8 +5,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-src/trash
-src/trash/*
+trash
+trash/*
 
 # Runtime data
 pids
@@ -71,5 +71,7 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 
-./src/trash/
-./src/trash/*
+./trash/
+trash/**
+!/trash/
+!/trash/**
