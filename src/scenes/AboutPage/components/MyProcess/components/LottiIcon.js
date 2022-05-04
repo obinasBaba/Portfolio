@@ -1,8 +1,8 @@
 import React, {useEffect, useRef} from 'react'
 import lotti  from  'lottie-web';
 import styled, {css} from 'styled-components'
-import useOnScreen from '../../../../../hooks/useOnScreen'
 import {motion, useMotionValue} from "framer-motion";
+import useOnScreen from '../../../../../hooks/useOnScreen'
 import useLotti from "../../../../../helpers/useLotti";
 
 
@@ -36,7 +36,7 @@ const IllustrationContainer = styled( motion.div )`
   ` };
 `
 
-const LottiIcon = ({path, rocket, inView}) => {
+function LottiIcon({path, rocket, inView}) {
 
   const lottiContainerRef = useRef(null)
   const lottiRef= useLotti(path, lottiContainerRef )
@@ -55,7 +55,7 @@ const LottiIcon = ({path, rocket, inView}) => {
   }, [inView])
 
 
-  /*useEffect(() => {
+  /* useEffect(() => {
     lotti.destroy(path)
 
     let r = 1;
@@ -78,7 +78,7 @@ const LottiIcon = ({path, rocket, inView}) => {
       })
 
     }
-  }, [])*/
+  }, []) */
 
   return (
     <IllustrationContainer ref={lottiContainerRef} rocket={rocket}/>

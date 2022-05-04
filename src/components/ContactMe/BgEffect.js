@@ -47,7 +47,7 @@ const BgEffect = ({pos}) => {
       <svg xmlns="http://www.w3.org/2000/svg" width="809" height="643" viewBox="0 0 809 643">
         <defs>
           <clipPath id="clip-path">
-            <rect id="Rectangle_106" data-name="Rectangle 106" width="809" height="643" transform="translate(557)" fill="#614848" stroke="#707070" stroke-width="1"/>
+            <rect id="Rectangle_106" data-name="Rectangle 106" width="809" height="643" transform="translate(557)" fill="#614848" stroke="#707070" strokeWidth="1"/>
           </clipPath>
         </defs>
         <g id="Mask_Group_7" data-name="Mask Group 7" transform="translate(-557)"

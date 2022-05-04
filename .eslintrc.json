@@ -1,0 +1,88 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "airbnb",
+    "prettier"
+  ],
+  "parserOptions": {
+    "presets": [
+      "@babel/preset-react"
+    ],
+    "parser": "@babel/eslint-parser",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "requireConfigFile": false,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "react-hooks",
+    "jsx",
+    "prettier",
+    "unicorn"
+  ],
+  "rules": {
+    "quotes": "off",
+    "no-unused-vars": "warn",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js"
+        ]
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "import/extensions": [
+      "off",
+      {
+        "js": "never",
+        "json": "never"
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/no-unescaped-entities": "off",
+    "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-no-useless-fragment": "warn",
+    "no-multi-assign": "off",
+    "import/no-unresolved": "off",
+    "no-plusplus": "off",
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "required": {
+          "every": [
+            "id"
+          ]
+        }
+      }
+    ]
+  },
+  "ignorePatterns": [
+    "./trash/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.js",
+        "*.jsx",
+        "*.ts",
+        "*.tsx"
+      ]
+    }
+  ]
+}

@@ -67,7 +67,7 @@ const textContainerVariants = {
   }
 }
 
-const Hero = () => {
+function Hero() {
   // const { logo } = useHeaderAssets();
 
   const { inView } = useContext(MotionValueContext)
@@ -83,7 +83,7 @@ const Hero = () => {
                      onViewportLeave={ e => {
                        inView.set(false)
 
-                     }}*/
+                     }} */
       >
 
         <TextContainer variants={textContainerVariants}>
@@ -126,7 +126,7 @@ const Hero = () => {
 
           <Intro variants={introContainerVariants}
                  transition={introContainerVariants.transition}>
-            <Typography className='intro-txt' variant={'h5'}>
+            <Typography className='intro-txt' variant="h5">
               ...Firmly standing in S-O-L-I-D front-end, <br/> less frame-work, more
               engineering patterns!
             </Typography>

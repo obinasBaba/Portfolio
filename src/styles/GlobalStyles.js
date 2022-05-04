@@ -58,6 +58,7 @@ export const GlobalStyle = createGlobalStyle`
     --medium: #5d6c7b;
 
     --theme: #a4b5c0;
+    --medium-blue-color: #3719ca;
     //color: rgb(120, 128, 158);
 
     --dark: #02021e;

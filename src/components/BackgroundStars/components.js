@@ -9,6 +9,14 @@ export const Galaxy = styled(motion.div)`
   bottom: 0;
   right: 0;
   pointer-events: none;
+  //border: thick solid red;
+
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#072142), color-stop(#061c37), color-stop(#07182b), color-stop(#061220), to(#020b16));
+  background-image: -webkit-linear-gradient(top, #072142, #061c37, #07182b, #061220, #020b16);
+  background-image: -o-linear-gradient(top, #072142, #061c37, #07182b, #061220, #020b16);
+  background-image: linear-gradient(to bottom, #072142, #061c37, #07182b, #061220, #020b16);
+
+
 `
 
 export const Wrapper = styled( motion.div )`

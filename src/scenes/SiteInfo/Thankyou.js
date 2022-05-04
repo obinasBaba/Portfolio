@@ -29,7 +29,7 @@ const Number = styled.div`
 `
 
 
-const ThankYou = () => {
+function ThankYou() {
   return (
     <ContactContainer>
 

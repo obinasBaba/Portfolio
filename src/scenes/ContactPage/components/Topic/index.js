@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import styled, {css} from 'styled-components'
 import { Typography, Checkbox } from '@material-ui/core'
+import { Field, useField } from 'formik'
 import {spacing} from '../../../../styles/mixins'
 import TopicItem from './TopicItem'
 import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
-import { Field, useField } from 'formik'
 import {largeUp} from "../../../../styles/mixins/breakpoints";
 import useRefreshMouseListeners from "../../../../hooks/useRefreshMouseListeners";
 
@@ -45,7 +45,7 @@ const CardRow = styled.div`
   ` )};
 `
 
-const TopicItemMap = ({ body, title, path, ...props }) => {
+function TopicItemMap({ body, title, path, ...props }) {
   const [field, meta, helpers] = useField(props)
 
 
@@ -61,7 +61,7 @@ const TopicItemMap = ({ body, title, path, ...props }) => {
   )
 }
 
-const Topic = ({ values }) => {
+function Topic({ values }) {
   const topics = [
     {
       title: 'Not sure',
@@ -92,10 +92,10 @@ const Topic = ({ values }) => {
       </HeadLineTitle>
 
       <CardRow>
-        {topics.map(({ body, title }, idx) => {
-          return (
+        {topics.map(({ body, title }, idx) => 
+           (
             <Field
-              name={'topic'}
+              name="topic"
               body={body}
               path={iconIll[idx]}
               value={title}
@@ -104,7 +104,7 @@ const Topic = ({ values }) => {
             />
           )
           // return <TopicItem body={body} title={title} path={iconIll[idx]} />
-        })}
+        )}
       </CardRow>
     </TopicContainer>
   )

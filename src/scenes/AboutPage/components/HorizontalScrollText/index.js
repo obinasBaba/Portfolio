@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import styled, {css} from "styled-components";
+import {motion, useMotionTemplate} from "framer-motion"
 import {spacing} from "../../../../styles/mixins";
 import {largeUp} from "../../../../styles/mixins/breakpoints";
 import useMo from "../../../../components/ScrollGallery/useMo";
-import {motion, useMotionTemplate} from "framer-motion"
 
 const ScrollText = styled.section`
   padding: 3rem;
@@ -51,7 +51,7 @@ const ScrollText = styled.section`
 `
 
 
-const HorizontalScrollText = () => {
+function HorizontalScrollText() {
 
 
 
@@ -78,6 +78,6 @@ const HorizontalScrollText = () => {
 
         </ScrollText>
     );
-};
+}
 
 export default HorizontalScrollText;

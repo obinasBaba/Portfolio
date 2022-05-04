@@ -11,9 +11,9 @@ const useLoadingFonts = ({ setBackgroundOverlay, backgroundOverlay }) => {
 
     document.body.classList.remove('no-cursor')
 
-    let elianto = new FontLoaded('Elianto-Regular')
+    const elianto = new FontLoaded('Elianto-Regular')
     // let poppins = new FontLoaded('Poppins Black')
-    let icons = new FontLoaded('shapes')
+    const icons = new FontLoaded('shapes')
 
     Promise.all([elianto.load()])
       .then(() => {

@@ -1,9 +1,9 @@
 import React, {useRef, useState} from 'react'
 import styled, {css} from 'styled-components'
 import { Typography } from '@material-ui/core'
+import { motion } from 'framer-motion'
 import {spacing, length, text} from '../../../../styles/mixins'
 import useLotti from '../../../../helpers/useLotti'
-import { motion } from 'framer-motion'
 import {largeUp} from "../../../../styles/mixins/breakpoints";
 import Card from "../MyProcess/components/Card";
 import {GradientText, GradientTextStyle} from "../../../../components/GradientText";
@@ -65,7 +65,7 @@ const Illustration = styled.div`
   margin-bottom: -2.5rem;
 `
 
-const SkillColumn = ({ path, title, text, list }) => {
+function SkillColumn({ path, title, text, list }) {
   const lottiContainerRef = useRef(null)
   const [inView, setInView] = useState(false)
 

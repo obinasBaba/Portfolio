@@ -1,8 +1,8 @@
 // noinspection JSIgnoredPromiseFromCall
 
 import React, { useContext, useEffect, useRef } from 'react'
-import { List, OthersContainer, Title } from './components'
 import { motion, useAnimation, useMotionValue } from 'framer-motion'
+import { List, OthersContainer, Title } from './components'
 
 import one from './img/img.png'
 import two from './img/img_4.png'
@@ -79,7 +79,7 @@ const titleVariants = {
 
 
 
-const Others = ({ auth, kklLuzern, udemy, active }) => {
+function Others({ auth, kklLuzern, udemy, active }) {
 
 
   const cancelId = useRef(null)
@@ -126,12 +126,12 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
        translateY(${lastMousePos.current.translation.y - window.innerHeight/2}px)`;
 
 
-    /*// Scale goes from 0 to 100 for mouseDistance values between 0 to 100
+    /* // Scale goes from 0 to 100 for mouseDistance values between 0 to 100
     lastMousePos.current.displacement.x =
       lerp(lastMousePos.current.displacement.x, mouseX.get(), 0.1);
 
     lastMousePos.current.displacement.y =
-      lerp(lastMousePos.current.displacement.y, mouseY.get(), 0.1);*/
+      lerp(lastMousePos.current.displacement.y, mouseY.get(), 0.1); */
     // x1,x2,y1,y2
 
    /* const mouseDistance =
@@ -141,7 +141,7 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
          mouseY.get());
 
     dmScale.current = Math.min(mouseDistance, 100);
-    feDisplacementMapEl.current.scale.baseVal = dmScale.current;*/
+    feDisplacementMapEl.current.scale.baseVal = dmScale.current; */
 
 
 
@@ -151,9 +151,7 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
 
 
   return (
-    <>
-
-      <OthersContainer ref={containerRef}
+    <OthersContainer ref={containerRef}
                        variants={containerVariants}
       >
 
@@ -225,7 +223,7 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
 
           {
             titles.map(({title, tags, desc}, idx) => {
-              let onHoverStart = () => {
+              const onHoverStart = () => {
                 hoverIndex.set(idx)
                 svgController.start('hover')
               }
@@ -243,8 +241,6 @@ const Others = ({ auth, kklLuzern, udemy, active }) => {
 
         </List>
       </OthersContainer>
-
-    </>
   )
 }
 

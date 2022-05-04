@@ -2,7 +2,7 @@ const projects = require('./projects')
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 
-exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
+/*exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
   if (stage === "build-html" || stage === "develop-html") {
     actions.setWebpackConfig({
       module: {
@@ -15,7 +15,8 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
       },
     })
   }
-}
+}*/
+
 
 // creating 'slug' field for URL string
 exports.onCreateNode = ({ node, getNode, actions }) => {
@@ -49,7 +50,7 @@ exports.createPages = async ({ graphql, actions }) => {
       gatsbyImageData(quality: 100, formats: [AUTO, WEBP, AVIF], placeholder: BLURRED)
     }
       }
-      preview3: file(relativePath: { eq: "sections/projects/food.png" }) {      
+      preview3: file(relativePath: { eq: "sections/projects/food.png" }) {
         publicURL
         childImageSharp {
       gatsbyImageData(quality: 100, formats: [AUTO, WEBP, AVIF], placeholder: BLURRED)

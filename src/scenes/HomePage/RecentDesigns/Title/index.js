@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react'
 import styled, { css } from 'styled-components'
 import { Container, useMediaQuery, useTheme } from "@material-ui/core";
+import {useTransform,motion} from 'framer-motion'
 import {
   length,
   spacing
@@ -9,8 +10,6 @@ import HeadlineTitle from '../../../../components/Headline'
 import {
   AppStateContext
 } from "../../../../contexts/AppStateContext";
-import {useTransform} from 'framer-motion'
-import {motion} from 'framer-motion'
 import { MotionValueContext } from "../../../../contexts/MotionStateWrapper";
 import LoadStateContext from "../../../../contexts/LoadStateContext";
 import {useProjectSvg} from "../../../../hooks/queries/useProjectSvg";
@@ -76,7 +75,7 @@ const LogoLink = styled.a`
   
 `
 
-const Title = () => {
+function Title() {
 
   const { moScroll } = useContext(MotionValueContext)
   const { circledText, dribbleRed } = useProjectSvg();

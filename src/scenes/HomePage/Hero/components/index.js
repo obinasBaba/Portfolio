@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { motion } from 'framer-motion'
 import {
   gridColWidth,
   gridify,
@@ -6,7 +7,6 @@ import {
   text,
 
 } from '../../../../styles/mixins'
-import { motion } from 'framer-motion'
 import {largeUp, mediumUp, smallUp, xLargeUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
 
 export const HeroContainer = styled(motion.section)`

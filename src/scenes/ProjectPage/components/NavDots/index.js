@@ -77,7 +77,7 @@ const parentVariant = {
 }
 
 
-const NavDots = ({activeIndex}) => {
+function NavDots({activeIndex}) {
   // const {activeIndex} = props;
   const anchors = ['one', 'two', 'three', 'four']
 

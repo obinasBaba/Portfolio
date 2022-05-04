@@ -20,20 +20,20 @@ const WavyLinesContainer = styled.div`
   }
 `
 
-const WavyLines = () => {
+function WavyLines() {
 
-  let width, height, center;
-  let points = 10;
-  let smooth = true;
+  let width; let height; let center;
+  const points = 10;
+  const smooth = true;
   let path;
   let p2;
   let mousePos;
   let pathHeight = 0;
 
-  //noisiness
+  // noisiness
   const noiseScale = 1550; // speed
   const noiseRange = 50; // range of distortion
-  let isNoisy = false;
+  const isNoisy = false;
 
   const canvasRef = useRef(null)
 
@@ -47,7 +47,7 @@ const WavyLines = () => {
     p2.add(paper.view.bounds.leftCenter);
 
     for (let i = 1; i < points; i++) {
-      let point = new paper.Point(width / points * i , center.y);
+      const point = new paper.Point(width / points * i , center.y);
       path.add(point);
       p2.add(new paper.Point(width / points * -i , center.y))
     }
@@ -91,8 +91,8 @@ const WavyLines = () => {
 
 
 
-    let bigCoordinates = [];
-    let bigCoordinates2 = [];
+    const bigCoordinates = [];
+    const bigCoordinates2 = [];
 
 
     paper.view.onMouseMove = event => {
@@ -116,8 +116,8 @@ const WavyLines = () => {
       // calculate noise value for each point at that frame
       path.segments.forEach((segment, i) => {
 
-        //get new noise value
-        //we divide event.count by noiseScale to get a very smooth value
+        // get new noise value
+        // we divide event.count by noiseScale to get a very smooth value
         const noiseX = noiseObjects[i].noise2D(event.count / noiseScale, 0);
         const noiseX2 = noiseObjects2[i].noise2D(event.count / noiseScale, 0);
 
@@ -138,7 +138,7 @@ const WavyLines = () => {
         const newY = bigCoordinates[i][1] + distortionY;  // accessing y
         const newY2 = bigCoordinates[i][1] + distortionY2;  // accessing y
 
-        //set new (noisy) coordinate of point
+        // set new (noisy) coordinate of point
         segment.point.set(newX, newY);
         p2.segments[i].point.set( newX2, newY2 )
       });

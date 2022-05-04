@@ -1,34 +1,33 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React, {useContext, useLayoutEffect} from 'react'
+import React, { useContext, useLayoutEffect } from 'react'
 import ProjectPage from '../../scenes/ProjectPage'
 import useToolTip from '../../hooks/useToolTip'
 import useCursorEventRefresher from '../../hooks/useRefreshMouseListeners'
-import {AppStateContext, BackgroundOverlayStateContext} from "../../contexts/AppStateContext";
+import { AppStateContext } from "../../contexts/AppStateContext";
 import Seo from "../../components/seo";
-import {MotionValueContext} from "../../contexts/MotionStateWrapper";
 
-const Projects = ({path}) => {
+function Projects( { path } ){
 
 
     const {
-    setCurrentPath
-  } = useContext( AppStateContext )
+        setCurrentPath
+    } = useContext( AppStateContext )
 
-  useLayoutEffect(() => {
-    setCurrentPath(path)
-  }, [])
+    useLayoutEffect( () => {
+        setCurrentPath( path )
+    }, [] )
 
-  useToolTip(' [data-tooltip-text]')
-  useCursorEventRefresher('.project-work-container [data-pointer]')
+    useToolTip( ' [data-tooltip-text]' )
+    useCursorEventRefresher( '.project-work-container [data-pointer]' )
 
-  return (
-      <>
-        <Seo title='Projects' description='A destination of aesthetic pleasure, here you will get your
+    return (
+        <>
+            <Seo title='Projects' description='A destination of aesthetic pleasure, here you will get your
    dose of inspiration, as well as find a possible way to implement your business idea.'/>
-        <ProjectPage />
-      </>
-  )
+            <ProjectPage/>
+        </>
+    )
 }
 
 export default Projects

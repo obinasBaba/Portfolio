@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { length, spacing, text, title } from '../../../../styles/mixins'
 import { Link } from 'gatsby'
+import { length, spacing, text, title } from '../../../../styles/mixins'
 import logo from './images/logo.svg'
 import RightArrowLink from '../../Experiments/components/ExperimentTrack/RightArrowLink'
 import {
@@ -77,7 +77,7 @@ const BlogEffect = styled.div`
   ` )};
 `
 
-const Info = () => {
+function Info() {
   return (
     <InfoTxt>
 

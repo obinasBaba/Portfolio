@@ -36,8 +36,7 @@ export const btnTxtVariants = {
 
     if (c && c.path && c && c.path.startsWith('/projects'))
       return {}
-    else
-      return {
+    return {
         y: '120%',
       }
 
@@ -129,8 +128,7 @@ export const letterVariant = {
 
     if (c && c.path && c && c.path.startsWith('/projects'))
       return {}
-    else
-      return {
+    return {
         opacity: 0,
         // y: '100%',
         scale: .8,

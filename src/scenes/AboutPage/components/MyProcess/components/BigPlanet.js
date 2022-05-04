@@ -28,7 +28,7 @@ const Planet = styled.div`
   ); 
 `
 
-const BigPlanet = ({progress}) => {
+function BigPlanet({progress}) {
 
 
   return (

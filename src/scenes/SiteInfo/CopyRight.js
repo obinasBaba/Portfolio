@@ -1,13 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 
-const CopyContainer = styled.div`
-  display: flex;
-  flex-flow: column;
-  align-items: flex-start;
-`
-
-const CopyRight = () => {
+function CopyRight() {
   return (
     <div>
       <h3>CopyRight</h3>

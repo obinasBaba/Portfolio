@@ -145,23 +145,23 @@ export const Css = () => {
         <defs>
           <linearGradient id="paint0_linear" x1="31.934" y1="76.68" x2="31.934" y2="55.076"
                           gradientUnits="userSpaceOnUse">
-            <stop offset=".387" stop-color="#D1D3D4" stop-opacity="0"/>
-            <stop offset="1" stop-color="#D1D3D4"/>
+            <stop offset=".387" stopColor="#D1D3D4" stopOpacity="0"/>
+            <stop offset="1" stopColor="#D1D3D4"/>
           </linearGradient>
           <linearGradient id="paint1_linear" x1="58.926" y1="65.905" x2="58.926" y2="43.449"
                           gradientUnits="userSpaceOnUse">
-            <stop offset=".387" stop-color="#D1D3D4" stop-opacity="0"/>
-            <stop offset="1" stop-color="#D1D3D4"/>
+            <stop offset=".387" stopColor="#D1D3D4" stopOpacity="0"/>
+            <stop offset="1" stopColor="#D1D3D4"/>
           </linearGradient>
           <linearGradient id="paint2_linear" x1="18.941" y1="86.316" x2="70.827" y2="86.316"
                           gradientUnits="userSpaceOnUse">
-            <stop stop-color="#E8E7E5"/>
-            <stop offset="1" stop-color="#fff"/>
+            <stop stopColor="#E8E7E5"/>
+            <stop offset="1" stopColor="#fff"/>
           </linearGradient>
           <linearGradient id="paint3_linear" x1="16.554" y1="48.946" x2="72.886" y2="48.946"
                           gradientUnits="userSpaceOnUse">
-            <stop stop-color="#E8E7E5"/>
-            <stop offset="1" stop-color="#fff"/>
+            <stop stopColor="#E8E7E5"/>
+            <stop offset="1" stopColor="#fff"/>
           </linearGradient>
         </defs>
       </svg>

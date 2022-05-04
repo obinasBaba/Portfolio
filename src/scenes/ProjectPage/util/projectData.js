@@ -1,5 +1,5 @@
-import useProjectsAssets from '../../../hooks/queries/useProjectsAssets'
 import {useAnimation} from 'framer-motion'
+import useProjectsAssets from '../../../hooks/queries/useProjectsAssets'
 
 export const useProjectData = () => {
   const { auth, kklLuzern, udemy, ...listAssets } = useProjectsAssets()

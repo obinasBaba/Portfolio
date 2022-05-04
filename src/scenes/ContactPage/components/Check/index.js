@@ -1,7 +1,7 @@
 import React from 'react'
-import {HeadLineTitle} from '../shared'
 import styled from 'styled-components'
 import {Typography} from '@material-ui/core'
+import {HeadLineTitle} from '../shared'
 import {spacing, text} from '../../../../styles/mixins'
 
 const CheckColumn = styled.div`
@@ -48,7 +48,7 @@ const CheckBody = styled( Typography )`
 
 `
 
-const Check = ({values}) => {
+function Check({values}) {
 
   const checkData = [
     {
@@ -82,7 +82,7 @@ const Check = ({values}) => {
         {
           checkData.map(({title, data}, idx) =>
             <InputItem>
-              <CheckTitle varaint='subtitle2' gutterBottom={true}>{title}</CheckTitle>
+              <CheckTitle varaint='subtitle2' gutterBottom>{title}</CheckTitle>
               <CheckBody varaint='subtitle2'>{data}</CheckBody>
             </InputItem>)
         }

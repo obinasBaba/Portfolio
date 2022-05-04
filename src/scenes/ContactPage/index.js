@@ -1,7 +1,10 @@
 import React, {useMemo, useState} from 'react'
 import styled from 'styled-components'
-import { spacing } from '../../styles/mixins'
 import { Button, Container, Typography } from '@material-ui/core'
+import {AnimatePresence, motion, useMotionValue, AnimateSharedLayout, useAnimation} from 'framer-motion'
+import { Formik, Form } from 'formik'
+import * as yup from 'yup'
+import { spacing } from '../../styles/mixins'
 import HeaderMeta from './components/HeaderMeta'
 import WhoAreYou from './components/WhoAreYou'
 import BottomBar from './components/BottomBar'
@@ -9,9 +12,6 @@ import Topic from './components/Topic'
 import Message from './components/Message'
 import Email from './components/Email'
 import Check from './components/Check'
-import {AnimatePresence, motion, useMotionValue, AnimateSharedLayout, useAnimation} from 'framer-motion'
-import { Formik, Form } from 'formik'
-import * as yup from 'yup'
 import ThankYou from './components/ThankYou'
 import { transition } from './components/shared'
 
@@ -64,7 +64,7 @@ const basicTransition = {
   ease: 'easeOut',
 }
 
-const ContactPage = () => {
+function ContactPage() {
   const [idx, setIdx] = useState(0)
 
   const stepMotionValue = useMotionValue(1)
@@ -76,9 +76,8 @@ const ContactPage = () => {
     if (steps[idx].stepName === 'check') {
 
       if (control.get() === 'loading' || control.get().startsWith('error'))
-        return control.set('errorClick' + Math.random() * Math.random())
-      else
-      {
+        return control.set(`errorClick${  Math.random() * Math.random()}`)
+      
         control.set('loading')
         fetch("https://formsubmit.co/ajax/henokgetachew500@gmail.com", {
           method: "POST",
@@ -96,7 +95,7 @@ const ContactPage = () => {
 
             })
             .catch(error => console.log(error));
-      }
+      
     }
 
     if (idx + 1 !== steps.length) {
@@ -198,8 +197,7 @@ const ContactPage = () => {
           validateOnChange={false}
           validationSchema={steps[idx].schema}
           onSubmit={nextStep}
-          render={({ values, submitForm, errors, validateField }) => {
-            return (
+          render={({ values, submitForm, errors, validateField }) => (
               <Form >
                 <AnimateSharedLayout type='crossfade' >
 
@@ -253,8 +251,7 @@ const ContactPage = () => {
                 </AnimateSharedLayout>
 
               </Form>
-            )
-          }}
+            )}
         />
       </ContactWrapper>
     </ContactPageContainer>

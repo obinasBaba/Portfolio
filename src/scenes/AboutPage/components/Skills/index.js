@@ -44,7 +44,7 @@ const SkillRow = styled.div`
 
 `
 
-const Skills = () => {
+function Skills() {
 
     const theme = useTheme()
     const matches = useMediaQuery(theme.breakpoints.up('xxl'))

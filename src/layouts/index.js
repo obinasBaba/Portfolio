@@ -11,7 +11,7 @@ import {GlobalStyle} from '../styles/GlobalStyles';
 
 export default function Layout({ children, path }) {
   return (
-    <React.Fragment>
+    <>
 
       <Helmet>
         <meta
@@ -33,7 +33,7 @@ export default function Layout({ children, path }) {
 
         </ThemeProvider>
       </StyledThemeProvider>
-    </React.Fragment>
+    </>
 
   )
 }

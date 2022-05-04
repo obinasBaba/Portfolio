@@ -12,7 +12,7 @@ const RecentDesignWrapper = styled.section`
 
 `
 
-const RecentWorks = () => {
+function RecentWorks() {
 
 
   return (

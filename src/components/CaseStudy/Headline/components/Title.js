@@ -1,8 +1,8 @@
 import React from 'react'
-import { transition} from '../variants'
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import {spacing, title} from '../../../../styles/mixins'
+import { transition } from '../variants'
+import { spacing, titleTxt } from '../../../../styles/mixins'
 
 const HeaderTitle = styled( motion.h1 )`
   font-weight: 700;
@@ -13,8 +13,8 @@ const HeaderTitle = styled( motion.h1 )`
   font-family: 'Poppins Black', serif;
   word-break: break-word;
 
-  ${spacing('mt', 2)}
-  ${title(3.35)};
+  ${spacing( 'mt', 2 )}
+  ${titleTxt( 3.35 )};
 
   .word {
     display: inline-block;
@@ -28,17 +28,17 @@ const HeaderTitle = styled( motion.h1 )`
 `
 
 
-const Title = ( {title} ) => {
-  return (
-    <HeaderTitle className="title"
-               variants={{}}
-               transition={transition}
-    >
-      {title.split(' ').map((word, i) => (
-        <motion.span key={word + i} className="word">{word}&#160;</motion.span>
-      ))}
-    </HeaderTitle>
-  )
+function Title({ titleTxt }) {
+    return (
+        <HeaderTitle className="titleTxt"
+                     variants={{}}
+                     transition={transition}
+        >
+            {titleTxt.split( ' ' ).map( ( word, i ) => (
+                <motion.span key={word + i} className="word">{word}&#160;</motion.span>
+            ) )}
+        </HeaderTitle>
+    )
 }
 
 export default Title

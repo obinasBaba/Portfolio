@@ -1,8 +1,8 @@
 import React from 'react'
 import styled, {css} from 'styled-components'
-import {gridColWidth, gridify, spacing, text} from '../../../../styles/mixins'
 import {Container, Typography} from '@material-ui/core'
 import {motion} from "framer-motion";
+import {gridColWidth, gridify, spacing, text} from '../../../../styles/mixins'
 import {largeUp, mediumUp} from "../../../../styles/mixins/breakpoints";
 import AboutHeroPicture from "./AboutHeroPicture";
 import TextWrapper from "./TextContainer";
@@ -106,7 +106,7 @@ const Text = styled( Typography )`
 
 const aboutHeroVariants = {
   animate(arg){
-    let loading = window.fromLoading
+    const loading = window.fromLoading
 
     return {
       transition: {
@@ -118,7 +118,7 @@ const aboutHeroVariants = {
 }
 
 
-const AboutHero = () => {
+function AboutHero() {
 
   return (
     <AboutHeroContainer maxWidth='lg'  >

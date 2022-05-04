@@ -1,10 +1,10 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+import { motion } from 'framer-motion'
 import {
   spacing,
 
 } from '../../../../../styles/mixins'
-import { motion } from 'framer-motion'
 import {largeUp, mediumUp, smallDown, xxLargeUp} from "../../../../../styles/mixins/breakpoints";
 import Border from "../../../../../components/Footer/border.inline.svg";
 import Dribbble from "../../../../../assets/images/brands/dribbble.inline.svg";
@@ -131,7 +131,7 @@ const InfoBar = styled.div`
 
 
 
-const Item = ({  imgUrl, title, index, link}) => {
+function Item({  imgUrl, title, index, link}) {
 
 
   return (

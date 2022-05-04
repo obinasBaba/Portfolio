@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { HeadLineTitle } from '../shared'
 import { Typography } from '@material-ui/core'
+import { HeadLineTitle } from '../shared'
 import { text } from '../../../../styles/mixins'
 
 const ThankYouContainer = styled.div`
@@ -39,7 +39,7 @@ const ArtContainer = styled.div`
   }
 `
 
-const ThankYou = () => {
+function ThankYou() {
 
   return (
     <ThankYouContainer>

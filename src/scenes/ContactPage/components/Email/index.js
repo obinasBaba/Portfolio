@@ -1,8 +1,8 @@
 import React from 'react'
 import styled, {css} from 'styled-components'
+import {FieldArray, Field} from 'formik'
 import {HeadLineTitle, CustomTextField} from '../shared'
 import {spacing} from '../../../../styles/mixins'
-import {FieldArray, Field} from 'formik'
 import {largeUp} from "../../../../styles/mixins/breakpoints";
 import useRefreshMouseListeners from "../../../../hooks/useRefreshMouseListeners";
 
@@ -29,7 +29,7 @@ const EmailInputContainer = styled.div`
 
 `
 
-const Email = ({ ...props}) => {
+function Email({ ...props}) {
 
     useRefreshMouseListeners('.email-container [data-pointer]');
 

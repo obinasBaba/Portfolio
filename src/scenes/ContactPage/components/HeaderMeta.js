@@ -1,8 +1,8 @@
 import React from 'react'
 import styled, {css} from 'styled-components'
-import {spacing} from '../../../styles/mixins'
 import { Typography } from '@material-ui/core'
 import {motion} from 'framer-motion'
+import {spacing} from '../../../styles/mixins'
 import {transition} from './shared'
 import {largeUp, mediumUp} from "../../../styles/mixins/breakpoints";
 
@@ -68,7 +68,7 @@ const childVariants = {
 }
 
 
-const HeaderMeta = () => {
+function HeaderMeta() {
   return (
     <HeaderMetaContainer variants={metaVariants}
                          transition={transition}

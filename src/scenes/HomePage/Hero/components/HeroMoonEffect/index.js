@@ -1,8 +1,8 @@
 import React, {useEffect, useRef} from 'react';
-import {gridColWidth, spacing} from "../../../../../styles/mixins";
 import styled, {css} from "styled-components";
-import { mediumUp, xLargeUp} from "../../../../../styles/mixins/breakpoints";
 import {motion} from 'framer-motion';
+import {gridColWidth, spacing} from "../../../../../styles/mixins";
+import { mediumUp, xLargeUp} from "../../../../../styles/mixins/breakpoints";
 
 const HeroMoonEffectContainer = styled( motion.div )`
   position: relative;
@@ -175,7 +175,7 @@ const moonTransition = {
 
 }
 
-const HeroMoonEffect = () => {
+function HeroMoonEffect() {
 
     const lottiRef = useRef(null)
     const ref = useRef(null)
@@ -239,7 +239,7 @@ const HeroMoonEffect = () => {
                 </motion.g>
                 <defs>
                     <filter id="filter0_df_151_75" x="188.473" y="0.141052" width="284.633" height="290.593"
-                            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
                         <feFlood floodOpacity="0" result="BackgroundImageFix"/>
                         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
                                        result="hardAlpha"/>
@@ -252,7 +252,7 @@ const HeroMoonEffect = () => {
                         <feGaussianBlur stdDeviation="20" result="effect2_foregroundBlur_151_75"/>
                     </filter>
                     <filter id="filter1_df_151_75" x="233.473" y="45.1411" width="202.633" height="208.593"
-                            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
                         <feFlood floodOpacity="0" result="BackgroundImageFix"/>
                         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
                                        result="hardAlpha"/>
@@ -265,7 +265,7 @@ const HeroMoonEffect = () => {
                         <feGaussianBlur stdDeviation="1" result="effect2_foregroundBlur_151_75"/>
                     </filter>
                     <filter id="filter2_df_151_75" x="0" y="65" width="539" height="195" filterUnits="userSpaceOnUse"
-                            color-interpolation-filters="sRGB">
+                            colorInterpolationFilters="sRGB">
                         <feFlood floodOpacity="0" result="BackgroundImageFix"/>
                         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
                                        result="hardAlpha"/>
@@ -275,7 +275,7 @@ const HeroMoonEffect = () => {
                         <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.72 0"/>
                         <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_151_75"/>
                         <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_151_75" result="shape"/>
-                        {/*<feGaussianBlur stdDeviation="0" result="effect2_foregroundBlur_151_75"/>*/}
+                        {/* <feGaussianBlur stdDeviation="0" result="effect2_foregroundBlur_151_75"/> */}
                     </filter>
                 </defs>
             </motion.svg>
@@ -300,6 +300,6 @@ const HeroMoonEffect = () => {
 
         </HeroMoonEffectContainer>
     );
-};
+}
 
 export default HeroMoonEffect;

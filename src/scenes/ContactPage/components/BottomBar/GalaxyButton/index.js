@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import styled, {css} from 'styled-components'
 import {Typography} from '@material-ui/core'
-import {spacing, text} from '../../../../../styles/mixins'
 import {motion, useAnimation, useCycle, useMotionValue} from 'framer-motion'
+import {spacing, text} from '../../../../../styles/mixins'
 import {largeUp} from "../../../../../styles/mixins/breakpoints";
 
 const GalaxyButtonContainer = styled( motion.button )`
@@ -110,7 +110,7 @@ const transition = {
   ease: [0.6, 0.01, 0, 0.9]
 }
 
-const GalaxyButton = ({text, buttonType=1, stateValue, ...props}) => {
+function GalaxyButton({text, buttonType=1, stateValue, ...props}) {
 
   const control = useAnimation()
   const errorControl = useAnimation()

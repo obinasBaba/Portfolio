@@ -16,11 +16,9 @@ export const HeadLineTitle = styled( Typography )`
   
 `
 
-export const CustomTextField = styled( MuiTextField ).attrs(() => {
-    return {
+export const CustomTextField = styled( MuiTextField ).attrs(() => ({
         'data-pointer' : 'focus',
-    }
-})`
+    }))`
   position: relative;
   flex: 1;
   -webkit-appearance: none;

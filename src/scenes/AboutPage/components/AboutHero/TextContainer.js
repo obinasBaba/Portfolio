@@ -1,9 +1,9 @@
 import React from 'react'
 import styled, {css} from 'styled-components'
-import {spacing, text} from '../../../../styles/mixins'
 import {Typography} from '@material-ui/core'
-import {mediumUp, xLargeUp} from '../../../../styles/mixins/breakpoints'
 import {motion} from "framer-motion";
+import {spacing, text} from '../../../../styles/mixins'
+import {mediumUp, xLargeUp} from '../../../../styles/mixins/breakpoints'
 
 const TextWrapperContainer = styled.div`
   display: flex;
@@ -92,7 +92,7 @@ const introTxtVariants = {
     }
 }
 
-const TextWrapper = () => {
+function TextWrapper() {
     return (
         <TextWrapperContainer>
             <motion.div variants={helloTxtVariants}
@@ -103,7 +103,7 @@ const TextWrapper = () => {
 
             <motion.div className='intro-container' variants={introTxtVariants} transition={introTxtVariants.transition}>
 
-                <Typography variant="h4" gutterBottom={true}>
+                <Typography variant="h4" gutterBottom>
                     I create progress by designing and developing digital experiences,
                 </Typography>
 

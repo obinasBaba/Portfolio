@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useRef } from 'react'
 import styled, { css } from 'styled-components'
+import { motion, useSpring, useTransform } from 'framer-motion'
+import {Link} from "gatsby";
 import {
   gridMultiplayer,
   length,
   spacing,
 } from '../../../styles/mixins'
-import { motion, useSpring, useTransform } from 'framer-motion'
 import HeadlineTitle from '../../../components/Headline'
 import RotationTextPath from './RotationTextPath'
 import { MotionValueContext } from '../../../contexts/MotionStateWrapper'
-import {Link} from "gatsby";
 import {largeUp} from "../../../styles/mixins/breakpoints";
 
 
@@ -102,7 +102,7 @@ const config = {
   damping: 20,
 }
 
-let planetVariants = {
+const planetVariants = {
   initial: {
     scale: 1,
   },
@@ -112,7 +112,7 @@ let planetVariants = {
   }
 };
 
-const Projects = () => {
+function Projects() {
   const containerRef = useRef(null)
   const {
     mouse: { mouseY, mouseX }, inView
@@ -126,7 +126,7 @@ const Projects = () => {
   const ySmall = useTransform(yBig, y => y / 8)
   const xSmall = useTransform(xBig, x => x / 6)
 
-  //transform
+  // transform
   useEffect(() => {
 
      import( '../../../styles/projectFonts.css').then( v => {
@@ -173,7 +173,7 @@ const Projects = () => {
                   }}
       />
 
-      <HeadlineTitle title={'Projects'} mb={3} subtitle={'Case Studies'} />
+      <HeadlineTitle title="Projects" mb={3} subtitle="Case Studies" />
 
       <ScrollPlanet data-scroll data-scroll-speed="-3">
         <Planet className="planet-left" style={{ y: yBig, x: xBig }} variants={planetVariants}/>

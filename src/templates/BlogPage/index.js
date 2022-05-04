@@ -1,19 +1,16 @@
-import React, {useContext, useEffect, useLayoutEffect} from 'react'
+import React, { useContext, useLayoutEffect } from 'react'
 import { graphql } from 'gatsby'
+import styled from 'styled-components'
+import { motion } from 'framer-motion'
 import HeadLine from './components/Headline'
 import Article from './components/Article'
 import MoreBlog from './components/MoreBlog'
-import styled from 'styled-components'
 import useLocoScroll from '../../hooks/useLocoScroll'
-import {AppStateContext, BackgroundOverlayStateContext} from '../../contexts/AppStateContext'
-import {motion} from 'framer-motion'
-import {basicVariants, transition} from '../../helpers/variants'
+import { AppStateContext, BackgroundOverlayStateContext } from '../../contexts/AppStateContext'
+import { transition } from '../../helpers/variants'
 import useToolTip from "../../hooks/useToolTip";
 import useRefreshMouseListeners from "../../hooks/useRefreshMouseListeners";
 import Seo from "../../components/seo";
-import STrigger from 'gsap/ScrollTrigger'
-
-
 
 
 const BlogContainer = styled( motion.div )`
@@ -31,123 +28,122 @@ const GradientBg = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background-image: linear-gradient(
-    137.81deg,
+  background-image: linear-gradient(137.81deg,
     #e7a28f -13.52%,
-    #f9d6ac 41.89%,
-    #fbfefc 96.77%
-  );
+  #f9d6ac 41.89%,
+  #fbfefc 96.77%);
 `
 
-export const containerVariant = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1
-  },
-  exit: {
-    opacity: 0,
-  }
+const containerVariant = {
+    initial: {
+        opacity: 0,
+    },
+    animate: {
+        opacity: 1
+    },
+    exit: {
+        opacity: 0,
+    }
 }
 
 
-const BlogPage = ({data, path, ...other}) => {
-  const { title, date, tags, thumbnail } = data.currentBlog.frontmatter;
+function BlogPage( { data, path } ){
+    const { title, date, tags, thumbnail } = data.currentBlog.frontmatter;
 
-  const { setCurrentPath } = useContext(AppStateContext)
+    const { setCurrentPath } = useContext( AppStateContext )
 
-  const { backgroundOverlay } = useContext(BackgroundOverlayStateContext)
+    const { backgroundOverlay } = useContext( BackgroundOverlayStateContext )
 
-  useLocoScroll(!backgroundOverlay)
-
-
-  useLayoutEffect( () => {
-    setCurrentPath(path)
-    setTimeout(() => {
-
-    }, 5000)
-  }, [] )
-
-  useToolTip('[data-tooltip-text]')
-  useRefreshMouseListeners('[data-pointer]')
+    useLocoScroll( !backgroundOverlay )
 
 
-  return (
-      <>
+    useLayoutEffect( () => {
+        setCurrentPath( path )
+        setTimeout( () => {
 
-        <Seo title={title || 'blog'} description='this is a blog list page where i share my experience as developer'/>
+        }, 5000 )
+    }, [] )
+
+    useToolTip( '[data-tooltip-text]' )
+    useRefreshMouseListeners( '[data-pointer]' )
 
 
-        {
-        !backgroundOverlay && <BlogContainer id='blog-container'
-                                             variants={containerVariant}
-                                             transition={transition}
-                                             initial='initial'
-                                             animate='animate'
-                                             exit='exit'
-        >
+    return (
+        <>
 
-          <div >
-            <HeadLine
-                title={title}
-                date={date}
-                tags={tags ? tags : []}
-                thumbnail={thumbnail}
-            />
-          </div>
+            <Seo title={title || 'blog'}
+                 description='this is a blog list page where i share my experience as developer'/>
 
-          <Article html={data.currentBlog.html} />
 
-          <MoreBlog data={data.nextBlog.frontmatter} slug={data.nextBlog.fields.slug}/>
+            {
+                !backgroundOverlay && <BlogContainer id='blog-container'
+                                                     variants={containerVariant}
+                                                     transition={transition}
+                                                     initial='initial'
+                                                     animate='animate'
+                                                     exit='exit'
+                >
 
-          {/*<GradientBg />*/}
+                    <div>
+                        <HeadLine
+                            title={title}
+                            date={date}
+                            tags={tags || []}
+                            thumbnail={thumbnail}
+                        />
+                    </div>
 
-        </BlogContainer>
-      }
-      </>
-  )
+                    <Article html={data.currentBlog.html}/>
+
+                    <MoreBlog data={data.nextBlog.frontmatter} slug={data.nextBlog.fields.slug}/>
+
+                    {/* <GradientBg /> */}
+
+                </BlogContainer>
+            }
+        </>
+    )
 }
 
 export const query = graphql`
-  query($slug: String!, $nextBlog: String!) {
-    currentBlog: markdownRemark(fields: { slug: { eq: $slug } }) {
-      frontmatter {
-        contentKey
-        date(formatString: "MMMM D, YYYY")
-        title
-        tags {
-          tag
+    query($slug: String!, $nextBlog: String!) {
+        currentBlog: markdownRemark(fields: { slug: { eq: $slug } }) {
+            frontmatter {
+                contentKey
+                date(formatString: "MMMM D, YYYY")
+                title
+                tags {
+                    tag
+                }
+                thumbnail {
+                    childImageSharp {
+                        gatsbyImageData(placeholder: BLURRED, quality: 100)
+                    }
+                }
+            }
+            html
         }
-        thumbnail {
-          childImageSharp {
-            gatsbyImageData(placeholder: BLURRED, quality: 100)
-          }
+
+        nextBlog: markdownRemark(fields: { slug: { eq: $nextBlog } }) {
+            frontmatter {
+                contentKey
+                date(formatString: "MMMM D, YYYY")
+                title
+                tags {
+                    tag
+                }
+                thumbnail {
+                    childImageSharp {
+                        gatsbyImageData(placeholder: BLURRED, quality: 100)
+                    }
+                }
+            }
+            fields {
+                slug
+            }
         }
-      }
-      html
+
     }
-    
-    nextBlog: markdownRemark(fields: { slug: { eq: $nextBlog } }) {
-      frontmatter {
-        contentKey
-        date(formatString: "MMMM D, YYYY")
-        title
-        tags {
-          tag
-        }
-        thumbnail {
-          childImageSharp {
-            gatsbyImageData(placeholder: BLURRED, quality: 100)
-          }
-        }
-      }
-      fields {
-        slug
-      }
-    }
-    
-  }
 `
 
 export default BlogPage

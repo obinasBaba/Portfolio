@@ -26,8 +26,8 @@ const MailUsContainer = styled.section`
 
   //border: thin solid red;
 
-  ${spacing('mt', 22)};
-  ${spacing('pt', 22)};
+  ${spacing( 'mt', 22 )};
+  ${spacing( 'pt', 22 )};
 `
 
 const Background = styled.span`
@@ -53,13 +53,13 @@ const TitleWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  ${spacing('mb', 5)};
-  ${spacing('gap', 5)};
+  ${spacing( 'mb', 5 )};
+  ${spacing( 'gap', 5 )};
 
-  .title {
+  .titleTxt {
     //font-weight: 900;
     font-family: var(--eli);
-    // ${text(5)};
+      // ${text( 5 )};
   }
 `
 
@@ -77,34 +77,34 @@ const LogoEffect = styled.div`
   bottom: 0;
 `
 
-const MailUs = () => {
+function MailUs(){
 
 
-  return (
-    <MailUsContainer
-        // data-scroll-section={true}
-        // data-scroll data-scroll-class='footer'
+    return (
+        <MailUsContainer
+            // data-scroll-section={true}
+            // data-scroll data-scroll-class='footer'
 
-    >
-      <Background />
-      <LogoEffect />
+        >
+            <Background/>
+            <LogoEffect/>
 
-      <TitleWrapper>
-        <GradientText variant="h1" className="title">
-          Ready To Create <br /> Your Star ?
-        </GradientText>
+            <TitleWrapper>
+                <GradientText variant="h1" className="titleTxt">
+                    Ready To Create <br/> Your Star ?
+                </GradientText>
 
-        <MotionBtn text="Contact" to='/contact' data-pointer='focus' data-pointer-color='#02021e' />
+                <MotionBtn text="Contact" to='/contact' data-pointer='focus'/>
 
-      </TitleWrapper>
+            </TitleWrapper>
 
-      <FooterMeta />
+            <FooterMeta/>
 
-      <Footer />
+            <Footer/>
 
 
-    </MailUsContainer>
-  )
+        </MailUsContainer>
+    )
 }
 
 export default MailUs
