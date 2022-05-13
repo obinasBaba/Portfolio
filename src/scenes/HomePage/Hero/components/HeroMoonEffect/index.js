@@ -163,7 +163,7 @@ function HeroMoonEffect(){
 
     return (
         <HeroMoonEffectContainer variants={containerVariant}>
-            <div className="moon" data-scroll data-scroll-speed='-2'>
+            <div className="moon" data-scroll data-scroll-speed='-1'>
                 <motion.svg variants={moonAndStarVariants} className='__moon' width="539"
                             height="291" viewBox="0 0 539 291"
                             fill="none" xmlns="http://www.w3.org/2000/svg">

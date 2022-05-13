@@ -1,37 +1,39 @@
-import React, {useRef, useState} from 'react'
-import styled, {css} from 'styled-components'
+import React, { useRef, useState } from 'react'
+import styled, { css } from 'styled-components'
 import { Typography } from '@material-ui/core'
 import { motion } from 'framer-motion'
-import {spacing, length, text} from '../../../../styles/mixins'
+import { length, spacing, text } from '../../../../styles/mixins'
 import useLotti from '../../../../helpers/useLotti'
-import {largeUp} from "../../../../styles/mixins/breakpoints";
-import Card from "../MyProcess/components/Card";
-import {GradientText, GradientTextStyle} from "../../../../components/GradientText";
+import { largeUp } from "../../../../styles/mixins/breakpoints";
+import { GradientTextStyle } from "../../../../components/GradientText";
 
-const Container = styled(motion.div)`
+const Container = styled( motion.div )`
   //border: thin solid red;
   position: relative;
   display: flex;
   flex-flow: column;
   align-items: flex-start;
-  
+
   //gap: 1.5rem;
 
-  ${spacing('mt', 6)};
-  ${length('gap', 2.3)};
+  ${spacing( 'mt', 6 )};
+  ${length( 'gap', 2.3 )};
 
 `
 
-const SkillTitle = styled(Typography)`
+const SkillTitle = styled( Typography )`
   text-transform: capitalize;
+  font-weight: bolder;
+  ${GradientTextStyle};
+
 `
 
-const Text = styled(Typography)`
+const Text = styled( Typography )`
   max-width: 36ch;
   color: #7b8a9b;
 
-  ${text(0.95)};
-  
+  ${text( 0.95 )};
+
   ${largeUp( css`
     letter-spacing: 1.05px;
 
@@ -42,58 +44,56 @@ const Text = styled(Typography)`
 const List = styled.div`
   margin-top: auto;
   //letter-spacing: 1.5px;
-  
+
   display: flex;
 
   font-weight: 300;
-  color: #a4b5c0;
+  color: rgba(164, 181, 192, 0.78);
 
   & > :not(:first-child) {
-    ${spacing('ml', 1)};
+    ${spacing( 'ml', 1 )};
   }
 `
-
-
 
 
 const Illustration = styled.div`
   position: absolute;
   bottom: 107%;
   left: -5%;
-  
+
   max-width: 100px;
   margin-bottom: -2.5rem;
 `
 
-function SkillColumn({ path, title, text, list }) {
-  const lottiContainerRef = useRef(null)
-  const [inView, setInView] = useState(false)
+function SkillColumn( { path, title, text, list } ){
+    const lottiContainerRef = useRef( null )
+    const [inView, setInView] = useState( false )
 
-  const lottiRef = useLotti(path, lottiContainerRef, inView)
+    const lottiRef = useLotti( path, lottiContainerRef, inView )
 
-  return (
-    <Container
-      onViewportEnter={_ => {
-        !inView && setInView(true)
-        lottiRef.current && lottiRef.current.play()
-      }}
-      onViewportLeave={_ => {
-        lottiRef.current && lottiRef.current.pause()
-      }}
-    >
+    return (
+        <Container
+            onViewportEnter={() => {
+                !inView && setInView( true );
+                lottiRef.current && lottiRef.current.play()
+            }}
+            onViewportLeave={() => {
+                lottiRef.current && lottiRef.current.pause()
+            }}
+        >
 
-      <Illustration className={title} ref={lottiContainerRef} />
+            <Illustration className={title} ref={lottiContainerRef}/>
 
-      <SkillTitle variant="h3">{title}</SkillTitle>
-      <Text>{text}</Text>
+            <SkillTitle variant="h3">{title}</SkillTitle>
+            <Text>{text}</Text>
 
-      <List>
-        {list.map(txt => (
-          <Typography variant='body2'  >#{txt},</Typography>
-        ))}
-      </List>
-    </Container>
-  )
+            <List>
+                {list.map( txt => (
+                    <Typography variant='body1'>#{txt},</Typography>
+                ) )}
+            </List>
+        </Container>
+    )
 }
 
 export default SkillColumn

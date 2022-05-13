@@ -148,11 +148,11 @@ function Projects(){
         >
 
             <motion.div className='inview-detector'
-                        onViewportEnter={e => {
-                            inView.set( true )
+                        onViewportEnter={() => {
+                            inView.set( 'project-section' )
                         }}
 
-                        onViewportLeave={e => {
+                        onViewportLeave={() => {
                             inView.set( false )
 
                         }}

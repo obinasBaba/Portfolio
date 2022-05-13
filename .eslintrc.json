@@ -59,6 +59,7 @@
     "react/jsx-props-no-spreading": "off",
     "react/jsx-no-useless-fragment": "warn",
     "no-multi-assign": "off",
+    "no-unused-expressions": "off",
     "import/no-unresolved": "off",
     "no-plusplus": "off",
     "jsx-a11y/label-has-associated-control": [

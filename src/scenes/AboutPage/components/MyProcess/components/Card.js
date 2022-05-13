@@ -55,14 +55,18 @@ const StyledCard = styled( motion.div )`
 `
 
 const Num = styled( motion.div )`
-  //content: '0${( { no } ) => no}';
+    //content: '0${( { no } ) => no}';
   position: absolute;
   top: -24%;
   right: -4%;
   font-weight: 900;
   letter-spacing: -3px;
-  -webkit-text-stroke: 2.5px #566373;
+  -webkit-text-stroke: 2.5px var(--medium-blue-color);
   color: transparent;
+
+  //color: var(--medium-blue-color);
+  //filter: drop-shadow(0 0 3px var(--medium-blue-color));
+
   ${text( 7 )};
 
   ${mediumUp( css`
@@ -84,6 +88,9 @@ const Keys = styled( motion.div )`
   right: 0;
   bottom: 0;
   color: #1e213d;
+
+  //color: var(--medium-blue-color);
+  //filter: drop-shadow(0 0 3px var(--medium-blue-color));
 
   ${text( 0.7 )};
   ${spacing( 'mt', 2 )};
@@ -130,6 +137,7 @@ function Card( { txt, titleTxt, methodologies, index, path } ){
             no={index + 1}
             className={`card card-${index}`}
             ref={cardRef}
+            viewport={{ amount: .7 }}
             onViewportEnter={_ => {
                 inView.set( true )
                 // lottiRef.current && lottiRef.current.play()
@@ -139,6 +147,8 @@ function Card( { txt, titleTxt, methodologies, index, path } ){
                 // lottiRef.current && lottiRef.current.pause()
             }}
         >
+
+
             <Num
                 variants={keysVariants}
                 initial="initial"

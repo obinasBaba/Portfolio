@@ -235,7 +235,7 @@ const circleTxtVariants: Variants = {
         // if (arg.inView !== 'projects')
         //   return {};
 
-        if (arg && arg.inView && arg.inView.get() === 'project-section') {
+        if (arg && arg.inView && arg?.inView.get() === 'project-section') {
             return {
                 scale: .2,
                 opacity: 0,
@@ -390,7 +390,7 @@ const RotationCircleText = () => {
                 onHoverStart={() => {
                     controller.start('startHover')
                 }}
-                onHoverEnd={event => {
+                onHoverEnd={() => {
                     if (clicked.current) return;
 
                     controller.start('endHover')

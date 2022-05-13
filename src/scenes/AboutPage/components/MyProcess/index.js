@@ -7,7 +7,6 @@ import { processData } from './data'
 import Card from './components/Card'
 import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
 import { spacing, text } from '../../../../styles/mixins'
-import BigPlanet from './components/BigPlanet'
 import { largeUp, mediumUp, smallDown, xLargeUp } from "../../../../styles/mixins/breakpoints";
 
 const ProcessContainer = styled( motion.section )`
@@ -19,7 +18,7 @@ const ProcessContainer = styled( motion.section )`
   //border: thin solid red;
   ${spacing( 'mt', 25.4 )};
   ${spacing( 'mb', 16 )};
- 
+
 `
 
 const ProcessC = styled( Container )`
@@ -32,7 +31,7 @@ const ProcessTitle = styled( Typography )`
   display: block;
 
   font-weight: 900;
-  font-family: 'Elianto-Regular',serif;
+  font-family: 'Elianto-Regular', serif;
   //line-height: 100%;
   letter-spacing: -2px;
   margin: 0 auto;
@@ -52,23 +51,23 @@ const ProcessTitle = styled( Typography )`
   ${spacing( 'pb', 1.7 )};
 
   ${smallDown( css`
-    // ${text( 3.5 )};
+      // ${text( 3.5 )};
   ` )};
 
   ${mediumUp( css`
     ${spacing( 'pl', 7 )};
   ` )};
-  
+
   ${xLargeUp( css`
     ${spacing( 'pl', 17 )};
   ` )};
-  
-  &:first-child{
+
+  &:first-child {
     margin-bottom: 0;
     padding-bottom: 0;
   }
-  
-  &:last-child{
+
+  &:last-child {
     margin-top: -1.7%;
     //line-height: 100%;
   }
@@ -110,7 +109,9 @@ const Operate = styled.div`
   display: none;
   flex-flow: column;
   align-self: center;
-  
+  color: var(--medium-blue-color);
+  filter: drop-shadow(0 0 3px var(--medium-blue-color));;
+
   ${largeUp( css`
     display: flex;
   ` )};
@@ -122,14 +123,14 @@ const OperateTxt = styled( Typography )`
   margin: 0 auto;
   -webkit-text-stroke: 1.5px #5d6c7b;
   line-height: 90%;
-  
+
   ${text( 7 )};
-  
-  & > *{
+
+  & > * {
     line-height: 50%;
     padding-bottom: 0;
   }
-  
+
 `
 
 const Methodology = styled.div`
@@ -241,15 +242,15 @@ function MyProcess(){
             ref={containerRef}
             id="process-container"
 
-            onViewportEnter={_ => {
+            onViewportEnter={() => {
                 setInView( true )
             }}
         >
-            <div className="planet_wrapper">
+            {/* <div className="planet_wrapper">
                 <div className="big_planet">
                     <BigPlanet/>
                 </div>
-            </div>
+            </div> */}
 
             <div className="titleTxt-wrapper">
                 <motion.div style={{ opacity }}>
