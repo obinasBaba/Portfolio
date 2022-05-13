@@ -6,10 +6,10 @@ import ToolTip from '../../components/Fixed/ToolTip'
 import ProgressCircle from '../../components/ScrollProgressCircle'
 import Cursor from '../../components/Cursor'
 import { BottomGradient, Main, PageContainer } from './Styled'
-import LoadingSpinner from '../../components/LoadingSpinner'
 import { MotionValueContext } from '../../contexts/MotionStateWrapper'
 import BackgroundOverlay from '../../components/ScreenOverlay'
 import NavigationMenu from '../../components/NavigationMenu'
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 function Page( { children, path } ){
     const {
@@ -77,7 +77,7 @@ function Page( { children, path } ){
                 </AnimatePresence>
             </Main>
 
-            <BottomGradient className="btm-gradient"/>
+            <BottomGradient className="btm-gradient hide-bg"/>
 
             <ProgressCircle/>
 

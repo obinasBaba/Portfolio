@@ -1,11 +1,15 @@
-import {createGlobalStyle, css} from 'styled-components'
+import { createGlobalStyle, css } from 'styled-components'
 import { responsiveVars, webKitInputReset } from './variables/responsiveVars'
-import {mediumUp, smallUp} from "./mixins/breakpoints";
+import { mediumUp, smallUp } from "./mixins/breakpoints";
 
 export const GlobalStyle = createGlobalStyle`
 
-  ${responsiveVars}  ;
-  ${webKitInputReset} ;
+  ${responsiveVars}
+
+  ;
+  ${webKitInputReset}
+
+  ;
 
   canvas[resize] {
     width: 100%;
@@ -21,9 +25,9 @@ export const GlobalStyle = createGlobalStyle`
     pointer-events: none;
     //border: thin solid blue;
 
-    ${smallUp(css`
+    ${smallUp( css`
       display: block;
-    `)};
+    ` )};
   }
 
   html,
@@ -50,7 +54,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     margin: 0;
     color: var(--light_gray);
-    
+
     //color: #fff;
     --dark-gray: #434e5e;
     --light_gray: #a4b5c0;
@@ -59,6 +63,7 @@ export const GlobalStyle = createGlobalStyle`
 
     --theme: #a4b5c0;
     --medium-blue-color: #3719ca;
+    --clr-medium-blue: #3719ca;
     //color: rgb(120, 128, 158);
 
     --dark: #02021e;
@@ -97,13 +102,13 @@ export const GlobalStyle = createGlobalStyle`
     rgba(250, 222, 188, 0.8) 0%,
     rgba(243, 243, 243, 0) 94%);
 
-    ${mediumUp(css`
-      &.no-cursor{
+    ${mediumUp( css`
+      &.no-cursor {
         & * {
           cursor: none;
         }
       }
-    `)};
+    ` )};
 
     &.menu_open {
       --theme: rgba(2, 11, 22, 1);
@@ -122,12 +127,12 @@ export const GlobalStyle = createGlobalStyle`
       --btm-gradient-opacity: 0;
       --theme: rgba(2, 11, 22, 1);
     }
-    
-   /* &.loading-done{
-      .background-overlay-container .loading-bg{
-        display: none;
-      }
-     }*/
+
+    /* &.loading-done{
+       .background-overlay-container .loading-bg{
+         display: none;
+       }
+      }*/
 
 
   }
@@ -151,6 +156,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
 
-  
+
 
 `

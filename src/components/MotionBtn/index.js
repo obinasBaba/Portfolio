@@ -59,7 +59,7 @@ const Btn = styled( motion.div )`
       width: 115%;
       border-radius: 30px;
       transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1), transform .5s cubic-bezier(.77, 0, 0.175, 1) .05s;
-      box-shadow: 0 0 2rem var(--medium-blue-color);
+      box-shadow: 0 0 2.5rem var(--medium-blue-color);
       transform: scale(1.25);
     }
   }

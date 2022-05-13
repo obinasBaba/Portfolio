@@ -1,56 +1,46 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { GradientText } from '../GradientText'
-import {spacing, text} from '../../styles/mixins'
-import {useMediaQuery, useTheme} from '@material-ui/core'
-import {useIntersection} from 'react-use'
+import { spacing, text } from '../../styles/mixins'
 
 const TitleContainer = styled.header`
   text-align: center;
   margin: 0 auto;
   width: min-content;
   max-height: 225px;
-  
-  ${ ({mb}) => mb ? spacing('mb', mb) : spacing('mb', 0) };
-  
-  & > :last-child{
+
+  ${( { mb } ) => mb ? spacing( 'mb', mb ) : spacing( 'mb', 0 )};
+
+  & > :last-child {
     margin-right: 10px;
   }
-  
-  &.fp-tableCell{
-    background-color: green;
-  }
-  
-  .subtitle{
-    ${text(1)};
+
+  .subtitle {
+    ${text( 1 )};
     letter-spacing: -.3px;
   }
-  
+
 `
 
 
-
-const HeadlineTitle = ( {title, subtitle, mb, clsName} ) => {
-
+function HeadlineTitle( { title, subtitle, mb, clsName } ){
 
 
-  return (
-    <TitleContainer mb={mb}  className={clsName}>
-      <GradientText variant='h1'
-                    noWrap={true}  >
-        {title}
-      </GradientText>
+    return (
+        <TitleContainer mb={mb} className={clsName}>
+            <GradientText variant='h1'
+                          noWrap>
+                {title}
+            </GradientText>
 
-      <GradientText className='subtitle'
-
-                    align='right' variant={'body1'} noWrap={true}>
-        {subtitle}
-      </GradientText>
-
+            <GradientText className='subtitle'
+                          align='right' variant="body1" noWrap>
+                {subtitle}
+            </GradientText>
 
 
-    </TitleContainer>
-  )
+        </TitleContainer>
+    )
 }
 
 export default HeadlineTitle

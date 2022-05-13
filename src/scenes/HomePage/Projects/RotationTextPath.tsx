@@ -98,19 +98,21 @@ const Container = styled(motion.section)`
     display: grid;
     place-items: center;
     transition: all .5s cubic-bezier(0.77, 0, 0.175, 1);
-    //color: var(--theme);
+    color: var(--theme);
 
 
     &:hover {
       box-shadow: 0 0 2rem var(--medium-blue-color);
       transition: all .3s ease-in;
-      color: var(--theme);
+      color: white;
 
     }
   }
 
   .enter__text {
     position: relative;
+    font-weight: bolder;
+    letter-spacing: 1px;
   }
 
   .circles__text {
@@ -399,10 +401,6 @@ const RotationCircleText = () => {
                       className="enter__bg"
                       onClick={() => {
                           clicked.current = true
-                          // event.preventDefault()
-                          // setCurrentPath('/projects')
-                          // navigate('/projects')
-
                       }}
                 >
                     <span className="enter__text">Explore</span>
