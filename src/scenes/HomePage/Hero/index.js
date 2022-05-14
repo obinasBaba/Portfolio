@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useRef } from 'react'
 import { Typography } from '@material-ui/core'
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
 import { Greeting, HeroContainer, Intro, TextContainer } from './components'
 import HeroMoonEffect from "./components/HeroMoonEffect";
 import MotionBtn from "../../../components/MotionBtn";
 import { MotionValueContext } from "../../../contexts/MotionStateWrapper";
+import { mediumUp } from "../../../styles/mixins/breakpoints";
 
 const greetingTextVariants = {
     initial: {
@@ -93,7 +94,7 @@ const textContainerVariants = {
 
 const BottomGradient = styled.div`
   position: absolute;
-  top: 10%;
+  top: 50%;
   right: 0;
   bottom: 0;
   left: 0;
@@ -108,6 +109,10 @@ const BottomGradient = styled.div`
   rgba(6, 18, 32, 0),
   rgba(2, 11, 22, 1));
 
+
+  ${mediumUp( css`
+    top: 10%;
+  ` )};
 
 `
 
@@ -132,7 +137,7 @@ function Hero(){
                        }}
                        onViewportEnter={() => {
                            btmGradient.current.classList.add( 'hide-bg' )
-                           inView.set( true )
+                           inView.set( 'hero-section' )
                        }}
         >
 
@@ -188,7 +193,7 @@ function Hero(){
                 <Intro variants={introContainerVariants}
                        transition={introContainerVariants.transition}>
                     <Typography className='intro-txt' variant="h5">
-                        I'm Web-Developer, Firmly standing in <span className='contrast'>S-O-L-I-D</span> front-end,
+                        I'm Web-Developer, Firmly standing on S-O-L-I-D front-end,
                         less frame-work, more
                         engineering patterns!
                     </Typography>

@@ -13,19 +13,42 @@ const HeroMoonEffectContainer = styled( motion.div )`
 
   width: 100%;
   height: 100%;
-  grid-row: 1 / 3;
+  grid-row: 1 / 3; // mobile first
 
   //border: thick solid red;
 
   ${gridColWidth( 1 )};
+
+  ${mediumUp( css`
+    position: absolute;
+    grid-row: initial;
+    //height: 100vh;
+    width: 50%;
+
+    ${gridColWidth( 1 )};
+
+  ` )};
 
   .moon {
     //border: thin solid teal;
     max-width: 100%;
     align-self: start;
     height: auto;
-    margin-top: 9vmax;
+    margin-top: 9vmax; // mobile-first
     overflow: visible;
+
+    ${mediumUp( css`
+      //svg.moon {
+      align-self: center;
+      margin-top: 0;
+      ${spacing( 'mb', 8.8 )};
+      ${spacing( 'mr', 3.2 )};
+      max-width: 130%;
+      width: 130%;
+
+      //}
+
+    ` )};
 
     ${xLargeUp( css`
       //transform: scale(2vmax);
@@ -50,24 +73,7 @@ const HeroMoonEffectContainer = styled( motion.div )`
     //border: thin solid green;
   }
 
-  ${mediumUp( css`
-    position: absolute;
-    grid-row: initial;
-    //height: 100vh;
-    width: 50%;
 
-    ${gridColWidth( 1 )};
-
-    svg.moon {
-
-      align-self: center;
-      margin-top: 0;
-
-      ${spacing( 'mb', 8.8 )};
-      ${spacing( 'mr', 3.2 )};
-    }
-
-  ` )};
 
 `
 

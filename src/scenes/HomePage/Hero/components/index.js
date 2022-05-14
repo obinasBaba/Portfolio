@@ -9,6 +9,8 @@ export const HeroContainer = styled( motion.section )`
   height: 100vh;
   width: 100%;
   //border: thin solid teal;
+  margin: 0 auto;
+  max-width: 1999px;
 
   ${gridify()};
 `
@@ -66,6 +68,8 @@ export const Greeting = styled( motion.div )`
 
   svg.greeting {
     max-width: 85%;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.69));
+
 
     ${xLargeUp( css`
       width: 100%;
@@ -100,7 +104,9 @@ export const Intro = styled( motion.div )`
   & .intro-txt {
     max-width: 30ch;
     //font-weight: bold;
-    color: var(--light_medium_gray);
+    //color: var(--light_medium_gray);
+    color: var(--light_gray);
+
 
     .contrast {
       color: var(--clr-medium-blue);
