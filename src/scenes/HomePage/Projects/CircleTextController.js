@@ -7,16 +7,17 @@ import { navigate } from "gatsby";
 
 export class CircleTextController {
     static instance = null
+
     started = false
 
     static getInstance(el){
 
         if( this.instance ){
             return this.instance
-        }else{
+        }
             this.instance = new CircleTextController(el)
             return this.instance
-        }
+        
     }
 
     constructor(el) {
@@ -131,7 +132,7 @@ export class CircleTextController {
                         scroller: '[data-scroll-container]',
                         scrub: 1,
                         start: () => 'top 10',
-                        end: () => '+=' + this.track.offsetHeight,
+                        end: () => `+=${  this.track.offsetHeight}`,
                     },
                 })
 

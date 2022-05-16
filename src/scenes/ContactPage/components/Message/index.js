@@ -1,9 +1,9 @@
 import React from 'react'
 import styled, {css} from 'styled-components'
-import { HeadLineTitle, CustomTextField } from '../shared'
 import { TextField as MuiTextField } from '@material-ui/core'
-import {spacing, text} from '../../../../styles/mixins'
 import { FieldArray, Field } from 'formik'
+import { HeadLineTitle, CustomTextField } from '../shared'
+import {spacing, text} from '../../../../styles/mixins'
 import {largeUp} from "../../../../styles/mixins/breakpoints";
 import useRefreshMouseListeners from "../../../../hooks/useRefreshMouseListeners";
 
@@ -18,7 +18,7 @@ const MessageInput = styled.div`
 
 `
 
-const Message = ({ ...props }) => {
+function Message({ ...props }) {
 
     useRefreshMouseListeners('.message-container [data-pointer]')
 
@@ -32,8 +32,8 @@ const Message = ({ ...props }) => {
       <MessageInput>
         <Field
           name="message"
-          multiline={true}
-          fullWidth={true}
+          multiline
+          fullWidth
           rows={3}
           label="Tell me about your project"
           as={CustomTextField}

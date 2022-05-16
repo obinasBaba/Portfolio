@@ -1,7 +1,7 @@
 import React from 'react'
+import styled, { css } from 'styled-components'
 import { useExperimentAssets } from '../../../../../hooks/queries/useExperimentAssets'
 import Item from './Item'
-import styled, { css } from 'styled-components'
 import {mediumUp} from "../../../../../styles/mixins/breakpoints";
 
 export const Track = styled.section`
@@ -19,7 +19,7 @@ export const Track = styled.section`
   
 `
 
-const ExperimentTrack = () => {
+function ExperimentTrack() {
   const { exp1mp4, exp1webm, exp2mp4, exp2webm, exp3mp4, exp3webm, exp4mp4, exp4webm, } = useExperimentAssets()
   const expData = [
     {src: { mp4: exp1mp4, webm: exp1webm }, title: 'Elastic Search Bar'},

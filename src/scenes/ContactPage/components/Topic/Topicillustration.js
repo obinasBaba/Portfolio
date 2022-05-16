@@ -28,7 +28,7 @@ const IllustrationContainer = styled.div`
 
 `
 
-const TopicIllustration = ({path}) => {
+function TopicIllustration({path}) {
   const iconRef = useRef(null)
   // const lottiRef = useLotti(path, iconRef)
 
@@ -38,7 +38,7 @@ const TopicIllustration = ({path}) => {
 
     lotti.destroy(path.publicURL)
 
-    let r = 1;
+    const r = 1;
     if (path) {
       const lottiRef = lotti.loadAnimation({
         name: path.publicURL,
@@ -53,7 +53,7 @@ const TopicIllustration = ({path}) => {
       let r = 1
       // l.addEventListener('data_ready', () => {})
       lottiRef.addEventListener('complete', () => {
-          1 === r ? (r = -1) : -1 === r && (r = 1)
+          r === 1 ? (r = -1) : r === -1 && (r = 1)
         lottiRef.setDirection(r)
         lottiRef.play()
         })
@@ -62,9 +62,7 @@ const TopicIllustration = ({path}) => {
   }, [])
 
   return (
-    <IllustrationContainer ref={iconRef}>
-
-    </IllustrationContainer>
+    <IllustrationContainer ref={iconRef} />
   )
 }
 

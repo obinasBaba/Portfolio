@@ -2,9 +2,11 @@
 contentKey: blog
 title: "Javascript Event Loop Simplified"
 date: 2021-06-18T08:45:54.969Z
-tags:
-  - tag: "#react"
 thumbnail: /img/moon.png
+tags:
+
+- tag: "#react"
+
 ---
 <!--StartFragment-->
 

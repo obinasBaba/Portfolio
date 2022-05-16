@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled, {css} from 'styled-components'
-import {spacing, text} from '../../../../styles/mixins'
 import { Button, TextField, Typography } from '@material-ui/core'
-import Form from './components/form'
-import {CustomTextField, HeadLineTitle} from '../shared'
 import { Formik, Field, useField, FieldArray } from 'formik'
 import * as yup from 'yup'
+import {spacing, text} from '../../../../styles/mixins'
+import Form from './components/form'
+import {CustomTextField, HeadLineTitle} from '../shared'
 import {largeUp} from "../../../../styles/mixins/breakpoints";
 
 const WhoContainer = styled.div``
@@ -27,18 +27,18 @@ const FormContainer = styled.div`
   ${spacing('mt', 6)};
 `
 
-const WhoAreYou = ({ errors, ...props }) => {
+function WhoAreYou({ errors, ...props }) {
   const inputLength = useRef(0)
   const [helperTxt, setHelperTxt] = useState('')
 
   const getGreeting = () => {
-    let hrs = new Date().getHours();
+    const hrs = new Date().getHours();
 
     if (hrs < 12)
       return 'Good Morning';
-    else if (hrs >= 12 && hrs <= 17)
+    if (hrs >= 12 && hrs <= 17)
       return 'Good Afternoon';
-    else if (hrs >= 17 && hrs <= 24)
+    if (hrs >= 17 && hrs <= 24)
       return 'Good Evening';
   }
 

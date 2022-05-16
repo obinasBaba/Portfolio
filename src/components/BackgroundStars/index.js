@@ -1,12 +1,19 @@
 import React, { useContext, useEffect, useRef } from 'react'
-import { useSpring, useTransform } from 'framer-motion'
+import { motion, useSpring, useTransform } from "framer-motion";
 import useBackgroundsAssets from '../../hooks/queries/useBackgroundsAssets'
 import { Galaxy, Layer, Wrapper } from './components'
 import {
   AppStateContext
 } from "../../contexts/AppStateContext";
 import { MotionValueContext } from "../../contexts/MotionStateWrapper";
+import styled from "styled-components";
 
+
+const Wrap = styled( motion.div )`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+`
 
 //todo -> use the composition pattern
 const BackgroundStars = () => {
@@ -41,8 +48,8 @@ const BackgroundStars = () => {
 
   useEffect(() => {
     const calcNewMousePos = ev => {
-      const xPos = (ev.clientX - window.innerWidth / 2) / 80
-      const yPos = (ev.clientY - window.innerHeight / 2) / 80
+      const xPos = (ev.clientX - window.innerWidth / 2) / 70
+      const yPos = (ev.clientY - window.innerHeight / 2) / 70
       yMouse.set(yPos)
       xMouse.set(xPos)
     }
@@ -58,19 +65,21 @@ const BackgroundStars = () => {
   return (
     <Galaxy
       ref={target}
-      style={{
-        // backgroundImage: `url(${starsBig.publicURL})`,
-        y: yMouse,
-        x: xMouse,
-      }}
-    >
-      <Wrapper style={{ y: yScrollSmall }}>
-        <Layer style={{ backgroundImage: `url(${starsBig.publicURL})` }} />
-      </Wrapper>
 
-      <Wrapper style={{ y: yScrollBig }}>
-        <Layer style={{ backgroundImage: `url(${starsSmallOld.publicURL})` }} />
-      </Wrapper>
+    >
+     <Wrap style={{
+       // backgroundImage: `url(${starsBig.publicURL})`,
+       y: yMouse,
+       x: xMouse,
+     }}>
+       <Wrapper style={{ y: yScrollSmall }}>
+         <Layer style={{ backgroundImage: `url(${starsBig.publicURL})` }} />
+       </Wrapper>
+
+       <Wrapper style={{ y: yScrollBig }}>
+         <Layer style={{ backgroundImage: `url(${starsSmallOld.publicURL})` }} />
+       </Wrapper>
+     </Wrap>
     </Galaxy>
   )
 }

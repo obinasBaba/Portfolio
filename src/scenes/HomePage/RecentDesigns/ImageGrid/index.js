@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import styled, { css } from "styled-components";
+import { useSpring, useTransform } from "framer-motion";
 import {length, spacing} from "../../../../styles/mixins";
 import { AppStateContext } from "../../../../contexts/AppStateContext";
-import { useSpring, useTransform } from "framer-motion";
 import {largeUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
 
 const ImageWrapper = styled.div`
@@ -85,9 +85,9 @@ const ImageWrapper = styled.div`
   }
 `
 
-const DesignImage = ( { images, idx } ) => {
+function DesignImage({ images, idx }) {
 
-  /*const {
+  /* const {
     moScroll: {y, limit},
   } = useContext(AppStateContext)
 
@@ -96,7 +96,7 @@ const DesignImage = ( { images, idx } ) => {
 
   const x = useSpring(mapped, {
     mass: .5,  damping: 10, stiffness: 50,
-  })*/
+  }) */
 
   return (
     <ImageWrapper data-scroll data-scroll-speed={ idx % 2 === 0 ? .5 : -.5 }  >
@@ -104,7 +104,7 @@ const DesignImage = ( { images, idx } ) => {
         images.map( (imgData, index) =>
           <GatsbyImage alt={imgData.name}
                        key={ index }
-                       className={'image dribble-shots'}
+                       className="image dribble-shots"
                        objectFit='cover'
                        image={ getImage( imgData ) }/> )
 

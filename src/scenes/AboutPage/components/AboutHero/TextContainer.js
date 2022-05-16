@@ -1,9 +1,9 @@
 import React from 'react'
-import styled, {css} from 'styled-components'
-import {spacing, text} from '../../../../styles/mixins'
-import {Typography} from '@material-ui/core'
-import {mediumUp, xLargeUp} from '../../../../styles/mixins/breakpoints'
-import {motion} from "framer-motion";
+import styled, { css } from 'styled-components'
+import { Typography } from '@material-ui/core'
+import { motion } from "framer-motion";
+import { spacing, text } from '../../../../styles/mixins'
+import { mediumUp, xLargeUp } from '../../../../styles/mixins/breakpoints'
 
 const TextWrapperContainer = styled.div`
   display: flex;
@@ -15,40 +15,51 @@ const TextWrapperContainer = styled.div`
 
   //border: thin solid red;
 
-  ${spacing('gap', 4)};
+  .goal {
+    //color: var(--medium-blue-color);
+    //filter: drop-shadow(0 0 5px rgba(55, 25, 202, 0.64));
+  }
 
-  h1 {
+  ${spacing( 'gap', 4 )};
+
+  ${mediumUp( css`
+    padding: 0 0 0 7%;
+    ${spacing( 'gap', 1 )};
+
+    .goal {
+      font-weight: bold;
+      letter-spacing: .1vmax;
+      ${spacing( 'ml', 4 )};
+    }
+  ` )};
+
+  .hello {
     font-family: var(--eli);
     font-weight: normal;
     color: white;
     margin-bottom: 0;
 
-    ${xLargeUp(css`
-      ${text(7.8)};
-    `)};
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.69));
+
+
+    ${xLargeUp( css`
+      ${text( 7.8 )};
+    ` )};
   }
 
-  .hero-intro{
+  .goal-long {
     max-width: 32ch;
     color: #7b8a9b;
     display: block;
 
-    ${text(1.1)};
+    ${text( 1.1 )};
+    ${mediumUp( css`
+      ${spacing( 'ml', 4 )};
+      ${spacing( 'mt', 4 )};
+    ` )};
   }
 
-  ${mediumUp(css`
-    padding: 0 0 0 22%;
-    ${spacing('gap', 1)};
 
-    h4 {
-      ${spacing('ml', 4)};
-    }
-
-    .hero-intro {
-      ${spacing('ml', 4)};
-      ${spacing('mt', 3)};
-    }
-  `)};
 `
 
 const helloTxtVariants = {
@@ -63,12 +74,17 @@ const helloTxtVariants = {
     },
     exit: {
         opacity: 0,
-        y: -200
+        y: -200,
+        transition: {
+            duration: 1,
+            // ease: [0.6, 0.01, 0, 0.9],
+            delay: .3
+        }
     },
 
     transition: {
         duration: 1,
-        ease: [0.6, 0.01, 0, 0.9],
+        // ease: [0.6, 0.01, 0, 0.9],
     }
 }
 
@@ -83,31 +99,37 @@ const introTxtVariants = {
     },
     exit: {
         opacity: 0,
-        y: 200
+        y: 200,
+        transition: {
+            duration: 1,
+            // ease: [0.6, 0.01, 0, 0.9],
+            delay: .3
+        }
     },
 
     transition: {
         duration: 1,
-        ease: [0.6, 0.01, 0, 0.9],
+        // ease: [0.6, 0.01, 0, 0.9],
     }
 }
 
-const TextWrapper = () => {
+function TextWrapper(){
     return (
         <TextWrapperContainer>
             <motion.div variants={helloTxtVariants}
                         transition={helloTxtVariants.transition}
             >
-                <Typography variant="h1">Hello</Typography>
+                <Typography variant="h1" className='hello'>Hello</Typography>
             </motion.div>
 
-            <motion.div className='intro-container' variants={introTxtVariants} transition={introTxtVariants.transition}>
+            <motion.div className='intro-container' variants={introTxtVariants}
+                        transition={introTxtVariants.transition}>
 
-                <Typography variant="h4" gutterBottom={true}>
-                    I create progress by designing and developing digital experiences,
+                <Typography variant="h4" className='goal' gutterBottom>
+                    I create progress by designing and <br/> developing digital experiences,
                 </Typography>
 
-                <Typography className='hero-intro'   variant='body'>
+                <Typography className='goal-long' variant='body'>
                     I believe that we can live in a world in which every product or service
                     has an easy to use experience on platforms and my mission is to
                     contribute to it to make it happen

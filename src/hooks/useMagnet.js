@@ -1,5 +1,5 @@
-import MagnetElement from '../helpers/MagnetElement'
 import {useContext, useEffect} from 'react'
+import MagnetElement from '../helpers/MagnetElement'
 import {AppStateContext} from '../contexts/AppStateContext'
 
 

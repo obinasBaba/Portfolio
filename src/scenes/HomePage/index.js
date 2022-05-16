@@ -1,83 +1,77 @@
-import React, { useContext, useEffect, Suspense} from 'react'
-import Hero from './Hero'
-import RecentWorks from './RecentDesigns'
-import Projects from './Projects'
-import Experiments from './Experiments'
-import { SectionWrapper } from '../../components/Container'
-import BlogPosts from './BlogPosts'
+import React, { Suspense, useContext, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import {MotionValueContext} from "../../contexts/MotionStateWrapper";
 import loadable from '@loadable/component';
-// import MailUs from "../MailUs";
+import Hero from './Hero'
+import { MotionValueContext } from "../../contexts/MotionStateWrapper";
+import RecentWorks from "./RecentDesigns";
+import Aim from "./Aim";
+import { SectionWrapper } from "../../components/Container";
+import Projects from "./Projects";
+import BlogPosts from "./BlogPosts";
+import Experiments from "./Experiments";
 
-let doExit = true;
-
-const MailUs = loadable(() => import('../../components/MailUs'))
+const MailUs = loadable( () => import('../../components/MailUs') )
 
 const containerVariants = {
-  exit(){
-    if(!doExit)
-      return {
-        opacity: 0,
-      }
+    exit( arg ){
+        if ( arg?.inView.get() ) return {};
 
-    return {}
-  },
+        return {
+            opacity: 0,
+        }
 
-
+    }
 }
 
-const  transition = {
-  duration: .3,
-  ease: [0.6, 0.01, 0, 0.9],
+const transition = {
+    duration: 1,
+    ease: [0.6, 0.01, 0, 0.9],
 };
 
-const HomePage = () => {
+
+function HomePage(){
 
 
+    const { mainAnimationController, screenOverlayEvent } = useContext( MotionValueContext )
 
-  const { mainAnimationController, screenOverlayEvent } = useContext(MotionValueContext)
+    useEffect( () => {
 
-  useEffect(() => {
+    }, [] )
 
-  }, [])
-
-  return (
-    < motion.main variants={containerVariants}
-                  className='homepage-container'
-                 transition={transition}
-                 initial="initial"
-                  animate={ screenOverlayEvent.get() === 'closed' ? 'animate' :  mainAnimationController}
-                  exit="exit"
-                 whileInView="inView"
+    return (< motion.main variants={containerVariants}
+                          className='homepage-container'
+                          transition={transition}
+                          initial="initial"
+                          animate={screenOverlayEvent.get() === 'closed' ? 'animate' : mainAnimationController}
+                          exit="exit"
+                          whileInView="inView"
     >
 
-        <Hero />
+        <Hero/>
 
 
-     <RecentWorks />
+        <Aim/>
 
-      <Projects />
+        <RecentWorks/>
 
-      <SectionWrapper dataScrollSection={true}>
-        <Experiments />
-      </SectionWrapper>
+        <Projects/>
 
-
-      <SectionWrapper dataScrollSection={true} >
-        <BlogPosts />
-      </SectionWrapper>
+        <SectionWrapper dataScrollSection>
+            <Experiments/>
+        </SectionWrapper>
 
 
-      <MailUs />
-      {/* <Suspense  fallback={<footer> fotter is loading </footer>}>
-      <MailUs />
-        </Suspense> */}
+        <SectionWrapper dataScrollSection>
+            <BlogPosts/>
+        </SectionWrapper>
 
 
+        <Suspense fallback={<footer> footer is loading </footer>}>
+            <MailUs/>
+        </Suspense>
 
-    </motion.main>
-  )
+
+    </motion.main>)
 }
 
 export default HomePage

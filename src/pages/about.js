@@ -1,34 +1,32 @@
-import React, {useContext, useEffect} from 'react'
-import AboutPage from '../scenes/AboutPage'
-import useLocoScroll from '../hooks/useLocoScroll'
-import {AppStateContext, BackgroundOverlayStateContext} from '../contexts/AppStateContext'
+import React from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
+import AboutPage from '../scenes/AboutPage'
+import useLocoScroll from '../hooks/useLocoScroll'
 import useToolTip from "../hooks/useToolTip";
 import useRefreshMouseListeners from "../hooks/useRefreshMouseListeners";
 import Seo from "../components/seo";
 import useUpdatePath from "../hooks/useUpdatePath";
 
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin( ScrollTrigger )
 
-const About = ({path}) => {
+function About( { path } ){
 
-  useUpdatePath(path)
+    useUpdatePath( path )
 
-  const loco = useLocoScroll();
+    useLocoScroll();
 
-  useToolTip('[data-tooltip-text]');
-  useRefreshMouseListeners('#about [data-pointer]');
+    useToolTip( '[data-tooltip-text]' );
+    useRefreshMouseListeners( '#about [data-pointer]' );
 
 
-
-  return (
-    <>
-      <Seo title='About' description='let me tell you about me, my skills and my process of getting work done'/>
-      <AboutPage/>
-    </>
-  )
+    return (
+        <>
+            <Seo title='About' description='let me tell you about me, my skills and my process of getting work done'/>
+            <AboutPage/>
+        </>
+    )
 }
 
 export default About

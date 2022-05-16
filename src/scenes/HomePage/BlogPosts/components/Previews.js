@@ -1,52 +1,22 @@
-import React, {useEffect} from 'react'
-import p1 from './images/2.jpg'
-import p2 from './images/4.jpg'
-import p3 from './images/6.jpg'
+import React from 'react'
 import Item from './item'
-import {useRecommendedBlogs} from '../../../../hooks/queries/useRecommendedAssets'
+import { useRecommendedBlogs } from '../../../../hooks/queries/useRecommendedAssets'
 import useHomeWorksAssets from '../../../../hooks/queries/useHomeWorksAssets'
 
+function Previews(){
 
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function getRecommendedPosts(allPosts = []) {
-  const RECOMMENDED_POSTS_LIMIT = 3;
-  const recommendedPosts = [];
-
-  for(let i = 0; i < 3; i++) {
-    recommendedPosts.push(allPosts[i]);
-  }
-
-  return recommendedPosts;
-}
-
-const Previews = (  ) => {
-
-  const { allPost: { edges }, totalCount } = useRecommendedBlogs();
-  const {p1, p2, p3} = useHomeWorksAssets();
-
-  const items = getRecommendedPosts(edges);
-
-  useEffect(() => {
-    console.log('preview rendred ----');
-  }, [])
+    const { allPost: { edges } } = useRecommendedBlogs();
+    const { p1, p2, p3 } = useHomeWorksAssets();
 
 
-  return (
-    < >
-      {items.map((item, index) => {
-        return <Item key={item.node.id}
-                     tag={item.node.frontmatter.tags.map(({tag}) => tag)  .join(', ')}
-                     title={item.node.frontmatter.title}
-                     link={item.node.fields.slug || '/'}
-                     media={[p1, p2, p3][index]} />;
-      })}
-    </>
-  )
+    return (< >
+        {edges.slice( 0, 3 ).map( ( item, index ) =>
+            <Item key={item.node.id}
+                  tag={item.node.frontmatter.tags.map( ( { tag } ) => tag ).join( ', ' )}
+                  title={item.node.frontmatter.title}
+                  link={item.node.fields.slug || '/'}
+                  media={[p1, p2, p3][index]}/> )}
+    </>)
 }
 
 export default Previews

@@ -22,7 +22,7 @@ const BigDotContainer = styled(motion.div)`
   }
 `
 
-export const AnchorDot = ( {onClick, anchor} ) => {
+export function AnchorDot({onClick, anchor}) {
   return (
     <BigDotContainer className='anchorDot'
                      layout
@@ -50,7 +50,7 @@ const DottedLineContainer = styled( motion.div )`
   margin: 2.5px 0;
 `
 
-export const DottedLine = () => {
+export function DottedLine() {
   return (
     <DottedLineContainer className='dot_line'
                          layout
@@ -103,7 +103,7 @@ const spring = {
   damping: 30
 }
 
-export const Thumb = ( {isLast, isFirst} ) => {
+export function Thumb({isLast, isFirst}) {
   return (
     <ThumbContainer className='thumb'
                     initial={false}
@@ -127,11 +127,11 @@ export const Thumb = ( {isLast, isFirst} ) => {
             {!isLast && <path id="arrow-up-2" data-name="arrow-up" d="M4,0,8,7H0Z" transform="translate(10.648 57.807) rotate(180)" fill="url(#linear-gradient)"/>}
 
           </g>
-          <g id="Ellipse_11" data-name="Ellipse 11" transform="translate(68.268 428.807)" fill="none" stroke="#5741c2" stroke-width="1">
+          <g id="Ellipse_11" data-name="Ellipse 11" transform="translate(68.268 428.807)" fill="none" stroke="#5741c2" strokeWidth="1">
             <circle cx="20" cy="20" r="20" stroke="none"/>
             <circle cx="20" cy="20" r="19.5" fill="none"/>
           </g>
-          <g id="Ellipse_16" data-name="Ellipse 16" transform="translate(65.268 425.807)" fill="none" stroke="#5741c2" stroke-width="1">
+          <g id="Ellipse_16" data-name="Ellipse 16" transform="translate(65.268 425.807)" fill="none" stroke="#5741c2" strokeWidth="1">
             <circle cx="23" cy="23" r="23" stroke="none"/>
             <circle cx="23" cy="23" r="22.5" fill="none"/>
           </g>

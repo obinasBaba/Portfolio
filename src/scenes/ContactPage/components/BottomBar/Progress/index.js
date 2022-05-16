@@ -17,7 +17,7 @@ const ProgressLine = styled( motion.div )`
   transition: transform .7s cubic-bezier(0.6, 0.01, 0, 0.9);
 `
 
-const Progress = ({ step  }) => {
+function Progress({ step  }) {
 
 
   const scaleX =  useTransform( step, [0, 5], [0, 1])

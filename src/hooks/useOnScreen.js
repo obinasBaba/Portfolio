@@ -11,7 +11,7 @@ function useOnScreen(ref, threshold = 0.3, rootMargin = '0px') {
         setIntersecting(entry?.isIntersecting ?? false);
       },
       {
-        rootMargin: rootMargin,
+        rootMargin,
         threshold,
       }
     );

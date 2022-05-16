@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { spacing } from '../../../../styles/mixins'
 import { motion } from 'framer-motion'
 
 const SideBarToolsContainer = styled( motion.aside )`
@@ -8,8 +7,6 @@ const SideBarToolsContainer = styled( motion.aside )`
   left: 0;
   bottom: 0;
   top: 0;
-  
-  
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -31,7 +28,7 @@ const sideBarVariants = {
   }
 }
 
-const SideBarTools = ( { children } ) => {
+function SideBarTools({ children }) {
   return (
     <SideBarToolsContainer variants={sideBarVariants}
                            initial='initial'

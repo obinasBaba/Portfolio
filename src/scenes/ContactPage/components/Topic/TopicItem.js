@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import styled, { css } from 'styled-components'
-import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
 import {Button, Typography} from '@material-ui/core'
+import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
 import {spacing, text} from "../../../../styles/mixins";
 import TopicIllustration from './Topicillustration'
 import {largeUp, xLargeUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
@@ -104,7 +104,7 @@ const TopicBody = styled(Typography)`
   `)};
 `
 
-const TopicItem = ({ title, body, path, selected, ...props }) => {
+function TopicItem({ title, body, path, selected, ...props }) {
   const checkboxRef = useRef(null)
 
 
@@ -132,7 +132,7 @@ const TopicItem = ({ title, body, path, selected, ...props }) => {
 
       <TopicIllustration path={path} />
 
-      <TopicTitle varaint="subtitle2" gutterBottom={true}>
+      <TopicTitle varaint="subtitle2" gutterBottom>
         {title}
       </TopicTitle>
 

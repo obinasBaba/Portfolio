@@ -1,13 +1,12 @@
-import React, {useContext, useEffect} from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Container, Typography } from '@material-ui/core'
 import styled, { css } from 'styled-components'
-import {gridColWidth, spacing, text} from '../../../../styles/mixins'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 import gsap from 'gsap'
-import STrigger from 'gsap/ScrollTrigger'
+import { gridColWidth, spacing, text } from '../../../../styles/mixins'
 import { basicVariants, transition } from '../../../../helpers/variants'
-import {largeUp, mediumUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
-import {MotionValueContext} from "../../../../contexts/MotionStateWrapper";
+import { largeUp, mediumUp, xxLargeUp } from "../../../../styles/mixins/breakpoints";
+import { MotionValueContext } from "../../../../contexts/MotionStateWrapper";
 
 const BlogListContainer = styled( Container )`
   position: relative;
@@ -17,16 +16,16 @@ const BlogListContainer = styled( Container )`
   //border: thin solid red;
   width: 100%;
 
-  ${ gridColWidth() };
+  ${gridColWidth()};
   grid-row: 1 / 2;
 
   
-  ${ spacing('mt', 20) };
-  ${ spacing('mb', 10) };
+  ${spacing( 'mt', 20 )};
+  ${spacing( 'mb', 10 )};
 
-  ${largeUp(css`
-    ${ spacing('mt', 13) };
-  `)}
+  ${largeUp( css`
+    ${spacing( 'mt', 13 )};
+  ` )}
 `;
 
 const Title = styled( Typography )`
@@ -38,19 +37,19 @@ const Title = styled( Typography )`
 
   //border: thin solid red;
 
-    // ${text(4)};
+    // ${text( 4 )};
 
-  ${mediumUp(css`
-    ${text(7)};
-  `)}
+  ${mediumUp( css`
+    ${text( 7 )};
+  ` )}
   
-  ${largeUp(css`
-    ${ spacing('ml', -6) };
-  `)} 
+  ${largeUp( css`
+    ${spacing( 'ml', -6 )};
+  ` )} 
   
-  ${xxLargeUp(css`
-    ${ spacing('ml', -10) };
-  `)}
+  ${xxLargeUp( css`
+    ${spacing( 'ml', -10 )};
+  ` )}
   
   
 `;
@@ -85,72 +84,72 @@ const CardContainer = styled.div`
 `
 
 
-const BlogList = ({ children}) => {
+function BlogList({ children }) {
 
-  const { mainAnimationController, screenOverlayEvent } = useContext(MotionValueContext)
+    const { mainAnimationController, screenOverlayEvent } = useContext( MotionValueContext )
 
-  const progress = useMotionValue(0);
-  // const rotate =  useTransform(rotateValue, [.2, .23], [0, 90]);
-  // const opacity =  useTransform(rotateValue, [0, .2, .35], [1, 0, 1]);
-  const opacity =  useTransform(progress, [0, .08], [1, 0]);
+    const progress = useMotionValue( 0 );
+    // const rotate =  useTransform(rotateValue, [.2, .23], [0, 90]);
+    // const opacity =  useTransform(rotateValue, [0, .2, .35], [1, 0, 1]);
+    const opacity = useTransform( progress, [0, .08], [1, 0] );
 
 
-  useEffect(() => {
+    useEffect( () => {
 
-    const pageTitle = document.querySelector('.page-title')
-    const cardContainer = document.querySelector('.card-container')
+        const pageTitle = document.querySelector( '.page-titleTxt' )
+        const cardContainer = document.querySelector( '.card-container' )
 
-    setTimeout(() => {
-      gsap.to(pageTitle, {
-        scrollTrigger: {
-          trigger: pageTitle,
-          pinSpacing: false,
-          pin: true,
-          scroller: '[data-scroll-container]',
-          scrub: 2,
-          start: 'top 8%',
-          end: () => '+=' +  (cardContainer.offsetHeight),
-          onUpdate(self){
-            progress.set(self.progress)
-          },
-        },
-      })
-    })
+        setTimeout( () => {
+            gsap.to( pageTitle, {
+                scrollTrigger: {
+                    trigger: pageTitle,
+                    pinSpacing: false,
+                    pin: true,
+                    scroller: '[data-scroll-container]',
+                    scrub: 2,
+                    start: 'top 8%',
+                    end: () => `+=${  cardContainer.offsetHeight}`,
+                    onUpdate( self ){
+                        progress.set( self.progress )
+                    },
+                },
+            } )
+        } )
 
-  }, [])
+    }, [] )
 
-  return (
+    return (
 
-      <BlogListContainer fixed={ false } maxWidth={ false} data-scroll-section>
+        <BlogListContainer fixed={false} maxWidth={false} data-scroll-section>
 
-        <BlogListWrapper variants={basicVariants}
-                    transition={transition}
-                    initial='initial'
-                         animate={ screenOverlayEvent.get() === 'closed' ? 'animate' :  mainAnimationController}
+            <BlogListWrapper variants={basicVariants}
+                             transition={transition}
+                             initial='initial'
+                             animate={screenOverlayEvent.get() === 'closed' ? 'animate' : mainAnimationController}
 
-                         exit='exit'
-        >
-
-          <div className="page-title">
-            <motion.div style={{opacity, transformOrigin: 'left'}}
+                             exit='exit'
             >
-              <Title variant="h1" noWrap={true} >
-                My Articles
-              </Title>
-            </motion.div>
-          </div>
+
+                <div className="page-titleTxt">
+                    <motion.div style={{ opacity, transformOrigin: 'left' }}
+                    >
+                        <Title variant="h1" noWrap>
+                            My Articles
+                        </Title>
+                    </motion.div>
+                </div>
 
 
-          <CardContainer className='card-container' >
-            { children }
-          </CardContainer>
+                <CardContainer className='card-container'>
+                    {children}
+                </CardContainer>
 
-        </BlogListWrapper>
+            </BlogListWrapper>
 
 
-      </BlogListContainer>
+        </BlogListContainer>
 
-  );
-};
+    );
+}
 
 export default BlogList;

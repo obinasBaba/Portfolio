@@ -1,8 +1,8 @@
 import React from 'react'
 import styled, { css } from "styled-components";
 import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
-import { AnchorDot, DottedLine, Thumb } from './NavTools'
 import {Link} from 'gatsby'
+import { AnchorDot, DottedLine, Thumb } from './NavTools'
 import {spacing} from "../../../../../styles/mixins";
 import {xLargeUp, xxLargeUp} from "../../../../../styles/mixins/breakpoints";
 
@@ -85,7 +85,7 @@ const spring = {
     // repeatType: 'mirror',
 }
 
-const ThumbAndDot = ({ hidden, clickEvent, index, anchor, dataAnchor }) => {
+function ThumbAndDot({ hidden, clickEvent, index, anchor, dataAnchor }) {
   return (
 
     <ThumbAndDotContainer onClick={clickEvent}
@@ -99,7 +99,7 @@ const ThumbAndDot = ({ hidden, clickEvent, index, anchor, dataAnchor }) => {
         href={`#${anchor}`}
 
         data-pointer='focus'
-        data-tooltip={true}
+        data-tooltip
         data-tooltip-text='Next project'
         data-pointer-color='#3719ca'
 

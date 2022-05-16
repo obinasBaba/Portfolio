@@ -1,12 +1,12 @@
 import styled, { css } from 'styled-components'
 import { Typography } from '@material-ui/core'
+import { motion } from 'framer-motion'
 import {
   gridColWidth,
   gridify,
   length,
   spacing, text,
 } from '../../../../../styles/mixins'
-import { motion } from 'framer-motion'
 import {largeUp, mediumUp} from "../../../../../styles/mixins/breakpoints";
 
 export const OthersContainer = styled(motion.div)`

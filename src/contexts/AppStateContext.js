@@ -6,7 +6,7 @@ import { LoadStateWrapper } from './LoadStateContext'
 export const AppStateContext = React.createContext({})
 export const BackgroundOverlayStateContext = React.createContext(true)
 
-const BackgroundOverlayStateWrapper = ({ children }) => {
+function BackgroundOverlayStateWrapper({ children }) {
   const [backgroundOverlay, setBackgroundOverlay] = useState(false)
 
   return (
@@ -21,7 +21,7 @@ const BackgroundOverlayStateWrapper = ({ children }) => {
   )
 }
 
-const AppStateWrapper = ({ children }) => {
+function AppStateWrapper({ children }) {
   const [moonLight, setMoonLight] = useState({
     showMoon: true,
     show: true,
@@ -94,7 +94,7 @@ const AppStateWrapper = ({ children }) => {
   )
 }
 
-const AppStateProvider = ({ children }) => {
+function AppStateProvider({ children }) {
   return (
     <AppStateWrapper>
       <MotionStateWrapper>

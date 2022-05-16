@@ -25,18 +25,17 @@ const projectDataDefault = {
 }
 
 
-const Project2 = ({location}) => {
+function Project2( { location } ){
 
-    const {headlineImage} = useProject2Assets();
+    const { headlineImage } = useProject2Assets();
 
-    useUpdatePath(location.pathname)
+    useUpdatePath( location.pathname )
 
 
     projectDataDefault.headlineImage = headlineImage.publicURL
-
-    const loco = useLocoScroll()
-    useToolTip('[data-tooltip-text]')
-    useRefreshMouseListeners('[data-pointer]')
+    useLocoScroll();
+    useToolTip( '[data-tooltip-text]' )
+    useRefreshMouseListeners( '[data-pointer]' )
 
     return (
 
@@ -47,6 +46,6 @@ const Project2 = ({location}) => {
         </CaseStudy>
 
     );
-};
+}
 
 export default Project2;

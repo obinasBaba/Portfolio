@@ -1,15 +1,11 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-import {
-  length,
-  spacing,
-  text,
-} from '../../../../styles/mixins'
 import { Typography } from '@material-ui/core'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { Link } from 'gatsby'
-import {largeUp, mediumUp, smallUp} from "../../../../styles/mixins/breakpoints";
+import { length, spacing, text, } from '../../../../styles/mixins'
+import { largeUp, mediumUp, smallUp } from "../../../../styles/mixins/breakpoints";
 
 const PreviewContainer = styled.div`
   position: relative;
@@ -27,13 +23,7 @@ const PreviewContainer = styled.div`
 
   &:not(:first-child) {
     position: relative;
-    ${spacing('mt', 8)};
-
-    ${smallUp(css`
-      // ${spacing('mt', 8)};
-
-      // ${spacing('mt', 4)};
-    `)}
+    ${spacing( 'mt', 8 )};
 
     &::before {
       content: '';
@@ -53,10 +43,10 @@ const PreviewContainer = styled.div`
     }
   }
 
-  ${mediumUp(css`
+  ${mediumUp( css`
     flex-direction: row;
     align-items: center;
-  `)};
+  ` )};
 
   a {
     position: absolute;
@@ -74,15 +64,13 @@ const ImageBox = styled.div`
   border: 1px solid #323453;
   margin: 0 auto;
   overflow: hidden;
-  background: linear-gradient(
-    123.69deg,
-    rgba(10, 12, 45, 0.45) 0%,
-    rgba(10, 12, 45, 0) 100.53%
-  );
+  background: linear-gradient(123.69deg,
+  rgba(10, 12, 45, 0.45) 0%,
+  rgba(10, 12, 45, 0) 100.53%);
 
-  ${mediumUp(css`
-    ${length('width', 18)}
-  `)};
+  ${mediumUp( css`
+    ${length( 'width', 18 )}
+  ` )};
 
   a {
     display: block;
@@ -99,74 +87,73 @@ const ImageBox = styled.div`
       height: 100%;
       object-fit: cover;
       display: block;
-      
+
       transition: transform 1s ease-in-out;
     }
   }
 `
 
 const Desc = styled.div`
-  ${spacing('mt', 2)};
-
+  ${spacing( 'mt', 2 )};
 
   //@media screen and (min-width: $md) {}
 
-  ${mediumUp(css`
+  ${mediumUp( css`
     margin-top: 0;
-    ${spacing('ml', 2)};
+    ${spacing( 'ml', 2 )};
 
-  `)};
+  ` )};
 
-  ${largeUp(css`
+  ${largeUp( css`
     margin-left: 60px;
-  `)};
+  ` )};
 `
 
-const Tag = styled(Typography)`
+const Tag = styled( Typography )`
   font-weight: lighter;
-  ${text(0.6)};
+  ${text( 0.6 )};
   letter-spacing: 1px;
   color: lightgray;
   opacity: 0.5;
   text-transform: uppercase;
 
-  ${spacing('mb', 0)};
-  
-  ${smallUp(css`
-    ${spacing('mb', 0)};
+  ${spacing( 'mb', 0 )};
 
-  `)};
+  ${smallUp( css`
+    ${spacing( 'mb', 0 )};
+
+  ` )};
 `
 
-const Title = styled(Typography)`
+const Title = styled( Typography )`
   line-height: 1.4em;
   font-weight: lighter;
-  ${text(1.25)};
+  ${text( 1.25 )};
 
   a {
     text-decoration: none;
   }
 `
 
-const Item = ({ media, tag, title, link }) => {
+function Item( { media, tag, title, link } ){
 
 
-  return (
-    <PreviewContainer className='home-blog-thumbnail' data-pointer="focus"
-                      data-tooltip
-                      data-tooltip-text='Have a sec? hear me out.' >
-      <Link to={link} />
+    return (
+        <PreviewContainer className='home-blog-thumbnail' data-pointer="focus"
+                          data-tooltip
+                          data-tooltip-text='Have a sec? hear me out.'>
+            <Link to={link}/>
 
-      <ImageBox>
-        <GatsbyImage className="img-wrapper" alt={''} image={getImage(media)} />
-      </ImageBox>
+            <ImageBox>
+                <GatsbyImage className="img-wrapper" alt="" image={getImage( media )}/>
+            </ImageBox>
 
-      <Desc>
-        <Tag variant="body2">{tag}</Tag>
-        <Title variant="h6"> {title} </Title>
-      </Desc>
-    </PreviewContainer>
-  )
+            <Desc>
+                <Tag variant="body2">{tag}</Tag>
+                <Title variant="h6"> {title} </Title>
+            </Desc>
+        </PreviewContainer>
+    )
 }
 
 export default Item

@@ -1,5 +1,5 @@
 import React from 'react'
-import {motion, useTransform} from 'framer-motion'
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
 const BigPlanetContainer = styled( motion.div )`
@@ -7,7 +7,7 @@ const BigPlanetContainer = styled( motion.div )`
   left: -20%;
   perspective: 1000px;
   //transform: scale(.9);3
-  display: none;
+  //display: none;
 `
 
 const Planet = styled.div`
@@ -21,21 +21,19 @@ const Planet = styled.div`
   box-shadow: 70px 120px 150px -30px rgba(2, 2, 30, 0.6);
   border-radius: 50%;
 
-  background: linear-gradient(
-          36.99deg,
-          rgba(1, 1, 18, 0) 27.49%,
-          #262147 78.93%
-  ); 
+  background: linear-gradient(36.99deg,
+  rgba(1, 1, 18, 0) 27.49%,
+  #262147 78.93%);
 `
 
-const BigPlanet = ({progress}) => {
+function BigPlanet( { progress } ){
 
 
-  return (
-    <BigPlanetContainer>
-      <Planet  />
-    </BigPlanetContainer>
-  )
+    return (
+        <BigPlanetContainer data-scroll data-scroll-speed='-9.5'>
+            <Planet/>
+        </BigPlanetContainer>
+    )
 }
 
 export default BigPlanet

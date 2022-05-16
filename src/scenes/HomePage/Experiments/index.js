@@ -17,12 +17,12 @@ const ExperimentsContainer = styled.div`
 `
 
 
-const Experiments = () => {
+function Experiments() {
 
   return (
     <ExperimentsContainer data-scroll data-scroll-class='experiment'>
 
-      <HeadlineTitle title={' Web is fun'} subtitle={'Experiments & Open Source'} mb={4} />
+      <HeadlineTitle title=" Web is fun" subtitle="Experiments & Open Source" mb={4} />
 
       <ExperimentTrack />
 

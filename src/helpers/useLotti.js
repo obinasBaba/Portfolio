@@ -22,14 +22,14 @@ const useLotti = (
             renderer: 'svg',
             loop: loopReverse,
             autoplay: autoPlay,
-            path: path,
+            path,
         })
 
         let r = 1
         // l.addEventListener('data_ready', () => {})
         if (!loopReverse) {
             lottiRef.current.addEventListener('complete', () => {
-                1 === r ? (r = -1) : -1 === r && (r = 1)
+                r === 1 ? (r = -1) : r === -1 && (r = 1)
                 lottiRef.current.setDirection(r)
                 lottiRef.current.play()
             })

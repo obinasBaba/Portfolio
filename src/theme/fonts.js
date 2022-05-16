@@ -19,7 +19,7 @@ import SofiaProSoftRegular2 from '../assets/fonts/SofiaProSoft/Sofia-Pro-Soft - 
 import SofiaProSoftLightWof from '../assets/fonts/SofiaProSoft/Sofia-Pro-Soft - Light.woff'
 import SofiaProSoftLight2 from '../assets/fonts/SofiaProSoft/Sofia-Pro-Soft - Light.woff2'
 
-//SOFIA-PRO FONT
+// SOFIA-PRO FONT
 
 export const SofiaProBold = {
   fontFamily: 'Sofia Pro',
@@ -65,7 +65,7 @@ export const SofiaProLight = {
   fontDisplay: 'swap',
 }
 
-//SOFIA-PRO-SOFT FONT
+// SOFIA-PRO-SOFT FONT
 
 export const SofiaProSoftBold = {
   fontFamily: 'Sofia Pro Soft',

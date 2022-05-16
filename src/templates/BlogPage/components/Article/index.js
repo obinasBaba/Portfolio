@@ -1,80 +1,75 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import {
-  length,
-  spacing,
-  text,
-  title,
-
-} from '../../../../styles/mixins'
 import { Container } from '@material-ui/core'
+import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
+import { length, spacing, text, title, } from '../../../../styles/mixins'
 import BackArrow from './BackArrow'
 
-import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
-import {largeUp, mediumDown, mediumUp, smallDown, smallUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
+import { largeUp, mediumDown, mediumUp, smallDown, smallUp, xxLargeUp } from "../../../../styles/mixins/breakpoints";
+
 deckDeckGoHighlightElement();
 
 const ArticleContainer = styled.section`
   position: relative;
   //color: var(--theme);
 
-  ${ spacing( "pt", 22 ) };
-  ${ spacing( "pb", 10 ) };
-  ${ spacing( "mt", -16 ) };
+  ${spacing( "pt", 22 )};
+  ${spacing( "pb", 10 )};
+  ${spacing( "mt", -16 )};
 `;
 
-const ArticleWrapper = styled ( Container ) `
+const ArticleWrapper = styled( Container )`
   box-sizing: border-box;
   margin: 0 auto;
   padding: 0 20px;
 
-  ${ xxLargeUp( css`
+  ${xxLargeUp( css`
     max-width: 900px;
-  ` ) };
+  ` )};
 
   & > :not(figure) {
     width: auto;
     margin: auto;
     max-width: 100%;
 
-    ${ largeUp( css`
+    ${largeUp( css`
       max-width: 720px;
-    ` ) };
+    ` )};
 
-    ${ xxLargeUp( css`
+    ${xxLargeUp( css`
       max-width: 900px;
-    ` ) };
+    ` )};
 
   }
 
-  deckgo-highlight-code{
-    ${spacing('mb', 4)};
-    ${spacing('mt', 1.5)};
+  deckgo-highlight-code {
+    ${spacing( 'mb', 4 )};
+    ${spacing( 'mt', 1.5 )};
   }
 
-  blockquote{
+  blockquote {
     max-width: 35rem;
     margin: 2.75rem auto;
     //border: thin solid red;
 
-    ${ smallUp(css`
-      margin: 4.2rem auto 1.18rem ;
+    ${smallUp( css`
+      margin: 4.2rem auto 1.18rem;
 
-    `) };
+    ` )};
 
-    ${ mediumDown(css`
+    ${mediumDown( css`
       max-width: 100%;
-    `) };
+    ` )};
 
     p {
-      ${ text(1.4) };
+      ${text( 1.4 )};
       color: blue;
       text-align: right;
 
     }
 
-    em{
-      ${ text(1.13) };
+    em {
+      ${text( 1.13 )};
 
       //color: inherit;
       opacity: .8;
@@ -86,7 +81,7 @@ const ArticleWrapper = styled ( Container ) `
       font-weight: 300;
       line-height: 160%;
       letter-spacing: 0.5px;
-      ${ text(1.13) };
+      ${text( 1.13 )};
       font-style: normal;
       color: rgba(0 0 0 / 70%);
 
@@ -108,38 +103,38 @@ const ArticleWrapper = styled ( Container ) `
 
   }
 
-  h2{
-    ${title(1.9)};
-    line-height: 1.3; 
+  h2 {
+    ${title( 1.9 )};
+    line-height: 1.3;
     font-weight: bold;
     letter-spacing: -0.2px;
     margin-top: calc(3rem * var(--size));
     margin-bottom: calc(.7rem * var(--size));
-    
-    ${ smallUp(css`
+
+    ${smallUp( css`
       margin-top: calc(3.7rem * var(--size));
       margin-bottom: calc(1rem * var(--size));
       line-height: 45px;
       letter-spacing: 0.5px;
 
-    `) };
-    
+    ` )};
+
   }
 
   h3 {
-    ${title(1.65)};
+    ${title( 1.65 )};
     font-weight: bold;
     margin-top: calc(2.5rem * var(--size));
     margin-bottom: calc(1rem * var(--indent));
 
-    ${ smallUp( css`
+    ${smallUp( css`
       line-height: 160.6%;
       letter-spacing: 0.5px;
-    ` ) };
+    ` )};
   }
 
   h4 {
-    ${title(1.65)};
+    ${title( 1.65 )};
     line-height: 35px;
     font-weight: bold;
     margin-top: 2rem;
@@ -154,14 +149,14 @@ const ArticleWrapper = styled ( Container ) `
     letter-spacing: 0.1px;
     margin-bottom: calc(1.5rem * var(--size));
 
-    ${ text(1.015) };
+    ${text( 1.015 )};
 
 
-    ${ mediumUp( css`
+    ${mediumUp( css`
       letter-spacing: .5px;
       line-height: 149%;
 
-    ` ) };
+    ` )};
 
   }
 
@@ -172,15 +167,15 @@ const ArticleWrapper = styled ( Container ) `
     padding-left: 10px;
     margin-bottom: calc(1.5rem * var(--size));
 
-    ${ text(1.135) };
+    ${text( 1.135 )};
 
 
     & > li {
       position: relative;
       word-break: break-word;
 
-      ${ spacing('mb', 2.5) };
-      ${ length('padding-left', 2) };
+      ${spacing( 'mb', 2.5 )};
+      ${length( 'padding-left', 2 )};
 
       &:before {
         position: absolute;
@@ -196,7 +191,7 @@ const ArticleWrapper = styled ( Container ) `
 
       &:before {
         font-family: 'shapes', serif;
-        ${text(.6)};
+        ${text( .6 )};
         line-height: 400%;
         content: 'h';
       }
@@ -216,7 +211,7 @@ const ArticleWrapper = styled ( Container ) `
   }
 
   a {
-    ${ text(1.07) };
+    ${text( 1.07 )};
     line-height: 1.5;
     font-weight: 300;
     letter-spacing: 0.3px;
@@ -234,43 +229,43 @@ const ArticleWrapper = styled ( Container ) `
     font-weight: 600;
   }
 
-  img{
+  img {
     max-width: 100%;
     display: block;
     margin: 0 auto;
   }
 
-  em{
+  em {
     text-align: right;
     padding: 5px;
   }
 
-  ${ smallDown( css`
+  ${smallDown( css`
 
-    .gatsby-resp-image-wrapper{
-      width: calc( 100% + 20px );
+    .gatsby-resp-image-wrapper {
+      width: calc(100% + 20px);
       transform: translateX(-10px);
     }
 
-  ` ) };
+  ` )};
 `;
 
 
-const Article = ({ html }) => {
-  return (
-    <ArticleContainer>
+function Article({ html }) {
+    return (
+        <ArticleContainer>
 
-      <BackArrow to='/blog' />
+            <BackArrow to='/blog'/>
 
 
-      <ArticleWrapper dangerouslySetInnerHTML={ { __html: html } }
-                      fixed={true}
-                      maxWidth={'md'}
-                      disableGutters={false}
-                      className='article-wrapper' />
+            <ArticleWrapper dangerouslySetInnerHTML={{ __html: html }}
+                            fixed
+                            maxWidth="md"
+                            disableGutters={false}
+                            className='article-wrapper'/>
 
-    </ArticleContainer>
-  );
-};
+        </ArticleContainer>
+    );
+}
 
 export default Article;

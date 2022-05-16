@@ -1,10 +1,10 @@
 import React, { useEffect, useLayoutEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
-import { useProjectSvg } from '../../../../../hooks/queries/useProjectSvg'
 import { ReactSVG } from 'react-svg'
-import {length, spacing, text} from '../../../../../styles/mixins'
 import { Link } from 'gatsby'
+import { useProjectSvg } from '../../../../../hooks/queries/useProjectSvg'
+import {length, spacing, text} from '../../../../../styles/mixins'
 
 const RightArrowContainer = styled(motion.div)`
   display: flex;
@@ -113,7 +113,7 @@ const Text = styled.p`
     `};
 `
 
-const RightArrowLink = ({
+function RightArrowLink({
   mt = 0,
   txt,
   lineLength = '100%',
@@ -121,7 +121,7 @@ const RightArrowLink = ({
   link = '/',
   target,
   tooTipTxt=false,
-}) => {
+}) {
   const { rightArrow } = useProjectSvg()
 
   return (

@@ -35,7 +35,7 @@ const SiteInfoContainer = styled(Container)`
   }
 `
 
-const SiteInfo = () => {
+function SiteInfo() {
   return (
     <SiteInfoContainer maxWidth="lg" fixed={false}>
       <Typography variant="h1" className="site-info">

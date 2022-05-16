@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
 
-export const PageContainer = styled(motion.div)`
+export const PageContainer = styled( motion.div )`
   position: relative;
   display: flex;
   flex-flow: column;
@@ -22,14 +22,15 @@ export const BottomGradient = styled.div`
   opacity: var(--btm-gradient-opacity);
   background-image: var(--bottom-gradient);
   transition: all 0.35s ease-in-out;
-  //opacity: .4;
-  
-  &.hide-bg{
+
+  //display: none;
+
+  &.hide-bg {
     opacity: 0;
   }
 `
 
-export const Main = styled(motion.main)`
+export const Main = styled( motion.main )`
   position: relative;
   flex: 1;
   display: flex;
@@ -39,12 +40,12 @@ export const Main = styled(motion.main)`
   //z-index: 8;
   height: min-content;
   //opacity: 0;
-  
-  &.loaded{
+
+  &.loaded {
     opacity: 1;
   }
-  
-  & > *{
+
+  & > * {
     //z-index: 1;
   }
 `
@@ -58,12 +59,12 @@ export const SkyColor = styled.div`
   width: 100%;
   height: 100vh;
   pointer-events: none;
-  
+
   background-image: -webkit-gradient(linear, left top, left bottom, from(#072142), color-stop(#061c37), color-stop(#07182b), color-stop(#061220), to(#020b16));
   background-image: -webkit-linear-gradient(top, #072142, #061c37, #07182b, #061220, #020b16);
   background-image: -o-linear-gradient(top, #072142, #061c37, #07182b, #061220, #020b16);
   background-image: linear-gradient(to bottom, #072142, #061c37, #07182b, #061220, #020b16);
-  
+
 
   //z-index: -300
 

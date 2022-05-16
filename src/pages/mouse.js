@@ -1,34 +1,30 @@
 import React from 'react'
 import styled from 'styled-components'
-import {motionValue, motion} from "framer-motion";
+import { motion } from "framer-motion";
 
 const Container = styled.div`
   margin: auto;
   margin-top: 10rem;
 
   border: thin solid red;
-  
-  svg{
-    g#solid{
+
+  svg {
+    g#solid {
       //display: none;
     }
-    
-    g#items{
+
+    g#items {
       //display: none;
     }
   }
-  
-  
-  
-`
-const transition = {
-    duration: 1,
-    ease: [0.6, 0.01, 0, 0.9],
 
-}
+
+
+`
+ 
 
 const maskPathVariants = {
-    initial: { pathLength: .5},
+    initial: { pathLength: .5 },
     animate: {
         // pathLength: [0, 1],
         transition: {
@@ -41,8 +37,8 @@ const maskPathVariants = {
 const wheelVariants = {
     initial: {},
     animate: {
-        y: [ '0%', '20%', '40%', '6%', '0%'],
-        scale: [ 1, .65, .1, 0, 1],
+        y: ['0%', '20%', '40%', '6%', '0%'],
+        scale: [1, .65, .1, 0, 1],
         opacity: [1, 1, 0, .4, 1],
 
         transition: {
@@ -56,8 +52,7 @@ const wheelVariants = {
 }
 
 
-
-const MyComponent = () => {
+function MyComponent(){
     return (
         <Container>
             <motion.svg

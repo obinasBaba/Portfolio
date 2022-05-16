@@ -1,16 +1,16 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
+import { motion } from 'framer-motion'
+import loadable from '@loadable/component';
 import ContactPage from '../scenes/ContactPage'
 import useLocoScroll from '../hooks/useLocoScroll'
-import {motion} from 'framer-motion'
 import useToolTip from "../hooks/useToolTip";
 import useRefreshMouseListeners from "../hooks/useRefreshMouseListeners";
 import Seo from "../components/seo";
-import {MotionValueContext} from "../contexts/MotionStateWrapper";
+import { MotionValueContext } from "../contexts/MotionStateWrapper";
 import useUpdatePath from "../hooks/useUpdatePath";
 
-import loadable from '@loadable/component';
 // import MailUs from '../scenes/MailUs'
-const MailUs = loadable(() => import('../components/MailUs'))
+const MailUs = loadable( () => import('../components/MailUs') )
 
 
 const containerVariants = {
@@ -25,16 +25,14 @@ const containerVariants = {
     }
 }
 
-const Contact = ({path}) => {
+function Contact( { path } ){
 
-    const {mainAnimationController, screenOverlayEvent} = useContext(MotionValueContext)
+    const { mainAnimationController, screenOverlayEvent } = useContext( MotionValueContext )
+    useLocoScroll();
+    useUpdatePath( path );
 
-    const loco = useLocoScroll();
-
-    useUpdatePath(path);
-
-    useToolTip('[data-tooltip-text]')
-    useRefreshMouseListeners('.contact-container [data-pointer]')
+    useToolTip( '[data-tooltip-text]' )
+    useRefreshMouseListeners( '.contact-container [data-pointer]' )
 
     return (
         <>

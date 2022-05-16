@@ -1,13 +1,13 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
+import loadable from "@loadable/component";
 import AboutHero from './components/AboutHero'
 import MyProcess from './components/MyProcess'
 // import MailUs from '../MailUs'
 import Skills from './components/Skills'
-import { motion } from 'framer-motion'
 import HorizontalScrollText from './components/HorizontalScrollText'
 import { MotionValueContext } from '../../contexts/MotionStateWrapper'
-import loadable from "@loadable/component";
 
 
 const MailUs = loadable(() => import('../../components/MailUs'))
@@ -39,7 +39,7 @@ const aboutContainerVariants = {
 
 
 
-const AboutPage = () => {
+function AboutPage() {
 
     const { mainAnimationController, screenOverlayEvent } = useContext(MotionValueContext)
 

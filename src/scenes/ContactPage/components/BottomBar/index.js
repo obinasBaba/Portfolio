@@ -26,7 +26,7 @@ const BottomContainer = styled.div`
   ` )};
 `
 
-const BottomBar = ({nextProps, backProps, step, control}) => {
+function BottomBar({nextProps, backProps, step, control}) {
 
 
   return (

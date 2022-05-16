@@ -1,11 +1,11 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+import { motion } from 'framer-motion'
 import {
   gridColWidth,
   length,
   spacing,
 } from '../../../../styles/mixins'
-import { motion } from 'framer-motion'
 import {largeUp, mediumUp} from "../../../../styles/mixins/breakpoints";
 
 const StackList = styled(motion.ul)`
@@ -115,23 +115,21 @@ const itemVariant = {
   }
 }
 
-const StackUsed = ({  items, custom }) => {
+function StackUsed({  items, custom }) {
 
 
   return (
     <StackList variants={listVariant} custom={custom}>
 
-      {items.map(({ publicURL }) => {
-        return (
+      {items.map(({ publicURL }) => (
           <motion.li transition={transition}
                      variants={itemVariant}
                      custom={custom}
                      key={publicURL}>
 
-            <img src={publicURL} alt="stack logo" loading={'lazy'}   />
+            <img src={publicURL} alt="stack logo" loading="lazy"   />
           </motion.li>
-        )
-      })}
+        ))}
     </StackList>
   )
 }

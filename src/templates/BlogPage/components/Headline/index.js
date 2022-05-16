@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
-import {spacing} from '../../../../styles/mixins'
 import { Container, Typography } from '@material-ui/core'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { AnimateSharedLayout, motion, useTransform } from 'framer-motion'
+import { spacing } from '../../../../styles/mixins'
 import { MotionValueContext } from '../../../../contexts/MotionStateWrapper'
-import {mediumUp, smallUp, xLargeUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
+import { mediumUp, smallUp, xxLargeUp } from "../../../../styles/mixins/breakpoints";
 
-const HeadLineContainer = styled(motion.section)`
+const HeadLineContainer = styled( motion.section )`
   //border: thin solid greenyellow;
   width: 100%;
   display: grid;
@@ -27,12 +27,13 @@ const HeadLineContainer = styled(motion.section)`
       color: var(--theme);
       align-content: end;
       align-items: center;
-      ${spacing('pl', 1)};
+      ${spacing( 'pl', 1 )};
 
-      .title {
+      .titleTxt {
         text-align: left;
         color: #02021e;
       }
+
       .meta {
         color: #02021e;
       }
@@ -94,12 +95,12 @@ const TextAlign = styled( Container )`
   transition: color .4s ease-in-out;
   text-shadow: 0.05em 0.05em 0.3em #000;
 
-  ${ spacing( "mt", 8 ) };
-  ${ spacing( "mb", .5 ) };
+  ${spacing( "mt", 8 )};
+  ${spacing( "mb", .5 )};
 
-  ${ mediumUp( css`
-    ${ spacing( "ph", 8 ) };
-  ` ) };
+  ${mediumUp( css`
+    ${spacing( "ph", 8 )};
+  ` )};
 
 `;
 
@@ -112,14 +113,14 @@ const Title = styled( motion.h1 )`
   letter-spacing: -.4px;
   //text-shadow: 0.1em 0.1em 0.3em #02021e;
 
-  ${ spacing( "mt", 1.6 ) };
-  ${ spacing( "mb", 2 ) };
+  ${spacing( "mt", 1.6 )};
+  ${spacing( "mb", 2 )};
   
-  ${ smallUp( css`
+  ${smallUp( css`
     font-size: calc( 4.3rem * var(--indent) );
     letter-spacing: 0;
 
-  ` ) };
+  ` )};
 `;
 
 const DateAndTags = styled( motion.div )`
@@ -128,11 +129,11 @@ const DateAndTags = styled( motion.div )`
   justify-content: center;
   letter-spacing: .2px;
   
-  ${ spacing( "mb", 2 ) };
+  ${spacing( "mb", 2 )};
 
-  ${ mediumUp( css`
+  ${mediumUp( css`
     justify-content: space-between;
-  ` ) };
+  ` )};
 
   .published-date{}
   
@@ -140,86 +141,85 @@ const DateAndTags = styled( motion.div )`
     width: min-content;
     display: none;
     
-    ${ mediumUp( css`
+    ${mediumUp( css`
       display: flex;
-    ` ) };
+    ` )};
   }
   
 `;
 
 
+function HeadLine({ categories, titleTxt, imgData, date, tags, thumbnail }) {
+    const topContainer = useRef( null );
 
-const HeadLine = ({ categories, title, imgData, date, tags, thumbnail }) => {
-  const topContainer = useRef(null);
+    const [scrolled, setScrolled] = useState( false );
+    const [rendered, setRendered] = useState( false )
 
-  const [scrolled, setScrolled] = useState(false);
-  const [rendered, setRendered] = useState(false)
-
-  const {moScroll} = useContext(MotionValueContext)
-
-
-  useTransform(moScroll.y, latest => {
-
-    if ( !rendered )
-      return 0;
-
-    if ( latest > 80 ){
-      if ( !scrolled  )
-        setScrolled( true )
-    }
-  })
-
-  useEffect(() => {
-    if( scrolled )
-      document.body.classList.add('blog-clr')
+    const { moScroll } = useContext( MotionValueContext )
 
 
-    }, [scrolled])
+    useTransform( moScroll.y, latest => {
 
-  useEffect(() => {
-    setRendered(true)
+        if ( !rendered )
+            return 0;
 
-    return () => document.body.classList.remove('blog-clr')
-  }, [])
+        if ( latest > 80 ) {
+            if ( !scrolled )
+                setScrolled( true )
+        }
+    } )
 
-  return (
-    <AnimateSharedLayout>
-
-      <HeadLineContainer layout  ref={topContainer} data-scrolled={scrolled}>
-
-        <TextAlign maxWidth="lg" fixed={ true } className='txt-align' layout='position'>
-          <Title variant="h1" className='title' layout='position'> { title } </Title>
-
-          <DateAndTags className='meta' layout='position'>
-            <motion.p variant='subtitle2'
-                      noWrap={true}
-                      className='published-date' >
-              { date } &#183; &#128339; 30 min read.
-            </motion.p>
-
-            <motion.div className='tags' layout>
-              {tags.map(( {tag}, i ) =>
-                <Typography variant='subtitle2'
-                            noWrap={true}
-                            key={i}>{`${tag},`}&nbsp;
-                </Typography>)}
-            </motion.div>
-          </DateAndTags>
-        </TextAlign>
+    useEffect( () => {
+        if ( scrolled )
+            document.body.classList.add( 'blog-clr' )
 
 
-        <ImageBox className='image-box' layout  >
-          <GatsbyImage alt={ "featured image" }
-                       image={ getImage( thumbnail ) }
-                       className="img-container" />
+    }, [scrolled] )
 
-          <div className='overlay' />
-        </ImageBox>
-      </HeadLineContainer>
+    useEffect( () => {
+        setRendered( true )
 
-    </AnimateSharedLayout>
+        return () => document.body.classList.remove( 'blog-clr' )
+    }, [] )
 
-  );
-};
+    return (
+        <AnimateSharedLayout>
+
+            <HeadLineContainer layout ref={topContainer} data-scrolled={scrolled}>
+
+                <TextAlign maxWidth="lg" fixed className='txt-align' layout='position'>
+                    <Title variant="h1" className='titleTxt' layout='position'> {titleTxt} </Title>
+
+                    <DateAndTags className='meta' layout='position'>
+                        <motion.p variant='subtitle2'
+                                  noWrap
+                                  className='published-date'>
+                            {date} &#183; &#128339; 30 min read.
+                        </motion.p>
+
+                        <motion.div className='tags' layout>
+                            {tags.map( ( { tag }, i ) =>
+                                <Typography variant='subtitle2'
+                                            noWrap
+                                            key={i}>{`${tag},`}&nbsp;
+                                </Typography> )}
+                        </motion.div>
+                    </DateAndTags>
+                </TextAlign>
+
+
+                <ImageBox className='image-box' layout>
+                    <GatsbyImage alt="featured image"
+                                 image={getImage( thumbnail )}
+                                 className="img-container"/>
+
+                    <div className='overlay'/>
+                </ImageBox>
+            </HeadLineContainer>
+
+        </AnimateSharedLayout>
+
+    );
+}
 
 export default HeadLine;

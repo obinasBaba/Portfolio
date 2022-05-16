@@ -8,7 +8,7 @@ import {spacing, text} from '../../../../../../styles/mixins'
 
 
 
-const Form = () => {
+function Form() {
 
 
   return (

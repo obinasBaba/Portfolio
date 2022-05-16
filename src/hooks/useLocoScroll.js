@@ -60,7 +60,7 @@ export default function useLocoScroll(
         // console.log('scrollTop', arguments.length)
 
         if (locoScroll.current) {
-          let value = arguments.length
+          const value = arguments.length
             ? locoScroll.current.scrollTo(value, 0, 0)
             : locoScroll.current.scroll.instance.scroll.y
 
@@ -74,7 +74,7 @@ export default function useLocoScroll(
       scrollLeft(value) {
         // console.log('scrollLeft', arguments.length)
         if (locoScroll.current) {
-          let value = arguments.length
+          const value = arguments.length
             ? locoScroll.current.scrollTo(value, 0, 0)
             : document.querySelector('.track')
             ? -document.querySelector('.track').getBoundingClientRect().x
@@ -118,7 +118,7 @@ export default function useLocoScroll(
         let previousHeight = 0
         const container = document.body.querySelector(elementId)
 
-        let intervalId = setInterval(() => {
+        const intervalId = setInterval(() => {
 
             // console.time('refresh loco')
             if (previousHeight === container.offsetHeight || !container)

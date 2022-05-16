@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import styled, {css} from "styled-components";
-import {spacing} from "../../../../styles/mixins";
-import {largeUp} from "../../../../styles/mixins/breakpoints";
+import React from 'react';
+import styled, { css } from "styled-components";
+import { motion, useMotionTemplate } from "framer-motion"
+import { spacing } from "../../../../styles/mixins";
+import { largeUp } from "../../../../styles/mixins/breakpoints";
 import useMo from "../../../../components/ScrollGallery/useMo";
-import {motion, useMotionTemplate} from "framer-motion"
 
 const ScrollText = styled.section`
   padding: 3rem;
@@ -17,7 +17,7 @@ const ScrollText = styled.section`
   filter: blur(.3px);
   font-family: 'Elianto-Regular',serif;
   
-  ${spacing( 'p', 5)};
+  ${spacing( 'p', 5 )};
   
   ${largeUp( css`
     min-height: 80vh;
@@ -51,33 +51,32 @@ const ScrollText = styled.section`
 `
 
 
-const HorizontalScrollText = () => {
+function HorizontalScrollText(){
 
 
-
-    const x = useMo(false);
-
+    const x = useMo();
 
 
     return (
-        <ScrollText className="content content--feature"  >
+        <ScrollText className="content content--feature">
 
             <motion.p className="content__breakout content__breakout--big"
-                      style={{x: useMotionTemplate`${x}%`}}
+                      style={{ x: useMotionTemplate`${x}%` }}
             >
                 endless acceleration toward infinity
             </motion.p>
 
-           <div className='right'>
-               <motion.p className="content__breakout content__breakout--medium"
-                         style={{x: useMotionTemplate`calc(-1 * ${x}%)`}}
-               >
-                   the greatest barrier to your enlightenment the greatest barrier to your enlightenment the greatest barrier to your enlightenment
-               </motion.p>
-           </div>
+            <div className='right'>
+                <motion.p className="content__breakout content__breakout--medium"
+                          style={{ x: useMotionTemplate`calc(-1 * ${x}%)` }}
+                >
+                    the greatest barrier to your enlightenment the greatest barrier to your enlightenment the greatest
+                    barrier to your enlightenment
+                </motion.p>
+            </div>
 
         </ScrollText>
     );
-};
+}
 
 export default HorizontalScrollText;

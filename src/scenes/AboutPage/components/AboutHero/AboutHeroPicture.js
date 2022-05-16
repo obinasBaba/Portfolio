@@ -1,9 +1,9 @@
 import React from 'react'
 import styled, {css} from 'styled-components'
+import {motion} from 'framer-motion';
 import useAboutHeroAssets from './useAboutHeroAssets'
 import {mediumUp} from "../../../../styles/mixins/breakpoints";
 import {gridColWidth} from "../../../../styles/mixins";
-import {motion} from 'framer-motion';
 
 const HeroPictureContainer = styled.div`
   //position: absolute;
@@ -100,7 +100,7 @@ const pathVariants = {
   }
 }
 
-const AboutHeroPicture = () => {
+function AboutHeroPicture() {
   const { photo } = useAboutHeroAssets()
   // xlinkHref={photo.publicURL}
 
