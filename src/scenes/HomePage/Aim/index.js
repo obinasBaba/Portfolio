@@ -96,7 +96,7 @@ const Effect = styled.div`
 
     img {
       margin-left: 0;
-      max-width: 26vmax;
+      max-width: 25vmax;
     }
 
   ` )};
@@ -143,7 +143,7 @@ function Aim(){
                         </Typography>
 
 
-                        <MotionBtn text='Learn more'/>
+                        <MotionBtn text='Learn more' to='/about'/>
                     </div>
                 </AimText>
             </div>

@@ -9,7 +9,6 @@ import { SectionWrapper } from "../../components/Container";
 import Projects from "./Projects";
 import BlogPosts from "./BlogPosts";
 import Experiments from "./Experiments";
-// import MailUs from "../MailUs";
 
 const MailUs = loadable( () => import('../../components/MailUs') )
 
@@ -67,7 +66,6 @@ function HomePage(){
         </SectionWrapper>
 
 
-        <MailUs/>
         <Suspense fallback={<footer> footer is loading </footer>}>
             <MailUs/>
         </Suspense>
