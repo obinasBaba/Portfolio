@@ -1,147 +1,157 @@
-import gsap from 'gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
-import {useContext, useEffect, useLayoutEffect, useRef} from 'react'
-import LocomotiveScroll from 'locomotive-scroll'
-import 'locomotive-scroll/dist/locomotive-scroll.css'
-import Cursor from '../components/Cursor'
-import { MotionValueContext } from '../contexts/MotionStateWrapper'
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import { useContext, useEffect, useLayoutEffect, useRef } from "react";
+import LocomotiveScroll from "locomotive-scroll";
+import "locomotive-scroll/dist/locomotive-scroll.css";
+import Cursor from "../components/Cursor";
+import { MotionValueContext } from "../contexts/MotionStateWrapper";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
-export default function useLocoScroll(
+export default function useLocoScroll (
   start = true,
-  elementId = '[data-scroll-container="true"]'
+  elementId = "[data-scroll-container=\"true\"]"
 ) {
-  const { moScroll, locoInstance } = useContext(MotionValueContext)
+  const { moScroll, locoInstance } = useContext(MotionValueContext);
 
-  const locoScroll = useRef(null)
-
+  const locoScroll = useRef(null);
 
   useLayoutEffect(() => {
-    console.log('LocoInvoked ---- --- --', start)
 
-    const scrollEl = document.body.querySelector(elementId)
-    window.locoInstance = locoScroll.current = new LocomotiveScroll({
-      el: scrollEl,
-      smooth: true,
-      multiplier: 1,
-      getDirection: true,
-      getSpeed: true,
+      const scrollEl = document.body.querySelector(elementId);
+      window.locoInstance = locoScroll.current = new LocomotiveScroll({
+        el: scrollEl,
+        smooth: true,
+        multiplier: 1,
+        getDirection: true,
+        getSpeed: true
 
-    })
-      locoInstance.set(window.locoInstance)
+      });
+      locoInstance.set(window.locoInstance);
 
-    // whenever when we scroll loco update scrollTrigger
-    locoScroll.current.on('scroll', arg => {
-      // console.time('Single onScroll');
-      ScrollTrigger.update()
-      moScroll.x.set(arg.scroll.x)
-      moScroll.y.set(arg.scroll.y)
-      moScroll.limit.set(arg.limit.y)
-      moScroll.scrollDirection.set(arg.direction)
+      // whenever when we scroll loco update scrollTrigger
+      locoScroll.current.on("scroll",
+        arg => {
+          // console.time('Single onScroll');
+          ScrollTrigger.update();
+          moScroll.x.set(arg.scroll.x);
+          moScroll.y.set(arg.scroll.y);
+          moScroll.limit.set(arg.limit.y);
+          moScroll.scrollDirection.set(arg.direction);
 
-      Math.abs(window.locoInstance.scroll.instance.speed) > 2 &&
-        Cursor.stopMouseAnimation()
-      // console.log('ticking', window.locoInstance.scroll.instance.speed)
-    })
+          Math.abs(window.locoInstance.scroll.instance.speed) > 2 &&
+          Cursor.stopMouseAnimation();
+          // console.log('ticking', window.locoInstance.scroll.instance.speed)
+        });
 
-    ScrollTrigger.scrollerProxy(scrollEl, {
-      getBoundingClientRect() {
-        return {
-          top: 0,
-          left: 0,
-          width: window.innerWidth,
-          height: window.innerHeight,
-        }
-      },
+      ScrollTrigger.scrollerProxy(scrollEl,
+        {
+          getBoundingClientRect () {
+            return {
+              top: 0,
+              left: 0,
+              width: window.innerWidth,
+              height: window.innerHeight
+            };
+          },
 
-      // pinType: document.querySelector('').style.transform ? 'transform': 'fixed',
-      scrollTop(value) {
-        // console.log('scrollTop', arguments.length)
+          // pinType: document.querySelector('').style.transform ? 'transform': 'fixed',
+          scrollTop (value) {
+            // console.log('scrollTop', arguments.length)
 
-        if (locoScroll.current) {
-          const value = arguments.length
-            ? locoScroll.current.scrollTo(value, 0, 0)
-            : locoScroll.current.scroll.instance.scroll.y
+            if ( locoScroll.current ) {
+              const value = arguments.length
+                ? locoScroll.current.scrollTo(value,
+                  0,
+                  0)
+                : locoScroll.current.scroll.instance.scroll.y;
 
-          // console.log( 'scrollTOp',  value)
-          return value
-        }
-        return null
-      },
-      fixedMarkers: true,
-
-      scrollLeft(value) {
-        // console.log('scrollLeft', arguments.length)
-        if (locoScroll.current) {
-          const value = arguments.length
-            ? locoScroll.current.scrollTo(value, 0, 0)
-            : document.querySelector('.track')
-            ? -document.querySelector('.track').getBoundingClientRect().x
-            : 0
-
-          // console.log( 'scrollLeft',  value)
-          return value
-        }
-        return null
-      },
-    })
-
-    const lsUpdate = () => {
-      if (locoScroll.current) {
-        locoScroll.current.update()
-      }
-    }
-
-    window.addEventListener('resize', lsUpdate)
-    ScrollTrigger.addEventListener('refresh', lsUpdate)
-    ScrollTrigger.refresh()
-
-    return () => {
-      if (locoScroll.current) {
-        window.removeEventListener('resize', lsUpdate)
-        ScrollTrigger.removeEventListener('refresh', lsUpdate)
-        locoScroll.current.destroy()
-        window.locoInstance.destroy()
-        window.locoInstance = false
-        locoInstance.set(null)
-        locoScroll.current = null
-        scrollEl.style.transform = 'initial'
-        // docu
-        console.log('Kill', locoScroll.current)
-      }
-    }
-  }, [start])
-
-    useEffect(() => {
-        let idelId
-        let previousHeight = 0
-        const container = document.body.querySelector(elementId)
-
-        const intervalId = setInterval(() => {
-
-            // console.time('refresh loco')
-            if (previousHeight === container.offsetHeight || !container)
-                return;
-
-            const cb = () => {
-                window.locoInstance && window.locoInstance.update()
-                ScrollTrigger.refresh()
-                previousHeight = container.offsetHeight
+              // console.log( 'scrollTOp',  value)
+              return value;
             }
+            return null;
+          },
+          fixedMarkers: true,
 
-            if ('requestIdleCallback' in window) {
-                cancelIdleCallback(idelId)
-                idelId = requestIdleCallback(cb)
-            } else {
-                cb()
+          scrollLeft (value) {
+            // console.log('scrollLeft', arguments.length)
+            if ( locoScroll.current ) {
+              const value = arguments.length
+                ? locoScroll.current.scrollTo(value,
+                  0,
+                  0)
+                : document.querySelector(".track")
+                  ? -document.querySelector(".track").getBoundingClientRect().x
+                  : 0;
+
+              // console.log( 'scrollLeft',  value)
+              return value;
             }
-            // console.timeEnd('refresh loco')
+            return null;
+          }
+        });
 
-        }, 2400)
+      const lsUpdate = () => {
+        if ( locoScroll.current ) {
+          locoScroll.current.update();
+        }
+      };
 
-        return () => clearInterval(intervalId)
-    }, [])
+      window.addEventListener("resize",
+        lsUpdate);
+      ScrollTrigger.addEventListener("refresh",
+        lsUpdate);
+      ScrollTrigger.refresh();
 
-  return locoScroll
+      return () => {
+        if ( locoScroll.current ) {
+          window.removeEventListener("resize",
+            lsUpdate);
+          ScrollTrigger.removeEventListener("refresh",
+            lsUpdate);
+          locoScroll.current.destroy();
+          window.locoInstance.destroy();
+          window.locoInstance = false;
+          locoInstance.set(null);
+          locoScroll.current = null;
+          scrollEl.style.transform = "initial";
+          // docu
+        }
+      };
+    },
+    [start]);
+
+  useEffect(() => {
+      let idelId;
+      let previousHeight = 0;
+      const container = document.body.querySelector(elementId);
+
+      const intervalId = setInterval(() => {
+
+          // console.time('refresh loco')
+          if ( previousHeight === container.offsetHeight || !container )
+            return;
+
+          const cb = () => {
+            window.locoInstance && window.locoInstance.update();
+            ScrollTrigger.refresh();
+            previousHeight = container.offsetHeight;
+          };
+
+          if ( "requestIdleCallback" in window ) {
+            cancelIdleCallback(idelId);
+            idelId = requestIdleCallback(cb);
+          } else {
+            cb();
+          }
+          // console.timeEnd('refresh loco')
+
+        },
+        2400);
+
+      return () => clearInterval(intervalId);
+    },
+    []);
+
+  return locoScroll;
 }
