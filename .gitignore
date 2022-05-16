@@ -75,3 +75,7 @@ yarn-error.log
 trash/**
 !/trash/
 !/trash/**
+
+
+# Partytown
+static/~partytown
