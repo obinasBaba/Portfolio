@@ -10,10 +10,10 @@ import Projects from "./Projects";
 import BlogPosts from "./BlogPosts";
 import Experiments from "./Experiments";
 
-const MailUs = loadable(() => import("../../components/MailUs"));
+const MailUs = loadable( () => import("../../components/MailUs") );
 
 const containerVariants = {
-  exit (arg) {
+  exit( arg ){
     if ( arg?.inView.get() ) return {};
 
     return {
@@ -28,17 +28,17 @@ const transition = {
   ease: [0.6, 0.01, 0, 0.9]
 };
 
-function HomePage () {
+function HomePage(){
 
   const {
     mainAnimationController,
     screenOverlayEvent
-  } = useContext(MotionValueContext);
+  } = useContext( MotionValueContext );
 
-  useEffect(() => {
+  useEffect( () => {
 
     },
-    []);
+    [] );
 
   return (< motion.main variants={containerVariants}
                         className="homepage-container"
@@ -71,10 +71,6 @@ function HomePage () {
 
 
     <MailUs />
-    {/* <Suspense fallback={<footer> footer is loading </footer>}>
-            <MailUs/>
-        </Suspense>*/}
-
 
   </motion.main>);
 }

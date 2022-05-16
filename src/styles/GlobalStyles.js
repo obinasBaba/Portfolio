@@ -1,5 +1,5 @@
-import { createGlobalStyle, css } from 'styled-components'
-import { responsiveVars, webKitInputReset } from './variables/responsiveVars'
+import { createGlobalStyle, css } from "styled-components";
+import { responsiveVars, webKitInputReset } from "./variables/responsiveVars";
 import { mediumUp, smallUp } from "./mixins/breakpoints";
 
 export const GlobalStyle = createGlobalStyle`
@@ -128,12 +128,6 @@ export const GlobalStyle = createGlobalStyle`
       --theme: rgba(2, 11, 22, 1);
     }
 
-    /* &.loading-done{
-       .background-overlay-container .loading-bg{
-         display: none;
-       }
-      }*/
-
 
   }
 
@@ -158,4 +152,4 @@ export const GlobalStyle = createGlobalStyle`
 
 
 
-`
+`;

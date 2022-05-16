@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useLayoutEffect, useRef, useState, } from 'react'
-import styled from 'styled-components'
-import { AnimatePresence, motion } from 'framer-motion'
-import { transition } from '../../helpers/variants'
-import useLoadingFonts from '../../hooks/useFonts'
-import { MotionValueContext } from '../../contexts/MotionStateWrapper'
+import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+import styled from "styled-components";
+import { AnimatePresence, motion } from "framer-motion";
+import { transition } from "../../helpers/variants";
+import useLoadingFonts from "../../hooks/useFonts";
+import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 
 const SpinnerContainer = styled( motion.div )`
   //position: fixed;
@@ -28,7 +28,7 @@ const SpinnerContainer = styled( motion.div )`
   &.loaded .loading-backup {
     display: none;
   }
-`
+`;
 
 const Content = styled.div`
   position: relative;
@@ -61,7 +61,7 @@ const Content = styled.div`
       transform: rotate(360deg);
     }
   }
-`
+`;
 
 
 const SmallBall = styled.div`
@@ -85,13 +85,13 @@ const SmallBall = styled.div`
       transform: translateY(70px) translateX(var(50px));
     }
   }
-`
+`;
 
 const BigBall = styled.div`
   width: 200px;
   height: 200px;
   background-color: #02021e;
-`
+`;
 
 
 const SpinnerWrapper = styled( motion.div )`
@@ -102,174 +102,169 @@ const SpinnerWrapper = styled( motion.div )`
   display: grid;
   place-items: center;
   z-index: 10;
-`
+`;
 
 
 const parentVariants = {
-    initial: {},
-    animate: {},
-    exit: {
-        // opacity: 0
-    },
+  initial: {},
+  animate: {},
+  exit: {
+    // opacity: 0
+  },
 
-    transition: {
-        duration: 1.21,
-        delay: .0821,
-        ease: [0.6, 0.01, 0, 0.9],
-    }
-}
+  transition: {
+    duration: 1.21,
+    delay: .0821,
+    ease: [0.6, 0.01, 0, 0.9]
+  }
+};
 
 let exited = false;
 const containerVariants = {
 
-    initial(){
-        exited = false
-        return {
-            opacity: 0,
-        }
-    },
-    animate: {
-        opacity: 1,
-        transition: {
-            ...transition,
-            duration: 2,
+  initial(){
+    exited = false;
+    return {
+      opacity: 0
+    };
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      ...transition,
+      duration: 2
 
-        }
-    },
-
-    exit( arg ){
-        // opacity: 0,
-
-        if ( !exited ) {
-            arg && arg.cleanUp()
-            exited = true
-        }
-
-        return {
-            y: '-100%',
-        }
     }
-}
+  },
+
+  exit( arg ){
+    // opacity: 0,
+
+    if ( !exited ) {
+      arg && arg.cleanUp();
+      exited = true;
+    }
+
+    return {
+      y: "-100%"
+    };
+  }
+};
 
 
 function LoadingSpinner(){
 
-    const smallRef = useRef( null )
-    const contentRef = useRef( null )
-    const loadingBgBackup = useRef( null )
-    const containerRef = useRef( null )
+  const smallRef = useRef( null );
+  const contentRef = useRef( null );
+  const loadingBgBackup = useRef( null );
+  const containerRef = useRef( null );
 
-    const [backgroundOverlay, setBackgroundOverlay] = useState( false );
-    const {
-        toolTipsData,
-        mainAnimationController,
-        screenOverlayProxy,
-        screenOverlayEvent
-    } = useContext( MotionValueContext );
+  const [backgroundOverlay, setBackgroundOverlay] = useState( true );
+  const {
+    toolTipsData,
+    mainAnimationController,
+    screenOverlayProxy,
+    screenOverlayEvent
+  } = useContext( MotionValueContext );
 
-    useLoadingFonts( { setBackgroundOverlay, backgroundOverlay } )
+  useLoadingFonts( { setBackgroundOverlay, backgroundOverlay } );
 
-    useEffect( () => {
-        return;
-        toolTipsData.set( {
-            text: ' ⌛ getting things ready...',
-            show: true,
-        } )
+  useEffect( () => {
+    toolTipsData.set( {
+      text: " ⌛ getting things ready...",
+      show: true
+    } );
 
-    }, [] )
+  }, [] );
 
-    useLayoutEffect( () => {
-        loadingBgBackup.current = document.body.querySelector( '#page-container .loading-backup' )
-    }, [] )
+  useLayoutEffect( () => {
+    loadingBgBackup.current = document.body.querySelector( "#page-container .loading-backup" );
+  }, [] );
 
-    useEffect( () => {
+  useEffect( () => {
 
-        mainAnimationController.start( 'animate' );
-        screenOverlayEvent.set( 'closed' )
-        return;
+    screenOverlayProxy.set( {
+      state: true,
+      config: {
+        duration: 0.0002,
+        delayPointsMax: 0,
+        delayPerPath: 0
+      }
+    } );
 
-        screenOverlayProxy.set( {
-            state: true,
-            config: {
-                duration: 0.0002,
-                delayPointsMax: 0,
-                delayPerPath: 0,
-            }
-        } )
-
-        return () => {
-        }
-    }, [] )
+    return () => {
+    };
+  }, [] );
 
 
-    async function cleanUp(){
+  async function cleanUp(){
 
-        document.body.querySelector( '#main-container' )
-            .classList.add( 'loaded' )
-
-
-        screenOverlayProxy.set( {
-            state: false,
-            config: {
-                duration: 920,
-                delayPointsMax: 120,
-                delayPerPath: 120,
-            }
-        } )
-
-        setTimeout( () => {
-            mainAnimationController.start( 'animate' );
-            screenOverlayEvent.set( 'closed' )
-        }, 750 )
-
-    }
+    document.body.querySelector( "#main-container" )
+      .classList.add( "loaded" );
 
 
-    return (
+    screenOverlayProxy.set( {
+      state: false,
+      config: {
+        duration: 920,
+        delayPointsMax: 120,
+        delayPerPath: 120
+      }
+    } );
 
-        <AnimatePresence exitBeforeEnter>
+    setTimeout( () => {
+      mainAnimationController.start( "animate" );
+      screenOverlayEvent.set( "closed" );
+    }, 750 );
 
-            {
-                backgroundOverlay &&
-                <SpinnerContainer ref={containerRef}
-                                  variants={parentVariants}
-                                  initial='initial'
-                                  animate='animate'
-                                  exit='exit'
-                                  transition={parentVariants.transition}
-
-                >
-
-
-                    <SpinnerWrapper variants={containerVariants}
-                                    key='contentwrapp'
-                                    custom={{ cleanUp }}
-                                    transition={parentVariants.transition}>
-
-                        <Content ref={contentRef}>
-                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
-                                <defs>
-                                    <filter id="goo">
-                                        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
-                                        <feColorMatrix in="blur" mode="matrix"
-                                                       values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
-                                                       result="goo"/>
-                                        <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
-                                    </filter>
-                                </defs>
-                            </svg>
-                            <SmallBall ref={smallRef}/>
-                            <BigBall/>
-                        </Content>
-
-                    </SpinnerWrapper>
+  }
 
 
-                </SpinnerContainer>
-            }
-        </AnimatePresence>
+  return (
 
-    )
+    <AnimatePresence exitBeforeEnter>
+
+      {
+        backgroundOverlay &&
+        <SpinnerContainer ref={containerRef}
+                          variants={parentVariants}
+                          initial="initial"
+                          animate="animate"
+                          exit="exit"
+                          transition={parentVariants.transition}
+
+        >
+
+
+          <SpinnerWrapper variants={containerVariants}
+                          key="contentwrapp"
+                          custom={{ cleanUp }}
+                          transition={parentVariants.transition}>
+
+            <Content ref={contentRef}>
+              <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
+                <defs>
+                  <filter id="goo">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                    <feColorMatrix in="blur" mode="matrix"
+                                   values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+                                   result="goo" />
+                    <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+                  </filter>
+                </defs>
+              </svg>
+              <SmallBall ref={smallRef} />
+              <BigBall />
+            </Content>
+
+          </SpinnerWrapper>
+
+
+        </SpinnerContainer>
+      }
+    </AnimatePresence>
+
+  );
 }
 
-export default LoadingSpinner
+export default LoadingSpinner;
