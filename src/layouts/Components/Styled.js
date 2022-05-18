@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { motion } from 'framer-motion'
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const PageContainer = styled( motion.div )`
   position: relative;
@@ -9,7 +9,7 @@ export const PageContainer = styled( motion.div )`
   //overflow: hidden;
   //z-index: 0;
 
-`
+`;
 
 export const BottomGradient = styled.div`
   position: fixed;
@@ -28,7 +28,7 @@ export const BottomGradient = styled.div`
   &.hide-bg {
     opacity: 0;
   }
-`
+`;
 
 export const Main = styled( motion.main )`
   position: relative;
@@ -48,7 +48,7 @@ export const Main = styled( motion.main )`
   & > * {
     //z-index: 1;
   }
-`
+`;
 
 export const SkyColor = styled.div`
   position: fixed;
@@ -68,6 +68,6 @@ export const SkyColor = styled.div`
 
   //z-index: -300
 
-`
+`;
 
 

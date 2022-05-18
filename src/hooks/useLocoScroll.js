@@ -6,47 +6,47 @@ import "locomotive-scroll/dist/locomotive-scroll.css";
 import Cursor from "../components/Cursor";
 import { MotionValueContext } from "../contexts/MotionStateWrapper";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin( ScrollTrigger );
 
-export default function useLocoScroll (
+export default function useLocoScroll(
   start = true,
   elementId = "[data-scroll-container=\"true\"]"
-) {
-  const { moScroll, locoInstance } = useContext(MotionValueContext);
+){
+  const { moScroll, locoInstance } = useContext( MotionValueContext );
 
-  const locoScroll = useRef(null);
+  const locoScroll = useRef( null );
 
-  useLayoutEffect(() => {
+  useLayoutEffect( () => {
 
-      const scrollEl = document.body.querySelector(elementId);
-      window.locoInstance = locoScroll.current = new LocomotiveScroll({
+      const scrollEl = document.body.querySelector( elementId );
+      window.locoInstance = locoScroll.current = new LocomotiveScroll( {
         el: scrollEl,
         smooth: true,
         multiplier: 1,
         getDirection: true,
         getSpeed: true
 
-      });
-      locoInstance.set(window.locoInstance);
+      } );
+      locoInstance.set( window.locoInstance );
 
       // whenever when we scroll loco update scrollTrigger
-      locoScroll.current.on("scroll",
+      locoScroll.current.on( "scroll",
         arg => {
           // console.time('Single onScroll');
           ScrollTrigger.update();
-          moScroll.x.set(arg.scroll.x);
-          moScroll.y.set(arg.scroll.y);
-          moScroll.limit.set(arg.limit.y);
-          moScroll.scrollDirection.set(arg.direction);
+          moScroll.x.set( arg.scroll.x );
+          moScroll.y.set( arg.scroll.y );
+          moScroll.limit.set( arg.limit.y );
+          moScroll.scrollDirection.set( arg.direction );
 
-          Math.abs(window.locoInstance.scroll.instance.speed) > 2 &&
+          Math.abs( window.locoInstance.scroll.instance.speed ) > 2 &&
           Cursor.stopMouseAnimation();
           // console.log('ticking', window.locoInstance.scroll.instance.speed)
-        });
+        } );
 
-      ScrollTrigger.scrollerProxy(scrollEl,
+      ScrollTrigger.scrollerProxy( scrollEl,
         {
-          getBoundingClientRect () {
+          getBoundingClientRect(){
             return {
               top: 0,
               left: 0,
@@ -56,14 +56,14 @@ export default function useLocoScroll (
           },
 
           // pinType: document.querySelector('').style.transform ? 'transform': 'fixed',
-          scrollTop (value) {
+          scrollTop( value ){
             // console.log('scrollTop', arguments.length)
 
             if ( locoScroll.current ) {
               const value = arguments.length
-                ? locoScroll.current.scrollTo(value,
+                ? locoScroll.current.scrollTo( value,
                   0,
-                  0)
+                  0 )
                 : locoScroll.current.scroll.instance.scroll.y;
 
               // console.log( 'scrollTOp',  value)
@@ -73,15 +73,15 @@ export default function useLocoScroll (
           },
           fixedMarkers: true,
 
-          scrollLeft (value) {
+          scrollLeft( value ){
             // console.log('scrollLeft', arguments.length)
             if ( locoScroll.current ) {
               const value = arguments.length
-                ? locoScroll.current.scrollTo(value,
+                ? locoScroll.current.scrollTo( value,
                   0,
-                  0)
-                : document.querySelector(".track")
-                  ? -document.querySelector(".track").getBoundingClientRect().x
+                  0 )
+                : document.querySelector( ".track" )
+                  ? -document.querySelector( ".track" ).getBoundingClientRect().x
                   : 0;
 
               // console.log( 'scrollLeft',  value)
@@ -89,7 +89,7 @@ export default function useLocoScroll (
             }
             return null;
           }
-        });
+        } );
 
       const lsUpdate = () => {
         if ( locoScroll.current ) {
@@ -97,61 +97,56 @@ export default function useLocoScroll (
         }
       };
 
-      window.addEventListener("resize",
-        lsUpdate);
-      ScrollTrigger.addEventListener("refresh",
-        lsUpdate);
+      window.addEventListener( "resize",
+        lsUpdate );
+      ScrollTrigger.addEventListener( "refresh",
+        lsUpdate );
       ScrollTrigger.refresh();
 
       return () => {
         if ( locoScroll.current ) {
-          window.removeEventListener("resize",
-            lsUpdate);
-          ScrollTrigger.removeEventListener("refresh",
-            lsUpdate);
+          window.removeEventListener( "resize",
+            lsUpdate );
+          ScrollTrigger.removeEventListener( "refresh",
+            lsUpdate );
           locoScroll.current.destroy();
           window.locoInstance.destroy();
           window.locoInstance = false;
-          locoInstance.set(null);
+          locoInstance.set( null );
           locoScroll.current = null;
           scrollEl.style.transform = "initial";
           // docu
         }
       };
     },
-    [start]);
+    [start] );
 
-  useEffect(() => {
+  useEffect( () => {
+      // return;
       let idelId;
-      let previousHeight = 0;
-      const container = document.body.querySelector(elementId);
 
-      const intervalId = setInterval(() => {
-
-          // console.time('refresh loco')
-          if ( previousHeight === container.offsetHeight || !container )
-            return;
+      const intervalId = setInterval( () => {
 
           const cb = () => {
             window.locoInstance && window.locoInstance.update();
-            ScrollTrigger.refresh();
-            previousHeight = container.offsetHeight;
+            // ScrollTrigger.refresh();
+            // previousHeight = container.offsetHeight;
           };
 
           if ( "requestIdleCallback" in window ) {
-            cancelIdleCallback(idelId);
-            idelId = requestIdleCallback(cb);
+            cancelIdleCallback( idelId );
+            idelId = requestIdleCallback( cb );
           } else {
             cb();
           }
           // console.timeEnd('refresh loco')
 
         },
-        2400);
+        2400 );
 
-      return () => clearInterval(intervalId);
+      return () => clearInterval( intervalId );
     },
-    []);
+    [] );
 
   return locoScroll;
 }

@@ -1,9 +1,8 @@
-import React, {useContext, useRef} from 'react'
-import styled, {css} from 'styled-components'
-import {motion, useAnimation, useMotionTemplate, Variants,} from 'framer-motion'
-import {Link} from 'gatsby'
-import {MotionValueContext} from '../../../contexts/MotionStateWrapper'
-import useRotation from './useRotation'
+import React, { useRef } from "react";
+import styled, { css } from "styled-components";
+import { motion, useAnimation, useMotionTemplate, Variants } from "framer-motion";
+import { Link } from "gatsby";
+import useRotation from "./useRotation";
 
 const vars = css`
   margin: 0;
@@ -34,7 +33,7 @@ const vars = css`
   //font-family: tenon, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-`
+`;
 
 const Container = styled(motion.section)`
   position: relative;
@@ -54,15 +53,18 @@ const Container = styled(motion.section)`
 
     //top: calc(50% - var(--dim) / 2);
     //left: calc(50% - var(--dim) / 2);
-
-    .circles__text-path {
-      border: thin solid red;
-    }
   }
 
   svg {
     g.circle-g {
+      will-change: transform;
       transition: transform .200ms ease-in-out !important;
+
+      text.circles__text {
+        //transition: all 1.14s cubic-bezier(0.16, 1, 0.3, 1) .2s;
+        will-change: transform, opacity;
+
+      }
     }
   }
 
@@ -79,15 +81,39 @@ const Container = styled(motion.section)`
     //cursor: none;
     background: none;
     padding: 0;
+    //transition: transform .8s cubic-bezier(0.87, 0, 0.13, 1);
+
+
+    &:hover {
+      //transform: scale(1.35);
+      //transition: all .9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+
+      & + svg {
+
+        g.circle-g {
+          text.circles__text {
+            transition: all 1.14s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            opacity: .4;
+
+            &[data-idx='true'] {
+              transform: rotate(-90deg) scale(1.15);
+            }
+
+            &[data-idx='false'] {
+              transform: rotate(90deg) scale(1.15);
+            }
+
+          }
+        }
+
+      }
+    }
   }
 
-  .enter:focus,
-  .enter:hover,
-  .enter:active {
-    outline: none;
-  }
 
   .enter__bg {
+
+
     position: absolute;
     top: 0;
     left: 0;
@@ -102,8 +128,10 @@ const Container = styled(motion.section)`
 
 
     &:hover {
+      transform: scale(1.35);
+      transition: all .9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
       box-shadow: 0 0 2rem var(--medium-blue-color);
-      transition: all .3s ease-in;
+      //transition: all .3s ease-in;
       color: white;
 
     }
@@ -152,262 +180,195 @@ const Container = styled(motion.section)`
 
     letter-spacing: 50px;
   }
-`
+`;
 
 const containerVariants = {
-    initial: {},
+  initial: {},
 
-    inView: {
-        transition: {
-            staggerChildren: 0.04,
-        },
-    },
-
-    startHover: {},
-
-    endHover: {
-        /*transition:{
-          staggerChildren: .2,
-        }*/
-    },
-}
+  exit: {
+    transition: {
+      delayChildren: .8,
+      staggerChildren: .75,
+      staggerDirection: -1
+    }
+  }
+};
 
 const circleSvgVariants = {
-    endHover: {
-        transition: {
-            staggerChildren: 0.02,
-        },
-    },
-
-    exit: {
-        transition: {
-            staggerChildren: .04,
-            staggerDirection: -1
-        }
+  endHover: {
+    transition: {
+      staggerChildren: 0.02
     }
-}
+  },
+
+  exit: {
+    transition: {
+      staggerChildren: .04,
+      staggerDirection: -1
+    }
+  }
+};
 
 const circleTxtVariants: Variants = {
-    initial: {
-        opacity: 1,
-        scale: 1,
-    },
+  initial: {
+    opacity: 1,
+    scale: 1
+  },
 
-    inView(custom) { // not using this
-        return {
-            scale: 1,
-            opacity: 1,
-            rotate: custom.idx % 2 ? 90 : -90,
-            transition: {
-                duration: 3,
-                ease: [0.87, 0, 0.13, 1],
-            },
-        }
-    },
+  exit(arg) {
+    // console.log('exitArg: --- --', arg)
+    // if (arg.inView !== 'projects')
+    //   return {};
 
-    startHover(custom) {
-        return {
-            scale: 1.15,
-            rotate: custom.idx % 2 ? -90 : 90,
-            opacity: 0.4,
-            transition: {
-                duration: 1.14,
-                ease: [0.16, 1, 0.3, 1],
-            },
-        }
-    },
-
-    endHover(custom) {
-        return {
-            scale: 1,
-            rotate: custom.idx % 2 ? 90 : -90,
-            opacity: 1,
-
-            transition: {
-                duration: 1,
-                ease: [0.16, 1, 0.3, 1],
-            },
-        }
-    },
-
-    exit(arg) {
-        // console.log('exitArg: --- --', arg)
-        // if (arg.inView !== 'projects')
-        //   return {};
-
-        if (arg && arg.inView && arg?.inView.get() === 'project-section') {
-            return {
-                scale: .2,
-                opacity: 0,
-                transition: {
-                    duration: .9,
-                    ease: [0.36, 0, 0.66, -0.56],
-                }
-
-            }
-        }
-
-        return {}
-
-
-    }
-}
-
-const btnVariants = {
-    initial: {
-        opacity: 1,
-        scale: 1,
-    },
-
-    inView: {  // not using this
-        scale: 1,
-        opacity: 1,
-    },
-
-    startHover: {
-        scale: 1.35,
-        transition: {
-            delay: 0.1,
-            duration: 0.9,
-            ease: [0.16, 1, 0.3, 1],
-        },
-    },
-
-    btnHoverEnd: {
-        scale: 1,
-        transition: {
-            duration: 0.9,
-
-        },
-    },
-
-    exit: {
-        scale: 0.2,
+    if (arg && arg.inView && arg?.inView.get() === "project-section") {
+      return {
+        scale: .2,
         opacity: 0,
         transition: {
-            duration: 0.6,
-            ease: [0.16, 1, 0.3, 1],
+          duration: .9,
+          ease: [0.36, 0, 0.66, -0.56]
         }
+
+      };
     }
-}
+
+    return {};
+
+
+  }
+};
+
+const btnVariants = {
+  initial: {
+    opacity: 1,
+    scale: 1
+  },
+
+  exit: {
+    scale: 0.2,
+    opacity: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1]
+    }
+  }
+};
 
 const transition = {
-    duration: 2.5,
-    ease: [0.87, 0, 0.13, 1],
-}
+  duration: 2.5,
+  ease: [0.87, 0, 0.13, 1]
+};
 
 
 const RotationCircleText = () => {
-    const enterBtn = useRef(null)
-    const clicked = useRef(false)
-    const controller = useAnimation()
-    const texts = [
-        {text: 'coding^can*be^fun*and^joy*', link: '#circle-1', length: 2830},
-        {
-            text: 'X Algørithm X Infinitæ X Dæbugging ',
-            link: '#circle-2',
-            length: 2001,
-        },
-        {
-            text: '. It . works . on . my . machinæ ',
-            link: '#circle-3',
-            length: 1341,
-        },
-        {
-            text: 'Køge For Kærlighed Building uI ',
-            link: '#circle-4',
-            length: 836,
-        },
-    ]
-    const {
-        moScroll: {y, limit},
-    } = useContext(MotionValueContext)
+  const enterBtn = useRef(null);
+  const clicked = useRef(false);
+  const controller = useAnimation();
+  const rotation = useRotation();
+
+  const texts = [
+    {
+      text: "coding^can*be^fun*and^joy*",
+      link: "#circle-1",
+      length: 2830,
+      rotate: useMotionTemplate`-${rotation}deg`
+    },
+    {
+      text: "X Algørithm X Infinitæ X Dæbugging ",
+      link: "#circle-2",
+      length: 2001,
+      rotate: useMotionTemplate`${rotation}deg`
+    },
+    {
+      text: ". It . works . on . my . machinæ ",
+      link: "#circle-3",
+      length: 1341,
+      rotate: useMotionTemplate`-${rotation}deg`
+
+    },
+    {
+      text: "Køge For Kærlighed Building uI ",
+      link: "#circle-4",
+      length: 836,
+      rotate: useMotionTemplate`${rotation}deg`
+
+    }
+  ];
+
+  return (
+    <Container
+      className="rotation-circle"
+      variants={containerVariants}
+      initial="initial"
+      exit="exit"
+
+    >
 
 
-    /* const rotate = useTransform(y, latest => {
-       return map(latest, 0, limit.get(), 0, 360)
-     })*/
+      <motion.button
+        className="enter"
+        data-pointer="focus"
+        // data-pointer-color="#02021e"
+        data-tooltip
+        data-tooltip-text="explore my works"
+        variants={btnVariants}
+        transition={transition}
+        ref={enterBtn}
 
-    const rotate = useRotation()
-
-
-    return (
-        <Container
-            className="rotation-circle"
-            variants={containerVariants}
-            animate={controller}
-            initial="initial"
-            exit='exit'
-            // whileInView="inView"
-            /*viewport={{
-              amount: 'some',
-              once: true,
-            }}*/
+      >
+        <Link to="/projects"
+              className="enter__bg"
+              onClick={() => {
+                window?.locoInstance?.scrollTo("#projects .rotation-circle svg.circles");
+              }}
         >
-            <motion.svg
-                className="circles"
-                width="100%"
-                height="100%"
-                viewBox="0 0 1400 1400"
-                variants={circleSvgVariants}
+          <span className="enter__text">Explore</span>
+        </Link>
+      </motion.button>
 
-            >
-                <defs>
-                    <path id="circle-1" d="M250,700.5A450.5,450.5 0 1 11151,700.5A450.5,450.5 0 1 1250,700.5"/>
-                    <path id="circle-2" d="M382,700.5A318.5,318.5 0 1 11019,700.5A318.5,318.5 0 1 1382,700.5"/>
-                    <path id="circle-3" d="M487,700.5A213.5,213.5 0 1 1914,700.5A213.5,213.5 0 1 1487,700.5"/>
-                    <path id="circle-4" d="M567.5,700.5A133,133 0 1 1833.5,700.5A133,133 0 1 1567.5,700.5"/>
-                </defs>
+      <motion.svg
+        className="circles"
+        width="100%"
+        height="100%"
+        viewBox="0 0 1400 1400"
+        variants={circleSvgVariants}
 
-                {texts.map(({text, link, length}, index) => {
+      >
+        <defs>
+          <path id="circle-1" d="M250,700.5A450.5,450.5 0 1 11151,700.5A450.5,450.5 0 1 1250,700.5" />
+          <path id="circle-2" d="M382,700.5A318.5,318.5 0 1 11019,700.5A318.5,318.5 0 1 1382,700.5" />
+          <path id="circle-3" d="M487,700.5A213.5,213.5 0 1 1914,700.5A213.5,213.5 0 1 1487,700.5" />
+          <path id="circle-4" d="M567.5,700.5A133,133 0 1 1833.5,700.5A133,133 0 1 1567.5,700.5" />
+        </defs>
 
-                    let dir = index % 2 === 0 ? useMotionTemplate`-${rotate}deg` : useMotionTemplate`${rotate}deg`;
+        {texts.map(({ text, link, length, rotate }, index) => {
 
-                    return <motion.g className="circle-g" style={{rotate: dir}} key={index}>
-                        <motion.text
-                            className={`circles__text circles__text--${index + 1}`}
-                            variants={circleTxtVariants}
-                            transition={transition}
-                            custom={{idx: index}}
-                        >
-                            <textPath className="circles__text-path" xlinkHref={link} aria-label="" textLength={length}>
-                                {text}
-                            </textPath>
-                        </motion.text>
-                    </motion.g>
-                })}
-            </motion.svg>
+          return (
 
-            <motion.button
-                className="enter"
-                data-pointer="focus"
-                // data-pointer-color="#02021e"
-                data-tooltip
-                data-tooltip-text='explore my works'
-                variants={btnVariants}
-                transition={transition}
-                ref={enterBtn}
-                onHoverStart={() => {
-                    controller.start('startHover')
-                }}
-                onHoverEnd={() => {
-                    if (clicked.current) return;
+            <motion.g variants={circleTxtVariants}
+                      transition={transition}
+                      custom={{ idx: index }}>
 
-                    controller.start('endHover')
-                    controller.start('btnHoverEnd')
-                }}
-            >
-                <Link to='/projects'
-                      className="enter__bg"
-                      onClick={() => {
-                          clicked.current = true
-                      }}
+              <motion.g className="circle-g" style={{ rotate }} key={index}>
+                <text
+                  className={`circles__text circles__text--${index + 1}`}
+                  style={{ transition: `all 1.14s cubic-bezier(0.16, 1, 0.3, 1) ${index * .06}s` }}
+                  data-idx={index % 2 === 0}
                 >
-                    <span className="enter__text">Explore</span>
-                </Link>
-            </motion.button>
-        </Container>
-    )
-}
+                  <textPath className="circles__text-path" xlinkHref={link} aria-label="" textLength={length}>
+                    {text}
+                  </textPath>
+                </text>
+              </motion.g>
+            </motion.g>
 
-export default React.memo(RotationCircleText)
+          );
+        })}
+      </motion.svg>
+
+
+    </Container>
+  );
+};
+
+export default React.memo(RotationCircleText);

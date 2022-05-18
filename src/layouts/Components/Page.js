@@ -7,7 +7,7 @@ import ProgressCircle from "../../components/ScrollProgressCircle";
 import Cursor from "../../components/Cursor";
 import { BottomGradient, Main, PageContainer } from "./Styled";
 import { MotionValueContext } from "../../contexts/MotionStateWrapper";
-import BackgroundOverlay from "../../components/ScreenOverlay";
+import ScreenOverlay from "../../components/ScreenOverlay";
 import NavigationMenu from "../../components/NavigationMenu";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
@@ -57,7 +57,7 @@ function Page( { children, path } ){
     >
       <LoadingSpinner />
 
-      <BackgroundOverlay />
+      <ScreenOverlay />
 
       <BackgroundStars />
 

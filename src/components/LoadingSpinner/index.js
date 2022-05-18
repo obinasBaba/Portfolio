@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 import { transition } from "../../helpers/variants";
@@ -156,7 +156,6 @@ function LoadingSpinner(){
 
   const smallRef = useRef( null );
   const contentRef = useRef( null );
-  const loadingBgBackup = useRef( null );
   const containerRef = useRef( null );
 
   const [backgroundOverlay, setBackgroundOverlay] = useState( true );
@@ -175,10 +174,6 @@ function LoadingSpinner(){
       show: true
     } );
 
-  }, [] );
-
-  useLayoutEffect( () => {
-    loadingBgBackup.current = document.body.querySelector( "#page-container .loading-backup" );
   }, [] );
 
   useEffect( () => {

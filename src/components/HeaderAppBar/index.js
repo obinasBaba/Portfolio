@@ -1,62 +1,60 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
-import Slide from '@material-ui/core/Slide'
-import styled, { css } from 'styled-components'
-import HomeLogo from './components/HomeLogo'
-import NavBtn from './components/NavBtn'
-import { spacing } from '../../styles/mixins'
-import {
-  AppStateContext,
-  BackgroundOverlayStateContext,
-} from '../../contexts/AppStateContext'
-import { debounce } from 'lodash'
-import { MotionValueContext } from '../../contexts/MotionStateWrapper'
+import React, { useContext, useEffect, useState } from "react";
+import Slide from "@material-ui/core/Slide";
+import styled, { css } from "styled-components";
+import { debounce } from "lodash";
+import { motion } from "framer-motion";
+import { useScrollTrigger } from "@material-ui/core";
+import HomeLogo from "./components/HomeLogo";
+import NavBtn from "./components/NavBtn";
+import { spacing } from "../../styles/mixins";
+import { AppStateContext } from "../../contexts/AppStateContext";
+import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 
-import { useScrollTrigger } from '@material-ui/core'
-import { mediumUp } from '../../styles/mixins/breakpoints';
-import {motion } from 'framer-motion';
+import { mediumUp } from "../../styles/mixins/breakpoints";
 
-function HideOnScroll({ children, window }) {
-  const { currentPath } = useContext(AppStateContext)
-  const [slide, setSlide] = useState(true)
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-  })
+function HideOnScroll( { children, window } ){
+  const { currentPath } = useContext( AppStateContext );
+  const [slide, setSlide] = useState( true );
+  const trigger = useScrollTrigger( {
+    target: window ? window() : undefined
+  } );
 
-  const [isLoco, setIsLoco] = useState(true)
+  const [isLoco, setIsLoco] = useState( true );
 
   const {
     moScroll: { scrollDirection },
-    locoInstance,
-  } = useContext(MotionValueContext)
+    locoInstance
+  } = useContext( MotionValueContext );
 
-  useEffect(() => {
-    setSlide(true)
+  useEffect( () => {
+    setSlide( true );
 
-    setTimeout(() => {
-      if (locoInstance.get()) {
-        setIsLoco(true)
-      } else setIsLoco(false)
-    }, 1200)
-  }, [currentPath])
+    setTimeout( () => {
+      if ( locoInstance.get() ) {
+        setIsLoco( true );
+      } else setIsLoco( false );
+    }, 1200 );
+  }, [currentPath] );
 
-  useEffect(() => {
-    let deb = debounce(arg => {
-      if (!arg) return
+  useEffect( () => {
+    let deb = debounce( arg => {
+      if ( !arg ) return;
 
-      if (arg === 'up') setSlide(true)
-      else if (arg === 'down') setSlide(false)
-    }, 350)
+      if ( arg === "up" ) setSlide( true );
+      else if ( arg === "down" ) setSlide( false );
+    }, 350 );
 
-    scrollDirection.onChange(deb)
+    scrollDirection.onChange( deb );
 
-    return () => {}
-  }, [])
+    return () => {
+    };
+  }, [] );
 
   return (
     <Slide appear={false} direction="down" in={isLoco ? slide : !trigger}>
       {children}
     </Slide>
-  )
+  );
 }
 
 const NavContainer = styled( motion.div )`
@@ -84,25 +82,25 @@ const NavContainer = styled( motion.div )`
     transition: all 0.35s ease-in-out;
   }
 
-  ${mediumUp(css`
-    ${spacing('pv', 2)};
-    ${spacing('ph', 6)};
-  `)};
+  ${mediumUp( css`
+    ${spacing( "pv", 2 )};
+    ${spacing( "ph", 6 )};
+  ` )};
 `;
 
 const appBarVariants = {
-  initial: { },
-  animate: { 
+  initial: {},
+  animate: {
     transition: {
       delayChildren: .4
     }
   }
-}
+};
 
-function HeaderAppBar() {
-  const { menuIsOpen } = useContext(MotionValueContext)
+function HeaderAppBar(){
+  const { menuIsOpen } = useContext( MotionValueContext );
 
-  const toggleMenu = () => menuIsOpen.set(!menuIsOpen.get())
+  const toggleMenu = () => menuIsOpen.set( !menuIsOpen.get() );
 
   return (
     <>
@@ -110,11 +108,11 @@ function HeaderAppBar() {
         <NavContainer variants={appBarVariants}>
           <HomeLogo toggleMenu={() => menuIsOpen.get() && toggleMenu()} />
 
-          <NavBtn  menuIsOpen={menuIsOpen} toggleMenu={toggleMenu} />
+          <NavBtn menuIsOpen={menuIsOpen} toggleMenu={toggleMenu} />
         </NavContainer>
       </HideOnScroll>
     </>
-  )
+  );
 }
 
-export default React.memo(HeaderAppBar)
+export default React.memo( HeaderAppBar );
