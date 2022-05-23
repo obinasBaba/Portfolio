@@ -1,25 +1,18 @@
-import styled, { css } from 'styled-components'
-import { Typography } from '@material-ui/core'
-import { motion } from 'framer-motion'
-import {
-  gridColWidth,
-  gridify,
-  length,
-  spacing, text,
-} from '../../../../../styles/mixins'
-import {largeUp, mediumUp} from "../../../../../styles/mixins/breakpoints";
+import styled, { css } from "styled-components";
+import { Typography } from "@material-ui/core";
+import { motion } from "framer-motion";
+import { spacing } from "../../../../../styles/mixins";
+import { mediumUp } from "../../../../../styles/mixins/breakpoints";
 
-export const OthersContainer = styled(motion.div)`
+export const OthersContainer = styled( motion.div )`
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   height: 100vh;
-  
-  //border: thin solid red;
-  
-  
-  svg{
+
+
+  svg {
     position: absolute;
     //border: thin solid lightblue;
     pointer-events: none;
@@ -35,10 +28,10 @@ export const OthersContainer = styled(motion.div)`
       //max-width: 500px;
     }
   }
-`
+`;
 
 
-export const Title = styled(Typography)`
+export const Title = styled( Typography )`
   line-height: 1.25em;
   font-weight: 900;
   grid-row: 1;
@@ -48,16 +41,16 @@ export const Title = styled(Typography)`
   writing-mode: vertical-lr;
   letter-spacing: 6px;
   text-orientation: mixed;
-  
-  ${spacing('ml', 1)};
 
-  
-  ${mediumUp(css`
-    ${spacing('ml', 15)};
+  ${spacing( "ml", 1 )};
 
-  `)};
 
-`
+  ${mediumUp( css`
+    ${spacing( "ml", 15 )};
+
+  ` )};
+
+`;
 
 export const List = styled( motion.ul )`
   z-index: 1;
@@ -68,16 +61,18 @@ export const List = styled( motion.ul )`
   flex: 1;
   flex-flow: wrap;
   justify-content: space-around;
-  
-  
-  ${spacing('gap', 2)};
 
-  ${mediumUp(css`
-    ${spacing('m', 5)};
-    ${spacing('mh', 10)};
-    ${spacing('gap', 5)};
-  `)};
+  //border: thin solid red;
 
-`
+
+  ${spacing( "gap", 2 )};
+
+  ${mediumUp( css`
+    ${spacing( "m", 5 )};
+    ${spacing( "mh", 10 )};
+    ${spacing( "gap", 5 )};
+  ` )};
+
+`;
 
 
