@@ -73,7 +73,7 @@ export default function useLocoScroll(
           },
           fixedMarkers: true,
 
-          scrollLeft( value ){
+          scrollLeft(){
             // console.log('scrollLeft', arguments.length)
             if ( locoScroll.current ) {
               const value = arguments.length

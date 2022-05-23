@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { AnimatePresence } from "framer-motion";
 import BackgroundStars from "../../components/BackgroundStars";
 import HeaderAppBar from "../../components/HeaderAppBar";
@@ -10,39 +10,18 @@ import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 import ScreenOverlay from "../../components/ScreenOverlay";
 import NavigationMenu from "../../components/NavigationMenu";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import useGreeting from "../../hooks/useGreeting";
 
 function Page( { children, path } ){
   const {
     variantsUtil: { isTop },
     inView,
     largeUp,
-    toolTipsData,
-    mainAnimationController, screenOverlayEvent
+    mainAnimationController
   } = useContext( MotionValueContext );
 
-  useEffect( () => {
 
-    const sayHello = () => {
-      setTimeout( () => {
-
-        toolTipsData.set( {
-          text: [
-            "🖖 hello human, welcome to my space.",
-            "i haven't done building this ship, you may find some broken parts"
-          ],
-          timer: [3500, 4400],
-          show: true
-        } );
-      }, 1800 );
-    };
-
-    screenOverlayEvent.onChange( state => {
-      if ( state !== "closed" ) return;
-      sayHello();
-    } );
-
-
-  }, [] );
+  useGreeting();
 
   // const media = useMediaQuery(theme.breakpoints.down('md'))
   // const mediaLarge = useMotionValue(media)
@@ -70,7 +49,7 @@ function Page( { children, path } ){
       <Main data-scroll-container id="main-container">
         <AnimatePresence
           exitBeforeEnter
-          custom={{ path, cPath: undefined, isTop, inView, largeUp }}
+          custom={{ path, isTop, inView, largeUp }}
         >
           {children}
         </AnimatePresence>
