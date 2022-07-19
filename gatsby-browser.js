@@ -3,6 +3,8 @@
  *
  * See: https://www.gatsbyjs.com/docs/browser-apis/
  */
+import RouteChangeEvent from "./src/helpers/RouteChangeEvent";
+
 // import React from 'react';
 // import { AnimatePresence } from 'framer-motion'
 //
@@ -10,18 +12,41 @@
 //   <AnimatePresence exitBeforeEnter >{element}</AnimatePresence>
 // );
 
+const Event = RouteChangeEvent.GetInstance();
 
-export const onRouteUpdate = ( { location } ) => {
-    if ( process.env.NODE_ENV !== 'production' ) {
-        return null;
+
+export const onRouteUpdate = ( { location, prevLocation } ) => {
+
+  // console.log( "new pathname", location.pathname );
+  // Event.emit( "end", [location, prevLocation] );
+
+  if ( process.env.NODE_ENV !== "production" ) {
+    return null;
+  }
+
+  const pagePath = location ? location.pathname + location.search + location.hash : undefined;
+  setTimeout( () => {
+    if ( typeof gtag === "function" ) {
+      gtag( "event", "page_view", { page_path: pagePath } );
     }
+  }, 100 );
+};
 
-    const pagePath = location ? location.pathname + location.search + location.hash : undefined;
-    setTimeout( () => {
-        if ( typeof gtag === 'function' ) {
-            gtag( 'event', 'page_view', { page_path: pagePath } );
-        }
-    }, 100 );
+export const onRouteUpdateDelayed = () => {
+  // console.log( "We can show loading indicator now" );
+  console.log( "onRouteUpdateDelayed", Event.listeners( "end" ) );
+
+  Event.emit( "start" );
+};
+
+export const onPreRouteUpdate = ( { location, prevLocation } ) => {
+  console.log( "Gatsby started to change location to", location.pathname, Event.listeners( "start" ) );
+  console.log( "Gatsby started to change location from", prevLocation ? prevLocation.pathname : null );
+
+  if ( prevLocation && prevLocation.pathname !== location.pathname ) {
+    Event.emit( "start" );
+  }
+
 };
 
 /*

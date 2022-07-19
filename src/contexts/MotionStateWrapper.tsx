@@ -1,27 +1,27 @@
-import {
-  AnimationControls,
-  MotionValue,
-  useAnimation,
-  useMotionValue,
-  useTransform,
-  useViewportScroll
-} from "framer-motion";
-// @ts-ignore
-import React, {useLayoutEffect, createContext, useEffect} from 'react'
+import { AnimationControls, MotionValue, useAnimation, useMotionValue } from "framer-motion";
+import React, { createContext, useContext, useEffect, useLayoutEffect } from "react";
 // @ts-ignore
 import LocomotiveScroll from "locomotive-scroll";
-import {useMediaQuery, useTheme} from "@material-ui/core";
+import { useMediaQuery, useTheme } from "@material-ui/core";
+import RouteChangeEvent from "../helpers/RouteChangeEvent";
+
+
+type ToolTipType = {
+  text: string | string[];
+  show: boolean;
+  timer: number[] | null
+}
 
 
 type MotionValueContextType = {
   projectImgLoaded: MotionValue<boolean>,
-  registerScrollRestoration: MotionValue<string >,
+  registerScrollRestoration: MotionValue<string>,
   inView: MotionValue,
   locoInstance: MotionValue<LocomotiveScroll>,
-  toolTipsData: MotionValue<{ text: string | string[], show: boolean, timer: number[] | null  }>,
+  toolTipsData: MotionValue<ToolTipType>,
   largeUp: MotionValue<boolean>,
   mainAnimationController: AnimationControls
-  screenOverlayProxy: MotionValue< {state: boolean, config: { [key: string]: any }} >,
+  screenOverlayProxy: MotionValue<{ state: boolean, config: { [key: string]: any } }>,
   menuIsOpen: MotionValue<boolean>,
   screenOverlayEvent: MotionValue<string>,
   refreshCursorEventListeners: MotionValue<string>,
@@ -47,65 +47,79 @@ type MotionValueContextType = {
   }
 }
 
-export const MotionValueContext = createContext<MotionValueContextType>({} as any)
+export const MotionValueContext = createContext<MotionValueContextType>({} as any);
 
-export const MotionStateWrapper : React.FC = ({ children }) => {
+export const MotionStateWrapper: React.FC = ({ children }) => {
   //using motionValue to avoid rerender
-  const fromProjectList = useMotionValue(false)
-  const fromCaseStudy = useMotionValue(false)
-  const isTop = useMotionValue(true)
+  const fromProjectList = useMotionValue(false);
+  const fromCaseStudy = useMotionValue(false);
+  const isTop = useMotionValue(true);
 
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-  const yProgress = useMotionValue(0)
-  const xProgress = useMotionValue(0)
-  const limit = useMotionValue(0)
-  const projectImgLoaded = useMotionValue(false)
-  const registerScrollRestoration = useMotionValue('')
-  const scrollDirection = useMotionValue('down')
-  const inView = useMotionValue(null)
-  const locoInstance = useMotionValue<LocomotiveScroll>(null)
-  const largeUp = useMotionValue(false)
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const yProgress = useMotionValue(0);
+  const xProgress = useMotionValue(0);
+  const limit = useMotionValue(0);
+  const projectImgLoaded = useMotionValue(false);
+  const registerScrollRestoration = useMotionValue("");
+  const scrollDirection = useMotionValue("down");
+  const inView = useMotionValue(null);
+  const locoInstance = useMotionValue<LocomotiveScroll>(null);
+  const largeUp = useMotionValue(false);
 
   const mainAnimationController = useAnimation();
 
-  const screenOverlayProxy = useMotionValue( { state: false, config: {} }  );
-  const screenOverlayEvent = useMotionValue( ''  );
+  const screenOverlayProxy = useMotionValue({ state: false, config: {} });
+  const screenOverlayEvent = useMotionValue("");
   const menuIsOpen = useMotionValue(false);
 
-  const refreshCursorEventListeners = useMotionValue('[data-pointer]');
+  const refreshCursorEventListeners = useMotionValue("[data-pointer]");
 
-  const locoInstanceHelpers = useMotionValue(null)
-  const toolTipsData = useMotionValue ({
-    text: '',
+  const locoInstanceHelpers = useMotionValue(null);
+  const toolTipsData = useMotionValue<ToolTipType>({
+    text: "",
     show: false,
-    timer: null,
-  })
+    timer: null
+  });
 
   //mouse_event motion_values
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-  const theme = useTheme()
-  const matches = useMediaQuery(theme.breakpoints.up('lg'))
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("lg"));
+  const event = RouteChangeEvent.GetInstance();
+
 
   useEffect(() => {
-    largeUp.set(matches)
+    largeUp.set(matches);
 
-  }, [matches])
+  }, [matches]);
 
 
   // const { scrollY, scrollYProgress } =  useViewportScroll()
 
+  useEffect(() => {
+    const showTip = () => toolTipsData.set({ show: true, text: "loadding resource..." });
+
+    event.addListener("start", showTip);
+
+    return () => {
+      event.removeListener("start", showTip);
+    };
+
+  }, []);
+
   useLayoutEffect(() => {
-    const updateMouseMotionValue = (ev : MouseEvent) => {
-      mouseX.set(ev.clientX)
-      mouseY.set(ev.clientY)
-    }
+    const updateMouseMotionValue = (ev: MouseEvent) => {
+      mouseX.set(ev.clientX);
+      mouseY.set(ev.clientY);
+    };
 
-    window.addEventListener('mousemove', updateMouseMotionValue)
-  }, [])
+    window.addEventListener("mousemove", updateMouseMotionValue);
+  }, []);
 
+  // @ts-ignore
   return (
     <MotionValueContext.Provider
       value={{
@@ -115,16 +129,16 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
           yProgress,
           xProgress,
           limit,
-          scrollDirection,
+          scrollDirection
         },
         mouse: {
           mouseX,
-          mouseY,
+          mouseY// @ts-ignore
         },
         variantsUtil: {
           fromCaseStudy,
           fromProjectList,
-          isTop,
+          isTop
         },
         projectImgLoaded,
         registerScrollRestoration,
@@ -142,5 +156,9 @@ export const MotionStateWrapper : React.FC = ({ children }) => {
     >
       {children}
     </MotionValueContext.Provider>
-  )
+  );
+};
+
+export function useMotionValueContext() {
+  return useContext(MotionValueContext);
 }

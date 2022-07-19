@@ -1,61 +1,60 @@
-import React, {useEffect, useState} from 'react'
-import EventSubscribers from '../helpers/EventSubscribers'
-import { MotionStateWrapper } from './MotionStateWrapper'
-import { LoadStateWrapper } from './LoadStateContext'
+import React, { useState } from "react";
+import { MotionStateWrapper } from "./MotionStateWrapper";
+import { LoadStateWrapper } from "./LoadStateContext";
 
-export const AppStateContext = React.createContext({})
-export const BackgroundOverlayStateContext = React.createContext(true)
+export const AppStateContext = React.createContext( {} );
+export const BackgroundOverlayStateContext = React.createContext( true );
 
-function BackgroundOverlayStateWrapper({ children }) {
-  const [backgroundOverlay, setBackgroundOverlay] = useState(false)
+function BackgroundOverlayStateWrapper( { children } ){
+  const [backgroundOverlay, setBackgroundOverlay] = useState( false );
 
   return (
     <BackgroundOverlayStateContext.Provider
       value={{
         backgroundOverlay,
-        setBackgroundOverlay,
+        setBackgroundOverlay
       }}
     >
       {children}
     </BackgroundOverlayStateContext.Provider>
-  )
+  );
 }
 
-function AppStateWrapper({ children }) {
-  const [moonLight, setMoonLight] = useState({
+function AppStateWrapper( { children } ){
+  const [moonLight, setMoonLight] = useState( {
     showMoon: true,
     show: true,
-    position: 'absolute',
-  })
+    position: "absolute"
+  } );
 
 
-  const [isWhite, setIsWhite] = useState(false)
-  const [isHeaderGradient, setHeaderGradient] = useState(false)
-  const [isContactOpen, setContactModal] = useState(false)
-  const [top, setTop] = useState(null)
-  const [loadingPage, setLoadingPage] = useState(null)
-  const [currentPath, setCurrentPath] = useState('/')
-  const [cursorScaled, setCursorScaled] = useState(false)
-  const [menuIsOpen, setMenuIsOpen] = useState(false)
+  const [isWhite, setIsWhite] = useState( false );
+  const [isHeaderGradient, setHeaderGradient] = useState( false );
+  const [isContactOpen, setContactModal] = useState( false );
+  const [top, setTop] = useState( null );
+  const [loadingPage, setLoadingPage] = useState( null );
+  const [currentPath, setCurrentPath] = useState( "/" );
+  const [cursorScaled, setCursorScaled] = useState( false );
+  const [menuIsOpen, setMenuIsOpen] = useState( false );
   const [listenerTargetSelector, setListenerTargetSelector] = useState(
-    '[data-pointer]'
-  )
+    "[data-pointer]"
+  );
 
-  const [registeredScrollPos, setRegisteredScrollPos] = useState(null)
-  const [toolTip, setToolTip] = useState({
-    text: '',
-    show: false,
-  })
-  const [titleRect, setTitleRect] = useState({
+  const [registeredScrollPos, setRegisteredScrollPos] = useState( null );
+  const [toolTip, setToolTip] = useState( {
+    text: "",
+    show: false
+  } );
+  const [titleRect, setTitleRect] = useState( {
     x: 0,
     y: 0,
     width: 0,
-    height: 0,
-  })
+    height: 0
+  } );
 
-    useEffect(() => {
-        console.log('currentPath :' ,currentPath)
-    }, [currentPath])
+  /* useEffect(() => {
+       console.log('currentPath :' ,currentPath)
+   }, [currentPath]) */
 
   return (
     <AppStateContext.Provider
@@ -85,16 +84,16 @@ function AppStateWrapper({ children }) {
         registeredScrollPos,
         setRegisteredScrollPos,
         listenerTargetSelector,
-        setListenerTargetSelector,
+        setListenerTargetSelector
         // magnet: MagnetElements
       }}
     >
       {children}
     </AppStateContext.Provider>
-  )
+  );
 }
 
-function AppStateProvider({ children }) {
+function AppStateProvider( { children } ){
   return (
     <AppStateWrapper>
       <MotionStateWrapper>
@@ -105,7 +104,7 @@ function AppStateProvider({ children }) {
         </LoadStateWrapper>
       </MotionStateWrapper>
     </AppStateWrapper>
-  )
+  );
 }
 
-export default AppStateProvider
+export default AppStateProvider;

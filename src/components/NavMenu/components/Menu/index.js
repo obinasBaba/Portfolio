@@ -7,6 +7,7 @@ import { containerVariants } from "./variants";
 import { AppStateContext } from "../../../../contexts/AppStateContext";
 import Item from "./components/Item";
 import { largeUp, mediumDown } from "../../../../styles/mixins/breakpoints";
+import { useMotionValueContext } from "../../../../contexts/MotionStateWrapper";
 
 const MenuItemContainer = styled( motion.ul )`
   position: relative;
@@ -198,6 +199,9 @@ const Menu = ( { onClick } ) => {
 
   const { currentPath, setListenerTargetSelector } = useContext( AppStateContext );
 
+  const { menuIsOpen } = useMotionValueContext();
+
+
   useEffect( () => {
     setListenerTargetSelector( "#menu-container [data-pointer]" );
 
@@ -211,12 +215,20 @@ const Menu = ( { onClick } ) => {
       initial="initial"
       animate="animate"
       exit="exit"
+      onAnimationComplete={anim => {
+        window.isMenuAnimating = false;
+      }}
+      onAnimationStart={anim => {
+        window.isMenuAnimating = true;
+      }}
     >
+
 
       <MenuMetaRow variants={metaRowVariants} transition={transition}>
         {metaTxt.map( ( txt, i ) => (
           <MetaItem variants={metaVariant}
                     transition={transition}
+                    key={txt}
           >{txt} {i === 3 && <> &#160; &#160;</>} </MetaItem>
         ) )}
 
@@ -226,7 +238,7 @@ const Menu = ( { onClick } ) => {
         {items.map( ( { icon, link, stars, title }, index ) => (
           <Item
             active={link === currentPath && currentPath !== "/"}
-            key={link + index + title}
+            key={title}
             link={link}
             stars={stars}
             icon={icon}
@@ -242,6 +254,7 @@ const Menu = ( { onClick } ) => {
         {metaTxt2.map( ( txt, i ) => (
           <MetaItem variants={metaVariant}
                     transition={transition}
+                    key={txt}
           >{txt} {i === 3 && <> &#160; &#160;</>} </MetaItem>
         ) )}
 

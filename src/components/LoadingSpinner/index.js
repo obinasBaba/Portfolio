@@ -125,14 +125,17 @@ const containerVariants = {
   initial(){
     exited = false;
     return {
-      opacity: 0
+      opacity: 0,
+      y: "70%"
     };
   },
   animate: {
     opacity: 1,
+    y: 0,
     transition: {
       ...transition,
-      duration: 2
+      duration: 1.21,
+      delay: .3
 
     }
   },

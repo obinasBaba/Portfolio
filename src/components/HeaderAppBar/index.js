@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import Slide from "@material-ui/core/Slide";
 import styled, { css } from "styled-components";
 import { debounce } from "lodash";
 import { motion } from "framer-motion";
-import { useScrollTrigger } from "@material-ui/core";
+import { Slide, useScrollTrigger } from "@material-ui/core";
 import HomeLogo from "./components/HomeLogo";
 import NavBtn from "./components/NavBtn";
 import { spacing } from "../../styles/mixins";
 import { AppStateContext } from "../../contexts/AppStateContext";
-import { MotionValueContext } from "../../contexts/MotionStateWrapper";
+import { useMotionValueContext } from "../../contexts/MotionStateWrapper";
 
 import { mediumUp } from "../../styles/mixins/breakpoints";
+import OverlayController from "../ScreenOverlay/OverlayController";
 
 function HideOnScroll( { children, window } ){
   const { currentPath } = useContext( AppStateContext );
@@ -24,7 +24,7 @@ function HideOnScroll( { children, window } ){
   const {
     moScroll: { scrollDirection },
     locoInstance
-  } = useContext( MotionValueContext );
+  } = useMotionValueContext();
 
   useEffect( () => {
     setSlide( true );
@@ -98,20 +98,18 @@ const appBarVariants = {
 };
 
 function HeaderAppBar(){
-  const { menuIsOpen } = useContext( MotionValueContext );
+  const { menuIsOpen } = useMotionValueContext();
 
-  const toggleMenu = () => menuIsOpen.set( !menuIsOpen.get() );
+  const toggleMenu = () => !OverlayController.isAnimating && !window.isMenuAnimating && menuIsOpen.set( !menuIsOpen.get() );
 
   return (
-    <>
-      <HideOnScroll>
-        <NavContainer variants={appBarVariants}>
-          <HomeLogo toggleMenu={() => menuIsOpen.get() && toggleMenu()} />
+    <HideOnScroll>
+      <NavContainer variants={appBarVariants}>
+        <HomeLogo toggleMenu={() => menuIsOpen.get() && toggleMenu()} />
 
-          <NavBtn menuIsOpen={menuIsOpen} toggleMenu={toggleMenu} />
-        </NavContainer>
-      </HideOnScroll>
-    </>
+        <NavBtn menuIsOpen={menuIsOpen} toggleMenu={toggleMenu} />
+      </NavContainer>
+    </HideOnScroll>
   );
 }
 
