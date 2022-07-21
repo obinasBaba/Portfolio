@@ -3,14 +3,11 @@ import styled, { css } from "styled-components";
 
 import { Typography } from "@material-ui/core";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { Link } from "gatsby";
 import { length, spacing, text } from "../../../../styles/mixins";
-import { largeUp, mediumUp, smallUp } from "../../../../styles/mixins/breakpoints";
+import { mediumUp, smallUp } from "../../../../styles/mixins/breakpoints";
 
 const PreviewContainer = styled.div`
   position: relative;
-  display: flex;
-  flex-direction: column;
   margin: 0 auto;
   max-width: 600px;
 
@@ -45,20 +42,19 @@ const PreviewContainer = styled.div`
     }
   }
 
-  ${mediumUp( css`
-    flex-direction: row;
-    //justify-content: space-between;
-    align-items: center;
-    gap: 3vmax;
-  ` )};
 
   a {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     z-index: 2;
+
+    ${mediumUp( css`
+      flex-direction: row;
+      //justify-content: space-between;
+      align-items: center;
+      gap: 3vmax;
+    ` )};
   }
 `;
 
@@ -102,30 +98,21 @@ const ImageBox = styled.div`
 const Desc = styled.div`
   ${spacing( "mt", 2 )};
 
-  //@media screen and (min-width: $md) {}
-
   ${mediumUp( css`
     margin-top: 0;
-      // ${spacing( "ml", 2 )};
-
   ` )};
 
-  ${largeUp( css`
-    //margin-left: 60px;
-  ` )};
-
-  //border: thin solid red;
 `;
 
 const Tag = styled( Typography )`
   font-weight: lighter;
-  ${text( 0.6 )};
   letter-spacing: 1px;
-  color: lightgray;
+  color: silver;
   opacity: 0.5;
   text-transform: uppercase;
 
   ${spacing( "mb", 0 )};
+  ${text( 0.467 )};
 
   ${smallUp( css`
     ${spacing( "mb", 0 )};
@@ -136,7 +123,7 @@ const Tag = styled( Typography )`
 const Title = styled( Typography )`
   line-height: 1.4em;
   font-weight: lighter;
-  ${text( 1.25 )};
+  ${text( 1.1 )};
 
   a {
     text-decoration: none;
@@ -148,18 +135,19 @@ function Item( { media, tag, title, link } ){
 
   return (
     <PreviewContainer className="home-blog-thumbnail" data-pointer="focus"
-                      data-tooltip
-                      data-tooltip-text="Have a sec? hear me out.">
-      <Link to={link} />
+    >
 
-      <ImageBox>
-        <GatsbyImage className="img-wrapper" alt="" image={getImage( media )} />
-      </ImageBox>
+      <a href={link} target="_blank" rel="noopener noreferrer">
+        <ImageBox>
+          <GatsbyImage className="img-wrapper" alt="" image={getImage( media )} />
+        </ImageBox>
 
-      <Desc>
-        <Tag variant="body2">{tag}</Tag>
-        <Title variant="h6"> {title} </Title>
-      </Desc>
+        <Desc>
+          <Tag variant="subtitle2">{tag}</Tag>
+          <Title variant="h6"> {title} </Title>
+        </Desc>
+      </a>
+
     </PreviewContainer>
   );
 }

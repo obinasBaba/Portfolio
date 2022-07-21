@@ -1,21 +1,21 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
+import React from "react";
+import styled, { css } from "styled-components";
 import { gridColWidth, gridify, spacing } from "../../../styles/mixins";
-import Info from './components/Info'
-import Previews from './components/Previews'
-import HeadlineTitle from '../../../components/Headline'
+import Info from "./components/Info";
+import Previews from "./components/Previews";
+import HeadlineTitle from "../../../components/Headline";
 import { largeUp, mediumUp, smallUp, xxLargeUp } from "../../../styles/mixins/breakpoints";
 
 const BlogPostContainer = styled.section`
-  ${spacing( 'mt', 15 )};
-`
+  ${spacing( "mt", 15 )};
+`;
 
 const PostsContainer = styled.section`
   max-width: 100%;
   //overflow: hidden;
 
-  ${spacing( 'mb', 25 )};
-  ${spacing( 'grid-row-gap', 20 )};
+  ${spacing( "mb", 25 )};
+  ${spacing( "grid-row-gap", 20 )};
   ${gridify()};
 
   & aside {
@@ -56,31 +56,31 @@ const PostsContainer = styled.section`
     ` )}
 
     ${largeUp( css`
-      ${gridColWidth( 37, 60 )};
+      ${gridColWidth( 37, 63 )};
     ` )};
   }
-`
+`;
 
 
 function BlogPosts(){
-    return (<BlogPostContainer>
-        <HeadlineTitle
-            className="blog-headline"
-            title='My Blogs'
-            subtitle='Tips & Tricks'
-            mb={10}
-        />
+  return (<BlogPostContainer>
+    <HeadlineTitle
+      className="blog-headline"
+      title="My Blogs"
+      subtitle="Tips & Tricks"
+      mb={10}
+    />
 
-        <PostsContainer>
-            <aside>
-                <Info/>
-            </aside>
+    <PostsContainer>
+      <aside>
+        <Info />
+      </aside>
 
-            <main>
-                <Previews/>
-            </main>
-        </PostsContainer>
-    </BlogPostContainer>)
+      <main>
+        <Previews />
+      </main>
+    </PostsContainer>
+  </BlogPostContainer>);
 }
 
-export default BlogPosts
+export default BlogPosts;

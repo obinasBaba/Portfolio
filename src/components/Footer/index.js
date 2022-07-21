@@ -21,18 +21,18 @@ const FooterContainer = styled.div`
 
   //border: thick solid crimson;
 
-  ${spacing("mv",
-          5)};
-  ${spacing("gap",
-          5)};
+  ${spacing( "mv",
+          5 )};
+  ${spacing( "gap",
+          5 )};
 
-  ${largeUp(css`
+  ${largeUp( css`
     flex-direction: row;
-    ${spacing("mb",
-            3)};
-    ${spacing("mt",
-            5)};
-  `)};
+    ${spacing( "mb",
+            3 )};
+    ${spacing( "mt",
+            5 )};
+  ` )};
 
   @media screen and (min-width: 768px) {
     padding-right: 4.28rem;
@@ -53,8 +53,8 @@ const Social = styled.ul`
 
   li {
     &:not(:first-child) {
-      ${spacing("ml",
-              3)};
+      ${spacing( "ml",
+              3 )};
     }
   }
 
@@ -74,12 +74,12 @@ const Social = styled.ul`
     height: 40px;
     max-width: 3.5vmax;
 
-    ${mediumUp(css`
-      ${length("width",
-              6)}
-      ${length("height",
-              6)}
-    `)};
+    ${mediumUp( css`
+      ${length( "width",
+              6 )}
+      ${length( "height",
+              6 )}
+    ` )};
 
     & > :first-child {
       position: absolute;
@@ -120,14 +120,14 @@ const Love = styled.div`
   line-height: 0;
   letter-spacing: 1.2px;
 
-  ${text(0.7)};
-  ${spacing("left",
-          0)};
+  ${text( 0.7 )};
+  ${spacing( "left",
+          0 )};
 
-  ${mediumDown(css`
+  ${mediumDown( css`
     order: 2;
     position: relative;
-  `)};
+  ` )};
 
   span {
     font-size: 28px;
@@ -156,50 +156,50 @@ const Copy = styled.div`
   align-items: center;
   justify-content: center;
   gap: 0.2rem;
-  ${text(0.84)};
+  ${text( 0.84 )};
 
   span {
     font-weight: 300;
-    ${text(2.5)};
+    ${text( 2.5 )};
   }
 
-  ${largeUp(css`
+  ${largeUp( css`
     position: absolute;
-    ${spacing("right",
-            0)};
-  `)}
+    ${spacing( "right",
+            0 )};
+  ` )}
 `;
 
-function Footer () {
+function Footer(){
 
-  const elRef = React.useRef(null);
+  const elRef = React.useRef( null );
   // const { , setContactModal } = useContext(AppStateContext)
   // const { setBottomGradient} = useContext(MotionValueContext)
 
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("xxl"));
-  const inView = useOnScreen(elRef,
-    .2);
+  const matches = useMediaQuery( theme.breakpoints.up( "xxl" ) );
+  const inView = useOnScreen( elRef,
+    .2 );
 
-  useEffect(() => {
-      const btm = document.querySelector(".btm-gradient");
+  useEffect( () => {
+      const btm = document.querySelector( ".btm-gradient" );
 
       if ( inView )
         // setBottomGradient(false)
-        btm.classList.add("hide-bg");
+        btm.classList.add( "hide-bg" );
 
       else
         // setBottomGradient(true)
-        btm.classList.remove("hide-bg");
+        btm.classList.remove( "hide-bg" );
 
     },
-    [inView]);
+    [inView] );
 
   return (
     <Container ref={elRef} maxWidth={matches ? "xl" : "lg"} disableGutters>
       <FooterContainer>
         <Copy>
-          <span>&copy;</span> 2021 Henzzo.io
+          <span>&copy;</span> 2022 Henzzo.io
         </Copy>
 
         <Social>

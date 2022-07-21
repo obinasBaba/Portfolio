@@ -1,23 +1,19 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
-import CardMedia from '@material-ui/core/CardMedia'
-import {
-  length,
-  spacing,
-} from '../../../../../styles/mixins'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import {Link} from 'gatsby'
-import {largeUp, mediumUp, smallUp} from "../../../../../styles/mixins/breakpoints";
+import React from "react";
+import styled, { css } from "styled-components";
+import CardMedia from "@material-ui/core/CardMedia";
+import { length, spacing } from "../../../../../styles/mixins";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { largeUp, mediumUp, smallUp } from "../../../../../styles/mixins/breakpoints";
 
-const StyledThumbnail = styled(CardMedia)`
+const StyledThumbnail = styled( CardMedia )`
   position: relative;
   width: 88%;
   margin-left: auto; //center it
   margin-right: auto;
   background-color: #fff;
-  
-  ${spacing('mt', -7)};
-  ${spacing('br', 2)};
+
+  ${spacing( "mt", -7 )};
+  ${spacing( "br", 2 )};
 
   & .image-container {
     display: flex;
@@ -26,28 +22,24 @@ const StyledThumbnail = styled(CardMedia)`
     height: 100%;
     width: 100%;
 
-    ${spacing('br', 2)};
+    ${spacing( "br", 2 )};
   }
 
-  ${smallUp(css`
+  ${smallUp( css`
     flex: 1 0;
     margin-top: 0;
     height: max-content;
-    ${length('height', 35)};
+    ${length( "height", 35 )};
 
 
-    ${spacing('ml', -3)};
-  `)}
-  
-  
-  ${mediumUp(css`
-    ${spacing('ml', -5)};
-  `)}
-  
-  ${largeUp(css`
-    ${spacing('ml', -10)};
-  `)}
-  
+    ${spacing( "ml", -3 )};
+  ` )}
+  ${mediumUp( css`
+    ${spacing( "ml", -5 )};
+  ` )}
+  ${largeUp( css`
+    ${spacing( "ml", -10 )};
+  ` )}
   &:after {
     content: '';
     position: absolute;
@@ -60,24 +52,23 @@ const StyledThumbnail = styled(CardMedia)`
     background-image: var(--gray_gradient);
 
 
-    ${spacing('br', 2)};
+    ${spacing( "br", 2 )};
     opacity: 0.3;
   }
-`
+`;
 
-const Thumbnail = ({ media, link }) => {
+const Thumbnail = ( { media, link } ) => {
   return (
     <StyledThumbnail>
       <GatsbyImage
-        alt={'featured media'}
-        image={getImage(media)}
+        alt={"featured media"}
+        image={getImage( media )}
         objectFit="cover"
         objectPosition="center"
         className="image-container"
       />
-      <Link to={link} className='link' />
     </StyledThumbnail>
-  )
-}
+  );
+};
 
-export default Thumbnail
+export default Thumbnail;

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import styled, { css } from "styled-components";
-import { motion, useAnimation, useMotionTemplate, Variants } from "framer-motion";
+import { motion, useAnimation, useMotionTemplate } from "framer-motion";
 import { Link } from "gatsby";
 import useRotation from "./useRotation";
 
@@ -35,7 +35,7 @@ const vars = css`
   -moz-osx-font-smoothing: grayscale;
 `;
 
-const Container = styled(motion.section)`
+const Container = styled( motion.section )`
   position: relative;
   display: grid;
   place-items: center;
@@ -47,7 +47,7 @@ const Container = styled(motion.section)`
   svg.circles {
     //position: fixed;
     //pointer-events: none;
-    --dim: 136vmin;
+    --dim: 116vmin;
     width: var(--dim);
     height: var(--dim);
 
@@ -209,18 +209,18 @@ const circleSvgVariants = {
   }
 };
 
-const circleTxtVariants: Variants = {
+const circleTxtVariants = {
   initial: {
     opacity: 1,
     scale: 1
   },
 
-  exit(arg) {
+  exit( arg ){
     // console.log('exitArg: --- --', arg)
     // if (arg.inView !== 'projects')
     //   return {};
 
-    if (arg && arg.inView && arg?.inView.get() === "project-section") {
+    if ( arg && arg.inView && arg?.inView.get() === "project-section" ) {
       return {
         scale: .2,
         opacity: 0,
@@ -260,9 +260,9 @@ const transition = {
 };
 
 
-const RotationCircleText = () => {
-  const enterBtn = useRef(null);
-  const clicked = useRef(false);
+function RotationCircleText(){
+  const enterBtn = useRef( null );
+  const clicked = useRef( false );
   const controller = useAnimation();
   const rotation = useRotation();
 
@@ -319,7 +319,7 @@ const RotationCircleText = () => {
         <Link to="/projects"
               className="enter__bg"
               onClick={() => {
-                window?.locoInstance?.scrollTo("#projects .rotation-circle svg.circles");
+                window?.locoInstance?.scrollTo( "#projects .rotation-circle svg.circles" );
               }}
         >
           <span className="enter__text">Explore</span>
@@ -341,34 +341,31 @@ const RotationCircleText = () => {
           <path id="circle-4" d="M567.5,700.5A133,133 0 1 1833.5,700.5A133,133 0 1 1567.5,700.5" />
         </defs>
 
-        {texts.map(({ text, link, length, rotate }, index) => {
+        {texts.map( ( { text, link, length, rotate }, index ) => (
 
-          return (
+          <motion.g variants={circleTxtVariants}
+                    transition={transition}
+                    custom={{ idx: index }}>
 
-            <motion.g variants={circleTxtVariants}
-                      transition={transition}
-                      custom={{ idx: index }}>
-
-              <motion.g className="circle-g" style={{ rotate }} key={index}>
-                <text
-                  className={`circles__text circles__text--${index + 1}`}
-                  style={{ transition: `all 1.14s cubic-bezier(0.16, 1, 0.3, 1) ${index * .06}s` }}
-                  data-idx={index % 2 === 0}
-                >
-                  <textPath className="circles__text-path" xlinkHref={link} aria-label="" textLength={length}>
-                    {text}
-                  </textPath>
-                </text>
-              </motion.g>
+            <motion.g className="circle-g" style={{ rotate }} key={link}>
+              <text
+                className={`circles__text circles__text--${index + 1}`}
+                style={{ transition: `all 1.14s cubic-bezier(0.16, 1, 0.3, 1) ${index * .06}s` }}
+                data-idx={index % 2 === 0}
+              >
+                <textPath className="circles__text-path" xlinkHref={link} aria-label="" textLength={length}>
+                  {text}
+                </textPath>
+              </text>
             </motion.g>
+          </motion.g>
 
-          );
-        })}
+        ) )}
       </motion.svg>
 
 
     </Container>
   );
-};
+}
 
-export default React.memo(RotationCircleText);
+export default React.memo( RotationCircleText );

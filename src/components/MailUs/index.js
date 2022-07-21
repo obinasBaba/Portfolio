@@ -1,11 +1,11 @@
-import React from 'react'
-import styled from 'styled-components'
-import { spacing, text } from '../../styles/mixins'
-import Logo from './logo.svg'
-import { GradientText } from '../GradientText'
-import FooterMeta from './FooterMeta'
-import Footer from '../Footer'
-import MotionBtn from '../MotionBtn'
+import React from "react";
+import styled from "styled-components";
+import { spacing } from "../../styles/mixins";
+import Logo from "./logo.svg";
+import { GradientText } from "../GradientText";
+import FooterMeta from "./FooterMeta";
+import Footer from "../Footer";
+import MotionBtn from "../MotionBtn";
 
 const MailUsContainer = styled.section`
   position: relative;
@@ -26,9 +26,9 @@ const MailUsContainer = styled.section`
 
   //border: thin solid red;
 
-  ${spacing( 'mt', 22 )};
-  ${spacing( 'pt', 22 )};
-`
+  ${spacing( "mt", 22 )};
+  ${spacing( "pt", 22 )};
+`;
 
 const Background = styled.span`
   //display: inline-block;
@@ -45,7 +45,7 @@ const Background = styled.span`
   background: linear-gradient(to bottom, rgba(30, 33, 61, 0%) 0%, #02021e 20%);
 
   //background-color:  #02021e;
-`
+`;
 
 const TitleWrapper = styled.div`
   display: flex;
@@ -53,58 +53,57 @@ const TitleWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  ${spacing( 'mb', 5 )};
-  ${spacing( 'gap', 5 )};
+  ${spacing( "mb", 8 )};
 
   .titleTxt {
-    //font-weight: 900;
     font-family: var(--eli);
-      // ${text( 5 )};
   }
-`
+`;
 
 const LogoEffect = styled.div`
   position: absolute;
   background-image: url(${Logo});
   background-repeat: no-repeat;
   background-position: center;
-  filter: blur(2px);
+  filter: blur(20px);
   z-index: -1;
 
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-`
+
+  display: none;
+`;
 
 function MailUs(){
 
 
-    return (
-        <MailUsContainer
-            // data-scroll-section={true}
-            // data-scroll data-scroll-class='footer'
+  return (
+    <MailUsContainer
+      // data-scroll-section={true}
+      // data-scroll data-scroll-class='footer'
 
-        >
-            <Background/>
-            <LogoEffect/>
+    >
+      <Background />
+      <LogoEffect />
 
-            <TitleWrapper>
-                <GradientText variant="h1" className="titleTxt">
-                    Ready To Create <br/> Your Star ?
-                </GradientText>
+      <TitleWrapper>
+        <GradientText variant="h1" className="titleTxt">
+          Ready To Create <br /> Your Star ?
+        </GradientText>
 
-                <MotionBtn text="Contact" to='/contact' data-pointer='focus'/>
+        <MotionBtn text="Contact" to="/contact" data-pointer="focus" />
 
-            </TitleWrapper>
+      </TitleWrapper>
 
-            <FooterMeta/>
+      <FooterMeta />
 
-            <Footer/>
+      <Footer />
 
 
-        </MailUsContainer>
-    )
+    </MailUsContainer>
+  );
 }
 
-export default MailUs
+export default MailUs;
