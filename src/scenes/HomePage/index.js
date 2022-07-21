@@ -6,7 +6,6 @@ import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 import RecentWorks from "./RecentDesigns";
 import Aim from "./Aim";
 import { SectionWrapper } from "../../components/Container";
-import Projects from "./Projects";
 import BlogPosts from "./BlogPosts";
 import Experiments from "./Experiments";
 
@@ -58,7 +57,6 @@ function HomePage(){
 
     <RecentWorks />
 
-    <Projects />
 
     <SectionWrapper dataScrollSection>
       <Experiments />

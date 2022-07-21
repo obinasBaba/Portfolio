@@ -107,7 +107,7 @@ const BottomGradient = styled.div`
   rgba(6, 18, 32, 0),
   rgba(6, 18, 32, 0),
   rgba(6, 18, 32, 0),
-  rgba(2, 11, 22, 1));
+  rgb(4, 14, 23));
 
 
   ${mediumUp( css`

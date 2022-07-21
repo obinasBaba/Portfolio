@@ -7,7 +7,7 @@ import HeadlineTitle from "../../../components/Headline";
 import { largeUp, mediumUp, smallUp, xxLargeUp } from "../../../styles/mixins/breakpoints";
 
 const BlogPostContainer = styled.section`
-  ${spacing( "mt", 15 )};
+  ${spacing( "mt", 23 )};
 `;
 
 const PostsContainer = styled.section`
@@ -63,24 +63,26 @@ const PostsContainer = styled.section`
 
 
 function BlogPosts(){
-  return (<BlogPostContainer>
-    <HeadlineTitle
-      className="blog-headline"
-      title="My Blogs"
-      subtitle="Tips & Tricks"
-      mb={10}
-    />
+  return (
+    <BlogPostContainer>
+      <HeadlineTitle
+        className="blog-headline"
+        title="My Blogs"
+        subtitle="Tips & Tricks"
+        mb={10}
+      />
 
-    <PostsContainer>
-      <aside>
-        <Info />
-      </aside>
+      <PostsContainer>
+        <aside>
+          <Info />
+        </aside>
 
-      <main>
-        <Previews />
-      </main>
-    </PostsContainer>
-  </BlogPostContainer>);
+        <main>
+          <Previews />
+        </main>
+      </PostsContainer>
+    </BlogPostContainer>
+  );
 }
 
 export default BlogPosts;

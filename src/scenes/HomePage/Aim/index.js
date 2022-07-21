@@ -21,11 +21,11 @@ const AimContainer = styled( motion.div )`
 
   background-image: linear-gradient(to top,
   rgba(7, 33, 66, 0),
-  rgba(6, 18, 32, .2),
+  rgba(6, 18, 32, 0),
+  rgba(2, 11, 22, .2),
   rgba(2, 11, 22, .4),
   rgba(2, 11, 22, .6),
-  rgba(2, 11, 22, .8),
-  rgba(2, 11, 22, .9));
+  rgb(4, 14, 23));
 
 
   .aim-wrapper {
@@ -70,6 +70,7 @@ const AimText = styled.div`
 `;
 
 const Effect = styled.div`
+  z-index: -1;
   position: relative;
   //transform: scale(1.4);
   //flex-grow: 1;
@@ -108,7 +109,6 @@ function Aim(){
     <AimContainer>
 
       <div className="aim-wrapper">
-        {/* <motion.div  /> */}
 
         <Effect data-scroll data-scroll-speed="-1">
 
@@ -138,7 +138,7 @@ function Aim(){
             </Typography>
 
 
-            <MotionBtn text="Learn more" to="/about" />
+            <MotionBtn text="My Portfolio" to="/projects" />
           </div>
         </AimText>
       </div>

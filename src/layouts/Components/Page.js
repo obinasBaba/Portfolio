@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { AnimatePresence } from "framer-motion";
 import BackgroundStars from "../../components/BackgroundStars";
 import HeaderAppBar from "../../components/HeaderAppBar";
@@ -10,7 +10,6 @@ import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 import ScreenOverlay from "../../components/ScreenOverlay";
 import NavigationMenu from "../../components/NavigationMenu";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import useGreeting from "../../hooks/useGreeting";
 
 // import {} from '@re'
 
@@ -22,13 +21,6 @@ function Page( { children, path } ){
     largeUp,
     mainAnimationController
   } = useContext( MotionValueContext );
-
-
-  useGreeting();
-
-  useEffect( () => {
-
-  }, [] );
 
   // const media = useMediaQuery(theme.breakpoints.down('md'))
   // const mediaLarge = useMotionValue(media)
