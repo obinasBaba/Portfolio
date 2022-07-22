@@ -1,15 +1,14 @@
-import React from 'react'
-import { Helmet } from 'react-helmet'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import { ThemeProvider } from '@material-ui/core/styles'
-import { ThemeProvider as StyledThemeProvider } from 'styled-components'
-import theme from '../theme'
-import '../styles/fontFace.css'
-import AppStateProvider from '../contexts/AppStateContext'
-import Page from './Components/Page'
-import {GlobalStyle} from '../styles/GlobalStyles';
+import React from "react";
+import { Helmet } from "react-helmet";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
+import theme from "../theme";
+import AppStateProvider from "../contexts/AppStateContext";
+import Page from "./Components/Page";
+import "@src/styles/sass-styles/global-style/index.scss";
 
-export default function Layout({ children, path }) {
+export default function Layout( { children, path } ){
   return (
     <>
 
@@ -24,7 +23,6 @@ export default function Layout({ children, path }) {
 
       <StyledThemeProvider theme={theme}>
         <ThemeProvider theme={theme}>
-          <GlobalStyle />
           <CssBaseline />
 
           <AppStateProvider>
@@ -35,5 +33,5 @@ export default function Layout({ children, path }) {
       </StyledThemeProvider>
     </>
 
-  )
+  );
 }

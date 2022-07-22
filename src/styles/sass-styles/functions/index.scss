@@ -10,16 +10,16 @@
   @return $number;
 }
 
-@function f-unit($amount){
-  @return calc(#{$amount} * var(--coef-indent));
+@function f-unit($amount) {
+  @return calc(#{$amount} * var(--indent));
 }
 
-@function f-unit-light($amount){
-  @return calc(#{$amount} * var(--coef-size));
+@function f-unit-light($amount) {
+  @return calc(#{$amount} * var(--size));
 }
 
-@function fluid-size($amount){
-  @return calc(#{$amount} * var(--coef-size));
+@function fluid-size($amount) {
+  @return calc(#{$amount} * var(--size));
 }
 
 @function single-unit-rem($value, $font-size-base) {

@@ -13,34 +13,33 @@
 
 
 @mixin margin($args...) {
-  @include p.margin_padding( 'margin', $args... )
+  @include p.margin_padding('margin', $args...)
 }
 
 @mixin padding($args...) {
-  @include p.margin_padding( 'padding', $args... )
+  @include p.margin_padding('padding', $args...)
 }
-
 
 
 @mixin width($size) {
-  width: calc(#{$size} * var(--coef-size));
+  width: calc(#{$size} * var(--size));
 }
 
 @mixin height($size) {
-  height: calc(#{$size} * var(--coef-size));
+  height: calc(#{$size} * var(--size));
 }
 
-@mixin height_width($height, $width){
-  @if($height and $width){
-    height: calc(#{$height} * var(--coef-size));
-    width: calc(#{$width} * var(--coef-size));
-  }@else{
+@mixin height_width($height, $width) {
+  @if ($height and $width) {
+    height: calc(#{$height} * var(--size));
+    width: calc(#{$width} * var(--size));
+  } @else {
     @error 'invalid argument for -> height_width( #{$height, $width} ) '
   }
 }
 
 @mixin max-width($size) {
-  max-width: calc(#{$size} * var(--coef-size));
+  max-width: calc(#{$size} * var(--size));
 }
 
 

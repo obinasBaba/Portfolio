@@ -11,24 +11,6 @@ export const GlobalStyle = createGlobalStyle`
 
   ;
 
-  canvas[resize] {
-    width: 100%;
-    height: 100%;
-  }
-
-  & .canvas {
-    display: none;
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    z-index: var(--cIndex);
-    pointer-events: none;
-    //border: thin solid blue;
-
-    ${smallUp( css`
-      display: block;
-    ` )};
-  }
 
   html,
   body,

@@ -172,6 +172,18 @@ module.exports = {
 
     {
       resolve: `gatsby-plugin-sass`
+    },
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          "@src": "src",
+          "@style": "./src/styles/sass-styles/index.scss",
+          "@styles": "./src/styles/sass-styles/*",
+          "@/styles/*": "./src/styles/sass-styles/*"
+        },
+        extensions: ["js", "sass", "scss", "ts", "tsx", "css"]
+      }
     }
   ]
 };
