@@ -2,10 +2,13 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { Typography } from "@material-ui/core";
 import { motion } from "framer-motion";
+import clsx from "clsx";
 import MotionBtn from "../../../components/MotionBtn";
 import { spacing } from "../../../styles/mixins";
 import { mediumUp, xLargeUp } from "../../../styles/mixins/breakpoints";
 import { useProjectSvg } from "../../../hooks/queries/useProjectSvg";
+import HeadlineTitle from "../../../components/Headline";
+import { container } from "./aim.module.scss";
 
 const AimContainer = styled( motion.div )`
   //border: thick solid red;
@@ -13,19 +16,12 @@ const AimContainer = styled( motion.div )`
   //height: 50vh;
   width: 100%;
   display: flex;
+  flex-flow: column;
+  align-items: center;
   justify-content: space-evenly;
-  //border: thin solid red;
 
 
-  ${spacing( "pt", 18 )};
-
-  background-image: linear-gradient(to top,
-  rgba(7, 33, 66, 0),
-  rgba(6, 18, 32, 0),
-  rgba(2, 11, 22, .2),
-  rgba(2, 11, 22, .4),
-  rgba(2, 11, 22, .6),
-  rgb(4, 14, 23));
+  ${spacing( "pt", 13 )};
 
 
   .aim-wrapper {
@@ -34,6 +30,10 @@ const AimContainer = styled( motion.div )`
     justify-content: space-around;
     align-items: flex-start;
     flex-flow: wrap;
+
+    //border: thin solid red;
+
+    ${spacing( "mt", 10 )};
 
 
     ${xLargeUp( css`
@@ -108,7 +108,9 @@ function Aim(){
 
     <AimContainer>
 
-      <div className="aim-wrapper">
+      <HeadlineTitle title="Projects" mb={2} subtitle="Case Studies" />
+
+      <div className={clsx( ["aim-wrapper", container] )}>
 
         <Effect data-scroll data-scroll-speed="-1">
 

@@ -52,11 +52,9 @@ function HomePage(){
 
     <Hero />
 
-
-    <Aim />
-
     <RecentWorks />
-
+    
+    <Aim />
 
     <SectionWrapper dataScrollSection>
       <Experiments />

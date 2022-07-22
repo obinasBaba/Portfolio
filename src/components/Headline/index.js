@@ -1,7 +1,7 @@
-import React from 'react'
-import styled from 'styled-components'
-import { GradientText } from '../GradientText'
-import { spacing, text } from '../../styles/mixins'
+import React from "react";
+import styled from "styled-components";
+import { GradientText } from "../GradientText";
+import { spacing, text } from "../../styles/mixins";
 
 const TitleContainer = styled.header`
   text-align: center;
@@ -9,7 +9,7 @@ const TitleContainer = styled.header`
   width: min-content;
   max-height: 225px;
 
-  ${( { mb } ) => mb ? spacing( 'mb', mb ) : spacing( 'mb', 0 )};
+  ${( { mb } ) => mb ? spacing( "mb", mb ) : spacing( "mb", 0 )};
 
   & > :last-child {
     margin-right: 10px;
@@ -20,27 +20,27 @@ const TitleContainer = styled.header`
     letter-spacing: -.3px;
   }
 
-`
+`;
 
 
-function HeadlineTitle( { title, subtitle, mb, clsName } ){
+function HeadlineTitle( { title, subtitle, mb, clsName, ...props } ){
 
 
-    return (
-        <TitleContainer mb={mb} className={clsName}>
-            <GradientText variant='h1'
-                          noWrap>
-                {title}
-            </GradientText>
+  return (
+    <TitleContainer {...props} mb={mb} className={clsName}>
+      <GradientText variant="h1"
+                    noWrap>
+        {title}
+      </GradientText>
 
-            <GradientText className='subtitle'
-                          align='right' variant="body1" noWrap>
-                {subtitle}
-            </GradientText>
+      <GradientText className="subtitle"
+                    align="right" variant="body1" noWrap>
+        {subtitle}
+      </GradientText>
 
 
-        </TitleContainer>
-    )
+    </TitleContainer>
+  );
 }
 
-export default HeadlineTitle
+export default HeadlineTitle;
