@@ -294,9 +294,9 @@ function FooterMeta(){
               data-pointer="focus"
 
             >
-              {link && <Link to={link} target={target} />}
-              {mailTo && <a href={mailTo} />}
-              {tel && <a href={tel} />}
+              {link && <Link to={link} target={target} aria-label={`to ${txt} page`} />}
+              {mailTo && <a href={mailTo} target={target} aria-label="open mailTo application" />}
+              {tel && <a href={tel} target={target} aria-label="open telephone application" />}
 
               <Typography
                 key={link + txt}

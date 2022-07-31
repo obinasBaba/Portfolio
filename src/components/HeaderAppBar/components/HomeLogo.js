@@ -1,13 +1,13 @@
-import React, { useRef } from 'react'
-import styled, { css } from 'styled-components'
-import useHeaderAssets from '../../../hooks/queries/useHeaderAssets'
-import { Link } from 'gatsby'
-import { length} from '../../../styles/mixins'
-import { ReactSVG } from 'react-svg'
-import { motion } from 'framer-motion'
-import {mediumUp} from "../../../styles/mixins/breakpoints";
+import React, { useRef } from "react";
+import styled, { css } from "styled-components";
+import { Link } from "gatsby";
+import { ReactSVG } from "react-svg";
+import { motion } from "framer-motion";
+import { length } from "../../../styles/mixins";
+import useHeaderAssets from "../../../hooks/queries/useHeaderAssets";
+import { mediumUp } from "../../../styles/mixins/breakpoints";
 
-const Logo = styled(motion.div)`
+const Logo = styled( motion.div )`
   position: relative;
   display: flex;
   align-items: center;
@@ -31,68 +31,63 @@ const Logo = styled(motion.div)`
   }
 
   & .logo {
-    ${length('max-width', 6)};
+    ${length( "max-width", 6 )};
 
-    ${mediumUp(css`
-      ${length('max-width', 4.5)};
-    `)};
+    ${mediumUp( css`
+      ${length( "max-width", 4.5 )};
+    ` )};
   }
 
   a {
-    position: absolute;
-    inset: 0;
-    pointer-events: all;
+    width: 100%;
   }
-`
+`;
 
 const logoVariant = {
   initial: {
     opacity: 0,
     scale: 1.56,
-    rotate: 20,
+    rotate: 20
   },
   animate: {
     opacity: 1,
     scale: 1.05,
-    rotate: 0,
+    rotate: 0
   },
-  exit: {  },
+  exit: {},
 
   transition: {
     ease: [0.6, 0.01, 0, 0.9],
-    duration: 3,
-  },
-}
+    duration: 3
+  }
+};
 
-const HomeLogo = ({ toggleMenu }) => {
-  const { logo } = useHeaderAssets()
-  const logoRef = useRef(null)
+const HomeLogo = ( { toggleMenu } ) => {
+  const { logo } = useHeaderAssets();
+  const logoRef = useRef( null );
 
 
   return (
     <Logo
-          variants={logoVariant}
-          transition={logoVariant.transition}
-        /*   initial="initial"
-          animate="animate" */
-          className="logo"
-          data-pointer='magnet'
-          data-magnet-distance={.8}
-          data-magnet-attraction={1.8}
-          data-pointer-color='#5d6c7b'
-          data-tooltip
-          data-tooltip-text='Where it all started'
-          ref={logoRef}
-          onClick={toggleMenu}
+      variants={logoVariant}
+      transition={logoVariant.transition}
+      className="logo"
+      data-pointer="magnet"
+      data-magnet-distance={.8}
+      data-magnet-attraction={1.8}
+      data-pointer-color="#5d6c7b"
+      data-tooltip
+      data-tooltip-text="Where it all started"
+      ref={logoRef}
+      onClick={toggleMenu}
     >
 
-      {/*<div className="trigger"/>*/}
+      <Link aria-label="homepage" to="/">
+        <ReactSVG className="logo" src={logo.publicURL} />
+      </Link>
 
-      <Link to={'/'}/>
-
-      <ReactSVG className="logo" src={logo.publicURL} />
     </Logo>
-  )
-}
+  );
+};
 
-export default HomeLogo
+export default HomeLogo;

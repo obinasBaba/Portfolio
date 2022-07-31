@@ -1,9 +1,9 @@
-import React, { useRef } from 'react'
-import { Typography } from '@material-ui/core'
-import { motion } from 'framer-motion'
-import styled from 'styled-components'
-import { Link } from 'gatsby'
-import { spacing } from '../../styles/mixins'
+import React, { useRef } from "react";
+import { Typography } from "@material-ui/core";
+import { motion } from "framer-motion";
+import styled from "styled-components";
+import { Link } from "gatsby";
+import { spacing } from "../../styles/mixins";
 
 const Btn = styled( motion.div )`
   position: relative;
@@ -20,18 +20,18 @@ const Btn = styled( motion.div )`
   pointer-events: auto;
   //border: thin solid red;
 
-  ${spacing( 'm', 1 )};
-  ${spacing( 'mr', 1.9 )};
+  ${spacing( "m", 1 )};
+  ${spacing( "mr", 1.9 )};
 
   &::before {
     content: '';
     z-index: -1;
     position: absolute;
     display: block;
-    background: ${( { clr } ) => (clr || 'var(--medium-blue-color)')};
+    background: ${( { clr } ) => (clr || "var(--medium-blue-color)")};
     border-radius: 50%;
 
-    ${spacing( 'left', -1 )};
+    ${spacing( "left", -1 )};
 
     width: 50px;
     height: 50px;
@@ -77,54 +77,55 @@ const Btn = styled( motion.div )`
     -ms-user-select: none;
     -webkit-user-select: none;
   }
-`
+`;
 
 
 function MotionBtn( {
-                        text = 'CASE-STUDY',
-                        to,
-                        state,
-                        fontLarge,
-                        clr,
-                        margin = true,
-                        onClick,
-                        toolTipText,
-                        ...props
+                      text = "CASE-STUDY",
+                      to,
+                      state,
+                      fontLarge,
+                      clr,
+                      margin = true,
+                      onClick,
+                      toolTipText,
+                      ...props
                     } ){
-    const btnRef = useRef( null )
+  const btnRef = useRef( null );
 
-    return (<Btn
-        {...props}
-        margin={margin.toString()}
-        clr={clr}
-        data-pointer="focus"
-        // data-pointer-color="#02021e"
-        data-tooltip
-        data-tooltip-text={toolTipText}
-        ref={btnRef}
-        onClick={() => {
-            if ( onClick ) {
-                onClick()
-                btnRef.current.classList.add( 'no-hover' )
-            }
-        }}
+  return (<Btn
+    {...props}
+    margin={margin.toString()}
+    clr={clr}
+    data-pointer="focus"
+    // data-pointer-color="#02021e"
+    data-tooltip
+    data-tooltip-text={toolTipText}
+    ref={btnRef}
+    onClick={() => {
+      if ( onClick ) {
+        onClick();
+        btnRef.current.classList.add( "no-hover" );
+      }
+    }}
+  >
+    {to && (<Link
+      to={to}
+      aria-label={`${text}  ${to}`}
+      state={state}
+    />)}
+
+    <Typography
+      variant="body1"
+      className="btn-txt"
+      style={{
+        letterSpacing: "3px", textShadow: "0.1em 0.1em 0.3em #000"
+      }}
+      noWrap
     >
-        {to && (<Link
-            to={to}
-            state={state}
-        />)}
-
-        <Typography
-            variant="body1"
-            className="btn-txt"
-            style={{
-                letterSpacing: '3px', textShadow: '0.1em 0.1em 0.3em #000',
-            }}
-            noWrap
-        >
-            {text}
-        </Typography>
-    </Btn>)
+      {text}
+    </Typography>
+  </Btn>);
 }
 
-export default MotionBtn
+export default MotionBtn;
