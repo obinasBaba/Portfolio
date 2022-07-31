@@ -1,0 +1,106 @@
+@use "@style" as *;
+
+//noinspection SassScssResolvedByNameOnly
+.container {
+  position: fixed;
+  z-index: 7;
+  bottom: 1rem;
+  right: 1rem;
+
+  @include media-breakpoint-up(md) {
+    bottom: 3%;
+    right: 2%;
+  }
+
+  &:hover {
+    z-index: 8;
+
+    svg.circle {
+      //transition: opacity 100ms ease-in;
+      opacity: 0;
+    }
+  }
+
+  & :local {
+
+    svg.circle {
+      transition: opacity 100ms ease-out;
+    }
+
+    .wrapper {
+      position: relative;
+      display: grid;
+      place-items: center;
+      height: 4.5rem;
+      width: 4.5rem;
+
+      @include media-breakpoint-up(md) {
+        height: f-unit-light(5.6rem);
+        width: f-unit-light(5.6rem);
+      }
+
+
+      //border: thin solid rebeccapurple;
+
+      &:hover {
+        z-index: 8;
+
+        .progress {
+          transition: opacity 300ms ease-out;
+          opacity: 0;
+        }
+      }
+
+      a {
+        display: grid;
+        place-items: center;
+        //border: thin solid yellow;
+
+      }
+
+      .phone {
+        grid-row: 1 / 1;
+        grid-column: 1 / 1;
+        transform: scale(.9);
+
+        & * {
+          transition: stroke 0.4s ease-in-out;
+        }
+
+        & :global {
+          #phone_path {
+            stroke: var(--theme);
+          }
+        }
+      }
+
+      .progress {
+        transition: opacity 400ms ease-in;
+        transform-origin: center;
+
+        grid-row: 1 / 1;
+        grid-column: 1 / 1;
+
+
+        circle {
+          fill: none;
+          stroke-width: 3px;
+
+        }
+
+        .bg {
+          stroke: var(--stroke-bottom);
+          opacity: 0.3;
+        }
+
+        .indicator {
+          stroke: var(--stroke-bottom);
+        }
+      }
+
+
+    }
+  }
+
+
+}

@@ -4,7 +4,7 @@ import loadable from "@loadable/component";
 import Hero from "./Hero";
 import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 import RecentWorks from "./RecentDesigns";
-import Aim from "./Aim";
+import ToProjects from "./ToProjects";
 import { SectionWrapper } from "../../components/Container";
 import BlogPosts from "./BlogPosts";
 import Experiments from "./Experiments";
@@ -53,8 +53,8 @@ function HomePage(){
     <Hero />
 
     <RecentWorks />
-    
-    <Aim />
+
+    <ToProjects />
 
     <SectionWrapper dataScrollSection>
       <Experiments />

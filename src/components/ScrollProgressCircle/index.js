@@ -1,136 +1,11 @@
 import { motion, useTransform } from "framer-motion";
 import React, { useContext, useEffect } from "react";
-import styled from "styled-components";
-import { length, spacing } from "../../styles/mixins";
 import { AppStateContext } from "../../contexts/AppStateContext";
 import { map } from "../../helpers/utils";
 import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 import { Link } from "gatsby";
+import { bg, container, indicator, phone, progress, wrapper } from "./scrollprogress.module.scss";
 
-const RotatingDiv = styled( motion.div )`
-  width: 100%;
-  height: 100%;
-  display: grid;
-  place-items: center;
-
-  border: thin solid red;
-
-
-  grid-row: 1 / 1;
-  grid-column: 1 / 1;
-
-  .border {
-    border-radius: 500px;
-    border: 3px solid;
-  }
-
-
-`;
-
-const ProgressCircleContainer = styled.div`
-  position: fixed;
-  top: calc(100vh - calc(var(--size) * 6rem));
-  bottom: auto;
-
-  //border: thin solid red;
-
-  ${spacing( "right", 6 )};
-
-  z-index: 7;
-
-
-  svg.circle {
-    transition: opacity 100ms ease-out;
-  }
-
-  &:hover {
-    z-index: 8;
-
-    svg.circle {
-      //transition: opacity 100ms ease-in;
-      opacity: 0;
-    }
-  }
-`;
-
-const ProgressCircleWrapper = styled( motion.div )`
-  position: relative;
-  display: grid;
-  place-items: center;
-
-  //border: thin solid rebeccapurple;
-
-  a {
-    display: grid;
-    place-items: center;
-  }
-
-  & .phone {
-    grid-row: 1 / 1;
-    grid-column: 1 / 1;
-    //opacity: .7;
-
-    & * {
-      transition: stroke 0.4s ease-in-out;
-    }
-
-    #phone_path {
-      stroke: var(--theme);
-    }
-  }
-
-  svg#progress {
-    transition: opacity 400ms ease-in;
-    transform-origin: center;
-
-    grid-row: 1 / 1;
-    grid-column: 1 / 1;
-
-
-    circle {
-      fill: none;
-      stroke-width: 3px;
-
-    }
-
-    .bg {
-      stroke: var(--stroke-bottom);
-      opacity: 0.3;
-    }
-
-    .indicator {
-      stroke: var(--stroke-bottom);
-    }
-  }
-
-  &:hover {
-    z-index: 8;
-
-    svg#progress {
-      transition: opacity 300ms ease-out;
-      opacity: 0;
-    }
-  }
-
-
-    // ${length( "width", 5.1 )};
-    // ${length( "height", 5.1 )};
-`;
-
-const topPathVariant = {
-  initial: {
-    strokeWidth: 3,
-    stroke: "var(--stroke-top)"
-  }
-};
-
-const bottomPathVariant = {
-  initial: {
-    pathLength: 0,
-    stroke: "var(--stroke-bottom)",
-    strokeWidth: 4
-  }
-};
 
 const containerVariants = {
   initial: {
@@ -167,24 +42,23 @@ function ScrollProgressCircle(){
 
   return (
 
-    <ProgressCircleContainer
-      data-pointer="magnet"
-      data-pointer-color="#5d6c7b"
-      data-magnet-distance={.7}
-      data-magnet-attraction={1}
-      data-tooltip
-      data-tooltip-text="Write me a poem..."
+    <div className={container}
+         data-pointer="magnet"
+         data-pointer-color="#5d6c7b"
+         data-magnet-distance={.7}
+         data-magnet-attraction={1}
+         data-tooltip
+         data-tooltip-text="Write me a poem..."
     >
-      <ProgressCircleWrapper
-
-        variants={containerVariants}
-        transition={containerVariants.transition}
+      <motion.div className={wrapper}
+                  variants={containerVariants}
+                  transition={containerVariants.transition}
       >
         <Link to="/contact">
 
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="phone"
+            className={phone}
             width="27"
             height="27"
             viewBox="0 0 27 27"
@@ -215,9 +89,9 @@ function ScrollProgressCircle(){
             </g>
           </svg>
 
-          <svg id="progress" width="100" height="100" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="30" pathLength="1" className="bg" />
-            <motion.circle cx="50" cy="50" r="30" pathLength="1" className="indicator" strokeDashoffset="0px"
+          <svg className={progress} width="100%" height="100%" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="30" pathLength="1" className={bg} />
+            <motion.circle cx="50" cy="50" r="30" pathLength="1" className={indicator} strokeDashoffset="0px"
                            style={{ pathLength, rotate }}
                            strokeDasharray="0px 1px" />
           </svg>
@@ -225,8 +99,8 @@ function ScrollProgressCircle(){
         </Link>
 
 
-      </ProgressCircleWrapper>
-    </ProgressCircleContainer>
+      </motion.div>
+    </div>
 
   );
 }

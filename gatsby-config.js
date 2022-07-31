@@ -184,6 +184,7 @@ module.exports = {
         },
         extensions: ["js", "sass", "scss", "ts", "tsx", "css"]
       }
-    }
+    },
+    "gatsby-plugin-webpack-bundle-analyser-v2"
   ]
 };

@@ -65,19 +65,19 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  font-size: 18px;
+  /* font-size: 18px;
 
-  @include fluid-type(1920px, 5120px, 18px, 20px);
+   @include fluid-type(1920px, 5120px, 18px, 20px);
 
-  @media screen and (max-width: 1920px) {
-    font-size: 16px;
-  }
-  @media screen and (max-width: 1400px) {
-    font-size: 14px;
-  }
-  @media screen and (max-width: 1200px) {
-    font-size: 12px;
-  }
+   @media screen and (max-width: 1920px) {
+     font-size: 16px;
+   }
+   @media screen and (max-width: 1400px) {
+     font-size: 14px;
+   }
+   @media screen and (max-width: 1200px) {
+     font-size: 12px;
+   }*/
 }
 
 body {
@@ -92,7 +92,7 @@ body {
   @include br.media-breakpoint-up(md) {
     &.no-cursor {
       & * {
-        //cursor: none;
+        cursor: none;
       }
     }
   }

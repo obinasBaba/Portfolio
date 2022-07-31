@@ -75,6 +75,7 @@
     "eslint-plugin-react-hooks": "^4.5.0",
     "eslint-plugin-unicorn": "^42.0.0",
     "gatsby-plugin-eslint": "^4.0.2",
+    "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.27",
     "prettier": "^2.6.2"
   },
   "keywords": [
