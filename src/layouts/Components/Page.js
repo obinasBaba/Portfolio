@@ -1,15 +1,16 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext, useRef } from "react";
 import { AnimatePresence } from "framer-motion";
 import BackgroundStars from "../../components/BackgroundStars";
 import HeaderAppBar from "../../components/HeaderAppBar";
 import ToolTip from "../../components/Fixed/ToolTip";
 import ProgressCircle from "../../components/ScrollProgressCircle";
-import Cursor from "../../components/Cursor";
 import { BottomGradient, Main, PageContainer } from "./Styled";
 import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 import ScreenOverlay from "../../components/ScreenOverlay";
 import NavigationMenu from "../../components/NavigationMenu";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import { AppStateContext } from "../../contexts/AppStateContext";
+import { LocomotiveScrollProvider } from "../../contexts/LocoMotive";
 
 // import {} from '@re'
 
@@ -22,44 +23,70 @@ function Page( { children, path } ){
     mainAnimationController
   } = useContext( MotionValueContext );
 
+  const container = useRef( null );
+
+  const { currentPath } = useContext( AppStateContext );
+
+
   // const media = useMediaQuery(theme.breakpoints.down('md'))
   // const mediaLarge = useMotionValue(media)
 
   return (
-    <PageContainer
-      id="page-container"
-      variants={{}}
-      initial="initial"
-      exit="exit"
-      animate={mainAnimationController}
-    >
-      <LoadingSpinner />
+    <LocomotiveScrollProvider
+      options={{
+        smooth: true,
+        getDirection: true,
+        getSpeed: true
+      }}
+      containerRef={container} // height change detection
+      watch={[]}
+      onLocationChange={useCallback(
+        ( scroll ) =>
+          scroll.scrollTo( 0, {
+            duration: 0,
+            disableLerp: true
+          } ),
+        []
+      )}
+      location={currentPath}>
 
-      <ScreenOverlay />
+      <PageContainer
+        id="page-container"
+        variants={{}}
+        initial="initial"
+        exit="exit"
+        animate={mainAnimationController}
+        ref={container} data-scroll-container={true}
+      >
+        <LoadingSpinner />
 
-      <BackgroundStars />
+        <ScreenOverlay />
 
-      <Cursor />
+        <BackgroundStars />
 
-      <NavigationMenu />
+        {/* <Cursor />*/}
 
-      <HeaderAppBar />
+        <NavigationMenu />
 
-      <Main data-scroll-container id="main-container">
-        <AnimatePresence
-          exitBeforeEnter
-          custom={{ path, isTop, inView, largeUp }}
-        >
-          {children}
-        </AnimatePresence>
-      </Main>
+        <HeaderAppBar />
 
-      <BottomGradient className="btm-gradient hide-bg" />
+        <Main data-scroll-container id="main-container" data-scroll-section={true}>
+          <AnimatePresence
+            exitBeforeEnter
+            custom={{ path, isTop, inView, largeUp }}
+          >
+            {children}
+          </AnimatePresence>
+        </Main>
 
-      <ProgressCircle />
+        <BottomGradient className="btm-gradient hide-bg" />
 
-      <ToolTip />
-    </PageContainer>
+        <ProgressCircle />
+
+        <ToolTip />
+      </PageContainer>
+    </LocomotiveScrollProvider>
+
   );
 }
 

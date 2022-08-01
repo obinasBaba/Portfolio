@@ -7,8 +7,8 @@ import {
   length,
   shadow,
   spacing
-} from "../../../../styles/mixins";
-import {largeUp, mediumUp, smallUp, xLargeUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
+} from "@/styles/mixins";
+import {largeUp, mediumUp, smallUp, xLargeUp, xxLargeUp} from "@/styles/mixins/breakpoints";
 
 const StyledBlogCard = styled(motion.div)`
   position: relative;

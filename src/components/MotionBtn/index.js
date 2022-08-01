@@ -71,7 +71,7 @@ const Btn = styled( motion.div )`
     bottom: 0;
     right: 0;
     z-index: 999;
-    cursor: none;
+    //cursor: none;
     user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -81,16 +81,16 @@ const Btn = styled( motion.div )`
 
 
 function MotionBtn( {
-                      text = "CASE-STUDY",
-                      to,
-                      state,
-                      fontLarge,
-                      clr,
-                      margin = true,
-                      onClick,
-                      toolTipText,
-                      ...props
-                    } ){
+  text = "CASE-STUDY",
+  to,
+  state,
+  fontLarge,
+  clr,
+  margin = true,
+  onClick,
+  toolTipText,
+  ...props
+} ){
   const btnRef = useRef( null );
 
   return (<Btn

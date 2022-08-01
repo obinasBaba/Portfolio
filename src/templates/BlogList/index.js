@@ -1,17 +1,15 @@
 import React, { useContext, useEffect } from "react";
-import BlogCard from "./components/BlogCard";
 import { graphql } from "gatsby";
 import styled, { css } from "styled-components";
 import { useMediaQuery, useTheme } from "@material-ui/core";
+import BlogCard from "./components/BlogCard";
 import BlogList from "./components/BlogListContainer";
-import { AppStateContext, BackgroundOverlayStateContext } from "../../contexts/AppStateContext";
-import useLocoScroll from "../../hooks/useLocoScroll";
-import Moon from "../../components/MoonLight";
+import { AppStateContext } from "@/contexts/AppStateContext";
+import Moon from "@/components/MoonLight";
 import PenEffect from "./components/PenEffect";
-import { gridify } from "../../styles/mixins";
-import useToolTip from "../../hooks/useToolTip";
-import useRefreshMouseListeners from "../../hooks/useRefreshMouseListeners";
-import Seo from "../../components/seo";
+import { gridify } from "@/styles/mixins";
+import useToolTip from "@/hooks/useToolTip";
+import Seo from "@/components/seo";
 
 const moonStyle = css``;
 
@@ -23,13 +21,13 @@ const Container = styled.div`
 
 `;
 
-const BlogListTemplate = ( {
-                             data,
-                             pageContext: { currentPage, pageCount },
-                             path
-                           } ) => {
+function BlogListTemplate( {
+  data,
+  pageContext: { currentPage, pageCount },
+  path
+} ){
   const { setCurrentPath } = useContext( AppStateContext );
-  const { backgroundOverlay } = useContext( BackgroundOverlayStateContext );
+  // const { backgroundOverlay } = useContext( BackgroundOverlayStateContext );
 
   useEffect( () => {
     setCurrentPath( path );
@@ -37,8 +35,7 @@ const BlogListTemplate = ( {
   }, [] );
 
   useToolTip( "[data-tooltip-text]" );
-  useRefreshMouseListeners( "[data-pointer]" );
-  useLocoScroll( !backgroundOverlay );
+  // useRefreshMouseListeners( "[data-pointer]" );
 
 
   // const previousPage = currentPage === 2 ? "/blog" : `/blog/${currentPage - 1}`;
@@ -71,26 +68,24 @@ const BlogListTemplate = ( {
                 }
               },
               index
-            ) => {
-              return (
-                <BlogCard
-                  title={title}
-                  date={date}
-                  key={excerpt}
-                  featuredMedia={{ publicURL, childImageSharp }}
-                  body={`${excerpt.slice( 0, match ? 250 : 190 )} ...`}
-                  slug={link}
-                  index={index}
-                />
-              );
-            }
+            ) => (
+              <BlogCard
+                title={title}
+                date={date}
+                key={excerpt}
+                featuredMedia={{ publicURL, childImageSharp }}
+                body={`${excerpt.slice( 0, match ? 250 : 190 )} ...`}
+                slug={link}
+                index={index}
+              />
+            )
           )}
 
         </BlogList>
       </Container>
     </div>
   );
-};
+}
 
 
 // The Page query that accept parameter.

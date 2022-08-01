@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import { Typography } from "@material-ui/core";
-import { length, spacing } from "../../../../../styles/mixins";
+import { length, spacing } from "@/styles/mixins";
 
 const ReadButtonContainer = styled.div`
   position: relative;

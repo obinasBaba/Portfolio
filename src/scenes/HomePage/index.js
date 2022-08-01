@@ -56,12 +56,12 @@ function HomePage(){
 
     <ToProjects />
 
-    <SectionWrapper dataScrollSection>
+    <SectionWrapper>
       <Experiments />
     </SectionWrapper>
 
 
-    <SectionWrapper dataScrollSection>
+    <SectionWrapper>
       <BlogPosts />
     </SectionWrapper>
 

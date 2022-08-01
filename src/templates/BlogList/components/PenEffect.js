@@ -1,8 +1,8 @@
 import React, {useContext, useEffect, useState} from 'react'
 import styled from 'styled-components'
 import { motion, useSpring, useTransform } from 'framer-motion'
-import { basicVariants, transition } from '../../../helpers/variants'
-import { MotionValueContext } from '../../../contexts/MotionStateWrapper'
+import { basicVariants, transition } from '@/helpers/variants'
+import { MotionValueContext } from '@/contexts/MotionStateWrapper'
 
 const penVariant = {
   ...basicVariants,

@@ -53,6 +53,45 @@ html {
 html,
 body {
   height: 100%;
+
+  @media screen and (min-width: 1920px) {
+    body {
+      font-size: .84vw
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    body {
+      font-size: .926vw
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    body {
+      font-size: 1vw
+    }
+  }
+
+  @media screen and (max-width: 991px) {
+    body {
+      font-size: 1.44vw
+    }
+
+  }
+
+  @media screen and (max-width: 767px) {
+    body {
+      font-size: 1.9vw
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    body {
+      font-size: 3.1vw
+    }
+  }
+
+
 }
 
 * {
@@ -92,7 +131,7 @@ body {
   @include br.media-breakpoint-up(md) {
     &.no-cursor {
       & * {
-        cursor: none;
+        //cursor: none;
       }
     }
   }
@@ -116,7 +155,7 @@ a {
   display: block;
   text-decoration: none;
   color: inherit;
-  cursor: none;
+  //cursor: none;
 }
 
 img {

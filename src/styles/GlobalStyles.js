@@ -128,7 +128,7 @@ export const GlobalStyle = createGlobalStyle`
     display: block;
     text-decoration: none;
     color: inherit;
-    cursor: none;
+    //cursor: none;
   }
 
 
