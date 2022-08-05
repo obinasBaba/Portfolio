@@ -1,5 +1,6 @@
 @use "@style" as *;
 
+
 //noinspection SassScssResolvedByNameOnly
 .container {
   position: fixed;
@@ -31,12 +32,15 @@
       position: relative;
       display: grid;
       place-items: center;
-      height: 4.5rem;
-      width: 4.5rem;
+      height: 18vmin;
+      width: 18vmin;
 
       @include media-breakpoint-up(md) {
-        height: f-unit-light(5.6rem);
-        width: f-unit-light(5.6rem);
+        //height: f-unit-light(5.6rem);
+        //width: f-unit-light(5.6rem);
+
+        height: 12vmin;
+        width: 12vmin;
       }
 
 

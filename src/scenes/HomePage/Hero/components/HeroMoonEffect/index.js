@@ -1,175 +1,22 @@
 import React from "react";
-import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
-import { gridColWidth, spacing } from "../../../../../styles/mixins";
-import { mediumUp, xLargeUp } from "../../../../../styles/mixins/breakpoints";
-
-const HeroMoonEffectContainer = styled( motion.div )`
-  position: relative;
-  display: grid;
-  justify-self: end;
-  place-items: center;
-  pointer-events: none;
-
-  width: 100%;
-  height: 100%;
-  grid-row: 1 / 3; // mobile first
-
-  //border: thick solid red;
-
-  ${gridColWidth( 1 )};
-
-  ${mediumUp( css`
-    position: absolute;
-    grid-row: initial;
-    //height: 100vh;
-    width: 50%;
-
-    ${gridColWidth( 1 )};
-
-  ` )};
-
-  .moon {
-    //border: thin solid teal;
-    max-width: 100%;
-    align-self: start;
-    height: auto;
-    margin-top: 5vmax; // mobile-first
-    overflow: visible;
-
-    ${mediumUp( css`
-      //svg.moon {
-      align-self: center;
-      margin-top: 0;
-      ${spacing( "mb", 8.8 )};
-      ${spacing( "mr", 3.2 )};
-      max-width: 130%;
-      width: 130%;
-
-      //}
-
-    ` )};
-
-    ${xLargeUp( css`
-      //transform: scale(2vmax);
-      width: 100%;
-      //height: 100%;
-    ` )};
-
-    svg {
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-
-    }
-  }
-
-  svg.mountain {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    height: auto;
-    max-width: 100%;
-    //border: thin solid green;
-  }
-
-
-
-`;
-
-const moonAndStarVariants = {
-  initial: {}, animate: {
-    transition: {
-      delayChildren: .2, staggerChildren: .1
-    }
-  }
-};
-const moonVariants = {
-  initial: {
-    y: "100%", scale: .3, opacity: 0
-  },
-  animate: {
-    y: 0, scale: 1, opacity: 1
-  },
-  exit: {
-    y: "100%", scale: .3, opacity: 0, transition: {
-      duration: 1, delay: .5, ease: [0.6, 0.01, 0, 0.9]
-    }
-  }
-};
-const starVariants = {
-  initial: {}, animate: {
-    transition: {
-      staggerChildren: .2
-    }
-  },
-  exit: {
-    transition: {
-      staggerChildren: .04
-    }
-  }
-};
-const starItemVariants = {
-  initial: {
-    scale: 0, opacity: 0
-  },
-  animate: {
-    scale: 1, opacity: 1
-  },
-  exit: {
-    scale: 0, opacity: 0
-  }
-};
-
-const mountainVariants = {
-  initial: {}, animate: {
-    transition: {
-      staggerChildren: .21
-    }
-  },
-  exit: {
-    transition: {
-      staggerChildren: .21
-    }
-  }
-};
-const mountainItemVariants = {
-  initial: {
-    y: "100%", opacity: .6
-  },
-  animate: {
-    y: 0, opacity: 1, transition: {
-      duration: .8, ease: [0.6, 0.01, 0, 0.9]
-    }
-  },
-  exit: {
-    y: "100%", opacity: .5
-  }
-};
-
-const containerVariant = {
-  animate: {
-    transition: {
-      // delayChildren: .8,
-    }
-  }
-};
-
-const moonTransition = {
-  duration: 1, ease: [0.6, 0.01, 0, 0.9]
-};
-
-const transition = {
-  duration: 2, ease: [0.6, 0.01, 0, 0.9]
-
-};
+import { container, moon } from "./moonMountain.module.scss";
+import {
+  containerVariant,
+  moonAndStarVariants,
+  moonTransition,
+  moonVariants,
+  starItemVariants,
+  starVariants,
+  transition
+} from "@/scenes/HomePage/Hero/components/HeroMoonEffect/variants";
 
 
 function HeroMoonEffect(){
 
   return (
-    <HeroMoonEffectContainer variants={containerVariant}>
-      <div className="moon" data-scroll data-scroll-speed="-1">
+    <motion.div className={container} variants={containerVariant}>
+      <div className={moon} data-scroll={true} data-scroll-speed="-1">
         <motion.svg variants={moonAndStarVariants} className="__moon" width="539"
                     height="291" viewBox="0 0 539 291"
                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -235,6 +82,7 @@ function HeroMoonEffect(){
               transition={transition}
             />
           </motion.g>
+
           <defs>
             <filter id="filter0_df_151_75" x="188.473" y="0.141052" width="284.633" height="290.593"
                     filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
@@ -283,24 +131,7 @@ function HeroMoonEffect(){
         </motion.svg>
       </div>
 
-      <motion.svg variants={mountainVariants} className="mountain" width="943" height="214" viewBox="0 0 943 214"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-        <motion.path variants={mountainItemVariants}
-                     transition={transition}
-                     d="M589.895 162.558L367.989 98.7692L172 214H943V100.5L823.139 0L589.895 162.558Z"
-                     fill="#432277" />
-        <motion.path variants={mountainItemVariants}
-                     transition={transition} d="M743 214L544.5 50L346.41 165.159L186.155 124.459L0 214H743Z"
-                     fill="#321C5E" />
-        <motion.path variants={mountainItemVariants}
-                     transition={transition}
-                     d="M625.174 200.977L532.744 148.884L411.128 214H943V172.326L821.384 102L625.174 200.977Z"
-                     fill="#5430A0" />
-      </motion.svg>
-
-
-    </HeroMoonEffectContainer>
+    </motion.div>
   );
 }
 

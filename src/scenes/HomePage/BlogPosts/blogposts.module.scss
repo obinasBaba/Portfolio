@@ -1,0 +1,67 @@
+@use "@style" as *;
+
+//noinspection SassScssResolvedByNameOnly
+
+.container {
+
+  //border: thin solid red;
+  @include margin(top, 10rem);
+
+
+  & :local {
+
+    .wrapper {
+      max-width: 100%;
+      //overflow: hidden;
+      @include grid-template();
+      @include margin(bottom, 20rem);
+
+
+      //${spacing( "grid-row-gap", 20 )};
+      //${gridify()};
+
+      & main {
+        //border: thin solid yellow;
+
+        @include col-width(5, 59);
+
+        @include media-breakpoint-up(md) {
+          @include col-width(36, 63);
+
+          //border: thin solid red;
+        }
+
+        @include media-breakpoint-up(lg) {
+          @include col-width(36, 60);
+
+          //@include col-width(37, 63);
+        }
+
+      }
+
+
+      & aside {
+        //border: thin dashed yellow;
+
+
+        @include col-width(5, 61);
+
+        @include media-breakpoint-up(md) {
+          @include col-width(3, 32);
+        }
+
+        @include media-breakpoint-up(lg) {
+          @include col-width(7, 28);
+        }
+
+        @include media-breakpoint-up(xl) {
+          //@include col-width(3, 25);
+        }
+
+      }
+
+    }
+
+  }
+
+}

@@ -1,19 +1,8 @@
-import styled, { css } from 'styled-components'
-import { motion } from 'framer-motion'
-import { gridColWidth, gridify, spacing, } from '../../../../styles/mixins'
+import styled, { css } from "styled-components";
+import { motion } from "framer-motion";
+import { gridColWidth, gridify, spacing } from "../../../../styles/mixins";
 import { mediumUp, xLargeUp } from "../../../../styles/mixins/breakpoints";
 
-export const HeroContainer = styled( motion.section )`
-  position: relative;
-  z-index: 1;
-  height: 100vh;
-  width: 100%;
-  //border: thin solid teal;
-  margin: 0 auto;
-  max-width: 1999px;
-
-  ${gridify()};
-`
 
 export const TextContainer = styled( motion.div )`
   position: relative;
@@ -30,7 +19,7 @@ export const TextContainer = styled( motion.div )`
   //border: thin solid chocolate;
 
   ${gridColWidth()};
-  ${spacing( 'gap', 3 )};
+  ${spacing( "gap", 3 )};
 
   @media (min-width: 800px) {
     grid-row: initial;
@@ -46,7 +35,7 @@ export const TextContainer = styled( motion.div )`
   ` )};
 
   ${xLargeUp( css`
-    ${spacing( 'pl', 4 )};
+    ${spacing( "pl", 4 )};
   ` )};
 
 
@@ -54,10 +43,10 @@ export const TextContainer = styled( motion.div )`
 
 
     ${xLargeUp( css`
-      ${spacing( 'mr', 7 )};
+      ${spacing( "mr", 7 )};
     ` )};
   }
-}`
+}`;
 
 export const Greeting = styled( motion.div )`
   display: flex;
@@ -74,7 +63,7 @@ export const Greeting = styled( motion.div )`
     ${xLargeUp( css`
       width: 100%;
       height: 100%;
-      ${spacing( 'mt', 3 )};
+      ${spacing( "mt", 3 )};
 
 
     ` )};
@@ -92,7 +81,7 @@ export const Greeting = styled( motion.div )`
 
 
 
-`
+`;
 
 export const Intro = styled( motion.div )`
 
@@ -116,4 +105,4 @@ export const Intro = styled( motion.div )`
 
   }
 
-`
+`;

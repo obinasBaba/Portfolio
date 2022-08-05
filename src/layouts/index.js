@@ -6,7 +6,7 @@ import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import theme from "../theme";
 import AppStateProvider from "../contexts/AppStateContext";
 import Page from "./Components/Page";
-import "@src/styles/sass-styles/global-style/index.scss";
+import "@global";
 
 export default function Layout( { children, path } ){
   return (

@@ -1,12 +1,13 @@
-import React, { useContext } from 'react'
-import styled, { css } from 'styled-components'
+import React, { useContext } from "react";
+import styled, { css } from "styled-components";
 import { Container, useMediaQuery, useTheme } from "@material-ui/core";
-import { motion, useTransform } from 'framer-motion'
+import { motion, useSpring, useTransform } from "framer-motion";
 import { length, spacing } from "../../../../styles/mixins";
-import HeadlineTitle from '../../../../components/Headline'
+import HeadlineTitle from "../../../../components/Headline";
 import { MotionValueContext } from "../../../../contexts/MotionStateWrapper";
 import { useProjectSvg } from "../../../../hooks/queries/useProjectSvg";
 import { smallUp, xLargeUp } from "../../../../styles/mixins/breakpoints";
+import { useLocomotiveScroll } from "@contexts/LocoMotive";
 
 const TitleContainer = styled( Container )`
   display: flex;
@@ -15,8 +16,8 @@ const TitleContainer = styled( Container )`
   /*@include hl-margin(bottom, 100px);
   @include hl-padding(top, 75px);*/
 
-  ${spacing( 'mb', 11 )};
-`
+  ${spacing( "mb", 11 )};
+`;
 
 const LogoLink = styled.a`
   position: relative;
@@ -25,7 +26,7 @@ const LogoLink = styled.a`
   justify-content: center;
   align-items: center;
 
-  ${length( 'width', 12 )};
+  ${length( "width", 12 )};
 
   ${smallUp( css`
     display: flex;
@@ -44,7 +45,7 @@ const LogoLink = styled.a`
 
   .circledText {
     //width: 100%;
-    ${length( 'width', 12 )};
+    ${length( "width", 12 )};
   }
 
   .dribbleRed {
@@ -66,52 +67,54 @@ const LogoLink = styled.a`
 
 
 
-`
+`;
 
 function Title(){
 
-    const { moScroll } = useContext( MotionValueContext )
-    const { circledText, dribbleRed } = useProjectSvg();
+  const { circledText, dribbleRed } = useProjectSvg();
+  const { yProgress } = useLocomotiveScroll();
+
+  const transform = useTransform( yProgress, [0, 1], [0, 560] );
+
+  const rotate = useSpring( transform, { damping: 50, stiffness: 400 } );
+
+  const theme = useTheme();
+  const match = useMediaQuery( theme.breakpoints.up( "xxl" ) );
+
+  // const {recentDesign, setRecentDesign} = useContext( LoadStateContext )
+
+  return (
+    <TitleContainer maxWidth={match ? "xl" : "lg"}>
+      <LogoLink
+        href="https://dribbble.com/henok500"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <motion.img
+          alt="Web App, Mobile"
+          loading="lazy"
+          src={circledText.publicURL}
+          className="circledText"
+          style={{ rotate }}
+        />
+
+        <img
+          loading="lazy"
+          alt="Web App, Mobile"
+          src={dribbleRed.publicURL}
+          className="dribbleRed"
+          onLoad={() => {
+          }}
 
 
-    const rotate = useTransform( moScroll.y, [200, 2000], [0, 360] )
-    const theme = useTheme()
-    const match = useMediaQuery( theme.breakpoints.up( 'xxl' ) )
-
-    // const {recentDesign, setRecentDesign} = useContext( LoadStateContext )
-
-    return (
-        <TitleContainer maxWidth={match ? 'xl' : 'lg'}>
-            <LogoLink
-                href='https://dribbble.com/henok500'
-                rel="noopener noreferrer"
-                target="_blank"
-            >
-                <motion.img
-                    alt="Web App, Mobile"
-                    loading="lazy"
-                    src={circledText.publicURL}
-                    className="circledText"
-                    style={{ rotate }}
-                />
-
-                <img
-                    loading="lazy"
-                    alt="Web App, Mobile"
-                    src={dribbleRed.publicURL}
-                    className="dribbleRed"
-                    onLoad={() => {
-                    }}
+        />
+      </LogoLink>
 
 
-                />
-            </LogoLink>
+      <HeadlineTitle title="Designs" subtitle="Recent Designs" />
 
-
-            <HeadlineTitle title='Designs' subtitle='Recent Designs'/>
-
-        </TitleContainer>
-    )
+    </TitleContainer>
+  );
 }
 
-export default Title
+export default Title;

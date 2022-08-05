@@ -1,13 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import { motion } from "framer-motion";
 import loadable from "@loadable/component";
-import Hero from "./Hero";
-import { MotionValueContext } from "../../contexts/MotionStateWrapper";
+import { MotionValueContext } from "@contexts/MotionStateWrapper";
+import { SectionWrapper } from "@components/Container";
 import RecentWorks from "./RecentDesigns";
 import ToProjects from "./ToProjects";
-import { SectionWrapper } from "../../components/Container";
 import BlogPosts from "./BlogPosts";
 import Experiments from "./Experiments";
+import Hero from "@/scenes/HomePage/Hero";
 
 const MailUs = loadable( () => import("../../components/MailUs") );
 

@@ -177,10 +177,14 @@ module.exports = {
       resolve: `gatsby-plugin-alias-imports`,
       options: {
         alias: {
-          "@src": "src",
+          "@": "./src/",
+          "@styles": "./src/styles/sass-styles/",
           "@style": "./src/styles/sass-styles/index.scss",
-          "@styles": "./src/styles/sass-styles/*",
-          "@/styles/*": "./src/styles/sass-styles/*"
+          "@global": "./src/styles/sass-styles/global-style/index.scss",
+          "@components": "./src/components/",
+          "@contexts": "./src/contexts/",
+          "@hooks": "./src/hooks/",
+          "@helpers": "./src/helpers/"
         },
         extensions: ["js", "sass", "scss", "ts", "tsx", "css"]
       }

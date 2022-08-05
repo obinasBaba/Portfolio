@@ -45,6 +45,7 @@ export function LocomotiveScrollProvider({
                                          }: WithChildren<LocomotiveScrollProviderProps>) {
   const { height: containerHeight } = useResizeObserver<HTMLDivElement>({ ref: containerRef });
   const [isReady, setIsReady] = useState(false);
+  const [r, setR] = useState(false);
   const LocomotiveScrollRef = useRef<Scroll | null>(null);
   const [height] = useDebounce(containerHeight, 100);
 
@@ -54,12 +55,19 @@ export function LocomotiveScrollProvider({
   const xLimit = useMotionValue(0);
   const scrollDirection = useMotionValue("");
 
-  const yProgress = useTransform(y, [0, yLimit.get()], [0, 1], { clamp: false });
+  const yProgress = useTransform(y, [0, isReady ? yLimit.get() : 0], [0, 1], { clamp: true });
 
   const ySmooth = useSpring(y, { damping: 50, stiffness: 400 });
   const velocity = useVelocity(ySmooth);
 
   const scale = useTransform(velocity, [-3000, 0, 3000], [1.01, 1, 1.01]);
+
+
+  useEffect(() => {
+    yProgress.onChange(v => {
+      console.log("yProress: ", v);
+    });
+  }, []);
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -73,12 +81,27 @@ export function LocomotiveScrollProvider({
 
       LocomotiveScrollRef.current = new LocomotiveScroll.default({
         el: dataScrollContainer ?? undefined,
+        smartphone: {
+          breakpoint: 0,
+          smooth: true,
+          getDirection: true
+        },
+        tablet: {
+          breakpoint: 0,
+          smooth: false,
+          getDirection: true
+        },
+
         ...options
       });
 
-      setIsReady(true);
 
-      console.log("locomotive starting here -----", LocomotiveScrollRef.current.name);
+      setTimeout(() => {
+        setIsReady(true);
+        LocomotiveScrollRef.current?.update();
+      }, 1000);
+
+      console.log("locomotive starting here -----", LocomotiveScrollRef.current);
     });
 
     return () => {
@@ -108,8 +131,9 @@ export function LocomotiveScrollProvider({
 
     if (onUpdate) {
       onUpdate(LocomotiveScrollRef.current);
+      setIsReady;
     }
-  }, [watch, height]);
+  }, [watch, height, isReady]);
 
   // dependency change
   useEffect(() => {
@@ -130,9 +154,9 @@ export function LocomotiveScrollProvider({
   useEffect(() => {
     if (isReady && LocomotiveScrollRef.current) {
       LocomotiveScrollRef.current.on("scroll", (arg: any) => {
-        // console.log('scrolled: ', arg);
-        x.set(arg.delta.x);
-        y.set(arg.delta.y);
+        console.log("scrolled: ", yLimit.get());
+        x.set(arg.scroll.x);
+        y.set(arg.scroll.y);
         scrollDirection.set(arg.direction);
       });
     }

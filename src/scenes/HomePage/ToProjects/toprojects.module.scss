@@ -24,7 +24,7 @@
       align-items: flex-start;
       flex-flow: wrap;
 
-      @include margin(top, 8rem);
+      @include margin(top, 4rem);
 
       @include media-breakpoint-up(xl) {
         max-width: 1500px;

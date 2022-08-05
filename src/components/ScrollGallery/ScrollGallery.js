@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import { animate, motion, useMotionTemplate, useSpring, useTransform } from "framer-motion";
+import { animate, motion, MotionValue, useMotionTemplate, useSpring, useTransform } from "framer-motion";
 import ImageGrid from "../../scenes/HomePage/RecentDesigns/ImageGrid";
 import { spacing } from "../../styles/mixins";
 import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 import useHomeWorksAssets from "../../hooks/queries/useHomeWorksAssets";
 import { map } from "../../helpers/utils";
 import useMo from "./useMo";
+import { useLocomotiveScroll } from "@/contexts/LocoMotive";
 
 const ScrollContainer = styled.section`
   position: relative;
@@ -64,13 +65,23 @@ const Gallery = () => {
     [Web]
   ];
 
+  const { yProgressSmooth, yProgress } = useLocomotiveScroll();
 
-  const x = useMo();
+
+  // const x = useMo();
+
+  const mapped = useTransform( yProgress, [0, 1], [0, -150] );
+
+  const x = useSpring( mapped, {
+    mass: 0.5,
+    damping: 15,
+    stiffness: 50
+  } );
 
 
   return (
     <ScrollContainer>
-      <ScrollWrapper id={`image_row_container`}>
+      <ScrollWrapper id="image_row_container">
 
         <ScrollTrack className="rd-scroll-track" style={{ x: useMotionTemplate`${x}%` }}>
           {imageList.map( ( item, index ) =>
