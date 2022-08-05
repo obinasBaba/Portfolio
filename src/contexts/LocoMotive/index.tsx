@@ -16,6 +16,7 @@ export interface LocomotiveScrollContextValue {
   scale: MotionValue<number>;
   scrollDirection: MotionValue<string>;
   yProgress: MotionValue<number>;
+  yProgressSmooth: MotionValue<number>;
 }
 
 const LocomotiveScrollContext = createContext<LocomotiveScrollContextValue>({
@@ -139,7 +140,14 @@ export function LocomotiveScrollProvider({
 
   return (
     <LocomotiveScrollContext.Provider
-      value={{ scroll: LocomotiveScrollRef.current, isReady, scale, scrollDirection, yProgress }}>
+      value={{
+        scroll: LocomotiveScrollRef.current,
+        isReady,
+        scale,
+        scrollDirection,
+        yProgress,
+        yProgressSmooth: ySmooth
+      }}>
       {children}
     </LocomotiveScrollContext.Provider>
   );

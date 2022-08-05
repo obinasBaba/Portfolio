@@ -1,10 +1,11 @@
-import { motion, useTransform } from "framer-motion";
+import { motion, useSpring, useTransform } from "framer-motion";
 import React, { useContext, useEffect } from "react";
 import { AppStateContext } from "../../contexts/AppStateContext";
 import { map } from "../../helpers/utils";
 import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 import { Link } from "gatsby";
 import { bg, container, indicator, phone, progress, wrapper } from "./scrollprogress.module.scss";
+import { useLocomotiveScroll } from "../../contexts/LocoMotive";
 
 
 const containerVariants = {
@@ -28,16 +29,21 @@ function ScrollProgressCircle(){
     moScroll: { y, limit }
   } = useContext( MotionValueContext );
 
+  const { yProgress, yProgressSmooth } = useLocomotiveScroll();
 
-  const rotate = useTransform( y, latest => map( latest, 0, limit.get(), 0, 360 ) );
 
-  const pathLength = useTransform( rotate, [0, 360], [0, 1] );
+  const rotate = useTransform( yProgress, [0, 1], [0, 360] );
+
+  const smoothRotate = useSpring( rotate, { damping: 50, stiffness: 400 } );
+
+
+  const pathLength = useTransform( smoothRotate, [0, 360], [0, 1] );
 
 
   useEffect( () => {
-    pathLength.set( 0 );
-    rotate.set( 0 );
-    y.set( 0 );
+    // pathLength.set( 0 );
+    // rotate.set( 0 );
+    // y.set( 0 );
   }, [currentPath] );
 
   return (
@@ -92,7 +98,7 @@ function ScrollProgressCircle(){
           <svg className={progress} width="100" height="100" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="30" pathLength="1" className={bg} />
             <motion.circle cx="50" cy="50" r="30" pathLength="1" className={indicator} strokeDashoffset="0px"
-                           style={{ pathLength, rotate }}
+                           style={{ pathLength, rotate: smoothRotate }}
                            strokeDasharray="0px 1px" />
           </svg>
 
