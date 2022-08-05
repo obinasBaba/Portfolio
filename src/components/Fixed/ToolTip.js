@@ -1,3 +1,5 @@
+// noinspection ES6MissingAwait
+
 import React, { useContext, useLayoutEffect, useRef } from "react";
 import styled from "styled-components";
 import { spacing, text } from "../../styles/mixins";
@@ -164,16 +166,16 @@ const ToolTip = () => {
   useLayoutEffect( () => {
     // return;
     toolTipsData.onChange( async v => {
-      console.log( "v: ", v );
+
       if ( v.show && v.text ) {
         if ( v.text instanceof Array ) {
           const { text, timer } = v;
 
           const items = text.map( ( m, idx ) => ({ text: m, timer: timer[idx] }) );
-          let genObj = getNext( items );
+          const genObj = getNext( items );
           showAll( genObj );
 
-        } else {
+        } else if ( toolTipTextNode.current ) {
           toolTipTextNode.current.innerHTML = v.text;
           controller.start( "animate" );
         }

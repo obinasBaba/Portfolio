@@ -5,12 +5,10 @@ import styled, { css } from "styled-components";
 import { useMediaQuery, useTheme } from "@material-ui/core";
 import BlogList from "./components/BlogListContainer";
 import { AppStateContext, BackgroundOverlayStateContext } from "../../contexts/AppStateContext";
-import useLocoScroll from "../../hooks/useLocoScroll";
 import Moon from "../../components/MoonLight";
 import PenEffect from "./components/PenEffect";
 import { gridify } from "../../styles/mixins";
 import useToolTip from "../../hooks/useToolTip";
-import useRefreshMouseListeners from "../../hooks/useRefreshMouseListeners";
 import Seo from "../../components/seo";
 
 const moonStyle = css``;
@@ -37,8 +35,8 @@ const BlogListTemplate = ( {
   }, [] );
 
   useToolTip( "[data-tooltip-text]" );
-  useRefreshMouseListeners( "[data-pointer]" );
-  useLocoScroll( !backgroundOverlay );
+  // useRefreshMouseListeners( "[data-pointer]" );
+  // useLocoScroll( !backgroundOverlay );
 
 
   // const previousPage = currentPage === 2 ? "/blog" : `/blog/${currentPage - 1}`;

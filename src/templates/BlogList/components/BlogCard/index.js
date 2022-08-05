@@ -1,24 +1,20 @@
-import React from 'react'
-import CardContents from './components/CardContents'
-import Thumbnail from './components/Thumbnail'
-import { motion } from 'framer-motion'
-import styled, { css } from 'styled-components'
-import {
-  length,
-  shadow,
-  spacing
-} from "../../../../styles/mixins";
-import {largeUp, mediumUp, smallUp, xLargeUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
+import React from "react";
+import CardContents from "./components/CardContents";
+import Thumbnail from "./components/Thumbnail";
+import { motion } from "framer-motion";
+import styled, { css } from "styled-components";
+import { shadow, spacing } from "../../../../styles/mixins";
+import { largeUp, mediumUp, xxLargeUp } from "../../../../styles/mixins/breakpoints";
 
-const StyledBlogCard = styled(motion.div)`
+const StyledBlogCard = styled( motion.div )`
   position: relative;
   display: flex;
   flex-direction: column;
   box-shadow: 0 5px 20px rgba(34, 45, 58, 0.2);
-  
-  ${spacing('br', 3)};
-  ${spacing('mv', 10)};
-  ${spacing('mb', 15)};
+
+  ${spacing( "br", 3 )};
+  ${spacing( "mv", 10 )};
+  ${spacing( "mb", 15 )};
 
   &:before {
 
@@ -28,26 +24,26 @@ const StyledBlogCard = styled(motion.div)`
     bottom: 0;
     left: 0;
     right: 0;
-    
+
     display: block;
     //overflow: hidden;
     backdrop-filter: blur(5px);
     background-image: var(--gray_gradient);
 
-    ${spacing('br', 3)};
+    ${spacing( "br", 3 )};
   }
 
   &:first-child {
-    ${spacing('mt', 16)};
+    ${spacing( "mt", 16 )};
   }
 
-  ${largeUp(css`
+  ${largeUp( css`
     &:first-child {
-      ${spacing('mt', 8)};
+      ${spacing( "mt", 8 )};
     }
-  `)}
+  ` )}
 
-  ${mediumUp(css`
+  ${mediumUp( css`
     flex-direction: row;
     align-items: center;
 
@@ -56,26 +52,26 @@ const StyledBlogCard = styled(motion.div)`
     transform: translateX(0);
 
     ${shadow()};
-    ${spacing('pv', 2.2)};
-    ${spacing('ml', 1)};
-  `)};
-  
+    ${spacing( "pv", 2.2 )};
+    ${spacing( "ml", 1 )};
+  ` )};
+
   ${xxLargeUp( css`
     width: clamp(500px, 78vw, 910px);
   ` )};
-`
+`;
 
 
-const BlogCard = ({
-  index,
-  date,
-  title,
-  body,
-  slug,
-  featuredMedia: { publicURL, childImageSharp },
-}) => {
+const BlogCard = ( {
+                     index,
+                     date,
+                     title,
+                     body,
+                     slug,
+                     featuredMedia: { publicURL, childImageSharp }
+                   } ) => {
   return (
-    <motion.div >
+    <motion.div>
       <StyledBlogCard media={publicURL}>
         <Thumbnail media={childImageSharp} link={slug} />
         <CardContents
@@ -87,7 +83,7 @@ const BlogCard = ({
         />
       </StyledBlogCard>
     </motion.div>
-  )
-}
+  );
+};
 
-export default BlogCard
+export default BlogCard;

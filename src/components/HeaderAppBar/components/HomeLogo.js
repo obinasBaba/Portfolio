@@ -62,7 +62,7 @@ const logoVariant = {
   }
 };
 
-const HomeLogo = ( { toggleMenu } ) => {
+function HomeLogo( { toggleMenu } ){
   const { logo } = useHeaderAssets();
   const logoRef = useRef( null );
 
@@ -88,6 +88,6 @@ const HomeLogo = ( { toggleMenu } ) => {
 
     </Logo>
   );
-};
+}
 
 export default HomeLogo;

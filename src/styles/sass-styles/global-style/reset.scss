@@ -92,7 +92,7 @@ body {
   @include br.media-breakpoint-up(md) {
     &.no-cursor {
       & * {
-        cursor: none;
+        //cursor: none;
       }
     }
   }

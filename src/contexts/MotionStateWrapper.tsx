@@ -88,7 +88,7 @@ export const MotionStateWrapper: React.FC = ({ children }) => {
 
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("lg"));
-  const event = RouteChangeEvent.GetInstance();
+  const routeEvent = RouteChangeEvent.GetInstance();
 
 
   useEffect(() => {
@@ -100,12 +100,12 @@ export const MotionStateWrapper: React.FC = ({ children }) => {
   // const { scrollY, scrollYProgress } =  useViewportScroll()
 
   useEffect(() => {
-    const showTip = () => toolTipsData.set({ show: true, text: "loadding resource..." });
+    const showTip = () => toolTipsData.set({ timer: null, show: true, text: "loading resource..." });
 
-    event.addListener("start", showTip);
+    routeEvent.addListener("start", showTip);
 
     return () => {
-      event.removeListener("start", showTip);
+      routeEvent.removeListener("start", showTip);
     };
 
   }, []);

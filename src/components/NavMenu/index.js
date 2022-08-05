@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import { motion } from "framer-motion";
 import Menu from "./components/Menu";
 import styled from "styled-components";
-import useRefreshMouseListeners from "../../hooks/useRefreshMouseListeners";
 
 const MenuContainer = styled( motion.div )`
   position: fixed;
@@ -26,7 +25,7 @@ const LogoBgEffect = React.lazy( () => import("./components/LogoBgEffect") );
 
 const NavMenu = ( { closeMenu } ) => {
 
-  useRefreshMouseListeners( "#menu-container [data-pointer]" );
+  // useRefreshMouseListeners( "#menu-container [data-pointer]" );
 
 
   return (

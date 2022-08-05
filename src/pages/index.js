@@ -1,26 +1,24 @@
-import React from 'react'
-import HomePage from '../scenes/HomePage'
-import useLocoScroll from '../hooks/useLocoScroll'
-import useToolTip from '../hooks/useToolTip'
-import useRefreshMouseListeners from '../hooks/useRefreshMouseListeners'
-import Seo from '../components/seo'
+import React from "react";
+import HomePage from "../scenes/HomePage";
+import useToolTip from "../hooks/useToolTip";
+import Seo from "../components/seo";
 import useUpdatePath from "../hooks/useUpdatePath";
 
-function IndexPage({path}) {
-    useLocoScroll();
-    useUpdatePath(path);
+function IndexPage( { path } ){
+  // useLocoScroll();
+  useUpdatePath( path );
 
-    useToolTip('[data-tooltip-text]')
-    useRefreshMouseListeners('.homepage-container [data-pointer]')
+  useToolTip( "[data-tooltip-text]" );
+  // useRefreshMouseListeners('.homepage-container [data-pointer]')
 
-    return (
-        <>
-            <Seo
-                title="homepage"
-            />
-            <HomePage/>
-        </>
-    )
+  return (
+    <>
+      <Seo
+        title="homepage"
+      />
+      <HomePage />
+    </>
+  );
 }
 
-export default IndexPage
+export default IndexPage;

@@ -26,8 +26,8 @@ const MailUsContainer = styled.section`
 
   //border: thin solid red;
 
-  ${spacing( "mt", 22 )};
-  ${spacing( "pt", 22 )};
+  ${spacing( "mt", 10 )};
+  ${spacing( "pt", 10 )};
 `;
 
 const Background = styled.span`
@@ -65,26 +65,22 @@ const LogoEffect = styled.div`
   background-image: url(${Logo});
   background-repeat: no-repeat;
   background-position: center;
-  filter: blur(20px);
+  filter: blur(2px);
   z-index: -1;
 
-  top: 0;
+  top: 10%;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0%;
 
-  display: none;
+  //display: none;
 `;
 
 function MailUs(){
 
 
   return (
-    <MailUsContainer
-      // data-scroll-section={true}
-      // data-scroll data-scroll-class='footer'
-
-    >
+    <MailUsContainer>
       <Background />
       <LogoEffect />
 
