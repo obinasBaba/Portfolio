@@ -81,6 +81,7 @@ export function LocomotiveScrollProvider({
 
       LocomotiveScrollRef.current = new LocomotiveScroll.default({
         el: dataScrollContainer ?? undefined,
+        // @ts-ignore
         smartphone: {
           breakpoint: 0,
           smooth: true,

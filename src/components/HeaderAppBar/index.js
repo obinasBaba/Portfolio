@@ -11,6 +11,8 @@ import { useMotionValueContext } from "../../contexts/MotionStateWrapper";
 
 import { mediumUp } from "../../styles/mixins/breakpoints";
 import OverlayController from "../ScreenOverlay/OverlayController";
+import { useLocomotiveScroll } from "@contexts/LocoMotive";
+import { container } from "./appbar.module.scss";
 
 function HideOnScroll( { children, window } ){
   const { currentPath } = useContext( AppStateContext );
@@ -21,20 +23,7 @@ function HideOnScroll( { children, window } ){
 
   const [isLoco, setIsLoco] = useState( true );
 
-  const {
-    moScroll: { scrollDirection },
-    locoInstance
-  } = useMotionValueContext();
-
-  useEffect( () => {
-    setSlide( true );
-
-    setTimeout( () => {
-      if ( locoInstance.get() ) {
-        setIsLoco( true );
-      } else setIsLoco( false );
-    }, 1200 );
-  }, [currentPath] );
+  const { scrollDirection } = useLocomotiveScroll();
 
   useEffect( () => {
     let deb = debounce( arg => {
@@ -104,11 +93,11 @@ function HeaderAppBar(){
 
   return (
     <HideOnScroll>
-      <NavContainer variants={appBarVariants}>
+      <motion.div className={container} variants={appBarVariants}>
         <HomeLogo toggleMenu={() => menuIsOpen.get() && toggleMenu()} />
 
         <NavBtn menuIsOpen={menuIsOpen} toggleMenu={toggleMenu} />
-      </NavContainer>
+      </motion.div>
     </HideOnScroll>
   );
 }

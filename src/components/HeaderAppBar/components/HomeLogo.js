@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { length } from "../../../styles/mixins";
 import useHeaderAssets from "../../../hooks/queries/useHeaderAssets";
 import { mediumUp } from "../../../styles/mixins/breakpoints";
+import { reactSvg, container, homeLogo } from "./appbarComponents.module.scss";
+
 
 const Logo = styled( motion.div )`
   position: relative;
@@ -68,10 +70,10 @@ function HomeLogo( { toggleMenu } ){
 
 
   return (
-    <Logo
+    <motion.div
       variants={logoVariant}
       transition={logoVariant.transition}
-      className="logo"
+      className={homeLogo}
       data-pointer="magnet"
       data-magnet-distance={.8}
       data-magnet-attraction={1.8}
@@ -82,11 +84,11 @@ function HomeLogo( { toggleMenu } ){
       onClick={toggleMenu}
     >
 
-      <Link aria-label="homepage" to="/">
-        <ReactSVG className="logo" src={logo.publicURL} />
+      <Link aria-label="to homepage" to="/">
+        <ReactSVG className={reactSvg} src={logo.publicURL} />
       </Link>
 
-    </Logo>
+    </motion.div>
   );
 }
 

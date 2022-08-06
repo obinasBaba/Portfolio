@@ -1,0 +1,107 @@
+@use "@style" as *;
+
+//noinspection SassScssResolvedByNameOnly
+.homeLogo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  //margin-right: auto;
+  fill: var(--theme); //todo gradient
+  z-index: 50;
+  //border: thin solid red;
+  transition: fill 0.35s ease-in-out;
+  pointer-events: initial;
+
+  &::after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: -17px;
+    left: -17px;
+    right: -17px;
+    bottom: -17px;
+    z-index: -1;
+
+    //border: thin solid thistle;
+  }
+
+  & :local {
+
+    .reactSvg {
+      max-width: f-unit-light(3rem);
+
+      @include media-breakpoint-up(md) {
+        max-width: f-unit-light(3rem);
+      }
+    }
+
+    a {
+      width: 100%;
+    }
+  }
+}
+
+//noinspection SassScssResolvedByNameOnly
+.navBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border: none;
+  pointer-events: initial;
+
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: none;
+  transition: all ease-in-out 0.3s;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+
+  height: f-unit-light(3rem);
+  width: f-unit-light(3rem);
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+
+    //border: thin solid red;
+  }
+
+  & :local {
+
+    p {
+
+      text-indent: 99999px;
+      pointer-events: none;
+    }
+
+    svg {
+      position: absolute;
+      inset: 0;
+    }
+
+    .menuOpen {
+      #eye-left, #eye-right {
+        fill: #072142;
+      }
+    }
+
+    & :hover {
+      svg {
+        #eye-left, #eye-right {
+          fill: #072142;
+        }
+      }
+    }
+  }
+
+}
+
+

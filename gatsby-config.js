@@ -74,15 +74,15 @@ module.exports = {
               maxWidth: 1024,
               withWebp: true
             }
-          },
-          {
+          }
+          /*{
             resolve: `gatsby-remark-highlight-code`,
             options: {
               terminal: "carbon",
               theme: "solarized-light",
               lineNumbers: true
             }
-          }
+          }*/
         ]
       }
     },
@@ -189,6 +189,11 @@ module.exports = {
         extensions: ["js", "sass", "scss", "ts", "tsx", "css"]
       }
     },
-    "gatsby-plugin-webpack-bundle-analyser-v2"
+    {
+      resolve: "gatsby-plugin-webpack-bundle-analyser-v2",
+      options: {
+        openAnalyzer: false
+      }
+    }
   ]
 };

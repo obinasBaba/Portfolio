@@ -1,0 +1,39 @@
+@use "@style" as *;
+//noinspection SassScssResolvedByNameOnly
+
+.container {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  width: 100%;
+  padding: 2rem 2rem 1.3rem;
+  transition: all 0.35s ease-in-out;
+  pointer-events: none;
+
+  display: flex;
+  justify-content: space-between;
+
+  &::after {
+    //content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    //background-image: var(--head-gradient);
+    opacity: var(--head-opacity);
+    transition: all 0.35s ease-in-out;
+  }
+
+  @include media-breakpoint-up(md) {
+    @include padding(ver, 1rem);
+    @include padding(hor, 3rem);
+  }
+
+  & :local {
+
+
+  }
+
+}
