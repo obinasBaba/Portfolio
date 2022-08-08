@@ -37,11 +37,24 @@
       "@/public/*": [
         "./public/*"
       ],
-      "@global": ["./src/styles/sass-styles/global-style/index.scss"],
-      "@components/*": ["./src/components/*"],
-      "@contexts/*": ["./src/contexts/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@helpers/*": ["./src/helpers/*"]
+      "@global": [
+        "./src/styles/sass-styles/global-style/index.scss"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@contexts/*": [
+        "./src/contexts/*"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@helpers/*": [
+        "./src/helpers/*"
+      ],
+      "@scenes/*": [
+        "./src/scenes/*"
+      ]
     }
   },
   "exclude": [

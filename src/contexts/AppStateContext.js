@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import BreakPointProvider from "@contexts/BreakPoint";
 import { MotionStateWrapper } from "./MotionStateWrapper";
 import { LoadStateWrapper } from "./LoadStateContext";
 
@@ -96,13 +97,16 @@ function AppStateWrapper( { children } ){
 function AppStateProvider( { children } ){
   return (
     <AppStateWrapper>
-      <MotionStateWrapper>
-        <LoadStateWrapper>
-          <BackgroundOverlayStateWrapper>
-            {children}
-          </BackgroundOverlayStateWrapper>
-        </LoadStateWrapper>
-      </MotionStateWrapper>
+      <BreakPointProvider>
+        <MotionStateWrapper>
+          <LoadStateWrapper>
+            <BackgroundOverlayStateWrapper>
+              {children}
+            </BackgroundOverlayStateWrapper>
+          </LoadStateWrapper>
+        </MotionStateWrapper>
+      </BreakPointProvider>
+
     </AppStateWrapper>
   );
 }

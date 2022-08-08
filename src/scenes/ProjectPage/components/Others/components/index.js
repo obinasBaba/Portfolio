@@ -11,6 +11,8 @@ export const OthersContainer = styled( motion.div )`
   justify-content: space-evenly;
   height: 100vh;
 
+  border: thick solid thistle;
+
 
   svg {
     position: absolute;

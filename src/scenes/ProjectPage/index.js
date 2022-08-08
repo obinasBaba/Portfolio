@@ -17,7 +17,11 @@ import ProjectScrollDown from "./components/SideBarTools/ProjectScrollDown";
 import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 
 const ProjectContainerGrid = styled( motion.div )`
-  ${gridify};
+    // ${gridify};
+  display: grid;
+  grid-template-columns: repeat(64, calc(100% / 64));
+
+  border: thick solid red;
 
   align-content: center;
   align-items: center;
@@ -131,7 +135,9 @@ function ProjectPage(){
                   // if (!item.partners) return
 
                   (
-                    <div className="section" key={item.toString().length}>
+
+                    <div className="section" key={index}>
+
                       {index === items.length - 1 ? (
                         <motion.div
                           variants={topVariant}
@@ -148,7 +154,7 @@ function ProjectPage(){
                           initial={moVariants.get()}
                           animate={controllers[index]}
                           exit="exit"
-                          key="two"
+
                         >
                           <ProjectImage
                             items={item}

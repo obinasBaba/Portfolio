@@ -5,7 +5,6 @@ import Seo from "../components/seo";
 import useUpdatePath from "../hooks/useUpdatePath";
 
 function IndexPage( { path } ){
-  // useLocoScroll();
   useUpdatePath( path );
 
   useToolTip( "[data-tooltip-text]" );

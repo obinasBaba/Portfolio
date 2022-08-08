@@ -134,7 +134,7 @@ function Item( { onHoverStart, title, tags, desc, idx } ){
       </GradientText>
 
       <Tags>
-        {tags.map( tag => <p>{tag}</p> )}
+        {/*{tags.map( tag => <p key={desc}>{tag}</p> )}*/}
       </Tags>
 
       <DescTxt className="approach-desc">

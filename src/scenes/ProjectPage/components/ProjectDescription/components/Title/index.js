@@ -1,7 +1,7 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
-import { motion } from 'framer-motion'
-import { spacing, title } from '../../../../../../styles/mixins'
+import React from "react";
+import styled, { css } from "styled-components";
+import { motion } from "framer-motion";
+import { spacing, title } from "../../../../../../styles/mixins";
 import { largeUp } from "../../../../../../styles/mixins/breakpoints";
 
 
@@ -17,7 +17,7 @@ export const HeadlineTitle = styled( motion.h1 )`
   overflow-wrap: break-word;
   color: white;
 
-  ${spacing( 'mt', 2 )}
+  ${spacing( "mt", 2 )}
   ${title( 4 )};
   //word-spacing: 2px;
 
@@ -25,7 +25,7 @@ export const HeadlineTitle = styled( motion.h1 )`
     ${title( 3.65 )};
 
   ` )};
-`
+`;
 
 const Word = styled( motion.span )`
   display: inline-block;
@@ -34,7 +34,7 @@ const Word = styled( motion.span )`
   white-space: nowrap;
   overflow: hidden;
   vertical-align: top;
-`
+`;
 
 const Letter = styled( motion.span )`
   font-family: var(--eli);
@@ -42,37 +42,37 @@ const Letter = styled( motion.span )`
   letter-spacing: 3px;
   display: inline-block;
   //border: thin solid tomato;
-`
+`;
 
 function Title( {
-                    title: titleTxt = '',
-                    variants = { title: {}, letter: {}, transition: {} }
+                  title: titleTxt = "",
+                  variants = { title: {}, letter: {}, transition: {} }
                 } ){
 
-    return (
-        <HeadlineTitle variants={variants.title}
-                       transition={variants.transition}
-        >
+  return (
+    <HeadlineTitle variants={variants.title}
+                   transition={variants.transition}
+    >
+      {
+        titleTxt.split( " " ).map( ( word ) => (
+          <Word key={titleTxt + (Math.random() * 1000)}>
             {
-                titleTxt.split( ' ' ).map( ( w, i ) => (
-                    <Word key={titleTxt + w}>
-                        {
-                            Array.from( w )
-                                .map( ( letter ) => (
-                                    <Letter key={letter + w}
-                                            variants={variants.letter}
-                                            transition={variants.transition}
-                                    >
-                                        {letter}
-                                    </Letter>
-                                ) )
-                        }
-                        &#160;
-                    </Word>
+              Array.from( word )
+                .map( ( letter ) => (
+                  <Letter key={letter + word + (Math.random() * 1000)}
+                          variants={variants.letter}
+                          transition={variants.transition}
+                  >
+                    {letter}
+                  </Letter>
                 ) )
             }
-        </HeadlineTitle>
-    )
+            &#160;
+          </Word>
+        ) )
+      }
+    </HeadlineTitle>
+  );
 }
 
-export default Title
+export default Title;

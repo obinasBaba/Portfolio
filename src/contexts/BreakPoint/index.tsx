@@ -1,12 +1,19 @@
-import React, { createContext, useEffect, useMemo } from "react";
+import React, { createContext, useEffect, useLayoutEffect, useMemo } from "react";
 import { useMediaQuery, useTheme } from "@material-ui/core";
 import { MotionValue, useMotionValue } from "framer-motion";
 
 type BreakPointContextType = {
-  breakpoint: MotionValue<string>
+  breakpoint: MotionValue<breakpoints>
 }
 
-export const BreakPointContext = createContext<BreakPointContextType>({} as any);
+type breakpoints = {
+  xlUp: boolean,
+  smUp: boolean,
+  mdUp: boolean,
+  xsUp: boolean,
+  lgUp: boolean,
+}
+const BreakPointContext = createContext<BreakPointContextType>({} as any);
 
 
 const BreakPointProvider: React.FC = ({ children }) => {
@@ -18,28 +25,30 @@ const BreakPointProvider: React.FC = ({ children }) => {
   const large = useMediaQuery(theme.breakpoints.up("lg"));
   const xLarge = useMediaQuery(theme.breakpoints.up("xl"));
 
-  const breakpoint = useMotionValue("sm");
+  const breakpoint = useMotionValue({
+    xlUp: xLarge,
+    smUp: small,
+    mdUp: medium,
+    xsUp: xSmall,
+    lgUp: large
+  });
 
+  useLayoutEffect(() => {
+    breakpoint.set({
+      xlUp: xLarge,
+      smUp: small,
+      mdUp: medium,
+      xsUp: xSmall,
+      lgUp: large
+    });
 
-  useEffect(() => {
-
-    if (xSmall) {
-      breakpoint.set("sx");
-    } else if (small) {
-      breakpoint.set("sm");
-    } else if (medium) {
-      breakpoint.set("md");
-    } else if (large) {
-      breakpoint.set("lg");
-
-    } else if (xLarge) {
-      breakpoint.set("xl");
-    }
-
+    console.log("breakpoit: ", breakpoint.get());
 
   }, [xSmall, xSmall, small, medium, large, xLarge]);
 
+
   const memoBreakpoint = useMemo(() => breakpoint, [xSmall, xSmall, small, medium, large, xLarge]);
+
 
   return (
     <BreakPointContext.Provider value={{ breakpoint: memoBreakpoint }}>

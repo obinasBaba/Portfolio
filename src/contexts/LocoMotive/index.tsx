@@ -22,7 +22,7 @@ export interface LocomotiveScrollContextValue {
 const LocomotiveScrollContext = createContext<LocomotiveScrollContextValue>({
   scroll: null,
   isReady: false,
-  scale: new MotionValue<number>(0)
+  scale: new MotionValue<number>()
 } as any);
 
 export interface LocomotiveScrollProviderProps {
@@ -64,12 +64,7 @@ export function LocomotiveScrollProvider({
 
 
   useEffect(() => {
-    yProgress.onChange(v => {
-      console.log("yProress: ", v);
-    });
-  }, []);
-
-  useEffect(() => {
+    return;
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     import("locomotive-scroll").then((LocomotiveScroll) => {
@@ -102,7 +97,7 @@ export function LocomotiveScrollProvider({
         LocomotiveScrollRef.current?.update();
       }, 1000);
 
-      console.log("locomotive starting here -----", LocomotiveScrollRef.current);
+      // console.log("locomotive starting here -----", LocomotiveScrollRef.current);
     });
 
     return () => {
@@ -119,13 +114,13 @@ export function LocomotiveScrollProvider({
       return;
     }
 
-    console.log(
-      "dependency change ---- -- - - - -",
-      height,
-      " instance: ",
-      LocomotiveScrollRef.current
-    );
-
+    /* console.log(
+       "dependency change ---- -- - - - -",
+       height,
+       " instance: ",
+       LocomotiveScrollRef.current
+     );
+ */
     LocomotiveScrollRef.current.update();
     yLimit.set(LocomotiveScrollRef.current?.scroll?.instance.limit.y);
     xLimit.set(LocomotiveScrollRef.current?.scroll?.instance.limit.x);
@@ -142,7 +137,7 @@ export function LocomotiveScrollProvider({
       return;
     }
 
-    console.log("location change ---- -- - - - -");
+    // console.log("location change ---- -- - - - -");
 
     LocomotiveScrollRef.current.update();
 
@@ -155,7 +150,7 @@ export function LocomotiveScrollProvider({
   useEffect(() => {
     if (isReady && LocomotiveScrollRef.current) {
       LocomotiveScrollRef.current.on("scroll", (arg: any) => {
-        console.log("scrolled: ", yLimit.get());
+        // console.log("scrolled: ", yLimit.get());
         x.set(arg.scroll.x);
         y.set(arg.scroll.y);
         scrollDirection.set(arg.direction);

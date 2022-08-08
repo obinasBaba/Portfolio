@@ -75,14 +75,14 @@ module.exports = {
               withWebp: true
             }
           }
-          /*{
+          /* {
             resolve: `gatsby-remark-highlight-code`,
             options: {
               terminal: "carbon",
               theme: "solarized-light",
               lineNumbers: true
             }
-          }*/
+          } */
         ]
       }
     },
@@ -182,6 +182,7 @@ module.exports = {
           "@style": "./src/styles/sass-styles/index.scss",
           "@global": "./src/styles/sass-styles/global-style/index.scss",
           "@components": "./src/components/",
+          "@scenes": "./src/scenes/",
           "@contexts": "./src/contexts/",
           "@hooks": "./src/hooks/",
           "@helpers": "./src/helpers/"

@@ -1,7 +1,7 @@
 export const moonAndStarVariants = {
   initial: {}, animate: {
     transition: {
-      delayChildren: .4, staggerChildren: .1
+      delayChildren: .1, staggerChildren: .1
     }
   }
 };

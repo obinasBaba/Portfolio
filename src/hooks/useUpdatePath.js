@@ -1,17 +1,16 @@
-import {useContext, useEffect} from "react";
-import {AppStateContext} from "../contexts/AppStateContext";
-import {MotionValueContext} from '../contexts/MotionStateWrapper'
+import { useContext, useLayoutEffect } from "react";
+import { AppStateContext } from "@contexts/AppStateContext";
 
 
-export default function (path) {
+export default function useUpdatePath( path ){
 
-    const {
-        setCurrentPath
-    } = useContext( AppStateContext )
+  const {
+    setCurrentPath
+  } = useContext( AppStateContext );
 
 
-    useEffect(() => {
-        setCurrentPath(path);
+  useLayoutEffect( () => {
+    setCurrentPath( path );
 
-    }, [])
+  }, [] );
 }

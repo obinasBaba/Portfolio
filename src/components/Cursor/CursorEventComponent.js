@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import gsap from "gsap";
 import { useMediaQuery, useTheme } from "@material-ui/core";
-import { AppStateContext } from "../../contexts/AppStateContext";
+import { AppStateContext } from "@contexts/AppStateContext";
+import { MotionValueContext } from "@contexts/MotionStateWrapper";
 import MagnetElement from "../../helpers/MagnetElement";
-import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 
 function CursorEventComponent(){
 
@@ -48,6 +48,10 @@ function CursorEventComponent(){
     gsap.to( ".cursor-container", {
       zIndex: isPointed ? 8 : 30
     } );
+  };
+
+  const animateClick = () => {
+
   };
 
   const handleHover = e => {
@@ -105,7 +109,7 @@ function CursorEventComponent(){
     if ( isMobile ) return;
 
     refreshCursorEventListeners.set( "[data-pointer]" );
-    refreshCursorEventListeners.attach( ( selector ) => {
+    refreshCursorEventListeners.onChange( ( selector ) => {
       handleLeave();
       refreshEventListeners( selector );
     } );

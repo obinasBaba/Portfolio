@@ -214,7 +214,7 @@ function Others( { auth, kklLuzern, udemy, active } ){
             return <Item title={title}
                          desc={desc}
                          tags={tags}
-                         key={title}
+                         key={desc}
                          idx={idx}
                          onHoverStart={onHoverStart}
               // customData={{ hovering: () => hoverIndex.get() === idx }}
@@ -227,4 +227,4 @@ function Others( { auth, kklLuzern, udemy, active } ){
   );
 }
 
-export default React.memo( Others );
+export default Others;
