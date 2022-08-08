@@ -134,16 +134,16 @@ exports.createPages = async ( { graphql, actions } ) => {
     if ( i > 0 )
       blogPath += `/${i + 1}`;
 
-    createPage( {
-      path: blogPath,
-      component: templatePath,
-      context: {
-        limit: pageSize,
-        skip: i * pageSize,
-        pageCount,
-        currentPage: i + 1
-      }
-    } );
+    /* createPage( {
+       path: blogPath,
+       component: templatePath,
+       context: {
+         limit: pageSize,
+         skip: i * pageSize,
+         pageCount,
+         currentPage: i + 1
+       }
+     } );*/
   }
 
 };

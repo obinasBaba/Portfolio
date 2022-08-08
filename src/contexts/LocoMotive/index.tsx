@@ -11,7 +11,7 @@ type WithChildren<T = Record<string, unknown>> = T & { children?: React.ReactNod
 
 
 export interface LocomotiveScrollContextValue {
-  scroll: Scroll | null;
+  locoInstance: Scroll | null;
   isReady: boolean;
   scale: MotionValue<number>;
   scrollDirection: MotionValue<string>;
@@ -165,6 +165,7 @@ export function LocomotiveScrollProvider({
 
   return (
     <LocomotiveScrollContext.Provider
+<<<<<<< Updated upstream
       value={{
         scroll: LocomotiveScrollRef.current,
         isReady,
@@ -173,6 +174,9 @@ export function LocomotiveScrollProvider({
         yProgress,
         yProgressSmooth: ySmooth
       }}>
+=======
+      value={{ locoInstance: LocomotiveScrollRef.current, isReady, scale, scrollDirection, yProgress }}>
+>>>>>>> Stashed changes
       {children}
     </LocomotiveScrollContext.Provider>
   );
@@ -185,12 +189,12 @@ export function useLocomotiveScroll(): LocomotiveScrollContextValue {
   const context = useContext(LocomotiveScrollContext);
 
   useEffect(() => {
-    if (!context.scroll) {
+    if (!context.locoInstance) {
       console.warn(
         "react-locomotive-scroll: the context is missing. You may be using the hook without registering LocomotiveScrollProvider, or you may be using the hook in a component which is not wrapped by LocomotiveScrollProvider."
       );
     }
-  }, [context.scroll]);
+  }, [context.locoInstance]);
 
   return context;
 }

@@ -3,9 +3,9 @@
 import React, { useContext, useLayoutEffect } from "react";
 import ProjectPage from "../../scenes/ProjectPage";
 import useToolTip from "../../hooks/useToolTip";
-import useCursorEventRefresher from "../../hooks/useRefreshMouseListeners";
 import { AppStateContext } from "../../contexts/AppStateContext";
 import Seo from "../../components/seo";
+import { useLocomotiveScroll } from "../../contexts/LocoMotive";
 
 function Projects( { path } ){
 
@@ -20,6 +20,19 @@ function Projects( { path } ){
 
   useToolTip( " [data-tooltip-text]" );
   // useCursorEventRefresher( '.project-work-container [data-pointer]' )
+
+  /*const { locoInstance } = useLocomotiveScroll();
+
+  useLayoutEffect( () => {
+
+    if ( locoInstance ) {
+
+      locoInstance.stop();
+      locoInstance.destroy();
+    }
+
+  }, [locoInstance] );*/
+
 
   return (
     <>
