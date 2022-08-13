@@ -1,12 +1,7 @@
-import React from 'react'
-import {
-  HeadlineContainer,
-  ImageWrapper,
-  InnerWrapper,
-  Texts,
-} from './Components'
-import { motion } from 'framer-motion'
-import MotionBtn from '../../MotionBtn'
+import React from "react";
+import { HeadlineContainer, ImageWrapper, InnerWrapper, Texts } from "./Components";
+import { motion } from "framer-motion";
+import MotionBtn from "../../MotionBtn";
 
 import {
   btnVariant,
@@ -15,15 +10,15 @@ import {
   innerVariant,
   textsVariant,
   titleVariant,
-  transition,
-} from './variants'
-import Tags from './components/Tags'
-import Title from '../../../scenes/ProjectPage/components/ProjectDescription/components/Title'
+  transition
+} from "./variants";
+import Tags from "./components/Tags";
+import Title from "../../../scenes/ProjectPage/components/ProjectDescription/components/Title";
 
 
-const Headline = ({ subTitle, title, about, media }) => {
+const Headline = ( { subTitle, title, about, media } ) => {
   return (
-    <HeadlineContainer variants={containerVariants} >
+    <HeadlineContainer variants={containerVariants}>
       <Texts variants={textsVariant} transition={transition}>
         <Tags txt="Analytics, UX, UI, Icons, Front-end" />
 
@@ -31,7 +26,7 @@ const Headline = ({ subTitle, title, about, media }) => {
           title={title}
           variants={{
             title: titleVariant,
-            transition: transition,
+            transition
           }}
         />
 
@@ -46,7 +41,7 @@ const Headline = ({ subTitle, title, about, media }) => {
         </InnerWrapper>
       </ImageWrapper>
     </HeadlineContainer>
-  )
-}
+  );
+};
 
-export default Headline
+export default Headline;

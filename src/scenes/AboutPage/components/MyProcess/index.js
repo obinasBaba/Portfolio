@@ -1,17 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import styled, { css } from "styled-components";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { Container, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import { useLocomotiveScroll } from "@contexts/LocoMotive";
 import { useLottiAssets } from "@hooks/queries/useLottiAssets";
 import { processData } from "./data";
 import Card from "./components/Card";
 import { spacing, text } from "@/styles/mixins";
 import { largeUp, mediumUp, smallDown, xLargeUp } from "@/styles/mixins/breakpoints";
-
-gsap.registerPlugin( ScrollTrigger );
+import { AppStateContext } from "@contexts/AppStateContext";
 
 
 const ProcessContainer = styled( motion.section )`
@@ -145,7 +142,7 @@ const Methodology = styled.div`
   margin: 4rem;
 `;
 
-function MyProcess(){
+function MyProcess( { triggerRegister } ){
   const { build, design, ufo, align, rocket } = useLottiAssets();
   const icons = [ufo, align, design, build, rocket];
 
@@ -155,159 +152,67 @@ function MyProcess(){
   const containerRef = useRef( null );
   const mediaMatch = useMediaQuery( useTheme().breakpoints.up( "md" ) );
 
+
+  const { currentPath } = useContext( AppStateContext );
+
+
   const progress = useMotionValue( 0 );
   const opacity = useTransform( progress, [0.69, 0.98], [1, 0] );
-
   const [inView, setInView] = useState( false );
-
-  const { registerCallbackOnScroll, locoInstance, isReady } = useLocomotiveScroll();
-
-
-  useEffect( () => {
-
-    console.log( "isReady -----", isReady, locoInstance, inView );
-
-
-    if ( isReady && locoInstance ) {
-
-      console.log( "isReady -----", isReady, locoInstance, inView );
-
-      setTimeout( () => {
-        const scrollEl = document.querySelector( "[data-scroll-container]" );
-
-        console.log( "scrollEl:", scrollEl );
-
-        ScrollTrigger.scrollerProxy( scrollEl, {
-          getBoundingClientRect(){
-            return {
-              top: 0,
-              left: 0,
-              width: window.innerWidth,
-              height: window.innerHeight
-            };
-          },
-
-          // pinType: document.querySelector('').style.transform ? 'transform': 'fixed',
-          scrollTop( value ){
-            // console.log('scrollTop', arguments.length)
-            // if (!LocomotiveScrollRef.current) return;
-            // const locoInstance = LocomotiveScrollRef.current;
-
-            const top = arguments.length
-              ? locoInstance.scrollTo( value, 0, 0 )
-              : locoInstance.scroll.instance.scroll.y;
-
-            console.log( "scrollTop", top, value );
-
-            return top;
-          },
-          fixedMarkers: true
-        } );
-
-        const lsUpdate = () => {
-          if ( locoInstance ) {
-            locoInstance.update();
-          }
-        };
-
-        lsUpdate();
-        window.addEventListener( "resize", lsUpdate );
-        ScrollTrigger.addEventListener( "refresh", lsUpdate );
-        ScrollTrigger.refresh();
-        ScrollTrigger.update();
-      } );
-
-    }
-  }, [isReady] );
-
-
-  useEffect( () => {
-    // if ( !inView ) return;
-
-    setTimeout( () => {
-      registerCallbackOnScroll.set( "process", () => {
-        ScrollTrigger.update();
-      } );
-
-      locoInstance?.update();
-    }, 1000 );
-
-
-  }, [] );
 
 
   useEffect( () => {
     if ( !mediaMatch ) return;
 
-    const mask = document.querySelector( ".mask" );
-    const track = document.querySelector( ".track" );
-    const txt = [...track.querySelectorAll( ".operate_txt" )];
+    triggerRegister.onChange( trigger => {
 
-    const timeline = gsap.timeline();
+      if ( trigger ) {
+        const mask = document.querySelector( ".mask" );
+        const track = document.querySelector( ".track" );
 
-    setTimeout( () => {
-      timeline.to( track, {
-        ease: "none",
-        scrollTrigger: {
-          trigger: mask,
-          pin: true,
-          scroller: "[data-scroll-container]",
-          start: () => "top 25%",
-          end: () => `+=${track.offsetWidth - 400}`
-        }
-      } );
+        const timeline = gsap.timeline();
+
+        setTimeout( () => {
+          timeline.to( track, {
+            ease: "none",
+            scrollTrigger: {
+              trigger: mask,
+              pin: true,
+              scroller: "[data-scroll-container]",
+              start: () => "top 25%",
+              end: () => `+=${track.offsetWidth - 400}`
+            }
+          } );
+
+          timeline.to( ".titleTxt-wrapper", {
+            scrollTrigger: {
+              pin: true,
+              pinSpacing: false,
+              trigger: ".titleTxt-wrapper",
+              scroller: "[data-scroll-container]",
+              start: () => "top 7%",
+              end: () => `+=${track.offsetWidth}`
+            }
+          } );
+
+          timeline.to( track, {
+            x: -(track.offsetWidth - 200),
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".mask",
+              scrub: 1,
+              scroller: "[data-scroll-container]",
+              start: () => "top 70%",
+              end: () => `+=${track.offsetWidth}`,
+              onUpdate( self ){
+                progress.set( self.progress );
+              }
+            }
+          } );
+
+        }, 1000 );
+      }
     } );
-
-    setTimeout( () => {
-      timeline.to( track, {
-        x: -(track.offsetWidth - 200),
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".mask",
-          scrub: 1,
-          scroller: "[data-scroll-container]",
-          start: () => "top 70%",
-          end: () => `+=${track.offsetWidth}`,
-          onUpdate( self ){
-            progress.set( self.progress );
-          }
-        }
-      } );
-    } );
-
-    setTimeout( () => {
-
-      timeline.to( ".titleTxt-wrapper", {
-        scrollTrigger: {
-          pin: true,
-          pinSpacing: false,
-          trigger: ".titleTxt-wrapper",
-          scroller: "[data-scroll-container]",
-          start: () => "top 7%",
-          end: () => `+=${track.offsetWidth}`
-        }
-      } );
-    } );
-
-    txt.forEach( ( t, idx ) => {
-      setTimeout( () => {
-        gsap.to( t, {
-          // rotate: rotationsArr[cards.indexOf(card)],
-          y: idx % 2 === 0 ? -300 : 300,
-          scrollTrigger: {
-            trigger: track,
-            // endTrigger: 'card-1',
-            horizontal: true,
-            invalidateOnRefresh: true,
-            scrub: 0.1,
-            scroller: "[data-scroll-container]",
-            start: () => "left 20%",
-            end: () => "+=1510"
-          }
-        } );
-      } );
-    } );
-
 
   }, [mediaMatch] );
 
@@ -354,18 +259,18 @@ function MyProcess(){
 
       <ProcessMask ref={maskRef} className="mask">
         <ProcessTrack ref={trackRef} className="track">
-          <Operate>
+          {/* <Operate>
             <OperateTxt className="operate_txt" variant="h1">
               Thinking
             </OperateTxt>
             <OperateTxt className="operate_txt" variant="h1">
               Process
             </OperateTxt>
-          </Operate>
+          </Operate>*/}
 
           {processData.map( ( { no, titleTxt, txt, keys }, index ) => (
             <Card
-              key={titleTxt}
+              key={index}
               no={no}
               titleTxt={titleTxt}
               txt={txt}

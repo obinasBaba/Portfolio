@@ -1,21 +1,24 @@
+/* eslint-disable no-nested-ternary */
 import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import Headline from "./Headline";
 import ReturnBtn from "../ReturnBtn";
-import { AppStateContext } from "../../contexts/AppStateContext";
+import { AppStateContext } from "@contexts/AppStateContext";
 import styled from "styled-components";
 import { ProjectContainer } from "./components";
-import { useMotionValue, usePresence, useTransform } from "framer-motion";
+import { useMotionValue, useTransform } from "framer-motion";
 import { HeadLineBG } from "./Headline/Components";
 import { bgVariant, transition } from "./Headline/variants";
-import { MotionValueContext } from "../../contexts/MotionStateWrapper";
+import { MotionValueContext } from "@contexts/MotionStateWrapper";
 import ProjectScrollDown from "../../scenes/ProjectPage/components/SideBarTools/ProjectScrollDown";
 import { createPortal } from "react-dom";
-import { Link, navigate } from "gatsby";
+import { navigate } from "gatsby";
 import NextProject from "./NextProject";
 import useRefreshMouseListeners from "../../hooks/useRefreshMouseListeners";
 import { useLocomotiveScroll } from "@contexts/LocoMotive";
+import { useMotionBreakPoint } from "@contexts/BreakPoint";
 
-let args = {
+
+const args = {
   path: undefined,
   scroll: undefined
 };
@@ -112,25 +115,28 @@ const CaseStudy = ( { projectData = projectDataDefault, path, children } ) => {
   useRefreshMouseListeners( "[data-pointer]" );
 
   const {
-    variantsUtil: { fromCaseStudy, isTop, fromProjectList }, moScroll, largeUp
+    variantsUtil: { fromCaseStudy, fromProjectList }
   } = useContext( MotionValueContext );
+
+  const { breakpoint } = useMotionBreakPoint();
+
 
   const [scrolled, setScrolled] = useState( false );
   const bodyRef = useRef( null );
   const bgRef = useRef( null );
 
   const moInitial = useMotionValue( fromProjectList.get() ?
-    (largeUp.get() ? ["fromProjectsInitial"] : ["fromProjectsSmallInitial"])
-    : largeUp.get() ? ["initial"] : ["smallInitial"] );
+    (breakpoint.get().lgUp ? ["fromProjectsInitial"] : ["fromProjectsSmallInitial"])
+    : breakpoint.get().lgUp ? ["initial"] : ["smallInitial"] );
 
   const moAnimate = useMotionValue( fromProjectList.get() ?
-    (largeUp.get() ? ["fromProjectsAnimate"] : ["fromProjectsSmallAnimate"])
-    : largeUp.get() ? ["animate"] : ["smallAnimate"] );
+    (breakpoint.get().lgUp ? ["fromProjectsAnimate"] : ["fromProjectsSmallAnimate"])
+    : breakpoint.get().lgUp ? ["animate"] : ["smallAnimate"] );
 
   const showScrollDown = useMotionValue( 0 );
-  const { locoInstance } = useLocomotiveScroll();
 
-  // const [isPresent, safeToRemove] = usePresence()
+  const { locoInstance, yProgress } = useLocomotiveScroll();
+
 
   useLayoutEffect( () => {
     bodyRef.current = document.body;
@@ -146,15 +152,13 @@ const CaseStudy = ( { projectData = projectDataDefault, path, children } ) => {
 
   }, [] );
 
-  useTransform( moScroll.y, latest => {
-    if ( latest > 510 ) {
+  useTransform( yProgress, latest => {
+    if ( latest > .1 ) {
       if ( !scrolled )
         setScrolled( true );
 
-    } else {
-      if ( scrolled )
-        setScrolled( false );
-    }
+    } else if ( scrolled )
+      setScrolled( false );
   } );
 
   useEffect( () => {
@@ -180,36 +184,32 @@ const CaseStudy = ( { projectData = projectDataDefault, path, children } ) => {
   }, [scrolled] );
 
 
-  const returnClick = ( ev ) => {
+  const returnClick = () => {
     locoInstance.scrollTo( 0, {
       easing: [0.6, 0.01, 0, 0.9],
       callback: () => setTimeout( () => navigate( projectData?.backUrl ), scrolled ? 350 : 0 )
     } );
   };
 
-  const FixedPortal = ( { children } ) => {
-    return createPortal( children, document.body );
-  };
+  const FixedPortal = ( props ) => createPortal( props.children, document.body );
 
   return (
     <>
 
-      <>
-        {
-          (typeof document !== `undefined`) && <FixedPortal>
-            <FixedItems>
-              {/*<Link to={projectData?.backUrl || '/projects'}  >*/}
-              <ReturnBtn to={projectData?.backUrl || "/projects"}
-                         tooltip="project list"
-                         onClick={returnClick} />
-              {/*</Link>*/}
+      {
+        (typeof document !== `undefined`) && <FixedPortal>
+          <FixedItems>
+            {/* <Link to={projectData?.backUrl || '/projects'}  > */}
+            <ReturnBtn to={projectData?.backUrl || "/projects"}
+                       tooltip="project list"
+                       onClick={returnClick} />
+            {/* </Link> */}
 
-              <ProjectScrollDown activeIndex={showScrollDown} />
+            <ProjectScrollDown activeIndex={showScrollDown} />
 
-            </FixedItems>
-          </FixedPortal>
-        }
-      </>
+          </FixedItems>
+        </FixedPortal>
+      }
 
 
       <ProjectContainer className="projectContainer case-study-container"
@@ -219,9 +219,7 @@ const CaseStudy = ( { projectData = projectDataDefault, path, children } ) => {
                         exit="exit"
                         custom={{
                           scrollTop: () => {
-                            /*loco.current.scrollTo('top', {
-                              disableLerp: true
-                            })*/
+
                           }
                         }}
       >
@@ -246,14 +244,5 @@ const CaseStudy = ( { projectData = projectDataDefault, path, children } ) => {
 
   );
 };
-/*
-* Thanks for stopping by Alien,
-
-This is relatively a new project I just finished, so am
-putting together some intercis  to prepare and in depth,
-walk-through story to tell.
-
-Aside that enjoy other places of my space.
-* */
 
 export default CaseStudy;

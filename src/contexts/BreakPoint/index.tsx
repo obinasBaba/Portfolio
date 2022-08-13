@@ -42,7 +42,7 @@ const BreakPointProvider: React.FC = ({ children }) => {
       lgUp: large
     });
 
-    console.log("breakpoit: ", breakpoint.get());
+    // console.log("breakpoits: ", breakpoint.get());
 
   }, [xSmall, xSmall, small, medium, large, xLarge]);
 

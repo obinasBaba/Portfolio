@@ -2,9 +2,9 @@ import React, {
   createContext,
   DependencyList,
   MutableRefObject,
-  Ref,
   useContext,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState
 } from "react";
@@ -16,11 +16,6 @@ import { useDebounce } from "use-debounce";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import { MotionValue, useMotionValue, useSpring, useTransform, useVelocity } from "framer-motion";
 
-/*import gsap from "gsap";
-
-import ScrollTrigger from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);*/
 
 type WithChildren<T = Record<string, unknown>> = T & { children?: React.ReactNode }
 
@@ -84,7 +79,8 @@ export function LocomotiveScrollProvider({
   const scale = useTransform(velocity, [-3000, 0, 3000], [1.01, 1, 1.01]);
 
 
-  useEffect(() => {
+  // initialization
+  useLayoutEffect(() => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     import("locomotive-scroll").then((LocomotiveScroll) => {
@@ -134,16 +130,9 @@ export function LocomotiveScrollProvider({
       return;
     }
 
-    /* console.log(
-       "dependency change ---- -- - - - -",
-       height,
-       " instance: ",
-       LocomotiveScrollRef.current
-     );
- */
-    LocomotiveScrollRef.current.update();
     yLimit.set(LocomotiveScrollRef.current?.scroll?.instance.limit.y);
     xLimit.set(LocomotiveScrollRef.current?.scroll?.instance.limit.x);
+    LocomotiveScrollRef.current.update();
 
     if (onUpdate) {
       onUpdate(LocomotiveScrollRef.current);
@@ -217,7 +206,7 @@ export function useLocomotiveScroll(): LocomotiveScrollContextValue {
     }
   }, [context.locoInstance]);
 
-  return context;
+  return context as LocomotiveScrollContextValue;
 }
 
 useLocomotiveScroll.displayName = "useLocomotiveScroll";

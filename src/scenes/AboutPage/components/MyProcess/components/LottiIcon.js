@@ -1,8 +1,8 @@
-import React, {useEffect, useRef} from 'react'
-import lotti  from  'lottie-web';
-import styled, {css} from 'styled-components'
-import {motion, useMotionValue} from "framer-motion";
-import useOnScreen from '../../../../../hooks/useOnScreen'
+import React, { useEffect, useRef } from "react";
+import lotti from "lottie-web";
+import styled, { css } from "styled-components";
+import { motion, useMotionValue } from "framer-motion";
+import useOnScreen from "../../../../../hooks/useOnScreen";
 import useLotti from "../../../../../helpers/useLotti";
 
 
@@ -15,44 +15,45 @@ const IllustrationContainer = styled( motion.div )`
   //border: thin solid red;
   width: 100px;
   height: 100px;
-  
+
 
   path {
     stroke: #1e213d;
     fill: #1e213d;
   }
 
-  ${ ({design}) => design && css`
+  ${( { design } ) => design && css`
     transform: rotate(20deg);
 
-  ` };
-  
-  ${ ({rocket}) => rocket && css`
+  `};
+
+  ${( { rocket } ) => rocket === "true" && css`
     transform: rotate(20deg);
-    path{
+
+    path {
       fill: rgba(55, 25, 202, 0);
     }
 
-  ` };
-`
+  `};
+`;
 
-function LottiIcon({path, rocket, inView}) {
+function LottiIcon( { path, rocket, inView } ){
 
-  const lottiContainerRef = useRef(null)
-  const lottiRef= useLotti(path, lottiContainerRef )
+  const lottiContainerRef = useRef( null );
+  const lottiRef = useLotti( path, lottiContainerRef );
   // const inView = useOnScreen(lottiContainerRef, 0, )
 
-  useEffect(() => {
-    inView.onChange(v => {
-      if (!lottiRef.current) return
+  useEffect( () => {
+    inView.onChange( v => {
+      if ( !lottiRef.current ) return;
 
-      if (v)
-        lottiRef.current.play()
+      if ( v )
+        lottiRef.current.play();
       else
-        lottiRef.current.pause()
-    })
+        lottiRef.current.pause();
+    } );
 
-  }, [inView])
+  }, [inView] );
 
 
   /* useEffect(() => {
@@ -81,8 +82,8 @@ function LottiIcon({path, rocket, inView}) {
   }, []) */
 
   return (
-    <IllustrationContainer ref={lottiContainerRef} rocket={rocket}/>
-  )
+    <IllustrationContainer ref={lottiContainerRef} rocket={rocket.toString()} />
+  );
 }
 
-export default LottiIcon
+export default LottiIcon;

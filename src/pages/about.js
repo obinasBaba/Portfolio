@@ -1,10 +1,15 @@
-import React from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import React, { useEffect, useLayoutEffect } from "react";
 import AboutPage from "../scenes/AboutPage";
 import useToolTip from "../hooks/useToolTip";
 import Seo from "../components/seo";
 import useUpdatePath from "../hooks/useUpdatePath";
+import { useLocomotiveScroll } from "@contexts/LocoMotive";
+
+/*import gsap from "gsap";
+
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin( ScrollTrigger );*/
 
 
 function About( { path } ){
