@@ -26,7 +26,7 @@ function HideOnScroll( { children, window } ){
   const { scrollDirection } = useLocomotiveScroll();
 
   useEffect( () => {
-    let deb = debounce( arg => {
+    const deb = debounce( arg => {
       if ( !arg ) return;
 
       if ( arg === "up" ) setSlide( true );
@@ -39,43 +39,18 @@ function HideOnScroll( { children, window } ){
     };
   }, [] );
 
+  useEffect( () => {
+    setSlide( true );
+
+  }, [currentPath] );
+
   return (
-    <Slide appear={false} direction="down" in={isLoco ? slide : !trigger}>
+    <Slide appear={false} direction="down" in={slide}>
       {children}
     </Slide>
   );
 }
 
-const NavContainer = styled( motion.div )`
-  position: fixed;
-  z-index: 20;
-  top: 0;
-  width: 100%;
-  padding: 2rem 2rem 1.3rem;
-  transition: all 0.35s ease-in-out;
-  pointer-events: none;
-
-  display: flex;
-  justify-content: space-between;
-
-  &::after {
-    //content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    //background-image: var(--head-gradient);
-    opacity: var(--head-opacity);
-    transition: all 0.35s ease-in-out;
-  }
-
-  ${mediumUp( css`
-    ${spacing( "pv", 2 )};
-    ${spacing( "ph", 6 )};
-  ` )};
-`;
 
 const appBarVariants = {
   initial: {},

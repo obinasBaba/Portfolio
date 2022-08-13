@@ -7,8 +7,6 @@ import Seo from "../components/seo";
 import useUpdatePath from "../hooks/useUpdatePath";
 
 
-gsap.registerPlugin( ScrollTrigger );
-
 function About( { path } ){
 
   useUpdatePath( path );

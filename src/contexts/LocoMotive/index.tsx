@@ -1,4 +1,13 @@
-import React, { createContext, DependencyList, MutableRefObject, useContext, useEffect, useRef, useState } from "react";
+import React, {
+  createContext,
+  DependencyList,
+  MutableRefObject,
+  Ref,
+  useContext,
+  useEffect,
+  useRef,
+  useState
+} from "react";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { LocomotiveScrollOptions, Scroll } from "locomotive-scroll";
@@ -6,6 +15,12 @@ import useResizeObserver from "use-resize-observer";
 import { useDebounce } from "use-debounce";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import { MotionValue, useMotionValue, useSpring, useTransform, useVelocity } from "framer-motion";
+
+/*import gsap from "gsap";
+
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);*/
 
 type WithChildren<T = Record<string, unknown>> = T & { children?: React.ReactNode }
 
@@ -17,6 +32,7 @@ export interface LocomotiveScrollContextValue {
   scrollDirection: MotionValue<string>;
   yProgress: MotionValue<number>;
   yProgressSmooth: MotionValue<number>;
+  onScrollCallbacks: MutableRefObject<Map<string, Function>>;
 }
 
 const LocomotiveScrollContext = createContext<LocomotiveScrollContextValue>({
@@ -34,19 +50,24 @@ export interface LocomotiveScrollProviderProps {
   onLocationChange?: (scroll: Scroll) => void;
 }
 
+
+// const onScrollCallbacks = new Map<string, Function>();
+
+
 export function LocomotiveScrollProvider({
-                                           children,
-                                           options,
-                                           containerRef,
-                                           watch,
-                                           onUpdate,
-                                           location,
-                                           onLocationChange
-                                         }: WithChildren<LocomotiveScrollProviderProps>) {
+  children,
+  options,
+  containerRef,
+  watch,
+  onUpdate,
+  location,
+  onLocationChange
+}: WithChildren<LocomotiveScrollProviderProps>) {
   const { height: containerHeight } = useResizeObserver<HTMLDivElement>({ ref: containerRef });
   const [isReady, setIsReady] = useState(false);
   const [r, setR] = useState(false);
   const LocomotiveScrollRef = useRef<Scroll | null>(null);
+  const onScrollCallbacks = useRef<Map<string, Function>>(new Map());
   const [height] = useDebounce(containerHeight, 100);
 
   const x = useMotionValue(0);
@@ -126,12 +147,13 @@ export function LocomotiveScrollProvider({
 
     if (onUpdate) {
       onUpdate(LocomotiveScrollRef.current);
-      setIsReady;
+      // setIsReady;
     }
   }, [watch, height, isReady]);
 
   // dependency change
   useEffect(() => {
+    onScrollCallbacks.current.clear();
     if (LocomotiveScrollRef.current === null || !location) {
       return;
     }
@@ -150,6 +172,12 @@ export function LocomotiveScrollProvider({
     if (isReady && LocomotiveScrollRef.current) {
       LocomotiveScrollRef.current.on("scroll", (arg: any) => {
         // console.log("scrolled: ", yLimit.get());
+
+        onScrollCallbacks.current.forEach((fun) => {
+          fun();
+        });
+
+
         x.set(arg.scroll.x);
         y.set(arg.scroll.y);
         scrollDirection.set(arg.direction);
@@ -166,7 +194,8 @@ export function LocomotiveScrollProvider({
         scale,
         scrollDirection,
         yProgress,
-        yProgressSmooth: ySmooth
+        yProgressSmooth: ySmooth,
+        onScrollCallbacks
       }}>
 
       {children}

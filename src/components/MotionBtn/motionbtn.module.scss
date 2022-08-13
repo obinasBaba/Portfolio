@@ -1,0 +1,14 @@
+@use "@style" as *;
+//noinspection SassScssResolvedByNameOnly
+
+.container {
+
+  & :local {
+
+
+    .wrapper {
+
+    }
+  }
+
+}

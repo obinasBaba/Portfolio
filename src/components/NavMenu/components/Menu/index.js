@@ -8,6 +8,7 @@ import { AppStateContext } from "../../../../contexts/AppStateContext";
 import Item from "./components/Item";
 import { largeUp, mediumDown } from "../../../../styles/mixins/breakpoints";
 import { useMotionValueContext } from "../../../../contexts/MotionStateWrapper";
+import { useLocomotiveScroll } from "@contexts/LocoMotive";
 
 const MenuItemContainer = styled( motion.ul )`
   position: relative;
@@ -198,8 +199,6 @@ const Menu = ( { onClick } ) => {
   ];
 
   const { currentPath, setListenerTargetSelector } = useContext( AppStateContext );
-
-  const { menuIsOpen } = useMotionValueContext();
 
 
   useEffect( () => {

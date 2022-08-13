@@ -1,22 +1,22 @@
-import React, { useContext } from 'react'
-import styled from 'styled-components'
-import { motion } from 'framer-motion'
+import React, { useContext } from "react";
+import styled from "styled-components";
+import { motion } from "framer-motion";
 import loadable from "@loadable/component";
-import AboutHero from './components/AboutHero'
-import MyProcess from './components/MyProcess'
+import AboutHero from "./components/AboutHero";
+import MyProcess from "./components/MyProcess";
 // import MailUs from '../MailUs'
-import Skills from './components/Skills'
-import HorizontalScrollText from './components/HorizontalScrollText'
-import { MotionValueContext } from '../../contexts/MotionStateWrapper'
+import Skills from "./components/Skills";
+import HorizontalScrollText from "./components/HorizontalScrollText";
+import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 
 
-const MailUs = loadable(() => import('../../components/MailUs'))
+const MailUs = loadable( () => import("../../components/MailUs") );
 
 
-const AboutPageContainer = styled(motion.div)`
+const AboutPageContainer = styled( motion.div )`
   position: relative;
   z-index: 1;
-`
+`;
 
 
 const aboutContainerVariants = {
@@ -32,39 +32,38 @@ const aboutContainerVariants = {
 
   transition: {
     duration: 1,
-    ease: [0.6, 0.01, 0, 0.9],
+    ease: [0.6, 0.01, 0, 0.9]
   }
 
-}
+};
 
 
+function AboutPage(){
 
-function AboutPage() {
-
-    const { mainAnimationController, screenOverlayEvent } = useContext(MotionValueContext)
+  const { mainAnimationController, screenOverlayEvent } = useContext( MotionValueContext );
 
 
   return (
     <AboutPageContainer variants={aboutContainerVariants}
                         transition={aboutContainerVariants.transition}
                         initial="initial"
-                        animate={ screenOverlayEvent.get() === 'closed' ? 'animate' :  mainAnimationController}
+                        animate={screenOverlayEvent.get() === "closed" ? "animate" : mainAnimationController}
                         exit="exit"
-                        id='#about'
+                        id="#about"
     >
-      <AboutHero/>
+      {/*<AboutHero/>*/}
 
 
-      <HorizontalScrollText/>
+      <HorizontalScrollText />
 
-      <Skills/>
+      {/*<Skills/>*/}
 
-      <MyProcess/>
+      <MyProcess />
 
-      <MailUs/>
+      <MailUs />
 
     </AboutPageContainer>
-  )
+  );
 }
 
-export default AboutPage
+export default AboutPage;

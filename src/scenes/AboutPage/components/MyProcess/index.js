@@ -3,11 +3,16 @@ import styled, { css } from "styled-components";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { Container, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import { useLocomotiveScroll } from "@contexts/LocoMotive";
+import { useLottiAssets } from "@hooks/queries/useLottiAssets";
 import { processData } from "./data";
 import Card from "./components/Card";
-import { useLottiAssets } from "@hooks/queries/useLottiAssets";
 import { spacing, text } from "@/styles/mixins";
 import { largeUp, mediumUp, smallDown, xLargeUp } from "@/styles/mixins/breakpoints";
+
+gsap.registerPlugin( ScrollTrigger );
+
 
 const ProcessContainer = styled( motion.section )`
   position: relative;
@@ -155,6 +160,81 @@ function MyProcess(){
 
   const [inView, setInView] = useState( false );
 
+  const { registerCallbackOnScroll, locoInstance, isReady } = useLocomotiveScroll();
+
+
+  useEffect( () => {
+
+    console.log( "isReady -----", isReady, locoInstance, inView );
+
+
+    if ( isReady && locoInstance ) {
+
+      console.log( "isReady -----", isReady, locoInstance, inView );
+
+      setTimeout( () => {
+        const scrollEl = document.querySelector( "[data-scroll-container]" );
+
+        console.log( "scrollEl:", scrollEl );
+
+        ScrollTrigger.scrollerProxy( scrollEl, {
+          getBoundingClientRect(){
+            return {
+              top: 0,
+              left: 0,
+              width: window.innerWidth,
+              height: window.innerHeight
+            };
+          },
+
+          // pinType: document.querySelector('').style.transform ? 'transform': 'fixed',
+          scrollTop( value ){
+            // console.log('scrollTop', arguments.length)
+            // if (!LocomotiveScrollRef.current) return;
+            // const locoInstance = LocomotiveScrollRef.current;
+
+            const top = arguments.length
+              ? locoInstance.scrollTo( value, 0, 0 )
+              : locoInstance.scroll.instance.scroll.y;
+
+            console.log( "scrollTop", top, value );
+
+            return top;
+          },
+          fixedMarkers: true
+        } );
+
+        const lsUpdate = () => {
+          if ( locoInstance ) {
+            locoInstance.update();
+          }
+        };
+
+        lsUpdate();
+        window.addEventListener( "resize", lsUpdate );
+        ScrollTrigger.addEventListener( "refresh", lsUpdate );
+        ScrollTrigger.refresh();
+        ScrollTrigger.update();
+      } );
+
+    }
+  }, [isReady] );
+
+
+  useEffect( () => {
+    // if ( !inView ) return;
+
+    setTimeout( () => {
+      registerCallbackOnScroll.set( "process", () => {
+        ScrollTrigger.update();
+      } );
+
+      locoInstance?.update();
+    }, 1000 );
+
+
+  }, [] );
+
 
   useEffect( () => {
     if ( !mediaMatch ) return;
@@ -209,9 +289,9 @@ function MyProcess(){
       } );
     } );
 
-    txt.forEach( ( txt, idx ) => {
+    txt.forEach( ( t, idx ) => {
       setTimeout( () => {
-        gsap.to( txt, {
+        gsap.to( t, {
           // rotate: rotationsArr[cards.indexOf(card)],
           y: idx % 2 === 0 ? -300 : 300,
           scrollTrigger: {
@@ -230,10 +310,6 @@ function MyProcess(){
 
 
   }, [mediaMatch] );
-
-  useEffect( () => {
-
-  }, [inView] );
 
 
   return (

@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { motion, useSpring, useTransform } from "framer-motion";
 
 import { basicVariants, transition } from "@/helpers/variants";
-import { MotionValueContext } from "@/contexts/MotionStateWrapper";
+import { useLocomotiveScroll } from "@contexts/LocoMotive";
 
 const penVariant = {
   ...basicVariants,
@@ -21,23 +21,25 @@ const PenContainer = styled( motion.div )`
   //color: #c9d8e0;
   //z-index: -1;
   //border: thin solid rebeccapurple;
+
+
+  display: none;
 `;
 
 function PenEffect(){
 
 
-  const { moScroll } = useContext( MotionValueContext );
-  const progress = useTransform( moScroll.y,
-    [0, moScroll.limit.get()], [0, 1] );
+  const { yProgress } = useLocomotiveScroll();
+
 
   const yTransform =
-    useTransform( progress, [0, 1], [0, -145] );
+    useTransform( yProgress, [0, 1], [0, -145] );
 
   const y = useSpring( yTransform, {
     mass: .5, damping: 10, stiffness: 50
   } );
 
-  const rTransform = useTransform( progress,
+  const rTransform = useTransform( yProgress,
     [0, .4, .45, .95],
     [0, -15, 0, -15] );
   const rotate = useSpring( rTransform, {
@@ -54,12 +56,13 @@ function PenEffect(){
 
 
   return (
-    <PenContainer style={{ y, rotate }}
-                  variants={penVariant}
-                  transition={{ ...transition, delay: .5 }}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
+    <PenContainer
+      style={{ y, rotate }}
+      variants={penVariant}
+      transition={{ ...transition, delay: .5 }}
+      initial="initial"
+      animate="animate"
+      exit="exit"
     >
 
 

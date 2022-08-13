@@ -14,9 +14,10 @@
   align-items: center;
   justify-content: center;
   //pointer-events: none;
+  pointer-events: initial;
 
   &.isOpen {
-    pointer-events: initial;
+
   }
 
 

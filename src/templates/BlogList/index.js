@@ -17,16 +17,17 @@ const Container = styled.div`
   position: relative;
   width: 100%;
 
+  border: 1px solid red;
+
 
 `;
 
 const BlogListTemplate = ( {
-                             data,
-                             pageContext: { currentPage, pageCount },
-                             path
-                           } ) => {
+  data,
+  pageContext: { currentPage, pageCount },
+  path
+} ) => {
   const { setCurrentPath } = useContext( AppStateContext );
-  const { backgroundOverlay } = useContext( BackgroundOverlayStateContext );
 
   useEffect( () => {
     setCurrentPath( path );
@@ -34,9 +35,6 @@ const BlogListTemplate = ( {
   }, [] );
 
   useToolTip( "[data-tooltip-text]" );
-  // useRefreshMouseListeners( "[data-pointer]" );
-  // useLocoScroll( !backgroundOverlay );
-
 
   // const previousPage = currentPage === 2 ? "/blog" : `/blog/${currentPage - 1}`;
   // const nextPage = `/blog/${currentPage + 1}`;
@@ -51,7 +49,7 @@ const BlogListTemplate = ( {
       />
 
       <Container className="blog-container-temp">
-        <Moon showMoon={false} pos="fixed" moonStyle={moonStyle} />
+        <Moon pos="fixed" moonStyle={moonStyle} />
         <PenEffect />
         <BlogList>
           {data.allMarkdownRemark.edges.map(
@@ -68,19 +66,17 @@ const BlogListTemplate = ( {
                 }
               },
               index
-            ) => {
-              return (
-                <BlogCard
-                  title={title}
-                  date={date}
-                  key={excerpt}
-                  featuredMedia={{ publicURL, childImageSharp }}
-                  body={`${excerpt.slice( 0, match ? 250 : 190 )} ...`}
-                  slug={link}
-                  index={index}
-                />
-              );
-            }
+            ) => (
+              <BlogCard
+                title={title}
+                date={date}
+                key={excerpt}
+                featuredMedia={{ publicURL, childImageSharp }}
+                body={`${excerpt.slice( 0, match ? 250 : 190 )} ...`}
+                slug={link}
+                index={index}
+              />
+            )
           )}
 
         </BlogList>
