@@ -1,11 +1,9 @@
 import { motion, useSpring, useTransform } from "framer-motion";
 import React, { useContext, useEffect } from "react";
-import { AppStateContext } from "../../contexts/AppStateContext";
-import { map } from "../../helpers/utils";
-import { MotionValueContext } from "../../contexts/MotionStateWrapper";
+import { AppStateContext } from "@contexts/AppStateContext";
 import { Link } from "gatsby";
 import { bg, container, indicator, phone, progress, wrapper } from "./scrollprogress.module.scss";
-import { useLocomotiveScroll } from "../../contexts/LocoMotive";
+import { useLocomotiveScroll } from "@contexts/LocoMotive";
 
 
 const containerVariants = {
@@ -36,9 +34,9 @@ function ScrollProgressCircle(){
 
 
   useEffect( () => {
-    // pathLength.set( 0 );
-    // rotate.set( 0 );
-    // y.set( 0 );
+    pathLength.set( 0 );
+    rotate.set( 0 );
+    // yProgress.set(0)
   }, [currentPath] );
 
   return (

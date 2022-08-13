@@ -1,0 +1,47 @@
+@use "@style" as *;
+//noinspection SassScssResolvedByNameOnly
+
+.container {
+  //line-height: 1.25em;
+  pointer-events: initial;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.3;
+  //letter-spacing: 2.5px;
+  //overflow: hidden;
+  font-family: "Poppins Black", serif;
+  overflow-wrap: break-word;
+  color: white;
+
+  //display: none;
+
+  @include margin(top, 2rem);
+  @include font-size-title(4rem);
+
+  @include media-breakpoint-up(lg) {
+    @include font-size-title(3.5rem);
+    display: none;
+  }
+
+  & :local {
+
+    .word_style {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      vertical-align: top;
+    }
+
+    .letter_style {
+      font-family: var(--eli);
+      font-weight: bolder;
+      letter-spacing: 3px;
+      display: inline-block;
+      //border: thin solid tomato;
+    }
+
+  }
+
+}

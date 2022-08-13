@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react'
-import styled, { css } from 'styled-components'
-import { motion, useMotionValue, useTransform } from 'framer-motion'
-import { Container, Typography, useMediaQuery, useTheme } from '@material-ui/core'
-import gsap from 'gsap'
-import { processData } from './data'
-import Card from './components/Card'
-import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
-import { spacing, text } from '../../../../styles/mixins'
-import { largeUp, mediumUp, smallDown, xLargeUp } from "../../../../styles/mixins/breakpoints";
+import React, { useEffect, useRef, useState } from "react";
+import styled, { css } from "styled-components";
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import { Container, Typography, useMediaQuery, useTheme } from "@material-ui/core";
+import gsap from "gsap";
+import { processData } from "./data";
+import Card from "./components/Card";
+import { useLottiAssets } from "@hooks/queries/useLottiAssets";
+import { spacing, text } from "@/styles/mixins";
+import { largeUp, mediumUp, smallDown, xLargeUp } from "@/styles/mixins/breakpoints";
 
 const ProcessContainer = styled( motion.section )`
   position: relative;
@@ -16,15 +16,15 @@ const ProcessContainer = styled( motion.section )`
   //margin: 0 auto;
   width: 100%;
   //border: thin solid red;
-  ${spacing( 'mt', 25.4 )};
-  ${spacing( 'mb', 16 )};
+  ${spacing( "mt", 25.4 )};
+  ${spacing( "mb", 16 )};
 
-`
+`;
 
 const ProcessC = styled( Container )`
-  ${spacing( 'mt', 25.4 )};
-  ${spacing( 'mb', 16 )};
-`
+  ${spacing( "mt", 25.4 )};
+  ${spacing( "mb", 16 )};
+`;
 
 const ProcessTitle = styled( Typography )`
   position: relative;
@@ -47,19 +47,19 @@ const ProcessTitle = styled( Typography )`
   #bfd0d9 96.77%);
   //border: thin dashed burlywood;
 
-  ${spacing( 'pl', 3 )};
-  ${spacing( 'pb', 1.7 )};
+  ${spacing( "pl", 3 )};
+  ${spacing( "pb", 1.7 )};
 
   ${smallDown( css`
       // ${text( 3.5 )};
   ` )};
 
   ${mediumUp( css`
-    ${spacing( 'pl', 7 )};
+    ${spacing( "pl", 7 )};
   ` )};
 
   ${xLargeUp( css`
-    ${spacing( 'pl', 17 )};
+    ${spacing( "pl", 17 )};
   ` )};
 
   &:first-child {
@@ -71,16 +71,16 @@ const ProcessTitle = styled( Typography )`
     margin-top: -1.7%;
     //line-height: 100%;
   }
-`
+`;
 
 const ProcessMask = styled( motion.div )`
   z-index: 5;
   //border: thin dashed #89dc14;
 
   ${mediumUp( css`
-    ${spacing( 'pl', 50 )};
+    ${spacing( "pl", 50 )};
   ` )};
-`
+`;
 
 const ProcessTrack = styled( motion.div )`
   //border: 2px dashed #00ccff;
@@ -88,22 +88,22 @@ const ProcessTrack = styled( motion.div )`
   width: 100%;
   flex-flow: column;
   align-items: center;
-  ${spacing( 'p', 4 )};
-  ${spacing( 'gap', 3.5 )};
+  ${spacing( "p", 4 )};
+  ${spacing( "gap", 3.5 )};
 
   ${mediumUp( css`
     flex-flow: row;
     flex-wrap: nowrap;
     align-items: stretch;
     width: max-content;
-    ${spacing( 'p', 0 )};
-    ${spacing( 'gap', 0 )};
+    ${spacing( "p", 0 )};
+    ${spacing( "gap", 0 )};
 
     & > :not(:last-child) {
-      ${spacing( 'mr', 17.5 )};
+      ${spacing( "mr", 17.5 )};
     }
   ` )};
-`
+`;
 
 const Operate = styled.div`
   display: none;
@@ -115,7 +115,7 @@ const Operate = styled.div`
   ${largeUp( css`
     display: flex;
   ` )};
-`
+`;
 const OperateTxt = styled( Typography )`
   color: transparent;
   font-weight: 900;
@@ -131,178 +131,178 @@ const OperateTxt = styled( Typography )`
     padding-bottom: 0;
   }
 
-`
+`;
 
 const Methodology = styled.div`
   position: relative;
   z-index: 4;
   max-width: 45ch;
   margin: 4rem;
-`
+`;
 
 function MyProcess(){
-    const { build, design, ufo, align, rocket } = useLottiAssets()
-    const icons = [ufo, align, design, build, rocket]
+  const { build, design, ufo, align, rocket } = useLottiAssets();
+  const icons = [ufo, align, design, build, rocket];
 
-    const maskRef = useRef( null )
-    const titleRef = useRef( null )
-    const trackRef = useRef( null )
-    const containerRef = useRef( null )
-    const mediaMatch = useMediaQuery( useTheme().breakpoints.up( 'md' ) )
+  const maskRef = useRef( null );
+  const titleRef = useRef( null );
+  const trackRef = useRef( null );
+  const containerRef = useRef( null );
+  const mediaMatch = useMediaQuery( useTheme().breakpoints.up( "md" ) );
 
-    const progress = useMotionValue( 0 )
-    const opacity = useTransform( progress, [0.69, 0.98], [1, 0] )
+  const progress = useMotionValue( 0 );
+  const opacity = useTransform( progress, [0.69, 0.98], [1, 0] );
 
-    const [inView, setInView] = useState( false )
-
-
-    useEffect( () => {
-        if ( !mediaMatch ) return
-
-        const mask = document.querySelector( '.mask' )
-        const track = document.querySelector( '.track' )
-        const txt = [...track.querySelectorAll( '.operate_txt' )]
-
-        const timeline = gsap.timeline()
-
-        setTimeout( () => {
-            timeline.to( track, {
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: mask,
-                    pin: true,
-                    scroller: '[data-scroll-container]',
-                    start: () => 'top 25%',
-                    end: () => `+=${track.offsetWidth - 400}`,
-                },
-            } )
-        } )
-
-        setTimeout( () => {
-            timeline.to( track, {
-                x: -(track.offsetWidth - 200),
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.mask',
-                    scrub: 1,
-                    scroller: '[data-scroll-container]',
-                    start: () => 'top 70%',
-                    end: () => `+=${track.offsetWidth}`,
-                    onUpdate( self ){
-                        progress.set( self.progress )
-                    },
-                },
-            } )
-        } )
-
-        setTimeout( () => {
-
-            timeline.to( '.titleTxt-wrapper', {
-                scrollTrigger: {
-                    pin: true,
-                    pinSpacing: false,
-                    trigger: '.titleTxt-wrapper',
-                    scroller: '[data-scroll-container]',
-                    start: () => 'top 7%',
-                    end: () => `+=${track.offsetWidth}`,
-                },
-            } )
-        }, )
-
-        txt.forEach( ( txt, idx ) => {
-            setTimeout( () => {
-                gsap.to( txt, {
-                    // rotate: rotationsArr[cards.indexOf(card)],
-                    y: idx % 2 === 0 ? -300 : 300,
-                    scrollTrigger: {
-                        trigger: track,
-                        // endTrigger: 'card-1',
-                        horizontal: true,
-                        invalidateOnRefresh: true,
-                        scrub: 0.1,
-                        scroller: '[data-scroll-container]',
-                        start: () => 'left 20%',
-                        end: () => '+=1510',
-                    },
-                } )
-            } )
-        } )
+  const [inView, setInView] = useState( false );
 
 
-    }, [mediaMatch] )
+  useEffect( () => {
+    if ( !mediaMatch ) return;
 
-    useEffect( () => {
+    const mask = document.querySelector( ".mask" );
+    const track = document.querySelector( ".track" );
+    const txt = [...track.querySelectorAll( ".operate_txt" )];
 
-    }, [inView] )
+    const timeline = gsap.timeline();
+
+    setTimeout( () => {
+      timeline.to( track, {
+        ease: "none",
+        scrollTrigger: {
+          trigger: mask,
+          pin: true,
+          scroller: "[data-scroll-container]",
+          start: () => "top 25%",
+          end: () => `+=${track.offsetWidth - 400}`
+        }
+      } );
+    } );
+
+    setTimeout( () => {
+      timeline.to( track, {
+        x: -(track.offsetWidth - 200),
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".mask",
+          scrub: 1,
+          scroller: "[data-scroll-container]",
+          start: () => "top 70%",
+          end: () => `+=${track.offsetWidth}`,
+          onUpdate( self ){
+            progress.set( self.progress );
+          }
+        }
+      } );
+    } );
+
+    setTimeout( () => {
+
+      timeline.to( ".titleTxt-wrapper", {
+        scrollTrigger: {
+          pin: true,
+          pinSpacing: false,
+          trigger: ".titleTxt-wrapper",
+          scroller: "[data-scroll-container]",
+          start: () => "top 7%",
+          end: () => `+=${track.offsetWidth}`
+        }
+      } );
+    } );
+
+    txt.forEach( ( txt, idx ) => {
+      setTimeout( () => {
+        gsap.to( txt, {
+          // rotate: rotationsArr[cards.indexOf(card)],
+          y: idx % 2 === 0 ? -300 : 300,
+          scrollTrigger: {
+            trigger: track,
+            // endTrigger: 'card-1',
+            horizontal: true,
+            invalidateOnRefresh: true,
+            scrub: 0.1,
+            scroller: "[data-scroll-container]",
+            start: () => "left 20%",
+            end: () => "+=1510"
+          }
+        } );
+      } );
+    } );
 
 
-    return (
+  }, [mediaMatch] );
 
-        <ProcessContainer
-            ref={containerRef}
-            id="process-container"
+  useEffect( () => {
 
-            onViewportEnter={() => {
-                setInView( true )
-            }}
-        >
-            {/* <div className="planet_wrapper">
+  }, [inView] );
+
+
+  return (
+
+    <ProcessContainer
+      ref={containerRef}
+      id="process-container"
+
+      onViewportEnter={() => {
+        setInView( true );
+      }}
+    >
+      {/* <div className="planet_wrapper">
                 <div className="big_planet">
                     <BigPlanet/>
                 </div>
             </div> */}
 
-            <div className="titleTxt-wrapper">
-                <motion.div style={{ opacity }}>
-                    <ProcessTitle
-                        ref={titleRef}
-                        variant="h1"
-                        className="titleTxt"
-                        noWrap
-                    >
-                        Approach
-                    </ProcessTitle>
+      <div className="titleTxt-wrapper">
+        <motion.div style={{ opacity }}>
+          <ProcessTitle
+            ref={titleRef}
+            variant="h1"
+            className="titleTxt"
+            noWrap
+          >
+            Approach
+          </ProcessTitle>
 
-                    <ProcessTitle
-                        ref={titleRef}
-                        variant="h1"
-                        className="titleTxt"
-                        noWrap
-                    >
-                        & vision
-                    </ProcessTitle>
-                </motion.div>
+          <ProcessTitle
+            ref={titleRef}
+            variant="h1"
+            className="titleTxt"
+            noWrap
+          >
+            & vision
+          </ProcessTitle>
+        </motion.div>
 
-            </div>
+      </div>
 
 
-            <ProcessMask ref={maskRef} className="mask">
-                <ProcessTrack ref={trackRef} className="track">
-                    <Operate>
-                        <OperateTxt className="operate_txt" variant="h1">
-                            Thinking
-                        </OperateTxt>
-                        <OperateTxt className="operate_txt" variant="h1">
-                            Process
-                        </OperateTxt>
-                    </Operate>
+      <ProcessMask ref={maskRef} className="mask">
+        <ProcessTrack ref={trackRef} className="track">
+          <Operate>
+            <OperateTxt className="operate_txt" variant="h1">
+              Thinking
+            </OperateTxt>
+            <OperateTxt className="operate_txt" variant="h1">
+              Process
+            </OperateTxt>
+          </Operate>
 
-                    {processData.map( ( { no, titleTxt, txt, keys }, index ) => (
-                        <Card
-                            key={titleTxt}
-                            no={no}
-                            titleTxt={titleTxt}
-                            txt={txt}
-                            index={index}
-                            path={inView && icons[index].publicURL}
-                            methodologies={keys}
-                        />
-                    ) )}
-                </ProcessTrack>
-            </ProcessMask>
-        </ProcessContainer>
+          {processData.map( ( { no, titleTxt, txt, keys }, index ) => (
+            <Card
+              key={titleTxt}
+              no={no}
+              titleTxt={titleTxt}
+              txt={txt}
+              index={index}
+              path={inView && icons[index].publicURL}
+              methodologies={keys}
+            />
+          ) )}
+        </ProcessTrack>
+      </ProcessMask>
+    </ProcessContainer>
 
-    )
+  );
 }
 
-export default MyProcess
+export default MyProcess;

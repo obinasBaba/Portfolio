@@ -7,14 +7,9 @@ import BlogList from "./components/BlogListContainer";
 import { AppStateContext, BackgroundOverlayStateContext } from "../../contexts/AppStateContext";
 import Moon from "../../components/MoonLight";
 import PenEffect from "./components/PenEffect";
-<<<<<<< Updated upstream
-import { gridify } from "../../styles/mixins";
-import useToolTip from "../../hooks/useToolTip";
-import Seo from "../../components/seo";
-=======
-import useToolTip from "@/hooks/useToolTip";
-import Seo from "@/components/seo";
->>>>>>> Stashed changes
+import useToolTip from "@hooks/useToolTip";
+import Seo from "@components/seo";
+
 
 const moonStyle = css``;
 

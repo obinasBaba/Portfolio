@@ -17,11 +17,8 @@ import ProjectScrollDown from "./components/SideBarTools/ProjectScrollDown";
 import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 
 const ProjectContainerGrid = styled( motion.div )`
-    // ${gridify};
   display: grid;
   grid-template-columns: repeat(64, calc(100% / 64));
-
-  border: thick solid red;
 
   align-content: center;
   align-items: center;

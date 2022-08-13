@@ -1,13 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { motion, useSpring, useTransform } from "framer-motion";
-<<<<<<< Updated upstream
-import { basicVariants, transition } from "../../../helpers/variants";
-import { MotionValueContext } from "../../../contexts/MotionStateWrapper";
-=======
+
 import { basicVariants, transition } from "@/helpers/variants";
 import { MotionValueContext } from "@/contexts/MotionStateWrapper";
->>>>>>> Stashed changes
 
 const penVariant = {
   ...basicVariants,
@@ -95,10 +91,7 @@ function PenEffect(){
 
     </PenContainer>
   );
-<<<<<<< Updated upstream
-};
-=======
 }
->>>>>>> Stashed changes
+
 
 export default PenEffect;

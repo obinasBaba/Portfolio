@@ -1,19 +1,12 @@
 import React from "react";
-<<<<<<< Updated upstream
-import CardContents from "./components/CardContents";
-import Thumbnail from "./components/Thumbnail";
-import { motion } from "framer-motion";
-import styled, { css } from "styled-components";
-import { shadow, spacing } from "../../../../styles/mixins";
-import { largeUp, mediumUp, xxLargeUp } from "../../../../styles/mixins/breakpoints";
-=======
+
 import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
 import CardContents from "./components/CardContents";
 import Thumbnail from "./components/Thumbnail";
 import { shadow, spacing } from "@/styles/mixins";
 import { largeUp, mediumUp, xxLargeUp } from "@/styles/mixins/breakpoints";
->>>>>>> Stashed changes
+
 
 const StyledBlogCard = styled( motion.div )`
   position: relative;
@@ -72,24 +65,16 @@ const StyledBlogCard = styled( motion.div )`
 
 
 const BlogCard = ( {
-<<<<<<< Updated upstream
-                     index,
-                     date,
-                     title,
-                     body,
-                     slug,
-                     featuredMedia: { publicURL, childImageSharp }
-                   } ) => {
-=======
-  index,
-  date,
-  title,
-  body,
-  slug,
-  featuredMedia: { publicURL, childImageSharp }
-} ) => {
->>>>>>> Stashed changes
-  return (
+    index,
+    date,
+    title,
+    body,
+    slug,
+    featuredMedia:
+      {
+        publicURL, childImageSharp
+      }
+  } ) => (
     <motion.div>
       <StyledBlogCard media={publicURL}>
         <Thumbnail media={childImageSharp} link={slug} />
@@ -102,7 +87,7 @@ const BlogCard = ( {
         />
       </StyledBlogCard>
     </motion.div>
-  );
-};
+  )
+;
 
 export default BlogCard;

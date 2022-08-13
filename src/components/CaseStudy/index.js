@@ -1,23 +1,24 @@
-import React, {useContext, useEffect, useLayoutEffect, useRef, useState} from 'react'
-import Headline from './Headline'
-import ReturnBtn from '../ReturnBtn'
-import { AppStateContext } from '../../contexts/AppStateContext'
-import styled from 'styled-components'
-import { ProjectContainer } from './components'
-import {useMotionValue, usePresence, useTransform} from 'framer-motion'
-import { HeadLineBG } from './Headline/Components'
-import { bgVariant, transition } from './Headline/variants'
-import { MotionValueContext } from '../../contexts/MotionStateWrapper'
-import ProjectScrollDown from '../../scenes/ProjectPage/components/SideBarTools/ProjectScrollDown'
-import { createPortal } from 'react-dom'
-import {Link, navigate} from "gatsby";
+import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+import Headline from "./Headline";
+import ReturnBtn from "../ReturnBtn";
+import { AppStateContext } from "../../contexts/AppStateContext";
+import styled from "styled-components";
+import { ProjectContainer } from "./components";
+import { useMotionValue, usePresence, useTransform } from "framer-motion";
+import { HeadLineBG } from "./Headline/Components";
+import { bgVariant, transition } from "./Headline/variants";
+import { MotionValueContext } from "../../contexts/MotionStateWrapper";
+import ProjectScrollDown from "../../scenes/ProjectPage/components/SideBarTools/ProjectScrollDown";
+import { createPortal } from "react-dom";
+import { Link, navigate } from "gatsby";
 import NextProject from "./NextProject";
 import useRefreshMouseListeners from "../../hooks/useRefreshMouseListeners";
+import { useLocomotiveScroll } from "@contexts/LocoMotive";
 
 let args = {
   path: undefined,
-  scroll: undefined,
-}
+  scroll: undefined
+};
 
 const FixedItems = styled.div`
   position: fixed;
@@ -29,13 +30,13 @@ const FixedItems = styled.div`
   flex-flow: column;
   align-items: center;
   justify-content: space-between;
-  
-  a{
-    
+
+  a {
+
   }
-  
+
   //border: thin solid red;
-`
+`;
 
 const containerVariants = {
 
@@ -43,179 +44,179 @@ const containerVariants = {
     opacity: 0
   },
   animate: {
-    opacity: 1,
+    opacity: 1
   },
-  exit(arg){
+  exit( arg ){
     if ( arg.path )
       args.path = arg.path;
     if ( arg.scrollTop )
-      args.scroll = arg.scrollTop
+      args.scroll = arg.scrollTop;
 
-    if ( arg.path === '/projects/' ){
+    if ( arg.path === "/projects/" ) {
       if ( args.scroll )
-        args.scroll()
+        args.scroll();
 
-      return {}
+      return {};
     }
 
-    return{
+    return {
       opacity: 0,
       transition: {
         duration: 1.5
       }
-    }
+    };
   }
-}
+};
 
 const projectDataDefault = {
-  title: 'Vigoza Digital Agency',
-  subTitle: 'this is vigoza subtitle',
-  headlineImage: '',
+  title: "Vigoza Digital Agency",
+  subTitle: "this is vigoza subtitle",
+  headlineImage: "",
   about: {
-    role: 'FrontEnd Developer',
-    context: 'Design',
-    period: 'End 2018',
+    role: "FrontEnd Developer",
+    context: "Design",
+    period: "End 2018"
   },
   intro: {
-    themeColor: '#f1c9b3',
-    color: '#02021e',
-    logoUrl: '/projects/honey-logo.png',
+    themeColor: "#f1c9b3",
+    color: "#02021e",
+    logoUrl: "/projects/honey-logo.png",
     // imageData: preview2,
-    link: 'https://www.prosapient.com',
-    title: 'The Project',
+    link: "https://www.prosapient.com",
+    title: "The Project",
     desc:
-        `
+      `
         Honey is an outstanding Beauty and Hair space in Addis Abeba, Ethiopia.
         They include a variety of services including professional hair cutting and
         styling, manicures , pedicures, cosmetics, makeup and makeovers to say a few.
         This WebApp(PWA) makes their client to keep up and admire their daily post as
         well us to easily make an appointment despite the massive no of client.   
-        `,
+        `
   },
   nextProject: {
-    title: 'next title',
-    url: '/',
-    thumbnailUrl: '/'
+    title: "next title",
+    url: "/",
+    thumbnailUrl: "/"
   }
-}
+};
 
 
-
-const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
-  const { title, subTitle, about } = projectData
-  const { thumbnailUrl, title : nextProjectTitle , url } = projectData.nextProject;
+const CaseStudy = ( { projectData = projectDataDefault, path, children } ) => {
+  const { title, subTitle, about } = projectData;
+  const { thumbnailUrl, title: nextProjectTitle, url } = projectData.nextProject;
   // const { headlineImg, publicURL } = projectData.imageData
   const {
-    setCurrentPath,
-  } = useContext(AppStateContext)
+    setCurrentPath
+  } = useContext( AppStateContext );
 
-  useRefreshMouseListeners('[data-pointer]')
+  useRefreshMouseListeners( "[data-pointer]" );
 
   const {
-    variantsUtil : {fromCaseStudy, isTop, fromProjectList} , moScroll, locoInstance, largeUp
-  } = useContext(MotionValueContext)
+    variantsUtil: { fromCaseStudy, isTop, fromProjectList }, moScroll, largeUp
+  } = useContext( MotionValueContext );
 
-  const [scrolled, setScrolled] = useState(false);
-  const bodyRef =  useRef(null)
-  const bgRef = useRef(null)
+  const [scrolled, setScrolled] = useState( false );
+  const bodyRef = useRef( null );
+  const bgRef = useRef( null );
 
-  const moInitial = useMotionValue(fromProjectList.get() ?
-      (largeUp.get() ? ['fromProjectsInitial'] : ['fromProjectsSmallInitial'])
-      : largeUp.get() ? ['initial'] : ['smallInitial'])
+  const moInitial = useMotionValue( fromProjectList.get() ?
+    (largeUp.get() ? ["fromProjectsInitial"] : ["fromProjectsSmallInitial"])
+    : largeUp.get() ? ["initial"] : ["smallInitial"] );
 
-  const moAnimate = useMotionValue(fromProjectList.get() ?
-      (largeUp.get() ? ['fromProjectsAnimate'] : ['fromProjectsSmallAnimate'])
-      : largeUp.get() ? ['animate'] : ['smallAnimate'])
+  const moAnimate = useMotionValue( fromProjectList.get() ?
+    (largeUp.get() ? ["fromProjectsAnimate"] : ["fromProjectsSmallAnimate"])
+    : largeUp.get() ? ["animate"] : ["smallAnimate"] );
 
-  const showScrollDown = useMotionValue(0)
+  const showScrollDown = useMotionValue( 0 );
+  const { locoInstance } = useLocomotiveScroll();
+
   // const [isPresent, safeToRemove] = usePresence()
 
-  useLayoutEffect(() => {
+  useLayoutEffect( () => {
     bodyRef.current = document.body;
-  }, [])
+  }, [] );
 
 
-  useEffect(() => {
+  useEffect( () => {
     // console.log('fromProject : ', location, path)
-    bgRef.current = document.body.querySelector('.projectContainer')
-    setCurrentPath(path)
-    fromProjectList.set(false)
-    fromCaseStudy.set(true)
+    bgRef.current = document.body.querySelector( ".projectContainer" );
+    setCurrentPath( path );
+    fromProjectList.set( false );
+    fromCaseStudy.set( true );
 
-  }, [])
+  }, [] );
 
-  useTransform(moScroll.y, latest => {
-    if ( latest > 510 ){
-      if ( !scrolled  )
-        setScrolled( true )
+  useTransform( moScroll.y, latest => {
+    if ( latest > 510 ) {
+      if ( !scrolled )
+        setScrolled( true );
 
-    }else{
-      if(scrolled)
-        setScrolled(false)
+    } else {
+      if ( scrolled )
+        setScrolled( false );
     }
-  })
+  } );
 
-  useEffect(() => {
+  useEffect( () => {
 
     if ( scrolled ) {
-      showScrollDown.set(1)
+      showScrollDown.set( 1 );
       bgRef.current
-          ?.classList.add('container-scrolled');
+        ?.classList.add( "container-scrolled" );
 
-      document.body.classList.add('blog-clr')
+      document.body.classList.add( "blog-clr" );
     } else {
-      showScrollDown.set(0)
+      showScrollDown.set( 0 );
 
       bgRef.current
-          ?.classList.remove('container-scrolled')
+        ?.classList.remove( "container-scrolled" );
 
-      document.body.classList.remove('blog-clr')
+      document.body.classList.remove( "blog-clr" );
 
     }
 
 
-    return () => document.body.classList.remove('blog-clr')
-  }, [scrolled])
+    return () => document.body.classList.remove( "blog-clr" );
+  }, [scrolled] );
 
 
-
-  const returnClick = (ev) => {
-    locoInstance.get().scrollTo(0, {
+  const returnClick = ( ev ) => {
+    locoInstance.scrollTo( 0, {
       easing: [0.6, 0.01, 0, 0.9],
-      callback: () => setTimeout(() => navigate(projectData?.backUrl), scrolled ? 350 : 0)
-    })
-  }
+      callback: () => setTimeout( () => navigate( projectData?.backUrl ), scrolled ? 350 : 0 )
+    } );
+  };
 
-  const FixedPortal = ({children}) => {
-    return createPortal(children, document.body);
-  }
+  const FixedPortal = ( { children } ) => {
+    return createPortal( children, document.body );
+  };
 
   return (
     <>
 
       <>
         {
-            (typeof document !== `undefined`)&& <FixedPortal>
-              <FixedItems>
-                {/*<Link to={projectData?.backUrl || '/projects'}  >*/}
-                <ReturnBtn to={projectData?.backUrl || '/projects'}
-                           tooltip='project list'
-                           onClick={returnClick} />
-                {/*</Link>*/}
+          (typeof document !== `undefined`) && <FixedPortal>
+            <FixedItems>
+              {/*<Link to={projectData?.backUrl || '/projects'}  >*/}
+              <ReturnBtn to={projectData?.backUrl || "/projects"}
+                         tooltip="project list"
+                         onClick={returnClick} />
+              {/*</Link>*/}
 
-                <ProjectScrollDown activeIndex={showScrollDown} />
+              <ProjectScrollDown activeIndex={showScrollDown} />
 
-              </FixedItems>
-            </FixedPortal>
+            </FixedItems>
+          </FixedPortal>
         }
       </>
 
 
-      <ProjectContainer className='projectContainer case-study-container'
+      <ProjectContainer className="projectContainer case-study-container"
                         variants={containerVariants}
                         initial={moInitial.get()}
                         animate={moAnimate.get()}
-                        exit='exit'
+                        exit="exit"
                         custom={{
                           scrollTop: () => {
                             /*loco.current.scrollTo('top', {
@@ -232,7 +233,7 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
           media={projectData.headlineImage}
         />
 
-        <HeadLineBG  variants={bgVariant} transition={transition} />
+        <HeadLineBG variants={bgVariant} transition={transition} />
 
         {
           children
@@ -243,8 +244,8 @@ const CaseStudy = ({ projectData = projectDataDefault, path, children }) => {
       </ProjectContainer>
     </>
 
-  )
-}
+  );
+};
 /*
 * Thanks for stopping by Alien,
 
@@ -255,4 +256,4 @@ walk-through story to tell.
 Aside that enjoy other places of my space.
 * */
 
-export default CaseStudy
+export default CaseStudy;

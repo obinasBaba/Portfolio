@@ -3,17 +3,10 @@ import { Container, Typography } from "@material-ui/core";
 import styled, { css } from "styled-components";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import gsap from "gsap";
-<<<<<<< Updated upstream
-import { gridColWidth, spacing, text } from "../../../../styles/mixins";
-import { basicVariants, transition } from "../../../../helpers/variants";
-import { largeUp, mediumUp, xxLargeUp } from "../../../../styles/mixins/breakpoints";
-import { MotionValueContext } from "../../../../contexts/MotionStateWrapper";
-=======
 import { gridColWidth, spacing, text } from "@/styles/mixins";
 import { basicVariants, transition } from "@/helpers/variants";
 import { largeUp, mediumUp, xxLargeUp } from "@/styles/mixins/breakpoints";
 import { MotionValueContext } from "@/contexts/MotionStateWrapper";
->>>>>>> Stashed changes
 
 const BlogListContainer = styled( Container )`
   position: relative;

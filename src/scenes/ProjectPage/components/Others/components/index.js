@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 import { Typography } from "@material-ui/core";
 import { motion } from "framer-motion";
-import { spacing } from "../../../../../styles/mixins";
-import { mediumUp } from "../../../../../styles/mixins/breakpoints";
+import { spacing } from "@/styles/mixins";
+import { mediumUp } from "@/styles/mixins/breakpoints";
 
 export const OthersContainer = styled( motion.div )`
   position: relative;
@@ -10,8 +10,6 @@ export const OthersContainer = styled( motion.div )`
   align-items: center;
   justify-content: space-evenly;
   height: 100vh;
-
-  border: thick solid thistle;
 
 
   svg {

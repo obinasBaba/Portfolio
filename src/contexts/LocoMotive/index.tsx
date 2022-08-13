@@ -22,7 +22,7 @@ export interface LocomotiveScrollContextValue {
 const LocomotiveScrollContext = createContext<LocomotiveScrollContextValue>({
   scroll: null,
   isReady: false,
-  scale: new MotionValue<number>()
+  scale: new MotionValue<number>(0)
 } as any);
 
 export interface LocomotiveScrollProviderProps {
@@ -64,7 +64,6 @@ export function LocomotiveScrollProvider({
 
 
   useEffect(() => {
-    return;
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     import("locomotive-scroll").then((LocomotiveScroll) => {
@@ -160,18 +159,16 @@ export function LocomotiveScrollProvider({
 
   return (
     <LocomotiveScrollContext.Provider
-<<<<<<< Updated upstream
+
       value={{
-        scroll: LocomotiveScrollRef.current,
+        locoInstance: LocomotiveScrollRef.current,
         isReady,
         scale,
         scrollDirection,
         yProgress,
         yProgressSmooth: ySmooth
       }}>
-=======
-      value={{ locoInstance: LocomotiveScrollRef.current, isReady, scale, scrollDirection, yProgress }}>
->>>>>>> Stashed changes
+
       {children}
     </LocomotiveScrollContext.Provider>
   );

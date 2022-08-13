@@ -13,7 +13,7 @@ export const HeadlineTitle = styled( motion.h1 )`
   line-height: 1.3;
   //letter-spacing: 2.5px;
   //overflow: hidden;
-  font-family: "Poppins Black", serif;
+  //font-family: "Poppins Black", serif;
   overflow-wrap: break-word;
   color: white;
 
@@ -54,14 +54,15 @@ function Title( {
                    transition={variants.transition}
     >
       {
-        titleTxt.split( " " ).map( ( word ) => (
-          <Word key={titleTxt + (Math.random() * 1000)}>
+        titleTxt.split( " " ).map( ( word, idx ) => (
+          <Word key={word}>
             {
               Array.from( word )
-                .map( ( letter ) => (
-                  <Letter key={letter + word + (Math.random() * 1000)}
-                          variants={variants.letter}
-                          transition={variants.transition}
+                .map( ( letter, idx2 ) => (
+                  <Letter
+                    key={idx * idx2}
+                    variants={variants.letter}
+                    transition={variants.transition}
                   >
                     {letter}
                   </Letter>

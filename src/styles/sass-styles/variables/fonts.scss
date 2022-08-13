@@ -5,3 +5,9 @@ $abyss: 'abyssopelagic', sans-serif;
 $poppins: 'Poppins Black', sans-serif;
 $eli: 'Elianto-Regular', sans-serif;
 
+@mixin fonts {
+
+  --eli: 'Elianto-Regular', sans-serif;
+}
+
+
