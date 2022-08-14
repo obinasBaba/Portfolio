@@ -164,55 +164,54 @@ function MyProcess( { triggerRegister } ){
   useEffect( () => {
     if ( !mediaMatch ) return;
 
-    triggerRegister.onChange( trigger => {
 
-      if ( trigger ) {
-        const mask = document.querySelector( ".mask" );
-        const track = document.querySelector( ".track" );
+    const mask = document.querySelector( ".mask" );
+    const track = document.querySelector( ".track" );
 
-        const timeline = gsap.timeline();
+    const timeline = gsap.timeline();
 
-        setTimeout( () => {
-          timeline.to( track, {
-            ease: "none",
-            scrollTrigger: {
-              trigger: mask,
-              pin: true,
-              scroller: "[data-scroll-container]",
-              start: () => "top 25%",
-              end: () => `+=${track.offsetWidth - 400}`
-            }
-          } );
+    // console.log( "myProcess----" );
 
-          timeline.to( ".titleTxt-wrapper", {
-            scrollTrigger: {
-              pin: true,
-              pinSpacing: false,
-              trigger: ".titleTxt-wrapper",
-              scroller: "[data-scroll-container]",
-              start: () => "top 7%",
-              end: () => `+=${track.offsetWidth}`
-            }
-          } );
+    setTimeout( () => {
+      timeline.to( track, {
+        ease: "none",
+        scrollTrigger: {
+          trigger: mask,
+          pin: true,
+          scroller: "[data-scroll-container]",
+          start: () => "top 25%",
+          end: () => `+=${track.offsetWidth - 400}`
+        }
+      } );
 
-          timeline.to( track, {
-            x: -(track.offsetWidth - 200),
-            ease: "none",
-            scrollTrigger: {
-              trigger: ".mask",
-              scrub: 1,
-              scroller: "[data-scroll-container]",
-              start: () => "top 70%",
-              end: () => `+=${track.offsetWidth}`,
-              onUpdate( self ){
-                progress.set( self.progress );
-              }
-            }
-          } );
+      timeline.to( ".titleTxt-wrapper", {
+        scrollTrigger: {
+          pin: true,
+          pinSpacing: false,
+          trigger: ".titleTxt-wrapper",
+          scroller: "[data-scroll-container]",
+          start: () => "top 7%",
+          end: () => `+=${track.offsetWidth}`
+        }
+      } );
 
-        }, 1000 );
-      }
-    } );
+      timeline.to( track, {
+        x: -(track.offsetWidth - 200),
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".mask",
+          scrub: 1,
+          scroller: "[data-scroll-container]",
+          start: () => "top 70%",
+          end: () => `+=${track.offsetWidth}`,
+          onUpdate( self ){
+            progress.set( self.progress );
+          }
+        }
+      } );
+
+    }, 1000 );
+
 
   }, [mediaMatch] );
 

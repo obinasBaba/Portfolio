@@ -16,6 +16,12 @@ import { useDebounce } from "use-debounce";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import { MotionValue, useMotionValue, useSpring, useTransform, useVelocity } from "framer-motion";
 
+import gsap from "gsap";
+
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 
 type WithChildren<T = Record<string, unknown>> = T & { children?: React.ReactNode }
 
@@ -78,6 +84,58 @@ export function LocomotiveScrollProvider({
 
   const scale = useTransform(velocity, [-3000, 0, 3000], [1.01, 1, 1.01]);
 
+
+  useLayoutEffect(() => {
+
+    if (isReady) {
+      const scrollEl = document.querySelector("[data-scroll-container]");
+
+      // console.log("isReady :", isReady);
+
+      ScrollTrigger.scrollerProxy(scrollEl, {
+        getBoundingClientRect() {
+          return {
+            top: 0,
+            left: 0,
+            width: window.innerWidth,
+            height: window.innerHeight
+          };
+        },
+
+        // pinType: "transform",
+        scrollTop(value) {
+
+          if (!LocomotiveScrollRef.current) return;
+
+          const top = arguments.length
+            ? LocomotiveScrollRef.current.scrollTo(value, 0, 0)
+            : LocomotiveScrollRef.current.scroll.instance.scroll.y;
+          // console.log("scrollTop", top, value);
+
+          return top;
+        }
+        // fixedMarkers: true
+      });
+
+      /*  onScrollCallbacks.current.set("about", () => {
+          console.log("scroll update -");
+          ScrollTrigger.update();
+        });*/
+
+      const lsUpdate = () => {
+        if (LocomotiveScrollRef.current) {
+          LocomotiveScrollRef.current.update();
+        }
+      };
+
+      lsUpdate();
+      window.addEventListener("resize", lsUpdate);
+      ScrollTrigger.addEventListener("refresh", lsUpdate);
+      ScrollTrigger.refresh();
+      ScrollTrigger.update();
+    }
+
+  }, [isReady]);
 
   // initialization
   useLayoutEffect(() => {
@@ -162,10 +220,12 @@ export function LocomotiveScrollProvider({
       LocomotiveScrollRef.current.on("scroll", (arg: any) => {
         // console.log("scrolled: ", yLimit.get());
 
+        // console.log("subscribers: ", onScrollCallbacks.current);
         onScrollCallbacks.current.forEach((fun) => {
           fun();
         });
 
+        ScrollTrigger.update();
 
         x.set(arg.scroll.x);
         y.set(arg.scroll.y);
