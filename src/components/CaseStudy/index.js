@@ -2,7 +2,6 @@
 import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import Headline from "./Headline";
 import ReturnBtn from "../ReturnBtn";
-import { AppStateContext } from "@contexts/AppStateContext";
 import styled from "styled-components";
 import { ProjectContainer } from "./components";
 import { useMotionValue, useTransform } from "framer-motion";
@@ -16,6 +15,7 @@ import NextProject from "./NextProject";
 import useRefreshMouseListeners from "../../hooks/useRefreshMouseListeners";
 import { useLocomotiveScroll } from "@contexts/LocoMotive";
 import { useMotionBreakPoint } from "@contexts/BreakPoint";
+import useUpdatePath from "@hooks/useUpdatePath";
 
 
 const args = {
@@ -108,9 +108,7 @@ const CaseStudy = ( { projectData = projectDataDefault, path, children } ) => {
   const { title, subTitle, about } = projectData;
   const { thumbnailUrl, title: nextProjectTitle, url } = projectData.nextProject;
   // const { headlineImg, publicURL } = projectData.imageData
-  const {
-    setCurrentPath
-  } = useContext( AppStateContext );
+  useUpdatePath( path );
 
   useRefreshMouseListeners( "[data-pointer]" );
 
@@ -146,7 +144,6 @@ const CaseStudy = ( { projectData = projectDataDefault, path, children } ) => {
   useEffect( () => {
     // console.log('fromProject : ', location, path)
     bgRef.current = document.body.querySelector( ".projectContainer" );
-    setCurrentPath( path );
     fromProjectList.set( false );
     fromCaseStudy.set( true );
 

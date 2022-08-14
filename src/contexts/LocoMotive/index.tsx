@@ -108,7 +108,7 @@ export function LocomotiveScrollProvider({
           if (!LocomotiveScrollRef.current) return;
 
           const top = arguments.length
-            ? LocomotiveScrollRef.current.scrollTo(value, 0, 0)
+            ? LocomotiveScrollRef.current.scrollTo(value as number, {})
             : LocomotiveScrollRef.current.scroll.instance.scroll.y;
           // console.log("scrollTop", top, value);
 
@@ -208,6 +208,8 @@ export function LocomotiveScrollProvider({
     // console.log("location change ---- -- - - - -");
 
     LocomotiveScrollRef.current.update();
+    yLimit.set(LocomotiveScrollRef.current?.scroll?.instance.limit.y);
+    xLimit.set(LocomotiveScrollRef.current?.scroll?.instance.limit.x);
 
     if (onLocationChange) {
       onLocationChange(LocomotiveScrollRef.current);

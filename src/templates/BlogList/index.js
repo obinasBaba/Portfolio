@@ -1,14 +1,14 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import BlogCard from "./components/BlogCard";
 import { graphql } from "gatsby";
 import styled, { css } from "styled-components";
 import { useMediaQuery, useTheme } from "@material-ui/core";
 import BlogList from "./components/BlogListContainer";
-import { AppStateContext, BackgroundOverlayStateContext } from "../../contexts/AppStateContext";
 import Moon from "../../components/MoonLight";
 import PenEffect from "./components/PenEffect";
 import useToolTip from "@hooks/useToolTip";
 import Seo from "@components/seo";
+import useUpdatePath from "@hooks/useUpdatePath";
 
 
 const moonStyle = css``;
@@ -27,12 +27,10 @@ const BlogListTemplate = ( {
   pageContext: { currentPage, pageCount },
   path
 } ) => {
-  const { setCurrentPath } = useContext( AppStateContext );
 
-  useEffect( () => {
-    setCurrentPath( path );
 
-  }, [] );
+  useUpdatePath( path );
+
 
   useToolTip( "[data-tooltip-text]" );
 

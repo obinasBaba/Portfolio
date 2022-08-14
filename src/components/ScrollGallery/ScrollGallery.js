@@ -70,7 +70,7 @@ const Gallery = () => {
 
   // const x = useMo();
 
-  const mapped = useTransform( yProgress, [0, 1], [0, -150] );
+  const mapped = useTransform( yProgress, [0, 1], [0, -100] );
 
   const x = useSpring( mapped, {
     mass: 0.5,

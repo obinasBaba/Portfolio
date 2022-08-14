@@ -1,10 +1,10 @@
-import React, { useRef } from 'react'
-import styled, { css } from 'styled-components'
-import {Button, Typography} from '@material-ui/core'
-import { useLottiAssets } from '../../../../hooks/queries/useLottiAssets'
-import {spacing, text} from "../../../../styles/mixins";
-import TopicIllustration from './Topicillustration'
-import {largeUp, xLargeUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
+import React, { useRef } from "react";
+import styled, { css } from "styled-components";
+import { Button, Typography } from "@material-ui/core";
+import { useLottiAssets } from "../../../../hooks/queries/useLottiAssets";
+import { spacing, text } from "../../../../styles/mixins";
+import TopicIllustration from "./Topicillustration";
+import { largeUp, xLargeUp, xxLargeUp } from "../../../../styles/mixins/breakpoints";
 import useRefreshMouseListeners from "../../../../hooks/useRefreshMouseListeners";
 
 const TopicItemContainer = styled.div`
@@ -21,47 +21,47 @@ const TopicItemContainer = styled.div`
   border-radius: 20px;
   background-color: #485564;
   transition: background-color 0.3s ease-in;
-  
+
   * {
-    cursor: none;
+    //cursor: none;
   }
 
-  ${spacing('p', 2)};
-  ${spacing('pt', 12)};
+  ${spacing( "p", 2 )};
+  ${spacing( "pt", 12 )};
 
-  ${largeUp(css`
+  ${largeUp( css`
     flex-grow: initial;
     flex-basis: initial;
-    
-    ${spacing('p', 2.7)};
-    ${spacing('pt', 6.7)};
 
-  `)};
+    ${spacing( "p", 2.7 )};
+    ${spacing( "pt", 6.7 )};
 
-  ${xxLargeUp(css`
+  ` )};
 
-    ${spacing('p', 2)};
+  ${xxLargeUp( css`
 
-  `)};
+    ${spacing( "p", 2 )};
+
+  ` )};
 
   //min-width: 300px;
 
   &:hover {
     background-color: #5d6c7b;;
 
-    ${({selected}) =>
-        !selected &&
-        css`
-          background-color: #758593;
-          transition: background-color 0.3s ease-out;
-        `};
+    ${( { selected } ) =>
+            !selected &&
+            css`
+              background-color: #758593;
+              transition: background-color 0.3s ease-out;
+            `};
   }
 
-  ${({selected}) =>
-      selected &&
-      css`
-        background-color: #758593;
-      `};
+  ${( { selected } ) =>
+          selected &&
+          css`
+            background-color: #758593;
+          `};
 
 
   & .topic_checkbox {
@@ -78,50 +78,50 @@ const TopicItemContainer = styled.div`
 
 
   }
-`
+`;
 
-const TopicTitle = styled(Typography)`
+const TopicTitle = styled( Typography )`
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 1.3px;
   color: #02021e;
 
-  ${text(1)};
-  ${spacing('mt', 0.5)};
-`
+  ${text( 1 )};
+  ${spacing( "mt", 0.5 )};
+`;
 
-const TopicBody = styled(Typography)`
+const TopicBody = styled( Typography )`
   font-weight: lighter;
   //color: #bac2d3;
   letter-spacing: 0.6px;
   line-height: 170%;
   color: #02021e;
 
-  ${text(0.8)};
-  
-  ${xLargeUp(css`
-  
-  `)};
-`
+  ${text( 0.8 )};
 
-function TopicItem({ title, body, path, selected, ...props }) {
-  const checkboxRef = useRef(null)
+  ${xLargeUp( css`
+
+  ` )};
+`;
+
+function TopicItem( { title, body, path, selected, ...props } ){
+  const checkboxRef = useRef( null );
 
 
-  useRefreshMouseListeners('.topic-container [data-pointer]')
+  useRefreshMouseListeners( ".topic-container [data-pointer]" );
 
 
   return (
     <TopicItemContainer
       selected={selected}
-      className='topic-item'
+      className="topic-item"
       data-pointer-color="#123"
       data-pointer="focus"
       onClick={() => {
-        checkboxRef.current.click()
+        checkboxRef.current.click();
       }}
     >
-      <Button/>
+      <Button />
 
       <input
         ref={checkboxRef}
@@ -138,7 +138,7 @@ function TopicItem({ title, body, path, selected, ...props }) {
 
       <TopicBody variant="subtitle2">{body}</TopicBody>
     </TopicItemContainer>
-  )
+  );
 }
 
-export default TopicItem
+export default TopicItem;

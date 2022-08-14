@@ -87,7 +87,7 @@ export const GlobalStyle = createGlobalStyle`
     ${mediumUp( css`
       &.no-cursor {
         & * {
-          cursor: none;
+          //cursor: none;
         }
       }
     ` )};

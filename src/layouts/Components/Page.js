@@ -12,6 +12,7 @@ import { BottomGradient, Main, PageContainer } from "./Styled";
 import ScreenOverlay from "../../components/ScreenOverlay";
 import NavigationMenu from "../../components/NavigationMenu";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import Cursor from "@components/Cursor";
 
 // import {} from '@re'
 
@@ -62,7 +63,7 @@ function Page( { children, path } ){
 
         <BackgroundStars />
 
-        {/* <Cursor /> */}
+        <Cursor />
 
         <NavigationMenu />
 

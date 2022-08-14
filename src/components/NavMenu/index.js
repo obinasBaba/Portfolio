@@ -1,8 +1,9 @@
 import React, { Suspense, useEffect } from "react";
 import { motion } from "framer-motion";
+import useRefreshMouseListeners from "@hooks/useRefreshMouseListeners";
+import { useLocomotiveScroll } from "@contexts/LocoMotive";
 import Menu from "./components/Menu";
 import { container } from "./navmenu.module.scss";
-import { useLocomotiveScroll } from "@contexts/LocoMotive";
 
 
 const containerVariants = {};
@@ -11,7 +12,7 @@ const LogoBgEffect = React.lazy( () => import( /* webpackPrefetch: true */ /* we
 
 const NavMenu = ( { closeMenu } ) => {
 
-  // useRefreshMouseListeners( "#menu-container [data-pointer]" );
+  useRefreshMouseListeners( "#menu-container [data-pointer]" );
   const { locoInstance } = useLocomotiveScroll();
 
 
@@ -20,6 +21,7 @@ const NavMenu = ( { closeMenu } ) => {
 
     return () => {
       locoInstance.start();
+      locoInstance.update();
     };
   }, [] );
 

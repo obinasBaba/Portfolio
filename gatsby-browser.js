@@ -34,14 +34,14 @@ export const onRouteUpdate = ( { location, prevLocation } ) => {
 
 export const onRouteUpdateDelayed = () => {
   // console.log( "We can show loading indicator now" );
-  console.log( "onRouteUpdateDelayed", Event.listeners( "end" ) );
+  // console.log( "onRouteUpdateDelayed", Event.listeners( "end" ) );
 
   Event.emit( "start" );
 };
 
 export const onPreRouteUpdate = ( { location, prevLocation } ) => {
-  console.log( "Gatsby started to change location to", location.pathname, Event.listeners( "start" ) );
-  console.log( "Gatsby started to change location from", prevLocation ? prevLocation.pathname : null );
+  // console.log( "Gatsby started to change location to", location.pathname, Event.listeners( "start" ) );
+  // console.log( "Gatsby started to change location from", prevLocation ? prevLocation.pathname : null );
 
   if ( prevLocation && prevLocation.pathname !== location.pathname ) {
     Event.emit( "start" );

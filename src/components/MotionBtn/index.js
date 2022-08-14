@@ -7,7 +7,7 @@ import { spacing } from "../../styles/mixins";
 
 const Btn = styled( motion.div )`
 
-  & .btn-txt {
+  .btn-txt {
     margin: 0;
     padding: 0;
     user-select: none;
@@ -16,6 +16,7 @@ const Btn = styled( motion.div )`
     -webkit-user-select: none;
     //line-height: 0;
   }
+
 
   .wrapper {
     position: relative;
@@ -49,9 +50,11 @@ const Btn = styled( motion.div )`
       transition: all 0.3s ease;
     }
 
+  }
 
-    &:not(.no-hover):hover {
+  &:not(.no-hover):hover {
 
+    .wrapper {
       transform: translateX(15px);
       color: white;
 
@@ -62,10 +65,10 @@ const Btn = styled( motion.div )`
         box-shadow: 0 0 .5rem var(--medium-blue-color);
         //transform: scale(1.25);
       }
-
     }
-  }
 
+
+  }
 
   a {
     position: absolute;
@@ -74,7 +77,7 @@ const Btn = styled( motion.div )`
     bottom: 0;
     right: 0;
     z-index: 999;
-    cursor: none;
+    //cursor: none;
     user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;

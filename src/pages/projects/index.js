@@ -1,24 +1,20 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React, { useContext, useLayoutEffect } from "react";
-import { AppStateContext } from "@contexts/AppStateContext";
+import React from "react";
 import ProjectPage from "@/scenes/ProjectPage";
 import useToolTip from "@/hooks/useToolTip";
 import Seo from "../../components/seo";
+import useUpdatePath from "@hooks/useUpdatePath";
+import useRefreshMouseListeners from "@hooks/useRefreshMouseListeners";
 
 function Projects( { path } ){
 
 
-  const {
-    setCurrentPath
-  } = useContext( AppStateContext );
+  useUpdatePath( path );
 
-  useLayoutEffect( () => {
-    setCurrentPath( path );
-  }, [] );
 
   useToolTip( " [data-tooltip-text]" );
-  // useCursorEventRefresher( '.project-work-container [data-pointer]' )
+  useRefreshMouseListeners( ".project-work-container [data-pointer]" );
 
 
   return (
