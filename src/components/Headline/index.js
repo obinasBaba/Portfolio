@@ -1,45 +1,80 @@
 import React from "react";
-import styled from "styled-components";
 import { GradientText } from "../GradientText";
-import { spacing, text } from "../../styles/mixins";
 
-const TitleContainer = styled.header`
-  text-align: center;
-  margin: 0 auto;
-  width: min-content;
-  max-height: 225px;
+import { container, sub } from "./headline.module.scss";
+import { motion, MotionConfig } from "framer-motion";
 
-  ${( { mb } ) => mb ? spacing( "mb", mb ) : spacing( "mb", 0 )};
+const titleVariants = {
+  initial: {
+    opacity: 0,
+    y: "-100%"
+  },
+  inView: {
+    opacity: 1,
+    y: 0
+  },
+  animate: {},
+  exit: {}
+};
 
-  & > :last-child {
-    margin-right: 10px;
-  }
+const subVariants = {
+  initial: {
+    opacity: 0,
+    y: "100%"
 
-  .subtitle {
-    ${text( 1 )};
-    letter-spacing: -.3px;
-  }
+  },
+  inView: {
+    opacity: 1,
+    y: 0
 
-`;
+  },
+  animate: {},
+  exit: {}
+};
 
+const transition = {
+  duration: 2,
+  // ease: [0.6, 0.01, 0, 0.9],
+  ease: [0.165, 0.84, 0.44, 1]
+
+};
 
 function HeadlineTitle( { title, subtitle, mb, clsName, ...props } ){
 
 
   return (
-    <TitleContainer {...props} mb={mb} className={clsName}>
-      <GradientText variant="h1"
-                    noWrap>
-        {title}
-      </GradientText>
+    <motion.header className={container} {...props} mb={mb}
+                   variants={{}}
+                   initial="initial"
+                   animate="animate"
+                   exit="exit"
+                   whileInView="inView"
+                   viewport={{
+                     amount: "all",
+                     once: true
+                   }}
+    >
 
-      <GradientText className="subtitle"
-                    align="right" variant="body1" noWrap>
-        {subtitle}
-      </GradientText>
+      <MotionConfig transition={transition}>
+
+        <motion.div variants={titleVariants}>
+          <GradientText variant="h1"
+                        noWrap>
+            {title}
+          </GradientText>
+        </motion.div>
 
 
-    </TitleContainer>
+        <motion.div variants={subVariants}>
+          <GradientText className={sub}
+                        align="right" variant="body1" noWrap>
+            {subtitle}
+          </GradientText>
+        </motion.div>
+
+      </MotionConfig>
+
+    </motion.header>
   );
 }
 

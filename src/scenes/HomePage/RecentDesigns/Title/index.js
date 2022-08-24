@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
 import { Container, useMediaQuery, useTheme } from "@material-ui/core";
 import { motion, useSpring, useTransform } from "framer-motion";
 import { length, spacing } from "../../../../styles/mixins";
 import HeadlineTitle from "../../../../components/Headline";
-import { MotionValueContext } from "../../../../contexts/MotionStateWrapper";
 import { useProjectSvg } from "../../../../hooks/queries/useProjectSvg";
 import { smallUp, xLargeUp } from "../../../../styles/mixins/breakpoints";
 import { useLocomotiveScroll } from "@contexts/LocoMotive";

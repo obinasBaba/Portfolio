@@ -1,0 +1,33 @@
+@use "@style" as *;
+//noinspection SassScssResolvedByNameOnly
+
+.container {
+
+  text-align: center;
+  margin: 0 auto;
+  width: min-content;
+  max-height: 225px;
+  overflow: hidden;
+
+  //border: 1px solid #000;
+
+  //${( { mb } ) => mb ? spacing( "mb", mb ) : spacing( "mb", 0 )};
+
+  & > :last-child {
+    margin-right: 10px;
+  }
+
+
+  & :local {
+
+    .sub {
+
+      background-image: var(--gray_gradient);
+
+      @include font-size-text(1rem);
+
+      letter-spacing: -.3px;
+    }
+  }
+
+}
