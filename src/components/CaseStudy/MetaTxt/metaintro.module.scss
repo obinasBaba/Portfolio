@@ -1,0 +1,68 @@
+@use "@style" as *;
+
+//noinspection SassScssResolvedByNameOnly
+.container {
+  @include margin(top, 16rem);
+  @include margin(bottom, 10rem);
+
+  & :local {
+
+    .wrapper {
+
+
+      max-width: 100%;
+      display: flex;
+      flex-flow: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      list-style-type: none;
+      padding: 0;
+      color: #02021e;
+      //margin: 0 0 0 12%;
+
+      //border: thin solid red;
+      gap: 1rem;
+
+
+      @include media-breakpoint-up(md) {
+        max-width: 70%;
+        justify-content: flex-start;
+        gap: 0;
+
+        li{
+          flex-basis: 47%;
+        }
+      }
+
+
+      li {
+        display: flex;
+        flex-flow: column;
+        align-items: flex-start;
+        justify-content: center;
+        flex-basis: 50%;
+
+        //border: 1px solid #000;
+
+        @include margin(top, 3rem);
+
+      }
+    }
+
+    .desc{
+      max-width: 65ch;
+      @include margin(top, 1rem);
+    }
+
+    .key{
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .value{
+      letter-spacing: 0;
+      font-weight: 100;
+    }
+  }
+}

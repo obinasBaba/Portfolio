@@ -102,6 +102,19 @@ body {
     height: 100vh;
     overflow: hidden;
   }
+
+  &.darkish{
+    --stroke-top: #f9d6ac;
+    --stroke-bottom: #02021e;
+    --head-opacity: 1;
+
+    --theme: rgba(2, 11, 22, 1);
+    --bottom-gradient: linear-gradient(to top,
+            #fbfefc 0%,
+            rgba(243, 243, 243, 0) 94%);
+
+
+  }
 }
 
 

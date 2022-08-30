@@ -5,12 +5,12 @@ import styled from "styled-components";
 const RContainer = styled( Container )`
 `
 
-const ResponsiveContainer = ({children}) => {
+const ResponsiveContainer = ({children, ...props}) => {
     const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.up('xxl'))
 
     return (
-        <RContainer  maxWidth={matches ? 'xl' : 'lg'}>
+        <RContainer  maxWidth={matches ? 'xl' : 'lg'} {...props}>
             {children}
         </RContainer>
     );

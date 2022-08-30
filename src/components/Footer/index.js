@@ -182,6 +182,7 @@ function Footer(){
     .2 );
 
   useEffect( () => {
+    return;
       const btm = document.querySelector( ".btm-gradient" );
 
       if ( inView )

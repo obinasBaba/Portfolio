@@ -19,7 +19,8 @@ export const BottomGradient = styled.div`
   bottom: 0;
   right: 0;
   pointer-events: none;
-  opacity: var(--btm-gradient-opacity);
+  //opacity: var(--btm-gradient-opacity);
+  opacity: 0;
   background-image: var(--bottom-gradient);
   transition: all 0.35s ease-in-out;
 

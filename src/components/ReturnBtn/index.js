@@ -103,14 +103,10 @@ const pathVariant = {
 }
 
 
-const ReturnBtn = ( { onClick, to, tooltip='Blog-list' } ) => {
+const ReturnBtn = ( { onClick, tooltip='Blog-list' } ) => {
 
   return (
     <ReturnBtnContainer
-                        data-tooltip
-                        data-pointer='focus'
-                        data-pointer-color='#3719ca'
-                        data-tooltip-text={tooltip}
                         className='exitBtn'
                         onClick={onClick}
     >

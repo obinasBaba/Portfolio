@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import Headline from "@components/CaseStudy/Headline";
+import { motion } from "framer-motion";
 import useToolTip from "../../../hooks/useToolTip";
 import CaseStudy from "../../../components/CaseStudy";
 import MetaTxt from "../../../components/CaseStudy/MetaTxt";
@@ -42,10 +44,28 @@ const projectDataDefault = {
   }
 };
 
+const DetectViewPort = ( { children = .5, onEnter, onLeave, options = { amount: .5 } } ) => (
+  <motion.div viewport={{
+    ...options
+  }} onViewportEnter={entry => {
+    onEnter( entry );
+  }} onViewportLeave={entry => {
+    onLeave( entry );
+  }}
+  >
+    {children}
+  </motion.div>
+);
+
 function Vigoza( { location } ){
   // console.log('vigozaArg: ', arg)
 
+  useToolTip( "[data-tooltip-text]" );
+  useUpdatePath( location.pathname );
   const { headlineImage, webView, mobileView, showcase } = useVigozaAssets();
+
+  const [scrolled, setScrolled] = useState( false );
+
   const {
     amber,
     flame,
@@ -55,20 +75,40 @@ function Vigoza( { location } ){
     fontAby,
     fontRai
   } = useColorAssets();
+
   const colors = [amber, flame, pearl, spartan, white];
-
-  useUpdatePath( location.pathname );
-
-  projectDataDefault.nextProject.thumbnailUrl =
-    projectDataDefault.headlineImage =
-      headlineImage.publicURL;
+  const { title, subTitle, about } = projectDataDefault;
+  projectDataDefault.nextProject.thumbnailUrl = headlineImage.publicURL;
   projectDataDefault.location = location;
   // useLocoScroll();
-  useToolTip( "[data-tooltip-text]" );
 
   return (
-    <CaseStudy projectData={projectDataDefault}>
-      <MetaTxt />
+    <CaseStudy projectData={projectDataDefault} scrolled={scrolled}>
+
+      <Headline
+        title={title}
+        subTitle={subTitle}
+        about={about}
+        media=""
+      />
+
+      <motion.div viewport={{
+        amount: .6
+      }} onViewportEnter={() => {
+
+        if ( !scrolled )
+          setScrolled( true );
+
+      }} onViewportLeave={entry => {
+
+        if ( entry.boundingClientRect.y >= 0 ) {
+          setScrolled( false );
+        }
+
+      }}
+      >
+        <MetaTxt />
+      </motion.div>
 
       <WebView web={webView} mobile={mobileView} tempWebView={showcase} />
 

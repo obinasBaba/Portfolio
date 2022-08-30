@@ -1,11 +1,11 @@
 // noinspection JSIgnoredPromiseFromCall
 
 import React from "react";
+import useRefreshMouseListeners from "@hooks/useRefreshMouseListeners";
+import useUpdatePath from "@hooks/useUpdatePath";
 import ProjectPage from "@/scenes/ProjectPage";
 import useToolTip from "@/hooks/useToolTip";
 import Seo from "../../components/seo";
-import useUpdatePath from "@hooks/useUpdatePath";
-import useRefreshMouseListeners from "@hooks/useRefreshMouseListeners";
 
 function Projects( { path } ){
 

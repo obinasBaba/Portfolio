@@ -1,0 +1,51 @@
+@use "@style" as *;
+
+
+//noinspection SassScssResolvedByNameOnly
+.container {
+  position: relative;
+  z-index: 2;
+  //max-width: 1600px;
+  width: 100%;
+  overflow: hidden;
+
+  --headlineBg: #02021e;
+  --contentBg: #02021e;
+
+  &.containerScrolled{
+    --headlineBg: #fbfefc;
+    --contentBg: #fbfefc;
+  }
+
+  & > :not(:first-child){
+    color: #02021e;
+  }
+
+  & :local{
+
+    .returnBtn{
+      position: absolute;
+      top: f-unit(250px);
+      z-index: 10;
+
+      margin-left: 1.3rem;
+
+      @include media-breakpoint-up(md) {
+        @include margin(left, 2.7rem);
+      }
+    }
+
+    .scrollDown{
+      position: fixed;
+      left: 3.8%;
+      top: 29%;
+      bottom: 5%;
+      z-index: 7;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      justify-content: space-between;
+
+    }
+  }
+}

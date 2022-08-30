@@ -1,27 +1,27 @@
 /* eslint-disable no-nested-ternary */
-import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
-import Headline from "./Headline";
-import ReturnBtn from "../ReturnBtn";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import { ProjectContainer } from "./components";
-import { useMotionValue, useTransform } from "framer-motion";
-import { HeadLineBG } from "./Headline/Components";
-import { bgVariant, transition } from "./Headline/variants";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { MotionValueContext } from "@contexts/MotionStateWrapper";
-import ProjectScrollDown from "../../scenes/ProjectPage/components/SideBarTools/ProjectScrollDown";
 import { createPortal } from "react-dom";
 import { navigate } from "gatsby";
-import NextProject from "./NextProject";
-import useRefreshMouseListeners from "../../hooks/useRefreshMouseListeners";
 import { useLocomotiveScroll } from "@contexts/LocoMotive";
 import { useMotionBreakPoint } from "@contexts/BreakPoint";
 import useUpdatePath from "@hooks/useUpdatePath";
+import clsx from "clsx";
+import Headline from "./Headline";
+import ReturnBtn from "../ReturnBtn";
+import { HeadLineBG } from "./Headline/Components";
+import { bgVariant, transition } from "./Headline/variants";
+import ProjectScrollDown from "../../scenes/ProjectPage/components/SideBarTools/ProjectScrollDown";
+import NextProject from "./NextProject";
+import useRefreshMouseListeners from "../../hooks/useRefreshMouseListeners";
+
+import { container, containerScrolled, returnBtn, scrollDown } from "./casestudy.module.scss";
 
 
-const args = {
-  path: undefined,
-  scroll: undefined
-};
+const FixedPortal = ( props ) => createPortal( props.children, document.body );
+
 
 const FixedItems = styled.div`
   position: fixed;
@@ -46,25 +46,18 @@ const containerVariants = {
   initial: {
     opacity: 0
   },
+
   animate: {
     opacity: 1
   },
+
   exit( arg ){
-    if ( arg.path )
-      args.path = arg.path;
-    if ( arg.scrollTop )
-      args.scroll = arg.scrollTop;
-
     if ( arg.path === "/projects/" ) {
-      if ( args.scroll )
-        args.scroll();
-
       return {};
     }
 
     return {
-      opacity: 0,
-      transition: {
+      opacity: 0, transition: {
         duration: 1.5
       }
     };
@@ -72,39 +65,24 @@ const containerVariants = {
 };
 
 const projectDataDefault = {
-  title: "Vigoza Digital Agency",
-  subTitle: "this is vigoza subtitle",
-  headlineImage: "",
-  about: {
-    role: "FrontEnd Developer",
-    context: "Design",
-    period: "End 2018"
-  },
-  intro: {
-    themeColor: "#f1c9b3",
-    color: "#02021e",
-    logoUrl: "/projects/honey-logo.png",
-    // imageData: preview2,
-    link: "https://www.prosapient.com",
-    title: "The Project",
-    desc:
-      `
+  title: "Vigoza Digital Agency", subTitle: "this is vigoza subtitle", headlineImage: "", about: {
+    role: "FrontEnd Developer", context: "Design", period: "End 2018"
+  }, intro: {
+    themeColor: "#f1c9b3", color: "#02021e", logoUrl: "/projects/honey-logo.png", // imageData: preview2,
+    link: "https://www.prosapient.com", title: "The Project", desc: `
         Honey is an outstanding Beauty and Hair space in Addis Abeba, Ethiopia.
         They include a variety of services including professional hair cutting and
         styling, manicures , pedicures, cosmetics, makeup and makeovers to say a few.
         This WebApp(PWA) makes their client to keep up and admire their daily post as
         well us to easily make an appointment despite the massive no of client.   
         `
-  },
-  nextProject: {
-    title: "next title",
-    url: "/",
-    thumbnailUrl: "/"
+  }, nextProject: {
+    title: "next title", url: "/", thumbnailUrl: "/"
   }
 };
 
 
-const CaseStudy = ( { projectData = projectDataDefault, path, children } ) => {
+const CaseStudy = ( { projectData = projectDataDefault, path, children, scrolled } ) => {
   const { title, subTitle, about } = projectData;
   const { thumbnailUrl, title: nextProjectTitle, url } = projectData.nextProject;
   // const { headlineImg, publicURL } = projectData.imageData
@@ -119,65 +97,32 @@ const CaseStudy = ( { projectData = projectDataDefault, path, children } ) => {
   const { breakpoint } = useMotionBreakPoint();
 
 
-  const [scrolled, setScrolled] = useState( false );
-  const bodyRef = useRef( null );
-  const bgRef = useRef( null );
-
-  const moInitial = useMotionValue( fromProjectList.get() ?
-    (breakpoint.get().lgUp ? ["fromProjectsInitial"] : ["fromProjectsSmallInitial"])
-    : breakpoint.get().lgUp ? ["initial"] : ["smallInitial"] );
-
-  const moAnimate = useMotionValue( fromProjectList.get() ?
-    (breakpoint.get().lgUp ? ["fromProjectsAnimate"] : ["fromProjectsSmallAnimate"])
-    : breakpoint.get().lgUp ? ["animate"] : ["smallAnimate"] );
-
+  // const [scrolled, setScrolled] = useState( false );
+  const moInitial = useMotionValue( fromProjectList.get() ? (breakpoint.get().lgUp ? ["fromProjectsInitial"] : ["fromProjectsSmallInitial"]) : breakpoint.get().lgUp ? ["initial"] : ["smallInitial"] );
+  const moAnimate = useMotionValue( fromProjectList.get() ? (breakpoint.get().lgUp ? ["fromProjectsAnimate"] : ["fromProjectsSmallAnimate"]) : breakpoint.get().lgUp ? ["animate"] : ["smallAnimate"] );
   const showScrollDown = useMotionValue( 0 );
 
-  const { locoInstance, yProgress } = useLocomotiveScroll();
-
-
-  useLayoutEffect( () => {
-    bodyRef.current = document.body;
-  }, [] );
-
+  const { locoInstance } = useLocomotiveScroll();
 
   useEffect( () => {
     // console.log('fromProject : ', location, path)
-    bgRef.current = document.body.querySelector( ".projectContainer" );
     fromProjectList.set( false );
     fromCaseStudy.set( true );
 
   }, [] );
 
-  useTransform( yProgress, latest => {
-    if ( latest > .1 ) {
-      if ( !scrolled )
-        setScrolled( true );
-
-    } else if ( scrolled )
-      setScrolled( false );
-  } );
-
   useEffect( () => {
 
     if ( scrolled ) {
       showScrollDown.set( 1 );
-      bgRef.current
-        ?.classList.add( "container-scrolled" );
-
-      document.body.classList.add( "blog-clr" );
+      document.body.classList.add( "darkish" );
     } else {
       showScrollDown.set( 0 );
-
-      bgRef.current
-        ?.classList.remove( "container-scrolled" );
-
-      document.body.classList.remove( "blog-clr" );
-
+      document.body.classList.remove( "darkish" );
     }
 
+    return () => document.body.classList.remove( "darkish" );
 
-    return () => document.body.classList.remove( "blog-clr" );
   }, [scrolled] );
 
 
@@ -188,56 +133,42 @@ const CaseStudy = ( { projectData = projectDataDefault, path, children } ) => {
     } );
   };
 
-  const FixedPortal = ( props ) => createPortal( props.children, document.body );
 
-  return (
-    <>
+  return (<motion.div className={clsx( [container, scrolled && containerScrolled] )}
+                      id="headline"
+                      variants={containerVariants}
+                      initial={moInitial.get()}
+                      animate={moAnimate.get()}
+                      exit="exit"
+                      custom={{
+                        scrollTop: () => null
+                      }}
+    >
 
-      {
-        (typeof document !== `undefined`) && <FixedPortal>
-          <FixedItems>
-            {/* <Link to={projectData?.backUrl || '/projects'}  > */}
-            <ReturnBtn to={projectData?.backUrl || "/projects"}
-                       tooltip="project list"
-                       onClick={returnClick} />
-            {/* </Link> */}
+      {(typeof document !== `undefined`) && <FixedPortal>
+        <div className={scrollDown}>
+          <ProjectScrollDown activeIndex={showScrollDown} />
+        </div>
+      </FixedPortal>}
 
-            <ProjectScrollDown activeIndex={showScrollDown} />
-
-          </FixedItems>
-        </FixedPortal>
-      }
-
-
-      <ProjectContainer className="projectContainer case-study-container"
-                        variants={containerVariants}
-                        initial={moInitial.get()}
-                        animate={moAnimate.get()}
-                        exit="exit"
-                        custom={{
-                          scrollTop: () => {
-
-                          }
-                        }}
+      <div className={returnBtn}
+           data-pointer="focus"
+           data-pointer-color="#3719ca"
+           data-scroll={true} data-scroll-sticky={true}
+           data-scroll-target="#headline"
+           data-scroll-offset="20%"
       >
+        <ReturnBtn onClick={returnClick} />
+      </div>
 
-        <Headline
-          title={title}
-          subTitle={subTitle}
-          about={about}
-          media={projectData.headlineImage}
-        />
 
-        <HeadLineBG variants={bgVariant} transition={transition} />
+      <HeadLineBG variants={bgVariant} transition={transition} />
 
-        {
-          children
-        }
+      {children}
 
-        <NextProject thumbnailUrl={thumbnailUrl} title={nextProjectTitle} url={url} />
+      <NextProject thumbnailUrl={thumbnailUrl} title={nextProjectTitle} url={url} />
 
-      </ProjectContainer>
-    </>
+    </motion.div>
 
   );
 };

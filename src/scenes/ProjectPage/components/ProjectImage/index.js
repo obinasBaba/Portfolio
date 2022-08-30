@@ -1,8 +1,9 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React, { useContext } from 'react'
-import { motion } from 'framer-motion'
-import { Link } from 'gatsby'
+import React, { useContext } from "react";
+import { motion } from "framer-motion";
+import { Link } from "gatsby";
+import { MotionValueContext } from "@contexts/MotionStateWrapper";
 import {
   effectVariant,
   imgContainerVariant,
@@ -10,27 +11,26 @@ import {
   imgOverVariants,
   imgVariant,
   innerVariant,
-  transition,
-} from './Variants'
-import { InnerWrapper, OverflowWrapper, ProjectImg } from './components'
+  transition
+} from "./Variants";
+import { InnerWrapper, OverflowWrapper, ProjectImg } from "./components";
 
-import StackUsed from '../StackUsed'
-import { MotionValueContext } from '../../../../contexts/MotionStateWrapper'
+import TestPreview from './Bottle-Haus Thumbnail.png'
+
+import StackUsed from "../StackUsed";
 
 function ProjectImage( {
-                         index,
+  index,
+  exit,
+  items
+} ){
 
-                         exit,
-                         items,
 
-
-                       } ){
-  // console.log(preview)
   const {
-    variantsUtil: { fromProjectList },
-  } = useContext( MotionValueContext )
+    variantsUtil: { fromProjectList }
+  } = useContext( MotionValueContext );
 
-  const { partners, preview, link, url } = items
+  const { partners, preview, link, url } = items;
 
   return (
     <ProjectImg
@@ -48,14 +48,15 @@ function ProjectImage( {
           to={link}
           state={{ path: url }}
           onClick={() => fromProjectList.set( true )}
-          data-pointer='focus'
-          data-pointer-color='#3719ca'
+          data-pointer="focus"
+          data-pointer-color="#3719ca"
           data-tooltip
-          data-tooltip-text='Let me tell you a story'
+          data-tooltip-text="Let me tell you a story"
         />
 
         <motion.img
-          data-src={preview.publicURL}
+          // data-src={preview.publicURL}
+          src={TestPreview}
           variants={imgVariant}
           transition={transition}
         />
@@ -86,9 +87,9 @@ function ProjectImage( {
         </motion.div>
       </OverflowWrapper>
 
-      {/*<StackUsed items={partners} custom={{ exit }}/>*/}
+      <StackUsed items={partners} custom={{ exit }} />
     </ProjectImg>
-  )
+  );
 }
 
-export default ProjectImage
+export default ProjectImage;

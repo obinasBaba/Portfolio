@@ -4,15 +4,15 @@ import { useMotionBreakPoint } from "@contexts/BreakPoint";
 import { LocomotiveScrollProvider } from "@contexts/LocoMotive";
 import { AppStateContext } from "@contexts/AppStateContext";
 import { MotionValueContext } from "@contexts/MotionStateWrapper";
-import BackgroundStars from "../../components/BackgroundStars";
-import HeaderAppBar from "../../components/HeaderAppBar";
-import ToolTip from "../../components/Fixed/ToolTip";
-import ProgressCircle from "../../components/ScrollProgressCircle";
-import { BottomGradient, Main, PageContainer } from "./Styled";
-import ScreenOverlay from "../../components/ScreenOverlay";
-import NavigationMenu from "../../components/NavigationMenu";
-import LoadingSpinner from "../../components/LoadingSpinner";
 import Cursor from "@components/Cursor";
+import LoadingSpinner from "@components/LoadingSpinner";
+import BackgroundStars from "@components/BackgroundStars";
+import HeaderAppBar from "@components/HeaderAppBar";
+import ToolTip from "@components/Fixed/ToolTip";
+import ProgressCircle from "@components/ScrollProgressCircle";
+import ScreenOverlay from "@components/ScreenOverlay";
+import NavigationMenu from "@components/NavigationMenu";
+import { BottomGradient, Main, PageContainer } from "./Styled";
 
 // import {} from '@re'
 

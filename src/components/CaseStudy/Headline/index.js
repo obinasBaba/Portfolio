@@ -14,10 +14,10 @@ import {
 } from "./variants";
 import Tags from "./components/Tags";
 import Title from "../../../scenes/ProjectPage/components/ProjectDescription/components/Title";
+import TestPreview from "@scenes/ProjectPage/components/ProjectImage/Bottle-Haus Thumbnail.png";
 
 
-const Headline = ( { subTitle, title, about, media } ) => {
-  return (
+const Headline = ( { subTitle, title, about, media } ) => (
     <HeadlineContainer variants={containerVariants}>
       <Texts variants={textsVariant} transition={transition}>
         <Tags txt="Analytics, UX, UI, Icons, Front-end" />
@@ -30,18 +30,21 @@ const Headline = ( { subTitle, title, about, media } ) => {
           }}
         />
 
-        <motion.div variants={btnVariant} transition={transition}>
+        <motion.div variants={btnVariant} transition={transition} style={{color: 'white'}}>
           <MotionBtn margin={false} text="Visit Site" />
         </motion.div>
       </Texts>
 
       <ImageWrapper variants={imgWrapperVariant} transition={transition}>
         <InnerWrapper variants={innerVariant} transition={transition}>
-          <motion.img src={media} />
+          <motion.img
+            // src={media}
+                      src={TestPreview}
+
+          />
         </InnerWrapper>
       </ImageWrapper>
     </HeadlineContainer>
   );
-};
 
 export default Headline;
