@@ -12,9 +12,10 @@ import useVigozaAssets from "../../../hooks/queries/useVigozaAssets";
 import useColorAssets from "../../../hooks/queries/useColorAssets";
 import WebView from "../../../components/CaseStudy/WebView";
 import useUpdatePath from "../../../hooks/useUpdatePath";
-import RectangleView from "@/pages/projects/vigoza/components/RectangleView";
-import HorizontalGallery from "@/pages/projects/vigoza/components/HorizontalGallery";
 import MarqueeSliderView from "@/pages/projects/vigoza/components/MarqueeSliderView";
+import WebViewSection from "@/pages/projects/vigoza/components/WebViewSection";
+import useJuviAssets from "@hooks/queries/useJuviAssets";
+import ElementsViewSection from "@/pages/projects/vigoza/components/ElementsViewSection";
 
 const projectDataDefault = {
   title: "Vigoza Digital Agency",
@@ -76,8 +77,9 @@ function Vigoza( { location } ){
     spartan,
     white,
     fontAby,
-    fontRai
-  } = useColorAssets();
+    fontRai,
+    elements
+  } = useJuviAssets();
 
   const colors = [amber, flame, pearl, spartan, white];
   const { title, subTitle, about } = projectDataDefault;
@@ -113,21 +115,30 @@ function Vigoza( { location } ){
         <MetaTxt />
       </motion.div>
 
-     {/* <RectangleView/>
+      {/*
 
-      <HorizontalGallery/>*/}
-
+      <RectangleView/>
+      <HorizontalGallery/>
       <MarqueeSliderView/>
 
-      <WebView web={webView} mobile={mobileView} tempWebView={showcase} />
+      <WebViewSection />
+
+
+       */}
+
+
+
+
 
       <Intro intro={projectDataDefault.intro} />
 
-      {/* <AnalysisPreparation /> */}
 
       <ColorPalette colors={colors} />
 
       <FontUsed fonts={[fontAby, fontRai]} />
+
+      <ElementsViewSection elements={elements} />
+
 
       {/* <Concept /> */}
 

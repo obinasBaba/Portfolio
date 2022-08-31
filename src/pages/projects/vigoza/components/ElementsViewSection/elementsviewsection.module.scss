@@ -1,0 +1,31 @@
+@use "@style" as *;
+
+//noinspection SassScssResolvedByNameOnly
+.container{
+  width: 100%;
+  background-color: var(--headlineBg);
+
+   @include padding(top, 10rem);
+  // @include padding(bottom, 8rem);
+
+  & :local{
+
+    .wrapper{
+
+    }
+
+    .elementImg{
+      max-width: 40vmax;
+      margin: 0 auto;
+    }
+
+    .text{
+      //@include margin(bottom, 3rem);
+
+      h3{
+        font-weight: bolder;
+      }
+    }
+
+  }
+}

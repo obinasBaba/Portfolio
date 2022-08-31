@@ -22,6 +22,7 @@
     .swiperContainer{
       position: relative;
       width: 70%;
+      //max-width: 500px;
       overflow: visible;
       display: grid;
       place-items: center;
@@ -51,10 +52,6 @@
 
 
     .swiperItem{
-      //border: thick solid indigo;
-      //width: 60% !important;
-      //padding: 0 4rem;
-      //padding: 10px;
 
       .vid{
         margin: 0 4.5rem;

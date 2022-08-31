@@ -2,14 +2,12 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
-// @ts-ignore
 import { container, navController, swiperContainer, swiperItem, vid } from "./marqueesliderview.module.scss";
 import "swiper/css";
 import "swiper/css/pagination";
-// import "swiper/css/navigation";
 import Couples from "./couples_c.webm";
 
-const VPlayer = () => (
+export const VPlayer = ( { src = Couples } ) => (
   <div className={vid}>
     <header>
       <span />
@@ -17,7 +15,7 @@ const VPlayer = () => (
       <span />
     </header>
     <video className="video" preload="metadata" muted={true} loop={true} playsInline={true}>
-      <source src={Couples} type="video/webm" />
+      <source src={src} type="video/webm" />
       {/*<source src="https://dev.jaro.io/jaro/cases/cara/couples_c.mp4" type="video/mp4" />*/}
     </video>
   </div>
@@ -63,7 +61,7 @@ const MarqueeSliderView = () => {
         {
           Array.from(new Array(4))
             .map((v, idx) => (
-              <SwiperSlide key={idx} className={swiperItem}><VPlayer /></SwiperSlide>
+              <SwiperSlide key={idx} className={swiperItem}><VPlayer src={Couples} /></SwiperSlide>
             ))
         }
 
