@@ -1,0 +1,129 @@
+@use "@style" as *;
+
+//noinspection SassScssResolvedByNameOnly
+.container{
+  width: 100%;
+
+   @include margin(top, 5rem);
+   @include padding(1rem);
+
+
+  & :global{
+    .swiper-slide-active{
+      //border: 3px solid saddlebrown;
+    }
+
+
+  }
+
+  & :local{
+
+
+    .swiperContainer{
+      position: relative;
+      width: 70%;
+      overflow: visible;
+      display: grid;
+      place-items: center;
+
+      //border: 1px solid #000;
+
+      & :global{
+        .swiper-pagination.swiper-pagination-progressbar{
+          position: absolute;
+          display: block;
+          bottom: -15%;
+          top: initial;
+          left: initial;
+          width: 30%;
+          max-width: 300px;
+          border-radius: 500px;
+
+          span{
+            background-color: var(--dark-gray);
+          }
+
+        }
+      }
+
+      //border: thin solid rgba(0, 0, 0, 0.11);
+    }
+
+
+    .swiperItem{
+      //border: thick solid indigo;
+      //width: 60% !important;
+      //padding: 0 4rem;
+      //padding: 10px;
+
+      .vid{
+        margin: 0 4.5rem;
+      }
+    }
+
+    .vid{
+      //border: thin solid red;
+      display: flex;
+      flex-flow: column;
+      border-radius: f-unit-light(1rem);
+      overflow: hidden;
+
+      header{
+        display: flex;
+        gap: .5rem;
+        padding: 1rem 1.5rem;
+        background-color: #A4B5C0FF;
+
+        span{
+          display: block;
+          width: 1em;
+          height: 1em;
+          background-color: var(--dark-gray);
+          border-radius: 50%;
+        }
+      }
+
+      video{
+        width: 100%;
+        display: block;
+
+      }
+    }
+
+    .navController{
+      position: absolute;
+      align-self: initial;
+      justify-self: start;
+      top: 50%;
+      z-index: 11;
+      width: 105%;
+      pointer-events: none;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%) translateX(-2.5%);
+
+      //border: 1px solid #000;
+
+
+      p{
+        display: grid;
+        place-items: center;
+        pointer-events: auto;
+        font-family: 'shapes', serif;
+        font-size: 3.2rem;
+        line-height: 0;
+        cursor: pointer;
+        user-select: none;
+
+        span{
+          pointer-events: none;
+          display: block;
+          font-family: 'shapes', serif;
+          font-size: .8rem;
+          color: white;
+        }
+      }
+    }
+
+  }
+}

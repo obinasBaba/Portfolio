@@ -12,6 +12,9 @@ import useVigozaAssets from "../../../hooks/queries/useVigozaAssets";
 import useColorAssets from "../../../hooks/queries/useColorAssets";
 import WebView from "../../../components/CaseStudy/WebView";
 import useUpdatePath from "../../../hooks/useUpdatePath";
+import RectangleView from "@/pages/projects/vigoza/components/RectangleView";
+import HorizontalGallery from "@/pages/projects/vigoza/components/HorizontalGallery";
+import MarqueeSliderView from "@/pages/projects/vigoza/components/MarqueeSliderView";
 
 const projectDataDefault = {
   title: "Vigoza Digital Agency",
@@ -109,6 +112,12 @@ function Vigoza( { location } ){
       >
         <MetaTxt />
       </motion.div>
+
+     {/* <RectangleView/>
+
+      <HorizontalGallery/>*/}
+
+      <MarqueeSliderView/>
 
       <WebView web={webView} mobile={mobileView} tempWebView={showcase} />
 

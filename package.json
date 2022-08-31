@@ -57,6 +57,7 @@
     "react-use": "^17.2.4",
     "sass": "^1.53.0",
     "styled-components": "^5.3.3",
+    "swiper": "^8.3.2",
     "webfont": "^11.2.26",
     "yup": "^0.32.9"
   },

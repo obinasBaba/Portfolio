@@ -1,0 +1,29 @@
+@use "@style" as *;
+
+//noinspection SassScssResolvedByNameOnly
+.container {
+  width: 100%;
+
+  display: flex;
+  flex-flow: column;
+  gap: 5rem;
+
+  @include margin(top, 20rem);
+  // @include padding(bottom, 8rem);
+
+  & :local {
+
+
+    .track {
+      transition: transform cubic-bezier(0.6, 0.01, 0, 0.9);
+
+      .wrapper {
+        border: 2px solid red;
+        transform: translateX(-10%);
+
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}

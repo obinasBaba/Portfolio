@@ -1,0 +1,21 @@
+@use "@style" as *;
+
+//noinspection SassScssResolvedByNameOnly
+.container{
+  width: 100%;
+
+   @include margin(top, 10rem);
+  // @include s.padding(bottom, 8rem);
+
+  & :local{
+
+    .wrapper{
+      overflow: hidden;
+
+      img{
+        max-width: 100%;
+      }
+    }
+
+  }
+}

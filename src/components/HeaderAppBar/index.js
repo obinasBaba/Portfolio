@@ -1,27 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
-import styled, { css } from "styled-components";
 import { debounce } from "lodash";
 import { motion } from "framer-motion";
-import { Slide, useScrollTrigger } from "@material-ui/core";
+import { Slide } from "@material-ui/core";
+import { useLocomotiveScroll } from "@contexts/LocoMotive";
+import { useMotionValueContext } from "@contexts/MotionStateWrapper";
+import { AppStateContext } from "@contexts/AppStateContext";
 import HomeLogo from "./components/HomeLogo";
 import NavBtn from "./components/NavBtn";
-import { spacing } from "../../styles/mixins";
-import { AppStateContext } from "../../contexts/AppStateContext";
-import { useMotionValueContext } from "../../contexts/MotionStateWrapper";
-
-import { mediumUp } from "../../styles/mixins/breakpoints";
 import OverlayController from "../ScreenOverlay/OverlayController";
-import { useLocomotiveScroll } from "@contexts/LocoMotive";
 import { container } from "./appbar.module.scss";
 
-function HideOnScroll( { children, window } ){
+function HideOnScroll( { children } ){
   const { currentPath } = useContext( AppStateContext );
   const [slide, setSlide] = useState( true );
-  const trigger = useScrollTrigger( {
-    target: window ? window() : undefined
-  } );
-
-  const [isLoco, setIsLoco] = useState( true );
 
   const { scrollDirection } = useLocomotiveScroll();
 

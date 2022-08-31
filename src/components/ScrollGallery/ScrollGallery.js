@@ -85,7 +85,7 @@ const Gallery = () => {
 
         <ScrollTrack className="rd-scroll-track" style={{ x: useMotionTemplate`${x}%` }}>
           {imageList.map( ( item, index ) =>
-            <ImageGrid images={item} idx={index} key={item[0].name + index} />
+            <ImageGrid images={item} idx={index} key={item} />
           )}
         </ScrollTrack>
       </ScrollWrapper>

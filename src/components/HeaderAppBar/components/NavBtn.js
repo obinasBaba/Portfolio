@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import clsx from "clsx";
 import { menuOpen, navBtn } from "./appbarComponents.module.scss";
 
-
 const navBtnVariants = {
   initial: { opacity: 0 },
   animate: {
