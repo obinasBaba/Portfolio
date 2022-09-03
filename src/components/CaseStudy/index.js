@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect } from "react";
 import styled from "styled-components";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 import { MotionValueContext } from "@contexts/MotionStateWrapper";
 import { createPortal } from "react-dom";
 import { navigate } from "gatsby";
@@ -9,7 +9,6 @@ import { useLocomotiveScroll } from "@contexts/LocoMotive";
 import { useMotionBreakPoint } from "@contexts/BreakPoint";
 import useUpdatePath from "@hooks/useUpdatePath";
 import clsx from "clsx";
-import Headline from "./Headline";
 import ReturnBtn from "../ReturnBtn";
 import { HeadLineBG } from "./Headline/Components";
 import { bgVariant, transition } from "./Headline/variants";
@@ -21,7 +20,6 @@ import { container, containerScrolled, returnBtn, scrollDown } from "./casestudy
 
 
 const FixedPortal = ( props ) => createPortal( props.children, document.body );
-
 
 const FixedItems = styled.div`
   position: fixed;
@@ -95,21 +93,32 @@ const CaseStudy = ( { projectData = projectDataDefault, path, children, scrolled
   } = useContext( MotionValueContext );
 
   const { breakpoint } = useMotionBreakPoint();
+  const { locoInstance } = useLocomotiveScroll();
+  const {
+    mainAnimationController,
+    screenOverlayEvent
+  } = useContext( MotionValueContext );
 
+  const lup = typeof window !== 'undefined' ? matchMedia( "(min-width: 1200px)" ).matches : false;
 
   // const [scrolled, setScrolled] = useState( false );
-  const moInitial = useMotionValue( fromProjectList.get() ? (breakpoint.get().lgUp ? ["fromProjectsInitial"] : ["fromProjectsSmallInitial"]) : breakpoint.get().lgUp ? ["initial"] : ["smallInitial"] );
-  const moAnimate = useMotionValue( fromProjectList.get() ? (breakpoint.get().lgUp ? ["fromProjectsAnimate"] : ["fromProjectsSmallAnimate"]) : breakpoint.get().lgUp ? ["animate"] : ["smallAnimate"] );
+  const moInitial = useMotionValue( fromProjectList.get() ?
+    (lup ? ["fromProjectsInitial"] : ["fromProjectsSmallInitial"]) : lup ? ["initial"] : ["smallInitial"] );
+
+  const moAnimate = useMotionValue( fromProjectList.get() ?
+    (lup ? ["fromProjectsAnimate"] : ["fromProjectsSmallAnimate"]) : lup ? screenOverlayEvent.get() === "closed"
+      ? ["animate"]
+      : mainAnimationController : ["smallAnimate"] );
   const showScrollDown = useMotionValue( 0 );
 
-  const { locoInstance } = useLocomotiveScroll();
 
-  useEffect( () => {
+  useLayoutEffect( () => {
     // console.log('fromProject : ', location, path)
     fromProjectList.set( false );
     fromCaseStudy.set( true );
 
   }, [] );
+
 
   useEffect( () => {
 
@@ -146,7 +155,7 @@ const CaseStudy = ( { projectData = projectDataDefault, path, children, scrolled
     >
 
       {(typeof document !== `undefined`) && <FixedPortal>
-        <div className={scrollDown}>
+        <div>
           <ProjectScrollDown activeIndex={showScrollDown} />
         </div>
       </FixedPortal>}

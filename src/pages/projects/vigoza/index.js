@@ -9,14 +9,10 @@ import ColorPalette from "../../../components/CaseStudy/Colors";
 import FontUsed from "../../../components/CaseStudy/FontUsed";
 import Development from "../../../components/CaseStudy/Development";
 import useVigozaAssets from "../../../hooks/queries/useVigozaAssets";
-import useColorAssets from "../../../hooks/queries/useColorAssets";
-import WebView from "../../../components/CaseStudy/WebView";
 import useUpdatePath from "../../../hooks/useUpdatePath";
 import MarqueeSliderView from "@/pages/projects/vigoza/components/MarqueeSliderView";
-import WebViewSection from "@/pages/projects/vigoza/components/WebViewSection";
 import useJuviAssets from "@hooks/queries/useJuviAssets";
 import ElementsViewSection from "@/pages/projects/vigoza/components/ElementsViewSection";
-import RectangleView from "@/pages/projects/vigoza/components/RectangleView";
 import HorizontalGallery from "@/pages/projects/vigoza/components/HorizontalGallery";
 
 const projectDataDefault = {
@@ -119,11 +115,11 @@ function Vigoza( { location } ){
 
       {/*<RectangleView/>*/}
 
-      <HorizontalGallery/>
+      <HorizontalGallery />
 
       <Intro intro={projectDataDefault.intro} />
 
-      <MarqueeSliderView/>
+      <MarqueeSliderView />
 
       <ColorPalette colors={colors} />
 

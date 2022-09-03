@@ -21,7 +21,7 @@ const ElementsViewSection = ( { elements } ) => {
         </div>
 
         <div className={elementImg}>
-          <img src={elements.publicURL} alt="elements used in the project" />
+          <img src={elements?.publicURL || ''} alt="elements used in the project" />
         </div>
 
 

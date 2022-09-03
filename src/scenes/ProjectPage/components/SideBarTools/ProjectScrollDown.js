@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import styled, { css } from "styled-components";
 import { AnimatePresence, motion } from 'framer-motion'
-import { spacing } from "../../../../styles/mixins";
+import { spacing } from "@/styles/mixins";
 import ScrollDown from '../../../../components/ScrollDown'
-import { largeUp, xLargeUp } from "../../../../styles/mixins/breakpoints";
+import { largeUp, xLargeUp } from "@/styles/mixins/breakpoints";
 
 const ScrollDownWrapper = styled( motion.div )`
   position: fixed;
@@ -102,9 +102,9 @@ function ProjectScrollDown( { activeIndex } ){
         <ScrollDownWrapper
             variants={containerVariant}
             transition={containerVariant.transition}
-            initial="initial"
-            animate="animate"
-            exit="exit"
+            // initial="initial"
+            // animate="animate"
+            // exit="exit"
         >
             <AnimatePresence>
                 {show && (

@@ -214,10 +214,10 @@ const Menu = ( { onClick } ) => {
       initial="initial"
       animate="animate"
       exit="exit"
-      onAnimationComplete={anim => {
+      onAnimationComplete={() => {
         window.isMenuAnimating = false;
       }}
-      onAnimationStart={anim => {
+      onAnimationStart={() => {
         window.isMenuAnimating = true;
       }}
     >

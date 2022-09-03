@@ -264,6 +264,19 @@ const Icon = styled( motion.div )`
 
 const Item = ( { currentPath, link, stars, icon, index, title, onClick } ) => {
 
+  const handleLinkClick = ( ev ) => {
+    ev.preventDefault();
+    // Promise.resolve().then(() => setCurrentPath(link))
+    if ( OverlayController.isAnimating || window.isMenuAnimating ) return;
+
+    if ( link === currentPath ) return;
+
+    onClick();
+
+
+    setTimeout( () => navigate( link ), 1400 );
+
+  };
 
   return (
 
@@ -274,19 +287,7 @@ const Item = ( { currentPath, link, stars, icon, index, title, onClick } ) => {
                    active={link === currentPath && currentPath !== "/"}
                    key={link + index + title}
     >
-      <Link to={link} onClick={( ev ) => {
-        ev.preventDefault();
-        // Promise.resolve().then(() => setCurrentPath(link))
-        if ( OverlayController.isAnimating || window.isMenuAnimating ) return;
-
-        if ( link === currentPath ) return;
-
-        onClick();
-
-
-        setTimeout( () => navigate( link ), 1400 );
-
-      }}>
+      <Link to={link} onClick={( ev ) => handleLinkClick( ev )}>
 
         <Circle data-circle={index + 1} />
 

@@ -32,12 +32,10 @@ const useColorAssets = () => {
 
           fontRai: file(relativePath: { eq: "juvi-haus/font-Ultra.png" }) {
               publicURL
-
           }
 
           elements: file(relativePath: { eq: "juvi-haus/elements.png" }) {
               publicURL
-
           }
 
 
