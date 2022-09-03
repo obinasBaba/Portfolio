@@ -16,6 +16,8 @@ import MarqueeSliderView from "@/pages/projects/vigoza/components/MarqueeSliderV
 import WebViewSection from "@/pages/projects/vigoza/components/WebViewSection";
 import useJuviAssets from "@hooks/queries/useJuviAssets";
 import ElementsViewSection from "@/pages/projects/vigoza/components/ElementsViewSection";
+import RectangleView from "@/pages/projects/vigoza/components/RectangleView";
+import HorizontalGallery from "@/pages/projects/vigoza/components/HorizontalGallery";
 
 const projectDataDefault = {
   title: "Vigoza Digital Agency",
@@ -115,23 +117,13 @@ function Vigoza( { location } ){
         <MetaTxt />
       </motion.div>
 
-      {/*
+      {/*<RectangleView/>*/}
 
-      <RectangleView/>
       <HorizontalGallery/>
-      <MarqueeSliderView/>
-
-      <WebViewSection />
-
-
-       */}
-
-
-
-
 
       <Intro intro={projectDataDefault.intro} />
 
+      <MarqueeSliderView/>
 
       <ColorPalette colors={colors} />
 

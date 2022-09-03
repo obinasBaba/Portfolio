@@ -3,13 +3,29 @@
 //noinspection SassScssResolvedByNameOnly
 .container {
   width: 100%;
-
   display: flex;
   flex-flow: column;
-  gap: 5rem;
+  gap: calc(100vw / 64 * 1);
 
   @include margin(top, 20rem);
   // @include padding(bottom, 8rem);
+
+  border: 1px solid #000;
+
+  & > :last-child {
+
+
+    .wrapper {
+      & > :first-child {
+        margin-left: -300px;
+
+        border: 1px solid #000;
+      }
+    }
+
+
+  }
+
 
   & :local {
 
@@ -17,12 +33,21 @@
     .track {
       transition: transform cubic-bezier(0.6, 0.01, 0, 0.9);
 
-      .wrapper {
-        border: 2px solid red;
-        transform: translateX(-10%);
+      //margin-top: calc(100vw / 64 * 1);
 
+
+      .wrapper {
         display: flex;
         align-items: center;
+
+        border: 2px solid red;
+
+        .trackImg {
+          margin-right: calc(100vw / 64 * 1);
+          min-width: calc(100vw / 64 * 15);
+          lmax-width: calc(100vw / 64 * 15);
+
+        }
       }
     }
   }

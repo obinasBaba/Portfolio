@@ -70,7 +70,7 @@ export const MotionStateWrapper: React.FC = ({ children }) => {
   const mainAnimationController = useAnimation();
 
   const screenOverlayProxy = useMotionValue({ state: false, config: {} });
-  const screenOverlayEvent = useMotionValue("closed");
+  const screenOverlayEvent = useMotionValue("");
   const menuIsOpen = useMotionValue(false);
 
   const refreshCursorEventListeners = useMotionValue("[data-pointer]");

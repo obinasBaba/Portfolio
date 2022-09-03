@@ -14,7 +14,7 @@ const ElementsViewSection = ( { elements } ) => {
             elements
           </Typography>
 
-          <Typography style={{maxWidth: '60ch'}}>
+          <Typography style={{maxWidth: '77ch'}}>
             kim drew a whopping 141 scribble- and 39 stone illustrations to use in all kinds of media, including the
             website. they portray elements the band personally feels close to.
           </Typography>

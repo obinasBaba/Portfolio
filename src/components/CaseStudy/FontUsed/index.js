@@ -1,30 +1,17 @@
-import React from 'react'
-import {Container, Typography} from '@material-ui/core'
-import styled from 'styled-components'
-import {spacing} from '../../../styles/mixins'
-
-const FontContainer = styled( Container )`
-  display: flex;
-  justify-content: space-evenly;
-  
-  img{
-    max-width: 33%;
-  }
-  
-  ${spacing('mt', 15)};
-`
+import React from "react";
+import { container } from "./fontused.module.scss";
 
 
-const FontUsed = ( {fonts} ) => {
+const FontUsed = ( { fonts } ) => {
   return (
-    <FontContainer maxWidth={'xl'} fixed={true} >
+    <div className={container}>
 
-        {fonts.map(({ publicURL }) => (
-            <img src={publicURL} alt="" key={publicURL}/>
-        ))}
+      {fonts.map( ( { publicURL } ) => (
+        <img src={publicURL} alt="" key={publicURL} />
+      ) )}
 
-    </FontContainer>
-  )
-}
+    </div>
+  );
+};
 
-export default FontUsed
+export default FontUsed;

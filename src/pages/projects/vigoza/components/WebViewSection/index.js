@@ -2,9 +2,9 @@ import React from "react";
 
 // @ts-ignore
 import { container, wrapper } from "./webviewsection.module.scss";
-import { VPlayer } from "../MarqueeSliderView";
 import { Typography } from "@material-ui/core";
 import ResponsiveContainer from "@/components/ResponsiveContainer";
+import { VPlayer } from "@/pages/projects/vigoza/components/VideoPlayer";
 
 const WebViewSection = () => {
 

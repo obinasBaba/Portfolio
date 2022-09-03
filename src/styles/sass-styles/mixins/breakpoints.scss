@@ -1,4 +1,5 @@
 @use "../functions/index" as *;
+@use "sass:meta";
 
 // Grid breakpoints
 //
@@ -8,15 +9,15 @@
 $grid-breakpoints: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
 $grid-breakpoints: map-merge(
-  (
-    xs: 0,
-    sm: 576px,
-    md: 768px,
-    lg: 992px,
-    xl: 1200px,
-    xxl: 1900px
-  ),
-  $grid-breakpoints
+                (
+                        xs: 0,
+                        sm: 576px,
+                        md: 768px,
+                        lg: 992px,
+                        xl: 1200px,
+                        xxl: 1900px
+                ),
+                $grid-breakpoints
 );
 
 
@@ -79,12 +80,17 @@ $grid-breakpoints: map-merge(
 // Makes the @content apply to the given breakpoint and wider.
 @mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
   $min: breakpoint-min($name, $breakpoints);
+
   @if $min {
     @media (min-width: $min) {
       @content;
     }
+  } @else if (type-of($name) == number) {
+    @media (min-width: $name) {
+      @content
+    }
   } @else {
-    @content;
+    @content
   }
 }
 
@@ -95,6 +101,10 @@ $grid-breakpoints: map-merge(
   @if $max {
     @media (max-width: $max) {
       @content;
+    }
+  } @else if (type-of($name) == number) {
+    @media (min-width: $name) {
+      @content
     }
   } @else {
     @content;

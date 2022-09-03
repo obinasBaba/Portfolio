@@ -9,7 +9,7 @@ import ResponsiveContainer from "../../ResponsiveContainer";
 const ColorsPaletteContainer = styled( Container )`
   width: 100%;
 
-  ${spacing('mt', 20)};
+  ${spacing('mt', 35)};
 
   //border: thin solid rebeccapurple;
 `

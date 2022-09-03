@@ -1,0 +1,52 @@
+@use "@style" as *;
+
+
+//noinspection SassScssResolvedByNameOnly
+.container {
+
+  @include margin(top, 15rem);
+
+
+  & > :first-child{
+    margin-bottom: f-unit-light(1rem);
+  }
+
+  & > :last-child{
+    margin-top: f-unit-light(4rem);
+  }
+
+  @include media-breakpoint-up(1440px){
+    max-width: 1350px;
+  }
+
+  & :local{
+
+    .text{
+      max-width: 77ch;
+      font-weight: 300;
+      line-height: 160%;
+      letter-spacing: 0.5px;
+    }
+
+    .vidWrapper{
+
+      .vidDesc{
+        @include margin(hor, 3rem);
+        @include margin(top, 3rem);
+
+        h4{
+          font-weight: bolder;
+        }
+
+        .text{
+          max-width: initial;
+
+        }
+
+      }
+
+
+    }
+  }
+
+}

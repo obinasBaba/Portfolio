@@ -3,7 +3,7 @@
 //noinspection SassScssResolvedByNameOnly
 .container {
   @include margin(top, 16rem);
-  @include margin(bottom, 10rem);
+  //@include margin(bottom, 10rem);
 
   & :local {
 

@@ -57,9 +57,9 @@ function Page( { children, path } ){
         animate={mainAnimationController}
         ref={container} data-scroll-container={true}
       >
-        {/*<LoadingSpinner />*/}
+        <LoadingSpinner />
 
-        {/*<ScreenOverlay />*/}
+        <ScreenOverlay />
 
         <BackgroundStars />
 

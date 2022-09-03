@@ -17,7 +17,7 @@ export const moonVariants = {
 
   exit: {
     y: "-100%", scale: .3, opacity: 0, transition: {
-      duration: 1, delay: .5, ease: [0.6, 0.01, 0, 0.9]
+      duration: 1, ease: [0.6, 0.01, 0, 0.9]
     }
   }
 };
