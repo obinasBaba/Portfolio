@@ -229,8 +229,9 @@ export function LocomotiveScrollProvider({
 
         ScrollTrigger.update();
 
-        x.set(arg.scroll.x);
-        y.set(arg.scroll.y);
+        x.set(arg?.delta?.x || arg.scroll.x);
+        y.set(arg?.delta?.y || arg.scroll.y);
+
         scrollDirection.set(arg.direction);
       });
     }

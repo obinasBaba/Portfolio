@@ -103,7 +103,7 @@ $grid-breakpoints: map-merge(
       @content;
     }
   } @else if (type-of($name) == number) {
-    @media (min-width: $name) {
+    @media (max-width: $name) {
       @content
     }
   } @else {

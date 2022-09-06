@@ -1,16 +1,12 @@
-import { useContext, useLayoutEffect } from "react";
-import { AppStateContext } from "@contexts/AppStateContext";
+/** @format */
 
+import { useContext, useLayoutEffect } from 'react';
+import { AppStateContext } from '@contexts/AppStateContext';
 
-export default function useUpdatePath( path ){
+export default function useUpdatePath(path) {
+  const { setCurrentPath } = useContext(AppStateContext);
 
-  const {
-    setCurrentPath
-  } = useContext( AppStateContext );
-
-
-  useLayoutEffect( () => {
-    setCurrentPath( path );
-
-  }, [] );
+  useLayoutEffect(() => {
+    setCurrentPath(path);
+  }, []);
 }

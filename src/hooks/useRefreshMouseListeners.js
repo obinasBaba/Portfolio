@@ -1,10 +1,12 @@
-import { useContext, useEffect } from "react";
-import { MotionValueContext } from "../contexts/MotionStateWrapper";
+/** @format */
 
-export default function useRefreshMouseListeners( selector = "[data-pointer]" ){
-  const { refreshCursorEventListeners } = useContext( MotionValueContext );
+import { useContext, useEffect } from 'react';
+import { MotionValueContext } from '../contexts/MotionStateWrapper';
 
-  useEffect( () => {
-    refreshCursorEventListeners.set( selector );
-  }, [] );
+export default function useRefreshMouseListeners(selector = '[data-pointer]') {
+  const { refreshCursorEventListeners } = useContext(MotionValueContext);
+
+  useEffect(() => {
+    refreshCursorEventListeners.set(selector);
+  }, []);
 }

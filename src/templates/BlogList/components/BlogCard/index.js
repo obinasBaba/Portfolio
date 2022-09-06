@@ -1,22 +1,21 @@
-import React from "react";
+import React from 'react';
 
-import styled, { css } from "styled-components";
-import { motion } from "framer-motion";
-import CardContents from "./components/CardContents";
-import Thumbnail from "./components/Thumbnail";
-import { shadow, spacing } from "@/styles/mixins";
-import { largeUp, mediumUp, xxLargeUp } from "@/styles/mixins/breakpoints";
+import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
+import CardContents from './components/CardContents';
+import Thumbnail from './components/Thumbnail';
+import { shadow, spacing } from '@/styles/mixins';
+import { largeUp, mediumUp, xxLargeUp } from '@/styles/mixins/breakpoints';
 
-
-const StyledBlogCard = styled( motion.div )`
+const StyledBlogCard = styled(motion.div)`
   position: relative;
   display: flex;
   flex-direction: column;
   box-shadow: 0 5px 20px rgba(34, 45, 58, 0.2);
 
-  ${spacing( "br", 3 )};
-  ${spacing( "mv", 10 )};
-  ${spacing( "mb", 15 )};
+  ${spacing('br', 3)};
+  ${spacing('mv', 10)};
+  ${spacing('mb', 15)};
 
   &:before {
 
@@ -32,20 +31,15 @@ const StyledBlogCard = styled( motion.div )`
     backdrop-filter: blur(5px);
     background-image: var(--gray_gradient);
 
-    ${spacing( "br", 3 )};
+    ${spacing('br', 3)};
   }
 
   &:first-child {
-    ${spacing( "mt", 16 )};
+    ${spacing('mt', 16)};
   }
 
-  ${largeUp( css`
-    &:first-child {
-      ${spacing( "mt", 8 )};
-    }
-  ` )}
 
-  ${mediumUp( css`
+  ${mediumUp(css`
     flex-direction: row;
     align-items: center;
 
@@ -54,17 +48,24 @@ const StyledBlogCard = styled( motion.div )`
     transform: translateX(0);
 
     ${shadow()};
-    ${spacing( "pv", 2.2 )};
-    ${spacing( "ml", 1 )};
-  ` )};
+    ${spacing('pv', 2.2)};
+    ${spacing('ml', 1)};
+  `)};
 
-  ${xxLargeUp( css`
+  ${largeUp(css`
+    & :first-child {
+      ${spacing('mt', 0)};
+    }
+
+
+  `)}
+
+  ${xxLargeUp(css`
     width: clamp(500px, 78vw, 910px);
-  ` )};
+  `)};
 `;
 
-
-const BlogCard = ( {
+const BlogCard = ({
     index,
     date,
     title,
@@ -72,9 +73,9 @@ const BlogCard = ( {
     slug,
     featuredMedia:
       {
-        publicURL, childImageSharp
-      }
-  } ) => (
+        publicURL, childImageSharp,
+      },
+  }) => (
     <motion.div>
       <StyledBlogCard media={publicURL}>
         <Thumbnail media={childImageSharp} link={slug} />

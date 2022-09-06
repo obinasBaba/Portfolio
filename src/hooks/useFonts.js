@@ -1,37 +1,38 @@
-import { useContext, useEffect } from "react";
-import FontLoaded from "fontfaceobserver";
-import { MotionValueContext } from "../contexts/MotionStateWrapper";
+/** @format */
 
-const useLoadingFonts = ( { setBackgroundOverlay, backgroundOverlay } ) => {
-  const { toolTipsData } = useContext( MotionValueContext );
+import { useContext, useEffect } from 'react';
+import FontLoaded from 'fontfaceobserver';
+import { MotionValueContext } from '../contexts/MotionStateWrapper';
 
-  useEffect( () => {
-    if ( !backgroundOverlay ) return;
+const useLoadingFonts = ({ setBackgroundOverlay, backgroundOverlay }) => {
+  const { toolTipsData } = useContext(MotionValueContext);
 
-    document.body.classList.remove( "no-cursor" );
+  useEffect(() => {
+    if (!backgroundOverlay) return;
 
-    const elianto = new FontLoaded( "Elianto-Regular" );
+    document.body.classList.remove('no-cursor');
+
+    const elianto = new FontLoaded('Elianto-Regular');
     // let poppins = new FontLoaded('Poppins Black')
-    const icons = new FontLoaded( "shapes" );
+    const icons = new FontLoaded('shapes');
 
-    Promise.all( [elianto.load()] )
-      .then( () => {
-        setTimeout( () => {
-          toolTipsData.set( {
-            show: false
-          } );
-          setBackgroundOverlay( false );
-        }, 2700 );
+    Promise.all([elianto.load()])
+      .then(() => {
+        setTimeout(() => {
+          toolTipsData.set({
+            show: false,
+          });
+          setBackgroundOverlay(false);
+        }, 2700);
 
-        Promise.all( [icons.load()] ).then( () => {
-          document.body.classList.add( "no-cursor" );
-        } );
-      } )
-      .catch( console.error );
+        Promise.all([icons.load()]).then(() => {
+          document.body.classList.add('no-cursor');
+        });
+      })
+      .catch(console.error);
 
-    return () => {
-    };
-  }, [] );
+    return () => {};
+  }, []);
 };
 
 export default useLoadingFonts;

@@ -1,6 +1,8 @@
-import { createGlobalStyle, css } from "styled-components";
-import { responsiveVars, webKitInputReset } from "./variables/responsiveVars";
-import { mediumUp, smallUp } from "./mixins/breakpoints";
+/** @format */
+
+import { createGlobalStyle, css } from 'styled-components';
+import { responsiveVars, webKitInputReset } from './variables/responsiveVars';
+import { mediumUp, smallUp } from './mixins/breakpoints';
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -84,13 +86,13 @@ export const GlobalStyle = createGlobalStyle`
     rgba(250, 222, 188, 0.8) 0%,
     rgba(243, 243, 243, 0) 94%);
 
-    ${mediumUp( css`
+    ${mediumUp(css`
       &.no-cursor {
         & * {
           //cursor: none;
         }
       }
-    ` )};
+    `)};
 
     &.menu_open {
       --theme: rgba(2, 11, 22, 1);

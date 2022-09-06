@@ -1,5 +1,7 @@
+/** @format */
+
 import React from 'react';
 
-const HeaderContext = React.createContext( {} );
+const HeaderContext = React.createContext({});
 
 export default HeaderContext;

@@ -1,23 +1,25 @@
-import SofiaProBoldWof from '../assets/fonts/SofiaPro/Sofia-Pro - Bold.woff'
-import SofiaProBold2 from '../assets/fonts/SofiaPro/Sofia-Pro - Bold.woff2'
+/** @format */
 
-import SofiaProSemiBoldWof from '../assets/fonts/SofiaPro/Sofia-Pro - SemiBold.woff'
-import SofiaProSemiBold2 from '../assets/fonts/SofiaPro/Sofia-Pro - SemiBold.woff2'
+import SofiaProBoldWof from '../assets/fonts/SofiaPro/Sofia-Pro - Bold.woff';
+import SofiaProBold2 from '../assets/fonts/SofiaPro/Sofia-Pro - Bold.woff2';
 
-import SofiaProRegularWof from '../assets/fonts/SofiaPro/Sofia-Pro - Regular.woff'
-import SofiaProRegular2 from '../assets/fonts/SofiaPro/Sofia-Pro - Regular.woff2'
+import SofiaProSemiBoldWof from '../assets/fonts/SofiaPro/Sofia-Pro - SemiBold.woff';
+import SofiaProSemiBold2 from '../assets/fonts/SofiaPro/Sofia-Pro - SemiBold.woff2';
 
-import SofiaProLightWof from '../assets/fonts/SofiaPro/Sofia-Pro - Light.woff'
-import SofiaProLight2 from '../assets/fonts/SofiaPro/Sofia-Pro - Light.woff2'
+import SofiaProRegularWof from '../assets/fonts/SofiaPro/Sofia-Pro - Regular.woff';
+import SofiaProRegular2 from '../assets/fonts/SofiaPro/Sofia-Pro - Regular.woff2';
 
-import SofiaProSoftBoldWof from '../assets/fonts/SofiaProSoft/Sofia-Pro-Soft - Bold.woff'
-import SofiaProSoftBold2 from '../assets/fonts/SofiaProSoft/Sofia-Pro-Soft - Bold.woff2'
+import SofiaProLightWof from '../assets/fonts/SofiaPro/Sofia-Pro - Light.woff';
+import SofiaProLight2 from '../assets/fonts/SofiaPro/Sofia-Pro - Light.woff2';
 
-import SofiaProSoftRegularWof from '../assets/fonts/SofiaProSoft/Sofia-Pro-Soft - Regular.woff'
-import SofiaProSoftRegular2 from '../assets/fonts/SofiaProSoft/Sofia-Pro-Soft - Regular.woff2'
+import SofiaProSoftBoldWof from '../assets/fonts/SofiaProSoft/Sofia-Pro-Soft - Bold.woff';
+import SofiaProSoftBold2 from '../assets/fonts/SofiaProSoft/Sofia-Pro-Soft - Bold.woff2';
 
-import SofiaProSoftLightWof from '../assets/fonts/SofiaProSoft/Sofia-Pro-Soft - Light.woff'
-import SofiaProSoftLight2 from '../assets/fonts/SofiaProSoft/Sofia-Pro-Soft - Light.woff2'
+import SofiaProSoftRegularWof from '../assets/fonts/SofiaProSoft/Sofia-Pro-Soft - Regular.woff';
+import SofiaProSoftRegular2 from '../assets/fonts/SofiaProSoft/Sofia-Pro-Soft - Regular.woff2';
+
+import SofiaProSoftLightWof from '../assets/fonts/SofiaProSoft/Sofia-Pro-Soft - Light.woff';
+import SofiaProSoftLight2 from '../assets/fonts/SofiaProSoft/Sofia-Pro-Soft - Light.woff2';
 
 // SOFIA-PRO FONT
 
@@ -30,7 +32,7 @@ export const SofiaProBold = {
   fontWeight: 'bold',
   fontStyle: 'normal',
   fontDisplay: 'swap',
-}
+};
 
 export const SofiaProSemiBold = {
   fontFamily: 'Sofia Pro',
@@ -41,7 +43,7 @@ export const SofiaProSemiBold = {
   fontWeight: 600,
   fontStyle: 'normal',
   fontDisplay: 'swap',
-}
+};
 
 export const SofiaProNormal = {
   fontFamily: 'Sofia Pro',
@@ -52,7 +54,7 @@ export const SofiaProNormal = {
   fontWeight: 'normal',
   fontStyle: 'normal',
   fontDisplay: 'swap',
-}
+};
 
 export const SofiaProLight = {
   fontFamily: 'Sofia Pro',
@@ -63,7 +65,7 @@ export const SofiaProLight = {
   fontWeight: 300,
   fontStyle: 'normal',
   fontDisplay: 'swap',
-}
+};
 
 // SOFIA-PRO-SOFT FONT
 
@@ -76,7 +78,7 @@ export const SofiaProSoftBold = {
   fontWeight: 'bold',
   fontStyle: 'normal',
   fontDisplay: 'swap',
-}
+};
 
 export const SofiaProSoftRegular = {
   fontFamily: 'Sofia Pro Soft',
@@ -87,7 +89,7 @@ export const SofiaProSoftRegular = {
   fontWeight: 'normal',
   fontStyle: 'normal',
   fontDisplay: 'swap',
-}
+};
 
 export const SofiaProSoftLight = {
   fontFamily: 'Sofia Pro Soft',
@@ -98,5 +100,4 @@ export const SofiaProSoftLight = {
   fontWeight: '300',
   fontStyle: 'normal',
   fontDisplay: 'swap',
-}
-
+};

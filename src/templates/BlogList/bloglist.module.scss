@@ -1,0 +1,24 @@
+@use "@style" as *;
+
+
+//noinspection SassScssResolvedByNameOnly
+.container {
+  position: relative;
+  width: 100%;
+  display: flex;
+
+  //border: 1px solid red;
+
+  //@include margin(top, 10);
+
+  & :local {
+
+
+    .stickyWrapper {
+      position: relative;
+      //border: 1px solid blue
+
+    }
+  }
+
+}

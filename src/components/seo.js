@@ -3,73 +3,66 @@
  *  Gatsby's useStaticQuery React hook
  *
  * See: https://www.gatsbyjs.com/docs/use-static-query/
+ *
+ * @format
  */
 
-import * as React from "react";
-import { Helmet } from "react-helmet";
-import { graphql, useStaticQuery } from "gatsby";
+import * as React from 'react';
+import { Helmet } from 'react-helmet';
+import { graphql, useStaticQuery } from 'gatsby';
 
-function Seo( { description, lang = "en", meta, titleTxt, pathname, title } ){
+function Seo({ description, lang = 'en', meta, titleTxt, pathname, title }) {
   const { site } = useStaticQuery(
     graphql`
-        query {
-            site {
-                siteMetadata {
-                    defaultTitle
-                    defaultDescription
-                    siteUrl
-                    twitterUsername
-                    thumbnail
-                    titleTemplate
-                    image
-                    author
-                    thumbnail
-                }
-            }
+      query {
+        site {
+          siteMetadata {
+            defaultTitle
+            defaultDescription
+            siteUrl
+            twitterUsername
+            thumbnail
+            titleTemplate
+            image
+            author
+            thumbnail
+          }
         }
+      }
     `
   );
 
-  const {
-    defaultTitle,
-    defaultDescription,
-    siteUrl,
-    image,
-    author,
-    twitterUsername,
-    thumbnail
-
-  } = site.siteMetadata;
+  const { defaultTitle, defaultDescription, siteUrl, image, author, twitterUsername, thumbnail } =
+    site.siteMetadata;
 
   const seoMapping = {
     titleTxt: titleTxt || title || defaultTitle,
     description: description || defaultDescription,
     image: `${siteUrl}${image}`,
     thumbnail: `${siteUrl}${thumbnail}`,
-    url: `${siteUrl}${pathname}`
+    url: `${siteUrl}${pathname}`,
   };
 
   const schema = {
-    "@context": "schema.org",
-    "@type": "Organization",
-    "@id": "https://henzzo.com/#website",
-    "name": "henzzo portfolio",
-    "url": "https://henzzo.com/",
-    "logo": "https://henzzo.com/favicon.svg",
-    "contactPoint":
-      [
-        {
-          "@type": "ContactPoint",
-          "telephone": "+251923365539",
-          "contactType": "",
-          "areaServed": ""
-        }
-      ],
-    "sameAs": [
-      "https://twitter.com/@henzzo_com",
-      "https://github.com/obinasBaba/",
-      "https://www.linkedin.com/in/henok-getachew-b125b3126/"
-    ]
+    '@context': 'schema.org',
+    '@type': 'Organization',
+    '@id': 'https://henzzo.com/#website',
+    name: 'henzzo portfolio',
+    url: 'https://henzzo.com/',
+    logo: 'https://henzzo.com/favicon.svg',
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        telephone: '+251923365539',
+        contactType: '',
+        areaServed: '',
+      },
+    ],
+    sameAs: [
+      'https://twitter.com/@henzzo_com',
+      'https://github.com/obinasBaba/',
+      'https://www.linkedin.com/in/henok-getachew-b125b3126/',
+    ],
   };
 
   /*  const schema = {
@@ -161,11 +154,8 @@ function Seo( { description, lang = "en", meta, titleTxt, pathname, title } ){
       ],
     }; */
 
-
   return (
-    <Helmet
-      titleTemplate={defaultTitle ? `${defaultTitle} ·  %s` : null}
-    >
+    <Helmet titleTemplate={defaultTitle ? `${defaultTitle} ·  %s` : null}>
       {/* Encodings and styles */}
       <html lang="en" />
       <meta charSet="utf-8" />
@@ -199,7 +189,6 @@ function Seo( { description, lang = "en", meta, titleTxt, pathname, title } ){
       <meta content={defaultDescription} name="twitter:description" />
       <meta content={siteUrl} name="twitter:url" />
 
-
       {/* <!-- Facebook meta --> */}
       <meta content={siteUrl} property="og:site_name" />
       <meta content={defaultTitle} property="og:titleTxt" />
@@ -210,12 +199,9 @@ function Seo( { description, lang = "en", meta, titleTxt, pathname, title } ){
       <meta property="og:locale" content="en_US" />
 
       {/* Micro data */}
-      <script type="application/ld+json">{JSON.stringify( schema )}</script>
-
+      <script type="application/ld+json">{JSON.stringify(schema)}</script>
     </Helmet>
   );
-
 }
-
 
 export default Seo;

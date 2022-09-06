@@ -1,54 +1,46 @@
-import React from "react";
-import BlogCard from "./components/BlogCard";
-import { graphql } from "gatsby";
-import styled, { css } from "styled-components";
-import { useMediaQuery, useTheme } from "@material-ui/core";
-import BlogList from "./components/BlogListContainer";
-import Moon from "../../components/MoonLight";
-import PenEffect from "./components/PenEffect";
-import useToolTip from "@hooks/useToolTip";
-import Seo from "@components/seo";
-import useUpdatePath from "@hooks/useUpdatePath";
+import React from 'react';
+import BlogCard from './components/BlogCard';
+import { graphql } from 'gatsby';
+import { useMediaQuery, useTheme } from '@material-ui/core';
+import BlogList from './components/BlogListContainer';
+import useToolTip from '@hooks/useToolTip';
+import Seo from '@components/seo';
+import useUpdatePath from '@hooks/useUpdatePath';
+import { container } from './bloglist.module.scss';
+import clsx from 'clsx';
 
-
-const moonStyle = css``;
-
-const Container = styled.div`
-  position: relative;
-  width: 100%;
-
-  border: 1px solid red;
-
-
-`;
-
-const BlogListTemplate = ( {
+const BlogListTemplate = ({
   data,
   pageContext: { currentPage, pageCount },
-  path
-} ) => {
+  path,
+}) => {
 
+  useUpdatePath(path);
 
-  useUpdatePath( path );
-
-
-  useToolTip( "[data-tooltip-text]" );
+  useToolTip('[data-tooltip-text]');
 
   // const previousPage = currentPage === 2 ? "/blog" : `/blog/${currentPage - 1}`;
   // const nextPage = `/blog/${currentPage + 1}`;
   const theme = useTheme();
-  const match = useMediaQuery( theme.breakpoints.up( "sm" ) );
+  const match = useMediaQuery(theme.breakpoints.up('sm'));
 
   return (
     <div>
       <Seo
-        title="Blog"
-        description="this is a blog list page where i share my experience as developer"
+        title='Blog'
+        description='this is a blog list page where i share my experience as developer'
       />
 
-      <Container className="blog-container-temp">
-        <Moon pos="fixed" moonStyle={moonStyle} />
-        <PenEffect />
+      <div className={clsx([container])} id='blog-container'>
+
+        {/*  <div className={stickyWrapper}
+             data-scroll={true}
+             data-scroll-sticky={true}
+             data-scroll-target='#blog-container'>
+          <Moon pos='fixed' moonStyle={moonStyle} />
+          <BackgroundArt />
+        </div>*/}
+
         <BlogList>
           {data.allMarkdownRemark.edges.map(
             (
@@ -59,30 +51,29 @@ const BlogListTemplate = ( {
                     title,
                     link,
                     thumbnail: { publicURL, childImageSharp },
-                    date
-                  }
-                }
+                    date,
+                  },
+                },
               },
-              index
+              index,
             ) => (
               <BlogCard
                 title={title}
                 date={date}
                 key={excerpt}
                 featuredMedia={{ publicURL, childImageSharp }}
-                body={`${excerpt.slice( 0, match ? 250 : 190 )} ...`}
+                body={`${excerpt.slice(0, match ? 250 : 190)} ...`}
                 slug={link}
                 index={index}
               />
-            )
+            ),
           )}
 
         </BlogList>
-      </Container>
+      </div>
     </div>
   );
 };
-
 
 // The Page query that accept parameter.
 export const query = graphql`

@@ -6,8 +6,9 @@
   },
   "extends": [
     "eslint:recommended",
-    "airbnb",
-    "prettier"
+    "plugin:react/recommended",
+    "prettier",
+    "plugin:prettier/recommended"
   ],
   "parserOptions": {
     "presets": [
@@ -25,13 +26,10 @@
     "react",
     "react-hooks",
     "jsx",
-    "prettier",
-    "unicorn"
+    "prettier"
   ],
   "rules": {
     "quotes": "off",
-    "no-unused-vars": "warn",
-    "arrow-body-style": "off",
     "react/jsx-filename-extension": [
       1,
       {
@@ -53,6 +51,24 @@
         "json": "never"
       }
     ],
+    //    "prettier/prettier": "warn",
+    "prettier/prettier": [
+      "off",
+      {
+        "singleQuote": true,
+        "bracketSameLine": true,
+        "bracketSpacing": true,
+        "printWidth": 100,
+        "trailingComma": "es5",
+        "insertPragma": true,
+        "jsxSingleQuote": false
+      },
+      {
+        "usePrettierrc": true
+      }
+    ],
+    "no-unused-vars": "warn",
+    "arrow-body-style": "off",
     "import/prefer-default-export": "off",
     "sort-imports": "off",
     "spaced-comment": "off",
@@ -67,6 +83,7 @@
     "no-unused-expressions": "off",
     "import/no-unresolved": "off",
     "no-plusplus": "off",
+    "space-in-parens": "off",
     "jsx-a11y/label-has-associated-control": [
       2,
       {
@@ -79,7 +96,8 @@
     ]
   },
   "ignorePatterns": [
-    "./trash/*"
+    "./trash/*",
+    "./node-modules/*"
   ],
   "overrides": [
     {
