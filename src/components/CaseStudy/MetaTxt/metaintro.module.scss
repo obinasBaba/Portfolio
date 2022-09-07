@@ -7,8 +7,11 @@
 
   & :local {
 
-    .wrapper {
+    ul.wrapper {
 
+      .seeLive {
+        text-decoration: underline;
+      }
 
       max-width: 100%;
       display: flex;
@@ -25,11 +28,12 @@
 
 
       @include media-breakpoint-up(md) {
-        max-width: 70%;
+        max-width: 80%;
         justify-content: flex-start;
         gap: 0;
+        margin-top: 2rem;
 
-        li{
+        li {
           flex-basis: 47%;
         }
       }
@@ -49,20 +53,21 @@
       }
     }
 
-    .desc{
+    .desc {
       max-width: 65ch;
       @include margin(top, 1rem);
     }
 
-    .key{
+    .key {
       font-weight: 600;
       letter-spacing: 4px;
       text-transform: uppercase;
     }
 
-    .value{
+    .value {
       letter-spacing: 0;
       font-weight: 100;
+      color: var(--dark-gray);
     }
   }
 }

@@ -11,16 +11,23 @@ import FontUsed from '../../../components/CaseStudy/FontUsed';
 import Development from '../../../components/CaseStudy/Development';
 import useVigozaAssets from '../../../hooks/queries/useVigozaAssets';
 import useUpdatePath from '../../../hooks/useUpdatePath';
-import MarqueeSliderView from '@/pages/projects/vigoza/components/MarqueeSliderView';
-import ElementsViewSection from '@/pages/projects/vigoza/components/ElementsViewSection';
-import HorizontalGallery from '@/pages/projects/vigoza/components/HorizontalGallery';
+import MarqueeSliderView
+  from '@/pages/projects/vigoza/components/MarqueeSliderView';
+import ElementsViewSection
+  from '@/pages/projects/vigoza/components/ElementsViewSection';
+import HorizontalGallery
+  from '@/pages/projects/vigoza/components/HorizontalGallery';
 
 const projectDataDefault = {
   title: 'Vigoza Digital Agency', subTitle: 'this is vigoza subtitle', about: {
     role: 'FrontEnd Developer', context: 'Design', period: 'End 2018',
   }, intro: {
-    color: '#02021e', themeColor: '#973c22', logoUrl: '/projects/vigoza-logo.svg', // imageData: preview2,
-    link: '/', title: 'The Project', desc: `
+    color: '#02021e',
+    themeColor: '#973c22',
+    logoUrl: '/projects/vigoza-logo.svg', // imageData: preview2,
+    link: '/',
+    title: 'The Project',
+    desc: `
         Vigoza is a full-service digital agency that builds immersive user experience.
         The Team create an exceptional visualization and thought-out functionality.
         The studio develops the products people appreciate all around the world.
@@ -32,32 +39,41 @@ const projectDataDefault = {
   },
 };
 
-const DetectViewPort = ( {
+const DetectViewPort = ({
   children = 0.5, onEnter, onLeave, options = { amount: 0.5 },
-} ) => (<motion.div
+}) => (<motion.div
   viewport={{
     ...options,
   }}
-  onViewportEnter={( entry ) => {
-    onEnter( entry );
+  onViewportEnter={(entry) => {
+    onEnter(entry);
   }}
-  onViewportLeave={( entry ) => {
-    onLeave( entry );
+  onViewportLeave={(entry) => {
+    onLeave(entry);
   }}
 >
   {children}
 </motion.div>);
 
-function Vigoza( { location } ){
+function Vigoza ({ location }) {
   // console.log('vigozaArg: ', arg)
 
-  useToolTip( '[data-tooltip-text]' );
-  useUpdatePath( location.pathname );
+  useToolTip('[data-tooltip-text]');
+  useUpdatePath(location.pathname);
   const { headlineImage, webView, mobileView, showcase } = useVigozaAssets();
 
-  const [scrolled, setScrolled] = useState( false );
+  const [scrolled, setScrolled] = useState(false);
 
-  const { amber, flame, pearl, spartan, white, fontAby, fontRai, elements } = useJuviAssets();
+  const {
+    amber,
+    flame,
+    pearl,
+    spartan,
+    white,
+    fontAby,
+    fontRai,
+    elements,
+  } = useJuviAssets();
 
   const colors = [amber, flame, pearl, spartan, white];
   const { title, subTitle, about } = projectDataDefault;
@@ -75,15 +91,15 @@ function Vigoza( { location } ){
           amount: 0.6,
         }}
         onViewportEnter={() => {
-          if ( !scrolled ) setScrolled( true );
+          if (!scrolled) setScrolled(true);
         }}
-        onViewportLeave={( entry ) => {
-          if ( entry.boundingClientRect.y >= 0 ) {
-            setScrolled( false );
+        onViewportLeave={(entry) => {
+          if (entry.boundingClientRect.y >= 0) {
+            setScrolled(false);
           }
         }}
       >
-        <MetaTxt />
+        <MetaTxt link='juvi.henzzo.com' />
       </motion.div>
 
       {/*<RectangleView/>*/}
