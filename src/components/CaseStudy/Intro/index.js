@@ -2,7 +2,7 @@ import React from "react";
 import { Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import ResponsiveContainer from "@components/ResponsiveContainer";
 import { container, text, vidDesc, vidWrapper } from "./intro.module.scss";
-import VideoPlayer from "@/pages/projects/vigoza/components/VideoPlayer";
+import VideoPlayer from "@/pages/projects/vigoza/components/VideoView";
 
 
 const Intro = ( { intro } ) => {

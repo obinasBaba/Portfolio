@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Headline from '@components/CaseStudy/Headline';
 import { motion } from 'framer-motion';
 import useJuviAssets from '@hooks/queries/juvi/useJuviAssets';
 import useToolTip from '../../../hooks/useToolTip';
@@ -11,13 +10,10 @@ import FontUsed from '../../../components/CaseStudy/FontUsed';
 import Development from '../../../components/CaseStudy/Development';
 import useVigozaAssets from '../../../hooks/queries/useVigozaAssets';
 import useUpdatePath from '../../../hooks/useUpdatePath';
-import MarqueeSliderView
-  from '@/pages/projects/vigoza/components/MarqueeSliderView';
+import CarouselSliderView
+  from '@/pages/projects/vigoza/components/CarouselSliderView';
 import ElementsViewSection
   from '@/pages/projects/vigoza/components/ElementsViewSection';
-import HorizontalGallery
-  from '@/pages/projects/vigoza/components/HorizontalGallery';
-import RectangleView from '@/pages/projects/vigoza/components/RectangleView';
 
 const projectDataDefault = {
   title: 'Vigoza Digital Agency', subTitle: 'this is vigoza subtitle', about: {
@@ -105,9 +101,9 @@ function Vigoza ({ location }) {
 
       {/*<RectangleView />*/}
 
-      {/*<MarqueeSliderView />*/}
+      <CarouselSliderView />
 
-      <HorizontalGallery />
+      {/*<HorizontalGallery />*/}
 
       <Intro intro={projectDataDefault.intro} />
 

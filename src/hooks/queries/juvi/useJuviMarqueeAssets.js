@@ -89,6 +89,54 @@ const useMarqueeAssets = () => {
               ...homeWorksBigImage
           }
 
+          mp: file(relativePath: { eq: "juvi-haus/carousel/mobile-product.png" }) {
+              publicURL
+              name
+              ...homeWorksBigImage
+          }
+
+          mp2: file(relativePath: { eq: "juvi-haus/carousel/mobile-product-2.png" }) {
+              publicURL
+              name
+              ...homeWorksBigImage
+          }
+
+          mp3: file(relativePath: { eq: "juvi-haus/carousel/mobile-product-3.png" }) {
+              publicURL
+              name
+              ...homeWorksBigImage
+          }
+
+          mp4: file(relativePath: { eq: "juvi-haus/carousel/mobile-product-4.png" }) {
+              publicURL
+              name
+              ...homeWorksBigImage
+          }
+
+          mp5: file(relativePath: { eq: "juvi-haus/carousel/mobile-product-5.png" }) {
+              publicURL
+              name
+              ...homeWorksBigImage
+          }
+          
+          mp6: file(relativePath: { eq: "juvi-haus/carousel/mobile-product-6.png" }) {
+              publicURL
+              name
+              ...homeWorksBigImage
+          }
+          
+          mp7: file(relativePath: { eq: "juvi-haus/carousel/mobile-product-6.png" }) {
+              publicURL
+              name
+              ...homeWorksBigImage
+          }
+          
+          mp8: file(relativePath: { eq: "juvi-haus/carousel/mobile-product-8.png" }) {
+              publicURL
+              name
+              ...homeWorksBigImage
+          }
+
 
       }
 

@@ -1,33 +1,27 @@
 @use "@style" as *;
 
 //noinspection SassScssResolvedByNameOnly
-.container{
+.container {
   width: 100%;
 
-   @include margin(top, 15rem);
-   @include padding(1rem);
+  @include margin(top, 15rem);
+  @include padding(1rem);
+
+  border: 1px solid red;
 
 
-  & :global{
-    .swiper-slide-active{
-      //border: 3px solid saddlebrown;
-    }
+  & :local {
 
+    .headerText {
 
-  }
-
-  & :local{
-
-    .headerText{
-
-      & > :last-child{
+      & > :last-child {
         max-width: 77ch;
       }
     }
 
-    .swiperContainer{
+    .swiperContainer {
       position: relative;
-      width: 70%;
+      width: 25%;
       //max-width: 500px;
       overflow: visible;
       display: grid;
@@ -35,10 +29,11 @@
 
       @include margin(top, 5rem);
 
+      //border: 1px solid red;
 
 
-      & :global{
-        .swiper-pagination.swiper-pagination-progressbar{
+      & :global {
+        .swiper-pagination.swiper-pagination-progressbar {
           position: absolute;
           display: block;
           bottom: -15%;
@@ -49,7 +44,7 @@
           border-radius: 500px;
           overflow: hidden;
 
-          span{
+          span {
             display: inline-block;
             background-color: var(--dark-gray);
             border-radius: 50%;
@@ -62,18 +57,14 @@
     }
 
 
-    .swiperItem{
+    .swiperItem {
 
-      & > :first-child{
-        margin: 0 4.6rem;
-      }
-
-      .vid{
-        margin: 0 4.5rem;
+      & > :first-child {
+        margin: 0 4.6rem; //creat the spacing b/n items, (width80% does not mess things up)
       }
     }
 
-    .navController{
+    .navController {
       position: absolute;
       align-self: initial;
       justify-self: start;
@@ -88,7 +79,7 @@
       //border: 1px solid #000;
 
 
-      p{
+      p {
         display: grid;
         place-items: center;
         pointer-events: auto;
@@ -98,7 +89,7 @@
         cursor: pointer;
         user-select: none;
 
-        span{
+        span {
           pointer-events: none;
           display: block;
           font-family: 'shapes', serif;
@@ -109,4 +100,13 @@
     }
 
   }
+}
+
+.imageView{
+  box-sizing: content-box;
+
+  display: grid;
+  place-items: center;
+  border: .9rem solid var(--dark);
+  border-radius: 1.2rem;
 }
