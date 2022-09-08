@@ -1,8 +1,8 @@
-import { graphql, useStaticQuery } from "gatsby";
-
+import { graphql, useStaticQuery } from 'gatsby';
 
 const useColorAssets = () => {
-  return useStaticQuery( graphql`
+
+  return useStaticQuery(graphql`
       query {
           amber: file(relativePath: { eq: "juvi-haus/$amber.png" }) {
               publicURL
@@ -44,7 +44,7 @@ const useColorAssets = () => {
 
 
 
-  ` );
+  `);
 };
 
 export default useColorAssets;

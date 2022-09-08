@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Headline from '@components/CaseStudy/Headline';
 import { motion } from 'framer-motion';
-import useJuviAssets from '@hooks/queries/useJuviAssets';
+import useJuviAssets from '@hooks/queries/juvi/useJuviAssets';
 import useToolTip from '../../../hooks/useToolTip';
 import CaseStudy from '../../../components/CaseStudy';
 import MetaTxt from '../../../components/CaseStudy/MetaTxt';
@@ -17,6 +17,7 @@ import ElementsViewSection
   from '@/pages/projects/vigoza/components/ElementsViewSection';
 import HorizontalGallery
   from '@/pages/projects/vigoza/components/HorizontalGallery';
+import RectangleView from '@/pages/projects/vigoza/components/RectangleView';
 
 const projectDataDefault = {
   title: 'Vigoza Digital Agency', subTitle: 'this is vigoza subtitle', about: {
@@ -84,7 +85,7 @@ function Vigoza ({ location }) {
   return (
 
     <CaseStudy projectData={projectDataDefault} scrolled={scrolled}>
-      <Headline title={title} subTitle={subTitle} about={about} media='' />
+      {/*<Headline title={title} subTitle={subTitle} about={about} media='' />*/}
 
       <motion.div
         viewport={{
@@ -102,13 +103,14 @@ function Vigoza ({ location }) {
         <MetaTxt link='juvi.henzzo.com' />
       </motion.div>
 
-      {/*<RectangleView/>*/}
+      {/*<RectangleView />*/}
+
+      {/*<MarqueeSliderView />*/}
 
       <HorizontalGallery />
 
       <Intro intro={projectDataDefault.intro} />
 
-      <MarqueeSliderView />
 
       <ColorPalette colors={colors} />
 

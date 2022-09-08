@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import { AnimatePresence, motion } from "framer-motion";
-import { transition } from "../../helpers/variants";
-import useLoadingFonts from "../../hooks/useFonts";
-import { MotionValueContext } from "../../contexts/MotionStateWrapper";
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
+import { AnimatePresence, motion } from 'framer-motion';
+import { transition } from '../../helpers/variants';
+import useLoadingFonts from '../../hooks/useFonts';
+import { MotionValueContext } from '../../contexts/MotionStateWrapper';
 
-const SpinnerContainer = styled( motion.div )`
+const SpinnerContainer = styled(motion.div)`
   //position: fixed;
   position: absolute;
   z-index: 150;
@@ -63,7 +63,6 @@ const Content = styled.div`
   }
 `;
 
-
 const SmallBall = styled.div`
   height: 50px;
   width: 50px;
@@ -93,8 +92,7 @@ const BigBall = styled.div`
   background-color: #02021e;
 `;
 
-
-const SpinnerWrapper = styled( motion.div )`
+const SpinnerWrapper = styled(motion.div)`
   position: absolute;
   height: 100%;
   width: 100%;
@@ -103,7 +101,6 @@ const SpinnerWrapper = styled( motion.div )`
   place-items: center;
   z-index: 10;
 `;
-
 
 const parentVariants = {
   initial: {},
@@ -115,18 +112,18 @@ const parentVariants = {
   transition: {
     duration: 1.21,
     delay: .0821,
-    ease: [0.6, 0.01, 0, 0.9]
-  }
+    ease: [0.6, 0.01, 0, 0.9],
+  },
 };
 
 let exited = false;
 const containerVariants = {
 
-  initial(){
+  initial () {
     exited = false;
     return {
       opacity: 0,
-      y: "70%"
+      y: '70%',
     };
   },
   animate: {
@@ -135,88 +132,83 @@ const containerVariants = {
     transition: {
       ...transition,
       duration: 1.21,
-      delay: .3
+      delay: .3,
 
-    }
+    },
   },
 
-  exit( arg ){
+  exit (arg) {
     // opacity: 0,
 
-    if ( !exited ) {
+    if (!exited) {
       arg && arg.cleanUp();
       exited = true;
     }
 
     return {
-      y: "-100%"
+      y: '-100%',
     };
-  }
+  },
 };
 
+function LoadingPage () {
 
-function LoadingSpinner(){
+  const smallRef = useRef(null);
+  const contentRef = useRef(null);
+  const containerRef = useRef(null);
 
-  const smallRef = useRef( null );
-  const contentRef = useRef( null );
-  const containerRef = useRef( null );
-
-  const [backgroundOverlay, setBackgroundOverlay] = useState( true );
+  const [backgroundOverlay, setBackgroundOverlay] = useState(true);
   const {
     toolTipsData,
     mainAnimationController,
     screenOverlayProxy,
-    screenOverlayEvent
-  } = useContext( MotionValueContext );
+    screenOverlayEvent,
+  } = useContext(MotionValueContext);
 
-  useLoadingFonts( { setBackgroundOverlay, backgroundOverlay } );
+  useLoadingFonts({ setBackgroundOverlay, backgroundOverlay });
 
-  useEffect( () => {
-    toolTipsData.set( {
-      text: " ⌛ getting things ready...",
-      show: true
-    } );
+  useEffect(() => {
+    toolTipsData.set({
+      text: ' ⌛ getting things ready...',
+      show: true,
+    });
 
-  }, [] );
+  }, []);
 
-  useEffect( () => {
+  useEffect(() => {
 
-    screenOverlayProxy.set( {
+    screenOverlayProxy.set({
       state: true,
       config: {
         duration: 0.0002,
         delayPointsMax: 0,
-        delayPerPath: 0
-      }
-    } );
+        delayPerPath: 0,
+      },
+    });
 
     return () => {
     };
-  }, [] );
+  }, []);
 
+  async function cleanUp () {
 
-  async function cleanUp(){
+    document.body.querySelector('#main-container').classList.add('loaded');
 
-    document.body.querySelector( "#main-container" )
-      .classList.add( "loaded" );
-
-
-    screenOverlayProxy.set( {
+    screenOverlayProxy.set({
       state: false,
       config: {
         duration: 920,
         delayPointsMax: 120,
-        delayPerPath: 120
-      }
-    } );
+        delayPerPath: 120,
+      },
+    });
 
-    setTimeout( () => {
-      mainAnimationController.start( "animate" );
-      screenOverlayEvent.set( "closed" );
-    }, 750 );
+    setTimeout(() => {
+      mainAnimationController.start('animate');
+      screenOverlayEvent.set('closed');
+    }, 750);
 
   }
-
 
   return (
 
@@ -226,28 +218,29 @@ function LoadingSpinner(){
         backgroundOverlay &&
         <SpinnerContainer ref={containerRef}
                           variants={parentVariants}
-                          initial="initial"
-                          animate="animate"
-                          exit="exit"
+                          initial='initial'
+                          animate='animate'
+                          exit='exit'
                           transition={parentVariants.transition}
 
         >
 
 
           <SpinnerWrapper variants={containerVariants}
-                          key="contentwrapp"
+                          key='contentwrapp'
                           custom={{ cleanUp }}
                           transition={parentVariants.transition}>
 
             <Content ref={contentRef}>
-              <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
+              <svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='800'>
                 <defs>
-                  <filter id="goo">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-                    <feColorMatrix in="blur" mode="matrix"
-                                   values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
-                                   result="goo" />
-                    <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+                  <filter id='goo'>
+                    <feGaussianBlur in='SourceGraphic' stdDeviation='10'
+                                    result='blur' />
+                    <feColorMatrix in='blur' mode='matrix'
+                                   values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9'
+                                   result='goo' />
+                    <feComposite in='SourceGraphic' in2='goo' operator='atop' />
                   </filter>
                 </defs>
               </svg>
@@ -265,4 +258,4 @@ function LoadingSpinner(){
   );
 }
 
-export default LoadingSpinner;
+export default LoadingPage;

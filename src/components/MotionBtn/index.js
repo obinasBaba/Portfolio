@@ -3,9 +3,12 @@ import { Typography } from "@material-ui/core";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { Link } from "gatsby";
-import { spacing } from "../../styles/mixins";
+import { spacing } from '@/styles/mixins';
 
-const Btn = styled( motion.div )`
+const Btn = styled( motion.button )`
+  background-color: transparent;
+  border: none;
+  color: inherit;
 
   .btn-txt {
     margin: 0;
@@ -105,6 +108,7 @@ function MotionBtn( {
     clr={clr}
     data-pointer="focus"
     // data-pointer-color="#02021e"
+    data-cursor='-opaque'
     data-tooltip
     data-tooltip-text={toolTipText}
     onClick={() => {

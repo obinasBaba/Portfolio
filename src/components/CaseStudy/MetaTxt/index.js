@@ -60,14 +60,16 @@ const MetaTxt = ({ link }) => {
             <Typography noWrap className={key} variant='h6'> {q}</Typography>
 
             {
-              (link && idx === about.length - 1) ? <a href={link}
-                                                      className={seeLive}>
+              (link && idx === about.length - 1) ?
+                <a href={link}
+                   className={seeLive}>
                   <Typography className={value}
                               variant='subtitle'> {a} </Typography>
                 </a>
                 :
                 <Typography className={value}
-                            variant='subtitle'> {a} </Typography>
+                            variant='subtitle'> {a}
+                </Typography>
 
             }
 

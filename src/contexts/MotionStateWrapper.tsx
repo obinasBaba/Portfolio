@@ -1,9 +1,9 @@
-import { AnimationControls, MotionValue, useAnimation, useMotionValue } from "framer-motion";
-import React, { createContext, useContext, useEffect, useLayoutEffect } from "react";
+import { AnimationControls, MotionValue, useAnimation, useMotionValue } from 'framer-motion';
+import React, { createContext, useContext, useEffect, useLayoutEffect } from 'react';
 // @ts-ignore
-import LocomotiveScroll from "locomotive-scroll";
-import { useMediaQuery, useTheme } from "@material-ui/core";
-import RouteChangeEvent from "../helpers/RouteChangeEvent";
+import LocomotiveScroll from 'locomotive-scroll';
+import { useMediaQuery, useTheme } from '@material-ui/core';
+import RouteChangeEvent from '../helpers/RouteChangeEvent';
 
 
 type ToolTipType = {
@@ -61,8 +61,8 @@ export const MotionStateWrapper: React.FC = ({ children }) => {
   const xProgress = useMotionValue(0);
   const limit = useMotionValue(0);
   const projectImgLoaded = useMotionValue(false);
-  const registerScrollRestoration = useMotionValue("");
-  const scrollDirection = useMotionValue("down");
+  const registerScrollRestoration = useMotionValue('');
+  const scrollDirection = useMotionValue('down');
   const inView = useMotionValue(null);
   const locoInstance = useMotionValue<LocomotiveScroll>(null);
   const largeUp = useMotionValue(false);
@@ -70,16 +70,16 @@ export const MotionStateWrapper: React.FC = ({ children }) => {
   const mainAnimationController = useAnimation();
 
   const screenOverlayProxy = useMotionValue({ state: false, config: {} });
-  const screenOverlayEvent = useMotionValue("");
+  const screenOverlayEvent = useMotionValue('closed');
   const menuIsOpen = useMotionValue(false);
 
-  const refreshCursorEventListeners = useMotionValue("[data-pointer]");
+  const refreshCursorEventListeners = useMotionValue('[data-pointer]');
 
   const locoInstanceHelpers = useMotionValue(null);
   const toolTipsData = useMotionValue<ToolTipType>({
-    text: "",
+    text: '',
     show: false,
-    timer: null
+    timer: null,
   });
 
   //mouse_event motion_values
@@ -87,7 +87,7 @@ export const MotionStateWrapper: React.FC = ({ children }) => {
   const mouseY = useMotionValue(0);
 
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("lg"));
+  const matches = useMediaQuery(theme.breakpoints.up('lg'));
   const routeEvent = RouteChangeEvent.GetInstance();
 
 
@@ -100,12 +100,12 @@ export const MotionStateWrapper: React.FC = ({ children }) => {
   // const { scrollY, scrollYProgress } =  useViewportScroll()
 
   useEffect(() => {
-    const showTip = () => toolTipsData.set({ timer: null, show: true, text: "loading resource..." });
+    const showTip = () => toolTipsData.set({ timer: null, show: true, text: 'loading resource...' });
 
-    routeEvent.addListener("start", showTip);
+    routeEvent.addListener('start', showTip);
 
     return () => {
-      routeEvent.removeListener("start", showTip);
+      routeEvent.removeListener('start', showTip);
     };
 
   }, []);
@@ -116,7 +116,7 @@ export const MotionStateWrapper: React.FC = ({ children }) => {
       mouseY.set(ev.clientY);
     };
 
-    window.addEventListener("mousemove", updateMouseMotionValue);
+    window.addEventListener('mousemove', updateMouseMotionValue);
   }, []);
 
   // @ts-ignore
@@ -129,16 +129,16 @@ export const MotionStateWrapper: React.FC = ({ children }) => {
           yProgress,
           xProgress,
           limit,
-          scrollDirection
+          scrollDirection,
         },
         mouse: {
           mouseX,
-          mouseY// @ts-ignore
+          mouseY,// @ts-ignore
         },
         variantsUtil: {
           fromCaseStudy,
           fromProjectList,
-          isTop
+          isTop,
         },
         projectImgLoaded,
         registerScrollRestoration,
@@ -150,7 +150,7 @@ export const MotionStateWrapper: React.FC = ({ children }) => {
         screenOverlayProxy,
         screenOverlayEvent,
         menuIsOpen,
-        refreshCursorEventListeners
+        refreshCursorEventListeners,
 
       }}
     >

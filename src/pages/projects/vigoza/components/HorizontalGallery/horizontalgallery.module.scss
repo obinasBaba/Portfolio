@@ -3,49 +3,50 @@
 //noinspection SassScssResolvedByNameOnly
 .container {
   width: 100%;
-  display: flex;
-  flex-flow: column;
-  gap: calc(100vw / 64 * 1);
 
-  @include margin(top, 20rem);
+  //background-color: var(--dark);
+
+
+
+  @include padding(ver, 10rem);
   // @include padding(bottom, 8rem);
 
-  border: 1px solid #000;
-
-  & > :last-child {
-
-
-    .wrapper {
-      & > :first-child {
-        margin-left: -300px;
-
-        border: 1px solid #000;
-      }
-    }
-
-
-  }
+  border: 1px solid yellow;
 
 
   & :local {
+
+    .wrapper {
+      //border: 1px solid black;
+      display: flex;
+      flex-flow: column;
+      gap: calc(100vw / 64 * 1);
+      transform: translateX(-15%);
+
+      @include margin(ver, 3rem);
+    }
 
 
     .track {
       transition: transform cubic-bezier(0.6, 0.01, 0, 0.9);
 
+      //border: 2px solid red;
+
+
       //margin-top: calc(100vw / 64 * 1);
 
 
-      .wrapper {
+      .trackWrapper {
         display: flex;
         align-items: center;
 
-        border: 2px solid red;
+        //border: 2px solid red;
 
         .trackImg {
           margin-right: calc(100vw / 64 * 1);
           min-width: calc(100vw / 64 * 15);
-          lmax-width: calc(100vw / 64 * 15);
+          max-width: calc(100vw / 64 * 20);
+          box-shadow: 6px 7px 75px 15px lighten(#000000, 70);
 
         }
       }
