@@ -1,5 +1,17 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
+export const homeWorksMiddleImage = graphql`
+    fragment homeWorksMiddleImage on File {
+        childImageSharp {
+            gatsbyImageData(
+                quality: 100
+                placeholder: BLURRED
+                webpOptions: { quality: 100 }
+            )
+        }
+    }
+`;
+
 const useColorAssets = () => {
 
   return useStaticQuery(graphql`
@@ -34,8 +46,11 @@ const useColorAssets = () => {
               publicURL
           }
 
-          elements: file(relativePath: { eq: "juvi-haus/elements.png" }) {
+          elements: file(relativePath: { eq: "juvi-haus/others/element-2.png" }) {
               publicURL
+              publicURL
+              name
+              ...homeWorksBigImage
           }
 
 

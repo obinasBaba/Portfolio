@@ -99,9 +99,12 @@ function Vigoza ({ location }) {
         <MetaTxt link='juvi.henzzo.com' />
       </motion.div>
 
+      <ElementsViewSection elements={elements} />
+
+
       {/*<RectangleView />*/}
 
-      <CarouselSliderView />
+      {/*<CarouselSliderView />*/}
 
       {/*<HorizontalGallery />*/}
 
@@ -112,7 +115,6 @@ function Vigoza ({ location }) {
 
       <FontUsed fonts={[fontAby, fontRai]} />
 
-      <ElementsViewSection elements={elements} />
 
       {/* <Concept /> */}
 

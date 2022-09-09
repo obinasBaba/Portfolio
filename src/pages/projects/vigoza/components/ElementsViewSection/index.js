@@ -1,31 +1,44 @@
-import React from "react";
-import ResponsiveContainer from "@components/ResponsiveContainer";
-import { Typography } from "@material-ui/core";
-import { container, elementImg, wrapper, text } from "./elementsviewsection.module.scss";
+import React from 'react';
+import ResponsiveContainer from '@components/ResponsiveContainer';
+import { Typography } from '@material-ui/core';
+import {
+  container,
+  elementImg,
+  text,
+  wrapper,
+} from './elementsviewsection.module.scss';
+import useJuviAssets from '@hooks/queries/juvi/useJuviAssets';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-const ElementsViewSection = ( { elements } ) => {
+const ElementsViewSection = ({}) => {
+
+  const { elements } = useJuviAssets();
+
   return (
     <div className={container}>
 
       <ResponsiveContainer className={wrapper}>
 
         <div className={text}>
-          <Typography variant="h3" gutterBottom>
+          <Typography variant='h3' gutterBottom>
             elements
           </Typography>
 
-          <Typography style={{maxWidth: '77ch'}}>
-            kim drew a whopping 141 scribble- and 39 stone illustrations to use in all kinds of media, including the
+          <Typography style={{ maxWidth: '77ch' }}>
+            kim drew a whopping 141 scribble- and 39 stone illustrations to use
+            in all kinds of media, including the
             website. they portray elements the band personally feels close to.
           </Typography>
         </div>
 
-        <div className={elementImg}>
-          <img src={elements?.publicURL || ''} alt="elements used in the project" />
-        </div>
-
-
       </ResponsiveContainer>
+
+      <div className={elementImg}>
+
+        <GatsbyImage alt='elements used in the project'
+                     image={getImage(elements)} />
+
+      </div>
 
 
     </div>

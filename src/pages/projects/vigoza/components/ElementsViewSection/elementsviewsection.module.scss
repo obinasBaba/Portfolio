@@ -3,7 +3,10 @@
 //noinspection SassScssResolvedByNameOnly
 .container{
   width: 100%;
-  background-color: var(--headlineBg);
+  //display: flex;
+  //background-color: var(--headlineBg);
+
+
 
    @include padding(top, 10rem);
   // @include padding(bottom, 8rem);
@@ -11,12 +14,19 @@
   & :local{
 
     .wrapper{
+      display: flex;
 
+      border: 1px solid #000;
     }
 
     .elementImg{
-      max-width: 40vmax;
+      width: 100%;
       margin: 0 auto;
+      //box-shadow: 6px 7px 25px 15px rgba(0, 0, 0, 0.08);
+
+      margin-top: 5rem;
+
+      //box-shadow: ;
     }
 
     .text{
