@@ -1,54 +1,56 @@
-import React, { useContext, useEffect } from "react";
-import { motion } from "framer-motion";
-import loadable from "@loadable/component";
-import { MotionValueContext } from "@contexts/MotionStateWrapper";
-import { SectionWrapper } from "@components/Container";
-import RecentWorks from "./RecentDesigns";
-import ToProjects from "./ToProjects";
-import BlogPosts from "./BlogPosts";
-import Experiments from "./Experiments";
-import Hero from "@/scenes/HomePage/Hero";
+import React, { useContext, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import loadable from '@loadable/component';
+import { MotionValueContext } from '@contexts/MotionStateWrapper';
+import { SectionWrapper } from '@components/Container';
+import RecentWorks from './RecentDesigns';
+import ToProjects from './ToProjects';
+import BlogPosts from './BlogPosts';
+import Experiments from './Experiments';
+import Hero from '@/scenes/HomePage/Hero';
 
-const MailUs = loadable( () => import("../../components/MailUs") );
+const MailUs = loadable(() => import('../../components/MailUs'));
 
 const containerVariants = {
-  exit( arg ){
-    if ( arg?.inView.get() ) return {};
+  exit (arg) {
+    if (arg?.inView.get()) return {};
 
     return {
-      opacity: 0
+      opacity: 0,
     };
 
-  }
+  },
 };
 
 const transition = {
   duration: 1,
-  ease: [0.6, 0.01, 0, 0.9]
+  ease: [0.6, 0.01, 0, 0.9],
 };
 
-function HomePage(){
+function HomePage () {
 
   const {
     mainAnimationController,
-    screenOverlayEvent
-  } = useContext( MotionValueContext );
+    screenOverlayEvent,
+  } = useContext(MotionValueContext);
 
-  useEffect( () => {
+  useEffect(() => {
 
     },
-    [] );
+    []);
 
   return (< motion.main variants={containerVariants}
-                        className="homepage-container"
+                        className='homepage-container'
                         transition={transition}
-                        initial="initial"
-                        animate={screenOverlayEvent.get() === "closed"
-                          ? "animate"
+                        initial='initial'
+                        animate={screenOverlayEvent.get() === 'closed'
+                          ? 'animate'
                           : mainAnimationController}
-                        exit="exit"
-                        whileInView="inView"
+                        exit='exit'
+                        whileInView='inView'
   >
+
+
 
     <Hero />
 

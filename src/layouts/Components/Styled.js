@@ -12,22 +12,25 @@ export const PageContainer = styled( motion.div )`
 `;
 
 export const BottomGradient = styled.div`
+  --opa: 1;
+  
   position: fixed;
   //z-index: 1;
-  top: 10%;
+  top: 85%;
   left: 0;
   bottom: 0;
   right: 0;
+  //border: 1px solid red;
   pointer-events: none;
   //opacity: var(--btm-gradient-opacity);
-  opacity: 0;
+  opacity: var(--opa);
   background-image: var(--bottom-gradient);
-  transition: all 0.35s ease-in-out;
+  transition: all .8s ease-in-out;
 
   //display: none;
 
   &.hide-bg {
-    opacity: 0;
+    --opa: 0;
   }
 `;
 

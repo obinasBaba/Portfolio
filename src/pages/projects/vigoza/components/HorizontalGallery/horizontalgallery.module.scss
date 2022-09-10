@@ -8,10 +8,10 @@
 
 
 
-  @include padding(ver, 10rem);
+  @include margin(ver, 15rem);
   // @include padding(bottom, 8rem);
 
-  border: 1px solid yellow;
+  //border: 1px solid yellow;
 
 
   & :local {
@@ -24,6 +24,7 @@
       transform: translateX(-15%);
 
       @include margin(ver, 3rem);
+      @include margin(top, 7rem);
     }
 
 

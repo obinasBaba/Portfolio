@@ -1,0 +1,27 @@
+@use "@style" as *;
+
+
+//noinspection SassScssResolvedByNameOnly
+.container {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  background-color: white;
+
+  border: 1px solid red;
+
+  //@include margin(top, 10);
+
+  & :local{
+
+    .wrapper{
+      @include padding(ver, 16rem);
+    }
+
+    .text{
+
+
+    }
+  }
+
+}

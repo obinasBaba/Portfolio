@@ -14,6 +14,10 @@ import CarouselSliderView
   from '@/pages/projects/vigoza/components/CarouselSliderView';
 import ElementsViewSection
   from '@/pages/projects/vigoza/components/ElementsViewSection';
+import RectangleView from '@/pages/projects/vigoza/components/RectangleView';
+import Headline from '@components/CaseStudy/Headline';
+import HorizontalGallery
+  from '@/pages/projects/vigoza/components/HorizontalGallery';
 
 const projectDataDefault = {
   title: 'Vigoza Digital Agency', subTitle: 'this is vigoza subtitle', about: {
@@ -99,26 +103,30 @@ function Vigoza ({ location }) {
         <MetaTxt link='juvi.henzzo.com' />
       </motion.div>
 
-      <ElementsViewSection elements={elements} />
 
 
-      {/*<RectangleView />*/}
-
-      {/*<CarouselSliderView />*/}
-
-      {/*<HorizontalGallery />*/}
+      <RectangleView />
 
       <Intro intro={projectDataDefault.intro} />
 
+      <CarouselSliderView />
+
+      <Intro intro={projectDataDefault.intro} />
+
+      <Intro intro={projectDataDefault.intro} />
+
+      <CarouselSliderView />
+
+      <ElementsViewSection elements={elements} />
 
       <ColorPalette colors={colors} />
 
       <FontUsed fonts={[fontAby, fontRai]} />
 
-
-      {/* <Concept /> */}
+      <HorizontalGallery />
 
       <Development />
+
     </CaseStudy>
   );
 }

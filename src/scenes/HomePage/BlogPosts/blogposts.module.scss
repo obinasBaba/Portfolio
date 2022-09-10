@@ -10,11 +10,13 @@
 
   & :local {
 
+
     .wrapper {
       max-width: 100%;
       //overflow: hidden;
       @include grid-template();
       @include margin(bottom, 20rem);
+      @include margin(top, 9rem);
 
 
       //${spacing( "grid-row-gap", 20 )};

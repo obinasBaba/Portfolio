@@ -1,5 +1,3 @@
-/** @format */
-
 import { createTheme, responsiveFontSizes } from '@material-ui/core';
 import { darkColor, mainColor } from '@/styles/variables/colors';
 

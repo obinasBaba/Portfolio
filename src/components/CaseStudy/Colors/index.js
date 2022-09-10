@@ -1,18 +1,21 @@
-import React from 'react'
-import styled, {css} from 'styled-components'
-import { spacing } from '../../../styles/mixins'
-import {Container, Typography, useMediaQuery, useTheme} from '@material-ui/core'
-import useColorAssets from '../../../hooks/queries/useColorAssets'
-import {largeUp} from "../../../styles/mixins/breakpoints";
-import ResponsiveContainer from "../../ResponsiveContainer";
+import React from 'react';
+import styled, { css } from 'styled-components';
+import { spacing } from '../../../styles/mixins';
+import {
+  Container,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@material-ui/core';
+import { largeUp } from '@/styles/mixins/breakpoints';
 
-const ColorsPaletteContainer = styled( Container )`
+const ColorsPaletteContainer = styled(Container)`
   width: 100%;
 
   ${spacing('mt', 35)};
 
   //border: thin solid rebeccapurple;
-`
+`;
 
 const ColorWrapper = styled.div`
   width: 100%;
@@ -21,21 +24,24 @@ const ColorWrapper = styled.div`
   //z-index: 111;
   justify-content: space-evenly;
 
-  img{
-    max-width: 33%;
-  };
+  margin-top: 4rem;
 
-  ${largeUp( css`
+  img {
+    max-width: 33%;
+  }
+;
+
+  ${largeUp(css`
     justify-content: space-between;
     flex-flow: nowrap;
 
-    img{
+    img {
       max-width: 200px;
     }
 
-  ` )};
-  
-`
+  `)};
+
+`;
 
 const ColorBox = styled.div`
   display: flex;
@@ -59,7 +65,7 @@ const ColorBox = styled.div`
     text-shadow: 0em 0.1em 0.3em rgba(0, 0, 0, 0.52);
     //display: none;
   }
-`
+`;
 
 const Color = styled.div`
   border-radius: 50%;
@@ -68,25 +74,25 @@ const Color = styled.div`
   height: clamp(130px, 15vw, 160px);
   box-shadow: 0 5px 10px 0 rgba(0 0 0 / 33%);
   transition: all 0.3s;
-`
+`;
 
 const ColorPalette = ({ colors, themeColor }) => {
 
-  const theme = useTheme()
-  const matches = useMediaQuery(theme.breakpoints.up('xxl'))
-
-
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('xxl'));
 
   return (
-    <ColorsPaletteContainer maxWidth={matches ? 'xl' : 'lg'} >
-        {/*<Typography variant='h2'> Colors </Typography>*/}
-        <ColorWrapper   >
-            {colors.map(({ publicURL }) => (
-                <img src={publicURL} alt="" key={publicURL}/>
-            ))}
-        </ColorWrapper>
-    </ColorsPaletteContainer>
-  )
-}
+    <ColorsPaletteContainer maxWidth={matches ? 'xl' : 'lg'}>
 
-export default ColorPalette
+      <Typography variant='h2' gutterBottom> Palette </Typography>
+
+      <ColorWrapper>
+        {colors.map(({ publicURL }) => (
+          <img src={publicURL} alt='' key={publicURL} />
+        ))}
+      </ColorWrapper>
+    </ColorsPaletteContainer>
+  );
+};
+
+export default ColorPalette;

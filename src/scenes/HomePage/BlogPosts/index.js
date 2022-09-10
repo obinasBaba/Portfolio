@@ -1,20 +1,18 @@
-import React from "react";
-import Info from "./components/Info";
-import Previews from "./components/Previews";
-import HeadlineTitle from "../../../components/Headline";
-import { container, wrapper } from "./blogposts.module.scss";
+import React from 'react';
+import Info from './components/Info';
+import Previews from './components/Previews';
+import HeadlineTitle from '../../../components/Headline';
+import { container, wrapper } from './blogposts.module.scss';
 
-
-function BlogPosts(){
+function BlogPosts () {
   return (
     <div className={container}>
 
       <HeadlineTitle
-        className="blog-headline"
-        title="My Blogs"
-        subtitle="Tips & Tricks"
-        mb={10}
+        title='My Blogs'
+        subtitle='Tips & Tricks'
       />
+
 
       <div className={wrapper}>
         <aside>

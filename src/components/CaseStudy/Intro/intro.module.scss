@@ -3,44 +3,48 @@
 
 //noinspection SassScssResolvedByNameOnly
 .container {
-
+  width: 100%;
   @include margin(top, 15rem);
 
 
-  & > :first-child{
-    margin-bottom: f-unit-light(1rem);
-  }
+  & :local {
 
-  & > :last-child{
-    margin-top: f-unit-light(4rem);
-  }
-
-  @include media-breakpoint-up(1440px){
-    max-width: 1350px;
-  }
-
-  & :local{
-
-    .text{
-      max-width: 77ch;
-      font-weight: 300;
-      line-height: 160%;
-      letter-spacing: 0.5px;
+    .wrapper {
+      max-width: 1300px;
+      margin: 0 auto;
     }
 
-    .vidWrapper{
+    .textWrapper {
+      @include padding(hor, 4rem);
+      @include margin(bottom, 6rem);
+      //border: 1px solid red;
 
-      .vidDesc{
-        @include margin(hor, 3rem);
-        @include margin(top, 3rem);
+      .text {
+        max-width: 77ch;
+        font-weight: 300;
+        line-height: 160%;
+        letter-spacing: 0.5px;
+        margin-top: 2rem;
+      }
+    }
 
-        h4{
+
+    .vidWrapper {
+      display: grid;
+      place-items: center;
+
+      .vidDesc {
+        width: 100%;
+
+        @include padding(hor, 3rem);
+        @include padding(top, 3rem);
+
+        h4 {
           font-weight: bolder;
         }
 
-        .text{
+        .text {
           max-width: initial;
-
         }
 
       }

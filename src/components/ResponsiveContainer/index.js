@@ -1,20 +1,27 @@
-import React from "react";
-import { Container, useMediaQuery, useTheme } from "@material-ui/core";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import { Container, useMediaQuery, useTheme } from '@material-ui/core';
 
-const RContainer = styled( Container )`
-`;
-
-const ResponsiveContainer = React.forwardRef( ( props, ref ) => {
+const ResponsiveContainer = React.forwardRef((props, ref) => {
 
   const theme = useTheme();
-  const matches = useMediaQuery( theme.breakpoints.up( "xl" ) );
+  const matches = useMediaQuery(theme.breakpoints.up('xl'));
+
+  const [refresh, setRefresh] = useState(true);
+
+  useEffect(() => {
+
+    console.log('matches: ', matches);
+
+  }, [matches]);
 
   return (
-    <RContainer maxWidth={matches ? "xl" : "lg"} {...props} ref={ref} fixed={true}>
+    <Container maxWidth={matches ? 'xl' : 'lg'} {...props} ref={ref}
+               fixed={true}>
       {props?.children}
-    </RContainer>
+    </Container>
   );
-} );
+});
+
+ResponsiveContainer.displayName = 'ResponsiveContainer';
 
 export default ResponsiveContainer;

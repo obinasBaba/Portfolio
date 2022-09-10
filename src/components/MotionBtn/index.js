@@ -108,7 +108,7 @@ function MotionBtn( {
     clr={clr}
     data-pointer="focus"
     // data-pointer-color="#02021e"
-    data-cursor='-opaque'
+    // data-cursor='-opaque'
     data-tooltip
     data-tooltip-text={toolTipText}
     onClick={() => {

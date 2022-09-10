@@ -27,7 +27,7 @@ function Page ({ children, path }) {
 
   const { currentPath } = useContext(AppStateContext);
   const { breakpoint } = useMotionBreakPoint();
-  // useCursor();
+  useCursor();
 
   return (
     <LocomotiveScrollProvider
@@ -82,7 +82,7 @@ function Page ({ children, path }) {
           </AnimatePresence>
         </Main>
 
-        <BottomGradient className='btm-gradient hide-bg' />
+        <BottomGradient className='btm-gradient' />
 
         <ProgressCircle />
 

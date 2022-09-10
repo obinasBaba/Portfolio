@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import { spacing } from "../../styles/mixins";
-import Logo from "./logo.svg";
-import { GradientText } from "../GradientText";
-import FooterMeta from "./FooterMeta";
-import Footer from "../Footer";
-import MotionBtn from "../MotionBtn";
+import React from 'react';
+import styled from 'styled-components';
+import { spacing } from '@/styles/mixins';
+import Logo from './logo.svg';
+import { GradientText } from '../GradientText';
+import FooterMeta from './FooterMeta';
+import Footer from '../Footer';
+import MotionBtn from '../MotionBtn';
 
 const MailUsContainer = styled.section`
   position: relative;
@@ -26,8 +26,20 @@ const MailUsContainer = styled.section`
 
   //border: thin solid red;
 
-  ${spacing( "mt", 10 )};
-  ${spacing( "pt", 10 )};
+  ${spacing('mt', 10)};
+  ${spacing('pt', 10)};
+  ${spacing('pb', 3)};
+  
+  .bottom_gradient{
+    //display: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 7rem;
+    background-image: linear-gradient( to top, rgba(2, 11, 22, 1), rgba(0,0,0, 0));
+    z-index: 100;
+    
+  }
 `;
 
 const Background = styled.span`
@@ -53,7 +65,7 @@ const TitleWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  ${spacing( "mb", 8 )};
+  ${spacing('mb', 8)};
 
   .titleTxt {
     font-family: var(--eli);
@@ -76,26 +88,29 @@ const LogoEffect = styled.div`
   //display: none;
 `;
 
-function MailUs(){
-
+function MailUs () {
 
   return (
     <MailUsContainer>
+
+      <div className='bottom_gradient'/>
+
       <Background />
       <LogoEffect />
 
       <TitleWrapper>
-        <GradientText variant="h1" className="titleTxt">
+        <GradientText variant='h1' className='titleTxt'>
           Ready To Create <br /> Your Star ?
         </GradientText>
 
-        <MotionBtn text="Contact" to="/contact" data-pointer="focus" />
+        <MotionBtn text='Contact' to='/contact' data-pointer='focus' />
 
       </TitleWrapper>
 
       <FooterMeta />
 
       <Footer />
+
 
 
     </MailUsContainer>

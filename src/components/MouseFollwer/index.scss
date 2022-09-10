@@ -15,7 +15,7 @@ $mf-color-text: #fff !default;
 
   transition: opacity 0.3s, color 0.4s;
 
-  mix-blend-mode:darken;
+  //mix-blend-mode:darken;
 
 
   &:before {
@@ -27,11 +27,6 @@ $mf-color-text: #fff !default;
     width: 48px;
     height: 48px;
     transform: scale(0.4);
-
-
-
-    transform: scale(1.32);
-    background:invert(rgb(8, 239, 231));
 
 
     background: currentColor;

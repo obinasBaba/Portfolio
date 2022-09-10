@@ -1,11 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-  motion,
-  useMotionTemplate,
-  useSpring,
-  useTransform,
-} from 'framer-motion';
+import { motion, useSpring, useTransform } from 'framer-motion';
 import ImageGrid from '../../scenes/HomePage/RecentDesigns/ImageGrid';
 import { spacing } from '../../styles/mixins';
 import useHomeWorksAssets from '../../hooks/queries/useHomeWorksAssets';
@@ -82,7 +77,13 @@ const Gallery = () => {
       <ScrollWrapper id='image_row_container'>
 
         <ScrollTrack className='rd-scroll-track'
-                     style={{ x: useMotionTemplate`${x}%` }}>
+          // style={{ x: useMotionTemplate`${x}%` }}
+
+                     data-scroll={true}
+                     data-scroll-direction='horizontal'
+                     data-scroll-speed='2'
+                     data-scroll-delay='.05'
+        >
           {imageList.map((item, index) =>
             <ImageGrid images={item} idx={index} key={index} />,
           )}

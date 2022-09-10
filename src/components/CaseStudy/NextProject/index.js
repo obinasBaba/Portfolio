@@ -1,44 +1,26 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Typography } from '@material-ui/core'
-import { spacing } from '../../../styles/mixins'
-import MotionBtn from '../../MotionBtn'
+import React from 'react';
+import styled from 'styled-components';
+import { Typography } from '@material-ui/core';
+import { spacing } from '../../../styles/mixins';
+
+import { container, wrapper } from './nextproject.module.scss';
 
 const NextProjectContainer = styled.section`
   position: relative;
   display: flex;
   flex-flow: column;
-  background-image: url(${( { url } ) => url});
 
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
   width: 100%;
-  color: white !important;
+  //color: white !important;
 
-  ${spacing( 'mt', 25 )};
+  ${spacing('mt', 25)};
+
+  border: 1px solid red;
 
 
-  &::after {
-    content: '';
-    position: absolute;
-    display: block;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    backdrop-filter: blur(5px);
-    background-image: linear-gradient(130deg,
-    #02021eff 10%,
-    rgba(2, 2, 30, 0));
-  }
+  ${spacing('pv', 15)};
 
-  ${spacing( 'pv', 15 )};
-    // ${spacing( 'ph', 10 )};
-    // ${spacing( 'pr', 0 )};
-
-  ${spacing( 'gap', 2 )};
+  ${spacing('gap', 2)};
 
 
   & .titleTxt {
@@ -50,27 +32,26 @@ const NextProjectContainer = styled.section`
   & * {
     z-index: 2;
   }
-`
+`;
 
 const NextProjectWrapper = styled.div`
-    //max-width: 80%;
+  //max-width: 80%;
   margin-left: 10%;
-`
+`;
 
-function NextProject({ titleTxt, url, thumbnailUrl }) {
-    return (
-        <NextProjectContainer maxWidth="xl" component="section" url={thumbnailUrl}>
+function NextProject ({ titleTxt, url, thumbnailUrl }) {
+  return (
+    <div className={container}>
+
+      <div className={wrapper}>
+        <Typography variant='h1'>
+          Next Project
+        </Typography>
+      </div>
 
 
-            <NextProjectWrapper maxWidth='xl'>
-                <Typography noWrap> Next Work </Typography>
-                <Typography variant="h1" className='titleTxt'> {titleTxt} </Typography>
-
-                <MotionBtn text="Go to next" to={url}/>
-            </NextProjectWrapper>
-
-        </NextProjectContainer>
-    )
+    </div>
+  );
 }
 
-export default NextProject
+export default NextProject;

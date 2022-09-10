@@ -4,13 +4,13 @@ import {Container, Typography} from '@material-ui/core'
 import {spacing} from '../../../styles/mixins'
 import devPic from './Design-stack@2x.png';
 
-const DevelopmentContainer = styled( Container )`
+const DevelopmentContainer = styled.div `
   display: flex;
   align-items: center;
   justify-content: center;
   flex-flow: column;
 
-  ${spacing('mt', 20)};
+  ${spacing('mt', 10)};
 
 `
 
@@ -39,7 +39,8 @@ const Development = () => {
 
 
       <img src={devPic} alt={'dev pic'} style={{
-        maxWidth: '100%'
+        maxWidth: '100%',
+        width: '1600px'
       }}/>
 
     </DevelopmentContainer>
