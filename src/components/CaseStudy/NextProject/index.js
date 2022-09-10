@@ -43,7 +43,7 @@ function NextProject ({ titleTxt, url, thumbnailUrl }) {
   return (
     <div className={container}>
 
-      <div className={wrapper}>
+      <div className={wrapper} >
         <Typography variant='h1'>
           Next Project
         </Typography>

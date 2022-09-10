@@ -1,0 +1,83 @@
+@use "@style" as *;
+
+
+//noinspection SassScssResolvedByNameOnly
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  //height: calc(100vh - 142px);
+  //min-height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 0;
+  height: 100vh;
+
+  background-color: var(--dark);
+
+  //border: thin solid red;
+
+  @include margin(top, 5rem);
+
+  .bottom_gradient {
+    //display: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 7rem;
+    //background-image: linear-gradient( to top, rgba(2, 11, 22, 1), rgba(0,0,0, 0));
+    z-index: 100;
+
+  }
+
+  & :local {
+
+
+    .wrapper {
+
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+      @include padding(top, 8rem);
+
+
+      //border: 1px solid red;
+
+      .backgroundStars{
+        position: absolute;
+        inset: 0;
+      }
+
+    }
+
+    .titleWrapper{
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      justify-content: center;
+
+      @include margin(bottom, 8);
+
+    }
+
+    .logoEffect{
+      position: absolute;
+      background-image: url('./logo.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      filter: blur(2px);
+      z-index: -1;
+
+      top: 10%;
+      left: 0;
+      right: 0;
+      bottom: 0%;
+    }
+
+  }
+
+}

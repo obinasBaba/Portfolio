@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
 import MotionBtn from "../../../components/MotionBtn";
-import { useProjectSvg } from "../../../hooks/queries/useProjectSvg";
+import { useProjectSvg } from '@hooks/queries/useProjectSvg';
 import HeadlineTitle from "../../../components/Headline";
 import { aimText, aimTxtWrapper, aimWrapper, container, effect, text } from "./toprojects.module.scss";
 
@@ -19,7 +19,7 @@ function ToProjects(){
 
       <div className={aimWrapper}>
 
-        <div className={effect} data-scroll data-scroll-speed="-1">
+        <div className={effect} data-scroll={true} data-scroll-speed="-1">
 
           <img src={planet.publicURL} alt="booo" />
 

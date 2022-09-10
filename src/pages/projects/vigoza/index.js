@@ -85,7 +85,7 @@ function Vigoza ({ location }) {
   return (
 
     <CaseStudy projectData={projectDataDefault} scrolled={scrolled}>
-      {/*<Headline title={title} subTitle={subTitle} about={about} media='' />*/}
+      <Headline title={title} subTitle={subTitle} about={about} media='' />
 
       <motion.div
         viewport={{

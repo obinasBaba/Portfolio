@@ -33,13 +33,15 @@ const CardRow = styled.div`
   align-items: stretch;
   
   flex-wrap: wrap;
+  
+  //border: 1px solid #000;
 
   ${spacing('mt', 10)};
   ${spacing('gap', 3)};
 
   ${largeUp( css`
     flex-wrap: nowrap;
-    align-items: center;
+    ${spacing('gap', 2)};
 
     ${spacing('mt', 6)};
   ` )};
@@ -77,7 +79,7 @@ function Topic({ values }) {
     },
     {
       title: 'Api',
-      body: 'i need an Api with all security, infrastructure setup',
+      body: 'i need an Api with all security & infrastructure setup',
     },
   ]
   const { ufo, design, pentool, prototype } = useLottiAssets()
@@ -92,9 +94,10 @@ function Topic({ values }) {
       </HeadLineTitle>
 
       <CardRow>
-        {topics.map(({ body, title }, idx) => 
+        {topics.map(({ body, title }, idx) =>
            (
             <Field
+              key={title}
               name="topic"
               body={body}
               path={iconIll[idx]}

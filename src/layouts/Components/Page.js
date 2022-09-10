@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useRef } from 'react';
+import React, { useCallback, useContext, useRef, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { useMotionBreakPoint } from '@contexts/BreakPoint';
 import { LocomotiveScrollProvider } from '@contexts/LocoMotive';
@@ -12,10 +12,12 @@ import ScreenOverlay from '@components/ScreenOverlay';
 import NavigationMenu from '@components/NavigationMenu';
 import { BottomGradient, Main, PageContainer } from './Styled';
 import useCursor from '@/layouts/Components/useCursor';
+import Footer from '@components/Footer';
 
 // import {} from '@re'
 
 function Page ({ children, path }) {
+
   const {
     variantsUtil: { isTop },
     inView,
@@ -24,6 +26,7 @@ function Page ({ children, path }) {
   } = useContext(MotionValueContext);
 
   const container = useRef(null);
+  const [exitComplete, setExitComplete] = useState(false);
 
   const { currentPath } = useContext(AppStateContext);
   const { breakpoint } = useMotionBreakPoint();
@@ -67,7 +70,6 @@ function Page ({ children, path }) {
 
         <BackgroundStars />
 
-        {/*<Cursor />*/}
 
         <NavigationMenu />
 
@@ -77,16 +79,23 @@ function Page ({ children, path }) {
           <AnimatePresence
             exitBeforeEnter
             custom={{ path, isTop, inView, /* largeUp */ breakpoint }}
+            onExitComplete={() => {
+              setExitComplete(!exitComplete);
+            }}
           >
             {children}
+
           </AnimatePresence>
         </Main>
+
+        <Footer exitComplete={exitComplete} />
 
         <BottomGradient className='btm-gradient' />
 
         <ProgressCircle />
 
         <ToolTip />
+
       </PageContainer>
     </LocomotiveScrollProvider>
 

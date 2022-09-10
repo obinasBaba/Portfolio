@@ -80,7 +80,7 @@ export default class MagnetElement {
   }
 
   private constructor() {
-    console.log('constructor invoked')
+    // console.log('constructor invoked')
     this.element = document.querySelector('.magnet');
     let allElements = document.querySelectorAll('.magnet');
     // this.onResize = () => this.calculateSizePosition()
@@ -189,7 +189,7 @@ export default class MagnetElement {
       this.elements[index].rect.top + this.elements[index].rect.height / 2 //center
     )
 
-    console.log(distanceMouseButton)
+    // console.log(distanceMouseButton)
 
     // new values for the translations
     let x = 0

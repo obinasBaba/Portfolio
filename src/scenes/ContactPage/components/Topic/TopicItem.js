@@ -21,17 +21,14 @@ const TopicItemContainer = styled.div`
   border-radius: 20px;
   background-color: #485564;
   transition: background-color 0.3s ease-in;
-
-  * {
-    //cursor: none;
-  }
+  
 
   ${spacing( "p", 2 )};
   ${spacing( "pt", 12 )};
 
   ${largeUp( css`
-    flex-grow: initial;
-    flex-basis: initial;
+    flex-grow: 1;
+    flex-basis: 100%;
 
     ${spacing( "p", 2.7 )};
     ${spacing( "pt", 6.7 )};
@@ -40,7 +37,9 @@ const TopicItemContainer = styled.div`
 
   ${xxLargeUp( css`
 
-    ${spacing( "p", 2 )};
+     ${spacing( "p", 1.8 )};
+    ${spacing( "pt", 5.7 )};
+
 
   ` )};
 
@@ -93,14 +92,14 @@ const TopicTitle = styled( Typography )`
 const TopicBody = styled( Typography )`
   font-weight: lighter;
   //color: #bac2d3;
-  letter-spacing: 0.6px;
+  //letter-spacing: 0.6px;
   line-height: 170%;
   color: #02021e;
 
   ${text( 0.8 )};
 
   ${xLargeUp( css`
-
+    word-spacing: -2px;
   ` )};
 `;
 
@@ -108,7 +107,7 @@ function TopicItem( { title, body, path, selected, ...props } ){
   const checkboxRef = useRef( null );
 
 
-  useRefreshMouseListeners( ".topic-container [data-pointer]" );
+  // useRefreshMouseListeners( ".topic-container [data-pointer]" );
 
 
   return (
@@ -132,7 +131,7 @@ function TopicItem( { title, body, path, selected, ...props } ){
 
       <TopicIllustration path={path} />
 
-      <TopicTitle varaint="subtitle2" gutterBottom>
+      <TopicTitle varaint="subtitle2" gutterBottom noWrap>
         {title}
       </TopicTitle>
 

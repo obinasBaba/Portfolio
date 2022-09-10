@@ -4,6 +4,7 @@ import Progress from './Progress'
 import {spacing} from '../../../../styles/mixins'
 import GalaxyButton from './GalaxyButton'
 import {largeUp} from "../../../../styles/mixins/breakpoints";
+import MotionBtn from '@components/MotionBtn';
 
 const BottomContainer = styled.div`
   display: flex;
@@ -21,7 +22,7 @@ const BottomContainer = styled.div`
     gap: 0;
 
     ${spacing('mt', 11.5)};
-    ${spacing('ph', 5)};
+    ${spacing('pr', 5)};
 
   ` )};
 `
@@ -31,11 +32,14 @@ function BottomBar({nextProps, backProps, step, control}) {
 
   return (
     <BottomContainer  >
-      <GalaxyButton text='Back' stateValue={control} {...backProps} />
+      {/*<GalaxyButton text='Back' stateValue={control} {...backProps} />*/}
+
+      <MotionBtn text='back' {...backProps} />
 
       <Progress step={step}/>
 
-      <GalaxyButton stateValue={control}  {...nextProps} />
+      {/*<GalaxyButton stateValue={control}  {...nextProps} />*/}
+      <MotionBtn text='next' {...nextProps} />
 
     </BottomContainer>
   )

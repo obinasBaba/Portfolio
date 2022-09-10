@@ -16,6 +16,7 @@ import ThankYou from "./components/ThankYou";
 
 const ContactPageContainer = styled( motion.section )`
   //border: thin solid red;
+  min-height: 100vh;
 `;
 
 const ContactWrapper = styled( Container )`
@@ -154,7 +155,7 @@ function ContactPage(){
           stepMotionValue.set( stepMotionValue.get() + 1 );
 
         } )
-        .catch( error => console.log( error ) );
+        .catch( error => console.error( error ) );
 
     }
 

@@ -9,7 +9,7 @@ import BlogPosts from './BlogPosts';
 import Experiments from './Experiments';
 import Hero from '@/scenes/HomePage/Hero';
 
-const MailUs = loadable(() => import('../../components/MailUs'));
+const MailUs = loadable(() => import('@components/Footer'));
 
 const containerVariants = {
   exit (arg) {
@@ -22,7 +22,7 @@ const containerVariants = {
   },
 };
 
-const transition = {
+export const pageTransition = {
   duration: 1,
   ease: [0.6, 0.01, 0, 0.9],
 };
@@ -41,7 +41,7 @@ function HomePage () {
 
   return (< motion.main variants={containerVariants}
                         className='homepage-container'
-                        transition={transition}
+                        transition={pageTransition}
                         initial='initial'
                         animate={screenOverlayEvent.get() === 'closed'
                           ? 'animate'
@@ -68,7 +68,7 @@ function HomePage () {
     </SectionWrapper>
 
 
-    <MailUs />
+    {/*<Footer />*/}
 
   </motion.main>);
 }

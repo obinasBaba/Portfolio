@@ -121,7 +121,7 @@ const ReturnBtn = ( { onClick, tooltip='Blog-list' } ) => {
                   exit='exit'
                   whileHover='hover'
                   onAnimationEnd={ event => {
-                    console.log('animationEvent ;', event)
+                    //console.log('animationEvent ;', event)
                   } }
                   transition={transition}
       >

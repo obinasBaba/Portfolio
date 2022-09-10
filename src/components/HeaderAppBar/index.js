@@ -9,10 +9,12 @@ import HomeLogo from "./components/HomeLogo";
 import NavBtn from "./components/NavBtn";
 import OverlayController from "../ScreenOverlay/OverlayController";
 import { container } from "./appbar.module.scss";
+import { useLocation } from '@reach/router';
 
 function HideOnScroll( { children } ){
   const { currentPath } = useContext( AppStateContext );
   const [slide, setSlide] = useState( true );
+  const { pathname } = useLocation();
 
   const { scrollDirection } = useLocomotiveScroll();
 
@@ -33,7 +35,7 @@ function HideOnScroll( { children } ){
   useEffect( () => {
     setSlide( true );
 
-  }, [currentPath] );
+  }, [currentPath, pathname] );
 
   return (
     <Slide appear={false} direction="down" in={slide}>

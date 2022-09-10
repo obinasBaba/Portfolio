@@ -5,16 +5,16 @@ import { MotionValueContext } from '@contexts/MotionStateWrapper';
 import { createPortal } from 'react-dom';
 import { navigate } from 'gatsby';
 import { useLocomotiveScroll } from '@contexts/LocoMotive';
-import { useMotionBreakPoint } from '@contexts/BreakPoint';
 import useUpdatePath from '@hooks/useUpdatePath';
 import clsx from 'clsx';
 import ReturnBtn from '../ReturnBtn';
 import { HeadLineBG } from './Headline/Components';
 import { bgVariant, transition } from './Headline/variants';
-import ProjectScrollDown
-  from '../../scenes/ProjectPage/components/SideBarTools/ProjectScrollDown';
+import gsap from 'gsap';
 import NextProject from './NextProject';
 import useRefreshMouseListeners from '../../hooks/useRefreshMouseListeners';
+import ProjectScrollDown
+  from '../../scenes/ProjectPage/components/SideBarTools/ProjectScrollDown';
 
 import {
   container,
@@ -92,23 +92,20 @@ const projectDataDefault = {
 const CaseStudy = ({
   projectData = projectDataDefault, path, children, scrolled,
 }) => {
-  const { title, subTitle, about } = projectData;
   const {
     thumbnailUrl, title: nextProjectTitle, url,
   } = projectData.nextProject;
-  // const { headlineImg, publicURL } = projectData.imageData
-  useUpdatePath(path);
 
+  useUpdatePath(path);
   useRefreshMouseListeners('[data-pointer]');
+
+  const { locoInstance } = useLocomotiveScroll();
+  const { mainAnimationController, screenOverlayEvent } = useContext(
+    MotionValueContext);
 
   const {
     variantsUtil: { fromCaseStudy, fromProjectList },
   } = useContext(MotionValueContext);
-
-  const { breakpoint } = useMotionBreakPoint();
-  const { locoInstance } = useLocomotiveScroll();
-  const { mainAnimationController, screenOverlayEvent } = useContext(
-    MotionValueContext);
 
   const lup = typeof window !== 'undefined' ? matchMedia(
     '(min-width: 1200px)').matches : false;
@@ -134,7 +131,8 @@ const CaseStudy = ({
       : lup
         ? screenOverlayEvent.get()
         === 'closed' ? ['animate'] : mainAnimationController
-        : ['smallAnimate']);
+        : ['smallAnimate'],
+  );
 
   useLayoutEffect(() => {
     // console.log('fromProject : ', location, path)
@@ -146,12 +144,21 @@ const CaseStudy = ({
     if (scrolled) {
       showScrollDown.set(1);
       document.body.classList.add('darkish');
+      gsap.to('#footer-container', {
+        backgroundColor: '#fbfefc'
+      })
     } else {
       showScrollDown.set(0);
       document.body.classList.remove('darkish');
     }
 
-    return () => document.body.classList.remove('darkish');
+    return () => {
+      document.body.classList.remove('darkish');
+      gsap.to('#footer-container', {
+        backgroundColor: 'initial'
+      })
+
+    };
   }, [scrolled]);
 
   const returnClick = () => {

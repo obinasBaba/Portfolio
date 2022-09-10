@@ -19,6 +19,7 @@ import { MotionValue, useMotionValue, useSpring, useTransform, useVelocity } fro
 import gsap from "gsap";
 
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { useLocation } from '@reach/router';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -70,6 +71,7 @@ export function LocomotiveScrollProvider({
   const LocomotiveScrollRef = useRef<Scroll | null>(null);
   const onScrollCallbacks = useRef<Map<string, Function>>(new Map());
   const [height] = useDebounce(containerHeight, 100);
+  const { pathname } = useLocation();
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -145,7 +147,8 @@ export function LocomotiveScrollProvider({
       const dataScrollContainer = document.querySelector("[data-scroll-container]");
 
       if (LocomotiveScrollRef.current?.el) {
-        return console.log("IT IS NOT NULL", LocomotiveScrollRef.current.name);
+        return;
+         // console.log("IT IS NOT NULL", LocomotiveScrollRef.current.name);
       }
 
       LocomotiveScrollRef.current = new LocomotiveScroll.default({
@@ -176,7 +179,7 @@ export function LocomotiveScrollProvider({
 
     return () => {
       LocomotiveScrollRef.current?.destroy();
-      console.log("locomotive DYING here -----", LocomotiveScrollRef.current?.name);
+      // console.log("locomotive DYING here -----", LocomotiveScrollRef.current?.name);
       LocomotiveScrollRef.current = null;
 
       setIsReady(false);
@@ -236,6 +239,10 @@ export function LocomotiveScrollProvider({
       });
     }
   }, [isReady]);
+
+  useLayoutEffect(() => {
+    LocomotiveScrollRef.current?.update()
+  }, [pathname])
 
   return (
     <LocomotiveScrollContext.Provider

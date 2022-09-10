@@ -12,6 +12,9 @@ export const PageContainer = styled( motion.div )`
 `;
 
 export const BottomGradient = styled.div`
+  display: none;
+  
+  
   --opa: 1;
   
   position: fixed;
@@ -44,6 +47,7 @@ export const Main = styled( motion.main )`
   //z-index: 8;
   height: min-content;
   //opacity: 0;
+  //z-index: 4;
 
   &.loaded {
     opacity: 1;

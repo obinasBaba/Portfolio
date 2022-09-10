@@ -6,7 +6,7 @@ import {
 
 } from "../../../../../styles/mixins";
 import { largeUp, mediumUp, smallDown, xxLargeUp } from "../../../../../styles/mixins/breakpoints";
-import Border from "../../../../../components/Footer/border.inline.svg";
+import Border from "../../../../../components/FooterBottom/border.inline.svg";
 import Dribbble from "../../../../../assets/images/brands/dribbble.inline.svg";
 
 export const ExperimentItem = styled( motion.div )`

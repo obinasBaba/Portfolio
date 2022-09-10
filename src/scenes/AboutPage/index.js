@@ -4,14 +4,14 @@ import { motion, useMotionValue } from "framer-motion";
 import loadable from "@loadable/component";
 import AboutHero from "./components/AboutHero";
 import MyProcess from "./components/MyProcess";
-// import MailUs from '../MailUs'
+// import Footer from '../Footer'
 import Skills from "./components/Skills";
 import HorizontalScrollText from "./components/HorizontalScrollText";
 import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 import { useLocomotiveScroll } from "@contexts/LocoMotive";
 
 
-const MailUs = loadable( () => import("../../components/MailUs") );
+const MailUs = loadable( () => import("@components/Footer") );
 
 
 const AboutPageContainer = styled( motion.div )`
@@ -64,7 +64,7 @@ function AboutPage(){
 
       <MyProcess triggerRegister={triggerRegister} />
 
-      <MailUs />
+      {/*<Footer />*/}
 
     </AboutPageContainer>
   );

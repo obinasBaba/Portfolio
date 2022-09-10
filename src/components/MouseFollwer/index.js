@@ -132,7 +132,7 @@ export default class MouseFollower {
   startMagnet () {
     const mgEle = document.querySelector('#nav-btn');
     const rect = mgEle.getBoundingClientRect();
-    console.log('magnetic element: ---------', mgEle);
+    //console.log('magnetic element: ---------', mgEle);
 
     const limit = rect.width * 1.8;
 

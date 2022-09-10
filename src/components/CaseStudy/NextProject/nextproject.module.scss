@@ -3,19 +3,20 @@
 
 //noinspection SassScssResolvedByNameOnly
 .container {
+  position: relative;
   display: grid;
   place-items: center;
   width: 100%;
-  background-color: white;
+  background-color: #fbfefc;
 
-  border: 1px solid red;
 
   //@include margin(top, 10);
+  //transform: translateY(5px);
 
   & :local{
 
     .wrapper{
-      @include padding(ver, 16rem);
+      @include padding(ver, 13rem);
     }
 
     .text{

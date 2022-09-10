@@ -23,7 +23,7 @@ export default class EventSubscribers extends EventEmitter{
 
   addLoader(){
     this.subscribers.push('loader : ')
-    console.log(this.subscribers)
+    // console.log(this.subscribers)
 
   }
 

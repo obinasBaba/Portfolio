@@ -4,6 +4,7 @@ import useBackgroundsAssets from "../../hooks/queries/useBackgroundsAssets";
 import { Galaxy, Layer, Wrapper } from "./components";
 import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 import styled from "styled-components";
+import { useLocomotiveScroll } from '@contexts/LocoMotive';
 
 
 const Wrap = styled( motion.div )`
@@ -34,10 +35,10 @@ const BackgroundStars = () => {
 
 
   const {
-    moScroll: { y }
-  } = useContext( MotionValueContext );
+   yProgress
+  } = useLocomotiveScroll()
 
-  const mappedY = useTransform( y, y => Math.ceil( (300 / 3400) * -y ) );
+  const mappedY = useTransform( yProgress, [0, 1], [0, -300] );
 
   const yScrollBig = useSpring( mappedY, config );
   const yScrollSmall = useTransform( yScrollBig, latest => latest / 1.5 );

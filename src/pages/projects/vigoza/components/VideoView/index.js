@@ -41,7 +41,7 @@ const VideoView = (props = {
 
                   onViewportEnter={entry => {
 
-                    console.log('entry: ', entry);
+                    // console.log('entry: ', entry);
 
                     vidRef.current?.play();
                   }}

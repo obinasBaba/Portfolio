@@ -1,11 +1,12 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React from "react";
+import React, { useEffect, useLayoutEffect } from 'react';
 import useRefreshMouseListeners from "@hooks/useRefreshMouseListeners";
 import useUpdatePath from "@hooks/useUpdatePath";
 import ProjectPage from "@/scenes/ProjectPage";
 import useToolTip from "@/hooks/useToolTip";
 import Seo from "../../components/seo";
+import { useLocomotiveScroll } from '@contexts/LocoMotive';
 
 function Projects( { path } ){
 
@@ -15,7 +16,16 @@ function Projects( { path } ){
 
   useToolTip( " [data-tooltip-text]" );
   useRefreshMouseListeners( ".project-work-container [data-pointer]" );
+  const { locoInstance } = useLocomotiveScroll();
 
+  useLayoutEffect(() => {
+    locoInstance?.stop()
+
+    return () => {
+      locoInstance?.start()
+      locoInstance?.update()
+    }
+  }, [])
 
   return (
     <>
