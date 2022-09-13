@@ -87,7 +87,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 
-  color: var($light_gray);
+  color: var(--light_gray);
 
   @include br.media-breakpoint-up(md) {
     &.no-cursor {
@@ -107,6 +107,8 @@ body {
     --stroke-top: #f9d6ac;
     --stroke-bottom: #02021e;
     --head-opacity: 1;
+    --light_gray: #02021e;
+    --footer-bg: #fbfefc;
 
     --theme: rgba(2, 11, 22, 1);
     --bottom-gradient: linear-gradient(to top,

@@ -21,7 +21,6 @@ const NavBtn = ({ isWhite, toggleMenu, pos = {}, menuIsOpen }) =>
     <motion.button
       className={navBtn}
       id='nav-btn'
-      data-cursor='-opaque'
       data-pointer='magnet'
       data-magnet-distance={.8}
       data-magnet-attraction={1.8}

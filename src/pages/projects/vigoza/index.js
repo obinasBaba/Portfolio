@@ -10,14 +10,17 @@ import FontUsed from '../../../components/CaseStudy/FontUsed';
 import Development from '../../../components/CaseStudy/Development';
 import useVigozaAssets from '../../../hooks/queries/useVigozaAssets';
 import useUpdatePath from '../../../hooks/useUpdatePath';
-import CarouselSliderView
-  from '@/pages/projects/vigoza/components/CarouselSliderView';
 import ElementsViewSection
   from '@/pages/projects/vigoza/components/ElementsViewSection';
 import RectangleView from '@/pages/projects/vigoza/components/RectangleView';
 import Headline from '@components/CaseStudy/Headline';
 import HorizontalGallery
   from '@/pages/projects/vigoza/components/HorizontalGallery';
+import useJuviMarqueeAssets from '@hooks/queries/juvi/useJuviMarqueeAssets';
+import CarouselSliderDesktop
+  from '@/pages/projects/vigoza/components/CarouselSliderDesktop';
+import CarouselSliderMobile
+  from '@/pages/projects/vigoza/components/CarouselSliderMobile';
 
 const projectDataDefault = {
   title: 'Vigoza Digital Agency', subTitle: 'this is vigoza subtitle', about: {
@@ -39,6 +42,44 @@ const projectDataDefault = {
     title: 'Gebeya', url: '/projects/project2', thumbnailUrl: '',
   },
 };
+
+const juviData = {
+  intro: {
+    desc: {
+      title: 'background',
+      text: `To win over country wide markets, Juvi-House needed to better
+       communicate its brand story with a revamped website experience.
+       Reinventing the brand’s website to support growth, and integrating digital 
+              storytelling to help influence the perceptions of consumers was the main goal.
+       The revamped digital experience, coupled with search engine optimizations, customizations, 
+                and an eCommerce capability, helped the brand evolve in a larger market. 
+              
+       `,
+    },
+  },
+  sections: {
+    collections: {
+      title: 'Collections',
+      text: `the shop pages provide a clean overview
+       of all available products. it also offers a faster purchase option for returning customers.
+       thanks to an intuitive filter, a desired product can be quickly narrowed down with just a few clicks.
+        for example, customers can search for a desired price range.
+       
+       `,
+    },
+    mobileView: {
+      title: 'Products',
+      text: `I gave each item enough space to tell its own story, each product
+          page opens with and individual and inviting introduction.  various elements (images, illustrations, text, colours),
+           created in collaboration with several other team members, were carefully combined to create unique compositions for each item.
+      `,
+    },
+  },
+};
+/*
+*   i used d/t arts that are subtle and not storing on the eye to keep
+* the aesthetics, theme and calm of the site
+* */
 
 const DetectViewPort = ({
   children = 0.5, onEnter, onLeave, options = { amount: 0.5 },
@@ -65,6 +106,9 @@ function Vigoza ({ location }) {
 
   const [scrolled, setScrolled] = useState(false);
 
+  const { mp, mp2, mp3, mp4, mp5, mp6, mp7, mp8 } = useJuviMarqueeAssets();
+  const mobileCarousel = [mp, mp2, mp3, mp4, mp5, mp6, mp7, mp8];
+
   const {
     amber,
     flame,
@@ -73,7 +117,11 @@ function Vigoza ({ location }) {
     white,
     fontAby,
     fontRai,
-    elements,
+    element1,
+    element2,
+    element3,
+    element4,
+    element5,
   } = useJuviAssets();
 
   const colors = [amber, flame, pearl, spartan, white];
@@ -85,11 +133,11 @@ function Vigoza ({ location }) {
   return (
 
     <CaseStudy projectData={projectDataDefault} scrolled={scrolled}>
-      <Headline title={title} subTitle={subTitle} about={about} media='' />
+      {/*<Headline title={title} subTitle={subTitle} about={about} media='' />*/}
 
       <motion.div
         viewport={{
-          amount: 0.6,
+          amount: 0.25,
         }}
         onViewportEnter={() => {
           if (!scrolled) setScrolled(true);
@@ -107,17 +155,15 @@ function Vigoza ({ location }) {
 
       <RectangleView />
 
-      <Intro intro={projectDataDefault.intro} />
+      <Intro desc={juviData.intro.desc} />
 
-      <CarouselSliderView />
+      <CarouselSliderDesktop videos={[1, 2, 3, 4, 5, 6]} />
 
-      <Intro intro={projectDataDefault.intro} />
+      <Intro desc={juviData.sections.collections} />
 
-      <Intro intro={projectDataDefault.intro} />
+      <CarouselSliderMobile images={mobileCarousel} desc={juviData.sections.mobileView} />
 
-      <CarouselSliderView />
-
-      <ElementsViewSection elements={elements} />
+      <ElementsViewSection elements={[element1, element2, element3, element4, element5]} />
 
       <ColorPalette colors={colors} />
 

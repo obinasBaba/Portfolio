@@ -15,17 +15,42 @@
 
     .wrapper{
       display: flex;
-
       //border: 1px solid #000;
+    }
+
+    .col{
+      display: flex;
+      flex-flow: column;
+      gap: 2rem;
+      width: 100%;
+      //padding: 1rem;
+
+
+      //border: 1px solid blue;
+
+      .img_wrapper{
+        overflow: hidden;
+        //border: 1px solid red;
+        box-shadow: 7px 7px 70px 2px rgba(0, 0, 0, 0.18);
+
+      }
+
+     .img {
+
+      }
+
     }
 
     .elementImg{
       width: 100%;
       max-width: 1400px;
-      margin: 0 auto;
-      //box-shadow: 6px 7px 25px 15px rgba(0, 0, 0, 0.08);
+      margin: 5rem auto 0;
+      gap: 2rem;
 
-      margin-top: 5rem;
+      //border: 1px solid #000;
+
+      display: flex;
+      //gap: 2rem;
 
       //box-shadow: ;
     }

@@ -1,12 +1,15 @@
 // noinspection JSIgnoredPromiseFromCall
 
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import Logo from './logo.svg';
 import { GradientText } from '../GradientText';
 import FooterMeta from './FooterMeta';
 import FooterBottom from '../FooterBottom';
 import MotionBtn from '../MotionBtn';
+import { useLocation } from '@reach/router';
+import useBackgroundsAssets from '@hooks/queries/useBackgroundsAssets';
+import { motion, useAnimation } from 'framer-motion';
+import { pageTransition } from '@scenes/HomePage';
+import { useLocomotiveScroll } from '@contexts/LocoMotive';
 import {
   backgroundStars,
   container,
@@ -14,28 +17,7 @@ import {
   titleWrapper,
   wrapper,
 } from './mailus.module.scss';
-
-import { useLocation } from '@reach/router';
-import useBackgroundsAssets from '@hooks/queries/useBackgroundsAssets';
-import { motion, useAnimation } from 'framer-motion';
-import { pageTransition } from '@scenes/HomePage';
-import { useLocomotiveScroll } from '@contexts/LocoMotive';
-
-const LogoEffect = styled.div`
-  position: absolute;
-  background-image: url(${Logo});
-  background-repeat: no-repeat;
-  background-position: center;
-  filter: blur(2px);
-  z-index: -1;
-
-  top: 10%;
-  left: 0;
-  right: 0;
-  bottom: 0%;
-
-  //display: none;
-`;
+import * as s from './mailus.module.scss'
 
 const footerVariants = {
   initial: {
@@ -100,6 +82,7 @@ function Footer ({ exitComplete }) {
   return (
     <div data-scroll-section={true}
          id='footer-container'
+         className={s.footer_container}
     >
       <motion.div className={container}
                   key={pathname}
@@ -120,8 +103,7 @@ function Footer ({ exitComplete }) {
 
         <div className={wrapper}
              data-scroll={true}
-             data-scroll-speed='-4.5'
-        >
+             data-scroll-speed='-4.5'>
 
           <div className={backgroundStars}
                style={{ backgroundImage: `url(${starsSmallOld.publicURL})` }} />

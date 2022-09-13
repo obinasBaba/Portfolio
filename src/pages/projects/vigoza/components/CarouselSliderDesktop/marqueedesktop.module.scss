@@ -1,0 +1,122 @@
+@use "@style" as *;
+
+//noinspection SassScssResolvedByNameOnly
+.container {
+  width: 100%;
+
+  @include margin(top, 15rem);
+  @include padding(1rem);
+
+  border: 1px solid red;
+
+
+  & :local {
+
+    .headerText {
+
+      & > :last-child {
+        max-width: 77ch;
+      }
+    }
+
+    .swiperContainer {
+      position: relative;
+      width: 70%;
+      //max-width: 500px;
+      overflow: visible;
+      display: grid;
+      place-items: center;
+      cursor: none;
+
+
+      @include margin(top, 4.5rem);
+
+
+      & :global {
+        .swiper-pagination.swiper-pagination-progressbar {
+          position: absolute;
+          display: block;
+          bottom: -15%;
+          top: initial;
+          left: initial;
+          width: 30%;
+          max-width: 300px;
+          border-radius: 500px;
+          overflow: hidden;
+
+          span {
+            display: inline-block;
+            background-color: var(--dark-gray);
+            border-radius: 50%;
+          }
+
+        }
+      }
+
+      //border: thin solid rgba(0, 0, 0, 0.11);
+    }
+
+
+    .swiperItem {
+
+
+      & > :first-child {
+        margin: 0 4.6rem; //creat the spacing b/n items, (width80% does not mess things up)
+        cursor: none;
+
+        border: 1px solid blue;
+
+      }
+    }
+
+    .dragArea{
+      position: absolute;
+      inset: 0;
+      width: 100vw;
+      z-index: 1;
+
+      border: 1px solid #000;
+    }
+
+    .navController {
+      position: absolute;
+
+      align-self: initial;
+      justify-self: start;
+      top: 50%;
+      z-index: 110;
+      width: 105%;
+      //pointer-events: none;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%) translateX(-2.5%);
+
+      //border: 1px solid #000;
+
+      button{
+        background: transparent;
+        border: none;
+      }
+
+      p {
+        display: grid;
+        place-items: center;
+        pointer-events: auto;
+        font-family: 'shapes', serif;
+        font-size: 3.2rem;
+        line-height: 0;
+        cursor: pointer;
+        user-select: none;
+
+        span {
+          pointer-events: none;
+          display: block;
+          font-family: 'shapes', serif;
+          font-size: .8rem;
+          color: white;
+        }
+      }
+    }
+
+  }
+}

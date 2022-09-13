@@ -10,8 +10,7 @@ import {
 } from './intro.module.scss';
 import VideoPlayer from '@/pages/projects/vigoza/components/VideoView';
 
-const Intro = ({ intro }) => {
-  const { desc, themeColor, title, logoUrl, color } = intro;
+const Intro = ({ desc, subDesc }) => {
 
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
@@ -24,27 +23,28 @@ const Intro = ({ intro }) => {
       <div className={wrapper}>
 
         <div className={textWrapper}>
-          <Typography variant='h1' >
-            background
+          <Typography variant='h1'>
+            {desc.title}
           </Typography>
 
           <Typography className={text}
-
-                      variant={matches && 'body1'}>{desc}</Typography>
+                      variant={matches && 'body1'}>{desc.text}</Typography>
         </div>
 
         <div className={vidWrapper}>
           <VideoPlayer />
           <div className={vidDesc}>
-            <Typography variant='h4' gutterBottom>An invitation</Typography>
-            <Typography className={text} variant={matches && 'body1'}>just as
-              kayam's music is vibrant, so should be the
-              website. an immersive parallax effect serves as a magical entry
-              into
-              a dreamlike world full of things to
-              discover. to create the effect, each of the 16 separate layers
-              follow an individual motion pattern, which is
-              controlled by the user's scroll progression.</Typography>
+
+            {
+              subDesc?.title &&
+              <Typography variant='h4' gutterBottom>{subDesc.title}</Typography>
+            }
+
+            {
+              subDesc?.text && <Typography className={text} variant={matches &&
+                'body1'}>{subDesc.text}</Typography>
+            }
+
           </div>
         </div>
 

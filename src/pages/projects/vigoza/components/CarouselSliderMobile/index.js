@@ -17,22 +17,19 @@ import 'swiper/css';
 import useJuviMarqueeAssets from '@hooks/queries/juvi/useJuviMarqueeAssets';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-const CarouselSlider = () => {
+const CarouselSliderMobile = ( {images = [], desc} ) => {
 
   const [, setActiveIdx] = useState(null);
-  const { mp, mp2, mp3, mp4, mp5, mp6, mp7, mp8 } = useJuviMarqueeAssets();
 
   return (
     <div className={container}>
 
       <ResponsiveContainer className={headerText}>
         <Typography variant='h1'>
-          screens
+          {desc.title}
         </Typography>
         <Typography variant='body1'>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
-          assumenda cum facere libero molestiae odio
-          praesentium quisquam reprehenderit. Sed, veniam?
+          {desc.text}
         </Typography>
       </ResponsiveContainer>
 
@@ -81,7 +78,7 @@ const CarouselSlider = () => {
         </div>
 
         {
-          [mp, mp2, mp3, mp4, mp5, mp6, mp7, mp8].map((image, idx) => (
+          images.map((image, idx) => (
             <SwiperSlide key={idx} className={swiperItem}>
 
               <div className={imageView} key={idx}>
@@ -98,5 +95,5 @@ const CarouselSlider = () => {
   );
 };
 
-export default CarouselSlider;
+export default CarouselSliderMobile;
 

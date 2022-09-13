@@ -78,7 +78,7 @@ export default class MouseFollower {
       skewingMedia: 2,
       skewingDelta: 0.001,
       skewingDeltaMax: 0.15,
-      stickDelta: 0.15,
+      stickDelta: 0.1,
       showTimeout: 0,
       hideOnLeave: true,
       hideTimeout: 300,
@@ -134,20 +134,23 @@ export default class MouseFollower {
     const rect = mgEle.getBoundingClientRect();
     //console.log('magnetic element: ---------', mgEle);
 
-    const limit = rect.width * 1.8;
+    let limit = 0;
 
     function cb () {
 
       const dis = distance(
-        this.pos.x,
-        this.pos.y,
+        this.mouse.mousePos.x,
+        this.mouse.mousePos.y,
         rect.left + rect.width / 2,
         rect.top + rect.height / 2,
       );
 
-      if (dis > limit) {
+      if (limit && dis > limit) {
+
+        // console.log('dis: ', dis, limit);
 
         this.removeStick(mgEle);
+        this.removeState('-opaque');
 
         gsap.to(mgEle, {
           x: 0,
@@ -158,13 +161,17 @@ export default class MouseFollower {
 
         gsap.ticker.remove(bindedCb);
         return;
+      } else {
+        limit = rect.width * 1.8;
+        this.setStick(mgEle);
+        this.addState('-opaque');
       }
 
-      this.setStick(mgEle);
+
 
       gsap.to(mgEle, {
-        x: (this.mouse.mousePos.x - (rect.left + (rect.width / 2))) * .7,
-        y: (this.mouse.mousePos.y - (rect.top + (rect.height / 2))) * .7,
+        x: (this.mouse.mousePos.x - (rect.left + (rect.width / 2))) * .3,
+        y: (this.mouse.mousePos.y - (rect.top + (rect.height / 2))) * .3,
         duration: 0.55,
         ease: 'expo.out',
       });
@@ -173,10 +180,8 @@ export default class MouseFollower {
 
     const bindedCb = cb.bind(this);
 
-    mgEle.addEventListener('mouseenter', (ev) => {
-
+    mgEle.addEventListener('mouseover', () => {
       gsap.ticker.add(bindedCb);
-
     });
 
   }
@@ -310,7 +315,7 @@ export default class MouseFollower {
       this.container.addEventListener('mouseup', this.event.mouseup,
         { passive: true });
     }
-    this.container.addEventListener('mousemove', this.event.mousemove,
+    this.container.addEventListener('pointermove', this.event.mousemove,
       { passive: true });
 
     if (this.options.visible) {
@@ -319,21 +324,6 @@ export default class MouseFollower {
       });
     }
 
-    const pointerElement = document.querySelectorAll('[data-pointer]')
-    pointerElement.forEach( el => {
-      el.removeEventListener( "mouseenter", this.event.mouseover );
-      el.removeEventListener( "mouseleave", this.event.mouseout );
-
-      const pointerType = el.dataset.pointer;
-      if (pointerType === 'magnet'){
-        //magnetize
-      }
-
-      el.addEventListener( "mouseenter", this.event.mouseover );
-      el.addEventListener( "mouseleave", this.event.mouseout );
-
-
-    })
 
     /*  if (this.options.stateDetection || this.options.dataAttr) {
         this.container.addEventListener('mouseover', this.event.mouseover,
@@ -341,7 +331,25 @@ export default class MouseFollower {
         this.container.addEventListener('mouseout', this.event.mouseout,
           { passive: true });
       }*/
+    this.refresh();
 
+  }
+
+  refresh(){
+    const pointerElement = document.querySelectorAll('[data-cursor], button, a');
+    pointerElement.forEach(el => {
+      el.removeEventListener('mouseenter', this.event.mouseover);
+      el.removeEventListener('mouseleave', this.event.mouseout);
+
+      const pointerType = el.dataset.pointer;
+      if (pointerType === 'magnet') {
+        //magnetize
+      }
+
+      el.addEventListener('mouseenter', this.event.mouseover);
+      el.addEventListener('mouseleave', this.event.mouseout);
+
+    });
   }
 
   /**
@@ -670,8 +678,8 @@ export default class MouseFollower {
     this.container.removeEventListener('mouseup', this.event.mouseup);
     this.container.removeEventListener('mousemove', this.event.mousemove);
     this.container.removeEventListener('mousemove', this.event.mousemoveOnce);
-    this.container.removeEventListener('mouseover', this.event.mouseover);
-    this.container.removeEventListener('mouseout', this.event.mouseout);
+    // this.container.removeEventListener('mouseover', this.event.mouseover);
+    // this.container.removeEventListener('mouseout', this.event.mouseout);
     if (this.el) {
       this.container.removeChild(this.el);
       this.el = null;

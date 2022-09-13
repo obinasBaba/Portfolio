@@ -1,25 +1,19 @@
 import React from 'react';
 import ResponsiveContainer from '@components/ResponsiveContainer';
 import { Typography } from '@material-ui/core';
-import {
-  container,
-  elementImg,
-  text,
-  wrapper,
-} from './elementsviewsection.module.scss';
-import useJuviAssets from '@hooks/queries/juvi/useJuviAssets';
+import *  as s from './elementsviewsection.module.scss';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-const ElementsViewSection = ({}) => {
+const ElementsViewSection = ({ elements }) => {
 
-  const { elements } = useJuviAssets();
+  // const { element1, element2 } = useJuviAssets();
 
   return (
-    <div className={container}>
+    <div className={s.container}>
 
-      <ResponsiveContainer className={wrapper}>
+      <ResponsiveContainer className={s.wrapper}>
 
-        <div className={text}>
+        <div className={s.text}>
           <Typography variant='h3' gutterBottom>
             elements
           </Typography>
@@ -33,10 +27,50 @@ const ElementsViewSection = ({}) => {
 
       </ResponsiveContainer>
 
-      <div className={elementImg}>
+      <div className={s.elementImg}>
 
-        <GatsbyImage alt='elements used in the project'
-                     image={getImage(elements)} />
+        <div className={s.col}>
+          <div className={s.img_wrapper}>
+            <div className={s.img} data-scroll={true} data-scroll-speed='-2'>
+              <GatsbyImage alt='elements used in the project'
+                           image={getImage(elements[0])} />
+            </div>
+          </div>
+
+          <div className={s.img_wrapper}>
+            <div className={s.img} data-scroll={true} data-scroll-speed='-2'>
+              <GatsbyImage alt='elements used in the project'
+                           image={getImage(elements[1])} />
+            </div>
+          </div>
+
+          <div className={s.img_wrapper}>
+            <div className={s.img} data-scroll={true} data-scroll-speed='-2'>
+              <GatsbyImage alt='elements used in the project'
+                           image={getImage(elements[4])} />
+            </div>
+          </div>
+
+
+        </div>
+
+        <div className={s.col}>
+
+          <div className={s.img_wrapper}>
+            <div className={s.img} data-scroll={true} data-scroll-speed='-2'>
+              <GatsbyImage alt='elements used in the project'
+                           image={getImage(elements[2])} />
+            </div>
+          </div>
+
+          <div className={s.img_wrapper}>
+            <div className={s.img} data-scroll={true} data-scroll-speed='-2'>
+              <GatsbyImage alt='elements used in the project'
+                           image={getImage(elements[3])} />
+            </div>
+          </div>
+        </div>
+
 
       </div>
 

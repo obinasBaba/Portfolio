@@ -144,9 +144,11 @@ const CaseStudy = ({
     if (scrolled) {
       showScrollDown.set(1);
       document.body.classList.add('darkish');
-      gsap.to('#footer-container', {
+     /* gsap.to('#footer-container', {
         backgroundColor: '#fbfefc'
-      })
+      })*/
+
+
     } else {
       showScrollDown.set(0);
       document.body.classList.remove('darkish');
@@ -154,9 +156,9 @@ const CaseStudy = ({
 
     return () => {
       document.body.classList.remove('darkish');
-      gsap.to('#footer-container', {
-        backgroundColor: 'initial'
-      })
+      // gsap.to('#footer-container', {
+      //   backgroundColor: 'initial'
+      // })
 
     };
   }, [scrolled]);

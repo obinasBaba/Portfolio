@@ -29,10 +29,10 @@ $mf-color-text: #fff !default;
     transform: scale(0.4);
 
 
-    background: currentColor;
+    background: var(--theme);
     border-radius: 50%;
 
-    transition: transform 0.25s ease-in-out, opacity 0.1s;
+    transition: transform 0.25s ease-in-out, opacity 0.1s, background-color .25s ease-in-out;
   }
 
   &.-inverse {
@@ -61,7 +61,11 @@ $mf-color-text: #fff !default;
     &:before {
       opacity: 1;
       transform: scale(1.32);
-      background:invert(rgb(8, 239, 231));
+      //background-color:invert((#f1d209));
+      background:invert( rgb(239, 208, 8) );
+      //background-color:invert((#f1d209));
+      //transition: background-color .25s ease-in-out;
+
     }
   }
 

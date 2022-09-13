@@ -46,7 +46,35 @@ const useColorAssets = () => {
               publicURL
           }
 
-          elements: file(relativePath: { eq: "juvi-haus/others/element-2.png" }) {
+          element1: file(relativePath: { eq: "juvi-haus/others/element-1.png" }) {
+              publicURL
+              publicURL
+              name
+              ...homeWorksBigImage
+          }
+
+          element2: file(relativePath: { eq: "juvi-haus/others/element-2.png" }) {
+              publicURL
+              publicURL
+              name
+              ...homeWorksBigImage
+          }
+
+          element3: file(relativePath: { eq: "juvi-haus/others/element-3.png" }) {
+              publicURL
+              publicURL
+              name
+              ...homeWorksBigImage
+          }
+
+          element4: file(relativePath: { eq: "juvi-haus/others/element-4.png" }) {
+              publicURL
+              publicURL
+              name
+              ...homeWorksBigImage
+          }
+          
+          element5: file(relativePath: { eq: "juvi-haus/others/element-5.png" }) {
               publicURL
               publicURL
               name
