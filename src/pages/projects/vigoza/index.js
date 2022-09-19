@@ -152,26 +152,25 @@ function Vigoza ({ location }) {
       </motion.div>
 
 
+      {/*<RectangleView />*/}
 
-      <RectangleView />
+      {/*<Intro desc={juviData.intro.desc} />*/}
 
-      <Intro desc={juviData.intro.desc} />
+      {/*<CarouselSliderDesktop videos={[1, 2, 3, 4, 5, 6]} />*/}
 
-      <CarouselSliderDesktop videos={[1, 2, 3, 4, 5, 6]} />
+      {/*<Intro desc={juviData.sections.collections} />*/}
 
-      <Intro desc={juviData.sections.collections} />
+      {/*<CarouselSliderMobile images={mobileCarousel} desc={juviData.sections.mobileView} />*/}
 
-      <CarouselSliderMobile images={mobileCarousel} desc={juviData.sections.mobileView} />
+      {/*<ElementsViewSection elements={[element1, element2, element3, element4, element5]} />*/}
 
-      <ElementsViewSection elements={[element1, element2, element3, element4, element5]} />
+      {/*<ColorPalette colors={colors} />*/}
 
-      <ColorPalette colors={colors} />
+      {/*<FontUsed fonts={[fontAby, fontRai]} />*/}
 
-      <FontUsed fonts={[fontAby, fontRai]} />
+      {/*<HorizontalGallery />*/}
 
-      <HorizontalGallery />
-
-      <Development />
+      {/*<Development />*/}
 
     </CaseStudy>
   );

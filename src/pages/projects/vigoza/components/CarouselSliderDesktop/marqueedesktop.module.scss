@@ -7,7 +7,7 @@
   @include margin(top, 15rem);
   @include padding(1rem);
 
-  border: 1px solid red;
+  //border: 1px solid red;
 
 
   & :local {
@@ -64,7 +64,7 @@
         margin: 0 4.6rem; //creat the spacing b/n items, (width80% does not mess things up)
         cursor: none;
 
-        border: 1px solid blue;
+        //border: 1px solid blue;
 
       }
     }
@@ -75,7 +75,7 @@
       width: 100vw;
       z-index: 1;
 
-      border: 1px solid #000;
+      //border: 1px solid #000;
     }
 
     .navController {

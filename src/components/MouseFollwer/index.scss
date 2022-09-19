@@ -1,5 +1,6 @@
 $mf-color-base: #000 !default;
 $mf-color-text: #fff !default;
+@import "src/styles/sass-styles/variables/colors";
 
 .mf-cursor {
   $root: &;
@@ -35,6 +36,19 @@ $mf-color-text: #fff !default;
     transition: transform 0.25s ease-in-out, opacity 0.1s, background-color .25s ease-in-out;
   }
 
+  // testing
+  /*mix-blend-mode:exclusion;
+
+  &:before {
+    opacity: 1;
+    transform: scale(2.32);
+    //background-color:invert((#f1d209));
+    //background:invert( rgb(239, 208, 8) );
+    background-color:invert((#0431da));
+
+
+  }*/
+
   &.-inverse {
     color: invert($mf-color-base);
   }
@@ -62,9 +76,10 @@ $mf-color-text: #fff !default;
       opacity: 1;
       transform: scale(1.32);
       //background-color:invert((#f1d209));
-      background:invert( rgb(239, 208, 8) );
+      background-color:invert( $cursor-blend );
+
       //background-color:invert((#f1d209));
-      //transition: background-color .25s ease-in-out;
+      //transition: background-color .45s ease-in-out;
 
     }
   }

@@ -1,49 +1,43 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Container, Typography} from '@material-ui/core'
-import {spacing} from '../../../styles/mixins'
-import devPic from './Design-stack@2x.png';
+import {spacing} from '@/styles/mixins'
+import devPic from './dev.png';
+import * as s from './fullwebview.module.scss';
 
 const DevelopmentContainer = styled.div `
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-flow: column;
-
-  ${spacing('mt', 10)};
+  
 
 `
 
 const TitleWrapper = styled.div`
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  ${spacing('mb', 9)};
-
-  & > :last-child {
-    align-self: flex-end;
-    ${spacing('mt', 1)};
-    ${spacing('mr', 2)};
-  }
+  
 `
 
 const Development = () => {
   return (
-    <DevelopmentContainer >
+    <div className={s.container} >
 
-      <TitleWrapper>
+      <div className={s.title_container}>
         <Typography variant="h1"> Development </Typography>
         <Typography>UI & Components</Typography>
-      </TitleWrapper>
+      </div>
 
 
-      <img src={devPic} alt={'dev pic'} style={{
-        maxWidth: '100%',
-        width: '1600px'
-      }}/>
+      <div className={s.device}>
+        <header>
+          <span/>
+          <span/>
+          <span/>
+        </header>
+        <div className={s.img} >
+          <img src={devPic} alt={'dev pic'}/>
+        </div>
+      </div>
 
-    </DevelopmentContainer>
+
+
+    </div>
   )
 }
 

@@ -107,8 +107,9 @@ body {
     --stroke-top: #f9d6ac;
     --stroke-bottom: #02021e;
     --head-opacity: 1;
-    --light_gray: #02021e;
     --footer-bg: #fbfefc;
+    --cursor-blend: #040f38;
+    $cursor-blend: #040f38;
 
     --theme: rgba(2, 11, 22, 1);
     --bottom-gradient: linear-gradient(to top,
@@ -123,6 +124,22 @@ body {
             rgba(6, 18, 32, 0),
             rgba(6, 18, 32, 0),
             rgba(2, 11, 22, 1));*/
+
+
+    .mf-cursor.-opaque {
+      mix-blend-mode:exclusion;
+
+      &:before {
+        opacity: 1;
+        transform: scale(1.32);
+        //background-color:invert((#f1d209));
+        background-color:invert( $cursor-blend );
+
+        //background-color:invert((#f1d209));
+        //transition: background-color .45s ease-in-out;
+
+      }
+    }
 
 
   }
