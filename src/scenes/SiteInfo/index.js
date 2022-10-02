@@ -1,9 +1,9 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Container, Typography } from '@material-ui/core'
-import {spacing, text} from '../../styles/mixins'
-import ContactInfo from './ContactInfo'
-import ThankYou from './Thankyou'
+import React from "react";
+import styled from "styled-components";
+import { Container, Typography } from "@material-ui/core";
+import { spacing, text } from "../../styles/mixins";
+import ContactInfo from "./ContactInfo";
+import ThankYou from "./Thankyou";
 
 const SiteInfoContainer = styled(Container)`
   min-height: 100vh;
@@ -11,29 +11,25 @@ const SiteInfoContainer = styled(Container)`
   display: flex;
   flex-flow: column;
   align-items: flex-start;
-  
-  
-  ${spacing('mt', 20)};
-  ${spacing('gap', 10)};
+
+  ${spacing("mt", 20)};
+  ${spacing("gap", 10)};
 
   .site-info {
-    font-family: 'Elianto-Regular', serif;
+    font-family: "Elianto-Regular", serif;
     font-weight: 900;
-    ${spacing('mb', 5)};
-
+    ${spacing("mb", 5)};
 
     ${text(7)};
   }
-  
-  .intro{
+
+  .intro {
     max-width: 40ch;
     align-self: flex-end;
-    
+
     // ${text(1.2)};
-    
-   
   }
-`
+`;
 
 function SiteInfo() {
   return (
@@ -41,15 +37,15 @@ function SiteInfo() {
       <Typography variant="h1" className="site-info">
         Site Info
       </Typography>
-      <p className='intro'>
-        henok getachew, residing in AddisAbeba, Ethiopia, is
-        responsible for the content of this website;
+      <p className="intro">
+        henok getachew, residing in AddisAbeba, Ethiopia, is responsible for the
+        content of this website;
       </p>
 
       <ContactInfo />
-      <ThankYou/>
+      <ThankYou />
     </SiteInfoContainer>
-  )
+  );
 }
 
-export default SiteInfo
+export default SiteInfo;

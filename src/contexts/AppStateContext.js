@@ -1,9 +1,9 @@
 /** @format */
 
-import React, { useState } from 'react';
-import BreakPointProvider from '@contexts/BreakPoint';
-import { MotionStateWrapper } from './MotionStateWrapper';
-import { LoadStateWrapper } from './LoadStateContext';
+import React, { useState } from "react";
+import BreakPointProvider from "@contexts/BreakPoint";
+import { MotionStateWrapper } from "./MotionStateWrapper";
+import { LoadStateWrapper } from "./LoadStateContext";
 
 export const AppStateContext = React.createContext({});
 export const BackgroundOverlayStateContext = React.createContext(true);
@@ -16,7 +16,8 @@ function BackgroundOverlayStateWrapper({ children }) {
       value={{
         backgroundOverlay,
         setBackgroundOverlay,
-      }}>
+      }}
+    >
       {children}
     </BackgroundOverlayStateContext.Provider>
   );
@@ -26,7 +27,7 @@ function AppStateWrapper({ children }) {
   const [moonLight, setMoonLight] = useState({
     showMoon: true,
     show: true,
-    position: 'absolute',
+    position: "absolute",
   });
 
   const [isWhite, setIsWhite] = useState(false);
@@ -34,14 +35,15 @@ function AppStateWrapper({ children }) {
   const [isContactOpen, setContactModal] = useState(false);
   const [top, setTop] = useState(null);
   const [loadingPage, setLoadingPage] = useState(null);
-  const [currentPath, setCurrentPath] = useState('/');
+  const [currentPath, setCurrentPath] = useState("/");
   const [cursorScaled, setCursorScaled] = useState(false);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const [listenerTargetSelector, setListenerTargetSelector] = useState('[data-pointer]');
+  const [listenerTargetSelector, setListenerTargetSelector] =
+    useState("[data-pointer]");
 
   const [registeredScrollPos, setRegisteredScrollPos] = useState(null);
   const [toolTip, setToolTip] = useState({
-    text: '',
+    text: "",
     show: false,
   });
   const [titleRect, setTitleRect] = useState({
@@ -85,7 +87,8 @@ function AppStateWrapper({ children }) {
         listenerTargetSelector,
         setListenerTargetSelector,
         // magnet: MagnetElements
-      }}>
+      }}
+    >
       {children}
     </AppStateContext.Provider>
   );
@@ -97,7 +100,9 @@ function AppStateProvider({ children }) {
       <BreakPointProvider>
         <MotionStateWrapper>
           <LoadStateWrapper>
-            <BackgroundOverlayStateWrapper>{children}</BackgroundOverlayStateWrapper>
+            <BackgroundOverlayStateWrapper>
+              {children}
+            </BackgroundOverlayStateWrapper>
           </LoadStateWrapper>
         </MotionStateWrapper>
       </BreakPointProvider>

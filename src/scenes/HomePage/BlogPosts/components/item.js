@@ -22,10 +22,10 @@ const PreviewContainer = styled.div`
 
   &:not(:first-child) {
     position: relative;
-    ${spacing( "mt", 8 )};
+    ${spacing("mt", 8)};
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       width: calc(100% + 40px);
       height: 1px;
@@ -42,19 +42,18 @@ const PreviewContainer = styled.div`
     }
   }
 
-
   a {
     display: flex;
     flex-direction: column;
     width: 100%;
     z-index: 2;
 
-    ${mediumUp( css`
+    ${mediumUp(css`
       flex-direction: row;
       //justify-content: space-between;
       align-items: center;
       gap: 3vmax;
-    ` )};
+    `)};
   }
 `;
 
@@ -64,15 +63,16 @@ const ImageBox = styled.div`
   border: 1px solid #323453;
   //margin: 0 auto;
   overflow: hidden;
-  background: linear-gradient(123.69deg,
-  rgba(10, 12, 45, 0.45) 0%,
-  rgba(10, 12, 45, 0) 100.53%);
+  background: linear-gradient(
+    123.69deg,
+    rgba(10, 12, 45, 0.45) 0%,
+    rgba(10, 12, 45, 0) 100.53%
+  );
 
-
-  ${mediumUp( css`
-    ${length( "width", 18 )};
+  ${mediumUp(css`
+    ${length("width", 18)};
     margin: 0;
-  ` )};
+  `)};
 
   a {
     display: block;
@@ -96,50 +96,44 @@ const ImageBox = styled.div`
 `;
 
 const Desc = styled.div`
-  ${spacing( "mt", 2 )};
+  ${spacing("mt", 2)};
 
-  ${mediumUp( css`
+  ${mediumUp(css`
     margin-top: 0;
-  ` )};
-
+  `)};
 `;
 
-const Tag = styled( Typography )`
+const Tag = styled(Typography)`
   font-weight: lighter;
   letter-spacing: 1px;
   color: silver;
   opacity: 0.5;
   text-transform: uppercase;
 
-  ${spacing( "mb", 0 )};
-  ${text( 0.467 )};
+  ${spacing("mb", 0)};
+  ${text(0.467)};
 
-  ${smallUp( css`
-    ${spacing( "mb", 0 )};
-
-  ` )};
+  ${smallUp(css`
+    ${spacing("mb", 0)};
+  `)};
 `;
 
-const Title = styled( Typography )`
+const Title = styled(Typography)`
   line-height: 1.4em;
   font-weight: lighter;
-  ${text( 1.1 )};
+  ${text(1.1)};
 
   a {
     text-decoration: none;
   }
 `;
 
-function Item( { media, tag, title, link } ){
-
-
+function Item({ media, tag, title, link }) {
   return (
-    <PreviewContainer className="home-blog-thumbnail" data-pointer="focus"
-    >
-
+    <PreviewContainer className="home-blog-thumbnail" data-pointer="focus">
       <a href={link} target="_blank" rel="noopener noreferrer">
         <ImageBox>
-          <GatsbyImage className="img-wrapper" alt="" image={getImage( media )} />
+          <GatsbyImage className="img-wrapper" alt="" image={getImage(media)} />
         </ImageBox>
 
         <Desc>
@@ -147,7 +141,6 @@ function Item( { media, tag, title, link } ){
           <Title variant="h6"> {title} </Title>
         </Desc>
       </a>
-
     </PreviewContainer>
   );
 }

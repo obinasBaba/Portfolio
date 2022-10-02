@@ -1,15 +1,20 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
-import Companies from '../Companies';
-import { Typography } from '@material-ui/core';
-import { spacing, text } from '@/styles/mixins';
-import { motion } from 'framer-motion';
-import { mediumUp } from '@/styles/mixins/breakpoints';
+import React from "react";
+import styled, { css } from "styled-components";
+import Companies from "../Companies";
+import { Typography } from "@material-ui/core";
+import { spacing, text } from "@/styles/mixins";
+import { motion } from "framer-motion";
+import { mediumUp } from "@/styles/mixins/breakpoints";
 
 const AboutMetaContainer = styled(motion.div)`
   position: relative;
   overflow: hidden;
-  background-image: linear-gradient(137.81deg, #e7a28f 3.52%, #f9d6ac 41.89%, #fbfefc 96.77%);
+  background-image: linear-gradient(
+    137.81deg,
+    #e7a28f 3.52%,
+    #f9d6ac 41.89%,
+    #fbfefc 96.77%
+  );
   height: 100%;
   flex: 50%;
   //z-index: 200;
@@ -18,12 +23,12 @@ const AboutMetaContainer = styled(motion.div)`
   display: flex;
   flex-flow: column;
 
-  ${spacing('p', 7)};
-  ${spacing('pb', 3)};
+  ${spacing("p", 7)};
+  ${spacing("pb", 3)};
 
   &::after {
     z-index: -100;
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -38,31 +43,31 @@ const MetaSubtitle = styled(Typography)`
   font-weight: 700;
   opacity: 0.3;
 
-  ${spacing('mb', 1)};
+  ${spacing("mb", 1)};
   ${text(1)};
 `;
 
 const Title = styled(Typography)`
   position: relative;
   font-weight: bold;
-  ${spacing('mb', 6)};
+  ${spacing("mb", 6)};
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     display: block;
     background: ${({ afterColor }) =>
-            afterColor ? afterColor : 'rgb(30, 33, 61)'};
+      afterColor ? afterColor : "rgb(30, 33, 61)"};
     height: 3px;
     width: 18%;
-    ${spacing('mt', 2)};
+    ${spacing("mt", 2)};
   }
 
   ${mediumUp(css`
-    ${spacing('mb', 2)};
+    ${spacing("mb", 2)};
 
     &::after {
-      ${spacing('mt', 1)};
+      ${spacing("mt", 1)};
     }
   `)};
 `;
@@ -77,7 +82,7 @@ const Description = styled(Typography)`
   color: #020b16;
   margin: 0;
   position: relative;
-  ${spacing('mb', 4)};
+  ${spacing("mb", 4)};
   ${text(1.1)};
 `;
 
@@ -97,23 +102,21 @@ export const transition = {
   // duration: 1,
   ease: [0.6, 0.01, 0, 0.9],
   opacity: {
-    delay: .3,
+    delay: 0.3,
   },
 };
 
 const aboutContainerVariants = {
   initial: {
-    y: '110%',
-    opacity: .3,
-
+    y: "110%",
+    opacity: 0.3,
   },
   animate: {
     y: 0,
     opacity: 1,
-
   },
   exit: {
-    y: '110%',
+    y: "110%",
     opacity: 0,
     transition: {
       opacity: {
@@ -125,16 +128,15 @@ const aboutContainerVariants = {
 
 const About = () => {
   return (
-    <AboutMetaContainer variants={aboutContainerVariants}
-                        transition={transition}
+    <AboutMetaContainer
+      variants={aboutContainerVariants}
+      transition={transition}
     >
+      <AboutEffect variant="h1"> About </AboutEffect>
 
-      <AboutEffect variant='h1'> About </AboutEffect>
+      <Title variant="h4"> About Me. </Title>
 
-      <Title variant='h4'> About Me. </Title>
-
-
-      <MetaSubtitle variant='h6'> Interactive Web developer </MetaSubtitle>
+      <MetaSubtitle variant="h6"> Interactive Web developer </MetaSubtitle>
       <Description>
         I'm Henok, a 22-years-old Ethiopian Freelance Front-end developer.
         {/*<br />*/}
@@ -146,10 +148,7 @@ const About = () => {
         University. Actually for hire.
       </Description>
 
-
       <Companies />
-
-
     </AboutMetaContainer>
   );
 };

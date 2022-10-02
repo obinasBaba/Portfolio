@@ -1,10 +1,10 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
-import { Container, Typography } from '@material-ui/core';
-import { motion } from 'framer-motion';
-import { Link } from 'gatsby';
-import { spacing, text } from '@/styles/mixins';
-import { largeUp, mediumUp, xxLargeUp } from '@/styles/mixins/breakpoints';
+import React from "react";
+import styled, { css } from "styled-components";
+import { Container, Typography } from "@material-ui/core";
+import { motion } from "framer-motion";
+import { Link } from "gatsby";
+import { spacing, text } from "@/styles/mixins";
+import { largeUp, mediumUp, xxLargeUp } from "@/styles/mixins/breakpoints";
 
 const FooterMetaContainer = styled(Container)`
   display: flex !important;
@@ -12,12 +12,10 @@ const FooterMetaContainer = styled(Container)`
   justify-content: space-between;
   margin: 0 auto;
 
-
-  ${spacing('mt', 14)};
-
+  ${spacing("mt", 14)};
 
   ${mediumUp(css`
-    ${spacing('mt', 5)};
+    ${spacing("mt", 5)};
     flex-flow: row wrap;
   `)};
 `;
@@ -29,21 +27,21 @@ const MetaColumn = styled.div`
   align-items: center;
   //border: thin solid red;
 
-  ${spacing('mb', 7)};
-  ${spacing('ph', 4)};
+  ${spacing("mb", 7)};
+  ${spacing("ph", 4)};
 
   ${mediumUp(css`
     align-items: flex-start;
   `)};
 
   & .titleTxt {
-    ${spacing('mb', 3.5)};
+    ${spacing("mb", 3.5)};
     font-weight: bolder;
     letter-spacing: 1px;
   }
 
   & .link-txt {
-    ${spacing('mt', 0.5)};
+    ${spacing("mt", 0.5)};
     font-weight: 300;
     ${text(0.79)};
   }
@@ -52,33 +50,28 @@ const MetaColumn = styled.div`
     flex: 25%;
 
     .link-txt {
-      font-size: .895rem;
+      font-size: 0.895rem;
     }
-
   `)};
 
   ${largeUp(css`
     & .titleTxt {
-      ${spacing('mb', 1.5)};
+      ${spacing("mb", 1.5)};
     }
-
   `)};
 
   ${xxLargeUp(css`
-    ${spacing('ph', 0)};
-
+    ${spacing("ph", 0)};
 
     & .titleTxt {
-      ${spacing('mb', 1)};
+      ${spacing("mb", 1)};
     }
 
     & .link-txt {
-      ${spacing('mt', 0.5)};
+      ${spacing("mt", 0.5)};
       font-weight: 300;
       ${text(0.8)};
     }
-
-
   `)};
 `;
 
@@ -99,7 +92,7 @@ const Hover = styled(motion.div)`
   }
 
   & .titleTxt {
-    ${spacing('mb', 0.5)};
+    ${spacing("mb", 0.5)};
     font-weight: bolder;
     letter-spacing: 1px;
   }
@@ -123,9 +116,7 @@ const Hover = styled(motion.div)`
 
   .link-txt {
     color: #7b8a9b;
-
   }
-
 `;
 
 const line1Variants = {
@@ -156,7 +147,7 @@ const line1Variants = {
   hover: {
     opacity: 1,
     x: 10,
-    originX: 'right',
+    originX: "right",
     scaleX: [null, 0],
   },
   exit: {},
@@ -196,7 +187,7 @@ const line2Variant = {
   hover: {
     x: 0,
     opacity: 1,
-    originX: 'left',
+    originX: "left",
     scaleX: [null, 1],
     transition: {
       delay: 0.4,
@@ -205,67 +196,67 @@ const line2Variant = {
   },
 };
 
-function FooterMeta () {
-  const titleData = ['Explore', 'Social', 'Contact', 'Henzzo.io'];
+function FooterMeta() {
+  const titleData = ["Explore", "Social", "Contact", "Henzzo.io"];
 
   const data = [
     [
       {
-        txt: 'Home',
-        link: '/',
+        txt: "Home",
+        link: "/",
       },
       {
-        txt: 'about',
-        link: '/about',
+        txt: "about",
+        link: "/about",
       },
       {
-        txt: 'projects',
-        link: '/projects',
+        txt: "projects",
+        link: "/projects",
       },
       {
-        txt: 'contact',
-        link: '/contact',
-      },
-    ],
-    [
-      {
-        txt: 'Dribble',
-        link: 'https://dribbble.com/henok500',
-        target: '_blank',
-      },
-      {
-        txt: 'Linkedin',
-        link: '/',
-      },
-      {
-        txt: 'Github',
-        link: '/',
-      },
-      {
-        txt: 'Readers-Corner',
-        link: 'https://readers-corner.netlify.app',
-        target: '_blank',
+        txt: "contact",
+        link: "/contact",
       },
     ],
     [
       {
-        txt: 'Addis-Abeba',
+        txt: "Dribble",
+        link: "https://dribbble.com/henok500",
+        target: "_blank",
       },
       {
-        txt: '2020 Pop',
+        txt: "Linkedin",
+        link: "/",
       },
       {
-        txt: 'Ethiopia',
+        txt: "Github",
+        link: "/",
+      },
+      {
+        txt: "Readers-Corner",
+        link: "https://readers-corner.netlify.app",
+        target: "_blank",
       },
     ],
     [
       {
-        txt: 'hi@henzzo.io',
-        mailTo: 'mailto:henokgetachew500@gmail.com',
+        txt: "Addis-Abeba",
       },
       {
-        txt: '+251-923-3655-39',
-        tel: 'tel:+251 923 3655 39',
+        txt: "2020 Pop",
+      },
+      {
+        txt: "Ethiopia",
+      },
+    ],
+    [
+      {
+        txt: "hi@henzzo.io",
+        mailTo: "mailto:henokgetachew500@gmail.com",
+      },
+      {
+        txt: "+251-923-3655-39",
+        tel: "tel:+251 923 3655 39",
       },
     ],
 
@@ -274,11 +265,10 @@ function FooterMeta () {
   ];
 
   return (
-    <FooterMetaContainer maxWidth='lg' disableGutters>
-
+    <FooterMetaContainer maxWidth="lg" disableGutters>
       {titleData.map((titleTxt, i) => (
         <MetaColumn key={titleTxt}>
-          <Typography variant='h5' className='titleTxt'>
+          <Typography variant="h5" className="titleTxt">
             {titleTxt}
           </Typography>
 
@@ -286,36 +276,46 @@ function FooterMeta () {
             <Hover
               key={txt + titleTxt}
               variants={{}}
-              whileHover='hover'
-              initial='initial'
-              animate='animate'
-              exit='exit'
-              data-pointer='focus'
-
+              whileHover="hover"
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              data-pointer="focus"
             >
-              {link && <Link to={link} target={target}
-                             aria-label={`to ${txt} page`} />}
-              {mailTo && <a href={mailTo} target={target}
-                            aria-label='open mailTo application' />}
-              {tel && <a href={tel} target={target}
-                         aria-label='open telephone application' />}
+              {link && (
+                <Link to={link} target={target} aria-label={`to ${txt} page`} />
+              )}
+              {mailTo && (
+                <a
+                  href={mailTo}
+                  target={target}
+                  aria-label="open mailTo application"
+                />
+              )}
+              {tel && (
+                <a
+                  href={tel}
+                  target={target}
+                  aria-label="open telephone application"
+                />
+              )}
 
               <Typography
                 key={link + txt}
-                className='link-txt'
-                variant='subtitle2'
+                className="link-txt"
+                variant="subtitle2"
               >
                 {txt}
               </Typography>
 
-              <motion.div className='wrapper'>
+              <motion.div className="wrapper">
                 <motion.div
-                  className='line top'
+                  className="line top"
                   variants={line1Variants}
                   transition={line1Variants.transition}
                 />
                 <motion.div
-                  className='line bottom'
+                  className="line bottom"
                   variants={line2Variant}
                   transition={line1Variants.transition}
                 />

@@ -9,15 +9,13 @@ const ImageWrapper = styled.div`
   max-width: calc(100vw / 64 * 40);
   margin-right: calc(100vw / 64 * 1);
 
-
-  ${largeUp( css`
+  ${largeUp(css`
     max-width: calc(100vw / 64 * 26);
-  ` )};
+  `)};
 
-  ${xxLargeUp( css`
+  ${xxLargeUp(css`
     max-width: calc(100vw / 64 * 31);
-
-  ` )};
+  `)};
 
   ////todo-start - figure this out
   -webkit-flex-shrink: 0;
@@ -31,22 +29,22 @@ const ImageWrapper = styled.div`
   //todo-end
 
   &.item {
-
   }
 
-  &:nth-child(2n) { //starting from the parent every even child
+  &:nth-child(2n) {
+    //starting from the parent every even child
     max-width: calc(100vw / 64 * 28);
     display: flex;
     flex-flow: wrap;
     justify-content: space-between;
 
-    ${largeUp( css`
+    ${largeUp(css`
       max-width: calc(100vw / 64 * 17);
-    ` )};
+    `)};
 
-    ${xxLargeUp( css`
+    ${xxLargeUp(css`
       max-width: calc(100vw / 64 * 20);
-    ` )};
+    `)};
 
     //every first-child of the parent of .image,// this is equal with ( parent > :first-child )
     .image:first-child {
@@ -59,19 +57,17 @@ const ImageWrapper = styled.div`
   }
 
   @media screen and (min-width: 1600px) {
-
-    ${length( "max-width", 62 )};
+    ${length("max-width", 62)};
 
     &.item {
-      ${spacing( "mr", 2 )};
+      ${spacing("mr", 2)};
     }
 
     &:nth-child(2n) {
-
-      ${length( "max-width", 40 )};
+      ${length("max-width", 40)};
 
       .image:first-child {
-        ${spacing( "mb", 2 )};
+        ${spacing("mb", 2)};
       }
 
       .image:nth-child(n + 2) {
@@ -85,21 +81,20 @@ const ImageWrapper = styled.div`
   }
 `;
 
-function DesignImage( { images } ){
-
+function DesignImage({ images }) {
   return (
     <ImageWrapper>
-      {
-        images.map( ( imgData ) =>
-          <GatsbyImage alt={imgData.name}
-                       key={imgData.name}
-                       className="image dribble-shots"
-                       objectFit="cover"
-                       image={getImage( imgData )} /> )
-
-      }
+      {images.map((imgData) => (
+        <GatsbyImage
+          alt={imgData.name}
+          key={imgData.name}
+          className="image dribble-shots"
+          objectFit="cover"
+          image={getImage(imgData)}
+        />
+      ))}
     </ImageWrapper>
   );
 }
 
-export default React.memo( DesignImage );
+export default React.memo(DesignImage);

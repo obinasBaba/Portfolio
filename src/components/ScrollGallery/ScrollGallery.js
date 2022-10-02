@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import { motion, useSpring, useTransform } from 'framer-motion';
-import ImageGrid from '../../scenes/HomePage/RecentDesigns/ImageGrid';
-import { spacing } from '../../styles/mixins';
-import useHomeWorksAssets from '../../hooks/queries/useHomeWorksAssets';
-import { useLocomotiveScroll } from '@/contexts/LocoMotive';
+import React from "react";
+import styled from "styled-components";
+import { motion, useSpring, useTransform } from "framer-motion";
+import ImageGrid from "../../scenes/HomePage/RecentDesigns/ImageGrid";
+import { spacing } from "../../styles/mixins";
+import useHomeWorksAssets from "../../hooks/queries/useHomeWorksAssets";
+import { useLocomotiveScroll } from "@/contexts/LocoMotive";
 
 const ScrollContainer = styled.section`
   position: relative;
@@ -21,7 +21,7 @@ const ScrollWrapper = styled.div`
     transform: translateX(-20%);
   }
 
-  ${spacing('mb', 13)};
+  ${spacing("mb", 13)};
 `;
 
 const ScrollTrack = styled(motion.div)`
@@ -34,7 +34,6 @@ const ScrollTrack = styled(motion.div)`
 `;
 
 const Gallery = () => {
-
   const {
     Art,
     eScooter,
@@ -50,7 +49,8 @@ const Gallery = () => {
     North,
   } = useHomeWorksAssets();
 
-  const imageList = [ // useMemo
+  const imageList = [
+    // useMemo
     [Web],
     [Investments, Travel, Starbank],
     [eScooter],
@@ -74,22 +74,21 @@ const Gallery = () => {
 
   return (
     <ScrollContainer>
-      <ScrollWrapper id='image_row_container'>
-
-        <ScrollTrack className='rd-scroll-track'
+      <ScrollWrapper id="image_row_container">
+        <ScrollTrack
+          className="rd-scroll-track"
           // style={{ x: useMotionTemplate`${x}%` }}
 
-                     data-scroll={true}
-                     data-scroll-direction='horizontal'
-                     data-scroll-speed='2'
-                     data-scroll-delay='.05'
+          data-scroll={true}
+          data-scroll-direction="horizontal"
+          data-scroll-speed="2"
+          data-scroll-delay=".05"
         >
-          {imageList.map((item, index) =>
-            <ImageGrid images={item} idx={index} key={index} />,
-          )}
+          {imageList.map((item, index) => (
+            <ImageGrid images={item} idx={index} key={index} />
+          ))}
         </ScrollTrack>
       </ScrollWrapper>
-
     </ScrollContainer>
   );
 };

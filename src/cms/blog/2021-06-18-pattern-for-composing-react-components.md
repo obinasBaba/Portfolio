@@ -225,7 +225,7 @@ export default function CoolQuotes(){
 
   return (
     <div className='rounded bg-light mt-5 p-3 mx-4'>
-      <button className="btn btn-info" onClick={refreshQuote}>refresh</button>
+      <button className="btn btn-info" onClick={refreshQuote}>attach</button>
 
       <p className='m-4'>
         {quote.quote}
@@ -277,7 +277,7 @@ export const CoolQuoteContainer = () => {
 export const CoolQuote = ( { quote, onRefresh } ) => {
   return (
     <div className='rounded bg-light mt-5 p-3 mx-4'>
-      <button className="btn btn-info" onClick={onRefresh}>refresh</button>
+      <button className="btn btn-info" onClick={onRefresh}>attach</button>
       <p className='m-4'> {quote} </p>
     </div>
   )
@@ -348,14 +348,14 @@ literal implementation of a [Decorator pattern.](https://en.wikipedia.org/wiki/D
 Let's add some additional functionality to the `CoolQuote` component to see `HOC` in action. If the user is a Pro
 member, we enable the feature to see the author of the quote and will get nice background(see `Bootstrap`
 class `bg-info` in side the `withFetch` hoc), if it's a logged-in user we want them able to share the tweet on Twitter.
-Otherwise only refresh the quote. Let's change the previous example to fit with `HOC` and we will go through it.
+Otherwise only attach the quote. Let's change the previous example to fit with `HOC` and we will go through it.
 
 ```javascript
 // changes inside CoolQuote.js, author and loggedIn are the additional props
 export const CoolQuote = ( { quote, onRefresh, author, loggedIn } ) => {
   return (
     <div className='rounded mt-5 p-3'>
-      <button className="btn btn-info" onClick={onRefresh}>refresh</button>
+      <button className="btn btn-info" onClick={onRefresh}>attach</button>
 
       {loggedIn && <a className="btn btn-primary ml-2"
                       href={`https://twitter.com/intent/tweet?text=${quote}`}>

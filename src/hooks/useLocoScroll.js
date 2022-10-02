@@ -1,16 +1,19 @@
 /** @format */
 
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
-import { useContext, useEffect, useLayoutEffect, useRef } from 'react';
-import LocomotiveScroll from 'locomotive-scroll';
-import 'locomotive-scroll/dist/locomotive-scroll.css';
-import Cursor from '../components/Cursor';
-import { MotionValueContext } from '../contexts/MotionStateWrapper';
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import { useContext, useEffect, useLayoutEffect, useRef } from "react";
+import LocomotiveScroll from "locomotive-scroll";
+import "locomotive-scroll/dist/locomotive-scroll.css";
+import Cursor from "../components/Cursor";
+import { MotionValueContext } from "../contexts/MotionStateWrapper";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function useLocoScroll(start = true, elementId = '[data-scroll-container="true"]') {
+export default function useLocoScroll(
+  start = true,
+  elementId = '[data-scroll-container="true"]'
+) {
   const { moScroll, locoInstance } = useContext(MotionValueContext);
 
   const locoScroll = useRef(null);
@@ -27,7 +30,7 @@ export default function useLocoScroll(start = true, elementId = '[data-scroll-co
     locoInstance.set(window.locoInstance);
 
     // whenever when we scroll loco update scrollTrigger
-    locoScroll.current.on('scroll', (arg) => {
+    locoScroll.current.on("scroll", (arg) => {
       // console.time('Single onScroll');
       ScrollTrigger.update();
       moScroll.x.set(arg.scroll.x);
@@ -35,7 +38,8 @@ export default function useLocoScroll(start = true, elementId = '[data-scroll-co
       moScroll.limit.set(arg.limit.y);
       moScroll.scrollDirection.set(arg.direction);
 
-      Math.abs(window.locoInstance.scroll.instance.speed) > 2 && Cursor.stopMouseAnimation();
+      Math.abs(window.locoInstance.scroll.instance.speed) > 2 &&
+        Cursor.stopMouseAnimation();
       // console.log('ticking', window.locoInstance.scroll.instance.speed)
     });
 
@@ -70,8 +74,8 @@ export default function useLocoScroll(start = true, elementId = '[data-scroll-co
         if (locoScroll.current) {
           const value = arguments.length
             ? locoScroll.current.scrollTo(value, 0, 0)
-            : document.querySelector('.track')
-            ? -document.querySelector('.track').getBoundingClientRect().x
+            : document.querySelector(".track")
+            ? -document.querySelector(".track").getBoundingClientRect().x
             : 0;
 
           // console.log( 'scrollLeft',  value)
@@ -87,20 +91,20 @@ export default function useLocoScroll(start = true, elementId = '[data-scroll-co
       }
     };
 
-    window.addEventListener('resize', lsUpdate);
-    ScrollTrigger.addEventListener('refresh', lsUpdate);
+    window.addEventListener("resize", lsUpdate);
+    ScrollTrigger.addEventListener("refresh", lsUpdate);
     ScrollTrigger.refresh();
 
     return () => {
       if (locoScroll.current) {
-        window.removeEventListener('resize', lsUpdate);
-        ScrollTrigger.removeEventListener('refresh', lsUpdate);
+        window.removeEventListener("resize", lsUpdate);
+        ScrollTrigger.removeEventListener("refresh", lsUpdate);
         locoScroll.current.destroy();
         window.locoInstance.destroy();
         window.locoInstance = false;
         locoInstance.set(null);
         locoScroll.current = null;
-        scrollEl.style.transform = 'initial';
+        scrollEl.style.transform = "initial";
         // docu
       }
     };
@@ -113,17 +117,17 @@ export default function useLocoScroll(start = true, elementId = '[data-scroll-co
     const intervalId = setInterval(() => {
       const cb = () => {
         window.locoInstance && window.locoInstance.update();
-        // ScrollTrigger.refresh();
+        // ScrollTrigger.attach();
         // previousHeight = container.offsetHeight;
       };
 
-      if ('requestIdleCallback' in window) {
+      if ("requestIdleCallback" in window) {
         cancelIdleCallback(idelId);
         idelId = requestIdleCallback(cb);
       } else {
         cb();
       }
-      // console.timeEnd('refresh loco')
+      // console.timeEnd('attach loco')
     }, 2400);
 
     return () => clearInterval(intervalId);

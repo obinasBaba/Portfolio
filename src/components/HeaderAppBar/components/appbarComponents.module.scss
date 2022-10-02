@@ -8,36 +8,64 @@
   justify-content: center;
   //margin-right: auto;
   fill: var(--theme); //todo gradient
-  z-index: 50;
-  //border: thin solid red;
+  //z-index: 50;
   transition: fill 0.35s ease-in-out;
   pointer-events: initial;
+  background: transparent;
 
-  &::after {
-    content: '';
-    position: absolute;
-    display: block;
-    top: -17px;
-    left: -17px;
-    right: -17px;
-    bottom: -17px;
-    z-index: -1;
+  max-width: 4.2rem;
+  //max-width: f-unit-light(5rem);
 
-    //border: thin solid thistle;
+  @include media-breakpoint-up(md) {
+    //max-width: f-unit-light(5rem);
   }
 
+  & > :first-child{
+
+    //border: thin solid red;
+
+    &::after {
+      content: '';
+      position: absolute;
+      display: block;
+      top: -17px;
+      left: -17px;
+      right: -17px;
+      bottom: -17px;
+      z-index: 1;
+
+      //border: thin solid thistle;
+    }
+  }
+
+
+
   & :local {
+
 
     .reactSvg {
       max-width: f-unit-light(3rem);
 
       @include media-breakpoint-up(md) {
-        max-width: f-unit-light(3rem);
+        max-width: f-unit-light(5rem);
       }
     }
 
     a {
-      width: 100%;
+
+      img{
+        max-width: 100%;
+        width: 100%;
+        //width: 100px;
+        //height: 100px;
+      }
+
+      svg{
+        max-width: 100%;
+        width: 100%;
+
+        display: none;
+      }
     }
   }
 }
@@ -52,7 +80,7 @@
   border: none;
   pointer-events: initial;
 
-  border: 1px solid #000;
+  //border: 1px solid #000;
 
   border-radius: 50%;
   background-color: transparent;

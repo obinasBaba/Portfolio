@@ -18,7 +18,7 @@
 
     svg.circle {
       //transition: opacity 100ms ease-in;
-      opacity: 0;
+      //opacity: 0;
     }
   }
 
@@ -50,8 +50,8 @@
         z-index: 8;
 
         .progress {
-          transition: opacity 300ms ease-out;
-          opacity: 0;
+          //transition: opacity 300ms ease-out;
+          //opacity: 0;
         }
       }
 

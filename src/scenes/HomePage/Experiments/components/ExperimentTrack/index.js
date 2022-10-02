@@ -1,8 +1,8 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
-import { useExperimentAssets } from '../../../../../hooks/queries/useExperimentAssets'
-import Item from './Item'
-import {mediumUp} from "../../../../../styles/mixins/breakpoints";
+import React from "react";
+import styled, { css } from "styled-components";
+import { useExperimentAssets } from "../../../../../hooks/queries/useExperimentAssets";
+import Item from "./Item";
+import { mediumUp } from "../../../../../styles/mixins/breakpoints";
 
 export const Track = styled.section`
   width: 100%;
@@ -15,25 +15,32 @@ export const Track = styled.section`
     flex-flow: nowrap;
     justify-content: space-evenly;
   `)};
-  
-  
-`
+`;
 
 function ExperimentTrack() {
-  const { exp1mp4, exp1webm, exp2mp4, exp2webm, exp3mp4, exp3webm, exp4mp4, exp4webm, } = useExperimentAssets()
+  const {
+    exp1mp4,
+    exp1webm,
+    exp2mp4,
+    exp2webm,
+    exp3mp4,
+    exp3webm,
+    exp4mp4,
+    exp4webm,
+  } = useExperimentAssets();
   const expData = [
-    {src: { mp4: exp1mp4, webm: exp1webm }, title: 'Elastic Search Bar'},
-    {src: { mp4: exp2mp4, webm: exp2webm }, title: 'Mouse Hover effect'},
-    {src: { mp4: exp3mp4, webm: exp3webm }, title: 'Menu Icon animation'},
-    {src: { mp4: exp4mp4, webm: exp4webm }, title: 'CustomTextField Interaction'},
-  ]
-
+    { src: { mp4: exp1mp4, webm: exp1webm }, title: "Elastic Search Bar" },
+    { src: { mp4: exp2mp4, webm: exp2webm }, title: "Mouse Hover effect" },
+    { src: { mp4: exp3mp4, webm: exp3webm }, title: "Menu Icon animation" },
+    {
+      src: { mp4: exp4mp4, webm: exp4webm },
+      title: "CustomTextField Interaction",
+    },
+  ];
 
   return (
-    
     <Track>
-
-      {expData.map(( item , index ) => (
+      {expData.map((item, index) => (
         <Item
           key={item.src.mp4.publicURL + index}
           imgUrl={item.src}
@@ -41,9 +48,8 @@ function ExperimentTrack() {
           index={index}
         />
       ))}
-
     </Track>
-  )
+  );
 }
 
-export default ExperimentTrack
+export default ExperimentTrack;

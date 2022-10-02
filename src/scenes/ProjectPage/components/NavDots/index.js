@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import styled, { css } from 'styled-components'
-import { motion } from 'framer-motion'
-import {spacing} from '../../../../styles/mixins'
-import ThumbAndDot from './Components/ThumbAndDot'
-import {largeUp, mediumUp, xLargeUp} from "../../../../styles/mixins/breakpoints";
+import React, { useEffect, useState } from "react";
+import styled, { css } from "styled-components";
+import { motion } from "framer-motion";
+import { spacing } from "../../../../styles/mixins";
+import ThumbAndDot from "./Components/ThumbAndDot";
+import {
+  largeUp,
+  mediumUp,
+  xLargeUp,
+} from "../../../../styles/mixins/breakpoints";
 
-const NavContainer = styled( motion.div )`
+const NavContainer = styled(motion.div)`
   position: fixed;
   z-index: 3;
   bottom: 4%;
@@ -18,12 +22,11 @@ const NavContainer = styled( motion.div )`
   `)};
 
   ${xLargeUp(css`
-    ${spacing('ml', 6.7)};
+    ${spacing("ml", 6.7)};
   `)};
-`
+`;
 
 const NavWrapper = styled.ul`
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,16 +34,13 @@ const NavWrapper = styled.ul`
   margin: 0;
   transform: translateX(-50%);
 
-
-  ${ mediumUp(css`
+  ${mediumUp(css`
     flex-flow: column;
     transform: initial;
+  `)};
 
-  `) };
-
-  ${spacing('gap', 3.2)};
-`
-
+  ${spacing("gap", 3.2)};
+`;
 
 const parentVariant = {
   transition: {
@@ -50,7 +50,7 @@ const parentVariant = {
   },
 
   initial: {
-    x: 'calc((var(--indent) * -4.5rem))',
+    x: "calc((var(--indent) * -4.5rem))",
     // y: '-40%',
     opacity: 0,
   },
@@ -66,7 +66,7 @@ const parentVariant = {
     },
   },
   exit: {
-    x: 'calc((var(--indent) * -4.5rem))',
+    x: "calc((var(--indent) * -4.5rem))",
     opacity: 0,
     transition: {
       delay: 0.1,
@@ -74,50 +74,42 @@ const parentVariant = {
       ease: [0.6, 0.01, 0, 0.9],
     },
   },
-}
+};
 
-
-function NavDots({activeIndex}) {
+function NavDots({ activeIndex }) {
   // const {activeIndex} = props;
-  const anchors = ['one', 'two', 'three', 'four']
+  const anchors = ["one", "two", "three", "four"];
 
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(0);
 
   useEffect(() => {
-    activeIndex.onChange(v => {
-      setActive(v)
-    })
-
-  }, [])
-
+    activeIndex.onChange((v) => {
+      setActive(v);
+    });
+  }, []);
 
   return (
-
-      <NavContainer
-        variants={parentVariant}
-        transition={parentVariant.transition}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-      >
-
-          <NavWrapper>
-            {anchors.map((anchor, index) => (
-                <ThumbAndDot
-                    anchor={anchor}
-                    key={anchor + index}
-                    hidden={index === active}
-                    index={index}
-                    dataAnchor={anchor}
-                    clickEvent={() => setActive(index)}
-                />
-            ))}
-          </NavWrapper>
-
-
-      </NavContainer>
-
-  )
+    <NavContainer
+      variants={parentVariant}
+      transition={parentVariant.transition}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
+      <NavWrapper>
+        {anchors.map((anchor, index) => (
+          <ThumbAndDot
+            anchor={anchor}
+            key={anchor + index}
+            hidden={index === active}
+            index={index}
+            dataAnchor={anchor}
+            clickEvent={() => setActive(index)}
+          />
+        ))}
+      </NavWrapper>
+    </NavContainer>
+  );
 }
 
-export default NavDots
+export default NavDots;

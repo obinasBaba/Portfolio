@@ -1,16 +1,18 @@
-import React from 'react'
-import { Container, Typography } from '@material-ui/core'
-import styled, { css } from 'styled-components'
-import { length, spacing, text } from '../../../styles/mixins'
+import React from "react";
+import { Container, Typography } from "@material-ui/core";
+import styled, { css } from "styled-components";
+import { length, spacing, text } from "../../../styles/mixins";
 import { largeUp } from "../../../styles/mixins/breakpoints";
 
-const ComingSoonContainer = styled( Container )`
+const ComingSoonContainer = styled(Container)`
   position: relative;
-    //background-color: ${( { themeCrl } ) => themeCrl};
-  background-image: linear-gradient(137.81deg,
-  #e7a28f 3.52%,
-  #f9d6ac 41.89%,
-  #fbfefc 96.77%);
+  //background-color: ${({ themeCrl }) => themeCrl};
+  background-image: linear-gradient(
+    137.81deg,
+    #e7a28f 3.52%,
+    #f9d6ac 41.89%,
+    #fbfefc 96.77%
+  );
 
   color: #02021e;
 
@@ -24,70 +26,60 @@ const ComingSoonContainer = styled( Container )`
     text-align: left;
   }
 
-
-  ${spacing( 'pv', 10 )};
-  ${spacing( 'mb', 20 )};
-  ${spacing( 'mt', 30 )};
+  ${spacing("pv", 10)};
+  ${spacing("mb", 20)};
+  ${spacing("mt", 30)};
 
   & > :not(:first-child) {
-      // ${length( 'margin', 3 )};
+    // ${length("margin", 3)};
   }
 
-  ${largeUp( css`
-    ${spacing( 'pv', 4 )};
-    ${spacing( 'pl', 15 )};
-  ` )};
-
+  ${largeUp(css`
+    ${spacing("pv", 4)};
+    ${spacing("pl", 15)};
+  `)};
 
   .titleTxt {
-    font-family: 'Elianto-Regular', serif;
+    font-family: "Elianto-Regular", serif;
     letter-spacing: -1px;
-    ${text( 3 )};
-    ${spacing( 'mb', 2 )};
+    ${text(3)};
+    ${spacing("mb", 2)};
   }
 
   .reason {
     max-width: 40ch;
     text-align: left;
 
-    ${text( 1.1 )};
-    ${spacing( 'mb', 3 )};
+    ${text(1.1)};
+    ${spacing("mb", 3)};
   }
 
   .bye {
     max-width: 40ch;
     text-align: left;
 
-    ${text( 0.9 )};
+    ${text(0.9)};
   }
-`
+`;
 
 function ComingSoon() {
+  return (
+    <ComingSoonContainer maxWidth={false} fixed={false} component="section">
+      <Typography className="titleTxt" variant="h1">
+        Thanks for stopping by Alien.
+      </Typography>
 
-    return (
-        <ComingSoonContainer
-            maxWidth={false}
-            fixed={false}
-            component="section"
-        >
+      <Typography gutterBottom className="reason">
+        This is relatively a new project I just finished, so am putting some
+        bits and pieces together to prepare an in-depth, walk-through story to
+        tell.
+      </Typography>
 
-
-            <Typography className='titleTxt'
-                        variant="h1">Thanks for stopping by Alien.</Typography>
-
-            <Typography gutterBottom className='reason'>
-                This is relatively a new project I just finished, so am
-                putting some bits and pieces together to prepare an in-depth,
-                walk-through story to tell.
-            </Typography>
-
-            <Typography className='bye'>
-                Aside that enjoy other places of my space.
-            </Typography>
-
-
-        </ComingSoonContainer>
-    )
+      <Typography className="bye">
+        Aside that enjoy other places of my space.
+      </Typography>
+    </ComingSoonContainer>
+  );
 }
 
-export default ComingSoon
+export default ComingSoon;

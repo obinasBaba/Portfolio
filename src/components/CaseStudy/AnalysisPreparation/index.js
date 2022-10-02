@@ -1,11 +1,11 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
-import { Container } from '@material-ui/core'
-import {spacing, text} from '../../../styles/mixins'
-import wireFrame from './components/photo_2021-06-10_05-58-23.jpg'
-import Excerpts from './components/Excerpts'
-import Title from './components/Title'
-import {mediumUp} from "../../../styles/mixins/breakpoints";
+import React from "react";
+import styled, { css } from "styled-components";
+import { Container } from "@material-ui/core";
+import { spacing, text } from "../../../styles/mixins";
+import wireFrame from "./components/photo_2021-06-10_05-58-23.jpg";
+import Excerpts from "./components/Excerpts";
+import Title from "./components/Title";
+import { mediumUp } from "../../../styles/mixins/breakpoints";
 
 const AnalysisContainer = styled(Container)`
   color: ${({ theme }) => theme.palette.primary.main};
@@ -14,8 +14,7 @@ const AnalysisContainer = styled(Container)`
   justify-content: center;
   align-items: center;
   letter-spacing: 0.5px;
-  
-`
+`;
 
 const Flex = styled.div`
   display: flex;
@@ -24,32 +23,30 @@ const Flex = styled.div`
   width: 100%;
 
   & > :last-child {
-    ${spacing('mt', 7)};
+    ${spacing("mt", 7)};
   }
 
   ${mediumUp(css`
     flex-flow: row;
 
     & > :last-child {
-      
     }
   `)};
-`
+`;
 
 const BrandingTxt = styled.div`
   //border: thin solid greenyellow;
   flex: 1.3;
-  //background-color: #f3f3f3; 
-
-`
+  //background-color: #f3f3f3;
+`;
 
 const WireFrame = styled.div`
   flex: 1;
   display: flex;
   justify-content: end;
-  transition: transform .3s;
+  transition: transform 0.3s;
 
-  &:hover{
+  &:hover {
     //box-shadow: 0 0px 15px 0px;
     transform: scale(1.01);
   }
@@ -60,15 +57,13 @@ const WireFrame = styled.div`
     object-fit: cover;
     margin-left: auto;
 
-    box-shadow: 0 5px 20px 0 rgb( 0 0 0 / 53%);
-    
-    
+    box-shadow: 0 5px 20px 0 rgb(0 0 0 / 53%);
   }
-`
+`;
 
 const AnalysisPreparation = () => {
   return (
-    <AnalysisContainer fixed={false} maxWidth="xl" component="section" >
+    <AnalysisContainer fixed={false} maxWidth="xl" component="section">
       <Title />
 
       <Flex>
@@ -77,11 +72,11 @@ const AnalysisPreparation = () => {
         </BrandingTxt>
 
         <WireFrame>
-          <img src={wireFrame} alt={'wireframe'} />
+          <img src={wireFrame} alt={"wireframe"} />
         </WireFrame>
       </Flex>
     </AnalysisContainer>
-  )
-}
+  );
+};
 
-export default AnalysisPreparation
+export default AnalysisPreparation;

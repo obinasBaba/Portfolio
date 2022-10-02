@@ -87,13 +87,13 @@
     "build": "gatsby build",
     "build_serve": "gatsby build && gatsby serve",
     "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "lint": "eslint src/**/*.js",
     "lint:fix": "npm run lint -- --fix",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write"
   },
   "repository": {
     "type": "git",

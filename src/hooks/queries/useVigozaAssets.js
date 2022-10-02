@@ -1,5 +1,4 @@
-import { graphql, useStaticQuery } from 'gatsby'
-
+import { graphql, useStaticQuery } from "gatsby";
 
 /*export const showcaseFrag = graphql`
   fragment showcaseFrag on File {
@@ -14,26 +13,26 @@ import { graphql, useStaticQuery } from 'gatsby'
 `*/
 
 const useVigozaAssets = () => {
-
   return useStaticQuery(graphql`
     query {
-      headlineImage: file(relativePath: { eq: "sections/projects/preview-11.jpg" }) {
+      headlineImage: file(
+        relativePath: { eq: "sections/projects/preview-11.jpg" }
+      ) {
         publicURL
       }
       webView: file(relativePath: { eq: "vigoza/webview.png" }) {
-        publicURL        
+        publicURL
       }
-      
-       mobileView: file(relativePath: { eq: "vigoza/mobileview.png" }) {
-        publicURL        
+
+      mobileView: file(relativePath: { eq: "vigoza/mobileview.png" }) {
+        publicURL
       }
-      
-       showcase: file(relativePath: { eq: "vigoza/Showcase.png" }) {
-        publicURL        
+
+      showcase: file(relativePath: { eq: "vigoza/Showcase.png" }) {
+        publicURL
       }
-      
     }
-  `)
-}
+  `);
+};
 
 export default useVigozaAssets;

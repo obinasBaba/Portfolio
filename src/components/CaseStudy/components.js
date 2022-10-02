@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import { motion } from 'framer-motion'
-import { spacing } from '../../styles/mixins'
+import styled from "styled-components";
+import { motion } from "framer-motion";
+import { spacing } from "../../styles/mixins";
 
 export const ProjectContainer = styled(motion.div)`
   position: relative;
@@ -8,24 +8,24 @@ export const ProjectContainer = styled(motion.div)`
   //max-width: 1600px;
   width: 100%;
   overflow: hidden;
-  
+
   --headlineBg: #02021e;
   --contentBg: #02021e;
-  
-  &.container-scrolled{
+
+  &.container-scrolled {
     --headlineBg: #fbfefc;
     --contentBg: #fbfefc;
   }
-  
-  & > :not(:first-child){
+
+  & > :not(:first-child) {
     color: #02021e;
   }
-`
+`;
 
 export const ContentSectionWrapper = styled.section`
   //position: relative;
   background-color: #f3f3f3;
-  border: .1px solid #f3f3f3;  /// fix this wierd bug
+  border: 0.1px solid #f3f3f3; /// fix this wierd bug
   z-index: 1;
 
   .line {
@@ -41,7 +41,7 @@ export const ContentSectionWrapper = styled.section`
 
   &::before,
   &::after {
-    content: '';
+    content: "";
     font-size: 10rem;
     position: absolute;
     display: block;
@@ -58,6 +58,5 @@ export const ContentSectionWrapper = styled.section`
     left: 20%;
   }
 
-  ${spacing('pb', 15)};
-
-`
+  ${spacing("pb", 15)};
+`;

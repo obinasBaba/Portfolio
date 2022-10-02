@@ -1,3 +1,3 @@
-import ScrollGallery from './ScrollGallery';
+import ScrollGallery from "./ScrollGallery";
 
 export default ScrollGallery;

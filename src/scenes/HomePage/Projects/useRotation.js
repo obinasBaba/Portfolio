@@ -4,37 +4,36 @@ import { useMediaQuery, useTheme } from "@material-ui/core";
 import { map } from "../../../helpers/utils";
 import { MotionValueContext } from "../../../contexts/MotionStateWrapper";
 
-export default function(){
-
+export default function () {
   const {
-    moScroll: { y, limit }
-  } = useContext( MotionValueContext );
+    moScroll: { y, limit },
+  } = useContext(MotionValueContext);
 
   const theme = useTheme();
-  const matches = useMediaQuery( theme.breakpoints.up( "md" ) );
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
 
-  const [refresh, setRefresh] = useState( false );
+  const [refresh, setRefresh] = useState(false);
 
-  const rotate = useTransform( y, latest => map( latest, 0, limit.get(), 0, matches ? 360 : 70 ) );
+  const rotate = useTransform(y, (latest) =>
+    map(latest, 0, limit.get(), 0, matches ? 360 : 70)
+  );
 
-  const x = useSpring( refresh ? rotate : new MotionValue( 0 ), {
+  const x = useSpring(refresh ? rotate : new MotionValue(0), {
     mass: 1,
     damping: 10,
-    stiffness: 50
-  } );
+    stiffness: 50,
+  });
 
-  useEffect( () => {
-    if ( matches )
-      x.destroy();
+  useEffect(() => {
+    if (matches) x.destroy();
 
-    setRefresh( true );
-  }, [] );
+    setRefresh(true);
+  }, []);
 
-  if ( matches ) {
+  if (matches) {
     x.destroy();
     return rotate;
   }
 
   return x;
-
 }

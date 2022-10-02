@@ -8,14 +8,14 @@ import { useProjectSvg } from "../../../../hooks/queries/useProjectSvg";
 import { smallUp, xLargeUp } from "../../../../styles/mixins/breakpoints";
 import { useLocomotiveScroll } from "@contexts/LocoMotive";
 
-const TitleContainer = styled( Container )`
+const TitleContainer = styled(Container)`
   display: flex;
   flex-flow: column;
   align-items: center;
   /*@include hl-margin(bottom, 100px);
   @include hl-padding(top, 75px);*/
 
-  ${spacing( "mb", 11 )};
+  ${spacing("mb", 11)};
 `;
 
 const LogoLink = styled.a`
@@ -25,26 +25,25 @@ const LogoLink = styled.a`
   justify-content: center;
   align-items: center;
 
-  ${length( "width", 12 )};
+  ${length("width", 12)};
 
-  ${smallUp( css`
+  ${smallUp(css`
     display: flex;
     margin-right: -30px;
-  ` )};
+  `)};
 
-  ${xLargeUp( css`
+  ${xLargeUp(css`
     margin-right: -100px;
-  ` )};
+  `)};
 
   img {
     object-fit: cover;
     position: absolute;
-
   }
 
   .circledText {
     //width: 100%;
-    ${length( "width", 12 )};
+    ${length("width", 12)};
   }
 
   .dribbleRed {
@@ -60,25 +59,22 @@ const LogoLink = styled.a`
   &:hover {
     & .dribbleRed {
       transform: rotate(360deg) scale(1.13);
-      filter: invert(52%) sepia(26%) saturate(5887%) hue-rotate(303deg) brightness(81%);
+      filter: invert(52%) sepia(26%) saturate(5887%) hue-rotate(303deg)
+        brightness(81%);
     }
   }
-
-
-
 `;
 
-function Title(){
-
+function Title() {
   const { circledText, dribbleRed } = useProjectSvg();
   const { yProgress } = useLocomotiveScroll();
 
-  const transform = useTransform( yProgress, [0, 1], [0, 560] );
+  const transform = useTransform(yProgress, [0, 1], [0, 560]);
 
-  const rotate = useSpring( transform, { damping: 50, stiffness: 400 } );
+  const rotate = useSpring(transform, { damping: 50, stiffness: 400 });
 
   const theme = useTheme();
-  const match = useMediaQuery( theme.breakpoints.up( "xxl" ) );
+  const match = useMediaQuery(theme.breakpoints.up("xxl"));
 
   // const {recentDesign, setRecentDesign} = useContext( LoadStateContext )
 
@@ -102,16 +98,11 @@ function Title(){
           alt="Web App, Mobile"
           src={dribbleRed.publicURL}
           className="dribbleRed"
-          onLoad={() => {
-          }}
-
-
+          onLoad={() => {}}
         />
       </LogoLink>
 
-
       <HeadlineTitle title="Designs" subtitle="Recent Designs" />
-
     </TitleContainer>
   );
 }

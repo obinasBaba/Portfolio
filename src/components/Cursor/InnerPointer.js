@@ -3,8 +3,7 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import { text } from "../../styles/mixins";
 
-
-const PointerContainer = styled( motion.div )`
+const PointerContainer = styled(motion.div)`
   //display: g;
   position: absolute;
   //border: thin solid lightcoral;
@@ -22,7 +21,7 @@ const PointerContainer = styled( motion.div )`
 
   p {
     position: absolute;
-    font-family: 'shapes', serif;
+    font-family: "shapes", serif;
     line-height: 0;
     padding: 0;
     margin: 0;
@@ -32,7 +31,6 @@ const PointerContainer = styled( motion.div )`
     //color: #b9c8d3;
     //color: rgba(2, 11, 22, 1);
     color: var(--theme);
-
   }
 
   &.inner {
@@ -40,19 +38,18 @@ const PointerContainer = styled( motion.div )`
       transition: color 0.1s ease-in;
 
       //font-size: .78rem;
-        // ${text( 0.7 )};
-      font-size: .7vmax;
-
+      // ${text(0.7)};
+      font-size: 0.7vmax;
 
       &.inner-one {
         animation: rotate-one 3s linear infinite;
 
         @keyframes rotate-one {
           from {
-            transform: rotate(0deg)
+            transform: rotate(0deg);
           }
           to {
-            transform: rotate(-360deg)
+            transform: rotate(-360deg);
           }
         }
       }
@@ -62,27 +59,24 @@ const PointerContainer = styled( motion.div )`
 
         @keyframes rotate-two {
           from {
-            transform: rotate(0deg)
+            transform: rotate(0deg);
           }
           to {
-            transform: rotate(360deg)
+            transform: rotate(360deg);
           }
         }
       }
-
     }
-
   }
-`
+`;
 
-function InnerPointer(){
-    return (
-        <PointerContainer className='pointer inner'>
-            <p className='inner-one'>h</p>
-            <p className='inner-two'>i</p>
-        </PointerContainer>
-    );
+function InnerPointer() {
+  return (
+    <PointerContainer className="pointer inner">
+      <p className="inner-one">h</p>
+      <p className="inner-two">i</p>
+    </PointerContainer>
+  );
 }
-
 
 export default InnerPointer;

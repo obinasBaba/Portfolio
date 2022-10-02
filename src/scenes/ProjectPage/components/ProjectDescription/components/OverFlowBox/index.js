@@ -1,8 +1,8 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
-import { motion } from 'framer-motion'
+import React from "react";
+import styled, { css } from "styled-components";
+import { motion } from "framer-motion";
 
-const OverflowOuter = styled( motion.div )`
+const OverflowOuter = styled(motion.div)`
   overflow: hidden;
   width: max-content;
   pointer-events: initial;
@@ -13,30 +13,25 @@ const OverflowOuter = styled( motion.div )`
     overflow: visible;
   }
 
-
-  ${( { cstyle } ) => css`
+  ${({ cstyle }) => css`
     ${cstyle}
   `};
-`
+`;
 
-const OverFlowInner = styled( motion.div )`
+const OverFlowInner = styled(motion.div)``;
 
-`
-
-function OverFlowBox( { children, variants, customStyle } ){
-    return (
-        <OverflowOuter cstyle={customStyle}>
-
-            <OverFlowInner variants={variants.inner}
-                           custom={variants.custom}
-                           transition={variants.transition}
-            >
-
-                {children}
-
-            </OverFlowInner>
-        </OverflowOuter>
-    )
+function OverFlowBox({ children, variants, customStyle }) {
+  return (
+    <OverflowOuter cstyle={customStyle}>
+      <OverFlowInner
+        variants={variants.inner}
+        custom={variants.custom}
+        transition={variants.transition}
+      >
+        {children}
+      </OverFlowInner>
+    </OverflowOuter>
+  );
 }
 
-export default OverFlowBox
+export default OverFlowBox;

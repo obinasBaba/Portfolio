@@ -9,17 +9,17 @@ const MetaWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-    // ${spacing( "ph", 2 )};
+  // ${spacing("ph", 2)};
 `;
 
-const MetaTxt = styled( Typography )`
-  font-size: .75rem;
-  letter-spacing: .5px;
-  opacity: .6;
+const MetaTxt = styled(Typography)`
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  opacity: 0.6;
   //text-transform: uppercase;
 `;
 
-const Heading = styled( Typography )`
+const Heading = styled(Typography)`
   font-weight: 900;
   line-height: 1;
   letter-spacing: 0;
@@ -29,28 +29,23 @@ const Heading = styled( Typography )`
     color: inherit;
   }
 
-  ${spacing( "mt", 2.5 )};
+  ${spacing("mt", 2.5)};
 
-  ${largeUp( css`
-    ${spacing( "mt", 1.5 )};
+  ${largeUp(css`
+    ${spacing("mt", 1.5)};
 
-    ${title( 2 )};
-
-  ` )};
-
+    ${title(2)};
+  `)};
 `;
 
-const Excerpt = styled( Typography )`
+const Excerpt = styled(Typography)`
   //flex: 1;
-  color: rgba(0, 0, 0, .7);
+  color: rgba(0, 0, 0, 0.7);
   line-height: 1.4;
 
-
-    // ${text( 1 )};
-  ${spacing( "mt", 2.5 )};
-
+  // ${text(1)};
+  ${spacing("mt", 2.5)};
 `;
-
 
 const ContentWrapper = styled.div`
   position: relative;
@@ -64,35 +59,34 @@ const ContentWrapper = styled.div`
 
   color: #02021e;
 
-  ${spacing( "pv", 2 )};
-  ${spacing( "ph", 3 )};
+  ${spacing("pv", 2)};
+  ${spacing("ph", 3)};
 
-  ${largeUp( css`
+  ${largeUp(css`
     padding-bottom: 0;
-  ` )};
-
+  `)};
 `;
 
-
-const CardContents = ( { index, overline, title, body, link, tags } ) => {
-
+const CardContents = ({ index, overline, title, body, link, tags }) => {
   return (
     <ContentWrapper>
-
-
       <MetaWrapper variant="subtitle2" color="textSecondary">
         <MetaTxt>{overline}</MetaTxt>
         <MetaTxt> #React, #Js </MetaTxt>
       </MetaWrapper>
 
-      <Heading variant="h3"> <a rel="noreferrer" target="_blank" href={link}>{title}</a> </Heading>
+      <Heading variant="h3">
+        {" "}
+        <a rel="noreferrer" target="_blank" href={link}>
+          {title}
+        </a>{" "}
+      </Heading>
 
-      <Excerpt variant="body1" gutterBottom>{body}</Excerpt>
+      <Excerpt variant="body1" gutterBottom>
+        {body}
+      </Excerpt>
 
-      <ReadButton index={index} txt="read" to={link}
-
-      />
-
+      <ReadButton index={index} txt="read" to={link} />
     </ContentWrapper>
   );
 };

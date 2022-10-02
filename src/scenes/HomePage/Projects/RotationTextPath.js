@@ -35,7 +35,7 @@ const vars = css`
   -moz-osx-font-smoothing: grayscale;
 `;
 
-const Container = styled( motion.section )`
+const Container = styled(motion.section)`
   position: relative;
   display: grid;
   place-items: center;
@@ -58,12 +58,11 @@ const Container = styled( motion.section )`
   svg {
     g.circle-g {
       will-change: transform;
-      transition: transform .200ms ease-in-out !important;
+      transition: transform 0.2ms ease-in-out !important;
 
       text.circles__text {
         //transition: all 1.14s cubic-bezier(0.16, 1, 0.3, 1) .2s;
         will-change: transform, opacity;
-
       }
     }
   }
@@ -83,37 +82,30 @@ const Container = styled( motion.section )`
     padding: 0;
     //transition: transform .8s cubic-bezier(0.87, 0, 0.13, 1);
 
-
     &:hover {
       //transform: scale(1.35);
       //transition: all .9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
 
       & + svg {
-
         g.circle-g {
           text.circles__text {
             transition: all 1.14s cubic-bezier(0.16, 1, 0.3, 1) !important;
-            opacity: .4;
+            opacity: 0.4;
 
-            &[data-idx='true'] {
+            &[data-idx="true"] {
               transform: rotate(-90deg) scale(1.15);
             }
 
-            &[data-idx='false'] {
+            &[data-idx="false"] {
               transform: rotate(90deg) scale(1.15);
             }
-
           }
         }
-
       }
     }
   }
 
-
   .enter__bg {
-
-
     position: absolute;
     top: 0;
     left: 0;
@@ -123,17 +115,15 @@ const Container = styled( motion.section )`
     background: var(--color-button);
     display: grid;
     place-items: center;
-    transition: all .5s cubic-bezier(0.77, 0, 0.175, 1);
+    transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
     color: var(--theme);
-
 
     &:hover {
       transform: scale(1.35);
-      transition: all .9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+      transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
       box-shadow: 0 0 2rem var(--medium-blue-color);
       //transition: all .3s ease-in;
       color: white;
-
     }
   }
 
@@ -187,61 +177,58 @@ const containerVariants = {
 
   exit: {
     transition: {
-      delayChildren: .8,
-      staggerChildren: .75,
-      staggerDirection: -1
-    }
-  }
+      delayChildren: 0.8,
+      staggerChildren: 0.75,
+      staggerDirection: -1,
+    },
+  },
 };
 
 const circleSvgVariants = {
   endHover: {
     transition: {
-      staggerChildren: 0.02
-    }
+      staggerChildren: 0.02,
+    },
   },
 
   exit: {
     transition: {
-      staggerChildren: .04,
-      staggerDirection: -1
-    }
-  }
+      staggerChildren: 0.04,
+      staggerDirection: -1,
+    },
+  },
 };
 
 const circleTxtVariants = {
   initial: {
     opacity: 1,
-    scale: 1
+    scale: 1,
   },
 
-  exit( arg ){
+  exit(arg) {
     // console.log('exitArg: --- --', arg)
     // if (arg.inView !== 'projects')
     //   return {};
 
-    if ( arg && arg.inView && arg?.inView.get() === "project-section" ) {
+    if (arg && arg.inView && arg?.inView.get() === "project-section") {
       return {
-        scale: .2,
+        scale: 0.2,
         opacity: 0,
         transition: {
-          duration: .9,
-          ease: [0.36, 0, 0.66, -0.56]
-        }
-
+          duration: 0.9,
+          ease: [0.36, 0, 0.66, -0.56],
+        },
       };
     }
 
     return {};
-
-
-  }
+  },
 };
 
 const btnVariants = {
   initial: {
     opacity: 1,
-    scale: 1
+    scale: 1,
   },
 
   exit: {
@@ -249,20 +236,19 @@ const btnVariants = {
     opacity: 0,
     transition: {
       duration: 0.6,
-      ease: [0.16, 1, 0.3, 1]
-    }
-  }
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
 };
 
 const transition = {
   duration: 2.5,
-  ease: [0.87, 0, 0.13, 1]
+  ease: [0.87, 0, 0.13, 1],
 };
 
-
-function RotationCircleText(){
-  const enterBtn = useRef( null );
-  const clicked = useRef( false );
+function RotationCircleText() {
+  const enterBtn = useRef(null);
+  const clicked = useRef(false);
   const controller = useAnimation();
   const rotation = useRotation();
 
@@ -271,28 +257,26 @@ function RotationCircleText(){
       text: "coding^can*be^fun*and^joy*",
       link: "#circle-1",
       length: 2830,
-      rotate: useMotionTemplate`-${rotation}deg`
+      rotate: useMotionTemplate`-${rotation}deg`,
     },
     {
       text: "X Algørithm X Infinitæ X Dæbugging ",
       link: "#circle-2",
       length: 2001,
-      rotate: useMotionTemplate`${rotation}deg`
+      rotate: useMotionTemplate`${rotation}deg`,
     },
     {
       text: ". It . works . on . my . machinæ ",
       link: "#circle-3",
       length: 1341,
-      rotate: useMotionTemplate`-${rotation}deg`
-
+      rotate: useMotionTemplate`-${rotation}deg`,
     },
     {
       text: "Køge For Kærlighed Building uI ",
       link: "#circle-4",
       length: 836,
-      rotate: useMotionTemplate`${rotation}deg`
-
-    }
+      rotate: useMotionTemplate`${rotation}deg`,
+    },
   ];
 
   return (
@@ -301,10 +285,7 @@ function RotationCircleText(){
       variants={containerVariants}
       initial="initial"
       exit="exit"
-
     >
-
-
       <motion.button
         className="enter"
         data-pointer="focus"
@@ -314,13 +295,15 @@ function RotationCircleText(){
         variants={btnVariants}
         transition={transition}
         ref={enterBtn}
-
       >
-        <Link to="/projects"
-              className="enter__bg"
-              onClick={() => {
-                window?.locoInstance?.scrollTo( "#projects .rotation-circle svg.circles" );
-              }}
+        <Link
+          to="/projects"
+          className="enter__bg"
+          onClick={() => {
+            window?.locoInstance?.scrollTo(
+              "#projects .rotation-circle svg.circles"
+            );
+          }}
         >
           <span className="enter__text">Explore</span>
         </Link>
@@ -332,40 +315,57 @@ function RotationCircleText(){
         height="100%"
         viewBox="0 0 1400 1400"
         variants={circleSvgVariants}
-
       >
         <defs>
-          <path id="circle-1" d="M250,700.5A450.5,450.5 0 1 11151,700.5A450.5,450.5 0 1 1250,700.5" />
-          <path id="circle-2" d="M382,700.5A318.5,318.5 0 1 11019,700.5A318.5,318.5 0 1 1382,700.5" />
-          <path id="circle-3" d="M487,700.5A213.5,213.5 0 1 1914,700.5A213.5,213.5 0 1 1487,700.5" />
-          <path id="circle-4" d="M567.5,700.5A133,133 0 1 1833.5,700.5A133,133 0 1 1567.5,700.5" />
+          <path
+            id="circle-1"
+            d="M250,700.5A450.5,450.5 0 1 11151,700.5A450.5,450.5 0 1 1250,700.5"
+          />
+          <path
+            id="circle-2"
+            d="M382,700.5A318.5,318.5 0 1 11019,700.5A318.5,318.5 0 1 1382,700.5"
+          />
+          <path
+            id="circle-3"
+            d="M487,700.5A213.5,213.5 0 1 1914,700.5A213.5,213.5 0 1 1487,700.5"
+          />
+          <path
+            id="circle-4"
+            d="M567.5,700.5A133,133 0 1 1833.5,700.5A133,133 0 1 1567.5,700.5"
+          />
         </defs>
 
-        {texts.map( ( { text, link, length, rotate }, index ) => (
-
-          <motion.g variants={circleTxtVariants}
-                    transition={transition}
-                    custom={{ idx: index }}>
-
+        {texts.map(({ text, link, length, rotate }, index) => (
+          <motion.g
+            variants={circleTxtVariants}
+            transition={transition}
+            custom={{ idx: index }}
+          >
             <motion.g className="circle-g" style={{ rotate }} key={link}>
               <text
                 className={`circles__text circles__text--${index + 1}`}
-                style={{ transition: `all 1.14s cubic-bezier(0.16, 1, 0.3, 1) ${index * .06}s` }}
+                style={{
+                  transition: `all 1.14s cubic-bezier(0.16, 1, 0.3, 1) ${
+                    index * 0.06
+                  }s`,
+                }}
                 data-idx={index % 2 === 0}
               >
-                <textPath className="circles__text-path" xlinkHref={link} aria-label="" textLength={length}>
+                <textPath
+                  className="circles__text-path"
+                  xlinkHref={link}
+                  aria-label=""
+                  textLength={length}
+                >
                   {text}
                 </textPath>
               </text>
             </motion.g>
           </motion.g>
-
-        ) )}
+        ))}
       </motion.svg>
-
-
     </Container>
   );
 }
 
-export default React.memo( RotationCircleText );
+export default React.memo(RotationCircleText);

@@ -1,33 +1,32 @@
 export const transition = {
   ease: [0.6, 0.01, 0, 0.9],
-  duration: 1
+  duration: 1,
 };
 
 export const containerVariants = {};
 
-
 export const btnVariant = {
   initial: {},
   animate: {},
-  exit: {}
+  exit: {},
 };
 
 export const imgWrapperVariant = {
   fromProjectsSmallInitial: {
     ["margin-right"]: "calc(100vw / 64 * 5)",
-    ["margin-left"]: "calc(100vw / 64 * 5)"
+    ["margin-left"]: "calc(100vw / 64 * 5)",
   },
 
   fromProjectsSmallAnimate: {
     ["margin-right"]: "calc(100vw / 64 * 0)",
-    ["margin-left"]: "calc(100vw / 64 * 0)"
+    ["margin-left"]: "calc(100vw / 64 * 0)",
   },
 
   fromProjectsInitial: {
     ["margin-right"]: "calc(100vw / 64 * 6)",
     // background: 'transparent',
     padding: "calc(100vw / 64 * .5)",
-    ["padding-left"]: "calc(100vw / 64 * 4)"
+    ["padding-left"]: "calc(100vw / 64 * 4)",
   },
 
   fromProjectsAnimate: {
@@ -35,15 +34,14 @@ export const imgWrapperVariant = {
     // ['margin-right']: 0,
     ["margin-right"]: "calc(100vw / 64 * 0)",
     padding: "calc(100vw / 64 * 0)",
-    ["padding-left"]: "calc(100vw / 64 * 0)"
+    ["padding-left"]: "calc(100vw / 64 * 0)",
   },
 
-  exit( arg ){
-
-    if ( arg && arg.path === "/projects/" ) {
+  exit(arg) {
+    if (arg && arg.path === "/projects/") {
       const delay = arg.isTop ? arg.isTop.get() : false;
 
-      if ( arg.breakpoint && arg.breakpoint.get().lgUp )
+      if (arg.breakpoint && arg.breakpoint.get().lgUp)
         return {
           // height: '30vmax',
           // background: '#3719ca',
@@ -53,14 +51,13 @@ export const imgWrapperVariant = {
 
           transition: {
             ...transition,
-            delay: delay ? 0 : 1
-          }
-
+            delay: delay ? 0 : 1,
+          },
         };
 
       return {
         ["margin-right"]: "calc(100vw / 64 * 5)",
-        ["margin-left"]: "calc(100vw / 64 * 5)"
+        ["margin-left"]: "calc(100vw / 64 * 5)",
       };
     }
 
@@ -68,89 +65,85 @@ export const imgWrapperVariant = {
   },
 
   initial: {
-    scale: .9,
-    filter: "grayscale(100%) sepia(20%) brightness(80%)"
+    scale: 0.9,
+    filter: "grayscale(100%) sepia(20%) brightness(80%)",
   },
   animate: {
     scale: 1,
-    filter: "grayscale(0) sepia(0) brightness(80%)"
-  }
+    filter: "grayscale(0) sepia(0) brightness(80%)",
+  },
 };
 
 export const innerVariant = {
   fromProjectsInitial: {
-    height: "30vmax"
+    height: "30vmax",
   },
   fromProjectsAnimate: {
-    height: "100vh"
+    height: "100vh",
   },
 
-  exit( arg ){
-
-    if ( arg && arg.path === "/projects/" ) {
+  exit(arg) {
+    if (arg && arg.path === "/projects/") {
       const delay = arg.isTop ? arg.isTop.get() : false;
 
-      if ( arg.breakpoint && arg.breakpoint.get().lgUp )
+      if (arg.breakpoint && arg.breakpoint.get().lgUp)
         return {
           height: "30vmax",
           transition: {
             ...transition,
-            delay: delay ? 0 : 1
-          }
+            delay: delay ? 0 : 1,
+          },
         };
-
     }
 
     return {};
   },
 
   initial: {},
-  animate: {}
+  animate: {},
 };
 
 export const bgVariant = {
   fromProjectsInitial: {
-    opacity: 0
+    opacity: 0,
   },
   fromProjectsAnimate: {
-    opacity: 1
+    opacity: 1,
   },
 
   initial: {
-    opacity: 0
+    opacity: 0,
   },
   animate: {
-    opacity: 1
+    opacity: 1,
   },
 
-  exit( arg ){
-    if ( arg && arg.path === "/projects/" ) {
+  exit(arg) {
+    if (arg && arg.path === "/projects/") {
       const delay = arg.isTop ?? arg.isTop.get();
 
       return {
         opacity: 0,
         transition: {
           ...transition,
-          delay: delay ? 0 : 1
-        }
+          delay: delay ? 0 : 1,
+        },
       };
-
     }
 
     return {
-      opacity: 0
+      opacity: 0,
     };
-  }
-
+  },
 };
 
 export const textsVariant = {
   initial: {
     x: "calc(100vw / 64 * -2)",
-    opacity: 0
+    opacity: 0,
   },
   animate: {
-    opacity: 1
+    opacity: 1,
   },
 
   fromProjectsSmallInitial: {},
@@ -158,25 +151,24 @@ export const textsVariant = {
   fromProjectsSmallAnimate: {},
 
   fromProjectsInitial: {
-    x: 0
+    x: 0,
   },
 
   fromProjectsAnimate: {
-    x: "calc(100vw / 64 * -2)"
+    x: "calc(100vw / 64 * -2)",
   },
 
-
-  exit( arg ){
-    if ( arg && arg.path === "/projects/" ) {
+  exit(arg) {
+    if (arg && arg.path === "/projects/") {
       const delay = arg.isTop ? arg.isTop.get() : false;
 
-      if ( arg.breakpoint && arg.breakpoint.get().lgUp )
+      if (arg.breakpoint && arg.breakpoint.get().lgUp)
         return {
           x: 0,
           transition: {
             ...transition,
-            delay: delay ? 0 : 1
-          }
+            delay: delay ? 0 : 1,
+          },
         };
 
       return {};
@@ -184,32 +176,31 @@ export const textsVariant = {
 
     return {
       opacity: 0,
-      scale: .9
+      scale: 0.9,
     };
-  }
+  },
 };
 
 export const titleVariant = {
-
   fromProjectsInitial: {},
   fromProjectsAnimate: {
     scale: 1.3,
     y: -30,
-    originX: 0
+    originX: 0,
   },
 
   initial: {
     scale: 1.2,
     y: -30,
-    originX: 0
+    originX: 0,
   },
 
   animate: {
-    scale: 1.3
+    scale: 1.3,
   },
 
-  exit( arg ){
-    if ( arg && arg.path === "/projects/" ) {
+  exit(arg) {
+    if (arg && arg.path === "/projects/") {
       const delay = arg.isTop ? arg.isTop.get() : false;
 
       return {
@@ -217,14 +208,12 @@ export const titleVariant = {
         y: 0,
         transition: {
           ...transition,
-          delay: delay ? 0 : 1
-        }
+          delay: delay ? 0 : 1,
+        },
       };
-
     }
     return {
-      opacity: 0
+      opacity: 0,
     };
-  }
+  },
 };
-

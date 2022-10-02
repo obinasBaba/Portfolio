@@ -1,10 +1,15 @@
 /** @format */
 
-import { useContext, useEffect } from 'react';
-import MagnetElement from '../helpers/MagnetElement';
-import { AppStateContext } from '../contexts/AppStateContext';
+import { useContext, useEffect } from "react";
+import MagnetElement from "../helpers/MagnetElement";
+import { AppStateContext } from "../contexts/AppStateContext";
 
-const useMagnet = (clsName = '', stop = 1, distance = 0.32, dependency = []) => {
+const useMagnet = (
+  clsName = "",
+  stop = 1,
+  distance = 0.32,
+  dependency = []
+) => {
   const { setCursorScaled } = useContext(AppStateContext);
 
   useEffect(() => {

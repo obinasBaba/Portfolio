@@ -2,59 +2,63 @@ import { motion, useSpring, useTransform } from "framer-motion";
 import React, { useContext, useEffect } from "react";
 import { AppStateContext } from "@contexts/AppStateContext";
 import { Link } from "gatsby";
-import { bg, container, indicator, phone, progress, wrapper } from "./scrollprogress.module.scss";
+import {
+  bg,
+  container,
+  indicator,
+  phone,
+  progress,
+  wrapper,
+} from "./scrollprogress.module.scss";
 import { useLocomotiveScroll } from "@contexts/LocoMotive";
-
 
 const containerVariants = {
   initial: {
-    opacity: 0
+    opacity: 0,
   },
   animate: {
-    opacity: 1
+    opacity: 1,
   },
 
   transition: {
     duration: 1,
-    delay: 1
-  }
+    delay: 1,
+  },
 };
 
-function ScrollProgressCircle(){
-  const { currentPath } = useContext( AppStateContext );
+function ScrollProgressCircle() {
+  const { currentPath } = useContext(AppStateContext);
 
   const { yProgress } = useLocomotiveScroll();
 
-  const rotate = useTransform( yProgress, [0, 1], [0, 360] );
+  const rotate = useTransform(yProgress, [0, 1], [0, 360]);
 
-  const smoothRotate = useSpring( rotate, { damping: 50, stiffness: 400 } );
+  const smoothRotate = useSpring(rotate, { damping: 50, stiffness: 400 });
 
+  const pathLength = useTransform(smoothRotate, [0, 360], [0, 1]);
 
-  const pathLength = useTransform( smoothRotate, [0, 360], [0, 1] );
-
-
-  useEffect( () => {
-    pathLength.set( 0 );
-    rotate.set( 0 );
+  useEffect(() => {
+    pathLength.set(0);
+    rotate.set(0);
     // yProgress.set(0)
-  }, [currentPath] );
+  }, [currentPath]);
 
   return (
-
-    <div className={container}
-         data-pointer="magnet"
-         data-pointer-color="#5d6c7b"
-         data-magnet-distance={.7}
-         data-magnet-attraction={1}
-         data-tooltip
-         data-tooltip-text="Write me a poem..."
+    <div
+      className={container}
+      // data-pointer="magnet"
+      // data-pointer-color="#5d6c7b"
+      data-cursor="true"
+      data-cursor-type="magnet"
+      data-tooltip={true}
+      data-tooltip-text="Write me a poem..."
     >
-      <motion.div className={wrapper}
-                  variants={containerVariants}
-                  transition={containerVariants.transition}
+      <motion.div
+        className={wrapper}
+        variants={containerVariants}
+        transition={containerVariants.transition}
       >
         <Link to="/contact" aria-label="to contact page">
-
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className={phone}
@@ -88,20 +92,28 @@ function ScrollProgressCircle(){
             </g>
           </svg>
 
-          <svg className={progress} width="100%" height="100%" viewBox="0 0 100 100">
+          <svg
+            className={progress}
+            width="100%"
+            height="100%"
+            viewBox="0 0 100 100"
+          >
             <circle cx="50" cy="50" r="30" pathLength="1" className={bg} />
-            <motion.circle cx="50" cy="50" r="30" pathLength="1" className={indicator} strokeDashoffset="0px"
-                           style={{ pathLength, rotate: smoothRotate }}
-                           strokeDasharray="0px 1px" />
+            <motion.circle
+              cx="50"
+              cy="50"
+              r="30"
+              pathLength="1"
+              className={indicator}
+              strokeDashoffset="0px"
+              style={{ pathLength, rotate: smoothRotate }}
+              strokeDasharray="0px 1px"
+            />
           </svg>
-
         </Link>
-
-
       </motion.div>
     </div>
-
   );
 }
 
-export default React.memo( ScrollProgressCircle );
+export default React.memo(ScrollProgressCircle);

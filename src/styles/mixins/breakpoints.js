@@ -1,74 +1,74 @@
-import { css } from 'styled-components'
+import { css } from "styled-components";
 
-export const smallUp = content => {
+export const smallUp = (content) => {
   return css`
     ${({ theme }) => css`
-      ${theme.breakpoints.up('sm')} {
+      ${theme.breakpoints.up("sm")} {
         ${content}
       }
     `}
-  `
-}
-export const smallDown = content => {
+  `;
+};
+export const smallDown = (content) => {
   return css`
     ${({ theme }) => css`
-      ${theme.breakpoints.down('sm')} {
+      ${theme.breakpoints.down("sm")} {
         ${content}
       }
     `}
-  `
-}
-export const mediumUp = content => {
+  `;
+};
+export const mediumUp = (content) => {
   return css`
     ${({ theme }) => css`
-      ${theme.breakpoints.up('md')} {
+      ${theme.breakpoints.up("md")} {
         ${content}
       }
     `}
-  `
-}
-export const mediumDown = content => {
+  `;
+};
+export const mediumDown = (content) => {
   return css`
     ${({ theme }) => css`
-      ${theme.breakpoints.down('md')} {
+      ${theme.breakpoints.down("md")} {
         ${content}
       }
     `}
-  `
-}
-export const largeUp = content => {
+  `;
+};
+export const largeUp = (content) => {
   return css`
     ${({ theme }) => css`
-      ${theme.breakpoints.up('lg')} {
+      ${theme.breakpoints.up("lg")} {
         ${content};
       }
     `}
-  `
-}
-export const xLargeDown = content => {
+  `;
+};
+export const xLargeDown = (content) => {
   return css`
     ${({ theme }) => css`
-      ${theme.breakpoints.down('xl')} {
+      ${theme.breakpoints.down("xl")} {
         ${content};
       }
     `}
-  `
-}
-export const xLargeUp = content => {
+  `;
+};
+export const xLargeUp = (content) => {
   return css`
     ${({ theme }) => css`
-      ${theme.breakpoints.up('xl')} {
+      ${theme.breakpoints.up("xl")} {
         ${content};
       }
     `}
-  `
-}
-export const xxLargeUp = content => {
+  `;
+};
+export const xxLargeUp = (content) => {
   return css`
     ${({ theme }) => css`
-      ${theme.breakpoints.up('xxl')} {
+      ${theme.breakpoints.up("xxl")} {
         ${content};
       }
     `}
-  `
-}
+  `;
+};

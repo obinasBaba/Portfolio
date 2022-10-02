@@ -3,8 +3,7 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import { text } from "../../styles/mixins";
 
-
-const PointerContainer = styled( motion.div )`
+const PointerContainer = styled(motion.div)`
   //display: g;
   position: absolute;
   height: 1rem;
@@ -21,7 +20,7 @@ const PointerContainer = styled( motion.div )`
 
   p {
     position: absolute;
-    font-family: 'shapes', serif;
+    font-family: "shapes", serif;
     line-height: 0;
     padding: 0;
     margin: 0;
@@ -30,7 +29,7 @@ const PointerContainer = styled( motion.div )`
     inset: auto;
     color: var(--theme);
 
-      // ${text( 3 )};
+    // ${text(3)};
     font-size: 3vmax;
 
     &.outer-one {
@@ -38,10 +37,10 @@ const PointerContainer = styled( motion.div )`
 
       @keyframes rotate-one {
         from {
-          transform: rotate(0deg)
+          transform: rotate(0deg);
         }
         to {
-          transform: rotate(-360deg)
+          transform: rotate(-360deg);
         }
       }
     }
@@ -51,24 +50,23 @@ const PointerContainer = styled( motion.div )`
 
       @keyframes rotate-two {
         from {
-          transform: rotate(0deg)
+          transform: rotate(0deg);
         }
         to {
-          transform: rotate(360deg)
+          transform: rotate(360deg);
         }
       }
     }
   }
-`
+`;
 
-function OuterPointer(){
-    return (
-        <PointerContainer className='pointer outer'>
-            <p className='outer-one'>f</p>
-            <p className='outer-two'>g</p>
-        </PointerContainer>
-    );
+function OuterPointer() {
+  return (
+    <PointerContainer className="pointer outer">
+      <p className="outer-one">f</p>
+      <p className="outer-two">g</p>
+    </PointerContainer>
+  );
 }
-
 
 export default OuterPointer;

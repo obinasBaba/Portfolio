@@ -3,12 +3,11 @@ import Title from "./Title";
 import ScrollGallery from "../../../components/ScrollGallery/ScrollGallery";
 import { container } from "./recent.module.scss";
 
-
-function RecentWorks(){
-
-
+function RecentWorks() {
   return (
-    <div className={container} id="#design"
+    <div
+      className={container}
+      id="#design"
       // data-scroll-section={true}
     >
       <Title />

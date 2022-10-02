@@ -1,3 +1,3 @@
-import StackUsed from './StackUsed'
+import StackUsed from "./StackUsed";
 
 export default StackUsed;

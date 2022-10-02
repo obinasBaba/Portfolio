@@ -7,11 +7,11 @@
  * @format
  */
 
-import * as React from 'react';
-import { Helmet } from 'react-helmet';
-import { graphql, useStaticQuery } from 'gatsby';
+import * as React from "react";
+import { Helmet } from "react-helmet";
+import { graphql, useStaticQuery } from "gatsby";
 
-function Seo({ description, lang = 'en', meta, titleTxt, pathname, title }) {
+function Seo({ description, lang = "en", meta, titleTxt, pathname, title }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -32,8 +32,15 @@ function Seo({ description, lang = 'en', meta, titleTxt, pathname, title }) {
     `
   );
 
-  const { defaultTitle, defaultDescription, siteUrl, image, author, twitterUsername, thumbnail } =
-    site.siteMetadata;
+  const {
+    defaultTitle,
+    defaultDescription,
+    siteUrl,
+    image,
+    author,
+    twitterUsername,
+    thumbnail,
+  } = site.siteMetadata;
 
   const seoMapping = {
     titleTxt: titleTxt || title || defaultTitle,
@@ -44,24 +51,24 @@ function Seo({ description, lang = 'en', meta, titleTxt, pathname, title }) {
   };
 
   const schema = {
-    '@context': 'schema.org',
-    '@type': 'Organization',
-    '@id': 'https://henzzo.com/#website',
-    name: 'henzzo portfolio',
-    url: 'https://henzzo.com/',
-    logo: 'https://henzzo.com/favicon.svg',
+    "@context": "schema.org",
+    "@type": "Organization",
+    "@id": "https://henzzo.com/#website",
+    name: "henzzo portfolio",
+    url: "https://henzzo.com/",
+    logo: "https://henzzo.com/favicon.svg",
     contactPoint: [
       {
-        '@type': 'ContactPoint',
-        telephone: '+251923365539',
-        contactType: '',
-        areaServed: '',
+        "@type": "ContactPoint",
+        telephone: "+251923365539",
+        contactType: "",
+        areaServed: "",
       },
     ],
     sameAs: [
-      'https://twitter.com/@henzzo_com',
-      'https://github.com/obinasBaba/',
-      'https://www.linkedin.com/in/henok-getachew-b125b3126/',
+      "https://twitter.com/@henzzo_com",
+      "https://github.com/obinasBaba/",
+      "https://www.linkedin.com/in/henok-getachew-b125b3126/",
     ],
   };
 

@@ -1,10 +1,10 @@
 /** @format */
 
-import { useContext, useEffect } from 'react';
-import Cookies from 'js-cookie';
-import { MotionValueContext } from '../contexts/MotionStateWrapper';
+import { useContext, useEffect } from "react";
+import Cookies from "js-cookie";
+import { MotionValueContext } from "../contexts/MotionStateWrapper";
 
-const GREETING_CONST = 'henzzo.greeting';
+const GREETING_CONST = "henzzo.greeting";
 
 export default function useGreeting() {
   const { toolTipsData, screenOverlayEvent } = useContext(MotionValueContext);
@@ -23,17 +23,17 @@ export default function useGreeting() {
     if (greeting) {
       sayHello = getHello(() => {
         toolTipsData.set({
-          text: ['👽 Welcome Back!'],
+          text: ["👽 Welcome Back!"],
           show: true,
           timer: [3000],
         });
       });
     } else {
-      Cookies.set(GREETING_CONST, 'greeting');
+      Cookies.set(GREETING_CONST, "greeting");
       sayHello = getHello(() => {
         toolTipsData.set({
           text: [
-            '🖖 hello human, welcome to my space.',
+            "🖖 hello human, welcome to my space.",
             "i haven't done building this ship, you may find some broken parts",
           ],
           timer: [3500, 4400],
@@ -43,7 +43,7 @@ export default function useGreeting() {
     }
 
     screenOverlayEvent.onChange((state) => {
-      if (state !== 'closed') return;
+      if (state !== "closed") return;
       sayHello();
     });
 

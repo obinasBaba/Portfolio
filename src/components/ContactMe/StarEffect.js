@@ -1,23 +1,22 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const StarsSvgContainer = styled.div`
   //border: var(--thin);
   max-width: 200px;
   position: absolute;
-  top: ${({pos}) => pos.top};
-  left: ${({pos}) => pos.left};
-  bottom: ${({pos}) => pos.bottom};
-  right: ${({pos}) => pos.right};
+  top: ${({ pos }) => pos.top};
+  left: ${({ pos }) => pos.left};
+  bottom: ${({ pos }) => pos.bottom};
+  right: ${({ pos }) => pos.right};
   opacity: 0.3;
   z-index: 9999;
   pointer-events: none;
-`
+`;
 
-
-const StarEffect = ( { pos } ) => {
+const StarEffect = ({ pos }) => {
   return (
-    <StarsSvgContainer pos={pos} >
+    <StarsSvgContainer pos={pos}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="138.869"
@@ -53,7 +52,7 @@ const StarEffect = ( { pos } ) => {
         </g>
       </svg>
     </StarsSvgContainer>
-  )
-}
+  );
+};
 
-export default StarEffect
+export default StarEffect;

@@ -1,16 +1,16 @@
-import React, { useContext, useEffect, useLayoutEffect } from 'react'
-import styled from 'styled-components'
-import { spacing, text } from '../../styles/mixins'
-import { AnimatePresence, motion, useAnimation } from 'framer-motion'
-import { AppStateContext } from '../../contexts/AppStateContext'
-import Typography from '@material-ui/core/Typography'
+import React, { useContext, useEffect, useLayoutEffect } from "react";
+import styled from "styled-components";
+import { spacing, text } from "../../styles/mixins";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
+import { AppStateContext } from "../../contexts/AppStateContext";
+import Typography from "@material-ui/core/Typography";
 
 const InfoChipContainer = styled(motion.div)`
   position: fixed;
   bottom: 6%;
   left: 4%;
   //z-index: 100;
-`
+`;
 
 // dataset.about
 
@@ -25,7 +25,7 @@ const Excerpt = styled(Typography)`
   text-transform: uppercase;
   letter-spacing: 0.6px;
   ${text(0.7)};
-`
+`;
 
 const ToolTipWrapper = styled(motion.div)`
   display: flex;
@@ -45,84 +45,85 @@ const ToolTipWrapper = styled(motion.div)`
     background-color: #020b16;
   }
 
-  ${spacing('ph', 1.5)};
-  ${spacing('pv', 1)};
-  ${spacing('gap', 0.7)};
-`
+  ${spacing("ph", 1.5)};
+  ${spacing("pv", 1)};
+  ${spacing("gap", 0.7)};
+`;
 
 const containerVariant = {
-    initial: {
-        opacity: 0,
-        y: 25,
+  initial: {
+    opacity: 0,
+    y: 25,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1.2 * 0.5,
+      ease: "easeIn",
     },
-    animate: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 1.2 * .5,
-            ease: 'easeIn'
-        }
+  },
+  exit: {
+    y: -25,
+    opacity: 0,
+    transition: {
+      duration: 1.2 * 0.5,
+      ease: [0.6, 0.01, 0, 0.9],
     },
-    exit: {
-        y: -25,
-        opacity: 0,
-        transition: {
-            duration: 1.2 * .5,
-            ease: [0.6, 0.01, 0, 0.9],
-        }
-    },
-}
+  },
+};
 
 const ToolTip = ({ txt }) => {
-    const { toolTip, setToolTip, currentPath } = useContext(AppStateContext)
+  const { toolTip, setToolTip, currentPath } = useContext(AppStateContext);
 
-    const { loadingPage, backgroundOverlay } = useContext(AppStateContext)
+  const { loadingPage, backgroundOverlay } = useContext(AppStateContext);
 
-    const onEnter = element => setToolTip({
-        text: element.target.dataset.tooltipText,
-        show: true,
-    })
+  const onEnter = (element) =>
+    setToolTip({
+      text: element.target.dataset.tooltipText,
+      show: true,
+    });
 
-    const onLeave = () =>  setToolTip({
-        text: '',
-        show: false,
-    })
+  const onLeave = () =>
+    setToolTip({
+      text: "",
+      show: false,
+    });
 
-    const initToolTip = () => {
-        // if (loadingPage) return
-        setTimeout(() => {
-            onLeave();
+  const initToolTip = () => {
+    // if (loadingPage) return
+    setTimeout(() => {
+      onLeave();
 
-            const toolTipElements = document.querySelectorAll('[data-tooltip-text]')
-            toolTipElements.forEach(el => {
-                el.removeEventListener('mouseenter', onEnter)
-                el.removeEventListener('mouseenter', onEnter)
-                el.addEventListener('mouseenter', onEnter)
-                el.addEventListener('mouseleave', onLeave)
-            })
-        }, 1000)
-    }
+      const toolTipElements = document.querySelectorAll("[data-tooltip-text]");
+      toolTipElements.forEach((el) => {
+        el.removeEventListener("mouseenter", onEnter);
+        el.removeEventListener("mouseenter", onEnter);
+        el.addEventListener("mouseenter", onEnter);
+        el.addEventListener("mouseleave", onLeave);
+      });
+    }, 1000);
+  };
 
-    useEffect(() => initToolTip() , [loadingPage, currentPath])
+  useEffect(() => initToolTip(), [loadingPage, currentPath]);
 
+  return (
+    <InfoChipContainer>
+      <AnimatePresence exitBeforeEnter>
+        {toolTip.show && (
+          <ToolTipWrapper
+            variants={containerVariant}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+          >
+            <motion.span className="dot" />
+            <Excerpt>{toolTip.text}</Excerpt>
+          </ToolTipWrapper>
+        )}
+      </AnimatePresence>
+    </InfoChipContainer>
+  );
+};
 
-    return (
-        <InfoChipContainer>
-            <AnimatePresence exitBeforeEnter>
-                {toolTip.show && (
-                    <ToolTipWrapper
-                        variants={containerVariant}
-                        initial="initial"
-                        animate="animate"
-                        exit="exit"
-                    >
-                        <motion.span className="dot" />
-                        <Excerpt>{toolTip.text}</Excerpt>
-                    </ToolTipWrapper>
-                )}
-            </AnimatePresence>
-        </InfoChipContainer>
-    )
-}
-
-export default ToolTip
+export default ToolTip;

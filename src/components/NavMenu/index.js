@@ -5,34 +5,37 @@ import { useLocomotiveScroll } from "@contexts/LocoMotive";
 import Menu from "./components/Menu";
 import { container } from "./navmenu.module.scss";
 
-
 const containerVariants = {};
 
-const LogoBgEffect = React.lazy( () => import( /* webpackPrefetch: true */ /* webpackChunkName: "LogoBg" */  "./components/LogoBgEffect") );
+const LogoBgEffect = React.lazy(() =>
+  import(
+    /* webpackPrefetch: true */ /* webpackChunkName: "LogoBg" */ "./components/LogoBgEffect"
+  )
+);
 
-const NavMenu = ( { closeMenu } ) => {
-
-  useRefreshMouseListeners( "#menu-container [data-pointer]" );
+const NavMenu = ({ closeMenu }) => {
+  useRefreshMouseListeners("#menu-container [data-pointer]");
   const { locoInstance } = useLocomotiveScroll();
 
-
-  useEffect( () => {
+  useEffect(() => {
     locoInstance.stop();
 
     return () => {
       locoInstance.start();
       locoInstance.update();
     };
-  }, [] );
-
+  }, []);
 
   return (
-    <motion.div className={container} variants={containerVariants} id="menu-container">
+    <motion.div
+      className={container}
+      variants={containerVariants}
+      id="menu-container"
+    >
       <Suspense fallback={<div />}>
         <LogoBgEffect />
       </Suspense>
       <Menu onClick={closeMenu} />
-
     </motion.div>
   );
 };

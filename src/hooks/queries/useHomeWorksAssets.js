@@ -1,4 +1,4 @@
-import { graphql, useStaticQuery } from 'gatsby'
+import { graphql, useStaticQuery } from "gatsby";
 
 export const homeWorksBigImage = graphql`
   fragment homeWorksBigImage on File {
@@ -10,7 +10,7 @@ export const homeWorksBigImage = graphql`
       )
     }
   }
-`
+`;
 
 export const homeWorksMiddleImage = graphql`
   fragment homeWorksMiddleImage on File {
@@ -22,7 +22,7 @@ export const homeWorksMiddleImage = graphql`
       )
     }
   }
-`
+`;
 
 export const homeWorksSmallImage = graphql`
   fragment homeWorksSmallImage on File {
@@ -34,7 +34,7 @@ export const homeWorksSmallImage = graphql`
       )
     }
   }
-`
+`;
 
 const useHomeWorksAssets = () => {
   return useStaticQuery(graphql`
@@ -62,9 +62,7 @@ const useHomeWorksAssets = () => {
         ...homeWorksSmallImage
       }
       Investments: file(
-        relativePath: {
-          eq: "sections/home-works/Realty-Web-Dasboard.jpg"
-        }
+        relativePath: { eq: "sections/home-works/Realty-Web-Dasboard.jpg" }
       ) {
         name
         ...homeWorksMiddleImage
@@ -75,7 +73,9 @@ const useHomeWorksAssets = () => {
         name
         ...homeWorksSmallImage
       }
-      Starbank: file(relativePath: { eq: "sections/home-works/starbank-2.jpg" }) {
+      Starbank: file(
+        relativePath: { eq: "sections/home-works/starbank-2.jpg" }
+      ) {
         name
         ...homeWorksSmallImage
       }
@@ -85,9 +85,7 @@ const useHomeWorksAssets = () => {
         name
         ...homeWorksSmallImage
       }
-      Travel: file(
-        relativePath: { eq: "sections/home-works/travel-2.jpg" }
-      ) {
+      Travel: file(relativePath: { eq: "sections/home-works/travel-2.jpg" }) {
         name
         ...homeWorksSmallImage
       }
@@ -107,29 +105,23 @@ const useHomeWorksAssets = () => {
         name
         ...homeWorksBigImage
       }
-      
-      p1: file(
-        relativePath: { eq: "sections/home-gallery/2.jpg" }
-      ){
+
+      p1: file(relativePath: { eq: "sections/home-gallery/2.jpg" }) {
         name
-        ...homeWorksBigImage 
-      }
-      
-      p2: file(
-        relativePath: { eq: "sections/home-gallery/4.jpg" }  
-      ){
-         name
         ...homeWorksBigImage
       }
-      
-      p3: file(
-        relativePath: { eq: "sections/home-gallery/6.jpg" }
-      ){
+
+      p2: file(relativePath: { eq: "sections/home-gallery/4.jpg" }) {
+        name
+        ...homeWorksBigImage
+      }
+
+      p3: file(relativePath: { eq: "sections/home-gallery/6.jpg" }) {
         name
         ...homeWorksBigImage
       }
     }
-  `)
-}
+  `);
+};
 
-export default useHomeWorksAssets
+export default useHomeWorksAssets;

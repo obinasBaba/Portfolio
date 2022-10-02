@@ -1,8 +1,8 @@
 /** @format */
 
-import { createGlobalStyle, css } from 'styled-components';
-import { responsiveVars, webKitInputReset } from './variables/responsiveVars';
-import { mediumUp, smallUp } from './mixins/breakpoints';
+import { createGlobalStyle, css } from "styled-components";
+import { responsiveVars, webKitInputReset } from "./variables/responsiveVars";
+import { mediumUp, smallUp } from "./mixins/breakpoints";
 
 export const GlobalStyle = createGlobalStyle`
 

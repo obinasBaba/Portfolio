@@ -11,40 +11,31 @@ const projectDataDefault = {
   about: {
     role: "FrontEnd Developer",
     context: "Design",
-    period: "End 2018"
+    period: "End 2018",
   },
   intro: {},
   backUrl: "/projects#three",
   nextProject: {
     title: "Vigoza",
     url: "/projects/vigoza",
-    thumbnailUrl: ""
-  }
-
+    thumbnailUrl: "",
+  },
 };
 
-
-function Project3( { location } ){
-
+function Project3({ location }) {
   const { headlineImage } = useProject3Assets();
 
-  useUpdatePath( location.pathname );
-
+  useUpdatePath(location.pathname);
 
   projectDataDefault.headlineImage = headlineImage.publicURL;
   // useLocoScroll();
-  useToolTip( "[data-tooltip-text]" );
+  useToolTip("[data-tooltip-text]");
   // useRefreshMouseListeners( '[data-pointer]' )
 
   return (
-
     <CaseStudy projectData={projectDataDefault}>
-
       <ComingSoon />
-
-
     </CaseStudy>
-
   );
 }
 

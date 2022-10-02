@@ -5,8 +5,7 @@ import { motion, useMotionValue } from "framer-motion";
 import useOnScreen from "../../../../../hooks/useOnScreen";
 import useLotti from "../../../../../helpers/useLotti";
 
-
-const IllustrationContainer = styled( motion.div )`
+const IllustrationContainer = styled(motion.div)`
   //z-index: -1;
   position: absolute;
   left: 4%;
@@ -16,45 +15,41 @@ const IllustrationContainer = styled( motion.div )`
   width: 100px;
   height: 100px;
 
-
   path {
     stroke: #1e213d;
     fill: #1e213d;
   }
 
-  ${( { design } ) => design && css`
-    transform: rotate(20deg);
+  ${({ design }) =>
+    design &&
+    css`
+      transform: rotate(20deg);
+    `};
 
-  `};
+  ${({ rocket }) =>
+    rocket === "true" &&
+    css`
+      transform: rotate(20deg);
 
-  ${( { rocket } ) => rocket === "true" && css`
-    transform: rotate(20deg);
-
-    path {
-      fill: rgba(55, 25, 202, 0);
-    }
-
-  `};
+      path {
+        fill: rgba(55, 25, 202, 0);
+      }
+    `};
 `;
 
-function LottiIcon( { path, rocket, inView } ){
-
-  const lottiContainerRef = useRef( null );
-  const lottiRef = useLotti( path, lottiContainerRef );
+function LottiIcon({ path, rocket, inView }) {
+  const lottiContainerRef = useRef(null);
+  const lottiRef = useLotti(path, lottiContainerRef);
   // const inView = useOnScreen(lottiContainerRef, 0, )
 
-  useEffect( () => {
-    inView.onChange( v => {
-      if ( !lottiRef.current ) return;
+  useEffect(() => {
+    inView.onChange((v) => {
+      if (!lottiRef.current) return;
 
-      if ( v )
-        lottiRef.current.play();
-      else
-        lottiRef.current.pause();
-    } );
-
-  }, [inView] );
-
+      if (v) lottiRef.current.play();
+      else lottiRef.current.pause();
+    });
+  }, [inView]);
 
   /* useEffect(() => {
     lotti.destroy(path)

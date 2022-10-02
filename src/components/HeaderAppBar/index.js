@@ -9,33 +9,31 @@ import HomeLogo from "./components/HomeLogo";
 import NavBtn from "./components/NavBtn";
 import OverlayController from "../ScreenOverlay/OverlayController";
 import { container } from "./appbar.module.scss";
-import { useLocation } from '@reach/router';
+import { useLocation } from "@reach/router";
 
-function HideOnScroll( { children } ){
-  const { currentPath } = useContext( AppStateContext );
-  const [slide, setSlide] = useState( true );
+function HideOnScroll({ children }) {
+  const { currentPath } = useContext(AppStateContext);
+  const [slide, setSlide] = useState(true);
   const { pathname } = useLocation();
 
   const { scrollDirection } = useLocomotiveScroll();
 
-  useEffect( () => {
-    const deb = debounce( arg => {
-      if ( !arg ) return;
+  useEffect(() => {
+    const deb = debounce((arg) => {
+      if (!arg) return;
 
-      if ( arg === "up" ) setSlide( true );
-      else if ( arg === "down" ) setSlide( false );
-    }, 350 );
+      if (arg === "up") setSlide(true);
+      else if (arg === "down") setSlide(false);
+    }, 350);
 
-    scrollDirection.onChange( deb );
+    scrollDirection.onChange(deb);
 
-    return () => {
-    };
-  }, [] );
+    return () => {};
+  }, []);
 
-  useEffect( () => {
-    setSlide( true );
-
-  }, [currentPath, pathname] );
+  useEffect(() => {
+    setSlide(true);
+  }, [currentPath, pathname]);
 
   return (
     <Slide appear={false} direction="down" in={slide}>
@@ -44,20 +42,22 @@ function HideOnScroll( { children } ){
   );
 }
 
-
 const appBarVariants = {
   initial: {},
   animate: {
     transition: {
-      delayChildren: .4
-    }
-  }
+      delayChildren: 0.4,
+    },
+  },
 };
 
-function HeaderAppBar(){
+function HeaderAppBar() {
   const { menuIsOpen } = useMotionValueContext();
 
-  const toggleMenu = () => !OverlayController.isAnimating && !window.isMenuAnimating && menuIsOpen.set( !menuIsOpen.get() );
+  const toggleMenu = () =>
+    !OverlayController.isAnimating &&
+    !window.isMenuAnimating &&
+    menuIsOpen.set(!menuIsOpen.get());
 
   return (
     <HideOnScroll>
@@ -70,4 +70,4 @@ function HeaderAppBar(){
   );
 }
 
-export default React.memo( HeaderAppBar );
+export default React.memo(HeaderAppBar);

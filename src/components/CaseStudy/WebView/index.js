@@ -1,15 +1,14 @@
-import React from 'react'
-import styled, {css} from 'styled-components'
-import {GatsbyImage, getImage} from 'gatsby-plugin-image'
-import {spacing} from "../../../styles/mixins";
-import {largeUp} from "../../../styles/mixins/breakpoints";
+import React from "react";
+import styled, { css } from "styled-components";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { spacing } from "../../../styles/mixins";
+import { largeUp } from "../../../styles/mixins/breakpoints";
 
 const WebViewContainer = styled.section`
   display: grid;
   place-items: center;
 
-  ${spacing( 'mt', 22 )}:
-  //width: 70%;
+  ${spacing("mt", 22)}: //width: 70%;
 
   .mock-wrapper {
     max-width: 90%;
@@ -21,37 +20,35 @@ const WebViewContainer = styled.section`
       max-width: 100%;
       max-height: 100%;
       margin: 0 auto 0 -20px;
-
     }
   }
-`
+`;
 
 const MobileContainer = styled.div`
   align-self: start;
   justify-self: end;
-`
+`;
 
 const WebContainer = styled.div`
-    width: 100%;
-`
+  width: 100%;
+`;
 
 const WebViewWrapper = styled.div`
   width: 70%;
-`
+`;
 
-const WebView = ({web, mobile, tempWebView}) => {
-    return (
-        <WebViewContainer>
-
-            <div className="mock-wrapper">
-              {/*  <GatsbyImage alt={tempWebView.publicURL}
+const WebView = ({ web, mobile, tempWebView }) => {
+  return (
+    <WebViewContainer>
+      <div className="mock-wrapper">
+        {/*  <GatsbyImage alt={tempWebView.publicURL}
                              className={'web-view'}
                              objectFit='cover'
                              image={getImage(tempWebView)}/>*/}
-                <img src={tempWebView.publicURL} alt=""/>
-            </div>
+        <img src={tempWebView.publicURL} alt="" />
+      </div>
 
-           {/* <WebContainer>
+      {/* <WebContainer>
                 <GatsbyImage alt={web.publicURL}
                              className={'web-view'}
                              objectFit='cover'
@@ -64,9 +61,8 @@ const WebView = ({web, mobile, tempWebView}) => {
                              objectFit='cover'
                              image={getImage(mobile)}/>
             </MobileContainer>*/}
-
-        </WebViewContainer>
-    );
+    </WebViewContainer>
+  );
 };
 
 export default WebView;

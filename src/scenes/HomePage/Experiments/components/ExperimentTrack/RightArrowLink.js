@@ -1,10 +1,10 @@
-import React, { useEffect, useLayoutEffect } from 'react'
-import styled, { css } from 'styled-components'
-import { motion } from 'framer-motion'
-import { ReactSVG } from 'react-svg'
-import { Link } from 'gatsby'
-import { useProjectSvg } from '../../../../../hooks/queries/useProjectSvg'
-import {length, spacing, text} from '../../../../../styles/mixins'
+import React, { useEffect, useLayoutEffect } from "react";
+import styled, { css } from "styled-components";
+import { motion } from "framer-motion";
+import { ReactSVG } from "react-svg";
+import { Link } from "gatsby";
+import { useProjectSvg } from "../../../../../hooks/queries/useProjectSvg";
+import { length, spacing, text } from "../../../../../styles/mixins";
 
 const RightArrowContainer = styled(motion.div)`
   display: flex;
@@ -13,25 +13,23 @@ const RightArrowContainer = styled(motion.div)`
   width: ${({ len }) => len};
 
   ${({ mt }) => css`
-    ${spacing('mt', mt)}
+    ${spacing("mt", mt)}
   `};
-  
-  &:hover{
+
+  &:hover {
     .svg-wrapper {
       transform: scale(1.25) translateX(-17%);
       transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9);
     }
-    
   }
-  
-`
+`;
 
 const ArrowContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-`
+`;
 
 const ArrowLine = styled.div`
   height: 1px;
@@ -43,24 +41,22 @@ const ArrowLine = styled.div`
   );
   border-radius: 500px;
   flex: 1;
-`
+`;
 
 const Arrow = styled.div`
   position: relative;
   z-index: 0;
   margin: 0 auto;
   max-width: 50px;
-  ${length('width', 5)};
+  ${length("width", 5)};
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9);
-  
 
   & :hover {
-    
   }
 
   &::after {
@@ -68,10 +64,10 @@ const Arrow = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    transform: translate(-30% , -35%);
+    transform: translate(-30%, -35%);
     display: block;
-    
-    ${spacing('p', 4)};
+
+    ${spacing("p", 4)};
   }
 
   & .svg-wrapper {
@@ -82,12 +78,11 @@ const Arrow = styled.div`
     justify-content: center;
     transition: transform 1s cubic-bezier(0.6, 0.01, 0, 0.9);
     transform: translateX(-60%);
-    
-    div{
+
+    div {
       display: grid;
       place-items: center;
     }
-    
 
     svg {
       max-width: 100%;
@@ -95,8 +90,7 @@ const Arrow = styled.div`
       display: inline;
     }
   }
-
-`
+`;
 
 const Text = styled.p`
   ${({ txtStyle }) =>
@@ -111,40 +105,42 @@ const Text = styled.p`
 
       ${text(0.8)};
     `};
-`
+`;
 
 function RightArrowLink({
   mt = 0,
   txt,
-  lineLength = '100%',
+  lineLength = "100%",
   txtStyle,
-  link = '/',
+  link = "/",
   target,
-  tooTipTxt=false,
+  tooTipTxt = false,
 }) {
-  const { rightArrow } = useProjectSvg()
+  const { rightArrow } = useProjectSvg();
 
   return (
-    <RightArrowContainer len={lineLength} mt={mt}
-                         data-pointer='focus'
-                         data-tooltip={!!tooTipTxt}
-                         data-tooltip-text={tooTipTxt}
+    <RightArrowContainer
+      len={lineLength}
+      mt={mt}
+      data-pointer="focus"
+      data-tooltip={!!tooTipTxt}
+      data-tooltip-text={tooTipTxt}
     >
       <Text txtStyle={txtStyle}>{txt}</Text>
 
       <ArrowContainer>
-        <ArrowLine className='arrow-line' />
+        <ArrowLine className="arrow-line" />
         <Arrow
           className="arrow"
           data-tooltip
-          data-pointer='stuck'
+          data-pointer="stuck"
           data-tooltip-text={tooTipTxt}
         >
           <ReactSVG className="svg-wrapper" src={rightArrow.publicURL} />
         </Arrow>
       </ArrowContainer>
     </RightArrowContainer>
-  )
+  );
 }
 
-export default RightArrowLink
+export default RightArrowLink;

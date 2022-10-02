@@ -1,6 +1,6 @@
 import { css } from "styled-components";
 
-export function Flexi( { align = "center", justify = "center" } ){
+export function Flexi({ align = "center", justify = "center" }) {
   return css`
     display: flex;
     align-items: ${align};
@@ -8,27 +8,27 @@ export function Flexi( { align = "center", justify = "center" } ){
   `;
 }
 
-export function gridColWidth( from = 1, to = 65 ){
+export function gridColWidth(from = 1, to = 65) {
   return css`
     grid-column-start: ${from};
     grid-column-end: ${to};
   `;
 }
 
-export function gridify(){
+export function gridify() {
   return css`
     display: grid;
     grid-template-columns: repeat(64, calc(100% / 64));
   `;
 }
 
-export const gridMultiplayer = ( key, value = 1 ) => {
+export const gridMultiplayer = (key, value = 1) => {
   return css`
     ${key}: 100vw / 64 * ${value};
   `;
 };
 
-export const shadow = depth => {
+export const shadow = (depth) => {
   return css`
     box-shadow: 0 14px 80px rgba(34, 45, 58, 0.2);
     transition: box-shadow 0.3s;
@@ -40,12 +40,12 @@ export const shadow = depth => {
   `;
 };
 
-export const spacing = ( key, value ) => {
+export const spacing = (key, value) => {
   let propKey = key;
   let temp;
 
-  if ( key.length <= 2 ) {
-    switch ( key ) {
+  if (key.length <= 2) {
+    switch (key) {
       case "mt":
         propKey = "margin-top";
         break;
@@ -116,23 +116,20 @@ export const spacing = ( key, value ) => {
   `;
 };
 
-export const length = ( key, value ) => {
+export const length = (key, value) => {
   return css`
     ${key}: calc(${(value * 10) / 16}rem * var(--size));
   `;
 };
 
-export const text = ( value ) => {
+export const text = (value) => {
   return css`
-    font-size: calc(${value}rem * var(--text));;
+    font-size: calc(${value}rem * var(--text)); ;
   `;
 };
 
-export const title = ( value ) => {
+export const title = (value) => {
   return css`
-    font-size: calc(${value}rem * var(--title));;
+    font-size: calc(${value}rem * var(--title)); ;
   `;
 };
-
-
-

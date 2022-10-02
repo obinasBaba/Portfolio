@@ -4,18 +4,22 @@ import { Link } from "gatsby";
 import { length, spacing, text, title } from "../../../../styles/mixins";
 import logo from "./images/logo.svg";
 import RightArrowLink from "../../Experiments/components/ExperimentTrack/RightArrowLink";
-import { largeUp, smallUp, xxLargeUp } from "../../../../styles/mixins/breakpoints";
+import {
+  largeUp,
+  smallUp,
+  xxLargeUp,
+} from "../../../../styles/mixins/breakpoints";
 
 const InfoTxt = styled.div`
   position: relative;
   z-index: 0;
   //border: thin solid red;
 
-  ${spacing( "pt", 2 )};
+  ${spacing("pt", 2)};
 
-  ${largeUp( css`
-    ${spacing( "mt", 3 )};
-  ` )};
+  ${largeUp(css`
+    ${spacing("mt", 3)};
+  `)};
 
   @media screen and (max-width: 768px) {
     --indent: 0.7;
@@ -27,17 +31,14 @@ const Desc = styled.p`
   padding: 0;
   font-weight: 300;
 
-  ${title( 1.9 )};
-  ${spacing( "mb", 5 )};
+  ${title(1.9)};
+  ${spacing("mb", 5)};
 
-  ${smallUp( css`
+  ${smallUp(css`
     font-weight: 900;
     line-height: 1.35;
-
-  ` )};
-
+  `)};
 `;
-
 
 const txtStyle = css`
   position: relative;
@@ -47,12 +48,12 @@ const txtStyle = css`
   text-transform: uppercase;
   letter-spacing: 5px;
 
-  ${text( 1 )};
+  ${text(1)};
 `;
 
 const BlogEffect = styled.div`
   position: absolute;
-  opacity: .1;
+  opacity: 0.1;
   border-radius: 50%;
   background-image: url(${logo});
   background-repeat: no-repeat;
@@ -61,46 +62,45 @@ const BlogEffect = styled.div`
   left: -74%;
   z-index: -1;
 
-  ${length( "width", 70 )};
-  ${length( "height", 70 )};
+  ${length("width", 70)};
+  ${length("height", 70)};
 
-  ${xxLargeUp( css`
+  ${xxLargeUp(css`
     left: -100%;
 
-
-    ${length( "width", 80 )};
-    ${length( "height", 80 )};
-  ` )};
+    ${length("width", 80)};
+    ${length("height", 80)};
+  `)};
 `;
 
-function Info(){
+function Info() {
   return (
     <InfoTxt>
-
       <BlogEffect data-scroll data-scroll-speed="1.5" />
 
       <Desc>
         I usually write an in-depth article sharing what I learned every often.
-        My Articles help me to chronicle ideas &amp; solutions
-        to problems that we face when building great web products.
+        My Articles help me to chronicle ideas &amp; solutions to problems that
+        we face when building great web products.
       </Desc>
 
       {/* <a href='/' target='_blank' rel="noopener noreferrer"> */}
-      <RightArrowLink lineLength="75%"
-                      txt="checkout my blog site."
-                      tooTipTxt="sry, my blog-site is temporarily down"
+      <RightArrowLink
+        lineLength="75%"
+        txt="checkout my blog site."
+        tooTipTxt="sry, my blog-site is temporarily down"
       />
       {/* </a> */}
 
       <Link to="/blog">
-        <RightArrowLink lineLength="86%"
-                        mt={3}
-                        txt="MORE BLOG POSTS"
-                        txtStyle={txtStyle}
-                        tooTipTxt="more blogs?"
+        <RightArrowLink
+          lineLength="86%"
+          mt={3}
+          txt="MORE BLOG POSTS"
+          txtStyle={txtStyle}
+          tooTipTxt="more blogs?"
         />
       </Link>
-
     </InfoTxt>
   );
 }

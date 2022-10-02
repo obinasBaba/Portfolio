@@ -1,10 +1,10 @@
 /** @format */
 
-import { useContext, useEffect, useRef } from 'react';
-import { BackgroundOverlayStateContext } from '../contexts/AppStateContext';
-import { MotionValueContext } from '../contexts/MotionStateWrapper';
-import { useMotionBreakPoint } from '@contexts/BreakPoint';
-import { useMediaQuery, useTheme } from '@material-ui/core';
+import { useContext, useEffect, useRef } from "react";
+import { BackgroundOverlayStateContext } from "../contexts/AppStateContext";
+import { MotionValueContext } from "../contexts/MotionStateWrapper";
+import { useMotionBreakPoint } from "@contexts/BreakPoint";
+import { useMediaQuery, useTheme } from "@material-ui/core";
 
 export default (selector) => {
   const { backgroundOverlay } = useContext(BackgroundOverlayStateContext);
@@ -13,7 +13,7 @@ export default (selector) => {
   const { breakpoint } = useMotionBreakPoint();
 
   const theme = useTheme();
-  const medium = useMediaQuery(theme.breakpoints.up('md'));
+  const medium = useMediaQuery(theme.breakpoints.up("md"));
 
   const onEnter = (el) => {
     toolTipsData.set({
@@ -24,7 +24,7 @@ export default (selector) => {
 
   const onLeave = () => {
     toolTipsData.set({
-      text: '',
+      text: "",
       show: false,
     });
   };
@@ -32,23 +32,23 @@ export default (selector) => {
   const addListener = async () => {
     const toolTipElements = document.querySelectorAll(selector);
     toolTipElements.forEach((el) => {
-      el.removeEventListener('mouseenter', onEnter);
-      el.removeEventListener('mouseenter', onEnter);
+      el.removeEventListener("mouseenter", onEnter);
+      el.removeEventListener("mouseenter", onEnter);
 
-      el.addEventListener('mouseenter', onEnter);
-      el.addEventListener('mouseleave', onLeave);
+      el.addEventListener("mouseenter", onEnter);
+      el.addEventListener("mouseleave", onLeave);
     });
 
-    window.removeEventListener('mousemove', addListener);
+    window.removeEventListener("mousemove", addListener);
   };
 
   useEffect(() => {
     if (backgroundOverlay) return;
 
     if (medium) {
-      toolTipTextNode.current = document.querySelector('.tool-tip-excerpt');
+      toolTipTextNode.current = document.querySelector(".tool-tip-excerpt");
       // onLeave()
-      window.addEventListener('mousemove', addListener, { once: true });
+      window.addEventListener("mousemove", addListener, { once: true });
     }
   }, [selector, backgroundOverlay, medium]);
 };

@@ -1,88 +1,109 @@
 export const moonAndStarVariants = {
-  initial: {}, animate: {
+  initial: {},
+  animate: {
     transition: {
-      delayChildren: .1, staggerChildren: .1
-    }
-  }
+      delayChildren: 0.1,
+      staggerChildren: 0.1,
+    },
+  },
 };
 
 export const moonVariants = {
   initial: {
-    y: "-100%", scale: .3, opacity: 0
+    y: "-100%",
+    scale: 0.3,
+    opacity: 0,
   },
 
   animate: {
-    y: 0, scale: 1, opacity: 1
+    y: 0,
+    scale: 1,
+    opacity: 1,
   },
 
   exit: {
-    y: "-100%", scale: .3, opacity: 0, transition: {
-      duration: 1, ease: [0.6, 0.01, 0, 0.9]
-    }
-  }
+    y: "-100%",
+    scale: 0.3,
+    opacity: 0,
+    transition: {
+      duration: 1,
+      ease: [0.6, 0.01, 0, 0.9],
+    },
+  },
 };
 
 export const moonTransition = {
-  duration: 1.4, ease: [0.6, 0.01, 0, 0.9]
+  duration: 1.4,
+  ease: [0.6, 0.01, 0, 0.9],
 };
 
 export const starVariants = {
-  initial: {}, animate: {
+  initial: {},
+  animate: {
     transition: {
-      staggerChildren: .2
-    }
+      staggerChildren: 0.2,
+    },
   },
   exit: {
     transition: {
-      staggerChildren: .04
-    }
-  }
+      staggerChildren: 0.04,
+    },
+  },
 };
 export const starItemVariants = {
   initial: {
-    scale: 0, opacity: 0
+    scale: 0,
+    opacity: 0,
   },
   animate: {
-    scale: 1, opacity: 1
+    scale: 1,
+    opacity: 1,
   },
   exit: {
-    scale: 0, opacity: 0
-  }
+    scale: 0,
+    opacity: 0,
+  },
 };
 export const mountainVariants = {
-  initial: {}, animate: {
+  initial: {},
+  animate: {
     transition: {
-      staggerChildren: .21
-    }
+      staggerChildren: 0.21,
+    },
   },
   exit: {
     transition: {
-      staggerChildren: .21
-    }
-  }
+      staggerChildren: 0.21,
+    },
+  },
 };
 export const mountainItemVariants = {
   initial: {
-    y: "100%", opacity: .6
+    y: "100%",
+    opacity: 0.6,
   },
   animate: {
-    y: 0, opacity: 1, transition: {
-      duration: .8, ease: [0.6, 0.01, 0, 0.9]
-    }
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.6, 0.01, 0, 0.9],
+    },
   },
   exit: {
-    y: "100%", opacity: .5
-  }
+    y: "100%",
+    opacity: 0.5,
+  },
 };
 export const containerVariant = {
   animate: {
     transition: {
       // delayChildren: .8,
-    }
-  }
+    },
+  },
 };
 
 export const transition = {
-  duration: 2, ease: [0.6, 0.01, 0, 0.9]
-
+  duration: 2,
+  ease: [0.6, 0.01, 0, 0.9],
 };

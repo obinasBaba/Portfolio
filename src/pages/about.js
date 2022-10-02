@@ -1,11 +1,11 @@
 /** @format */
 
-import React, { useEffect, useLayoutEffect } from 'react';
-import AboutPage from '../scenes/AboutPage';
-import useToolTip from '../hooks/useToolTip';
-import Seo from '../components/seo';
-import useUpdatePath from '../hooks/useUpdatePath';
-import { useLocomotiveScroll } from '@contexts/LocoMotive';
+import React, { useEffect, useLayoutEffect } from "react";
+import AboutPage from "../scenes/AboutPage";
+import useToolTip from "../hooks/useToolTip";
+import Seo from "../components/seo";
+import useUpdatePath from "../hooks/useUpdatePath";
+import { useLocomotiveScroll } from "@contexts/LocoMotive";
 
 /*import gsap from "gsap";
 
@@ -18,7 +18,7 @@ function About({ path }) {
 
   // useLocoScroll();
 
-  useToolTip('[data-tooltip-text]');
+  useToolTip("[data-tooltip-text]");
   // useRefreshMouseListeners( '#about [data-pointer]' );
 
   return (

@@ -2,26 +2,24 @@ import { EventEmitter } from "events";
 import { ease } from "../../helpers/glsEasings";
 
 class OverlayController extends EventEmitter {
-
   static instance = new Map();
 
   static isAnimating = false;
 
-  static  duration = 900;
+  static duration = 900;
 
-  static  delayPointsMax = 280;
+  static delayPointsMax = 280;
 
-  static  delayPerPath = 250;
+  static delayPerPath = 250;
 
-
-  static getInstance( name ){
-    if ( this.instance.get( name ) ) {
-      return this.instance.get( name );
+  static getInstance(name) {
+    if (this.instance.get(name)) {
+      return this.instance.get(name);
     }
 
-    const el = document.body.querySelector( `.${name}` ); // the parent SVG
+    const el = document.body.querySelector(`.${name}`); // the parent SVG
 
-    if ( !el ) return null;
+    if (!el) return null;
 
     this.duration = 900; // Animation duration of one path element.
 
@@ -29,16 +27,14 @@ class OverlayController extends EventEmitter {
 
     this.delayPerPath = 250; // Delay value per path.
 
-
-    this.instance.set( name, new OverlayController( el ) );
-    return this.instance.get( name );
-
+    this.instance.set(name, new OverlayController(el));
+    return this.instance.get(name);
   }
 
-  constructor( el ){
+  constructor(el) {
     super();
     this.elm = el;
-    this.path = this.elm.querySelectorAll( "path" ); /// / Path elements in parent SVG. These are the layers of the overlay.
+    this.path = this.elm.querySelectorAll("path"); /// / Path elements in parent SVG. These are the layers of the overlay.
     this.numPoints = 10; // Number of control points for Bezier Curve.
     this.delayPointsArray = []; // Array of control points for Bezier Curve
     this.timeStart = Date.now();
@@ -46,16 +42,17 @@ class OverlayController extends EventEmitter {
     // this.isAnimating = false;
   }
 
-  async toggle( open, options = {
-    duration: OverlayController.duration,
-    delayPointsMax: OverlayController.delayPointsMax,
-    delayPerPath: OverlayController.delayPerPath
-  } ){
+  async toggle(
+    open,
+    options = {
+      duration: OverlayController.duration,
+      delayPointsMax: OverlayController.delayPointsMax,
+      delayPerPath: OverlayController.delayPerPath,
+    }
+  ) {
+    if (OverlayController.isAnimating || open === this.isOpened) return null;
 
-    if ( OverlayController.isAnimating || open === this.isOpened )
-      return null;
-
-    if ( options ) {
+    if (options) {
       OverlayController.duration = options.duration;
       OverlayController.delayPointsMax = options.delayPointsMax;
       OverlayController.delayPerPath = options.delayPerPath;
@@ -65,20 +62,17 @@ class OverlayController extends EventEmitter {
     // OverlayController.delayPerPath = 0
 
     OverlayController.isAnimating = true;
-    for ( let i = 0; i < this.numPoints; i++ ) {
+    for (let i = 0; i < this.numPoints; i++) {
       // const range = 4 * Math.random() + 6;
       // const radian = i / (this.numPoints - 1) * Math.PI;
       // this.delayPointsArray[i] = (Math.sin(-radian) + Math.sin(-radian * range) + 2) / 4 * OverlayController.delayPointsMax;
       this.delayPointsArray[i] =
-        Math.max( Math.random(), 0.2 ) * OverlayController.delayPointsMax;
+        Math.max(Math.random(), 0.2) * OverlayController.delayPointsMax;
     }
 
-    if ( open ) {
-
+    if (open) {
       this.open();
-
     } else {
-
       this.close();
 
       // setTimeout(() => this.close(), 250)
@@ -87,80 +81,91 @@ class OverlayController extends EventEmitter {
     return this;
   }
 
-  open(){
-
-
+  open() {
     this.isOpened = true;
-    this.elm.classList.add( "is-opened" );
+    this.elm.classList.add("is-opened");
     this.timeStart = Date.now();
     this.renderLoop();
 
     // document.body.classList.add('loading-done')
-    this.emit( "loading" );
+    this.emit("loading");
   }
 
-  close(){
-
+  close() {
     this.isOpened = false;
-    this.elm.classList.remove( "is-opened" );
+    this.elm.classList.remove("is-opened");
     this.timeStart = Date.now();
     this.renderLoop();
   }
 
-  updatePath( time ){
+  updatePath(time) {
     const points = [];
-    for ( let i = 0; i < this.numPoints; i++ ) {
-      points[i] = (1 - ease.cubicInOut( Math.min( Math.max( time - this.delayPointsArray[i], 0 ) / OverlayController.duration, 1 ) )) * 100;
+    for (let i = 0; i < this.numPoints; i++) {
+      points[i] =
+        (1 -
+          ease.cubicInOut(
+            Math.min(
+              Math.max(time - this.delayPointsArray[i], 0) /
+                OverlayController.duration,
+              1
+            )
+          )) *
+        100;
     }
 
     let str = "";
-    str += (this.isOpened) ? `M 0 0 V ${points[0]}` : `M 0 ${points[0]}`;
-    for ( let i = 0; i < this.numPoints - 1; i++ ) {
-      const p = (i + 1) / (this.numPoints - 1) * 100;
-      const cp = p - (1 / (this.numPoints - 1) * 100) / 2;
-      str += `C ${cp} ${points[i]} ${cp} ${points[i + 1]} ${p} ${points[i + 1]} `;
+    str += this.isOpened ? `M 0 0 V ${points[0]}` : `M 0 ${points[0]}`;
+    for (let i = 0; i < this.numPoints - 1; i++) {
+      const p = ((i + 1) / (this.numPoints - 1)) * 100;
+      const cp = p - ((1 / (this.numPoints - 1)) * 100) / 2;
+      str += `C ${cp} ${points[i]} ${cp} ${points[i + 1]} ${p} ${
+        points[i + 1]
+      } `;
     }
-    str += (this.isOpened) ? `V 100 H 0` : `V 0 H 0`;
+    str += this.isOpened ? `V 100 H 0` : `V 0 H 0`;
 
     return str;
   }
 
-  render(){
-
-    if ( this.isOpened ) {
-      for ( let i = 0; i < this.path.length; i++ ) {
-        const generatedPath = this.updatePath( Date.now() - (this.timeStart + OverlayController.delayPerPath * i) );
-        this.path[i].setAttribute( "d", generatedPath );
+  render() {
+    if (this.isOpened) {
+      for (let i = 0; i < this.path.length; i++) {
+        const generatedPath = this.updatePath(
+          Date.now() - (this.timeStart + OverlayController.delayPerPath * i)
+        );
+        this.path[i].setAttribute("d", generatedPath);
       }
-
     } else {
-      for ( let i = 0; i < this.path.length; i++ ) {
-        const generatedPath = this.updatePath( Date.now() - (this.timeStart + OverlayController.delayPerPath * (this.path.length - i - 1)) );
-        this.path[i].setAttribute( "d", generatedPath );
-
+      for (let i = 0; i < this.path.length; i++) {
+        const generatedPath = this.updatePath(
+          Date.now() -
+            (this.timeStart +
+              OverlayController.delayPerPath * (this.path.length - i - 1))
+        );
+        this.path[i].setAttribute("d", generatedPath);
       }
     }
   }
 
-  renderLoop(){
-
+  renderLoop() {
     this.render();
 
-    if ( Date.now() - this.timeStart <
-      OverlayController.duration + OverlayController.delayPerPath
-      * (this.path.length - 1) + OverlayController.delayPointsMax ) {
-
-      requestAnimationFrame( () => this.renderLoop() );
+    if (
+      Date.now() - this.timeStart <
+      OverlayController.duration +
+        OverlayController.delayPerPath * (this.path.length - 1) +
+        OverlayController.delayPointsMax
+    ) {
+      requestAnimationFrame(() => this.renderLoop());
     } else {
       OverlayController.isAnimating = false;
     }
   }
 
-  click( open ){
-    if ( OverlayController.isAnimating ) {
+  click(open) {
+    if (OverlayController.isAnimating) {
       return false;
     }
-
 
     return this.toggle();
   }

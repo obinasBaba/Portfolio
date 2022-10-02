@@ -5,35 +5,39 @@ import { motion } from "framer-motion";
 import { itemVariants, transition } from "../variants";
 import { length, text } from "../../../../../styles/mixins";
 import OverlayController from "../../../../ScreenOverlay/OverlayController";
-import { largeUp, mediumUp, xxLargeUp } from "../../../../../styles/mixins/breakpoints";
+import {
+  largeUp,
+  mediumUp,
+  xxLargeUp,
+} from "../../../../../styles/mixins/breakpoints";
 
 const hoverMixin = css`
-  [data-circle='1'] {
+  [data-circle="1"] {
     transform: scale(1.62);
     transition: 1s cubic-bezier(0.6, 0.01, 0, 0.9);
 
-    ${xxLargeUp( css`
+    ${xxLargeUp(css`
       transform: scale(1.32);
-    ` )};
+    `)};
   }
 
-  [data-circle='2'],
-  [data-circle='3'] {
+  [data-circle="2"],
+  [data-circle="3"] {
     transform: scale(2.6);
     transition: 1s cubic-bezier(0.6, 0.01, 0, 0.9);
 
-    ${xxLargeUp( css`
+    ${xxLargeUp(css`
       transform: scale(1.62);
-    ` )};
+    `)};
   }
 
-  [data-circle='4'] {
+  [data-circle="4"] {
     transform: scale(2);
     transition: 1s cubic-bezier(0.6, 0.01, 0, 0.9);
 
-    ${xxLargeUp( css`
+    ${xxLargeUp(css`
       transform: scale(1.7);
-    ` )};
+    `)};
   }
 
   .stars {
@@ -57,7 +61,7 @@ const hoverMixin = css`
   }
 `;
 
-const ItemContainer = styled( motion.li )`
+const ItemContainer = styled(motion.li)`
   position: relative;
   //border: thin solid red;
 
@@ -66,8 +70,7 @@ const ItemContainer = styled( motion.li )`
     margin-right: 5%;
   }
 
-  ${largeUp( css`
-
+  ${largeUp(css`
     &:nth-child(1) {
       margin-left: 20%;
     }
@@ -80,17 +83,17 @@ const ItemContainer = styled( motion.li )`
     &:nth-child(4) {
       margin-right: 76%;
     }
-  ` )};
+  `)};
 
-  ${( { active } ) => active && css`
-    ${hoverMixin}
-  `};
+  ${({ active }) =>
+    active &&
+    css`
+      ${hoverMixin}
+    `};
 
   &:hover {
     ${hoverMixin};
   }
-
-
 `;
 
 const Title = styled.div`
@@ -106,19 +109,18 @@ const Title = styled.div`
   text-shadow: 0.1em 0.1em 0.3em #000;
   pointer-events: none;
 
-  ${text( 1 )};
+  ${text(1)};
 
-  ${largeUp( css`
-    ${text( .86 )};
-  ` )};
+  ${largeUp(css`
+    ${text(0.86)};
+  `)};
 
-  ${xxLargeUp( css`
-    ${text( 1 )};
-
-  ` )};
+  ${xxLargeUp(css`
+    ${text(1)};
+  `)};
 `;
 
-const Circle = styled( motion.div )`
+const Circle = styled(motion.div)`
   //--size: 60px;
 
   position: relative;
@@ -129,24 +131,24 @@ const Circle = styled( motion.div )`
   background-color: #1e213d;
   //transition: transform 0.5s;
 
-  &[data-circle='1'] {
-    ${length( "width", 15 )};
-    ${length( "height", 15 )};
+  &[data-circle="1"] {
+    ${length("width", 15)};
+    ${length("height", 15)};
   }
 
-  &[data-circle='2'] {
-    ${length( "width", 11 )};
-    ${length( "height", 11 )};
+  &[data-circle="2"] {
+    ${length("width", 11)};
+    ${length("height", 11)};
   }
 
-  &[data-circle='3'] {
-    ${length( "width", 10 )};
-    ${length( "height", 10 )};
+  &[data-circle="3"] {
+    ${length("width", 10)};
+    ${length("height", 10)};
   }
 
-  &[data-circle='4'] {
-    ${length( "width", 13 )};
-    ${length( "height", 13 )};
+  &[data-circle="4"] {
+    ${length("width", 13)};
+    ${length("height", 13)};
   }
 
   a {
@@ -158,66 +160,60 @@ const Circle = styled( motion.div )`
     z-index: 20;
   }
 
-  ${mediumUp( css`
-
-    &[data-circle='1'] {
+  ${mediumUp(css`
+    &[data-circle="1"] {
       --size: 10.24rem;
 
       width: var(--size);
       height: var(--size);
 
-
-      ${xxLargeUp( css`
+      ${xxLargeUp(css`
         --size: 16.24rem;
-      ` )};
+      `)};
     }
 
-    &[data-circle='2'] {
+    &[data-circle="2"] {
       --size: 5.858rem;
 
       width: var(--size);
       height: var(--size);
 
-      ${xxLargeUp( css`
+      ${xxLargeUp(css`
         --size: 11.24rem;
-      ` )};
+      `)};
     }
 
-    &[data-circle='3'] {
+    &[data-circle="3"] {
       --size: 5.258rem;
 
       width: var(--size);
       height: var(--size);
 
-      ${xxLargeUp( css`
+      ${xxLargeUp(css`
         --size: 9.24rem;
-      ` )};
+      `)};
     }
 
-    &[data-circle='4'] {
+    &[data-circle="4"] {
       --size: 7.75rem;
 
       width: var(--size);
       height: var(--size);
 
-
-      ${xxLargeUp( css`
+      ${xxLargeUp(css`
         --size: 11.24rem;
-      ` )};
+      `)};
     }
-
-
-
-  ` )};
+  `)};
 `;
 
-const Star = styled( motion.div )`
+const Star = styled(motion.div)`
   position: absolute;
   top: 50%;
   left: 50%;
   width: 19.86rem;
   height: 19.86rem;
-  background-image: url('${( { bgImg } ) => bgImg}');
+  background-image: url("${({ bgImg }) => bgImg}");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -227,14 +223,13 @@ const Star = styled( motion.div )`
   opacity: 0;
   pointer-events: none;
   transition: all 1s cubic-bezier(0.6, 0.01, 0, 0.9);
-
 `;
 
-const Icon = styled( motion.div )`
+const Icon = styled(motion.div)`
   position: absolute;
   top: 50%;
   left: 50%;
-  background-image: url('${( { bgImg } ) => bgImg}');
+  background-image: url("${({ bgImg }) => bgImg}");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -244,65 +239,54 @@ const Icon = styled( motion.div )`
   pointer-events: none;
   transition: all 1s cubic-bezier(0.6, 0.01, 0, 0.9);
 
-
-  &[data-icon='1'] {
+  &[data-icon="1"] {
     width: 11.33rem;
     height: 11.33rem;
   }
 
-  &[data-icon='2'],
-  &[data-icon='3'] {
+  &[data-icon="2"],
+  &[data-icon="3"] {
     width: 13.17rem;
     height: 11.83rem;
   }
 
-  &[data-icon='4'] {
+  &[data-icon="4"] {
     width: 9.75rem;
     height: 12.08rem;
   }
 `;
 
-const Item = ( { currentPath, link, stars, icon, index, title, onClick } ) => {
-
-  const handleLinkClick = ( ev ) => {
+const Item = ({ currentPath, link, stars, icon, index, title, onClick }) => {
+  const handleLinkClick = (ev) => {
     ev.preventDefault();
     // Promise.resolve().then(() => setCurrentPath(link))
-    if ( OverlayController.isAnimating || window.isMenuAnimating ) return;
+    if (OverlayController.isAnimating || window.isMenuAnimating) return;
 
-    if ( link === currentPath ) return;
+    if (link === currentPath) return;
 
     onClick();
 
-
-    setTimeout( () => navigate( link ), 1400 );
-
+    setTimeout(() => navigate(link), 1400);
   };
 
   return (
-
-    <ItemContainer variants={itemVariants}
-                   className="nav-menu-item"
-                   data-pointer={link !== currentPath && "focus"}
-                   transition={transition}
-                   active={link === currentPath && currentPath !== "/"}
-                   key={link + index + title}
+    <ItemContainer
+      variants={itemVariants}
+      className="nav-menu-item"
+      data-pointer={link !== currentPath && "focus"}
+      transition={transition}
+      active={link === currentPath && currentPath !== "/"}
+      key={link + index + title}
     >
-      <Link to={link} onClick={( ev ) => handleLinkClick( ev )}>
-
+      <Link to={link} onClick={(ev) => handleLinkClick(ev)}>
         <Circle data-circle={index + 1} />
 
-        <Star bgImg={stars.publicURL}
-              className="stars" />
+        <Star bgImg={stars.publicURL} className="stars" />
 
-        <Icon bgImg={icon.publicURL}
-              data-icon={index + 1}
-              className="icon" />
-
+        <Icon bgImg={icon.publicURL} data-icon={index + 1} className="icon" />
       </Link>
 
       <Title>{title}</Title>
-
-
     </ItemContainer>
   );
 };

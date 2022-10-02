@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { text } from "../../styles/mixins";
 import { Typography } from "@material-ui/core";
 
-const ScrollTxt = styled( Typography )`
+const ScrollTxt = styled(Typography)`
   font-weight: 300;
   line-height: 1.6em;
   letter-spacing: 3px;
@@ -14,52 +14,52 @@ const ScrollTxt = styled( Typography )`
   top: 115%;
   //z-index: 40;
 
-  ${text( 0.7 )};
+  ${text(0.7)};
 `;
 
 const pathVariant = {
   initial: {
-    pathLength: 1
+    pathLength: 1,
   },
   animate: {
     pathLength: [0, 1],
     transition: {
       duration: 2,
-      repeat: Infinity
-    }
-  }
+      repeat: Infinity,
+    },
+  },
 };
 
 const thumbVariant = {
   initial: {
-    transform: "translate(62px, 703px)"
+    transform: "translate(62px, 703px)",
   },
   animate: {
     transform: [
       "translate(62px, 703px)",
       "translate(62px, 720px)",
-      "translate(62px, 703px)"
+      "translate(62px, 703px)",
     ],
 
     transition: {
       duration: 2,
-      repeat: Infinity
-    }
-  }
+      repeat: Infinity,
+    },
+  },
 };
 
 const parentVariant = {
   initial: {
     y: "100%",
-    opacity: 0
+    opacity: 0,
   },
   animate: {
     y: 0,
     opacity: 1,
     transition: {
       duration: 0.8,
-      ease: "easeIn"
-    }
+      ease: "easeIn",
+    },
   },
 
   exit: {
@@ -67,9 +67,9 @@ const parentVariant = {
     opacity: 0,
     transition: {
       duration: 1,
-      ease: "easeOut"
-    }
-  }
+      ease: "easeOut",
+    },
+  },
 };
 
 const SvgContainer = styled.div`
@@ -132,7 +132,7 @@ const ScrollDown = () => {
             variants={pathVariant}
             transition={{
               duration: 2,
-              repeat: Infinity
+              repeat: Infinity,
             }}
             transform="translate(-2165 10.921)"
             fill="none"
@@ -146,7 +146,7 @@ const ScrollDown = () => {
             variants={pathVariant}
             transition={{
               duration: 2,
-              repeat: Infinity
+              repeat: Infinity,
             }}
             transform="translate(-2152.458 10.921)"
             fill="none"

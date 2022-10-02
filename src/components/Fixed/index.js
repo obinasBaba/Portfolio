@@ -1,7 +1,7 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from "framer-motion";
 
 const FixedContainer = styled.div`
   position: fixed;
@@ -12,19 +12,14 @@ const FixedContainer = styled.div`
   pointer-events: none;
 
   //z-index: 0 ;
-`
-
-
+`;
 
 const Fixed = () => {
   return (
     <AnimatePresence>
-
-      <FixedContainer>
-      </FixedContainer>
-
+      <FixedContainer></FixedContainer>
     </AnimatePresence>
-  )
-}
+  );
+};
 
-export default Fixed
+export default Fixed;

@@ -1,9 +1,7 @@
 import { EventEmitter } from "events";
 
 export default class RouteChangeEvent extends EventEmitter {
-
   private static Instance: RouteChangeEvent;
-
 
   static GetInstance() {
     if (!this.Instance) {
@@ -12,7 +10,5 @@ export default class RouteChangeEvent extends EventEmitter {
     } else {
       return this.Instance;
     }
-
   }
-
 }

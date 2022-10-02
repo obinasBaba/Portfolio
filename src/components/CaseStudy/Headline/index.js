@@ -1,5 +1,10 @@
 import React from "react";
-import { HeadlineContainer, ImageWrapper, InnerWrapper, Texts } from "./Components";
+import {
+  HeadlineContainer,
+  ImageWrapper,
+  InnerWrapper,
+  Texts,
+} from "./Components";
 import { motion } from "framer-motion";
 import MotionBtn from "../../MotionBtn";
 
@@ -10,41 +15,43 @@ import {
   innerVariant,
   textsVariant,
   titleVariant,
-  transition
+  transition,
 } from "./variants";
 import Tags from "./components/Tags";
 import Title from "../../../scenes/ProjectPage/components/ProjectDescription/components/Title";
 import TestPreview from "@scenes/ProjectPage/components/ProjectImage/Bottle-Haus Thumbnail.png";
 
+const Headline = ({ subTitle, title, about, media }) => (
+  <HeadlineContainer variants={containerVariants}>
+    <Texts variants={textsVariant} transition={transition}>
+      <Tags txt="Analytics, UX, UI, Icons, Front-end" />
 
-const Headline = ( { subTitle, title, about, media } ) => (
-    <HeadlineContainer variants={containerVariants}>
-      <Texts variants={textsVariant} transition={transition}>
-        <Tags txt="Analytics, UX, UI, Icons, Front-end" />
+      <Title
+        title={title}
+        variants={{
+          title: titleVariant,
+          transition,
+        }}
+      />
 
-        <Title
-          title={title}
-          variants={{
-            title: titleVariant,
-            transition
-          }}
+      <motion.div
+        variants={btnVariant}
+        transition={transition}
+        style={{ color: "white" }}
+      >
+        <MotionBtn margin={false} text="Visit Site" />
+      </motion.div>
+    </Texts>
+
+    <ImageWrapper variants={imgWrapperVariant} transition={transition}>
+      <InnerWrapper variants={innerVariant} transition={transition}>
+        <motion.img
+          // src={media}
+          src={TestPreview}
         />
-
-        <motion.div variants={btnVariant} transition={transition} style={{color: 'white'}}>
-          <MotionBtn margin={false} text="Visit Site" />
-        </motion.div>
-      </Texts>
-
-      <ImageWrapper variants={imgWrapperVariant} transition={transition}>
-        <InnerWrapper variants={innerVariant} transition={transition}>
-          <motion.img
-            // src={media}
-                      src={TestPreview}
-
-          />
-        </InnerWrapper>
-      </ImageWrapper>
-    </HeadlineContainer>
-  );
+      </InnerWrapper>
+    </ImageWrapper>
+  </HeadlineContainer>
+);
 
 export default Headline;

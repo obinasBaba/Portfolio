@@ -4,13 +4,12 @@ import { motion } from "framer-motion";
 import { spacing } from "@/styles/mixins";
 import { mediumUp } from "@/styles/mixins/breakpoints";
 
-export const OthersContainer = styled( motion.div )`
+export const OthersContainer = styled(motion.div)`
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   height: 100vh;
-
 
   svg {
     position: absolute;
@@ -18,7 +17,6 @@ export const OthersContainer = styled( motion.div )`
     pointer-events: none;
     //will-change: transform;
     //border: thin solid red;
-
 
     .distort__img {
       //opacity: 0;
@@ -30,8 +28,7 @@ export const OthersContainer = styled( motion.div )`
   }
 `;
 
-
-export const Title = styled( Typography )`
+export const Title = styled(Typography)`
   line-height: 1.25em;
   font-weight: 900;
   grid-row: 1;
@@ -42,17 +39,14 @@ export const Title = styled( Typography )`
   letter-spacing: 6px;
   text-orientation: mixed;
 
-  ${spacing( "ml", 1 )};
+  ${spacing("ml", 1)};
 
-
-  ${mediumUp( css`
-    ${spacing( "ml", 15 )};
-
-  ` )};
-
+  ${mediumUp(css`
+    ${spacing("ml", 15)};
+  `)};
 `;
 
-export const List = styled( motion.ul )`
+export const List = styled(motion.ul)`
   z-index: 1;
   list-style-type: none;
   padding: 0;
@@ -64,15 +58,11 @@ export const List = styled( motion.ul )`
 
   //border: thin solid red;
 
+  ${spacing("gap", 2)};
 
-  ${spacing( "gap", 2 )};
-
-  ${mediumUp( css`
-    ${spacing( "m", 5 )};
-    ${spacing( "mh", 10 )};
-    ${spacing( "gap", 5 )};
-  ` )};
-
+  ${mediumUp(css`
+    ${spacing("m", 5)};
+    ${spacing("mh", 10)};
+    ${spacing("gap", 5)};
+  `)};
 `;
-
-

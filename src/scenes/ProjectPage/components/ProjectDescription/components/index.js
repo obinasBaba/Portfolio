@@ -1,10 +1,14 @@
-import styled, { css } from 'styled-components'
-import { motion } from 'framer-motion'
-import { Typography } from '@material-ui/core'
-import { gridColWidth, spacing, } from '../../../../../styles/mixins'
-import { largeUp, mediumUp, smallUp } from "../../../../../styles/mixins/breakpoints";
+import styled, { css } from "styled-components";
+import { motion } from "framer-motion";
+import { Typography } from "@material-ui/core";
+import { gridColWidth, spacing } from "../../../../../styles/mixins";
+import {
+  largeUp,
+  mediumUp,
+  smallUp,
+} from "../../../../../styles/mixins/breakpoints";
 
-export const ProjectDescriptionContainer = styled( motion.div )`
+export const ProjectDescriptionContainer = styled(motion.div)`
   display: flex;
   flex-flow: column;
   z-index: 10;
@@ -12,37 +16,38 @@ export const ProjectDescriptionContainer = styled( motion.div )`
   pointer-events: none;
   //overflow: hidden;
   //border: thin solid red;
-  ${gridColWidth( 8, 58 )}
-  ${spacing( 'pt', 1.7 )};
-  ${spacing( 'pb', 6 )};
+  ${gridColWidth(8, 58)}
+  ${spacing("pt", 1.7)};
+  ${spacing("pb", 6)};
 
   & > * + * {
-    ${spacing( 'mt', 2 )}
+    ${spacing("mt", 2)}
   }
 
-  ${smallUp( css`
-    ${spacing( 'pt', 0 )};
-  ` )};
+  ${smallUp(css`
+    ${spacing("pt", 0)};
+  `)};
 
-  ${mediumUp( css`
+  ${mediumUp(css`
     grid-row: 1;
     //border: thin solid red;
     gridColWidth(4, 28)
-    ${spacing( 'pt', 6 )};
-    ${spacing( 'pb', 0 )};
-  ` )};
+    ${spacing("pt", 6)};
+    ${spacing("pb", 0)};
+  `)};
 
-  ${largeUp( css`
-    ${gridColWidth( 10, 35 )};
-    ${spacing( 'pt', 6 )};
-  ` )};
+  ${largeUp(css`
+    ${gridColWidth(10, 35)};
+    ${spacing("pt", 6)};
+  `)};
 
-  & > :last-child { //motion-btn
-    ${spacing( 'mt', 4.5 )};
+  & > :last-child {
+    //motion-btn
+    ${spacing("mt", 4.5)};
   }
-`
+`;
 
-export const Tags = styled( Typography )`
+export const Tags = styled(Typography)`
   display: none;
   font-weight: 300;
   line-height: 1.6em;
@@ -50,13 +55,10 @@ export const Tags = styled( Typography )`
   color: #b3afaf;
   pointer-events: initial;
 
-
-  ${largeUp( css`
+  ${largeUp(css`
     display: initial;
-  ` )};
-
-`
-
+  `)};
+`;
 
 /*
 export const OverflowWrapper = styled( motion.div )`

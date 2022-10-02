@@ -1,4 +1,4 @@
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql } from "gatsby";
 
 const useBackgroundsAssets = () => {
   const data = useStaticQuery(graphql`
@@ -9,12 +9,14 @@ const useBackgroundsAssets = () => {
       starsSmall: file(relativePath: { eq: "backgrounds/stars-small.svg" }) {
         publicURL
       }
-      
+
       starsBigOld: file(relativePath: { eq: "backgrounds/stars-bigold.svg" }) {
         publicURL
       }
-      
-      starsSmallOld: file(relativePath: { eq: "backgrounds/stars-smallold.svg" }) {
+
+      starsSmallOld: file(
+        relativePath: { eq: "backgrounds/stars-smallold.svg" }
+      ) {
         publicURL
       }
     }

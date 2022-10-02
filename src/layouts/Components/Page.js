@@ -1,23 +1,22 @@
-import React, { useCallback, useContext, useRef, useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
-import { useMotionBreakPoint } from '@contexts/BreakPoint';
-import { LocomotiveScrollProvider } from '@contexts/LocoMotive';
-import { AppStateContext } from '@contexts/AppStateContext';
-import { MotionValueContext } from '@contexts/MotionStateWrapper';
-import BackgroundStars from '@components/BackgroundStars';
-import HeaderAppBar from '@components/HeaderAppBar';
-import ToolTip from '@components/Fixed/ToolTip';
-import ProgressCircle from '@components/ScrollProgressCircle';
-import ScreenOverlay from '@components/ScreenOverlay';
-import NavigationMenu from '@components/NavigationMenu';
-import { BottomGradient, Main, PageContainer } from './Styled';
-import useCursor from '@/layouts/Components/useCursor';
-import Footer from '@components/Footer';
+import React, { useCallback, useContext, useRef, useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import { useMotionBreakPoint } from "@contexts/BreakPoint";
+import { LocomotiveScrollProvider } from "@contexts/LocoMotive";
+import { AppStateContext } from "@contexts/AppStateContext";
+import { MotionValueContext } from "@contexts/MotionStateWrapper";
+import BackgroundStars from "@components/BackgroundStars";
+import HeaderAppBar from "@components/HeaderAppBar";
+import ToolTip from "@components/Fixed/ToolTip";
+import ProgressCircle from "@components/ScrollProgressCircle";
+import ScreenOverlay from "@components/ScreenOverlay";
+import NavigationMenu from "@components/NavigationMenu";
+import { BottomGradient, Main, PageContainer } from "./Styled";
+import useCursor from "@/layouts/Components/useCursor";
+import Footer from "@components/Footer";
 
 // import {} from '@re'
 
-function Page ({ children, path }) {
-
+function Page({ children, path }) {
   const {
     variantsUtil: { isTop },
     inView,
@@ -47,20 +46,21 @@ function Page ({ children, path }) {
             duration: 0,
             disableLerp: true,
           }),
-        [],
+        []
       )}
-
-      location={currentPath}>
-
+      location={currentPath}
+    >
       <PageContainer
-        id='page-container'
+        id="page-container"
         variants={{}}
-        initial='initial'
-        exit='exit'
+        initial="initial"
+        exit="exit"
         // animate={mainAnimationController}
-        animate={screenOverlayEvent.get() === 'closed'
-          ? 'animate'
-          : mainAnimationController}
+        animate={
+          screenOverlayEvent.get() === "closed"
+            ? "animate"
+            : mainAnimationController
+        }
         ref={container}
         data-scroll-container={true}
       >
@@ -70,12 +70,11 @@ function Page ({ children, path }) {
 
         <BackgroundStars />
 
-
         <NavigationMenu />
 
         <HeaderAppBar />
 
-        <Main id='main-container' data-scroll-section={true}>
+        <Main id="main-container" data-scroll-section={true}>
           <AnimatePresence
             exitBeforeEnter
             custom={{ path, isTop, inView, /* largeUp */ breakpoint }}
@@ -84,21 +83,18 @@ function Page ({ children, path }) {
             }}
           >
             {children}
-
           </AnimatePresence>
         </Main>
 
         <Footer exitComplete={exitComplete} />
 
-        <BottomGradient className='btm-gradient' />
+        <BottomGradient className="btm-gradient" />
 
         <ProgressCircle />
 
         <ToolTip />
-
       </PageContainer>
     </LocomotiveScrollProvider>
-
   );
 }
 

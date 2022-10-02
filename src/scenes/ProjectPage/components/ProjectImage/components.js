@@ -1,44 +1,50 @@
-import styled, { css } from 'styled-components'
-import { motion } from 'framer-motion'
+import styled, { css } from "styled-components";
+import { motion } from "framer-motion";
 import {
-  gridColWidth, gridMultiplayer,
-  spacing
+  gridColWidth,
+  gridMultiplayer,
+  spacing,
 } from "../../../../styles/mixins";
-import {largeUp, mediumUp, xLargeUp, xxLargeUp} from "../../../../styles/mixins/breakpoints";
+import {
+  largeUp,
+  mediumUp,
+  xLargeUp,
+  xxLargeUp,
+} from "../../../../styles/mixins/breakpoints";
 
 export const ProjectImg = styled(motion.div)`
   position: relative;
 
   ${gridColWidth(6, 60)}; //mobile-first
-  ${gridMultiplayer('padding', .5)};
-  ${gridMultiplayer('padding-left', 4)};
+  ${gridMultiplayer("padding", 0.5)};
+  ${gridMultiplayer("padding-left", 4)};
 
   & .effect {
     color: tomato;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -webkit-box-decoration-break: clone;
-    background-image: linear-gradient(137.81deg,
-    #e7a28f 3.52%,
-      //#f9d6ac 41.89%, 
-    #fbfefc 96.77%);
+    background-image: linear-gradient(
+      137.81deg,
+      #e7a28f 3.52%,
+      //#f9d6ac 41.89%,
+      #fbfefc 96.77%
+    );
   }
 
   ${mediumUp(css`
     grid-row: 1;
-    margin-right: calc(100vw / 64 * 6);;
+    margin-right: calc(100vw / 64 * 6);
     background: ${({ theme }) => theme.palette.secondary.main};
 
-    padding: calc(100vw / 64 * 0.5) calc(100vw / 64 * 0.5) calc(100vw / 64 * 0.5) calc(100vw / 64 * 4);
-
+    padding: calc(100vw / 64 * 0.5) calc(100vw / 64 * 0.5)
+      calc(100vw / 64 * 0.5) calc(100vw / 64 * 4);
 
     ${gridColWidth(25, 65)};
-
   `)};
 
   //border: thin solid rebeccapurple;
-`
-
+`;
 
 export const InnerWrapper = styled(motion.div)`
   //display: none;
@@ -50,22 +56,22 @@ export const InnerWrapper = styled(motion.div)`
   align-items: center;
   height: 100%;
 
-  ${mediumUp( css`
+  ${mediumUp(css`
     height: 30vmax;
-  ` )};
+  `)};
 
-  ${xxLargeUp( css`
+  ${xxLargeUp(css`
     //height: 500px;
     //height: 30vmax;
-  ` )};
+  `)};
 
-  &::after{
+  &::after {
     //content: '';
     position: absolute;
     display: block;
     inset: 0;
     background-color: #3719ca;
-    opacity: .6;
+    opacity: 0.6;
     mix-blend-mode: hard-light;
     //background-blend-mode: soft-light;
   }
@@ -99,10 +105,10 @@ export const InnerWrapper = styled(motion.div)`
 
       &:last-child {
         background-image: linear-gradient(
-            137.81deg,
-            #e7a28f 3.52%,
-            #f9d6ac 41.89%,
-            #fbfefc 96.77%
+          137.81deg,
+          #e7a28f 3.52%,
+          #f9d6ac 41.89%,
+          #fbfefc 96.77%
         );
       }
     }
@@ -112,7 +118,7 @@ export const InnerWrapper = styled(motion.div)`
     `)};
   }
 
-  a{
+  a {
     position: absolute;
     top: 0;
     left: 0;
@@ -120,7 +126,7 @@ export const InnerWrapper = styled(motion.div)`
     bottom: 0;
     z-index: 10;
   }
-`
+`;
 
 export const OverflowWrapper = styled(motion.div)`
   z-index: 999;
@@ -135,4 +141,4 @@ export const OverflowWrapper = styled(motion.div)`
   ${largeUp(css`
     display: block;
   `)};
-`
+`;

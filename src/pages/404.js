@@ -1,13 +1,13 @@
 /** @format */
 
-import * as React from 'react';
+import * as React from "react";
 
-import styled from 'styled-components';
-import { Container, Typography } from '@material-ui/core';
-import Seo from '../components/seo';
-import { spacing, text } from '../styles/mixins';
-import MotionBtn from '../components/MotionBtn';
-import useToolTip from '../hooks/useToolTip';
+import styled from "styled-components";
+import { Container, Typography } from "@material-ui/core";
+import Seo from "../components/seo";
+import { spacing, text } from "../styles/mixins";
+import MotionBtn from "../components/MotionBtn";
+import useToolTip from "../hooks/useToolTip";
 
 const NotFoundContainer = styled.div`
   //border: thin solid red;
@@ -41,7 +41,7 @@ const NotFoundTxtContainer = styled(Container)`
     font-weight: 900;
     letter-spacing: 2px;
     color: #a4b5c0;
-    font-family: 'Elianto-Regular', serif;
+    font-family: "Elianto-Regular", serif;
   }
 
   p {
@@ -51,12 +51,12 @@ const NotFoundTxtContainer = styled(Container)`
     letter-spacing: 1.1px;
     ${text(1)};
 
-    ${spacing('mb', 3)};
+    ${spacing("mb", 3)};
   }
 `;
 
 function NotFoundPage() {
-  useToolTip('[data-tooltip-text]');
+  useToolTip("[data-tooltip-text]");
   // useRefreshMouseListeners( '[data-pointer]' )
 
   return (
@@ -67,15 +67,21 @@ function NotFoundPage() {
           xmlns="http://www.w3.org/2000/svg"
           width="100%"
           height="100%"
-          viewBox="0 0 1262 766.449">
-          <g id="_404.js" data-name="404.js" transform="translate(-241.307 -1326.115)">
+          viewBox="0 0 1262 766.449"
+        >
+          <g
+            id="_404.js"
+            data-name="404.js"
+            transform="translate(-241.307 -1326.115)"
+          >
             <text
               id="_4"
               data-name="4"
               transform="translate(246.307 2048.115)"
               fill="#5d6c7b"
               fontSize="690"
-              fontFamily="Elianto-Regular, Elianto">
+              fontFamily="Elianto-Regular, Elianto"
+            >
               <tspan x="0" y="0">
                 4
               </tspan>
@@ -86,12 +92,17 @@ function NotFoundPage() {
               transform="translate(996.307 2049.115)"
               fill="#5d6c7b"
               fontSize="690"
-              fontFamily="Elianto-Regular, Elianto">
+              fontFamily="Elianto-Regular, Elianto"
+            >
               <tspan x="0" y="0">
                 4
               </tspan>
             </text>
-            <g id="alien_1_" data-name="alien (1)" transform="translate(654.315 1610.935)">
+            <g
+              id="alien_1_"
+              data-name="alien (1)"
+              transform="translate(654.315 1610.935)"
+            >
               <path
                 id="Path_278"
                 data-name="Path 278"
@@ -450,8 +461,8 @@ function NotFoundPage() {
           Nothing is here
         </Typography>
         <Typography>
-          Navigate your spaceship somewhere else. there is nothing here. double-check the address
-          you entered.
+          Navigate your spaceship somewhere else. there is nothing here.
+          double-check the address you entered.
         </Typography>
 
         <MotionBtn text="Go Back" />

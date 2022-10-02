@@ -27,7 +27,8 @@ export const ease = {
     const f = t - 1.0;
     return f * f * f + 1.0;
   },
-  cubicInOut: (t) => (t < 0.5 ? 4.0 * t * t * t : 0.5 * (2.0 * t - 2.0) ** 3.0 + 1.0),
+  cubicInOut: (t) =>
+    t < 0.5 ? 4.0 * t * t * t : 0.5 * (2.0 * t - 2.0) ** 3.0 + 1.0,
   quadraticOut: (t) => -t * (t - 2.0),
   quarticOut: (t) => (t - 1.0) ** 3.0 * (1.0 - t) + 1.0,
 };

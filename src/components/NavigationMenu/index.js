@@ -3,50 +3,45 @@ import { AnimatePresence } from "framer-motion";
 import NavMenu from "../NavMenu";
 import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 
-export default function NavigationMenu(){
-  const [menuIsOpen, setMenuIsOpen] = useState( false );
+export default function NavigationMenu() {
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
 
-  const { menuIsOpen: moMenuState, screenOverlayProxy } = useContext(
-    MotionValueContext
-  );
+  const { menuIsOpen: moMenuState, screenOverlayProxy } =
+    useContext(MotionValueContext);
 
-  const toggleMenu = ( v ) => {
+  const toggleMenu = (v) => {
+    if (!v)
+      return setTimeout(() => {
+        screenOverlayProxy.set({ state: v });
+      }, 270);
 
-    if ( !v )
-      return setTimeout( () => {
-        screenOverlayProxy.set( { state: v } );
-      }, 270 );
-
-    return screenOverlayProxy.set( { state: v } );
-
+    return screenOverlayProxy.set({ state: v });
   };
 
-  useLayoutEffect( () => {
-    moMenuState.onChange( v => {
-      toggleMenu( v );
-      setMenuIsOpen( v );
-    } );
-  }, [] );
+  useLayoutEffect(() => {
+    moMenuState.onChange((v) => {
+      toggleMenu(v);
+      setMenuIsOpen(v);
+    });
+  }, []);
 
-  useEffect( () => {
-    if ( menuIsOpen ) {
-      setTimeout( () => {
-        document.body.classList.add( "menu_open" );
-      }, 1000 );
-    } else if ( !menuIsOpen ) {
-      setTimeout( () => {
-        document.body.classList.remove( "menu_open" );
-      }, 1000 );
+  useEffect(() => {
+    if (menuIsOpen) {
+      setTimeout(() => {
+        document.body.classList.add("menu_open");
+      }, 1000);
+    } else if (!menuIsOpen) {
+      setTimeout(() => {
+        document.body.classList.remove("menu_open");
+      }, 1000);
     }
-  }, [menuIsOpen] );
+  }, [menuIsOpen]);
 
-  const onCloseMenu = () => moMenuState.set( !moMenuState.get() );
+  const onCloseMenu = () => moMenuState.set(!moMenuState.get());
 
   return (
     <AnimatePresence>
-      {menuIsOpen && (
-        <NavMenu closeMenu={onCloseMenu} />
-      )}
+      {menuIsOpen && <NavMenu closeMenu={onCloseMenu} />}
     </AnimatePresence>
   );
 }

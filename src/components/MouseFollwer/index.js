@@ -1,6 +1,6 @@
-import gsap from 'gsap';
-import { distance } from '@helpers/utils';
-import EventUtil from '@helpers/EventUtil';
+import gsap from "gsap";
+import { distance } from "@helpers/utils";
+import EventUtil from "@helpers/EventUtil";
 
 export default class MouseFollower {
   /**
@@ -45,56 +45,63 @@ export default class MouseFollower {
    *
    * @param {MouseFollowerOptions} [options] Cursor options.
    */
-  constructor (options = {}) {
+  constructor(options = {}) {
     /** @type {MouseFollowerOptions} **/
-    this.options = Object.assign({}, {
-      el: null,
-      container: document.body,
-      className: 'mf-cursor',
-      innerClassName: 'mf-cursor-inner',
-      textClassName: 'mf-cursor-text',
-      mediaClassName: 'mf-cursor-media',
-      mediaBoxClassName: 'mf-cursor-media-box',
-      iconSvgClassName: 'mf-svgsprite',
-      iconSvgNamePrefix: '-',
-      iconSvgSrc: '',
-      dataAttr: 'cursor',
-      hiddenState: '-hidden',
-      textState: '-text',
-      iconState: '-icon',
-      activeState: '-active',
-      mediaState: '-media',
-      stateDetection: {
-        '-pointer': 'a,button',
+    this.options = Object.assign(
+      {},
+      {
+        el: null,
+        container: document.body,
+        className: "mf-cursor",
+        innerClassName: "mf-cursor-inner",
+        textClassName: "mf-cursor-text",
+        mediaClassName: "mf-cursor-media",
+        mediaBoxClassName: "mf-cursor-media-box",
+        iconSvgClassName: "mf-svgsprite",
+        iconSvgNamePrefix: "-",
+        iconSvgSrc: "",
+        dataAttr: "cursor",
+        hiddenState: "-hidden",
+        textState: "-text",
+        iconState: "-icon",
+        activeState: "-active",
+        mediaState: "-media",
+        stateDetection: {
+          "-pointer": "a,button",
+        },
+        visible: true,
+        visibleOnState: false,
+        speed: 0.55,
+        ease: "expo.out",
+        overwrite: true,
+        skewing: 0,
+        skewingText: 2,
+        skewingIcon: 2,
+        skewingMedia: 2,
+        skewingDelta: 0.001,
+        skewingDeltaMax: 0.15,
+        stickDelta: 0.1,
+        showTimeout: 0,
+        hideOnLeave: true,
+        hideTimeout: 300,
+        hideMediaTimeout: 300,
+        initialPos: [-window.innerWidth, -window.innerHeight],
       },
-      visible: true,
-      visibleOnState: false,
-      speed: 0.55,
-      ease: 'expo.out',
-      overwrite: true,
-      skewing: 0,
-      skewingText: 2,
-      skewingIcon: 2,
-      skewingMedia: 2,
-      skewingDelta: 0.001,
-      skewingDeltaMax: 0.15,
-      stickDelta: 0.1,
-      showTimeout: 0,
-      hideOnLeave: true,
-      hideTimeout: 300,
-      hideMediaTimeout: 300,
-      initialPos: [-window.innerWidth, -window.innerHeight],
-    }, options);
+      options
+    );
 
-    if (this.options.visible && options.stateDetection ==
-      null) this.options.stateDetection['-hidden'] = 'iframe';
+    if (this.options.visible && options.stateDetection == null)
+      this.options.stateDetection["-hidden"] = "iframe";
 
     // gsap = MouseFollower.gsap || window.gsap;
-    this.el = typeof (this.options.el) === 'string' ? document.querySelector(
-      this.options.el) : this.options.el;
-    this.container = typeof (this.options.container) === 'string'
-      ? document.querySelector(this.options.container)
-      : this.options.container;
+    this.el =
+      typeof this.options.el === "string"
+        ? document.querySelector(this.options.el)
+        : this.options.el;
+    this.container =
+      typeof this.options.container === "string"
+        ? document.querySelector(this.options.container)
+        : this.options.container;
     this.skewing = this.options.skewing;
     this.pos = { x: this.options.initialPos[0], y: this.options.initialPos[1] };
     this.vel = { x: 0, y: 0 };
@@ -111,52 +118,48 @@ export default class MouseFollower {
    *
    * @param {gsap} gsap GSAP library.
    */
-  static registerGSAP (gsap) {
+  static registerGSAP(gsap) {
     MouseFollower.gsap = gsap;
   }
 
   /**
    * Init cursor.
    */
-  init () {
+  init() {
     if (!this.el) this.create();
     this.createSetter();
     this.bind();
     this.render(true);
     this.ticker = this.render.bind(this, false);
     gsap.ticker.add(this.ticker);
-
-    this.startMagnet();
   }
 
-  startMagnet () {
-    const mgEle = document.querySelector('#nav-btn');
+  magnetize(mgEle) {
+    // const mgEle = document.querySelector('#nav-btn');
     const rect = mgEle.getBoundingClientRect();
     //console.log('magnetic element: ---------', mgEle);
 
     let limit = 0;
 
-    function cb () {
-
+    function cb() {
       const dis = distance(
         this.mouse.mousePos.x,
         this.mouse.mousePos.y,
         rect.left + rect.width / 2,
-        rect.top + rect.height / 2,
+        rect.top + rect.height / 2
       );
 
       if (limit && dis > limit) {
-
         // console.log('dis: ', dis, limit);
 
         this.removeStick(mgEle);
-        this.removeState('-opaque');
+        this.removeState("-opaque");
 
         gsap.to(mgEle, {
           x: 0,
           y: 0,
           duration: 1,
-          ease: 'expo.out',
+          ease: "expo.out",
         });
 
         gsap.ticker.remove(bindedCb);
@@ -164,46 +167,42 @@ export default class MouseFollower {
       } else {
         limit = rect.width * 1.8;
         this.setStick(mgEle);
-        this.addState('-opaque');
+        this.addState("-opaque");
       }
 
-
-
       gsap.to(mgEle, {
-        x: (this.mouse.mousePos.x - (rect.left + (rect.width / 2))) * .3,
-        y: (this.mouse.mousePos.y - (rect.top + (rect.height / 2))) * .3,
+        x: (this.mouse.mousePos.x - (rect.left + rect.width / 2)) * 0.3,
+        y: (this.mouse.mousePos.y - (rect.top + rect.height / 2)) * 0.3,
         duration: 0.55,
-        ease: 'expo.out',
+        ease: "expo.out",
       });
-
     }
 
     const bindedCb = cb.bind(this);
 
-    mgEle.addEventListener('mouseover', () => {
+    mgEle.addEventListener("mouseover", () => {
       gsap.ticker.add(bindedCb);
     });
-
   }
 
   /**
    * Create cursor DOM element and append to container.
    */
-  create () {
-    this.el = document.createElement('div');
+  create() {
+    this.el = document.createElement("div");
     this.el.className = this.options.className;
     this.el.classList.add(this.options.hiddenState);
 
-    this.inner = document.createElement('div');
+    this.inner = document.createElement("div");
     this.inner.className = this.options.innerClassName;
 
-    this.text = document.createElement('div');
+    this.text = document.createElement("div");
     this.text.className = this.options.textClassName;
 
-    this.media = document.createElement('div');
+    this.media = document.createElement("div");
     this.media.className = this.options.mediaClassName;
 
-    this.mediaBox = document.createElement('div');
+    this.mediaBox = document.createElement("div");
     this.mediaBox.className = this.options.mediaBoxClassName;
 
     this.media.appendChild(this.mediaBox);
@@ -216,16 +215,16 @@ export default class MouseFollower {
   /**
    * Create GSAP setters.
    */
-  createSetter () {
+  createSetter() {
     this.setter = {
-      x: gsap.quickSetter(this.el, 'x', 'px'),
-      y: gsap.quickSetter(this.el, 'y', 'px'),
-      rotation: gsap.quickSetter(this.el, 'rotation', 'deg'),
-      scaleX: gsap.quickSetter(this.el, 'scaleX'),
-      scaleY: gsap.quickSetter(this.el, 'scaleY'),
-      wc: gsap.quickSetter(this.el, 'willChange'),
+      x: gsap.quickSetter(this.el, "x", "px"),
+      y: gsap.quickSetter(this.el, "y", "px"),
+      rotation: gsap.quickSetter(this.el, "rotation", "deg"),
+      scaleX: gsap.quickSetter(this.el, "scaleX"),
+      scaleY: gsap.quickSetter(this.el, "scaleY"),
+      wc: gsap.quickSetter(this.el, "willChange"),
       inner: {
-        rotation: gsap.quickSetter(this.inner, 'rotation', 'deg'),
+        rotation: gsap.quickSetter(this.inner, "rotation", "deg"),
       },
     };
   }
@@ -233,36 +232,41 @@ export default class MouseFollower {
   /**
    * Create and attach events.
    */
-  bind () {
+  bind() {
     this.event.mouseleave = () => this.hide();
     this.event.mouseenter = () => this.show();
     this.event.mousedown = () => this.addState(this.options.activeState);
     this.event.mouseup = () => this.removeState(this.options.activeState);
     this.event.mousemoveOnce = () => this.show();
     this.event.mousemove = (e) => {
-
       gsap.to(this.pos, {
-        x: this.stick ? this.stick.x -
-          ((this.stick.x - e.clientX) * this.options.stickDelta) : e.clientX,
-        y: this.stick ? this.stick.y -
-          ((this.stick.y - e.clientY) * this.options.stickDelta) : e.clientY,
+        x: this.stick
+          ? this.stick.x - (this.stick.x - e.clientX) * this.options.stickDelta
+          : e.clientX,
+        y: this.stick
+          ? this.stick.y - (this.stick.y - e.clientY) * this.options.stickDelta
+          : e.clientY,
         overwrite: this.options.overwrite,
         ease: this.options.ease,
         duration: this.visible ? this.options.speed : 0,
-        onUpdate: () => this.vel = {
-          x: e.clientX - this.pos.x, y: e.clientY - this.pos.y,
-        },
+        onUpdate: () =>
+          (this.vel = {
+            x: e.clientX - this.pos.x,
+            y: e.clientY - this.pos.y,
+          }),
       });
     };
     this.event.mouseover = (e) => {
-
-      for (let target = e.target; target && target !==
-      this.container; target = target.parentNode) {
+      for (
+        let target = e.target;
+        target && target !== this.container;
+        target = target.parentNode
+      ) {
         if (e.relatedTarget && target.contains(e.relatedTarget)) break;
 
         for (let state in this.options.stateDetection) {
-          if (target.matches(this.options.stateDetection[state])) this.addState(
-            state);
+          if (target.matches(this.options.stateDetection[state]))
+            this.addState(state);
         }
 
         if (this.options.dataAttr) {
@@ -272,20 +276,24 @@ export default class MouseFollower {
           if (params.icon) this.setIcon(params.icon);
           if (params.img) this.setImg(params.img);
           if (params.video) this.setVideo(params.video);
-          if (typeof (params.show) !== 'undefined') this.show();
-          if (typeof (params.stick) !== 'undefined') this.setStick(
-            params.stick || target);
+          if (typeof params.show !== "undefined") this.show();
+          if (typeof params.stick !== "undefined")
+            this.setStick(params.stick || target);
         }
       }
     };
+
     this.event.mouseout = (e) => {
-      for (let target = e.target; target && target !==
-      this.container; target = target.parentNode) {
+      for (
+        let target = e.target;
+        target && target !== this.container;
+        target = target.parentNode
+      ) {
         if (e.relatedTarget && target.contains(e.relatedTarget)) break;
 
         for (let state in this.options.stateDetection) {
-          if (target.matches(
-            this.options.stateDetection[state])) this.removeState(state);
+          if (target.matches(this.options.stateDetection[state]))
+            this.removeState(state);
         }
 
         if (this.options.dataAttr) {
@@ -295,35 +303,40 @@ export default class MouseFollower {
           if (params.icon) this.removeIcon();
           if (params.img) this.removeImg();
           if (params.video) this.removeVideo();
-          if (typeof (params.show) !== 'undefined') this.hide();
-          if (typeof (params.stick) !== 'undefined') this.removeStick();
+          if (typeof params.show !== "undefined") this.hide();
+          if (typeof params.stick !== "undefined") this.removeStick();
         }
       }
     };
 
     if (this.options.hideOnLeave) {
-      this.container.addEventListener('mouseleave', this.event.mouseleave,
-        { passive: true });
-    }
-    if (this.options.visible) {
-      this.container.addEventListener('mouseenter', this.event.mouseenter,
-        { passive: true });
-    }
-    if (this.options.activeState) {
-      this.container.addEventListener('mousedown', this.event.mousedown,
-        { passive: true });
-      this.container.addEventListener('mouseup', this.event.mouseup,
-        { passive: true });
-    }
-    this.container.addEventListener('pointermove', this.event.mousemove,
-      { passive: true });
-
-    if (this.options.visible) {
-      this.container.addEventListener('mousemove', this.event.mousemoveOnce, {
-        passive: true, once: true,
+      this.container.addEventListener("mouseleave", this.event.mouseleave, {
+        passive: true,
       });
     }
+    if (this.options.visible) {
+      this.container.addEventListener("mouseenter", this.event.mouseenter, {
+        passive: true,
+      });
+    }
+    if (this.options.activeState) {
+      this.container.addEventListener("mousedown", this.event.mousedown, {
+        passive: true,
+      });
+      this.container.addEventListener("mouseup", this.event.mouseup, {
+        passive: true,
+      });
+    }
+    this.container.addEventListener("pointermove", this.event.mousemove, {
+      passive: true,
+    });
 
+    if (this.options.visible) {
+      this.container.addEventListener("mousemove", this.event.mousemoveOnce, {
+        passive: true,
+        once: true,
+      });
+    }
 
     /*  if (this.options.stateDetection || this.options.dataAttr) {
         this.container.addEventListener('mouseover', this.event.mouseover,
@@ -331,24 +344,27 @@ export default class MouseFollower {
         this.container.addEventListener('mouseout', this.event.mouseout,
           { passive: true });
       }*/
-    this.refresh();
-
+    this.attach();
   }
 
-  refresh(){
-    const pointerElement = document.querySelectorAll('[data-cursor], button, a');
-    pointerElement.forEach(el => {
-      el.removeEventListener('mouseenter', this.event.mouseover);
-      el.removeEventListener('mouseleave', this.event.mouseout);
-
-      const pointerType = el.dataset.pointer;
-      if (pointerType === 'magnet') {
+  // attach events
+  attach() {
+    const pointerElement = document.querySelectorAll(
+      "[data-cursor], button, a"
+    );
+    pointerElement.forEach((el) => {
+      const cursorType = el.dataset.cursorType;
+      if (cursorType === "magnet") {
         //magnetize
+        this.magnetize(el);
+        return;
       }
 
-      el.addEventListener('mouseenter', this.event.mouseover);
-      el.addEventListener('mouseleave', this.event.mouseout);
+      el.removeEventListener("mouseenter", this.event.mouseover);
+      el.removeEventListener("mouseleave", this.event.mouseout);
 
+      el.addEventListener("mouseenter", this.event.mouseover);
+      el.addEventListener("mouseleave", this.event.mouseout);
     });
   }
 
@@ -357,23 +373,27 @@ export default class MouseFollower {
    *
    * @param {boolean} [force=false] Force render.
    */
-  render (force) {
+  render(force) {
     if (force !== true && (this.vel.y === 0 || this.vel.x === 0)) {
-      this.setter.wc('auto');
+      this.setter.wc("auto");
       return;
     }
 
-    this.trigger('render');
-    this.setter.wc('transform');
+    this.trigger("render");
+    this.setter.wc("transform");
     this.setter.x(this.pos.x);
     this.setter.y(this.pos.y);
 
     if (this.skewing) {
       const distance = Math.sqrt(
-        Math.pow(this.vel.x, 2) + Math.pow(this.vel.y, 2));
-      const scale = Math.min(distance * this.options.skewingDelta,
-        this.options.skewingDeltaMax) * this.skewing;
-      const angle = Math.atan2(this.vel.y, this.vel.x) * 180 / Math.PI;
+        Math.pow(this.vel.x, 2) + Math.pow(this.vel.y, 2)
+      );
+      const scale =
+        Math.min(
+          distance * this.options.skewingDelta,
+          this.options.skewingDeltaMax
+        ) * this.skewing;
+      const angle = (Math.atan2(this.vel.y, this.vel.x) * 180) / Math.PI;
 
       this.setter.rotation(angle);
       this.setter.scaleX(1 + scale);
@@ -385,8 +405,8 @@ export default class MouseFollower {
   /**
    * Show cursor.
    */
-  show () {
-    this.trigger('show');
+  show() {
+    this.trigger("show");
     clearInterval(this.visibleInt);
     this.visibleInt = setTimeout(() => {
       this.el.classList.remove(this.options.hiddenState);
@@ -398,12 +418,14 @@ export default class MouseFollower {
   /**
    * Hide cursor.
    */
-  hide () {
-    this.trigger('hide');
+  hide() {
+    this.trigger("hide");
     clearInterval(this.visibleInt);
     this.el.classList.add(this.options.hiddenState);
-    this.visibleInt = setTimeout(() => this.visible = false,
-      this.options.hideTimeout);
+    this.visibleInt = setTimeout(
+      () => (this.visible = false),
+      this.options.hideTimeout
+    );
   }
 
   /**
@@ -411,8 +433,8 @@ export default class MouseFollower {
    *
    * @param {boolean} [force] Force state.
    */
-  toggle (force) {
-    if (force === true || force !== false && !this.visible) {
+  toggle(force) {
+    if (force === true || (force !== false && !this.visible)) {
       this.show();
     } else {
       this.hide();
@@ -424,10 +446,10 @@ export default class MouseFollower {
    *
    * @param {string} state State name.
    */
-  addState (state) {
-    this.trigger('addState', state);
+  addState(state) {
+    this.trigger("addState", state);
     if (state === this.options.hiddenState) return this.hide();
-    this.el.classList.add(...state.split(' '));
+    this.el.classList.add(...state.split(" "));
     if (this.options.visibleOnState) this.show();
   }
 
@@ -436,12 +458,15 @@ export default class MouseFollower {
    *
    * @param {string} state State name.
    */
-  removeState (state) {
-    this.trigger('removeState', state);
+  removeState(state) {
+    this.trigger("removeState", state);
     if (state === this.options.hiddenState) return this.show();
-    this.el.classList.remove(...state.split(' '));
-    if (this.options.visibleOnState && this.el.className ===
-      this.options.className) this.hide();
+    this.el.classList.remove(...state.split(" "));
+    if (
+      this.options.visibleOnState &&
+      this.el.className === this.options.className
+    )
+      this.hide();
   }
 
   /**
@@ -450,9 +475,11 @@ export default class MouseFollower {
    * @param {string} state State name.
    * @param {boolean} [force] Force state.
    */
-  toggleState (state, force) {
-    if (force === true || force !== false &&
-      !this.el.classList.contains(state)) {
+  toggleState(state, force) {
+    if (
+      force === true ||
+      (force !== false && !this.el.classList.contains(state))
+    ) {
       this.addState(state);
     } else {
       this.removeState(state);
@@ -464,14 +491,14 @@ export default class MouseFollower {
    *
    * @param {number} value Skewing factor.
    */
-  setSkewing (value) {
+  setSkewing(value) {
     gsap.to(this, { skewing: value });
   }
 
   /**
    * Reverts skewing factor to default.
    */
-  removeSkewing () {
+  removeSkewing() {
     gsap.to(this, { skewing: this.options.skewing });
   }
 
@@ -480,20 +507,20 @@ export default class MouseFollower {
    *
    * @param {string|HTMLElement} element Element or selector.
    */
-  setStick (element) {
-    const el = typeof (element) === 'string'
-      ? document.querySelector(element)
-      : element;
+  setStick(element) {
+    const el =
+      typeof element === "string" ? document.querySelector(element) : element;
     const rect = el.getBoundingClientRect();
     this.stick = {
-      y: rect.top + (rect.height / 2), x: rect.left + (rect.width / 2),
+      y: rect.top + rect.height / 2,
+      x: rect.left + rect.width / 2,
     };
   }
 
   /**
    * Unstick cursor from the element.
    */
-  removeStick () {
+  removeStick() {
     this.stick = false;
   }
 
@@ -502,7 +529,7 @@ export default class MouseFollower {
    *
    * @param {string} text Text.
    */
-  setText (text) {
+  setText(text) {
     this.text.innerHTML = text;
     this.addState(this.options.textState);
     this.setSkewing(this.options.skewingText);
@@ -511,7 +538,7 @@ export default class MouseFollower {
   /**
    * Reverts cursor from text mode.
    */
-  removeText () {
+  removeText() {
     this.removeState(this.options.textState);
     this.removeSkewing();
   }
@@ -522,8 +549,9 @@ export default class MouseFollower {
    * @param {string} name Icon identifier.
    * @param {string} [style=""] Additional SVG styles.
    */
-  setIcon (name, style = '') {
-    this.text.innerHTML = `<svg class='${this.options.iconSvgClassName} ${this.options.iconSvgNamePrefix}${name}'` +
+  setIcon(name, style = "") {
+    this.text.innerHTML =
+      `<svg class='${this.options.iconSvgClassName} ${this.options.iconSvgNamePrefix}${name}'` +
       ` style='${style}'><use xlink:href='${this.options.iconSvgSrc}#${name}'></use></svg>`;
     this.addState(this.options.iconState);
     this.setSkewing(this.options.skewingIcon);
@@ -532,7 +560,7 @@ export default class MouseFollower {
   /**
    * Reverts cursor from icon mode.
    */
-  removeIcon () {
+  removeIcon() {
     this.removeState(this.options.iconState);
     this.removeSkewing();
   }
@@ -542,25 +570,29 @@ export default class MouseFollower {
    *
    * @param {HTMLElement} element Element.
    */
-  setMedia (element) {
+  setMedia(element) {
     clearTimeout(this.mediaInt);
     if (element) {
-      this.mediaBox.innerHTML = '';
+      this.mediaBox.innerHTML = "";
       this.mediaBox.appendChild(element);
     }
-    this.mediaInt = setTimeout(() => this.addState(this.options.mediaState),
-      20);
+    this.mediaInt = setTimeout(
+      () => this.addState(this.options.mediaState),
+      20
+    );
     this.setSkewing(this.options.skewingMedia);
   }
 
   /**
    * Revert cursor from media mode.
    */
-  removeMedia () {
+  removeMedia() {
     clearTimeout(this.mediaInt);
     this.removeState(this.options.mediaState);
-    this.mediaInt = setTimeout(() => this.mediaBox.innerHTML = '',
-      this.options.hideMediaTimeout);
+    this.mediaInt = setTimeout(
+      () => (this.mediaBox.innerHTML = ""),
+      this.options.hideMediaTimeout
+    );
     this.removeSkewing();
   }
 
@@ -569,7 +601,7 @@ export default class MouseFollower {
    *
    * @param {string} url Image url.
    */
-  setImg (url) {
+  setImg(url) {
     if (!this.mediaImg) this.mediaImg = new Image();
     if (this.mediaImg.src !== url) this.mediaImg.src = url;
     this.setMedia(this.mediaImg);
@@ -578,7 +610,7 @@ export default class MouseFollower {
   /**
    * Reverts cursor from image mode.
    */
-  removeImg () {
+  removeImg() {
     this.removeMedia();
   }
 
@@ -587,9 +619,9 @@ export default class MouseFollower {
    *
    * @param {string} url Video url.
    */
-  setVideo (url) {
+  setVideo(url) {
     if (!this.mediaVideo) {
-      this.mediaVideo = document.createElement('video');
+      this.mediaVideo = document.createElement("video");
       this.mediaVideo.muted = true;
       this.mediaVideo.loop = true;
       this.mediaVideo.autoplay = true;
@@ -605,9 +637,9 @@ export default class MouseFollower {
   /**
    * Reverts cursor from video mode.
    */
-  removeVideo () {
-    if (this.mediaVideo && this.mediaVideo.readyState >
-      2) this.mediaVideo.pause();
+  removeVideo() {
+    if (this.mediaVideo && this.mediaVideo.readyState > 2)
+      this.mediaVideo.pause();
     this.removeMedia();
   }
 
@@ -617,7 +649,7 @@ export default class MouseFollower {
    * @param {string} event Event name.
    * @param {function} callback Callback.
    */
-  on (event, callback) {
+  on(event, callback) {
     if (!(this.events[event] instanceof Array)) this.off(event);
     this.events[event].push(callback);
   }
@@ -628,7 +660,7 @@ export default class MouseFollower {
    * @param {string} event Event name.
    * @param {function} [callback] Callback.
    */
-  off (event, callback) {
+  off(event, callback) {
     if (callback) {
       this.events[event] = this.events[event].filter((f) => f !== callback);
     } else {
@@ -642,7 +674,7 @@ export default class MouseFollower {
    * @param {string} event Event name.
    * @param params Extra parameters.
    */
-  trigger (event, ...params) {
+  trigger(event, ...params) {
     if (!this.events[event]) return;
     this.events[event].forEach((f) => f.call(this, this, ...params));
   }
@@ -653,31 +685,31 @@ export default class MouseFollower {
    * @param {HTMLElement} element Element.
    * @return {Object} Options.
    */
-  getFromDataset (element) {
+  getFromDataset(element) {
     const dataset = element.dataset;
     return {
       state: dataset[this.options.dataAttr],
-      show: dataset[this.options.dataAttr + 'Show'],
-      text: dataset[this.options.dataAttr + 'Text'],
-      icon: dataset[this.options.dataAttr + 'Icon'],
-      img: dataset[this.options.dataAttr + 'Img'],
-      video: dataset[this.options.dataAttr + 'Video'],
-      stick: dataset[this.options.dataAttr + 'Stick'],
+      show: dataset[this.options.dataAttr + "Show"],
+      text: dataset[this.options.dataAttr + "Text"],
+      icon: dataset[this.options.dataAttr + "Icon"],
+      img: dataset[this.options.dataAttr + "Img"],
+      video: dataset[this.options.dataAttr + "Video"],
+      stick: dataset[this.options.dataAttr + "Stick"],
     };
   }
 
   /**
    * Destroy cursor instance.
    */
-  destroy () {
-    this.trigger('destroy');
+  destroy() {
+    this.trigger("destroy");
     gsap.ticker.remove(this.ticker);
-    this.container.removeEventListener('mouseleave', this.event.mouseleave);
-    this.container.removeEventListener('mouseenter', this.event.mouseenter);
-    this.container.removeEventListener('mousedown', this.event.mousedown);
-    this.container.removeEventListener('mouseup', this.event.mouseup);
-    this.container.removeEventListener('mousemove', this.event.mousemove);
-    this.container.removeEventListener('mousemove', this.event.mousemoveOnce);
+    this.container.removeEventListener("mouseleave", this.event.mouseleave);
+    this.container.removeEventListener("mouseenter", this.event.mouseenter);
+    this.container.removeEventListener("mousedown", this.event.mousedown);
+    this.container.removeEventListener("mouseup", this.event.mouseup);
+    this.container.removeEventListener("mousemove", this.event.mousemove);
+    this.container.removeEventListener("mousemove", this.event.mousemoveOnce);
     // this.container.removeEventListener('mouseover', this.event.mouseover);
     // this.container.removeEventListener('mouseout', this.event.mouseout);
     if (this.el) {

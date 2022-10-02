@@ -6,7 +6,7 @@ import React, {
   useEffect,
   useLayoutEffect,
   useRef,
-  useState
+  useState,
 } from "react";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -14,18 +14,24 @@ import { LocomotiveScrollOptions, Scroll } from "locomotive-scroll";
 import useResizeObserver from "use-resize-observer";
 import { useDebounce } from "use-debounce";
 import "locomotive-scroll/dist/locomotive-scroll.css";
-import { MotionValue, useMotionValue, useSpring, useTransform, useVelocity } from "framer-motion";
+import {
+  MotionValue,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  useVelocity,
+} from "framer-motion";
 
 import gsap from "gsap";
 
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { useLocation } from '@reach/router';
+import { useLocation } from "@reach/router";
 
 gsap.registerPlugin(ScrollTrigger);
 
-
-type WithChildren<T = Record<string, unknown>> = T & { children?: React.ReactNode }
-
+type WithChildren<T = Record<string, unknown>> = T & {
+  children?: React.ReactNode;
+};
 
 export interface LocomotiveScrollContextValue {
   locoInstance: Scroll | null;
@@ -40,7 +46,7 @@ export interface LocomotiveScrollContextValue {
 const LocomotiveScrollContext = createContext<LocomotiveScrollContextValue>({
   scroll: null,
   isReady: false,
-  scale: new MotionValue<number>(0)
+  scale: new MotionValue<number>(0),
 } as any);
 
 export interface LocomotiveScrollProviderProps {
@@ -52,9 +58,7 @@ export interface LocomotiveScrollProviderProps {
   onLocationChange?: (scroll: Scroll) => void;
 }
 
-
 // const onScrollCallbacks = new Map<string, Function>();
-
 
 export function LocomotiveScrollProvider({
   children,
@@ -63,9 +67,11 @@ export function LocomotiveScrollProvider({
   watch,
   onUpdate,
   location,
-  onLocationChange
+  onLocationChange,
 }: WithChildren<LocomotiveScrollProviderProps>) {
-  const { height: containerHeight } = useResizeObserver<HTMLDivElement>({ ref: containerRef });
+  const { height: containerHeight } = useResizeObserver<HTMLDivElement>({
+    ref: containerRef,
+  });
   const [isReady, setIsReady] = useState(false);
   const [r, setR] = useState(false);
   const LocomotiveScrollRef = useRef<Scroll | null>(null);
@@ -79,16 +85,16 @@ export function LocomotiveScrollProvider({
   const xLimit = useMotionValue(0);
   const scrollDirection = useMotionValue("");
 
-  const yProgress = useTransform(y, [0, isReady ? yLimit.get() : 0], [0, 1], { clamp: true });
+  const yProgress = useTransform(y, [0, isReady ? yLimit.get() : 0], [0, 1], {
+    clamp: true,
+  });
 
   const ySmooth = useSpring(y, { damping: 50, stiffness: 400 });
   const velocity = useVelocity(ySmooth);
 
   const scale = useTransform(velocity, [-3000, 0, 3000], [1.01, 1, 1.01]);
 
-
   useLayoutEffect(() => {
-
     if (isReady) {
       const scrollEl = document.querySelector("[data-scroll-container]");
 
@@ -100,13 +106,12 @@ export function LocomotiveScrollProvider({
             top: 0,
             left: 0,
             width: window.innerWidth,
-            height: window.innerHeight
+            height: window.innerHeight,
           };
         },
 
         // pinType: "transform",
         scrollTop(value) {
-
           if (!LocomotiveScrollRef.current) return;
 
           const top = arguments.length
@@ -115,7 +120,7 @@ export function LocomotiveScrollProvider({
           // console.log("scrollTop", top, value);
 
           return top;
-        }
+        },
         // fixedMarkers: true
       });
 
@@ -136,7 +141,6 @@ export function LocomotiveScrollProvider({
       ScrollTrigger.refresh();
       ScrollTrigger.update();
     }
-
   }, [isReady]);
 
   // initialization
@@ -144,11 +148,13 @@ export function LocomotiveScrollProvider({
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     import("locomotive-scroll").then((LocomotiveScroll) => {
-      const dataScrollContainer = document.querySelector("[data-scroll-container]");
+      const dataScrollContainer = document.querySelector(
+        "[data-scroll-container]"
+      );
 
       if (LocomotiveScrollRef.current?.el) {
         return;
-         // console.log("IT IS NOT NULL", LocomotiveScrollRef.current.name);
+        // console.log("IT IS NOT NULL", LocomotiveScrollRef.current.name);
       }
 
       LocomotiveScrollRef.current = new LocomotiveScroll.default({
@@ -157,17 +163,16 @@ export function LocomotiveScrollProvider({
         smartphone: {
           breakpoint: 0,
           smooth: true,
-          getDirection: true
+          getDirection: true,
         },
         tablet: {
           breakpoint: 0,
           smooth: false,
-          getDirection: true
+          getDirection: true,
         },
 
-        ...options
+        ...options,
       });
-
 
       setTimeout(() => {
         setIsReady(true);
@@ -241,12 +246,11 @@ export function LocomotiveScrollProvider({
   }, [isReady]);
 
   useLayoutEffect(() => {
-    LocomotiveScrollRef.current?.update()
-  }, [pathname])
+    LocomotiveScrollRef.current?.update();
+  }, [pathname]);
 
   return (
     <LocomotiveScrollContext.Provider
-
       value={{
         locoInstance: LocomotiveScrollRef.current,
         isReady,
@@ -254,9 +258,9 @@ export function LocomotiveScrollProvider({
         scrollDirection,
         yProgress,
         yProgressSmooth: ySmooth,
-        onScrollCallbacks
-      }}>
-
+        onScrollCallbacks,
+      }}
+    >
       {children}
     </LocomotiveScrollContext.Provider>
   );

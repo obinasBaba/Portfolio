@@ -21,14 +21,14 @@ const FooterContainer = styled.div`
 
   //border: thick solid crimson;
 
-  ${spacing( "mv", 5 )};
-  ${spacing( "gap", 5 )};
+  ${spacing("mv", 5)};
+  ${spacing("gap", 5)};
 
-  ${largeUp( css`
+  ${largeUp(css`
     flex-direction: row;
-    ${spacing( "mb", 3 )};
-    ${spacing( "mt", 3 )};
-  ` )};
+    ${spacing("mb", 3)};
+    ${spacing("mt", 3)};
+  `)};
 
   @media screen and (min-width: 768px) {
     padding-right: 4.28rem;
@@ -49,11 +49,9 @@ const Social = styled.ul`
 
   li {
     &:not(:first-child) {
-      ${spacing( "ml",
-              3 )};
+      ${spacing("ml", 3)};
     }
   }
-
 
   a {
     position: relative;
@@ -70,60 +68,52 @@ const Social = styled.ul`
     height: 40px;
     max-width: 3.5vmax;
 
-    ${mediumUp( css`
-      ${length( "width",
-              6 )}
-      ${length( "height",
-              6 )}
-    ` )};
+    ${mediumUp(css`
+      ${length("width", 6)}
+      ${length("height", 6)}
+    `)};
 
     & > :first-child {
       position: absolute;
-      transition: transform .6s cubic-bezier(0.6, 0.01, 0, 0.9);
+      transition: transform 0.6s cubic-bezier(0.6, 0.01, 0, 0.9);
     }
 
     & > :not(:first-child) {
       path {
         fill: #5d6c7b;
-        transition: fill .6s cubic-bezier(0.6, 0.01, 0, 0.9);
+        transition: fill 0.6s cubic-bezier(0.6, 0.01, 0, 0.9);
       }
     }
 
     &:hover {
-
       & > :first-child {
-        transform: scale(.9) rotate(25deg);
-        transition: transform .6s cubic-bezier(0.6, 0.01, 0, 0.9);
+        transform: scale(0.9) rotate(25deg);
+        transition: transform 0.6s cubic-bezier(0.6, 0.01, 0, 0.9);
       }
 
       & > :not(:first-child) {
         path {
           fill: #a4b5c0;
-          transition: fill .6s cubic-bezier(0.6, 0.01, 0, 0.9);
-
+          transition: fill 0.6s cubic-bezier(0.6, 0.01, 0, 0.9);
         }
       }
-
     }
   }
 `;
 
 const Love = styled.div`
-
-
   position: absolute;
   font-weight: 300;
   line-height: 0;
   letter-spacing: 1.2px;
 
-  ${text( 0.7 )};
-  ${spacing( "left",
-          0 )};
+  ${text(0.7)};
+  ${spacing("left", 0)};
 
-  ${mediumDown( css`
+  ${mediumDown(css`
     order: 2;
     position: relative;
-  ` )};
+  `)};
 
   span {
     font-size: 28px;
@@ -142,8 +132,6 @@ const Love = styled.div`
   @media screen and (min-width: 1600px) {
     left: 0;
   }
-
-
 `;
 
 const Copy = styled.div`
@@ -152,45 +140,38 @@ const Copy = styled.div`
   align-items: center;
   justify-content: center;
   gap: 0.2rem;
-  ${text( 0.84 )};
+  ${text(0.84)};
 
   span {
     font-weight: 300;
-    ${text( 2.5 )};
+    ${text(2.5)};
   }
 
-  ${largeUp( css`
+  ${largeUp(css`
     position: absolute;
-    ${spacing( "right",
-            0 )};
-  ` )}
+    ${spacing("right", 0)};
+  `)}
 `;
 
-function FooterBottom(){
-
-  const elRef = React.useRef( null );
+function FooterBottom() {
+  const elRef = React.useRef(null);
   // const { , setContactModal } = useContext(AppStateContext)
   // const { setBottomGradient} = useContext(MotionValueContext)
 
   const theme = useTheme();
-  const matches = useMediaQuery( theme.breakpoints.up( "xxl" ) );
-  const inView = useOnScreen( elRef,
-    .2 );
+  const matches = useMediaQuery(theme.breakpoints.up("xxl"));
+  const inView = useOnScreen(elRef, 0.2);
 
-  useEffect( () => {
+  useEffect(() => {
     return;
-      const btm = document.querySelector( ".btm-gradient" );
+    const btm = document.querySelector(".btm-gradient");
 
-      if ( inView )
-        // setBottomGradient(false)
-        btm.classList.add( "hide-bg" );
-
-      else
-        // setBottomGradient(true)
-        btm.classList.remove( "hide-bg" );
-
-    },
-    [inView] );
+    if (inView)
+      // setBottomGradient(false)
+      btm.classList.add("hide-bg");
+    // setBottomGradient(true)
+    else btm.classList.remove("hide-bg");
+  }, [inView]);
 
   return (
     <Container ref={elRef} maxWidth={matches ? "xl" : "lg"} disableGutters>

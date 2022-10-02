@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
-import { AnimatePresence, motion } from 'framer-motion';
-import { transition } from '../../helpers/variants';
-import useLoadingFonts from '../../hooks/useFonts';
-import { MotionValueContext } from '../../contexts/MotionStateWrapper';
+import React, { useContext, useEffect, useRef, useState } from "react";
+import styled from "styled-components";
+import { AnimatePresence, motion } from "framer-motion";
+import { transition } from "../../helpers/variants";
+import useLoadingFonts from "../../hooks/useFonts";
+import { MotionValueContext } from "../../contexts/MotionStateWrapper";
 
 const SpinnerContainer = styled(motion.div)`
   //position: fixed;
@@ -38,8 +38,8 @@ const Content = styled.div`
   justify-content: center;
   gap: 3rem;
 
-  -webkit-filter: url('#goo');
-  filter: url('#goo');
+  -webkit-filter: url("#goo");
+  filter: url("#goo");
 
   animation: rotate linear;
   animation-fill-mode: forwards;
@@ -111,19 +111,18 @@ const parentVariants = {
 
   transition: {
     duration: 1.21,
-    delay: .0821,
+    delay: 0.0821,
     ease: [0.6, 0.01, 0, 0.9],
   },
 };
 
 let exited = false;
 const containerVariants = {
-
-  initial () {
+  initial() {
     exited = false;
     return {
       opacity: 0,
-      y: '70%',
+      y: "70%",
     };
   },
   animate: {
@@ -132,12 +131,11 @@ const containerVariants = {
     transition: {
       ...transition,
       duration: 1.21,
-      delay: .3,
-
+      delay: 0.3,
     },
   },
 
-  exit (arg) {
+  exit(arg) {
     // opacity: 0,
 
     if (!exited) {
@@ -146,13 +144,12 @@ const containerVariants = {
     }
 
     return {
-      y: '-100%',
+      y: "-100%",
     };
   },
 };
 
-function LoadingPage () {
-
+function LoadingPage() {
   const smallRef = useRef(null);
   const contentRef = useRef(null);
   const containerRef = useRef(null);
@@ -169,14 +166,12 @@ function LoadingPage () {
 
   useEffect(() => {
     toolTipsData.set({
-      text: ' ⌛ getting things ready...',
+      text: " ⌛ getting things ready...",
       show: true,
     });
-
   }, []);
 
   useEffect(() => {
-
     screenOverlayProxy.set({
       state: true,
       config: {
@@ -186,13 +181,11 @@ function LoadingPage () {
       },
     });
 
-    return () => {
-    };
+    return () => {};
   }, []);
 
-  async function cleanUp () {
-
-    document.body.querySelector('#main-container').classList.add('loaded');
+  async function cleanUp() {
+    document.body.querySelector("#main-container").classList.add("loaded");
 
     screenOverlayProxy.set({
       state: false,
@@ -204,57 +197,54 @@ function LoadingPage () {
     });
 
     setTimeout(() => {
-      mainAnimationController.start('animate');
-      screenOverlayEvent.set('closed');
+      mainAnimationController.start("animate");
+      screenOverlayEvent.set("closed");
     }, 750);
-
   }
 
   return (
-
     <AnimatePresence exitBeforeEnter>
-
-      {
-        backgroundOverlay &&
-        <SpinnerContainer ref={containerRef}
-                          variants={parentVariants}
-                          initial='initial'
-                          animate='animate'
-                          exit='exit'
-                          transition={parentVariants.transition}
-
+      {backgroundOverlay && (
+        <SpinnerContainer
+          ref={containerRef}
+          variants={parentVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          transition={parentVariants.transition}
         >
-
-
-          <SpinnerWrapper variants={containerVariants}
-                          key='contentwrapp'
-                          custom={{ cleanUp }}
-                          transition={parentVariants.transition}>
-
+          <SpinnerWrapper
+            variants={containerVariants}
+            key="contentwrapp"
+            custom={{ cleanUp }}
+            transition={parentVariants.transition}
+          >
             <Content ref={contentRef}>
-              <svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='800'>
+              <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
                 <defs>
-                  <filter id='goo'>
-                    <feGaussianBlur in='SourceGraphic' stdDeviation='10'
-                                    result='blur' />
-                    <feColorMatrix in='blur' mode='matrix'
-                                   values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9'
-                                   result='goo' />
-                    <feComposite in='SourceGraphic' in2='goo' operator='atop' />
+                  <filter id="goo">
+                    <feGaussianBlur
+                      in="SourceGraphic"
+                      stdDeviation="10"
+                      result="blur"
+                    />
+                    <feColorMatrix
+                      in="blur"
+                      mode="matrix"
+                      values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+                      result="goo"
+                    />
+                    <feComposite in="SourceGraphic" in2="goo" operator="atop" />
                   </filter>
                 </defs>
               </svg>
               <SmallBall ref={smallRef} />
               <BigBall />
             </Content>
-
           </SpinnerWrapper>
-
-
         </SpinnerContainer>
-      }
+      )}
     </AnimatePresence>
-
   );
 }
 

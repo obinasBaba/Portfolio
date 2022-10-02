@@ -1,14 +1,14 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import styled from 'styled-components'
+import React from "react";
+import { motion } from "framer-motion";
+import styled from "styled-components";
 
-const BigPlanetContainer = styled( motion.div )`
+const BigPlanetContainer = styled(motion.div)`
   position: absolute;
   left: -20%;
   perspective: 1000px;
   //transform: scale(.9);3
   //display: none;
-`
+`;
 
 const Planet = styled.div`
   //border: thin solid rgba(252, 213, 167, 0.65);
@@ -21,19 +21,19 @@ const Planet = styled.div`
   box-shadow: 70px 120px 150px -30px rgba(2, 2, 30, 0.6);
   border-radius: 50%;
 
-  background: linear-gradient(36.99deg,
-  rgba(1, 1, 18, 0) 27.49%,
-  #262147 78.93%);
-`
+  background: linear-gradient(
+    36.99deg,
+    rgba(1, 1, 18, 0) 27.49%,
+    #262147 78.93%
+  );
+`;
 
-function BigPlanet( { progress } ){
-
-
-    return (
-        <BigPlanetContainer data-scroll data-scroll-speed='-9.5'>
-            <Planet/>
-        </BigPlanetContainer>
-    )
+function BigPlanet({ progress }) {
+  return (
+    <BigPlanetContainer data-scroll data-scroll-speed="-9.5">
+      <Planet />
+    </BigPlanetContainer>
+  );
 }
 
-export default BigPlanet
+export default BigPlanet;

@@ -25,89 +25,85 @@ const CursorContainer = styled.div`
   }
 `;
 
-
 const Cursor = () => {
-
-  const { mouse: { mouseX, mouseY }, screenOverlayEvent } = useContext( MotionValueContext );
+  const {
+    mouse: { mouseX, mouseY },
+    screenOverlayEvent,
+  } = useContext(MotionValueContext);
 
   const theme = useTheme();
-  const matches = useMediaQuery( theme.breakpoints.up( "md" ) );
-  const [ready, setReady] = useState( false );
-
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
+  const [ready, setReady] = useState(false);
 
   const trackMouse = () => {
     const render = () => {
-      if ( !animId ) return;
+      if (!animId) return;
 
-      gsap.to( ".cursor-container .pointer.inner", {
+      gsap.to(".cursor-container .pointer.inner", {
         x: mouseX.get(),
         y: mouseY.get(),
-        duration: 0
-      } );
+        duration: 0,
+      });
 
-      gsap.to( ".cursor-container .pointer.outer", {
+      gsap.to(".cursor-container .pointer.outer", {
         x: mouseX.get(),
         y: mouseY.get(),
         duration: 0.8,
-        ease: "power2.out"
-      } );
+        ease: "power2.out",
+      });
 
-      animId = requestAnimationFrame( () => render() );
+      animId = requestAnimationFrame(() => render());
     };
-    animId = requestAnimationFrame( () => render() );
+    animId = requestAnimationFrame(() => render());
   };
 
   const clearMouseUpdateAnim = () => {
     // console.log('canceling animation : ', animId);
-    cancelAnimationFrame( animId );
+    cancelAnimationFrame(animId);
     animId = undefined;
   };
 
-  useEffect( () => {
-    screenOverlayEvent.onChange( state => {
-      if ( state === "closed" )
-        setReady( true );
-    } );
-  }, [] );
+  useEffect(() => {
+    screenOverlayEvent.onChange((state) => {
+      if (state === "closed") setReady(true);
+    });
+  }, []);
 
-  useEffect( () => {
-    if ( !matches || !ready ) return;
+  useEffect(() => {
+    if (!matches || !ready) return;
 
     const showMouse = () => {
-      if ( show ) return;
+      if (show) return;
       show = true;
 
       if (
         window.locoInstance &&
-        Math.abs( window.locoInstance.scroll.instance.speed ) > 2
+        Math.abs(window.locoInstance.scroll.instance.speed) > 2
       )
         return;
 
-
-      gsap.to( ".cursor-container", {
+      gsap.to(".cursor-container", {
         opacity: 1,
-        duration: 0.4
-      } );
+        duration: 0.4,
+      });
 
       clearMouseUpdateAnim();
 
       // Cursor.updateMousePos()
       trackMouse();
-
     };
 
-    window.addEventListener( "mousemove", showMouse );
+    window.addEventListener("mousemove", showMouse);
 
     return () => {
       clearMouseUpdateAnim();
-      window.removeEventListener( "mousemove", showMouse );
+      window.removeEventListener("mousemove", showMouse);
     };
-
-  }, [matches, ready] );
+  }, [matches, ready]);
 
   return (
     <>
-      {(ready && matches) && (
+      {ready && matches && (
         <>
           <CursorContainer className="cursor-container">
             <InnerPointer />
@@ -115,25 +111,24 @@ const Cursor = () => {
           </CursorContainer>
           <CursorEventComponent />
         </>
-
       )}
     </>
   );
 };
 
 Cursor.stopMouseAnimation = () => {
-  if ( !show ) return;
+  if (!show) return;
 
-  gsap.to( ".cursor-container", {
+  gsap.to(".cursor-container", {
     opacity: 0,
     duration: 0.3,
 
-    onComplete(){
-      cancelAnimationFrame( animId );
+    onComplete() {
+      cancelAnimationFrame(animId);
       animId = undefined;
       show = false;
-    }
-  } );
+    },
+  });
 };
 
 export default Cursor;

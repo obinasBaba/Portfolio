@@ -1,8 +1,13 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
-import { Typography } from '@material-ui/core'
+import React from "react";
+import styled, { css } from "styled-components";
+import { Typography } from "@material-ui/core";
 import { motion } from "framer-motion";
-import { gridColWidth, gridify, spacing, text } from '../../../../styles/mixins'
+import {
+  gridColWidth,
+  gridify,
+  spacing,
+  text,
+} from "../../../../styles/mixins";
 import { largeUp, mediumUp } from "../../../../styles/mixins/breakpoints";
 import AboutHeroPicture from "./AboutHeroPicture";
 import TextWrapper from "./TextContainer";
@@ -14,7 +19,6 @@ const AboutHeroContainer = styled.div`
 
   ${gridify()};
 
-
   //place-items: start;
   //flex-flow: column;
   //align-items: center;
@@ -22,16 +26,14 @@ const AboutHeroContainer = styled.div`
 
   //border: thick solid green;
 
-  ${mediumUp( css`
+  ${mediumUp(css`
     flex-flow: row;
     justify-content: flex-start;
+  `)};
 
-  ` )};
-
-
-  ${largeUp( css`
-    ${spacing( 'mt', 4 )};
-  ` )};
+  ${largeUp(css`
+    ${spacing("mt", 4)};
+  `)};
 
   .text-container {
     //position: absolute;
@@ -46,62 +48,52 @@ const AboutHeroContainer = styled.div`
 
     ${gridColWidth()};
 
-
     svg {
       max-width: 100%;
     }
 
-    ${mediumUp( css`
+    ${mediumUp(css`
       width: 60%;
       grid-row: initial;
 
       svg {
         width: 80%;
       }
-
-    ` )};
-
+    `)};
   }
+`;
 
-`
-
-const Hello = styled( Typography )`
-  font-family: 'Elianto-Regular', serif;
+const Hello = styled(Typography)`
+  font-family: "Elianto-Regular", serif;
   font-weight: bolder;
   margin-bottom: 2rem;
-`
+`;
 
-const Motto = styled( Typography )`
+const Motto = styled(Typography)`
   //font-weight: bolder;
   color: #7b8a9b;
   max-width: 30ch;
   //line-height: 110%;
-    //   ${spacing( 'mb', 8.2 )};
+  //   ${spacing("mb", 8.2)};
 
   //border: thin solid red;
   align-self: flex-end;
 
-  ${largeUp( css`
-
+  ${largeUp(css`
     line-height: 110%;
-  ` )};
+  `)};
+`;
 
+const Text = styled(Typography)`
+  color: #7b8a9b;
 
-`
+  ${text(1)};
 
-const Text = styled( Typography )`
-  color: #7b8a9b;;
-
-
-  ${text( 1 )};
-
-  ${largeUp( css`
+  ${largeUp(css`
     max-width: 36ch;
-    ${spacing( 'mt', 6 )};
-
-  ` )};
-`
-
+    ${spacing("mt", 6)};
+  `)};
+`;
 
 /*
 const aboutHeroVariants = {
@@ -118,20 +110,16 @@ const aboutHeroVariants = {
 }
 */
 
+function AboutHero() {
+  return (
+    <AboutHeroContainer maxWidth="lg">
+      <motion.div className="text-container">
+        <TextWrapper />
+      </motion.div>
 
-function AboutHero(){
-
-    return (
-        <AboutHeroContainer maxWidth='lg'>
-
-            <motion.div className='text-container'>
-                <TextWrapper/>
-            </motion.div>
-
-            <AboutHeroPicture/>
-
-        </AboutHeroContainer>
-    )
+      <AboutHeroPicture />
+    </AboutHeroContainer>
+  );
 }
 
-export default AboutHero
+export default AboutHero;

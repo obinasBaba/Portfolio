@@ -11,24 +11,18 @@ import {
   imgOverVariants,
   imgVariant,
   innerVariant,
-  transition
+  transition,
 } from "./Variants";
 import { InnerWrapper, OverflowWrapper, ProjectImg } from "./components";
 
-import TestPreview from './Bottle-Haus Thumbnail.png'
+import TestPreview from "./Bottle-Haus Thumbnail.png";
 
 import StackUsed from "../StackUsed";
 
-function ProjectImage( {
-  index,
-  exit,
-  items
-} ){
-
-
+function ProjectImage({ index, exit, items }) {
   const {
-    variantsUtil: { fromProjectList }
-  } = useContext( MotionValueContext );
+    variantsUtil: { fromProjectList },
+  } = useContext(MotionValueContext);
 
   const { partners, preview, link, url } = items;
 
@@ -47,7 +41,7 @@ function ProjectImage( {
         <Link
           to={link}
           state={{ path: url }}
-          onClick={() => fromProjectList.set( true )}
+          onClick={() => fromProjectList.set(true)}
           data-pointer="focus"
           data-pointer-color="#3719ca"
           data-tooltip

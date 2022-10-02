@@ -7,42 +7,39 @@ import { GradientText } from "../../../../../components/GradientText";
 
 const transition = {
   ease: [0.6, 0.01, 0, 0.9],
-  duration: 1.5
+  duration: 1.5,
 };
 
 const itemVariant = {
-  initial( arg ){
+  initial(arg) {
     // console.log('arg:-- ', arg)
     return {
       opacity: 0,
-      y: arg.idx > 1 ? 100 : -100
+      y: arg.idx > 1 ? 100 : -100,
     };
   },
 
-  animateFp( arg ){
+  animateFp(arg) {
     return {
       opacity: 1,
       y: 0,
 
       transition: {
         ...transition,
-        delay: .5
-      }
-
+        delay: 0.5,
+      },
     };
   },
 
-  exitFp( arg ){
+  exitFp(arg) {
     return {
       opacity: 0,
-      y: arg.idx > 1 ? 100 : -100
+      y: arg.idx > 1 ? 100 : -100,
     };
   },
 
-  hover( c ){
-
-  },
-  hoverEnd: {}
+  hover(c) {},
+  hoverEnd: {},
 };
 
 const titleVariant = {
@@ -50,13 +47,12 @@ const titleVariant = {
   animate: {},
   exit: {},
   hover: {
-
     transition: {
-      staggerChildren: .05,
-      staggerDirection: .5
-    }
+      staggerChildren: 0.05,
+      staggerDirection: 0.5,
+    },
   },
-  hoverEnd: {}
+  hoverEnd: {},
 };
 
 const letterVariant = {
@@ -67,18 +63,18 @@ const letterVariant = {
     y: [null, -30, 0],
     opacity: [1, 0, 1],
     transition: {
-      duration: .2
-    }
+      duration: 0.2,
+    },
   },
-  hoverEnd: {}
+  hoverEnd: {},
 };
 
-const ListItem = styled( motion.li )`
+const ListItem = styled(motion.li)`
   //border: thin solid red;
   padding: 0;
   margin: 0;
 
-  ${spacing( "p", 2 )};
+  ${spacing("p", 2)};
   //flex: 1 1 32%;
 
   .titleTxt {
@@ -89,7 +85,6 @@ const ListItem = styled( motion.li )`
       display: inline-block;
     }
   }
-
 `;
 
 const Tags = styled.div`
@@ -100,48 +95,42 @@ const Tags = styled.div`
   letter-spacing: 2px;
   line-height: 0;
 
-  ${spacing( "gap", 1 )};
-
+  ${spacing("gap", 1)};
 
   p {
-    ${text( .6 )};
+    ${text(0.6)};
     font-weight: lighter;
-    opacity: .6;
+    opacity: 0.6;
   }
-
 `;
 
-const DescTxt = styled( Typography )`
+const DescTxt = styled(Typography)`
   font-weight: lighter;
   max-width: 40ch;
   text-shadow: 0.1em 0.1em 0.3em #000;
 
-  ${text( .9 )};
+  ${text(0.9)};
 `;
 
-
-function Item( { onHoverStart, title, tags, desc, idx } ){
-
-
+function Item({ onHoverStart, title, tags, desc, idx }) {
   return (
-    <ListItem variants={itemVariant}
-              transition={transition}
-              custom={{ idx }}
-              onHoverStart={() => onHoverStart()}
+    <ListItem
+      variants={itemVariant}
+      transition={transition}
+      custom={{ idx }}
+      onHoverStart={() => onHoverStart()}
     >
       <GradientText variant="h3" className="titleTxt">
         {title}
       </GradientText>
 
       <Tags>
-        {tags.map( ( tag ) => <p key={desc}>{tag}</p> )}
+        {tags.map((tag) => (
+          <p key={desc}>{tag}</p>
+        ))}
       </Tags>
 
-      <DescTxt className="approach-desc">
-        {desc}
-      </DescTxt>
-
-
+      <DescTxt className="approach-desc">{desc}</DescTxt>
     </ListItem>
   );
 }

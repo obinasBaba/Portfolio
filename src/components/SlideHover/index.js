@@ -1,15 +1,15 @@
-import React from 'react'
-import styled from 'styled-components'
-import {spacing} from '../../styles/mixins'
+import React from "react";
+import styled from "styled-components";
+import { spacing } from "../../styles/mixins";
 
 const HoverSlider = styled.div`
   position: relative;
   //display: inline;
   width: fit-content;
-  ${ spacing('pb', .8) };
+  ${spacing("pb", 0.8)};
 
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     height: 1px;
     width: 45%;
@@ -29,10 +29,10 @@ const HoverSlider = styled.div`
       width: 100%;
     }
   }
-`
+`;
 
 const SlideHover = ({ children }) => {
-  return <HoverSlider >{children}</HoverSlider>
-}
+  return <HoverSlider>{children}</HoverSlider>;
+};
 
-export default SlideHover
+export default SlideHover;

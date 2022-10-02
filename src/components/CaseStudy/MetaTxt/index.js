@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Typography } from '@material-ui/core';
-import { motion } from 'framer-motion';
-import { spacing } from '@/styles/mixins';
-import ResponsiveContainer from '../../ResponsiveContainer';
+import React from "react";
+import styled from "styled-components";
+import { Typography } from "@material-ui/core";
+import { motion } from "framer-motion";
+import { spacing } from "@/styles/mixins";
+import ResponsiveContainer from "../../ResponsiveContainer";
 import {
   container,
   desc,
@@ -11,7 +11,7 @@ import {
   seeLive,
   value,
   wrapper,
-} from './metaintro.module.scss';
+} from "./metaintro.module.scss";
 
 export const Q = styled(Typography)`
   font-weight: 600;
@@ -24,24 +24,22 @@ export const A = styled(Typography)`
   letter-spacing: 0;
   font-weight: 100;
 
-    // ${spacing('text-indent', 1)};
+  // ${spacing("text-indent", 1)};
 `;
 
 const MetaTxt = ({ link }) => {
   const about = [
-    { q: 'Period -', a: 'End 2020' },
-    { q: 'Clients -', a: 'Juvi House' },
-    { q: 'Context -', a: 'Web, Front-end, E-commerce, Cms, Interaction' },
-    { q: 'tools -', a: 'figma, javascript, illustrator' },
-    { q: 'Role -', a: 'UI Design / Coding' },
-    { q: 'Build -', a: 'See It Live' },
+    { q: "Period -", a: "End 2020" },
+    { q: "Clients -", a: "Juvi House" },
+    { q: "Context -", a: "Web, Front-end, E-commerce, Cms, Interaction" },
+    { q: "tools -", a: "figma, javascript, illustrator" },
+    { q: "Role -", a: "UI Design / Coding" },
+    { q: "Build -", a: "See It Live" },
   ];
 
   return (
     <ResponsiveContainer className={container}>
-
-      <Typography variant='h1'> Intro </Typography>
-
+      <Typography variant="h1"> Intro </Typography>
 
       <Typography className={desc}>
         Juvi house, A premium liquor brand, startup invented by two caring young
@@ -57,27 +55,27 @@ const MetaTxt = ({ link }) => {
       <motion.ul className={wrapper}>
         {about.map(({ q, a }, idx) => (
           <li key={q}>
-            <Typography noWrap className={key} variant='h6'> {q}</Typography>
+            <Typography noWrap className={key} variant="h6">
+              {" "}
+              {q}
+            </Typography>
 
-            {
-              (link && idx === about.length - 1) ?
-                <a href={link}
-                   className={seeLive}>
-                  <Typography className={value}
-                              variant='subtitle'> {a} </Typography>
-                </a>
-                :
-                <Typography className={value}
-                            variant='subtitle'> {a}
+            {link && idx === about.length - 1 ? (
+              <a href={link} className={seeLive}>
+                <Typography className={value} variant="subtitle">
+                  {" "}
+                  {a}{" "}
                 </Typography>
-
-            }
-
+              </a>
+            ) : (
+              <Typography className={value} variant="subtitle">
+                {" "}
+                {a}
+              </Typography>
+            )}
           </li>
         ))}
       </motion.ul>
-
-
     </ResponsiveContainer>
   );
 };

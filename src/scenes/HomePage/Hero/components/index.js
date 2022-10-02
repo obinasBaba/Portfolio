@@ -3,8 +3,7 @@ import { motion } from "framer-motion";
 import { gridColWidth, gridify, spacing } from "../../../../styles/mixins";
 import { mediumUp, xLargeUp } from "../../../../styles/mixins/breakpoints";
 
-
-export const TextContainer = styled( motion.div )`
+export const TextContainer = styled(motion.div)`
   position: relative;
   height: 100%;
   width: 100%;
@@ -19,7 +18,7 @@ export const TextContainer = styled( motion.div )`
   //border: thin solid chocolate;
 
   ${gridColWidth()};
-  ${spacing( "gap", 3 )};
+  ${spacing("gap", 3)};
 
   @media (min-width: 800px) {
     grid-row: initial;
@@ -28,27 +27,26 @@ export const TextContainer = styled( motion.div )`
   }
 
 
-  ${mediumUp( css`
+  ${mediumUp(css`
     width: 50%;
     margin-bottom: 0;
+  `)};
 
-  ` )};
-
-  ${xLargeUp( css`
-    ${spacing( "pl", 4 )};
-  ` )};
+  ${xLargeUp(css`
+    ${spacing("pl", 4)};
+  `)};
 
 
   & .mobtn-wrapper {
 
 
-    ${xLargeUp( css`
-      ${spacing( "mr", 7 )};
-    ` )};
+    ${xLargeUp(css`
+      ${spacing("mr", 7)};
+    `)};
   }
 }`;
 
-export const Greeting = styled( motion.div )`
+export const Greeting = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,36 +57,26 @@ export const Greeting = styled( motion.div )`
     max-width: 85%;
     filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.69));
 
-
-    ${xLargeUp( css`
+    ${xLargeUp(css`
       width: 100%;
       height: 100%;
-      ${spacing( "mt", 3 )};
-
-
-    ` )};
-
+      ${spacing("mt", 3)};
+    `)};
   }
 
-  ${mediumUp( css`
+  ${mediumUp(css`
     justify-content: flex-start;
-  ` )};
+  `)};
 
-  ${xLargeUp( css`
+  ${xLargeUp(css`
     width: 70%;
-
-  ` )};
-
-
-
+  `)};
 `;
 
-export const Intro = styled( motion.div )`
-
+export const Intro = styled(motion.div)`
   max-width: 89%;
 
   //border: thin solid red;
-
 
   & .intro-txt {
     max-width: 30ch;
@@ -96,13 +84,10 @@ export const Intro = styled( motion.div )`
     //color: var(--light_medium_gray);
     color: var(--light_gray);
 
-
     .contrast {
       color: var(--clr-medium-blue);
       font-weight: bolder;
       filter: drop-shadow(0 0 1px var(--medium-blue-color));
     }
-
   }
-
 `;

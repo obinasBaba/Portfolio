@@ -1,36 +1,40 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import useJuviAssets from '@hooks/queries/juvi/useJuviAssets';
-import useToolTip from '../../../hooks/useToolTip';
-import CaseStudy from '../../../components/CaseStudy';
-import MetaTxt from '../../../components/CaseStudy/MetaTxt';
-import Intro from '../../../components/CaseStudy/Intro';
-import ColorPalette from '../../../components/CaseStudy/Colors';
-import FontUsed from '../../../components/CaseStudy/FontUsed';
-import Development from '../../../components/CaseStudy/Development';
-import useVigozaAssets from '../../../hooks/queries/useVigozaAssets';
-import useUpdatePath from '../../../hooks/useUpdatePath';
-import ElementsViewSection
-  from '@/pages/projects/vigoza/components/ElementsViewSection';
-import RectangleView from '@/pages/projects/vigoza/components/RectangleView';
-import Headline from '@components/CaseStudy/Headline';
-import HorizontalGallery
-  from '@/pages/projects/vigoza/components/HorizontalGallery';
-import useJuviMarqueeAssets from '@hooks/queries/juvi/useJuviMarqueeAssets';
-import CarouselSliderDesktop
-  from '@/pages/projects/vigoza/components/CarouselSliderDesktop';
-import CarouselSliderMobile
-  from '@/pages/projects/vigoza/components/CarouselSliderMobile';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import useJuviAssets from "@hooks/queries/juvi/useJuviAssets";
+import useToolTip from "../../../hooks/useToolTip";
+import CaseStudy from "../../../components/CaseStudy";
+import MetaTxt from "../../../components/CaseStudy/MetaTxt";
+import Intro from "../../../components/CaseStudy/Intro";
+import ColorPalette from "../../../components/CaseStudy/Colors";
+import FontUsed from "../../../components/CaseStudy/FontUsed";
+import Development from "../../../components/CaseStudy/Development";
+import useVigozaAssets from "../../../hooks/queries/useVigozaAssets";
+import useUpdatePath from "../../../hooks/useUpdatePath";
+import ElementsViewSection from "@/pages/projects/vigoza/components/ElementsViewSection";
+import RectangleView from "@/pages/projects/vigoza/components/RectangleView";
+import Headline from "@components/CaseStudy/Headline";
+import HorizontalGallery from "@/pages/projects/vigoza/components/HorizontalGallery";
+import useJuviMarqueeAssets from "@hooks/queries/juvi/useJuviMarqueeAssets";
+import CarouselSliderDesktop from "@/pages/projects/vigoza/components/CarouselSliderDesktop";
+import CarouselSliderMobile from "@/pages/projects/vigoza/components/CarouselSliderMobile";
+import useJuviVideo, {
+  useJuviCarouselDesktopVid,
+} from "@hooks/queries/juvi/useJuviVideo";
 
 const projectDataDefault = {
-  title: 'Vigoza Digital Agency', subTitle: 'this is vigoza subtitle', about: {
-    role: 'FrontEnd Developer', context: 'Design', period: 'End 2018',
-  }, intro: {
-    color: '#02021e',
-    themeColor: '#973c22',
-    logoUrl: '/projects/vigoza-logo.svg', // imageData: preview2,
-    link: '/',
-    title: 'The Project',
+  title: "Vigoza Digital Agency",
+  subTitle: "this is vigoza subtitle",
+  about: {
+    role: "FrontEnd Developer",
+    context: "Design",
+    period: "End 2018",
+  },
+  intro: {
+    color: "#02021e",
+    themeColor: "#973c22",
+    logoUrl: "/projects/vigoza-logo.svg", // imageData: preview2,
+    link: "/",
+    title: "The Project",
     desc: `
         Vigoza is a full-service digital agency that builds immersive user experience.
         The Team create an exceptional visualization and thought-out functionality.
@@ -38,15 +42,19 @@ const projectDataDefault = {
         This project is made to make it easy to witness and follow-up their work and to keep their clients
         more close
         `,
-  }, backUrl: '/projects#two', nextProject: {
-    title: 'Gebeya', url: '/projects/project2', thumbnailUrl: '',
+  },
+  backUrl: "/projects#two",
+  nextProject: {
+    title: "Gebeya",
+    url: "/projects/project2",
+    thumbnailUrl: "",
   },
 };
 
 const juviData = {
   intro: {
     desc: {
-      title: 'background',
+      title: "background",
       text: `To win over country wide markets, Juvi-House needed to better
        communicate its brand story with a revamped website experience.
        Reinventing the brand’s website to support growth, and integrating digital 
@@ -59,7 +67,7 @@ const juviData = {
   },
   sections: {
     collections: {
-      title: 'Collections',
+      title: "Collections",
       text: `the shop pages provide a clean overview
        of all available products. it also offers a faster purchase option for returning customers.
        thanks to an intuitive filter, a desired product can be quickly narrowed down with just a few clicks.
@@ -68,7 +76,7 @@ const juviData = {
        `,
     },
     mobileView: {
-      title: 'Products',
+      title: "Products",
       text: `I gave each item enough space to tell its own story, each product
           page opens with and individual and inviting introduction.  various elements (images, illustrations, text, colours),
            created in collaboration with several other team members, were carefully combined to create unique compositions for each item.
@@ -77,34 +85,43 @@ const juviData = {
   },
 };
 /*
-*   i used d/t arts that are subtle and not storing on the eye to keep
-* the aesthetics, theme and calm of the site
-* */
+ *   i used d/t arts that are subtle and not storing on the eye to keep
+ * the aesthetics, theme and calm of the site
+ * */
 
 const DetectViewPort = ({
-  children = 0.5, onEnter, onLeave, options = { amount: 0.5 },
-}) => (<motion.div
-  viewport={{
-    ...options,
-  }}
-  onViewportEnter={(entry) => {
-    onEnter(entry);
-  }}
-  onViewportLeave={(entry) => {
-    onLeave(entry);
-  }}
->
-  {children}
-</motion.div>);
+  children = 0.5,
+  onEnter,
+  onLeave,
+  options = { amount: 0.5 },
+}) => (
+  <motion.div
+    viewport={{
+      ...options,
+    }}
+    onViewportEnter={(entry) => {
+      onEnter(entry);
+    }}
+    onViewportLeave={(entry) => {
+      onLeave(entry);
+    }}
+  >
+    {children}
+  </motion.div>
+);
 
-function Vigoza ({ location }) {
+function Vigoza({ location }) {
   // console.log('vigozaArg: ', arg)
 
-  useToolTip('[data-tooltip-text]');
+  useToolTip("[data-tooltip-text]");
   useUpdatePath(location.pathname);
   const { headlineImage, webView, mobileView, showcase } = useVigozaAssets();
 
   const [scrolled, setScrolled] = useState(false);
+
+  const { introMp4, introWebm, introPlaceholder } = useJuviVideo();
+
+  const carouselDesktop = useJuviCarouselDesktopVid();
 
   const { mp, mp2, mp3, mp4, mp5, mp6, mp7, mp8 } = useJuviMarqueeAssets();
   const mobileCarousel = [mp, mp2, mp3, mp4, mp5, mp6, mp7, mp8];
@@ -128,10 +145,8 @@ function Vigoza ({ location }) {
   const { title, subTitle, about } = projectDataDefault;
   projectDataDefault.nextProject.thumbnailUrl = headlineImage.publicURL;
   projectDataDefault.location = location;
-  // useLocoScroll();
 
   return (
-
     <CaseStudy projectData={projectDataDefault} scrolled={scrolled}>
       {/*<Headline title={title} subTitle={subTitle} about={about} media='' />*/}
 
@@ -148,30 +163,38 @@ function Vigoza ({ location }) {
           }
         }}
       >
-        <MetaTxt link='juvi.henzzo.com' />
+        <MetaTxt link="juvi.henzzo.com" />
       </motion.div>
 
+      <RectangleView />
 
-      {/*<RectangleView />*/}
+      <Intro
+        desc={juviData.intro.desc}
+        vidProps={{
+          mp4: introMp4.publicURL,
+          webm: introWebm.publicURL,
+          img: introPlaceholder,
+        }}
+      />
 
-      {/*<Intro desc={juviData.intro.desc} />*/}
+      <CarouselSliderDesktop videos={carouselDesktop} />
 
-      {/*<CarouselSliderDesktop videos={[1, 2, 3, 4, 5, 6]} />*/}
+      <CarouselSliderMobile
+        images={mobileCarousel}
+        desc={juviData.sections.mobileView}
+      />
 
-      {/*<Intro desc={juviData.sections.collections} />*/}
+      <ElementsViewSection
+        elements={[element1, element2, element3, element4, element5]}
+      />
 
-      {/*<CarouselSliderMobile images={mobileCarousel} desc={juviData.sections.mobileView} />*/}
+      <ColorPalette colors={colors} />
 
-      {/*<ElementsViewSection elements={[element1, element2, element3, element4, element5]} />*/}
+      <FontUsed fonts={[fontAby, fontRai]} />
 
-      {/*<ColorPalette colors={colors} />*/}
+      <HorizontalGallery />
 
-      {/*<FontUsed fonts={[fontAby, fontRai]} />*/}
-
-      {/*<HorizontalGallery />*/}
-
-      {/*<Development />*/}
-
+      <Development />
     </CaseStudy>
   );
 }

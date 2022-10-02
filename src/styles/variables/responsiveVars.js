@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css } from "styled-components";
 
 export const responsiveVars = css`
   :root {
@@ -10,14 +10,12 @@ export const responsiveVars = css`
     --column-width: 100vw / 64; // column width
 
     //fonts
-    --sofia-soft: 'Sofia Pro Soft', sans-serif;
-    --sofia-pro: 'Sofia Pro', sans-serif;
-    --gramatika: 'Gramatika', sans-serif;
-    --abyss: 'abyssopelagic', sans-serif;
-    --poppins: 'Poppins Black', sans-serif;
-    --eli: 'Elianto-Regular', sans-serif;
-    
-
+    --sofia-soft: "Sofia Pro Soft", sans-serif;
+    --sofia-pro: "Sofia Pro", sans-serif;
+    --gramatika: "Gramatika", sans-serif;
+    --abyss: "abyssopelagic", sans-serif;
+    --poppins: "Poppins Black", sans-serif;
+    --eli: "Elianto-Regular", sans-serif;
 
     @media screen and (max-width: 1025px) {
       --indent-high: 0.9;
@@ -31,7 +29,6 @@ export const responsiveVars = css`
       --title: 0.8;
       --size: 0.8;
       --text: 0.8;
-
     }
     @media screen and (max-width: 576px) {
       --indent: 0.5;
@@ -47,7 +44,7 @@ export const responsiveVars = css`
       --size: 1.25;
     }
   }
-`
+`;
 
 export const webKitInputReset = css`
   /* Change Autocomplete styles in Chrome*/
@@ -61,7 +58,6 @@ export const webKitInputReset = css`
   select:-webkit-autofill,
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
-
     appearance: none !important;
     -moz-appearance: none !important;
     -webkit-appearance: none !important;
@@ -69,12 +65,11 @@ export const webKitInputReset = css`
     -webkit-box-shadow: none !important;
 
     -webkit-text-fill-color: #a4b5c0 !important;
-
   }
 
-
   @-webkit-keyframes autofill {
-    0%,100% {
+    0%,
+    100% {
       color: #666;
       background: transparent;
     }
@@ -85,4 +80,4 @@ export const webKitInputReset = css`
     -webkit-animation-name: autofill;
     -webkit-animation-fill-mode: both;
   }
-`
+`;

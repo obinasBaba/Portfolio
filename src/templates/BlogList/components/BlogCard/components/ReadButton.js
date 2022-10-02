@@ -10,10 +10,8 @@ const ReadButtonContainer = styled.div`
   margin-left: auto;
   margin-top: auto;
 
-  ${( { styl } ) => css`
-
+  ${({ styl }) => css`
     ${styl};
-
   `};
 
   a.link {
@@ -25,8 +23,8 @@ const ReadButtonContainer = styled.div`
     place-items: center;
   }
 
-  ${spacing( "pr", 0.5 )};
-  ${spacing( "pb", 0.5 )};
+  ${spacing("pr", 0.5)};
+  ${spacing("pb", 0.5)};
 
   .read-txt {
     position: relative;
@@ -35,8 +33,7 @@ const ReadButtonContainer = styled.div`
     //z-index: 0;
     //border: thin solid red;
 
-    ${spacing( "p", 1.2 )};
-
+    ${spacing("p", 1.2)};
 
     p {
       letter-spacing: 0.8px;
@@ -46,8 +43,6 @@ const ReadButtonContainer = styled.div`
       text-transform: capitalize;
       line-height: 0;
     }
-
-
   }
 
   .bg {
@@ -57,31 +52,27 @@ const ReadButtonContainer = styled.div`
     border-radius: 50%;
     transform: translateX(-50%);
 
-    ${length( "width", 5 )};
-    ${length( "height", 5 )};
+    ${length("width", 5)};
+    ${length("height", 5)};
   }
 `;
 
-const ReadButton = ( { txt, to, index, style } ) => {
-
+const ReadButton = ({ txt, to, index, style }) => {
   return (
-    <ReadButtonContainer data-tooltip
-                         styl={style}
-                         data-pointer="focus"
-                         data-pointer-color="#02021e"
-
-    > <a rel="noreferrer" target="_blank" href={to} className="link"
-
+    <ReadButtonContainer
+      data-tooltip
+      styl={style}
+      data-pointer="focus"
+      data-pointer-color="#02021e"
     >
-      <div className="bg" />
+      {" "}
+      <a rel="noreferrer" target="_blank" href={to} className="link">
+        <div className="bg" />
 
-      <div className={`read-txt`}>
-
-        <Typography variant="body2">{txt}</Typography>
-
-
-      </div>
-    </a>
+        <div className={`read-txt`}>
+          <Typography variant="body2">{txt}</Typography>
+        </div>
+      </a>
     </ReadButtonContainer>
   );
 };

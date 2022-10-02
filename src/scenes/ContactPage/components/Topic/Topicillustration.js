@@ -1,15 +1,15 @@
-import React, {useEffect, useLayoutEffect, useRef} from 'react'
-import lotti from 'lottie-web'
-import styled, {css} from 'styled-components'
-import {spacing} from '../../../../styles/mixins'
+import React, { useEffect, useLayoutEffect, useRef } from "react";
+import lotti from "lottie-web";
+import styled, { css } from "styled-components";
+import { spacing } from "../../../../styles/mixins";
 import useLotti from "../../../../helpers/useLotti";
-import {largeUp} from "../../../../styles/mixins/breakpoints";
+import { largeUp } from "../../../../styles/mixins/breakpoints";
 
 const IllustrationContainer = styled.div`
   position: absolute;
   top: 3%;
   //left: 0;
-  
+
   max-width: 75px;
   //border: thin solid red;
 
@@ -17,53 +17,47 @@ const IllustrationContainer = styled.div`
     stroke: #1e213d;
     fill: #02021e;
   }
-  
-  ${spacing('mt', -2.7)};
-  ${spacing('ml', -2.7)};
-  
-  ${largeUp( css`
+
+  ${spacing("mt", -2.7)};
+  ${spacing("ml", -2.7)};
+
+  ${largeUp(css`
     top: 13%;
+  `)};
+`;
 
-  ` )};
-
-`
-
-function TopicIllustration({path}) {
-  const iconRef = useRef(null)
+function TopicIllustration({ path }) {
+  const iconRef = useRef(null);
   // const lottiRef = useLotti(path, iconRef)
 
-
   useLayoutEffect(() => {
-    if ( !path ) return;
+    if (!path) return;
 
-    lotti.destroy(path.publicURL)
+    lotti.destroy(path.publicURL);
 
     const r = 1;
     if (path) {
       const lottiRef = lotti.loadAnimation({
         name: path.publicURL,
         container: iconRef.current,
-        renderer: 'svg',
+        renderer: "svg",
         loop: false,
         autoplay: true,
         path: path.publicURL,
         // animationData: build
-      })
+      });
 
-      let r = 1
+      let r = 1;
       // l.addEventListener('data_ready', () => {})
-      lottiRef.addEventListener('complete', () => {
-          r === 1 ? (r = -1) : r === -1 && (r = 1)
-        lottiRef.setDirection(r)
-        lottiRef.play()
-        })
-
+      lottiRef.addEventListener("complete", () => {
+        r === 1 ? (r = -1) : r === -1 && (r = 1);
+        lottiRef.setDirection(r);
+        lottiRef.play();
+      });
     }
-  }, [])
+  }, []);
 
-  return (
-    <IllustrationContainer ref={iconRef} />
-  )
+  return <IllustrationContainer ref={iconRef} />;
 }
 
-export default TopicIllustration
+export default TopicIllustration;
