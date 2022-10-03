@@ -1,7 +1,10 @@
 import React, { useCallback, useContext, useRef, useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, useMotionValue } from 'framer-motion';
 import { useMotionBreakPoint } from "@contexts/BreakPoint";
-import { LocomotiveScrollProvider } from "@contexts/LocoMotive";
+import {
+  LocomotiveScrollProvider,
+  useLocomotiveScroll,
+} from '@contexts/LocoMotive';
 import { AppStateContext } from "@contexts/AppStateContext";
 import { MotionValueContext } from "@contexts/MotionStateWrapper";
 import BackgroundStars from "@components/BackgroundStars";
@@ -11,7 +14,6 @@ import ProgressCircle from "@components/ScrollProgressCircle";
 import ScreenOverlay from "@components/ScreenOverlay";
 import NavigationMenu from "@components/NavigationMenu";
 import { BottomGradient, Main, PageContainer } from "./Styled";
-import useCursor from "@/layouts/Components/useCursor";
 import Footer from "@components/Footer";
 
 // import {} from '@re'
@@ -26,10 +28,12 @@ function Page({ children, path }) {
 
   const container = useRef(null);
   const [exitComplete, setExitComplete] = useState(false);
+  const onExitComplete = useMotionValue(false);
 
   const { currentPath } = useContext(AppStateContext);
   const { breakpoint } = useMotionBreakPoint();
-  useCursor();
+
+  // useCursor();
 
   return (
     <LocomotiveScrollProvider
@@ -49,6 +53,7 @@ function Page({ children, path }) {
         []
       )}
       location={currentPath}
+      onExitComplete={onExitComplete}
     >
       <PageContainer
         id="page-container"
@@ -78,8 +83,10 @@ function Page({ children, path }) {
           <AnimatePresence
             exitBeforeEnter
             custom={{ path, isTop, inView, /* largeUp */ breakpoint }}
+
             onExitComplete={() => {
               setExitComplete(!exitComplete);
+              onExitComplete.set(true)
             }}
           >
             {children}

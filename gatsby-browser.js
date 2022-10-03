@@ -18,7 +18,7 @@ const Event = RouteChangeEvent.GetInstance();
 export const onRouteUpdate = ( { location, prevLocation } ) => {
 
   // console.log( "new pathname", location.pathname );
-  // Event.emit( "end", [location, prevLocation] );
+  Event.emit( "end", [location, prevLocation] );
 
   if ( process.env.NODE_ENV !== "production" ) {
     return null;
@@ -34,7 +34,6 @@ export const onRouteUpdate = ( { location, prevLocation } ) => {
 
 export const onRouteUpdateDelayed = () => {
   // console.log( "We can show loading indicator now" );
-  // console.log( "onRouteUpdateDelayed", Event.listeners( "end" ) );
 
   Event.emit( "start" );
 };
@@ -42,6 +41,9 @@ export const onRouteUpdateDelayed = () => {
 export const onPreRouteUpdate = ( { location, prevLocation } ) => {
   // console.log( "Gatsby started to change location to", location.pathname, Event.listeners( "start" ) );
   // console.log( "Gatsby started to change location from", prevLocation ? prevLocation.pathname : null );
+
+  // console.log( "onRouteUpdateDelayed",);
+
 
   if ( prevLocation && prevLocation.pathname !== location.pathname ) {
     Event.emit( "start" );

@@ -26,6 +26,8 @@ import gsap from "gsap";
 
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useLocation } from "@reach/router";
+import MouseFollower from '@components/MouseFollwer';
+import RouteChangeEvent from '@helpers/RouteChangeEvent';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -41,6 +43,7 @@ export interface LocomotiveScrollContextValue {
   yProgress: MotionValue<number>;
   yProgressSmooth: MotionValue<number>;
   onScrollCallbacks: MutableRefObject<Map<string, Function>>;
+  cursor: MutableRefObject<MouseFollower | undefined>;
 }
 
 const LocomotiveScrollContext = createContext<LocomotiveScrollContextValue>({
@@ -56,6 +59,7 @@ export interface LocomotiveScrollProviderProps {
   onUpdate?: (scroll: Scroll) => void;
   location?: string;
   onLocationChange?: (scroll: Scroll) => void;
+  onExitComplete: MotionValue<boolean>
 }
 
 // const onScrollCallbacks = new Map<string, Function>();
@@ -68,6 +72,7 @@ export function LocomotiveScrollProvider({
   onUpdate,
   location,
   onLocationChange,
+  onExitComplete
 }: WithChildren<LocomotiveScrollProviderProps>) {
   const { height: containerHeight } = useResizeObserver<HTMLDivElement>({
     ref: containerRef,
@@ -78,6 +83,8 @@ export function LocomotiveScrollProvider({
   const onScrollCallbacks = useRef<Map<string, Function>>(new Map());
   const [height] = useDebounce(containerHeight, 100);
   const { pathname } = useLocation();
+  const cursor = useRef<MouseFollower>();
+
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -93,6 +100,95 @@ export function LocomotiveScrollProvider({
   const velocity = useVelocity(ySmooth);
 
   const scale = useTransform(velocity, [-3000, 0, 3000], [1.01, 1, 1.01]);
+
+  useLayoutEffect(() => {
+    const event = RouteChangeEvent.GetInstance();
+
+    event.addListener('end', () => {
+      cursor.current?.removeText();
+      cursor.current?.removeState('-opaque');
+      cursor.current?.removeState('-pointer');
+      cursor.current?.removeImg();
+
+      onExitComplete.onChange(v => {
+        if (v === false) return;
+
+        cursor.current?.removeText();
+        cursor.current?.removeState('-opaque');
+        cursor.current?.removeState('-pointer');
+        cursor.current?.removeImg();
+
+        setTimeout(() =>     cursor.current?.attach(), 2000)
+
+        onExitComplete.set(false)
+
+      })
+
+    });
+  }, []);
+
+  useLayoutEffect(() => {
+    LocomotiveScrollRef.current?.update();
+
+    // cursor.current?.removeText();
+    // cursor.current?.removeState('-opaque');
+    // cursor.current?.removeState('-pointer');
+    // cursor.current?.removeImg();
+
+    // setTimeout(() =>     cursor.current?.attach(), 2500)
+
+  }, [pathname]);
+
+  // initialization
+  useLayoutEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    import("locomotive-scroll").then((LocomotiveScroll) => {
+      const dataScrollContainer = document.querySelector(
+        "[data-scroll-container]"
+      );
+
+      if (LocomotiveScrollRef.current?.el) {
+        return;
+        // console.log("IT IS NOT NULL", LocomotiveScrollRef.current.name);
+      }
+
+      cursor.current = new MouseFollower();
+
+
+      LocomotiveScrollRef.current = new LocomotiveScroll.default({
+        el: dataScrollContainer ?? undefined,
+        // @ts-ignore
+        smartphone: {
+          breakpoint: 0,
+          smooth: true,
+          getDirection: true,
+        },
+        tablet: {
+          breakpoint: 0,
+          smooth: false,
+          getDirection: true,
+        },
+
+        ...options,
+      });
+
+      setTimeout(() => {
+        setIsReady(true);
+        LocomotiveScrollRef.current?.update();
+      }, 1000);
+
+      // console.log("locomotive starting here -----", LocomotiveScrollRef.current);
+    });
+
+    return () => {
+      LocomotiveScrollRef.current?.destroy();
+      // console.log("locomotive DYING here -----", LocomotiveScrollRef.current?.name);
+      LocomotiveScrollRef.current = null;
+
+      setIsReady(false);
+    };
+  }, []);
 
   useLayoutEffect(() => {
     if (isReady) {
@@ -143,53 +239,6 @@ export function LocomotiveScrollProvider({
     }
   }, [isReady]);
 
-  // initialization
-  useLayoutEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    import("locomotive-scroll").then((LocomotiveScroll) => {
-      const dataScrollContainer = document.querySelector(
-        "[data-scroll-container]"
-      );
-
-      if (LocomotiveScrollRef.current?.el) {
-        return;
-        // console.log("IT IS NOT NULL", LocomotiveScrollRef.current.name);
-      }
-
-      LocomotiveScrollRef.current = new LocomotiveScroll.default({
-        el: dataScrollContainer ?? undefined,
-        // @ts-ignore
-        smartphone: {
-          breakpoint: 0,
-          smooth: true,
-          getDirection: true,
-        },
-        tablet: {
-          breakpoint: 0,
-          smooth: false,
-          getDirection: true,
-        },
-
-        ...options,
-      });
-
-      setTimeout(() => {
-        setIsReady(true);
-        LocomotiveScrollRef.current?.update();
-      }, 1000);
-
-      // console.log("locomotive starting here -----", LocomotiveScrollRef.current);
-    });
-
-    return () => {
-      LocomotiveScrollRef.current?.destroy();
-      // console.log("locomotive DYING here -----", LocomotiveScrollRef.current?.name);
-      LocomotiveScrollRef.current = null;
-
-      setIsReady(false);
-    };
-  }, []);
 
   useEffect(() => {
     if (!LocomotiveScrollRef.current) {
@@ -245,9 +294,6 @@ export function LocomotiveScrollProvider({
     }
   }, [isReady]);
 
-  useLayoutEffect(() => {
-    LocomotiveScrollRef.current?.update();
-  }, [pathname]);
 
   return (
     <LocomotiveScrollContext.Provider
@@ -259,6 +305,7 @@ export function LocomotiveScrollProvider({
         yProgress,
         yProgressSmooth: ySmooth,
         onScrollCallbacks,
+        cursor,
       }}
     >
       {children}
