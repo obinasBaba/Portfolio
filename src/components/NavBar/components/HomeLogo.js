@@ -42,12 +42,14 @@ function HomeLogo({ toggleMenu }) {
       onClick={toggleMenu}
       variants={logoVariant}
       transition={logoVariant.transition}
-      data-cursor="true"
-      data-cursor-type="magnet"
-      data-cursor-color="#5d6c7b"
+
     >
-      <Link aria-label="to homepage" to="/">
-        <svg
+      <Link aria-label="to homepage" to="/"
+            data-cursor="true"
+            data-cursor-type="magnet"
+            data-cursor-color="#5d6c7b"
+      >
+       {/* <svg
           xmlns="http://www.w3.org/2000/svg"
           width="100%"
           height="100%"
@@ -91,20 +93,14 @@ function HomeLogo({ toggleMenu }) {
               <stop offset="1" stopColor="#fff" />
             </linearGradient>
           </defs>
-        </svg>
+        </svg>*/}
 
-        <img src={Logo} alt={"logo"} />
+        {/*<img src={Logo} alt={"logo"} />*/}
 
-        {/*<ReactSVG className={reactSvg} src={logo.publicURL} />*/}
+        <ReactSVG className={reactSvg} src={logo.publicURL} />
         {/*<img src={logo.publicURL}/>*/}
 
-        {/* <Typography variant='h1'
-                      style={{
-                        fontFamily: 'shapes-2'
-                      }}
-          >
-          H
-        </Typography>*/}
+
       </Link>
 
       {/*<div data-cursor='true'

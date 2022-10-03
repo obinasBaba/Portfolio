@@ -1,23 +1,23 @@
 // noinspection JSIgnoredPromiseFromCall
 
 import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { GradientText } from "../GradientText";
-import FooterMeta from "./FooterMeta";
-import FooterBottom from "../FooterBottom";
-import MotionBtn from "../MotionBtn";
-import { useLocation } from "@reach/router";
-import useBackgroundsAssets from "@hooks/queries/useBackgroundsAssets";
-import { motion, useAnimation } from "framer-motion";
-import { pageTransition } from "@scenes/HomePage";
-import { useLocomotiveScroll } from "@contexts/LocoMotive";
+import { GradientText } from '../GradientText';
+import FooterMeta from './FooterMeta';
+import FooterBottom from '../FooterBottom';
+import MotionBtn from '../MotionBtn';
+import { useLocation } from '@reach/router';
+import useBackgroundsAssets from '@hooks/queries/useBackgroundsAssets';
+import { motion, useAnimation } from 'framer-motion';
+import { pageTransition } from '@scenes/HomePage';
+import { useLocomotiveScroll } from '@contexts/LocoMotive';
 import {
   backgroundStars,
   container,
   logoEffect,
   titleWrapper,
   wrapper,
-} from "./mailus.module.scss";
-import * as s from "./mailus.module.scss";
+} from './mailus.module.scss';
+import * as s from './mailus.module.scss';
 
 const footerVariants = {
   initial: {
@@ -30,14 +30,14 @@ const footerVariants = {
     opacity: 1,
     y: 0,
   },
-  exit(arg) {
+  exit (arg) {
     return {
       opacity: 0,
-      y: arg?.down ? "100%" : arg?.up ? "-100%" : 0,
+      y: arg?.down ? '100%' : arg?.up ? '-100%' : 0,
     };
   },
   hide: {
-    display: "none",
+    display: 'none',
   },
 };
 
@@ -46,21 +46,18 @@ const transition = {
   duration: 1.8,
 };
 
-function Footer({ exitComplete }) {
-  const { starsSmallOld } =
-    useBackgroundsAssets();
+function Footer ({ exitComplete }) {
+  const { starsSmallOld } = useBackgroundsAssets();
   const { pathname } = useLocation();
-  const [cachePath, setCachePath] = useState("");
+  const [cachePath, setCachePath] = useState('');
   const [inView, setInView] = useState(false);
   const [show, setShow] = useState(true);
   const { locoInstance } = useLocomotiveScroll();
   const control = useAnimation();
 
   useLayoutEffect(() => {
-    if (pathname.includes('projects')){
-      // control.start('exit', {duration: 0})
-    }
-  }, [])
+
+  }, []);
 
   useEffect(() => {
     // console.log('location :', pathname);
@@ -70,73 +67,88 @@ function Footer({ exitComplete }) {
       return;
     }
 
-    control.start("exit");
+    control.start('exit');
     setInView(false);
   }, [pathname]);
 
   useEffect(() => {
-    control.start("animate");
+
+    setShow(true);
+
+    if (pathname.includes('projects')) {
+      setShow(false);
+      locoInstance?.scroll?.update();
+      return;
+    }
+
+    setTimeout(() => control.start('animate', { duration: 0 }), 1400);
+
   }, [exitComplete]);
 
   return (
-    <div
-      data-scroll-section={true}
-      id="footer-container"
-      className={s.footer_container}
-    >
-      <motion.div
-        className={container}
-        key={pathname}
-        variants={footerVariants}
-        transition={{ ...transition, delay: 0.1 }}
-        initial="initial"
-        animate={control}
-        exit="exit"
-        onViewportLeave={() => setInView(false)}
-        onViewportEnter={() => setInView(true)}
-        viewport={{
-          amount: 0.2,
-          once: false,
-        }}
-      >
-        <div className="bottom_gradient" />
+    <>
 
-        <div className={wrapper} data-scroll={true} data-scroll-speed="-4.5">
-          <div
-            className={backgroundStars}
-            style={{ backgroundImage: `url(${starsSmallOld.publicURL})` }}
-          />
-
-          <div className={logoEffect} />
-
+      {
+        show && <div
+          data-scroll-section={true}
+          id='footer-container'
+          className={s.footer_container}
+        >
           <motion.div
-            className={titleWrapper}
+            className={container}
+            key={pathname}
             variants={footerVariants}
-            transition={transition}
-            custom={{ up: true }}
-          >
-            <GradientText variant="h1">
-              Ready To Create <br /> Your Star ?
-            </GradientText>
-
-            <MotionBtn text="Contact" to="/contact" data-pointer="focus" />
-          </motion.div>
-
-          <motion.div
-            style={{
-              width: "100%",
+            transition={{ ...transition, delay: 0.1 }}
+            initial='initial'
+            animate={control}
+            exit='exit'
+            onViewportLeave={() => setInView(false)}
+            onViewportEnter={() => setInView(true)}
+            viewport={{
+              amount: 0.2,
+              once: false,
             }}
-            variants={footerVariants}
-            transition={{ ...transition, delay: 0.2 }}
-            custom={{ down: true }}
           >
-            <FooterMeta />
+            <div className='bottom_gradient' />
 
-            <FooterBottom />
+            <div className={wrapper} data-scroll={true} data-scroll-speed='-4.5'>
+              <div
+                className={backgroundStars}
+                style={{ backgroundImage: `url(${starsSmallOld.publicURL})` }}
+              />
+
+              <div className={logoEffect} />
+
+              <motion.div
+                className={titleWrapper}
+                variants={footerVariants}
+                transition={transition}
+                custom={{ up: true }}
+              >
+                <GradientText variant='h1'>
+                  Ready To Create <br /> Your Star ?
+                </GradientText>
+
+                <MotionBtn text='Contact' to='/contact' data-pointer='focus' />
+              </motion.div>
+
+              <motion.div
+                style={{
+                  width: '100%',
+                }}
+                variants={footerVariants}
+                transition={{ ...transition, delay: 0.2 }}
+                custom={{ down: true }}
+              >
+                <FooterMeta />
+
+                <FooterBottom />
+              </motion.div>
+            </div>
           </motion.div>
         </div>
-      </motion.div>
-    </div>
+      }
+    </>
   );
 }
 

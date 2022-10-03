@@ -8,7 +8,7 @@ import {
 import { AppStateContext } from "@contexts/AppStateContext";
 import { MotionValueContext } from "@contexts/MotionStateWrapper";
 import BackgroundStars from "@components/BackgroundStars";
-import HeaderAppBar from "@components/HeaderAppBar";
+import HeaderAppBar from "@components/NavBar";
 import ToolTip from "@components/Fixed/ToolTip";
 import ProgressCircle from "@components/ScrollProgressCircle";
 import ScreenOverlay from "@components/ScreenOverlay";

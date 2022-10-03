@@ -8,7 +8,7 @@ import { AppStateContext } from "@contexts/AppStateContext";
 import HomeLogo from "./components/HomeLogo";
 import NavBtn from "./components/NavBtn";
 import OverlayController from "../ScreenOverlay/OverlayController";
-import { container } from "./appbar.module.scss";
+import { container } from "./navbar.module.scss";
 import { useLocation } from "@reach/router";
 
 function HideOnScroll({ children }) {
@@ -51,7 +51,7 @@ const appBarVariants = {
   },
 };
 
-function HeaderAppBar() {
+function NavBar() {
   const { menuIsOpen } = useMotionValueContext();
 
   const toggleMenu = () =>
@@ -70,4 +70,4 @@ function HeaderAppBar() {
   );
 }
 
-export default React.memo(HeaderAppBar);
+export default NavBar;

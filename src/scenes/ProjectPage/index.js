@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { motion, useMotionValue } from "framer-motion";
 import styled from "styled-components";
 import ReactFullpage from "@fullpage/react-fullpage";
-import { gridColWidth, gridify } from "../../styles/mixins";
+import { gridColWidth, gridify } from '@/styles/mixins';
 import Moon from "../../components/MoonLight";
 
 import NavDots from "./components/NavDots";
@@ -14,7 +14,7 @@ import Others from "./components/Others";
 import { useProjectData } from "./util/projectData";
 import { moonVariants, parentVariant, topVariant } from "./util/variants";
 import ProjectScrollDown from "./components/SideBarTools/ProjectScrollDown";
-import { MotionValueContext } from "../../contexts/MotionStateWrapper";
+import { MotionValueContext } from '@contexts/MotionStateWrapper';
 
 const ProjectContainerGrid = styled(motion.div)`
   display: grid;
