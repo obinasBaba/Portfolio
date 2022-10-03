@@ -100,9 +100,7 @@ const CaseStudy = ({
   scrolled,
 }) => {
   const {
-    thumbnailUrl,
-    title: nextProjectTitle,
-    url,
+    thumbnailUrl, url
   } = projectData.nextProject;
 
   useUpdatePath(path);
@@ -218,7 +216,6 @@ const CaseStudy = ({
 
       <NextProject
         thumbnailUrl={thumbnailUrl}
-        title={nextProjectTitle}
         url={url}
       />
     </motion.div>

@@ -21,10 +21,10 @@ import Tags from "./components/Tags";
 import Title from "../../../scenes/ProjectPage/components/ProjectDescription/components/Title";
 import TestPreview from "@scenes/ProjectPage/components/ProjectImage/Bottle-Haus Thumbnail.png";
 
-const Headline = ({ subTitle, title, about, media }) => (
+const Headline = ({ tags, title, about, media }) => (
   <HeadlineContainer variants={containerVariants}>
     <Texts variants={textsVariant} transition={transition}>
-      <Tags txt="Analytics, UX, UI, Icons, Front-end" />
+      <Tags txt={tags} />
 
       <Title
         title={title}
@@ -46,8 +46,8 @@ const Headline = ({ subTitle, title, about, media }) => (
     <ImageWrapper variants={imgWrapperVariant} transition={transition}>
       <InnerWrapper variants={innerVariant} transition={transition}>
         <motion.img
-          // src={media}
-          src={TestPreview}
+          src={media}
+          // src={TestPreview}
         />
       </InnerWrapper>
     </ImageWrapper>

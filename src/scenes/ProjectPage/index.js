@@ -90,11 +90,6 @@ function ProjectPage() {
 
             setActiveIndex.set(dist.index);
 
-            /* if (dist.isLast) {
-                           controllers[origin.index].start('exitFp')
-                           return true
-                         } */
-
             controllers[origin.index].start("exitFp");
             controllers[dist.index].start("animateFp");
           }}

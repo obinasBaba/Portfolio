@@ -7,13 +7,8 @@ import { largeUp } from "../../../styles/mixins/breakpoints";
 const ComingSoonContainer = styled(Container)`
   position: relative;
   //background-color: ${({ themeCrl }) => themeCrl};
-  background-image: linear-gradient(
-    137.81deg,
-    #e7a28f 3.52%,
-    #f9d6ac 41.89%,
-    #fbfefc 96.77%
-  );
-
+  //background-image: var(--gray_gradient);
+border: 1px solid black;
   color: #02021e;
 
   width: 100%;
@@ -36,7 +31,7 @@ const ComingSoonContainer = styled(Container)`
 
   ${largeUp(css`
     ${spacing("pv", 4)};
-    ${spacing("pl", 15)};
+    // ${spacing("pl", 15)};
   `)};
 
   .titleTxt {
@@ -47,10 +42,10 @@ const ComingSoonContainer = styled(Container)`
   }
 
   .reason {
-    max-width: 40ch;
+    max-width: 50ch;
     text-align: left;
 
-    ${text(1.1)};
+    ${text(1)};
     ${spacing("mb", 3)};
   }
 
@@ -64,13 +59,13 @@ const ComingSoonContainer = styled(Container)`
 
 function ComingSoon() {
   return (
-    <ComingSoonContainer maxWidth={false} fixed={false} component="section">
+    <ComingSoonContainer maxWidth={'xl'} fixed={false} component="section">
       <Typography className="titleTxt" variant="h1">
-        Thanks for stopping by Alien.
+        Thanks for stopping by Human.
       </Typography>
 
       <Typography gutterBottom className="reason">
-        This is relatively a new project I just finished, so am putting some
+        This is relatively a new project I just finished building and am putting some
         bits and pieces together to prepare an in-depth, walk-through story to
         tell.
       </Typography>

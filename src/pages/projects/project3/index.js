@@ -1,42 +1,42 @@
-import React from "react";
-import useToolTip from "../../../hooks/useToolTip";
-import CaseStudy from "../../../components/CaseStudy";
-import ComingSoon from "../../../components/CaseStudy/ComingSoon";
-import useProject3Assets from "../../../hooks/queries/useProject3Assets";
-import useUpdatePath from "../../../hooks/useUpdatePath";
+import React, { useState } from 'react';
+import CaseStudy from '../../../components/CaseStudy';
+import ComingSoon from '../../../components/CaseStudy/ComingSoon';
+import useUpdatePath from '../../../hooks/useUpdatePath';
+import Headline from '@components/CaseStudy/Headline';
+import { motion } from 'framer-motion';
+import { useProjectData } from '@scenes/ProjectPage/util/projectData';
 
-const projectDataDefault = {
-  title: "Atgbe Food Delivery",
-  subTitle: "this is gebeya subtitle",
-  about: {
-    role: "FrontEnd Developer",
-    context: "Design",
-    period: "End 2018",
-  },
-  intro: {},
-  backUrl: "/projects#three",
-  nextProject: {
-    title: "Vigoza",
-    url: "/projects/vigoza",
-    thumbnailUrl: "",
-  },
-};
-
-function Project3({ location }) {
-  const { headlineImage } = useProject3Assets();
-
+function Project3 ({ location }) {
+  const [scrolled, setScrolled] = useState(false);
   useUpdatePath(location.pathname);
 
-  projectDataDefault.headlineImage = headlineImage.publicURL;
+  const project3data = useProjectData().items[2];
+  const { title, tags, preview } = project3data;
+
   // useLocoScroll();
-  useToolTip("[data-tooltip-text]");
+  // useToolTip("[data-tooltip-text]");
   // useRefreshMouseListeners( '[data-pointer]' )
 
-  return (
-    <CaseStudy projectData={projectDataDefault}>
+  return (<CaseStudy projectData={project3data} scrolled={scrolled}>
+    <Headline title={title} tags={tags} media={preview.publicURL} />
+
+    <motion.div
+      viewport={{
+        amount: 0.25,
+      }}
+      onViewportEnter={() => {
+        if (!scrolled) setScrolled(true);
+      }}
+      onViewportLeave={(entry) => {
+        if (entry.boundingClientRect.y >= 0) {
+          setScrolled(false);
+        }
+      }}
+    >
+
       <ComingSoon />
-    </CaseStudy>
-  );
+    </motion.div>
+  </CaseStudy>);
 }
 
 export default Project3;

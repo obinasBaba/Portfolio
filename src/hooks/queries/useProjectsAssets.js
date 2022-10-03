@@ -21,7 +21,7 @@ const useProjectsAssets = () => {
         name
         publicURL
       }
-      preview2: file(relativePath: { eq: "sections/projects/preview-11.jpg" }) {
+      preview2: file(relativePath: { eq: "sections/projects/juvi.png" }) {
         name
         publicURL
       }

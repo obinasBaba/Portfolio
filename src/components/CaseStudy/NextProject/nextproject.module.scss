@@ -9,6 +9,8 @@
   width: 100%;
   //background-color: #fbfefc;
 
+  //border: 1px solid red;
+
 
   //@include margin(top, 10);
   //transform: translateY(5px);
@@ -16,11 +18,14 @@
   & :local{
 
     .wrapper{
-      @include padding(ver, 13rem);
+
+
+      @include padding(ver, 7rem);
     }
 
     .text{
-
+      //border: 1px solid red;
+      @include padding(5rem);
 
     }
   }

@@ -49,8 +49,8 @@ function ProjectImage({ index, exit, items }) {
         />
 
         <motion.img
-          // data-src={preview.publicURL}
-          src={TestPreview}
+          data-src={preview.publicURL}
+          // src={TestPreview}
           variants={imgVariant}
           transition={transition}
         />

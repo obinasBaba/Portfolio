@@ -1,6 +1,6 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { GradientText } from "../GradientText";
 import FooterMeta from "./FooterMeta";
 import FooterBottom from "../FooterBottom";
@@ -21,10 +21,12 @@ import * as s from "./mailus.module.scss";
 
 const footerVariants = {
   initial: {
+    display: 'block',
     opacity: 1,
     y: 0,
   },
   animate: {
+    display: 'block',
     opacity: 1,
     y: 0,
   },
@@ -45,20 +47,26 @@ const transition = {
 };
 
 function Footer({ exitComplete }) {
-  const { starsBig, starsSmall, starsBigOld, starsSmallOld } =
+  const { starsSmallOld } =
     useBackgroundsAssets();
   const { pathname } = useLocation();
   const [cachePath, setCachePath] = useState("");
   const [inView, setInView] = useState(false);
   const [show, setShow] = useState(true);
-  const control = useAnimation();
   const { locoInstance } = useLocomotiveScroll();
+  const control = useAnimation();
+
+  useLayoutEffect(() => {
+    if (pathname.includes('projects')){
+      // control.start('exit', {duration: 0})
+    }
+  }, [])
 
   useEffect(() => {
     // console.log('location :', pathname);
     setCachePath(pathname);
 
-    if (!inView || cachePath == pathname) {
+    if (!inView || cachePath === pathname) {
       return;
     }
 

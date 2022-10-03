@@ -73,6 +73,12 @@ const useColorAssets = () => {
         name
         ...homeWorksBigImage
       }
+
+        headlineImage: file(
+            relativePath: { eq: "sections/projects/juvi.png" }
+        ) {
+            publicURL
+        }
     }
   `);
 };

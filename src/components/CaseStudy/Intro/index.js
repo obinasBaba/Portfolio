@@ -8,7 +8,7 @@ import {
   vidWrapper,
   wrapper,
 } from "./intro.module.scss";
-import VideoPlayer from "@/pages/projects/vigoza/components/VideoPlayer";
+import VideoPlayer from "@/pages/projects/juvi/components/VideoPlayer";
 
 const Intro = ({ desc, subDesc, vidProps }) => {
   console.log("viporops: ", vidProps);

@@ -13,7 +13,7 @@ import {
 } from "./marqueedesktop.module.scss";
 import "swiper/css/pagination";
 import "swiper/css";
-import VideoView from "@/pages/projects/vigoza/components/VideoPlayer";
+import VideoView from "@/pages/projects/juvi/components/VideoPlayer";
 
 const CarouselSliderDesktop = ({ videos = [] }) => {
   const [, setActiveIdx] = useState(null);

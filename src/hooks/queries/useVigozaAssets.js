@@ -12,14 +12,10 @@ import { graphql, useStaticQuery } from "gatsby";
   }
 `*/
 
-const useVigozaAssets = () => {
+const useJuviAssets = () => {
   return useStaticQuery(graphql`
     query {
-      headlineImage: file(
-        relativePath: { eq: "sections/projects/preview-11.jpg" }
-      ) {
-        publicURL
-      }
+      
       webView: file(relativePath: { eq: "vigoza/webview.png" }) {
         publicURL
       }
@@ -35,4 +31,4 @@ const useVigozaAssets = () => {
   `);
 };
 
-export default useVigozaAssets;
+export default useJuviAssets;
