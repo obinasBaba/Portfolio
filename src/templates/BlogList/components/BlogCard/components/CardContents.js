@@ -1,9 +1,9 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import styled, { css } from "styled-components";
-import { spacing, text, title } from "../../../../../styles/mixins";
+import { spacing, text, title } from "@/styles/mixins";
 import ReadButton from "./ReadButton";
-import { largeUp } from "../../../../../styles/mixins/breakpoints";
+import { largeUp } from "@/styles/mixins/breakpoints";
 
 const MetaWrapper = styled.div`
   display: flex;
