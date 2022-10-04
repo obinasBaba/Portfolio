@@ -4,15 +4,7 @@
 .container {
   width: 100%;
 
-  //background-color: var(--dark);
-
-
-
   @include margin(ver, 15rem);
-  // @include padding(bottom, 8rem);
-
-  //border: 1px solid yellow;
-
 
   & :local {
 
@@ -30,12 +22,6 @@
 
     .track {
       transition: transform cubic-bezier(0.6, 0.01, 0, 0.9);
-
-      //border: 2px solid red;
-
-
-      //margin-top: calc(100vw / 64 * 1);
-
 
       .trackWrapper {
         display: flex;

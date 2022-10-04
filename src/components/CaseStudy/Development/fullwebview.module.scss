@@ -16,19 +16,21 @@
 
   & :local {
 
-    .title_container {
+    .titleContainer {
       display: flex;
       flex-flow: column;
       justify-content: center;
       align-items: center;
-
       @include margin(bottom, 7rem);
+
 
       & > :last-child {
         align-self: flex-end;
+        margin-top: f-unit(1rem);
+        margin-right: f-unit(2rem);
 
-        @include margin(top, 1rem);
-        @include margin(right, 2rem);
+        //@include margin(top, 1rem);
+        //@include margin(right, 2rem);
 
       }
     }
@@ -58,7 +60,7 @@
         }
       }
 
-      .img {
+      .imgWrapper {
 
         img {
           display: block;

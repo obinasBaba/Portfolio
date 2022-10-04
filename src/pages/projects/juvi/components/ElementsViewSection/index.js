@@ -1,21 +1,30 @@
-import React from "react";
-import ResponsiveContainer from "@components/ResponsiveContainer";
-import { Typography } from "@material-ui/core";
-import * as s from "./elementsviewsection.module.scss";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import React from 'react';
+import ResponsiveContainer from '@components/ResponsiveContainer';
+import { Typography } from '@material-ui/core';
+import * as s from './elementsviewsection.module.scss';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import useJuviAssets from '@hooks/queries/juvi/useJuviAssets';
 
 const ElementsViewSection = ({ elements }) => {
   // const { element1, element2 } = useJuviAssets();
+
+  const {
+    element1,
+    element2,
+    element3,
+    element4,
+    element5,
+  } = useJuviAssets();
 
   return (
     <div className={s.container}>
       <ResponsiveContainer className={s.wrapper}>
         <div className={s.text}>
-          <Typography variant="h3" gutterBottom>
+          <Typography variant='h3' gutterBottom>
             elements
           </Typography>
 
-          <Typography style={{ maxWidth: "77ch" }}>
+          <Typography style={{ maxWidth: '77ch' }}>
             kim drew a whopping 141 scribble- and 39 stone illustrations to use
             in all kinds of media, including the website. they portray elements
             the band personally feels close to.
@@ -26,28 +35,28 @@ const ElementsViewSection = ({ elements }) => {
       <div className={s.elementImg}>
         <div className={s.col}>
           <div className={s.img_wrapper}>
-            <div className={s.img} data-scroll={true} data-scroll-speed="-2">
+            <div className={s.img} data-scroll={true} data-scroll-speed='-2'>
               <GatsbyImage
-                alt="elements used in the project"
-                image={getImage(elements[0])}
+                alt='elements used in the project'
+                image={getImage(element1)}
               />
             </div>
           </div>
 
           <div className={s.img_wrapper}>
-            <div className={s.img} data-scroll={true} data-scroll-speed="-2">
+            <div className={s.img} data-scroll={true} data-scroll-speed='-2'>
               <GatsbyImage
-                alt="elements used in the project"
-                image={getImage(elements[1])}
+                alt='elements used in the project'
+                image={getImage(element2)}
               />
             </div>
           </div>
 
           <div className={s.img_wrapper}>
-            <div className={s.img} data-scroll={true} data-scroll-speed="-2">
+            <div className={s.img} data-scroll={true} data-scroll-speed='-2'>
               <GatsbyImage
-                alt="elements used in the project"
-                image={getImage(elements[4])}
+                alt='elements used in the project'
+                image={getImage(element5)}
               />
             </div>
           </div>
@@ -55,19 +64,19 @@ const ElementsViewSection = ({ elements }) => {
 
         <div className={s.col}>
           <div className={s.img_wrapper}>
-            <div className={s.img} data-scroll={true} data-scroll-speed="-2">
+            <div className={s.img} data-scroll={true} data-scroll-speed='-2'>
               <GatsbyImage
-                alt="elements used in the project"
-                image={getImage(elements[2])}
+                alt='elements used in the project'
+                image={getImage(element3)}
               />
             </div>
           </div>
 
           <div className={s.img_wrapper}>
-            <div className={s.img} data-scroll={true} data-scroll-speed="-2">
+            <div className={s.img} data-scroll={true} data-scroll-speed='-2'>
               <GatsbyImage
-                alt="elements used in the project"
-                image={getImage(elements[3])}
+                alt='elements used in the project'
+                image={getImage(element4)}
               />
             </div>
           </div>

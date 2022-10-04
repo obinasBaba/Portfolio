@@ -21,8 +21,8 @@ const CarouselSliderMobile = ({ images = [], desc }) => {
   return (
     <div className={container}>
       <ResponsiveContainer className={headerText}>
-        <Typography variant='h1'>{desc.title}</Typography>
-        <Typography variant='body1'>{desc.text}</Typography>
+        <Typography variant='h1'>{desc?.title}</Typography>
+        <Typography variant='body1'>{desc?.text}</Typography>
       </ResponsiveContainer>
 
       <Swiper

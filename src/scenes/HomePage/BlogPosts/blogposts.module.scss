@@ -56,9 +56,9 @@
           @include col-width(7, 28);
         }
 
-        @include media-breakpoint-up(xl) {
-          //@include col-width(3, 25);
-        }
+        //@include media-breakpoint-up(xl) {
+        //@include col-width(3, 25);
+        //}
 
       }
 

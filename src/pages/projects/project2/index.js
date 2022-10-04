@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import CaseStudy from '../../../components/CaseStudy';
-import ComingSoon from '../../../components/CaseStudy/ComingSoon';
-import useProject2Assets from '../../../hooks/queries/useProject2Assets';
-import useUpdatePath from '../../../hooks/useUpdatePath';
+import CaseStudy from '@components/CaseStudy';
+import ComingSoon from '@components/CaseStudy/ComingSoon';
+import useProject2Assets from '@hooks/queries/useProject2Assets';
+import useUpdatePath from '@hooks/useUpdatePath';
 import Headline from '@components/CaseStudy/Headline';
 import { motion } from 'framer-motion';
 import { useProjectData } from '@scenes/ProjectPage/util/projectData';
-
-
 
 function Project2 ({ location }) {
   const { headlineImage } = useProject2Assets();

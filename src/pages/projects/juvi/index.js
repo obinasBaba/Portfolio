@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import useJuviAssets from '@hooks/queries/juvi/useJuviAssets';
-import useToolTip from '../../../hooks/useToolTip';
-import CaseStudy from '../../../components/CaseStudy';
-import MetaTxt from '../../../components/CaseStudy/MetaTxt';
-import Intro from '../../../components/CaseStudy/Intro';
-import ColorPalette from '../../../components/CaseStudy/Colors';
-import FontUsed from '../../../components/CaseStudy/FontUsed';
-import Development from '../../../components/CaseStudy/Development';
-import useUpdatePath from '../../../hooks/useUpdatePath';
-import ElementsViewSection
-  from '@/pages/projects/juvi/components/ElementsViewSection';
+import useToolTip from '@hooks/useToolTip';
+import CaseStudy from '@components/CaseStudy';
+import ColorPalette from '@components/CaseStudy/Colors';
+import FontUsed from '@components/CaseStudy/FontUsed';
+import useUpdatePath from '@hooks/useUpdatePath';
+import MetaTxt from '@components/CaseStudy/MetaTxt';
+import Intro from '@components/CaseStudy/Intro';
 import RectangleView from '@/pages/projects/juvi/components/RectangleView';
 import Headline from '@components/CaseStudy/Headline';
-import HorizontalGallery
-  from '@/pages/projects/juvi/components/HorizontalGallery';
 import useJuviMarqueeAssets from '@hooks/queries/juvi/useJuviMarqueeAssets';
+import ElementsViewSection
+  from '@/pages/projects/juvi/components/ElementsViewSection';
 import CarouselSliderDesktop
   from '@/pages/projects/juvi/components/CarouselSliderDesktop';
 import CarouselSliderMobile
@@ -25,11 +21,15 @@ import useJuviVideo, {
 } from '@hooks/queries/juvi/useJuviVideo';
 import { useProjectData } from '@scenes/ProjectPage/util/projectData';
 import Seo from '@components/seo';
+import { motion } from 'framer-motion';
+import HorizontalGallery
+  from '@/pages/projects/juvi/components/HorizontalGallery';
+import Development from '@components/CaseStudy/Development';
 
 function Juvi ({ location }) {
   // console.log('vigozaArg: ', arg)
 
-  useToolTip("[data-tooltip-text]");
+  useToolTip('[data-tooltip-text]');
   useUpdatePath(location.pathname);
 
   const [scrolled, setScrolled] = useState(false);
@@ -65,8 +65,8 @@ function Juvi ({ location }) {
   return (
     <CaseStudy projectData={juviData} scrolled={scrolled}>
       <Seo
-        title="Juvi"
-        description="case-study for one of the project i have built juve liqour store, an ecommerce site"
+        title='Juvi'
+        description='case-study for one of the project i have built juve liqour store, an ecommerce site'
       />
 
       <Headline title={title} tags={tags} media={preview.publicURL}

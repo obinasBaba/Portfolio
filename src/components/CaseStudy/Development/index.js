@@ -1,30 +1,29 @@
-import React from "react";
-import styled from "styled-components";
-import { Container, Typography } from "@material-ui/core";
-import { spacing } from "@/styles/mixins";
-import devPic from "./dev.png";
-import * as s from "./fullwebview.module.scss";
-
-const DevelopmentContainer = styled.div``;
-
-const TitleWrapper = styled.div``;
+import React from 'react';
+import { Typography } from '@material-ui/core';
+import devPic from './dev.png';
+import {
+  container,
+  device,
+  imgWrapper,
+  titleContainer,
+} from './fullwebview.module.scss';
 
 const Development = () => {
   return (
-    <div className={s.container}>
-      <div className={s.title_container}>
-        <Typography variant="h1"> Development </Typography>
+    <div className={container}>
+      <div className={titleContainer}>
+        <Typography variant='h1'> Development </Typography>
         <Typography>UI & Components</Typography>
       </div>
 
-      <div className={s.device}>
+      <div className={device}>
         <header>
           <span />
           <span />
           <span />
         </header>
-        <div className={s.img}>
-          <img src={devPic} alt={"dev pic"} />
+        <div className={imgWrapper}>
+          <img src={devPic} alt={'dev pic'} />
         </div>
       </div>
     </div>

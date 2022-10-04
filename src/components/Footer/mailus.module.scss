@@ -2,14 +2,13 @@
 
 
 //noinspection SassScssResolvedByNameOnly
-
-.footer_container{
+.footer_container {
   position: relative;
   background: var(--footer-bg);
 
 
   // fixing the boarder stuter
-  &::after{
+  &::after {
     content: '';
     position: absolute;
     top: -10px;
@@ -69,24 +68,24 @@
 
       //border: 1px solid red;
 
-      .backgroundStars{
+      .backgroundStars {
         position: absolute;
         inset: 0;
       }
 
     }
 
-    .titleWrapper{
+    .titleWrapper {
       display: flex;
       flex-flow: column;
       align-items: center;
       justify-content: center;
 
-      @include margin(bottom, 8);
+      //@include margin(bottom, 8);
 
     }
 
-    .logoEffect{
+    .logoEffect {
       position: absolute;
       background-image: url('./logo.svg');
       background-repeat: no-repeat;

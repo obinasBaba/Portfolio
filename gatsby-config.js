@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     defaultTitle: ` henzzo.com`,
-    titleTemplate: "The Real Hero · %s",
+    titleTemplate: 'The Real Hero · %s',
     email: `henokgetachew500@gmail.com`,
     defaultDescription: ` 
       Hi🖖,am henok, a digital designer &amp; 
@@ -9,10 +9,10 @@ module.exports = {
       kind with a design that capture your imagination.
     `,
     author: `henzzo`,
-    twitterUsername: "@henzzo_com",
-    siteUrl: "https://henzzo.com",
-    thumbnail: "/thumbnail2.jpg",
-    image: "/favicon.svg"
+    twitterUsername: '@henzzo_com',
+    siteUrl: 'https://henzzo.com',
+    thumbnail: '/thumbnail2.jpg',
+    image: '/favicon.svg',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -25,22 +25,22 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `fonts`,
-        path: `${__dirname}/src/assets/fonts`
-      }
+        path: `${__dirname}/src/assets/fonts`,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/assets/images`
-      }
+        path: `${__dirname}/src/assets/images`,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `json`,
-        path: `${__dirname}/src/assets/json`
-      }
+        path: `${__dirname}/src/assets/json`,
+      },
     },
 
     {
@@ -48,16 +48,16 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `img`,
-        path: `${__dirname}/static/img`
-      }
+        path: `${__dirname}/static/img`,
+      },
     },
     {
       // blog
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `cms`,
-        path: `${__dirname}/src/cms`
-      }
+        path: `${__dirname}/src/cms`,
+      },
     },
 
     {
@@ -65,16 +65,16 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-          "gatsby-remark-relative-images",
+          'gatsby-remark-relative-images',
           `gatsby-plugin-netlify-cms-paths`,
 
           {
-            resolve: "gatsby-remark-images",
+            resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 1024,
-              withWebp: true
-            }
-          }
+              withWebp: true,
+            },
+          },
           /* {
             resolve: `gatsby-remark-highlight-code`,
             options: {
@@ -83,26 +83,26 @@ module.exports = {
               lineNumbers: true
             }
           } */
-        ]
-      }
+        ],
+      },
     },
 
     {
-      resolve: "gatsby-plugin-react-svg",
+      resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
-          include: /\.inline\.svg$/
-        }
-      }
+          include: /\.inline\.svg$/,
+        },
+      },
     },
     `gatsby-plugin-layout`,
     {
       resolve: `gatsby-plugin-material-ui`,
       options: {
         stylesProvider: {
-          injectFirst: true
-        }
-      }
+          injectFirst: true,
+        },
+      },
     },
     `gatsby-plugin-styled-components`,
     {
@@ -114,43 +114,43 @@ module.exports = {
         background_color: `#02021e`,
         theme_color: `#02021e`,
         display: `minimal-ui`,
-        scope: "/",
+        scope: '/',
         icons: [
           {
-            src: "logo(513).svg",
-            type: "image/svg+xml",
-            sizes: "514x546"
+            src: 'logo(513).svg',
+            type: 'image/svg+xml',
+            sizes: '514x546',
           }, {
-            src: "favicon.ico",
-            type: "image/x-icon",
-            sizes: "241x256"
+            src: 'favicon.ico',
+            type: 'image/x-icon',
+            sizes: '241x256',
           },
           {
-            src: "logo(197).png",
-            type: "image/png",
-            sizes: "197x210"
+            src: 'logo(197).png',
+            type: 'image/png',
+            sizes: '197x210',
           }, {
-            src: "logo_194.png",
-            type: "image/png",
-            sizes: "194x194"
+            src: 'logo_194.png',
+            type: 'image/png',
+            sizes: '194x194',
           },
           {
-            src: "logo(513).png",
-            type: "image/png",
-            sizes: "514x546"
-          }
+            src: 'logo(513).png',
+            type: 'image/png',
+            sizes: '514x546',
+          },
         ],
         description: `Hi, am henok, a digital designer &amp; 
                       developer based in Addis. I build websites of a different 
                       kind with a design that capture your imagination.`,
         screenshots: [
           {
-            src: "thumbnail.jpg",
-            type: "image/jpg",
-            sizes: "608x322"
-          }
-        ]
-      }
+            src: 'thumbnail.jpg',
+            type: 'image/jpg',
+            sizes: '608x322',
+          },
+        ],
+      },
     },
     {
       resolve: `gatsby-plugin-offline`,
@@ -164,37 +164,40 @@ module.exports = {
           `/blog/*`,
           `/contact/`,
           // `/thanks/`,
-          `/404/`
-        ]
-      }
+          `/404/`,
+        ],
+      },
     },
     `gatsby-plugin-gatsby-cloud`,
 
     {
-      resolve: `gatsby-plugin-sass`
+      resolve: 'gatsby-plugin-sass',
+      options: {
+        implementation: require('sass'),
+      },
     },
     {
       resolve: `gatsby-plugin-alias-imports`,
       options: {
         alias: {
-          "@": "./src/",
-          "@styles": "./src/styles/sass-styles/",
-          "@style": "./src/styles/sass-styles/index.scss",
-          "@global": "./src/styles/sass-styles/global-style/index.scss",
-          "@components": "./src/components/",
-          "@scenes": "./src/scenes/",
-          "@contexts": "./src/contexts/",
-          "@hooks": "./src/hooks/",
-          "@helpers": "./src/helpers/"
+          '@': './src/',
+          '@styles': './src/styles/sass-styles/',
+          '@style': './src/styles/sass-styles/index.scss',
+          '@global': './src/styles/sass-styles/global-style/index.scss',
+          '@components': './src/components/',
+          '@scenes': './src/scenes/',
+          '@contexts': './src/contexts/',
+          '@hooks': './src/hooks/',
+          '@helpers': './src/helpers/',
         },
-        extensions: ["js", "sass", "scss", "ts", "tsx", "css"]
-      }
+        extensions: ['js', 'sass', 'scss', 'ts', 'tsx', 'css'],
+      },
     },
     {
-      resolve: "gatsby-plugin-webpack-bundle-analyser-v2",
+      resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
       options: {
-        openAnalyzer: false
-      }
-    }
-  ]
+        openAnalyzer: false,
+      },
+    },
+  ],
 };

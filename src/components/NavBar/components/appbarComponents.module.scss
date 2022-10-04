@@ -16,11 +16,11 @@
   max-width: 4.2rem;
   //max-width: f-unit-light(5rem);
 
-  @include media-breakpoint-up(md) {
-    //max-width: f-unit-light(5rem);
-  }
+  //@include media-breakpoint-up(md) {
+  //max-width: f-unit-light(5rem);
+  //}
 
-  & > :first-child{
+  & > :first-child {
 
     //border: thin solid red;
 
@@ -39,7 +39,6 @@
   }
 
 
-
   & :local {
 
 
@@ -53,14 +52,14 @@
 
     a {
 
-      img{
+      img {
         max-width: 100%;
         width: 100%;
         //width: 100px;
         //height: 100px;
       }
 
-      svg{
+      svg {
         max-width: 100%;
         width: 100%;
 

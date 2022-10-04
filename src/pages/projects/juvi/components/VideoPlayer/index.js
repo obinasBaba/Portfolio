@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import clsx from "clsx";
+import React, { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import clsx from 'clsx';
 
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { Typography } from "@material-ui/core";
-import * as s from "./videoplayer.module.scss";
-import { transition } from "@helpers/variants";
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { Typography } from '@material-ui/core';
+import * as s from './videoplayer.module.scss';
+import { transition } from '@helpers/variants';
 
 const loadingTxtVariants = {
   initial: {
@@ -32,10 +32,10 @@ const VideoPlayer = ({ vidProps }) => {
       setLoaded(true);
     };
 
-    vidRef.current?.addEventListener("loadeddata", imgLoaded);
+    vidRef.current?.addEventListener('loadeddata', imgLoaded);
 
     return () => {
-      vidRef.current?.removeEventListener("loadeddata", imgLoaded);
+      vidRef.current?.removeEventListener('loadeddata', imgLoaded);
     };
   }, []);
 
@@ -70,17 +70,17 @@ const VideoPlayer = ({ vidProps }) => {
           {!loaded && inView && (
             <motion.div
               className={s.loading_text}
-              initial="initial"
-              animate="animate"
-              exit="exit"
+              initial='initial'
+              animate='animate'
+              exit='exit'
               variants={loadingTxtVariants}
               transition={{ ...transition, delay: 0.3 }}
             >
-              <Typography variant="body2">loading clip</Typography>
+              <Typography variant='body2'>loading clip</Typography>
 
               <div className={s.loading_bullet}>
-                <p className="inner-one">f</p>
-                <p className="inner-two">g</p>
+                <p className='inner-one'>f</p>
+                <p className='inner-two'>g</p>
               </div>
             </motion.div>
           )}
@@ -94,24 +94,24 @@ const VideoPlayer = ({ vidProps }) => {
             style={{ opacity: loaded ? 0 : 1 }}
           >
             <GatsbyImage
-              alt="Image Place holder"
-              placeholder="blurred"
-              objectFit="cover"
-              image={getImage(vidProps.img)}
+              alt='Image Place holder'
+              placeholder='blurred'
+              objectFit='cover'
+              image={getImage(vidProps?.img)}
             />
           </div>
         }
 
         <video
           className={s.vid}
-          preload="metadata"
+          preload='metadata'
           muted
           loop
           playsInline={true}
           ref={vidRef}
         >
-          <source src={vidProps?.webm} type="video/webm" />
-          <source src={vidProps?.mp4} type="video/mp4" />
+          <source src={vidProps?.webm} type='video/webm' />
+          <source src={vidProps?.mp4} type='video/mp4' />
         </video>
       </div>
     </motion.div>

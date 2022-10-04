@@ -1,10 +1,13 @@
+@use "sass:math";
+
 @function extract-unit($number) {
   @return $number * 0 + 1;
 }
 
 @function strip-unit($number) {
   @if type-of($number) == 'number' and not unitless($number) {
-    @return $number / extract-unit($number);
+    //@return $number / extract-unit($number);
+    @return math.div($number, extract-unit($number))
   }
 
   @return $number;

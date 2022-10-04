@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import CaseStudy from '../../../components/CaseStudy';
-import ComingSoon from '../../../components/CaseStudy/ComingSoon';
-import useUpdatePath from '../../../hooks/useUpdatePath';
+import CaseStudy from '@components/CaseStudy';
+import ComingSoon from '@components/CaseStudy/ComingSoon';
+import useUpdatePath from '@hooks/useUpdatePath';
 import Headline from '@components/CaseStudy/Headline';
 import { motion } from 'framer-motion';
 import { useProjectData } from '@scenes/ProjectPage/util/projectData';
