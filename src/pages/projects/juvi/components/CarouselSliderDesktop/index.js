@@ -1,31 +1,30 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper";
-import ResponsiveContainer from "@components/ResponsiveContainer";
-import { Typography } from "@material-ui/core";
+import React, { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper';
+import ResponsiveContainer from '@components/ResponsiveContainer';
+import { Typography } from '@material-ui/core';
 import {
   container,
   headerText,
   navController,
   swiperContainer,
   swiperItem,
-} from "./marqueedesktop.module.scss";
-import "swiper/css/pagination";
-import "swiper/css";
-import VideoView from "@/pages/projects/juvi/components/VideoPlayer";
+  vidView,
+} from './marqueedesktop.module.scss';
+import 'swiper/css/pagination';
+import 'swiper/css';
+import VideoPlayer from '@/pages/projects/juvi/components/VideoPlayer';
 
-const CarouselSliderDesktop = ({ videos = [] }) => {
+const CarouselSliderDesktop = ({ videos = [], topTxt }) => {
   const [, setActiveIdx] = useState(null);
 
   return (
     <div className={container}>
       <ResponsiveContainer className={headerText}>
-        <Typography variant="h1">screens</Typography>
-        <Typography variant="body1">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
-          assumenda cum facere libero molestiae odio praesentium quisquam
-          reprehenderit. Sed, veniam?
+        <Typography variant='h1'>screens</Typography>
+        <Typography variant='body1'>
+          {topTxt}
         </Typography>
       </ResponsiveContainer>
 
@@ -49,36 +48,55 @@ const CarouselSliderDesktop = ({ videos = [] }) => {
         // onSwiper={(swiper) => console.log(swiper)}
         navigation={{
           enabled: true,
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
         }}
         pagination={{
-          type: "progressbar",
+          type: 'progressbar',
         }}
         className={swiperContainer}
       >
-        <div className={navController}>
-          <button className="swiper-button-prev">
+        {/*<div className={navController}>
+          <button className='swiper-button-prev'>
             <p>
               h<span>c</span>
             </p>
           </button>
 
-          <button className="swiper-button-next">
+          <button className='swiper-button-next'>
             <p>
               h<span>b</span>
             </p>
           </button>
+        </div>*/}
+
+        <div className={navController}>
+          <a>
+            <p className='swiper-button-prev'
+               data-cursor={true}
+               data-cursor-pointer={true}
+            >
+              h<span>c</span>
+            </p>
+          </a>
+          <div className='swiper-button-next'>
+            <a>
+              <p>
+                h<span>b</span>
+              </p>
+            </a>
+          </div>
         </div>
 
         {videos.map((vidProps, idx) => (
           <SwiperSlide key={idx} className={swiperItem}>
             <div
+              className={vidView}
               data-cursor={true}
-              data-cursor-text="Drag"
-              data-cursor-color="#02021e"
+              data-cursor-text='Drag'
+              data-cursor-color='#02021e'
             >
-              <VideoView vidProps={vidProps} />
+              <VideoPlayer vidProps={vidProps} />
             </div>
           </SwiperSlide>
         ))}

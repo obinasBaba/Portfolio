@@ -16,10 +16,9 @@
   box-shadow: 4px 4px 20px 7px rgba(0, 0, 0, 0.19);
 
 
-
   & :local {
 
-    .wrapper{
+    .wrapper {
       position: relative;
 
     }
@@ -60,7 +59,7 @@
       height: 100%;
     }
 
-    .loading_text{
+    .loading_text {
       margin-left: auto;
       color: var(--light_gray);
 
@@ -68,12 +67,12 @@
       align-items: center;
       gap: 1rem;
 
-      p{
+      p {
         line-height: 0%;
         margin: 0;
       }
 
-      .loading_bullet{
+      .loading_bullet {
         position: relative;
         display: grid;
         place-items: center;
@@ -82,7 +81,7 @@
         //color: white;
         line-height: 0%;
 
-        p{
+        p {
           font-weight: bolder;
           animation: rotate-one 2s linear infinite;
 
@@ -96,7 +95,7 @@
           }
         }
 
-        p:last-child{
+        p:last-child {
           position: absolute;
 
           animation: rotate-two 2s linear infinite;
@@ -111,7 +110,6 @@
           }
 
         }
-
 
 
       }

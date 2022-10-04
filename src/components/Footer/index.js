@@ -75,7 +75,7 @@ function Footer ({ exitComplete }) {
 
     setShow(true);
 
-    if (pathname.includes('projects')) {
+    if (pathname.includes('projects#') || pathname.endsWith('projects') ) {
       setShow(false);
       locoInstance?.scroll?.update();
       return;

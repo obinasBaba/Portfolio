@@ -15,6 +15,7 @@ import ScreenOverlay from "@components/ScreenOverlay";
 import NavigationMenu from "@components/NavigationMenu";
 import { BottomGradient, Main, PageContainer } from "./Styled";
 import Footer from "@components/Footer";
+import LoadingPage from '@components/LoadingSpinner';
 
 // import {} from '@re'
 
@@ -69,7 +70,7 @@ function Page({ children, path }) {
         ref={container}
         data-scroll-container={true}
       >
-        {/*<LoadingPage />*/}
+        <LoadingPage />
 
         <ScreenOverlay />
 

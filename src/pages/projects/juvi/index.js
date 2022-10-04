@@ -1,28 +1,32 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import useJuviAssets from "@hooks/queries/juvi/useJuviAssets";
-import useToolTip from "../../../hooks/useToolTip";
-import CaseStudy from "../../../components/CaseStudy";
-import MetaTxt from "../../../components/CaseStudy/MetaTxt";
-import Intro from "../../../components/CaseStudy/Intro";
-import ColorPalette from "../../../components/CaseStudy/Colors";
-import FontUsed from "../../../components/CaseStudy/FontUsed";
-import Development from "../../../components/CaseStudy/Development";
-import useUpdatePath from "../../../hooks/useUpdatePath";
-import ElementsViewSection from "@/pages/projects/juvi/components/ElementsViewSection";
-import RectangleView from "@/pages/projects/juvi/components/RectangleView";
-import Headline from "@components/CaseStudy/Headline";
-import HorizontalGallery from "@/pages/projects/juvi/components/HorizontalGallery";
-import useJuviMarqueeAssets from "@hooks/queries/juvi/useJuviMarqueeAssets";
-import CarouselSliderDesktop from "@/pages/projects/juvi/components/CarouselSliderDesktop";
-import CarouselSliderMobile from "@/pages/projects/juvi/components/CarouselSliderMobile";
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import useJuviAssets from '@hooks/queries/juvi/useJuviAssets';
+import useToolTip from '../../../hooks/useToolTip';
+import CaseStudy from '../../../components/CaseStudy';
+import MetaTxt from '../../../components/CaseStudy/MetaTxt';
+import Intro from '../../../components/CaseStudy/Intro';
+import ColorPalette from '../../../components/CaseStudy/Colors';
+import FontUsed from '../../../components/CaseStudy/FontUsed';
+import Development from '../../../components/CaseStudy/Development';
+import useUpdatePath from '../../../hooks/useUpdatePath';
+import ElementsViewSection
+  from '@/pages/projects/juvi/components/ElementsViewSection';
+import RectangleView from '@/pages/projects/juvi/components/RectangleView';
+import Headline from '@components/CaseStudy/Headline';
+import HorizontalGallery
+  from '@/pages/projects/juvi/components/HorizontalGallery';
+import useJuviMarqueeAssets from '@hooks/queries/juvi/useJuviMarqueeAssets';
+import CarouselSliderDesktop
+  from '@/pages/projects/juvi/components/CarouselSliderDesktop';
+import CarouselSliderMobile
+  from '@/pages/projects/juvi/components/CarouselSliderMobile';
 import useJuviVideo, {
   useJuviCarouselDesktopVid,
-} from "@hooks/queries/juvi/useJuviVideo";
+} from '@hooks/queries/juvi/useJuviVideo';
 import { useProjectData } from '@scenes/ProjectPage/util/projectData';
+import Seo from '@components/seo';
 
-
-function Juvi({ location }) {
+function Juvi ({ location }) {
   // console.log('vigozaArg: ', arg)
 
   useToolTip("[data-tooltip-text]");
@@ -37,7 +41,7 @@ function Juvi({ location }) {
   const mobileCarousel = [mp, mp2, mp3, mp4, mp5, mp6, mp7, mp8];
   const juviData = useProjectData().items[0];
 
-  const { title, tags, preview } = juviData;
+  const { title, tags, preview, liveUrl } = juviData;
 
   const {
     amber,
@@ -55,14 +59,18 @@ function Juvi({ location }) {
   } = useJuviAssets();
   const colors = [amber, flame, pearl, spartan, white];
 
-
-
   // projectDataDefault.nextProject.thumbnailUrl = headlineImage.publicURL;
   // projectDataDefault.location = location;
 
   return (
     <CaseStudy projectData={juviData} scrolled={scrolled}>
-      <Headline title={title} tags={tags} media={preview.publicURL} />
+      <Seo
+        title="Juvi"
+        description="case-study for one of the project i have built juve liqour store, an ecommerce site"
+      />
+
+      <Headline title={title} tags={tags} media={preview.publicURL}
+                liveUrl={liveUrl} />
 
       <motion.div
         viewport={{
@@ -77,7 +85,7 @@ function Juvi({ location }) {
           }
         }}
       >
-        <MetaTxt link="juvi.henzzo.com" />
+        <MetaTxt link={liveUrl} />
       </motion.div>
 
       <RectangleView />
@@ -91,7 +99,10 @@ function Juvi({ location }) {
         }}
       />
 
-      <CarouselSliderDesktop videos={carouselDesktop} />
+      <CarouselSliderDesktop videos={carouselDesktop}
+                             topTxt='I have put together one of unique shot to present them in carousal,
+                             it include page transition, interaction and some cool animations '
+      />
 
       <CarouselSliderMobile
         images={mobileCarousel}

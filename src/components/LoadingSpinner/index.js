@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
-import { transition } from "../../helpers/variants";
+import { transition } from '@helpers/variants';
 import useLoadingFonts from "../../hooks/useFonts";
-import { MotionValueContext } from "../../contexts/MotionStateWrapper";
+import { MotionValueContext } from '@contexts/MotionStateWrapper';
 
 const SpinnerContainer = styled(motion.div)`
   //position: fixed;

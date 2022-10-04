@@ -7,7 +7,7 @@
   @include margin(top, 15rem);
   @include padding(1rem);
 
-  border: 1px solid red;
+  //border: 1px solid red;
 
 
   & :local {
@@ -31,7 +31,7 @@
 
       //border: 1px solid red;
 
-      .mobile{
+      .mobile {
 
       }
 
@@ -106,7 +106,7 @@
   }
 }
 
-.imageView{
+.imageView {
   box-sizing: content-box;
 
   display: grid;

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper";
-import ResponsiveContainer from "@components/ResponsiveContainer";
-import { Typography } from "@material-ui/core";
+import React, { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper';
+import ResponsiveContainer from '@components/ResponsiveContainer';
+import { Typography } from '@material-ui/core';
 import {
   container,
   headerText,
@@ -10,11 +10,10 @@ import {
   navController,
   swiperContainer,
   swiperItem,
-} from "./marqueesliderview.module.scss";
-import "swiper/css/pagination";
-import "swiper/css";
-import useJuviMarqueeAssets from "@hooks/queries/juvi/useJuviMarqueeAssets";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+} from './marqueesliderview.module.scss';
+import 'swiper/css/pagination';
+import 'swiper/css';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 const CarouselSliderMobile = ({ images = [], desc }) => {
   const [, setActiveIdx] = useState(null);
@@ -22,8 +21,8 @@ const CarouselSliderMobile = ({ images = [], desc }) => {
   return (
     <div className={container}>
       <ResponsiveContainer className={headerText}>
-        <Typography variant="h1">{desc.title}</Typography>
-        <Typography variant="body1">{desc.text}</Typography>
+        <Typography variant='h1'>{desc.title}</Typography>
+        <Typography variant='body1'>{desc.text}</Typography>
       </ResponsiveContainer>
 
       <Swiper
@@ -46,19 +45,19 @@ const CarouselSliderMobile = ({ images = [], desc }) => {
         // onSwiper={(swiper) => console.log(swiper)}
         navigation={{
           enabled: true,
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
         }}
         pagination={{
-          type: "progressbar",
+          type: 'progressbar',
         }}
         className={swiperContainer}
       >
         <div className={navController}>
-          <p className="swiper-button-prev">
+          <p className='swiper-button-prev'>
             h<span>c</span>
           </p>
-          <div className="swiper-button-next">
+          <div className='swiper-button-next'>
             <p>
               h<span>b</span>
             </p>
@@ -67,8 +66,12 @@ const CarouselSliderMobile = ({ images = [], desc }) => {
 
         {images.map((image, idx) => (
           <SwiperSlide key={idx} className={swiperItem}>
-            <div className={imageView} key={idx}>
-              <GatsbyImage alt="image" image={getImage(image)} />
+            <div className={imageView} key={idx}
+                 data-cursor={true}
+                 data-cursor-text='Drag'
+                 data-cursor-color='#02021e'
+            >
+              <GatsbyImage alt='image' image={getImage(image)} />
             </div>
           </SwiperSlide>
         ))}
