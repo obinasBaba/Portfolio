@@ -1,19 +1,9 @@
-import {
-  AnimationControls,
-  MotionValue,
-  useAnimation,
-  useMotionValue,
-} from "framer-motion";
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useLayoutEffect,
-} from "react";
+import { AnimationControls, MotionValue, useAnimation, useMotionValue } from 'framer-motion';
+import React, { createContext, useContext, useEffect, useLayoutEffect } from 'react';
 // @ts-ignore
-import LocomotiveScroll from "locomotive-scroll";
-import { useMediaQuery, useTheme } from "@material-ui/core";
-import RouteChangeEvent from "../helpers/RouteChangeEvent";
+import LocomotiveScroll from 'locomotive-scroll';
+import { useMediaQuery, useTheme } from '@material-ui/core';
+import RouteChangeEvent from '../helpers/RouteChangeEvent';
 
 type ToolTipType = {
   text: string | string[];
@@ -58,7 +48,7 @@ type MotionValueContextType = {
 };
 
 export const MotionValueContext = createContext<MotionValueContextType>(
-  {} as any
+  {} as any,
 );
 
 export const MotionStateWrapper: React.FC = ({ children }) => {
@@ -73,8 +63,8 @@ export const MotionStateWrapper: React.FC = ({ children }) => {
   const xProgress = useMotionValue(0);
   const limit = useMotionValue(0);
   const projectImgLoaded = useMotionValue(false);
-  const registerScrollRestoration = useMotionValue("");
-  const scrollDirection = useMotionValue("down");
+  const registerScrollRestoration = useMotionValue('');
+  const scrollDirection = useMotionValue('down');
   const inView = useMotionValue(null);
   const locoInstance = useMotionValue<LocomotiveScroll>(null);
   const largeUp = useMotionValue(false);
@@ -82,14 +72,14 @@ export const MotionStateWrapper: React.FC = ({ children }) => {
   const mainAnimationController = useAnimation();
 
   const screenOverlayProxy = useMotionValue({ state: false, config: {} });
-  const screenOverlayEvent = useMotionValue("");
+  const screenOverlayEvent = useMotionValue('');
   const menuIsOpen = useMotionValue(false);
 
-  const refreshCursorEventListeners = useMotionValue("[data-pointer]");
+  const refreshCursorEventListeners = useMotionValue('[data-pointer]');
 
   const locoInstanceHelpers = useMotionValue(null);
   const toolTipsData = useMotionValue<ToolTipType>({
-    text: "",
+    text: '',
     show: false,
     timer: null,
   });
@@ -99,7 +89,7 @@ export const MotionStateWrapper: React.FC = ({ children }) => {
   const mouseY = useMotionValue(0);
 
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("lg"));
+  const matches = useMediaQuery(theme.breakpoints.up('lg'));
   const routeEvent = RouteChangeEvent.GetInstance();
 
   useEffect(() => {
@@ -113,13 +103,13 @@ export const MotionStateWrapper: React.FC = ({ children }) => {
       toolTipsData.set({
         timer: null,
         show: true,
-        text: "loading resource...",
+        text: 'loading resource...',
       });
 
-    routeEvent.addListener("start", showTip);
+    routeEvent.addListener('start', showTip);
 
     return () => {
-      routeEvent.removeListener("start", showTip);
+      routeEvent.removeListener('start', showTip);
     };
   }, []);
 
@@ -129,7 +119,7 @@ export const MotionStateWrapper: React.FC = ({ children }) => {
       mouseY.set(ev.clientY);
     };
 
-    window.addEventListener("mousemove", updateMouseMotionValue);
+    window.addEventListener('mousemove', updateMouseMotionValue);
   }, []);
 
   // @ts-ignore

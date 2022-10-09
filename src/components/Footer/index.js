@@ -1,6 +1,6 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GradientText } from '../GradientText';
 import FooterMeta from './FooterMeta';
 import FooterBottom from '../FooterBottom';
@@ -10,6 +10,7 @@ import useBackgroundsAssets from '@hooks/queries/useBackgroundsAssets';
 import { motion, useAnimation } from 'framer-motion';
 import { pageTransition } from '@scenes/HomePage';
 import { useLocomotiveScroll } from '@contexts/LocoMotive';
+import * as s from './mailus.module.scss';
 import {
   backgroundStars,
   container,
@@ -17,7 +18,6 @@ import {
   titleWrapper,
   wrapper,
 } from './mailus.module.scss';
-import * as s from './mailus.module.scss';
 
 const footerVariants = {
   initial: {
@@ -55,10 +55,6 @@ function Footer ({ exitComplete }) {
   const { locoInstance } = useLocomotiveScroll();
   const control = useAnimation();
 
-  useLayoutEffect(() => {
-
-  }, []);
-
   useEffect(() => {
     // console.log('location :', pathname);
     setCachePath(pathname);
@@ -75,7 +71,11 @@ function Footer ({ exitComplete }) {
 
     setShow(true);
 
-    if (pathname.includes('projects#') || pathname.endsWith('projects') ) {
+    if (pathname.includes('projects#') || pathname.includes('projects/#') ||
+      pathname.endsWith('projects/')) {
+
+      // console.log('hide footer');
+
       setShow(false);
       locoInstance?.scroll?.update();
       return;

@@ -1,9 +1,9 @@
-import React from "react";
-import { motion } from "framer-motion";
-import styled from "styled-components";
-import { Typography } from "@material-ui/core";
-import { spacing, text } from "../../../../../styles/mixins";
-import { GradientText } from "../../../../../components/GradientText";
+import React from 'react';
+import { motion } from 'framer-motion';
+import styled from 'styled-components';
+import { Typography } from '@material-ui/core';
+import { spacing, text } from '../../../../../styles/mixins';
+import * as s from './item.module.scss';
 
 const transition = {
   ease: [0.6, 0.01, 0, 0.9],
@@ -11,7 +11,7 @@ const transition = {
 };
 
 const itemVariant = {
-  initial(arg) {
+  initial (arg) {
     // console.log('arg:-- ', arg)
     return {
       opacity: 0,
@@ -19,7 +19,7 @@ const itemVariant = {
     };
   },
 
-  animateFp(arg) {
+  animateFp () {
     return {
       opacity: 1,
       y: 0,
@@ -31,14 +31,14 @@ const itemVariant = {
     };
   },
 
-  exitFp(arg) {
+  exitFp (arg) {
     return {
       opacity: 0,
       y: arg.idx > 1 ? 100 : -100,
     };
   },
 
-  hover(c) {},
+  hover (c) {},
   hoverEnd: {},
 };
 
@@ -74,7 +74,7 @@ const ListItem = styled(motion.li)`
   padding: 0;
   margin: 0;
 
-  ${spacing("p", 2)};
+  ${spacing('p', 2)};
   //flex: 1 1 32%;
 
   .titleTxt {
@@ -95,7 +95,7 @@ const Tags = styled.div`
   letter-spacing: 2px;
   line-height: 0;
 
-  ${spacing("gap", 1)};
+  ${spacing('gap', 1)};
 
   p {
     ${text(0.6)};
@@ -105,33 +105,31 @@ const Tags = styled.div`
 `;
 
 const DescTxt = styled(Typography)`
-  font-weight: lighter;
-  max-width: 40ch;
-  text-shadow: 0.1em 0.1em 0.3em #000;
 
-  ${text(0.9)};
 `;
 
-function Item({ onHoverStart, title, tags, desc, idx }) {
+function Item ({ onHoverStart, onHoverEnd, title, tags, desc, idx }) {
   return (
-    <ListItem
+    <motion.li
+      className={s.container}
       variants={itemVariant}
       transition={transition}
       custom={{ idx }}
       onHoverStart={() => onHoverStart()}
+      onHoverEnd={() => onHoverEnd()}
     >
-      <GradientText variant="h3" className="titleTxt">
+      <Typography variant='h3' className={s.titleTxt}>
         {title}
-      </GradientText>
+      </Typography>
 
-      <Tags>
+      <div className={s.tags}>
         {tags.map((tag) => (
           <p key={desc}>{tag}</p>
         ))}
-      </Tags>
+      </div>
 
-      <DescTxt className="approach-desc">{desc}</DescTxt>
-    </ListItem>
+      <Typography className={s.text}>{desc}</Typography>
+    </motion.li>
   );
 }
 

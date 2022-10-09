@@ -1,25 +1,22 @@
-import React, { useCallback, useContext, useRef, useState } from "react";
+import React, { useCallback, useContext, useRef, useState } from 'react';
 import { AnimatePresence, useMotionValue } from 'framer-motion';
-import { useMotionBreakPoint } from "@contexts/BreakPoint";
-import {
-  LocomotiveScrollProvider,
-  useLocomotiveScroll,
-} from '@contexts/LocoMotive';
-import { AppStateContext } from "@contexts/AppStateContext";
-import { MotionValueContext } from "@contexts/MotionStateWrapper";
-import BackgroundStars from "@components/BackgroundStars";
-import HeaderAppBar from "@components/NavBar";
-import ToolTip from "@components/Fixed/ToolTip";
-import ProgressCircle from "@components/ScrollProgressCircle";
-import ScreenOverlay from "@components/ScreenOverlay";
-import NavigationMenu from "@components/NavigationMenu";
-import { BottomGradient, Main, PageContainer } from "./Styled";
-import Footer from "@components/Footer";
-import LoadingPage from '@components/LoadingSpinner';
+import { useMotionBreakPoint } from '@contexts/BreakPoint';
+import { LocomotiveScrollProvider } from '@contexts/LocoMotive';
+import { AppStateContext } from '@contexts/AppStateContext';
+import { MotionValueContext } from '@contexts/MotionStateWrapper';
+import BackgroundStars from '@components/BackgroundStars';
+import HeaderAppBar from '@components/NavBar';
+import ToolTip from '@components/Fixed/ToolTip';
+import ProgressCircle from '@components/ScrollProgressCircle';
+import ScreenOverlay from '@components/ScreenOverlay';
+import NavigationMenu from '@components/NavigationMenu';
+import { BottomGradient, Main, PageContainer } from './Styled';
+import Footer from '@components/Footer';
+import LoadingSpinner from '@components/LoadingSpinner';
 
 // import {} from '@re'
 
-function Page({ children, path }) {
+function Page ({ children, path }) {
   const {
     variantsUtil: { isTop },
     inView,
@@ -51,26 +48,26 @@ function Page({ children, path }) {
             duration: 0,
             disableLerp: true,
           }),
-        []
+        [],
       )}
       location={currentPath}
       onExitComplete={onExitComplete}
     >
       <PageContainer
-        id="page-container"
+        id='page-container'
         variants={{}}
-        initial="initial"
-        exit="exit"
+        initial='initial'
+        exit='exit'
         // animate={mainAnimationController}
         animate={
-          screenOverlayEvent.get() === "closed"
-            ? "animate"
+          screenOverlayEvent.get() === 'closed'
+            ? 'animate'
             : mainAnimationController
         }
         ref={container}
         data-scroll-container={true}
       >
-        <LoadingPage />
+        <LoadingSpinner />
 
         <ScreenOverlay />
 
@@ -80,14 +77,14 @@ function Page({ children, path }) {
 
         <HeaderAppBar />
 
-        <Main id="main-container" data-scroll-section={true}>
+        <Main id='main-container' data-scroll-section={true}>
           <AnimatePresence
             exitBeforeEnter
             custom={{ path, isTop, inView, /* largeUp */ breakpoint }}
 
             onExitComplete={() => {
               setExitComplete(!exitComplete);
-              onExitComplete.set(true)
+              onExitComplete.set(true);
             }}
           >
             {children}
@@ -96,7 +93,7 @@ function Page({ children, path }) {
 
         <Footer exitComplete={exitComplete} />
 
-        <BottomGradient className="btm-gradient" />
+        <BottomGradient className='btm-gradient' />
 
         <ProgressCircle />
 

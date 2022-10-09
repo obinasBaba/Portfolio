@@ -1,10 +1,7 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
-import { Link } from "gatsby";
-import { AnchorDot, DottedLine, Thumb } from "./NavTools";
-import { spacing } from "../../../../../styles/mixins";
-import { xLargeUp, xxLargeUp } from "../../../../../styles/mixins/breakpoints";
+import React from 'react';
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
+import { spacing } from '../../../../../styles/mixins';
 
 const ThumbAndDotContainer = styled.li`
   //border: thin solid lightblue;
@@ -18,16 +15,19 @@ const ThumbAndDotContainer = styled.li`
   //width: 11px;
   border-radius: 50%;
   transition: transform 0.5s cubic-bezier(0.6, 0.01, 0, 0.9),
-    border 0.2s ease-in-out;
+  border 0.2s ease-in-out;
 
-  ${spacing("height", 1.2)};
-  ${spacing("width", 1.2)};
+    // ${spacing('height', 1.1)};
+    // ${spacing('width', 1.1)};
+
+  height: 1.1rem;
+  width: 1.1rem;
 
   & :hover {
     transform: scale(1.4);
     border: 0.5px solid blue;
     transition: transform 0.5s cubic-bezier(0.6, 0.01, 0, 0.9),
-      border 0.2s ease-in-out;
+    border 0.2s ease-in-out;
   }
 
   &::after {
@@ -52,14 +52,10 @@ const ThumbAndDotContainer = styled.li`
     p {
       color: blue;
       font-family: "shapes", serif;
-      font-size: 1.4rem;
       line-height: 0;
       margin: 0;
       padding: 0;
-
-      ${xxLargeUp(css`
-        font-size: 1.6rem;
-      `)};
+      font-size: 1.6rem;
     }
   }
 
@@ -81,7 +77,7 @@ const spring = {
   // repeatType: 'mirror',
 };
 
-function ThumbAndDot({ hidden, clickEvent, index, anchor, dataAnchor }) {
+function ThumbAndDot ({ hidden, clickEvent, index, anchor, dataAnchor }) {
   return (
     <ThumbAndDotContainer
       onClick={clickEvent}
@@ -89,23 +85,23 @@ function ThumbAndDot({ hidden, clickEvent, index, anchor, dataAnchor }) {
       // layout
     >
       <a
-        className="hover-area"
+        className='hover-area'
         data-anchor={dataAnchor}
         href={`#${anchor}`}
-        data-pointer="focus"
-        data-tooltip
-        data-tooltip-text="Next project"
-        data-pointer-color="#3719ca"
+        data-pointer='focus'
+        data-tooltip={true}
+        data-tooltip-text='Next project'
+        data-pointer-color='#3719ca'
       />
 
       {hidden && (
         <motion.span
-          layoutId="outline"
+          layoutId='outline'
           // inherit={false}
           initial={false}
           animate={{}}
           transition={spring}
-          className="thumb"
+          className='thumb'
         >
           <motion.p>i</motion.p>
         </motion.span>

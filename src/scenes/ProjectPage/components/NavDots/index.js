@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
-import styled, { css } from "styled-components";
-import { motion } from "framer-motion";
-import { spacing } from "../../../../styles/mixins";
-import ThumbAndDot from "./Components/ThumbAndDot";
-import {
-  largeUp,
-  mediumUp,
-  xLargeUp,
-} from "../../../../styles/mixins/breakpoints";
+import React, { useEffect, useState } from 'react';
+import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
+import { spacing } from '../../../../styles/mixins';
+import ThumbAndDot from './Components/ThumbAndDot';
+import { mediumUp, xLargeUp } from '@/styles/mixins/breakpoints';
 
 const NavContainer = styled(motion.div)`
   position: fixed;
@@ -15,14 +11,18 @@ const NavContainer = styled(motion.div)`
   bottom: 4%;
   left: 50%;
 
+
   ${mediumUp(css`
     top: 40%;
     bottom: initial;
     left: 0;
+    ${spacing('ml', 6.7)};
+
   `)};
 
   ${xLargeUp(css`
-    ${spacing("ml", 6.7)};
+    ${spacing('ml', 6.7)};
+    left: 0;
   `)};
 `;
 
@@ -39,7 +39,8 @@ const NavWrapper = styled.ul`
     transform: initial;
   `)};
 
-  ${spacing("gap", 3.2)};
+    // ${spacing('gap', 3.2)};
+  gap: 2rem;
 `;
 
 const parentVariant = {
@@ -50,7 +51,7 @@ const parentVariant = {
   },
 
   initial: {
-    x: "calc((var(--indent) * -4.5rem))",
+    x: 'calc((var(--indent) * -4.5rem))',
     // y: '-40%',
     opacity: 0,
   },
@@ -66,7 +67,7 @@ const parentVariant = {
     },
   },
   exit: {
-    x: "calc((var(--indent) * -4.5rem))",
+    x: 'calc((var(--indent) * -4.5rem))',
     opacity: 0,
     transition: {
       delay: 0.1,
@@ -76,9 +77,9 @@ const parentVariant = {
   },
 };
 
-function NavDots({ activeIndex }) {
+function NavDots ({ activeIndex }) {
   // const {activeIndex} = props;
-  const anchors = ["one", "two", "three", "four"];
+  const anchors = ['one', 'two', 'three', 'four'];
 
   const [active, setActive] = useState(0);
 
@@ -92,9 +93,9 @@ function NavDots({ activeIndex }) {
     <NavContainer
       variants={parentVariant}
       transition={parentVariant.transition}
-      initial="initial"
-      animate="animate"
-      exit="exit"
+      initial='initial'
+      animate='animate'
+      exit='exit'
     >
       <NavWrapper>
         {anchors.map((anchor, index) => (

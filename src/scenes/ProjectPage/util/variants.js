@@ -1,4 +1,9 @@
-export const topVariant = {};
+export const topVariant = {
+  animate (arg) {
+    console.log('topvariant :', arg);
+    return {};
+  },
+};
 
 export const parentVariant = {
   initial: {
@@ -33,7 +38,7 @@ export const moonVariants = {
     },
   },
 
-  exit() {
+  exit () {
     // if ( arg && arg.path === "/portfolio/project-1/" )
     //   return;
 

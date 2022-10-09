@@ -1,0 +1,110 @@
+@use "@style" as *;
+
+//noinspection SassScssResolvedByNameOnly
+.container {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  //justify-content: space-evenly;
+  height: min-content;
+  padding: 1.2rem;
+
+  //border: 1px solid red;
+
+  @include media-breakpoint-up(md) {
+    //@include margin(left, 15rem);
+    //@include margin(left, 10rem);
+    //align-items: center;
+    //justify-content: space-evenly;
+    align-items: center;
+
+    padding: 0 6rem;
+  }
+
+  @include media-breakpoint-up(xl) {
+    flex-flow: row;
+    justify-content: space-evenly;
+    gap: 4rem;
+  }
+
+  & :local {
+    svg {
+      position: absolute;
+      //border: thin solid lightblue;
+      pointer-events: none;
+      //will-change: transform;
+      //border: thin solid red;
+
+      .distort__img {
+        //opacity: 0;
+        z-index: -1;
+        object-fit: cover;
+        //width: 400px;
+        //max-width: 500px;
+      }
+    }
+
+
+    .title {
+      font-weight: 900;
+      -webkit-text-stroke: 1px white;
+      color: transparent;
+      letter-spacing: 6px;
+      margin-bottom: 2rem;
+      pointer-events: none;
+
+      //line-height: 1.25em;
+      //grid-row: 1;
+      //@include margin(left, 7rem);
+
+      //border: 1px solid green;
+
+      @include media-breakpoint-up(xl) {
+        writing-mode: vertical-lr;
+        text-align: left;
+        text-orientation: mixed;
+        margin-bottom: 0;
+
+      }
+
+      @include media-breakpoint-up(lg) {
+        //@include margin(left, 15rem);
+        //@include margin(left, 10rem);
+      }
+    }
+
+    .list {
+      z-index: 1;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 1rem;
+
+      //border: thin solid blue;
+
+      //gap: f-unit(1.4rem);
+
+      @include media-breakpoint-up(md) {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      @include media-breakpoint-up(md) {
+
+        //gap: f-unit(1.8rem);
+
+
+        //@include margin(hor, 10rem);
+        //gap: f-unit(3.8rem);
+
+        //flex-flow: nowrap;
+
+      }
+
+
+    }
+  }
+
+}
