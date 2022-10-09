@@ -35,7 +35,7 @@ const ElementsViewSection = ({ elements }) => {
       <div className={s.elementImg}>
         <div className={s.col}>
           <div className={s.img_wrapper}>
-            <div className={s.img} data-scroll={true} data-scroll-speed='-2'>
+            <div data-scroll={true} data-scroll-speed='-2'>
               <GatsbyImage
                 alt='elements used in the project'
                 image={getImage(element1)}
@@ -44,7 +44,7 @@ const ElementsViewSection = ({ elements }) => {
           </div>
 
           <div className={s.img_wrapper}>
-            <div className={s.img} data-scroll={true} data-scroll-speed='-2'>
+            <div data-scroll={true} data-scroll-speed='-2'>
               <GatsbyImage
                 alt='elements used in the project'
                 image={getImage(element2)}
@@ -53,7 +53,7 @@ const ElementsViewSection = ({ elements }) => {
           </div>
 
           <div className={s.img_wrapper}>
-            <div className={s.img} data-scroll={true} data-scroll-speed='-2'>
+            <div data-scroll={true} data-scroll-speed='-2'>
               <GatsbyImage
                 alt='elements used in the project'
                 image={getImage(element5)}
@@ -64,7 +64,7 @@ const ElementsViewSection = ({ elements }) => {
 
         <div className={s.col}>
           <div className={s.img_wrapper}>
-            <div className={s.img} data-scroll={true} data-scroll-speed='-2'>
+            <div data-scroll={true} data-scroll-speed='-2'>
               <GatsbyImage
                 alt='elements used in the project'
                 image={getImage(element3)}
@@ -73,7 +73,7 @@ const ElementsViewSection = ({ elements }) => {
           </div>
 
           <div className={s.img_wrapper}>
-            <div className={s.img} data-scroll={true} data-scroll-speed='-2'>
+            <div data-scroll={true} data-scroll-speed='-2'>
               <GatsbyImage
                 alt='elements used in the project'
                 image={getImage(element4)}

@@ -44,6 +44,8 @@
           border-radius: 500px;
           overflow: hidden;
 
+          //border: 1px solid red;
+
           span {
             display: inline-block;
             background-color: var(--dark-gray);
@@ -118,7 +120,7 @@
   display: grid;
   place-items: center;
 
-  height: 400px;
+  //height: 400px;
 
-  border: 1px solid red;
+  //border: 1px solid red;
 }

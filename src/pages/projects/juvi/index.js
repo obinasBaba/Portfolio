@@ -7,23 +7,22 @@ import FontUsed from '@components/CaseStudy/FontUsed';
 import useUpdatePath from '@hooks/useUpdatePath';
 import MetaTxt from '@components/CaseStudy/MetaTxt';
 import Intro from '@components/CaseStudy/Intro';
-import RectangleView from '@/pages/projects/juvi/components/RectangleView';
+import RectangleView from '@/components/juvi-components/RectangleView';
 import Headline from '@components/CaseStudy/Headline';
 import useJuviMarqueeAssets from '@hooks/queries/juvi/useJuviMarqueeAssets';
 import ElementsViewSection
-  from '@/pages/projects/juvi/components/ElementsViewSection';
+  from '@/components/juvi-components/ElementsViewSection';
 import CarouselSliderDesktop
-  from '@/pages/projects/juvi/components/CarouselSliderDesktop';
+  from '@/components/juvi-components/CarouselSliderDesktop';
 import CarouselSliderMobile
-  from '@/pages/projects/juvi/components/CarouselSliderMobile';
+  from '@/components/juvi-components/CarouselSliderMobile';
 import useJuviVideo, {
   useJuviCarouselDesktopVid,
 } from '@hooks/queries/juvi/useJuviVideo';
 import { useProjectData } from '@scenes/ProjectPage/util/projectData';
 import Seo from '@components/seo';
 import { motion } from 'framer-motion';
-import HorizontalGallery
-  from '@/pages/projects/juvi/components/HorizontalGallery';
+import HorizontalGallery from '@/components/juvi-components/HorizontalGallery';
 import Development from '@components/CaseStudy/Development';
 
 function Juvi ({ location }) {

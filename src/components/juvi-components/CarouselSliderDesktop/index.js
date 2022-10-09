@@ -14,7 +14,7 @@ import {
 } from './marqueedesktop.module.scss';
 import 'swiper/css/pagination';
 import 'swiper/css';
-import VideoPlayer from '@/pages/projects/juvi/components/VideoPlayer';
+import VideoPlayer from '@components/juvi-components/VideoPlayer';
 
 const CarouselSliderDesktop = ({ videos = [], topTxt }) => {
   const [, setActiveIdx] = useState(null);
@@ -56,19 +56,7 @@ const CarouselSliderDesktop = ({ videos = [], topTxt }) => {
         }}
         className={swiperContainer}
       >
-        {/*<div className={navController}>
-          <button className='swiper-button-prev'>
-            <p>
-              h<span>c</span>
-            </p>
-          </button>
 
-          <button className='swiper-button-next'>
-            <p>
-              h<span>b</span>
-            </p>
-          </button>
-        </div>*/}
 
         <div className={navController}>
           <a>
