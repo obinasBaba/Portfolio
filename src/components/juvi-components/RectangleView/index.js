@@ -1,18 +1,21 @@
-import React from "react";
-import { container, wrapper } from "./rectangleview.module.scss";
-import Img from "./Group 211.png";
+import React from 'react';
+import { container, wrapper } from './rectangleview.module.scss';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-const RectangleView = () => (
-  <div className={container}>
+const RectangleView = ({ img }) => (<div className={container}>
     <div className={wrapper}>
-      <img
-        src={Img}
-        data-scroll={true}
-        data-scroll-speed="-2.5"
-        alt="design images"
-      />
+
+      <div data-scroll={true}
+           data-scroll-speed='-2.5'
+      >
+        <GatsbyImage
+          alt='design images'
+          image={getImage(img)}
+        />
+      </div>
+
+
     </div>
-  </div>
-);
+  </div>);
 
 export default RectangleView;

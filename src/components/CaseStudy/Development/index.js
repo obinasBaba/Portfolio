@@ -1,14 +1,14 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
-import devPic from './dev.png';
 import {
   container,
   device,
   imgWrapper,
   titleContainer,
 } from './fullwebview.module.scss';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-const Development = () => {
+const Development = ({ img }) => {
   return (
     <div className={container}>
       <div className={titleContainer}>
@@ -23,7 +23,11 @@ const Development = () => {
           <span />
         </header>
         <div className={imgWrapper}>
-          <img src={devPic} alt={'dev pic'} />
+          {/*<img src={devPic} alt={'dev pic'} />*/}
+          <GatsbyImage
+            alt='elements used in the project'
+            image={getImage(img)}
+          />
         </div>
       </div>
     </div>

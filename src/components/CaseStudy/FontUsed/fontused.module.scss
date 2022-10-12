@@ -14,8 +14,20 @@
   //border: 1px solid #000;
 
 
-  img {
+  & > div {
+    //border: 1px solid red;
     max-width: 33%;
+  }
+
+  & > :last-child {
+    transform: scale(1.09);
+    margin-top: 1.3rem;
+  }
+
+  img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: fill;
   }
 
   @include margin(top, 6rem);

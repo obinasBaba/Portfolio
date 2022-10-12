@@ -35,7 +35,18 @@ function Juvi ({ location }) {
 
   const { introMp4, introWebm, introPlaceholder } = useJuviVideo();
   const carouselDesktop = useJuviCarouselDesktopVid();
-  const { mp, mp2, mp3, mp4, mp5, mp6, mp7, mp8 } = useJuviMarqueeAssets();
+  const {
+    mp,
+    mp2,
+    mp3,
+    mp4,
+    mp5,
+    mp6,
+    mp7,
+    mp8,
+    rectView,
+    devShot,
+  } = useJuviMarqueeAssets();
 
   const mobileCarousel = [mp, mp2, mp3, mp4, mp5, mp6, mp7, mp8];
   const juviData = useProjectData().items[0];
@@ -87,7 +98,7 @@ function Juvi ({ location }) {
         <MetaTxt link={liveUrl} />
       </motion.div>
 
-      <RectangleView />
+      <RectangleView img={rectView} />
 
       <Intro
         desc={juviData.intro.desc}
@@ -118,7 +129,7 @@ function Juvi ({ location }) {
 
       <HorizontalGallery />
 
-      <Development />
+      <Development img={devShot} />
     </CaseStudy>
   );
 }
