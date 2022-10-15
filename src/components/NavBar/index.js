@@ -1,17 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
-import { debounce } from "lodash";
-import { motion } from "framer-motion";
-import { Slide } from "@material-ui/core";
-import { useLocomotiveScroll } from "@contexts/LocoMotive";
-import { useMotionValueContext } from "@contexts/MotionStateWrapper";
-import { AppStateContext } from "@contexts/AppStateContext";
-import HomeLogo from "./components/HomeLogo";
-import NavBtn from "./components/NavBtn";
-import OverlayController from "../ScreenOverlay/OverlayController";
-import { container } from "./navbar.module.scss";
-import { useLocation } from "@reach/router";
+import React, { useContext, useEffect, useState } from 'react';
+import { debounce } from 'lodash';
+import { motion } from 'framer-motion';
+import { Slide } from '@material-ui/core';
+import { useLocomotiveScroll } from '@contexts/LocoMotive';
+import { useMotionValueContext } from '@contexts/MotionStateWrapper';
+import { AppStateContext } from '@contexts/AppStateContext';
+import HomeLogo from './components/HomeLogo';
+import NavBtn from './components/NavBtn';
+import OverlayController from '../ScreenOverlay/OverlayController';
+import { container } from './navbar.module.scss';
+import { useLocation } from '@reach/router';
 
-function HideOnScroll({ children }) {
+function HideOnScroll ({ children }) {
   const { currentPath } = useContext(AppStateContext);
   const [slide, setSlide] = useState(true);
   const { pathname } = useLocation();
@@ -22,8 +22,8 @@ function HideOnScroll({ children }) {
     const deb = debounce((arg) => {
       if (!arg) return;
 
-      if (arg === "up") setSlide(true);
-      else if (arg === "down") setSlide(false);
+      if (arg === 'up') setSlide(true);
+      else if (arg === 'down') setSlide(false);
     }, 350);
 
     scrollDirection.onChange(deb);
@@ -36,7 +36,7 @@ function HideOnScroll({ children }) {
   }, [currentPath, pathname]);
 
   return (
-    <Slide appear={false} direction="down" in={slide}>
+    <Slide appear={false} direction='down' in={slide}>
       {children}
     </Slide>
   );
@@ -51,7 +51,7 @@ const appBarVariants = {
   },
 };
 
-function NavBar() {
+function NavBar () {
   const { menuIsOpen } = useMotionValueContext();
 
   const toggleMenu = () =>

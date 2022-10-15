@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import { ReactSVG } from 'react-svg';
 import { motion } from 'framer-motion';
 import useHeaderAssets from '../../../hooks/queries/useHeaderAssets';
-import { homeLogo, reactSvg } from './appbarComponents.module.scss';
+import * as s from './appbarComponents.module.scss';
 
 const logoVariant = {
   initial: {
@@ -22,7 +22,7 @@ function HomeLogo ({ toggleMenu }) {
   const logoRef = useRef(null);
 
   return (<motion.div
-    className={homeLogo}
+    className={s.homeLogo}
     data-magnet-distance={0.8}
     data-magnet-attraction={1.8}
     data-tooltip
@@ -41,7 +41,7 @@ function HomeLogo ({ toggleMenu }) {
     >
 
 
-      <ReactSVG className={reactSvg} src={logo.publicURL} />
+      <ReactSVG className={s.reactSvg} src={logo.publicURL} />
 
     </Link>
 

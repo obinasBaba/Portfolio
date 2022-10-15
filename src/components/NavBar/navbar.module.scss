@@ -13,6 +13,11 @@
   display: flex;
   justify-content: space-between;
 
+  @include media-breakpoint-up(md) {
+    @include padding(ver, 1rem);
+    @include padding(hor, 3rem);
+  }
+
   &::after {
     //content: '';
     display: block;
@@ -26,10 +31,6 @@
     transition: all 0.35s ease-in-out;
   }
 
-  @include media-breakpoint-up(md) {
-    @include padding(ver, 1rem);
-    @include padding(hor, 3rem);
-  }
 
   & :local {
 
@@ -37,3 +38,4 @@
   }
 
 }
+
