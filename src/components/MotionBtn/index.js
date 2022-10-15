@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import { spacing } from '@/styles/mixins';
+import * as s from './motionbtn.module.scss';
 
 const Btn = styled(motion.button)`
   background-color: transparent;
@@ -98,46 +99,40 @@ function MotionBtn ({
 }) {
   const btnRef = useRef(null);
 
-  return (<Btn
-    {...props}
-    margin={margin.toString()}
-    clr={clr}
-    data-pointer='focus'
-    // data-pointer-color="#02021e"
-    // data-cursor='-opaque'
-    data-tooltip
-    data-tooltip-text={toolTipText}
-    onClick={() => {
-      if (onClick) {
-        onClick();
-        // btnRef.current.classList.add( "no-hover" );
-      }
-    }}
-  >
-    <div className='wrapper' ref={btnRef}>
-      {to && <>
-        {external ?
-          <a
-          href={to}
-          target='_blank'
-          rel='noopener noreferrer'
-          aria-label={arialLabel || 'external link'}
-        /> : <Link to={to} aria-label={`${text}  ${to}`} state={state} />}
+  return (
 
-      </>}
+    <motion.button
+      className={s.container}
+      {...props}
+      data-tooltip
+      data-tooltip-text={toolTipText}
+      onClick={() => {
+        if (onClick) {
+          onClick();
+          // btnRef.current.classList.add( "no-hover" );
+        }
+      }}
+    >
+      <div className={s.wrapper} ref={btnRef}>
+        {to && <>
+          {external ? <a
+            href={to}
+            target='_blank'
+            rel='noopener noreferrer'
+            aria-label={arialLabel || 'external link'}
+          /> : <Link to={to} aria-label={`${text}  ${to}`} state={state} />}
 
-      <Typography
-        variant='body1'
-        className='btn-txt'
-        style={{
-          letterSpacing: '3px', textShadow: '0.1em 0.1em 0.3em #000',
-        }}
-        noWrap
-      >
-        {text}
-      </Typography>
-    </div>
-  </Btn>);
+        </>}
+
+        <Typography
+          // variant='body1'
+          className={s.btnTxt}
+          noWrap
+        >
+          {text}
+        </Typography>
+      </div>
+    </motion.button>);
 }
 
 export default MotionBtn;
