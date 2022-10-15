@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
-import styled, { css } from "styled-components";
-import { Container, useMediaQuery, useTheme } from "@material-ui/core";
-import { length, spacing, text } from "../../styles/mixins";
+import React, { useEffect } from 'react';
+import styled, { css } from 'styled-components';
+import { Container, useMediaQuery, useTheme } from '@material-ui/core';
+import { length, spacing, text } from '../../styles/mixins';
 
-import Hashnode from "../../assets/images/brands/hashnode.inline.svg";
-import Linkedin from "../../assets/images/brands/linkedin.inline.svg";
-import Twitter from "../../assets/images/brands/twitter.inline.svg";
-import Github from "../../assets/images/brands/github.inline.svg";
-import Border from "./border.inline.svg";
-import useOnScreen from "../../hooks/useOnScreen";
-import { largeUp, mediumDown, mediumUp } from "../../styles/mixins/breakpoints";
+import Hashnode from '../../assets/images/brands/hashnode.inline.svg';
+import Linkedin from '../../assets/images/brands/linkedin.inline.svg';
+import Twitter from '../../assets/images/brands/twitter.inline.svg';
+import Github from '../../assets/images/brands/github.inline.svg';
+import Border from './border.inline.svg';
+import useOnScreen from '../../hooks/useOnScreen';
+import { largeUp, mediumDown, mediumUp } from '../../styles/mixins/breakpoints';
 
 const FooterContainer = styled.div`
   position: relative;
@@ -21,13 +21,13 @@ const FooterContainer = styled.div`
 
   //border: thick solid crimson;
 
-  ${spacing("mv", 5)};
-  ${spacing("gap", 5)};
+  ${spacing('mv', 5)};
+  ${spacing('gap', 5)};
 
   ${largeUp(css`
     flex-direction: row;
-    ${spacing("mb", 3)};
-    ${spacing("mt", 3)};
+    ${spacing('mb', 3)};
+    ${spacing('mt', 3)};
   `)};
 
   @media screen and (min-width: 768px) {
@@ -49,7 +49,13 @@ const Social = styled.ul`
 
   li {
     &:not(:first-child) {
-      ${spacing("ml", 3)};
+        // ${spacing('ml', 3)};
+      margin-left: 1.5rem;
+    }
+
+    #border {
+
+
     }
   }
 
@@ -64,13 +70,17 @@ const Social = styled.ul`
     text-align: center;
     transition: background-color 0.2s, border-color 0.2s;
     text-indent: -9999px;
-    width: 40px;
-    height: 40px;
-    max-width: 3.5vmax;
+    width: 4.6rem;
+    height: 4.6rem;
+
+    //border: 1px solid red;
+
+    //max-width: 3.5vmax;
 
     ${mediumUp(css`
-      ${length("width", 6)}
-      ${length("height", 6)}
+      ${length('width', 6)}
+      ${length('height', 6)}
+
     `)};
 
     & > :first-child {
@@ -108,7 +118,7 @@ const Love = styled.div`
   letter-spacing: 1.2px;
 
   ${text(0.7)};
-  ${spacing("left", 0)};
+  ${spacing('left', 0)};
 
   ${mediumDown(css`
     order: 2;
@@ -116,7 +126,8 @@ const Love = styled.div`
   `)};
 
   span {
-    font-size: 28px;
+    font-size: 1rem;
+    text-align: center;
   }
 
   b {
@@ -149,32 +160,32 @@ const Copy = styled.div`
 
   ${largeUp(css`
     position: absolute;
-    ${spacing("right", 0)};
+    ${spacing('right', 0)};
   `)}
 `;
 
-function FooterBottom() {
+function FooterBottom () {
   const elRef = React.useRef(null);
   // const { , setContactModal } = useContext(AppStateContext)
   // const { setBottomGradient} = useContext(MotionValueContext)
 
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("xxl"));
+  const matches = useMediaQuery(theme.breakpoints.up('xxl'));
   const inView = useOnScreen(elRef, 0.2);
 
   useEffect(() => {
     return;
-    const btm = document.querySelector(".btm-gradient");
+    const btm = document.querySelector('.btm-gradient');
 
     if (inView)
       // setBottomGradient(false)
-      btm.classList.add("hide-bg");
+      btm.classList.add('hide-bg');
     // setBottomGradient(true)
-    else btm.classList.remove("hide-bg");
+    else btm.classList.remove('hide-bg');
   }, [inView]);
 
   return (
-    <Container ref={elRef} maxWidth={matches ? "xl" : "lg"} disableGutters>
+    <Container ref={elRef} maxWidth={matches ? 'xl' : 'lg'} disableGutters>
       <FooterContainer>
         <Copy>
           <span>&copy;</span> 2022 Henzzo.io
@@ -183,10 +194,10 @@ function FooterBottom() {
         <Social>
           <li>
             <a
-              href="https://github.com/obinasBaba"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-pointer="focus"
+              href='https://github.com/obinasBaba'
+              target='_blank'
+              rel='noopener noreferrer'
+              data-pointer='focus'
             >
               <Border />
               <span>Github</span>
@@ -196,10 +207,10 @@ function FooterBottom() {
 
           <li>
             <a
-              href="https://www.linkedin.com/in/henok-getachew-b125b3126/"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-pointer="focus"
+              href='https://www.linkedin.com/in/henok-getachew-b125b3126/'
+              target='_blank'
+              rel='noopener noreferrer'
+              data-pointer='focus'
             >
               <Border />
               <span>linkedin</span>
@@ -208,10 +219,10 @@ function FooterBottom() {
           </li>
           <li>
             <a
-              href="https://twitter.com/@henzzo_com"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-pointer="focus"
+              href='https://twitter.com/@henzzo_com'
+              target='_blank'
+              rel='noopener noreferrer'
+              data-pointer='focus'
             >
               <Border />
               <span> Twitter</span>
@@ -220,10 +231,10 @@ function FooterBottom() {
           </li>
           <li>
             <a
-              href="https://hashnode.com/@henzzo"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-pointer="focus"
+              href='https://hashnode.com/@henzzo'
+              target='_blank'
+              rel='noopener noreferrer'
+              data-pointer='focus'
             >
               <Border />
               <span>Hashnode</span>
@@ -233,7 +244,7 @@ function FooterBottom() {
         </Social>
 
         <Love>
-          Made With <span className="heart-icon">&#9825;</span> by <b>henok</b>
+          Made With <span className='heart-icon'>&#9825;</span> by <b>henok</b>
         </Love>
       </FooterContainer>
     </Container>

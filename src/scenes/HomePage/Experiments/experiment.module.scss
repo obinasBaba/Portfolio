@@ -1,0 +1,15 @@
+@use "@style" as *;
+
+//noinspection SassScssResolvedByNameOnly
+.container {
+  max-width: 100%;
+  text-align: center;
+  position: relative;
+
+  @include padding(top, 25rem);
+
+  @include media-breakpoint-up(sm) {
+    @include padding(top, 15rem);
+
+  }
+}

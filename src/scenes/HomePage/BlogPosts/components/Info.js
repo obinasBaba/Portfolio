@@ -1,24 +1,25 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import { Link } from "gatsby";
-import { length, spacing, text, title } from "../../../../styles/mixins";
-import logo from "./images/logo.svg";
-import RightArrowLink from "../../Experiments/components/ExperimentTrack/RightArrowLink";
+import React from 'react';
+import styled, { css } from 'styled-components';
+import { Link } from 'gatsby';
+import { length, spacing, text, title } from '../../../../styles/mixins';
+import logo from './images/logo.svg';
+import RightArrowLink
+  from '../../Experiments/components/ExperimentTrack/RightArrowLink';
 import {
   largeUp,
   smallUp,
   xxLargeUp,
-} from "../../../../styles/mixins/breakpoints";
+} from '../../../../styles/mixins/breakpoints';
 
 const InfoTxt = styled.div`
   position: relative;
   z-index: 0;
   //border: thin solid red;
 
-  ${spacing("pt", 2)};
+  ${spacing('pt', 2)};
 
   ${largeUp(css`
-    ${spacing("mt", 3)};
+    ${spacing('mt', 3)};
   `)};
 
   @media screen and (max-width: 768px) {
@@ -30,11 +31,14 @@ const Desc = styled.p`
   margin: 0;
   padding: 0;
   font-weight: 300;
+  letter-spacing: .1vmax;
 
   ${title(1.9)};
-  ${spacing("mb", 5)};
+  ${spacing('mb', 5)};
+
 
   ${smallUp(css`
+    letter-spacing: initial;
     font-weight: 900;
     line-height: 1.35;
   `)};
@@ -62,21 +66,21 @@ const BlogEffect = styled.div`
   left: -74%;
   z-index: -1;
 
-  ${length("width", 70)};
-  ${length("height", 70)};
+  ${length('width', 70)};
+  ${length('height', 70)};
 
   ${xxLargeUp(css`
     left: -100%;
 
-    ${length("width", 80)};
-    ${length("height", 80)};
+    ${length('width', 80)};
+    ${length('height', 80)};
   `)};
 `;
 
-function Info() {
+function Info () {
   return (
     <InfoTxt>
-      <BlogEffect data-scroll data-scroll-speed="1.5" />
+      <BlogEffect data-scroll data-scroll-speed='1.5' />
 
       <Desc>
         I usually write an in-depth article sharing what I learned every often.
@@ -86,19 +90,19 @@ function Info() {
 
       {/* <a href='/' target='_blank' rel="noopener noreferrer"> */}
       <RightArrowLink
-        lineLength="75%"
-        txt="checkout my blog site."
-        tooTipTxt="sry, my blog-site is temporarily down"
+        lineLength='75%'
+        txt='checkout my blog site.'
+        tooTipTxt='sry, my blog-site is temporarily down'
       />
       {/* </a> */}
 
-      <Link to="/blog">
+      <Link to='/blog'>
         <RightArrowLink
-          lineLength="86%"
+          lineLength='86%'
           mt={3}
-          txt="MORE BLOG POSTS"
+          txt='MORE BLOG POSTS'
           txtStyle={txtStyle}
-          tooTipTxt="more blogs?"
+          tooTipTxt='more blogs?'
         />
       </Link>
     </InfoTxt>

@@ -6,7 +6,7 @@
   position: fixed;
   z-index: 7;
   bottom: 1rem;
-  right: 1rem;
+  right: .6rem;
 
   @include media-breakpoint-up(md) {
     bottom: 3%;

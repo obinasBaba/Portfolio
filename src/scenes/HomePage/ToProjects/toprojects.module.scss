@@ -11,7 +11,12 @@
   align-items: center;
   justify-content: space-evenly;
 
-  @include padding(top, 13rem);
+  @include padding(top, 20rem);
+
+  @include media-breakpoint-up(sm) {
+    @include padding(top, 13rem);
+
+  }
 
   & :local {
 
@@ -33,14 +38,15 @@
     }
 
     .effect {
-      z-index: -1;
+      //z-index: -1;
       position: absolute;
-      opacity: .3;
+      opacity: .2;
       top: -40%;
       right: -20%;
       left: 20%;
       display: grid;
       place-items: center;
+      pointer-events: none;
 
       img {
         max-width: 100%;
@@ -61,19 +67,26 @@
       //width: 40%;
       display: grid;
       place-items: center;
-      padding: 0 3vmax;
+      padding: 2vmax 3vmax;
 
       //border: thin solid red;
 
       .aim-txt-wrapper {
         display: grid;
-        gap: f-unit(1.3rem);
+        gap: f-unit(1rem);
+
+        & > :last-child {
+          margin-top: 1rem;
+        }
 
         .aim-text {
           font-weight: lighter;
           letter-spacing: .05vmax;
-          max-width: 40ch;
           color: var(--light_gray);
+
+          @include media-breakpoint-up(sm) {
+            max-width: 40ch;
+          }
 
         }
       }

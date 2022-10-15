@@ -5,7 +5,12 @@
 .container {
 
   //border: thin solid red;
-  @include margin(top, 10rem);
+
+  @include margin(top, 25rem);
+
+  @include media-breakpoint-up(sm) {
+    @include margin(top, 15rem);
+  }
 
 
   & :local {
@@ -27,8 +32,12 @@
 
         @include col-width(5, 59);
 
+        margin-top: 7rem;
+
         @include media-breakpoint-up(md) {
           @include col-width(36, 63);
+          margin-top: 0;
+
 
           //border: thin solid red;
         }
@@ -38,6 +47,7 @@
 
           //@include col-width(37, 63);
         }
+
 
       }
 
