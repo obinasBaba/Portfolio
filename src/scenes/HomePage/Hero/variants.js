@@ -7,19 +7,14 @@ export const greetingTextVariants = {
     opacity: 1,
     y: 0,
   },
-  exit(arg) {
-    if (arg?.inView.get() === "hero-section") {
-      return {
-        opacity: 0,
-        y: -200,
-      };
-    }
-    return {};
+  exit: {
+    opacity: 0,
+    y: -200,
   },
 
-  transition: {
-    duration: 0.8,
-  },
+  /* transition: {
+     duration: 0.8,
+   },*/
 };
 
 export const introContainerVariants = {
@@ -31,20 +26,14 @@ export const introContainerVariants = {
     opacity: 1,
     y: 0,
   },
-  exit(arg) {
-    if (arg?.inView.get() === "hero-section") {
-      return {
-        opacity: 0,
-        y: 200,
-      };
-    }
-
-    return {};
+  exit: {
+    opacity: 0,
+    y: 200,
   },
 
-  transition: {
-    duration: 0.8,
-  },
+  /* transition: {
+     duration: 0.8,
+   },*/
 };
 
 export const btnVariants = {
@@ -61,18 +50,20 @@ export const btnVariants = {
     y: 200,
   },
 
-  transition: {
+  /*transition: {
     duration: 0.8,
-  },
+  },*/
 };
 
 export const textContainerVariants = {
-  animate() {
-    return {
-      transition: {
-        // delayChildren: .8,
-        staggerChildren: 0.2,
-      },
-    };
+  animate: {
+    transition: {
+      // delayChildren: .8,
+      staggerChildren: 0.2,
+    },
   },
+};
+
+export const transition = {
+  duration: 0.8,
 };

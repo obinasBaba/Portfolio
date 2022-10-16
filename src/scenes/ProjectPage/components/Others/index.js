@@ -127,6 +127,7 @@ function Others ({ auth, kklLuzern, udemy, active }) {
 
     svgRef.current.style.transform = `translateX(${x - window.innerWidth / 2}px)
        translateY(${y - window.innerHeight / 2}px)`;
+    /*
 
     // Scale goes from 0 to 100 for mouseDistance values between 0 to 100
     dx = lerp(dx, mouseX.get(), 0.1);
@@ -137,7 +138,7 @@ function Others ({ auth, kklLuzern, udemy, active }) {
     const mouseDistance = distance(dx, dy, mouseX.get(), mouseY.get());
 
     dmScale.current = Math.min(mouseDistance, 100);
-    feDisplacementMapEl.current.scale.baseVal = dmScale.current;
+    feDisplacementMapEl.current.scale.baseVal = dmScale.current;*/
 
     // if ( intersection && intersection.isIntersecting )
     cancelId.current = requestAnimationFrame(() => track());
@@ -197,7 +198,6 @@ function Others ({ auth, kklLuzern, udemy, active }) {
             custom={{ hovering: () => hoverIndex.get() === 0 }}
             variants={imgVariants}
             className={s.distort__img}
-            filter='url(#distortionFilter)'
             x='50'
             y='50'
             xlinkHref={one}
@@ -210,7 +210,6 @@ function Others ({ auth, kklLuzern, udemy, active }) {
             x='50'
             y='50'
             xlinkHref={two}
-            filter='url(#distortionFilter)'
 
           />
 
@@ -221,7 +220,7 @@ function Others ({ auth, kklLuzern, udemy, active }) {
             x='50'
             y='50'
             xlinkHref={three}
-            filter='url(#distortionFilter)'
+            // filter='url(#distortionFilter)'
 
           />
 
@@ -232,7 +231,7 @@ function Others ({ auth, kklLuzern, udemy, active }) {
             x='50'
             y='50'
             xlinkHref={four}
-            filter='url(#distortionFilter)'
+            // filter='url(#distortionFilter)'
 
           />
         </g>

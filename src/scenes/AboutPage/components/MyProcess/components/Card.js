@@ -1,14 +1,14 @@
-import React, { useEffect, useRef } from "react";
-import styled, { css } from "styled-components";
-import { Typography } from "@material-ui/core";
-import { motion, useAnimation, useMotionValue } from "framer-motion";
-import { spacing, text } from "../../../../../styles/mixins";
-import LottiIcon from "./LottiIcon";
-import { mediumUp, xxLargeUp } from "../../../../../styles/mixins/breakpoints";
+import React, { useEffect, useRef } from 'react';
+import styled, { css } from 'styled-components';
+import { Typography } from '@material-ui/core';
+import { motion, useAnimation, useMotionValue } from 'framer-motion';
+import { spacing, text } from '@/styles/mixins';
+import LottiIcon from './LottiIcon';
+import { mediumUp, xxLargeUp } from '@/styles/mixins/breakpoints';
 
 const StyledCard = styled(motion.div)`
   position: relative;
-  max-width: 54ch;
+  max-width: 53ch;
   border-radius: 20px;
   box-shadow: 0 40px 49px 0 rgba(0 0 0/ 16%);
   color: #02021e;
@@ -18,18 +18,19 @@ const StyledCard = styled(motion.div)`
   display: flex;
   flex-flow: column;
 
-  ${spacing("ph", 5)};
-  ${spacing("pt", 8)};
-  ${spacing("pb", 7)};
-  ${spacing("mt", 8)};
+  ${spacing('ph', 5)};
+  ${spacing('pt', 8)};
+  ${spacing('pb', 7)};
+  ${spacing('mt', 8)};
 
   ${mediumUp(css`
-    ${spacing("pt", 6)};
-    ${spacing("pb", 4)};
+    ${spacing('pt', 6)};
+    ${spacing('pb', 4)};
   `)};
 
   ${xxLargeUp(css`
-    max-width: 60ch;
+    //max-width: 60ch;
+
   `)};
 
   & > * {
@@ -41,7 +42,7 @@ const StyledCard = styled(motion.div)`
     letter-spacing: -1px;
     font-weight: 900;
 
-    ${spacing("mb", 1.6)};
+    ${spacing('mb', 1.6)};
   }
 
   .approach-desc {
@@ -55,7 +56,7 @@ const StyledCard = styled(motion.div)`
 `;
 
 const Num = styled(motion.div)`
-  //content: '0${({ no }) => no}';
+    //content: '0${({ no }) => no}';
   position: absolute;
   top: -24%;
   right: -4%;
@@ -93,14 +94,14 @@ const Keys = styled(motion.div)`
   //filter: drop-shadow(0 0 3px var(--medium-blue-color));
 
   ${text(0.7)};
-  ${spacing("mt", 2)};
-  ${spacing("mb", 1)};
-  ${spacing("mr", 3)};
+  ${spacing('mt', 2)};
+  ${spacing('mb', 1)};
+  ${spacing('mr', 3)};
 `;
 
 const keysVariants = {
   initial: {
-    y: "23%",
+    y: '23%',
     opacity: 0,
   },
   animate: {
@@ -114,7 +115,7 @@ const keysVariants = {
   },
 };
 
-function Card({ txt, titleTxt, methodologies, index, path }) {
+function Card ({ txt, titleTxt, methodologies, index, path }) {
   const cardRef = useRef(null);
   // let intersecting = useOnScreen(cardRef, 0, '0% -42% 0% 0%')
   // const [inView, setInView] = useState(false)
@@ -127,7 +128,7 @@ function Card({ txt, titleTxt, methodologies, index, path }) {
     inView.onChange((v) => {
       if (firstTimeOnly) return;
       firstTimeOnly = true;
-      if (v) controller.start("animate");
+      if (v) controller.start('animate');
     });
   }, []);
 
@@ -148,7 +149,7 @@ function Card({ txt, titleTxt, methodologies, index, path }) {
     >
       <Num
         variants={keysVariants}
-        initial="initial"
+        initial='initial'
         animate={controller}
         transition={{ ...keysVariants.transition, delay: 0.3 }}
       >
@@ -164,18 +165,18 @@ function Card({ txt, titleTxt, methodologies, index, path }) {
         />
       )}
 
-      <Typography variant="h3" className="card-titleTxt">
+      <Typography variant='h2' className='card-titleTxt'>
         {titleTxt}
       </Typography>
 
-      <Typography className="approach-desc">{txt}</Typography>
+      <Typography className='approach-desc'>{txt}</Typography>
 
       <Keys
         variants={keysVariants}
-        initial="initial"
+        initial='initial'
         animate={controller}
         transition={keysVariants.transition}
-        exit="exit"
+        exit='exit'
       >
         {methodologies}
       </Keys>

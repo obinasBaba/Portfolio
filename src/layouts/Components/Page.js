@@ -12,7 +12,6 @@ import ScreenOverlay from '@components/ScreenOverlay';
 import NavigationMenu from '@components/NavigationMenu';
 import { BottomGradient, Main, PageContainer } from './Styled';
 import Footer from '@components/Footer';
-import LoadingSpinner from '@components/LoadingSpinner';
 
 // import {} from '@re'
 
@@ -59,15 +58,11 @@ function Page ({ children, path }) {
         initial='initial'
         exit='exit'
         // animate={mainAnimationController}
-        animate={
-          screenOverlayEvent.get() === 'closed'
-            ? 'animate'
-            : mainAnimationController
-        }
+        animate='animate'
         ref={container}
         data-scroll-container={true}
       >
-        <LoadingSpinner />
+        {/*<LoadingSpinner />*/}
 
         <ScreenOverlay />
 
@@ -79,12 +74,13 @@ function Page ({ children, path }) {
 
         <Main id='main-container' data-scroll-section={true}>
           <AnimatePresence
-            exitBeforeEnter
+            mode='wait'
             custom={{ path, isTop, inView, /* largeUp */ breakpoint }}
 
             onExitComplete={() => {
               setExitComplete(!exitComplete);
               onExitComplete.set(true);
+              window.scrollTo(0, 0);
             }}
           >
             {children}

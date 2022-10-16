@@ -14,101 +14,93 @@ import RouteChangeEvent from "./src/helpers/RouteChangeEvent";
 
 const Event = RouteChangeEvent.GetInstance();
 
-
-export const onRouteUpdate = ( { location, prevLocation } ) => {
+export const onRouteUpdate = ({ location, prevLocation }) => {
 
   // console.log( "new pathname", location.pathname );
-  Event.emit( "end", [location, prevLocation] );
+  Event.emit("end", [location, prevLocation]);
 
-  if ( process.env.NODE_ENV !== "production" ) {
+  if (process.env.NODE_ENV !== "production") {
     return null;
   }
 
-  const pagePath = location ? location.pathname + location.search + location.hash : undefined;
-  setTimeout( () => {
-    if ( typeof gtag === "function" ) {
-      gtag( "event", "page_view", { page_path: pagePath } );
+  const pagePath = location ? location.pathname + location.search +
+    location.hash : undefined;
+  setTimeout(() => {
+    if (typeof gtag === "function") {
+      gtag("event", "page_view", { page_path: pagePath });
     }
-  }, 100 );
+  }, 100);
 };
 
 export const onRouteUpdateDelayed = () => {
   // console.log( "We can show loading indicator now" );
 
-  Event.emit( "start" );
+  Event.emit("start");
 };
 
-export const onPreRouteUpdate = ( { location, prevLocation } ) => {
+export const onPreRouteUpdate = ({ location, prevLocation }) => {
   // console.log( "Gatsby started to change location to", location.pathname, Event.listeners( "start" ) );
   // console.log( "Gatsby started to change location from", prevLocation ? prevLocation.pathname : null );
 
   // console.log( "onRouteUpdateDelayed",);
 
-
-  if ( prevLocation && prevLocation.pathname !== location.pathname ) {
-    Event.emit( "start" );
+  if (prevLocation && prevLocation.pathname !== location.pathname) {
+    Event.emit("start");
   }
 
 };
 
-/*
-export const shouldUpdateScroll = ( obj ) => {
+export const shouldUpdateScroll = (obj) => {
 
+  const { pathname, routerProps: { location }, getSavedScrollPosition } = obj;
 
+  return false;
 
-  const {pathname, routerProps: { location }, getSavedScrollPosition} = obj;
-
-
-  if ( location.action === 'PUSH' )
-  {
+  if (location.action === 'PUSH') {
     console.log('push delayed')
-    setTimeout( () => window.scrollTo(0,0), 1000 )
-  }
-  else{
+    setTimeout(() => window.scrollTo(0, 0), 1000)
+  } else {
     // console.log('delayed')
     const saved = getSavedScrollPosition(location);
     console.log(location, '-- Location')
     console.log(saved, '-- Saved')
-    setTimeout( () => window.scrollTo( ...(saved) ), 1000)
+    setTimeout(() => window.scrollTo(...(saved)), 1000)
   }
 
   // console.log(pathname)
   // console.log(obj)
 
-
-  if ( pathname === '/blog' ){
+  if (pathname === '/blog') {
     setTimeout(() => {
       window.scrollTo(0, 0)
     }, 1200)
     return false;
   }
 
-  if ( pathname === '/' && obj.prevRouterProps && obj.prevRouterProps.location.pathname === '/blog' ){
+  if (pathname === '/' && obj.prevRouterProps &&
+    obj.prevRouterProps.location.pathname === '/blog') {
     const saved = getSavedScrollPosition(location);
-    setTimeout( () => {
+    setTimeout(() => {
       // console.log('scrolling to saved', saved)
-      window.scrollTo( ...(saved) )
+      window.scrollTo(...(saved))
     }, 1100)
 
     return false;
   }
 
-  if ( location.action === 'PUSH' ) {
-    setTimeout( () => window.scrollTo(0,0), 1000 )
-  }
-  else{
+  if (location.action === 'PUSH') {
+    setTimeout(() => window.scrollTo(0, 0), 1000)
+  } else {
     // console.log(location)
     // console.log('delayed')
     const saved = getSavedScrollPosition(location);
-    setTimeout( () => {
-      window.scrollTo( ...(saved) )
+    setTimeout(() => {
+      window.scrollTo(...(saved))
     }, 1100)
 
     return false;
   }
-
 
   return false;
 
 }
-*/

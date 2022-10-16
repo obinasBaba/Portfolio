@@ -1,16 +1,16 @@
-import React, { useContext, useEffect, useLayoutEffect } from "react";
-import styled from "styled-components";
-import { motion, useMotionValue } from "framer-motion";
-import loadable from "@loadable/component";
-import AboutHero from "./components/AboutHero";
-import MyProcess from "./components/MyProcess";
+import React, { useContext, useEffect, useLayoutEffect } from 'react';
+import styled from 'styled-components';
+import { motion, useMotionValue } from 'framer-motion';
+import loadable from '@loadable/component';
+import AboutHero from './components/AboutHero';
+import MyProcess from './components/MyProcess';
 // import Footer from '../Footer'
-import Skills from "./components/Skills";
-import HorizontalScrollText from "./components/HorizontalScrollText";
-import { MotionValueContext } from "../../contexts/MotionStateWrapper";
-import { useLocomotiveScroll } from "@contexts/LocoMotive";
+import Skills from './components/Skills';
+import HorizontalScrollText from './components/HorizontalScrollText';
+import { MotionValueContext } from '../../contexts/MotionStateWrapper';
+import { useLocomotiveScroll } from '@contexts/LocoMotive';
 
-const MailUs = loadable(() => import("@components/Footer"));
+const MailUs = loadable(() => import('@components/Footer'));
 
 const AboutPageContainer = styled(motion.div)`
   position: relative;
@@ -34,7 +34,7 @@ const aboutContainerVariants = {
   },
 };
 
-function AboutPage() {
+function AboutPage () {
   const { mainAnimationController, screenOverlayEvent } =
     useContext(MotionValueContext);
 
@@ -45,14 +45,10 @@ function AboutPage() {
     <AboutPageContainer
       variants={aboutContainerVariants}
       transition={aboutContainerVariants.transition}
-      initial="initial"
-      animate={
-        screenOverlayEvent.get() === "closed"
-          ? "animate"
-          : mainAnimationController
-      }
-      exit="exit"
-      id="#about"
+      initial='initial'
+      animate={'animate'}
+      exit='exit'
+      id='#about'
     >
       <AboutHero />
 
@@ -62,7 +58,6 @@ function AboutPage() {
 
       <MyProcess triggerRegister={triggerRegister} />
 
-      {/*<Footer />*/}
     </AboutPageContainer>
   );
 }

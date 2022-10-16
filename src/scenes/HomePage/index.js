@@ -1,15 +1,15 @@
-import React, { useContext, useEffect } from "react";
-import { motion } from "framer-motion";
-import { MotionValueContext } from "@contexts/MotionStateWrapper";
-import { SectionWrapper } from "@components/Container";
-import RecentWorks from "./RecentDesigns";
-import ToProjects from "./ToProjects";
-import BlogPosts from "./BlogPosts";
-import Experiments from "./Experiments";
-import Hero from "@/scenes/HomePage/Hero";
+import React, { useContext, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { MotionValueContext } from '@contexts/MotionStateWrapper';
+import ToProjects from './ToProjects';
+import { SectionWrapper } from '@components/Container';
+import BlogPosts from '@scenes/HomePage/BlogPosts';
+import Experiments from '@scenes/HomePage/Experiments';
+import RecentWorks from '@scenes/HomePage/RecentDesigns';
+import Hero from '@scenes/HomePage/Hero';
 
 const containerVariants = {
-  exit(arg) {
+  exit (arg) {
     if (arg?.inView.get()) return {};
 
     return {
@@ -23,7 +23,7 @@ export const pageTransition = {
   ease: [0.6, 0.01, 0, 0.9],
 };
 
-function HomePage() {
+function HomePage () {
   const { mainAnimationController, screenOverlayEvent } =
     useContext(MotionValueContext);
 
@@ -32,16 +32,12 @@ function HomePage() {
   return (
     <motion.main
       variants={containerVariants}
-      className="homepage-container"
+      className='homepage-container'
       transition={pageTransition}
-      initial="initial"
-      animate={
-        screenOverlayEvent.get() === "closed"
-          ? "animate"
-          : mainAnimationController
-      }
-      exit="exit"
-      whileInView="inView"
+      initial='initial'
+      animate={'animate'}
+      exit='exit'
+      // whileInView='inView'
     >
       <Hero />
 

@@ -23,12 +23,15 @@ import { useLocation } from '@reach/router';
 import MouseFollower from '@components/MouseFollwer';
 import RouteChangeEvent from '@helpers/RouteChangeEvent';
 import { useMotionBreakPoint } from '@contexts/BreakPoint';
+import { isMobile } from 'react-device-detect';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
-type WithChildren<T = Record<string, unknown>> = T & {
+type WithChildren = {
   children?: React.ReactNode;
 };
+
 
 export interface LocomotiveScrollContextValue {
   locoInstance: Scroll | null;
@@ -109,7 +112,7 @@ export function LocomotiveScrollProvider({
       cursor.current?.removeState('-pointer');
       cursor.current?.removeImg();
 
-      onExitComplete.onChange(v => {
+      onExitComplete.onChange((v: any) => {
         if (v === false) return;
 
         cursor.current?.removeText();
@@ -136,8 +139,8 @@ export function LocomotiveScrollProvider({
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
 
-    if (!window.matchMedia('min-width(600px)'))
-      return;
+    // if (!window.matchMedia('min-width(600px)').matches)
+    // return;
 
     import('locomotive-scroll').then((LocomotiveScroll) => {
       const dataScrollContainer = document.querySelector(
@@ -149,11 +152,8 @@ export function LocomotiveScrollProvider({
         // console.log("IT IS NOT NULL", LocomotiveScrollRef.current.name);
       }
 
-      if (breakpoint.get().mdUp) {
-        console.log('breakpoints: ', breakpoint, breakpoint.get()?.mdUp);
-
+      if (!isMobile) {
         cursor.current = new MouseFollower();
-
       }
 
 

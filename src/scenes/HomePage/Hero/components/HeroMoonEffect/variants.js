@@ -10,7 +10,7 @@ export const moonAndStarVariants = {
 
 export const moonVariants = {
   initial: {
-    y: "-100%",
+    y: '-100%',
     scale: 0.3,
     opacity: 0,
   },
@@ -22,7 +22,7 @@ export const moonVariants = {
   },
 
   exit: {
-    y: "-100%",
+    y: '-100%',
     scale: 0.3,
     opacity: 0,
     transition: {
@@ -64,37 +64,7 @@ export const starItemVariants = {
     opacity: 0,
   },
 };
-export const mountainVariants = {
-  initial: {},
-  animate: {
-    transition: {
-      staggerChildren: 0.21,
-    },
-  },
-  exit: {
-    transition: {
-      staggerChildren: 0.21,
-    },
-  },
-};
-export const mountainItemVariants = {
-  initial: {
-    y: "100%",
-    opacity: 0.6,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.8,
-      ease: [0.6, 0.01, 0, 0.9],
-    },
-  },
-  exit: {
-    y: "100%",
-    opacity: 0.5,
-  },
-};
+
 export const containerVariant = {
   animate: {
     transition: {

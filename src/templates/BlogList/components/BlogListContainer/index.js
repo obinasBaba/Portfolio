@@ -1,12 +1,12 @@
-import React, { useContext, useEffect } from "react";
-import { Container, Typography } from "@material-ui/core";
-import styled, { css } from "styled-components";
-import { motion } from "framer-motion";
-import { gridColWidth, spacing, text } from "@/styles/mixins";
-import { basicVariants, transition } from "@/helpers/variants";
-import { largeUp, mediumUp, xxLargeUp } from "@/styles/mixins/breakpoints";
-import { MotionValueContext } from "@/contexts/MotionStateWrapper";
-import HeadlineTitle from "@components/Headline";
+import React, { useContext, useEffect } from 'react';
+import { Container, Typography } from '@material-ui/core';
+import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
+import { gridColWidth, spacing, text } from '@/styles/mixins';
+import { basicVariants, transition } from '@/helpers/variants';
+import { largeUp, mediumUp, xxLargeUp } from '@/styles/mixins/breakpoints';
+import { MotionValueContext } from '@/contexts/MotionStateWrapper';
+import HeadlineTitle from '@components/Headline';
 
 const BlogListContainer = styled(Container)`
   position: relative;
@@ -20,11 +20,11 @@ const BlogListContainer = styled(Container)`
 
   ${gridColWidth()};
 
-  ${spacing("mt", 20)};
-  ${spacing("mb", 10)};
+  ${spacing('mt', 20)};
+  ${spacing('mb', 10)};
 
   ${largeUp(css`
-    ${spacing("mt", 13)};
+    ${spacing('mt', 13)};
   `)}
 `;
 
@@ -37,18 +37,18 @@ const Title = styled(Typography)`
 
   //border: thin solid red;
 
-  // ${text(4)};
+    // ${text(4)};
 
   ${mediumUp(css`
     ${text(7)};
   `)}
 
   ${largeUp(css`
-    ${spacing("ml", -6)};
+    ${spacing('ml', -6)};
   `)}
 
   ${xxLargeUp(css`
-    ${spacing("ml", -10)};
+    ${spacing('ml', -10)};
   `)}
 `;
 
@@ -62,11 +62,11 @@ const BlogListWrapper = styled(motion.div)`
   & .title-wrapper {
     align-self: flex-start;
 
-    ${spacing("mb", 10)};
+    ${spacing('mb', 10)};
   }
 
   ${largeUp(css`
-    ${spacing("ml", 7)};
+    ${spacing('ml', 7)};
 
     .title-wrapper {
       margin-left: -6rem;
@@ -87,11 +87,11 @@ const CardContainer = styled.div`
   justify-content: center;
 
   ${largeUp(css`
-    ${spacing("mr", 8)};
+    ${spacing('mr', 8)};
   `)};
 `;
 
-function BlogList({ children }) {
+function BlogList ({ children }) {
   const { mainAnimationController, screenOverlayEvent } =
     useContext(MotionValueContext);
 
@@ -127,19 +127,15 @@ function BlogList({ children }) {
       <BlogListWrapper
         variants={basicVariants}
         transition={transition}
-        initial="initial"
-        animate={
-          screenOverlayEvent.get() === "closed"
-            ? "animate"
-            : mainAnimationController
-        }
-        exit="exit"
+        initial='initial'
+        animate={'animate'}
+        exit='exit'
       >
-        <div className="title-wrapper">
-          <HeadlineTitle title="My Articles" subtitle="tips & tricks" />
+        <div className='title-wrapper'>
+          <HeadlineTitle title='My Articles' subtitle='tips & tricks' />
         </div>
 
-        <CardContainer className="card-container">{children}</CardContainer>
+        <CardContainer className='card-container'>{children}</CardContainer>
       </BlogListWrapper>
     </BlogListContainer>
   );
