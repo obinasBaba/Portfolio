@@ -10,8 +10,15 @@
   & :local {
 
     .wrapper {
-      max-width: 1300px;
+
       margin: 0 auto;
+      max-width: 1000px;
+
+
+      @include media-breakpoint-up(xxl) {
+        //border: 1px solid yellow;
+        max-width: 1300px;
+      }
     }
 
     .textWrapper {
@@ -32,6 +39,10 @@
     .vidWrapper {
       display: grid;
       place-items: center;
+
+      @include media-breakpoint-down(sm) {
+        padding: 0 1rem;
+      }
 
       .vidDesc {
         width: 100%;

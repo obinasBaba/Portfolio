@@ -33,14 +33,15 @@ const NavWrapper = styled.ul`
   padding: 0;
   margin: 0;
   transform: translateX(-50%);
+  gap: 1.5rem;
+
 
   ${mediumUp(css`
     flex-flow: column;
     transform: initial;
   `)};
 
-    // ${spacing('gap', 3.2)};
-  gap: 2rem;
+
 `;
 
 const parentVariant = {

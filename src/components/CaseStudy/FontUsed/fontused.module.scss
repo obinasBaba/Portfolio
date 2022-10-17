@@ -9,6 +9,7 @@
   max-width: calc(1030px + 10vw);
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   margin: 0 auto;
 
   //border: 1px solid #000;
@@ -16,12 +17,19 @@
 
   & > div {
     //border: 1px solid red;
-    max-width: 33%;
+    max-width: 40%;
+
+    @include media-breakpoint-up(sm) {
+      max-width: 33%;
+    }
   }
 
   & > :last-child {
     transform: scale(1.09);
-    margin-top: 1.3rem;
+
+    @include media-breakpoint-up(sm) {
+      margin-top: 1.3rem;
+    }
   }
 
   img {

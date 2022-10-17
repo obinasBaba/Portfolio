@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import styled, { css } from "styled-components";
-import { AnimatePresence, motion } from "framer-motion";
-import { spacing } from "@/styles/mixins";
-import ScrollDown from "../../../../components/ScrollDown";
-import { largeUp, xLargeUp } from "@/styles/mixins/breakpoints";
+import React, { useEffect, useState } from 'react';
+import styled, { css } from 'styled-components';
+import { AnimatePresence, motion } from 'framer-motion';
+import { spacing } from '@/styles/mixins';
+import ScrollDown from '../../../../components/ScrollDown';
+import { largeUp, xLargeUp } from '@/styles/mixins/breakpoints';
 
 const ScrollDownWrapper = styled(motion.div)`
   position: fixed;
@@ -18,22 +18,22 @@ const ScrollDownWrapper = styled(motion.div)`
   grid-gap: 0.6rem;
   //border: thin solid red;
 
-  ${spacing("ml", 2.25)};
+  ${spacing('ml', 2.25)};
 
   ${largeUp(css`
-    left: 2%;
-    bottom: 4%;
+    left: 1%;
+    bottom: 4.7%;
   `)};
 
   ${xLargeUp(css`
-    // ${spacing("ml", 6.35)};
+      // ${spacing('ml', 6.35)};
   `)};
 
   //border: thin solid red;
 `;
 const wrapperVariants = {
   initial: {
-    y: "100%",
+    y: '100%',
     opacity: 0,
   },
   animate: {
@@ -41,23 +41,23 @@ const wrapperVariants = {
     opacity: 1,
     transition: {
       duration: 0.8,
-      ease: "easeIn",
+      ease: 'easeIn',
     },
   },
 
   exit: {
-    y: "100%",
+    y: '100%',
     opacity: 0,
     transition: {
       duration: 1,
-      ease: "easeOut",
+      ease: 'easeOut',
     },
   },
 };
 
 const containerVariant = {
   initial: {
-    y: "100%",
+    y: '100%',
     opacity: 0,
   },
   animate: {
@@ -65,7 +65,7 @@ const containerVariant = {
     opacity: 1,
   },
   exit: {
-    y: "100%",
+    y: '100%',
     opacity: 0,
   },
 
@@ -76,7 +76,7 @@ const containerVariant = {
   },
 };
 
-function ProjectScrollDown({ activeIndex }) {
+function ProjectScrollDown ({ activeIndex }) {
   const [show, setShow] = useState(true);
 
   useEffect(() => {
@@ -103,9 +103,9 @@ function ProjectScrollDown({ activeIndex }) {
         {show && (
           <motion.div
             variants={wrapperVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
+            initial='initial'
+            animate='animate'
+            exit='exit'
           >
             <ScrollDown show={show} />
           </motion.div>

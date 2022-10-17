@@ -4,8 +4,14 @@
 .container {
   width: 100%;
 
-  @include margin(top, 15rem);
   @include padding(1rem);
+
+  margin-top: 15rem;
+
+  @include media-breakpoint-up(sm) {
+    @include margin(top, 25rem);
+
+  }
 
   //border: 1px solid red;
 
@@ -21,18 +27,21 @@
 
     .swiperContainer {
       position: relative;
-      width: 25%;
+      width: 52%;
       //max-width: 500px;
       overflow: visible;
       display: grid;
       place-items: center;
 
       @include margin(top, 5rem);
+      //@include margin(bottom, 5rem);
+      margin-bottom: 5rem;
 
       //border: 1px solid red;
 
-      .mobile {
 
+      @include media-breakpoint-up(sm) {
+        width: 25%;
       }
 
 
@@ -43,10 +52,15 @@
           bottom: -15%;
           top: initial;
           left: initial;
-          width: 30%;
+          width: 100%;
           max-width: 300px;
-          border-radius: 500px;
+          border-radius: 1rem;
           overflow: hidden;
+
+          @include media-breakpoint-up(md) {
+            width: 60%;
+          }
+
 
           span {
             display: inline-block;
@@ -64,7 +78,13 @@
     .swiperItem {
 
       & > :first-child {
-        margin: 0 4.6rem; //creat the spacing b/n items, (width80% does not mess things up)
+        margin: 0 1.5rem; //creat the spacing b/n items, (width80% does not mess things up)
+
+        @include media-breakpoint-up(600px) {
+          margin: 0 3.6rem
+        }
+
+
       }
     }
 
@@ -74,11 +94,18 @@
       justify-self: start;
       top: 50%;
       z-index: 11;
-      width: 105%;
+      width: 120%;
       pointer-events: none;
       display: flex;
       justify-content: space-between;
-      transform: translateY(-50%) translateX(-2.5%);
+      transform: translateY(-50%) translateX(-8%);
+      //border: 1px solid red;
+
+      @include media-breakpoint-up(sm) {
+        width: 105%;
+        transform: translateY(-50%) translateX(-2.5%);
+
+      }
 
       //border: 1px solid #000;
 

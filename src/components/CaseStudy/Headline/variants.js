@@ -13,41 +13,41 @@ export const btnVariant = {
 
 export const imgWrapperVariant = {
   fromProjectsSmallInitial: {
-    ["margin-right"]: "calc(100vw / 64 * 5)",
-    ["margin-left"]: "calc(100vw / 64 * 5)",
+    ['margin-right']: 'calc(100vw / 64 * 5)',
+    ['margin-left']: 'calc(100vw / 64 * 5)',
   },
 
   fromProjectsSmallAnimate: {
-    ["margin-right"]: "calc(100vw / 64 * 0)",
-    ["margin-left"]: "calc(100vw / 64 * 0)",
+    ['margin-right']: 'calc(100vw / 64 * 0)',
+    ['margin-left']: 'calc(100vw / 64 * 0)',
   },
 
   fromProjectsInitial: {
-    ["margin-right"]: "calc(100vw / 64 * 6)",
+    ['margin-right']: 'calc(100vw / 64 * 6)',
     // background: 'transparent',
-    padding: "calc(100vw / 64 * .5)",
-    ["padding-left"]: "calc(100vw / 64 * 4)",
+    padding: 'calc(100vw / 64 * .5)',
+    ['padding-left']: 'calc(100vw / 64 * 4)',
   },
 
   fromProjectsAnimate: {
     // height: '30vmax',
     // ['margin-right']: 0,
-    ["margin-right"]: "calc(100vw / 64 * 0)",
-    padding: "calc(100vw / 64 * 0)",
-    ["padding-left"]: "calc(100vw / 64 * 0)",
+    ['margin-right']: 'calc(100vw / 64 * 0)',
+    padding: 'calc(100vw / 64 * 0)',
+    ['padding-left']: 'calc(100vw / 64 * 0)',
   },
 
-  exit(arg) {
-    if (arg && arg.path === "/projects/") {
+  exit (arg) {
+    if (arg && arg.path === '/projects/') {
       const delay = arg.isTop ? arg.isTop.get() : false;
 
       if (arg.breakpoint && arg.breakpoint.get().lgUp)
         return {
           // height: '30vmax',
           // background: '#3719ca',
-          ["margin-right"]: "calc(100vw / 64 * 6)",
-          padding: "calc(100vw / 64 * .5)",
-          ["padding-left"]: "calc(100vw / 64 * 4)",
+          ['margin-right']: 'calc(100vw / 64 * 6)',
+          padding: 'calc(100vw / 64 * .5)',
+          ['padding-left']: 'calc(100vw / 64 * 4)',
 
           transition: {
             ...transition,
@@ -56,8 +56,8 @@ export const imgWrapperVariant = {
         };
 
       return {
-        ["margin-right"]: "calc(100vw / 64 * 5)",
-        ["margin-left"]: "calc(100vw / 64 * 5)",
+        ['margin-right']: 'calc(100vw / 64 * 5)',
+        ['margin-left']: 'calc(100vw / 64 * 5)',
       };
     }
 
@@ -66,29 +66,29 @@ export const imgWrapperVariant = {
 
   initial: {
     scale: 0.9,
-    filter: "grayscale(100%) sepia(20%) brightness(80%)",
+    filter: 'grayscale(100%) sepia(20%) brightness(80%)',
   },
   animate: {
     scale: 1,
-    filter: "grayscale(0) sepia(0) brightness(80%)",
+    filter: 'grayscale(0) sepia(0) brightness(80%)',
   },
 };
 
 export const innerVariant = {
   fromProjectsInitial: {
-    height: "30vmax",
+    height: '30vmax',
   },
   fromProjectsAnimate: {
-    height: "100vh",
+    height: '100vh',
   },
 
-  exit(arg) {
-    if (arg && arg.path === "/projects/") {
+  exit (arg) {
+    if (arg && arg.path === '/projects/') {
       const delay = arg.isTop ? arg.isTop.get() : false;
 
       if (arg.breakpoint && arg.breakpoint.get().lgUp)
         return {
-          height: "30vmax",
+          height: '30vmax',
           transition: {
             ...transition,
             delay: delay ? 0 : 1,
@@ -118,8 +118,8 @@ export const bgVariant = {
     opacity: 1,
   },
 
-  exit(arg) {
-    if (arg && arg.path === "/projects/") {
+  exit (arg) {
+    if (arg && arg.path === '/projects/') {
       const delay = arg.isTop ?? arg.isTop.get();
 
       return {
@@ -139,7 +139,7 @@ export const bgVariant = {
 
 export const textsVariant = {
   initial: {
-    x: "calc(100vw / 64 * -2)",
+    x: 'calc(100vw / 64 * -2)',
     opacity: 0,
   },
   animate: {
@@ -155,11 +155,11 @@ export const textsVariant = {
   },
 
   fromProjectsAnimate: {
-    x: "calc(100vw / 64 * -2)",
+    x: 'calc(100vw / 64 * -2)',
   },
 
-  exit(arg) {
-    if (arg && arg.path === "/projects/") {
+  exit (arg) {
+    if (arg && arg.path === '/projects/') {
       const delay = arg.isTop ? arg.isTop.get() : false;
 
       if (arg.breakpoint && arg.breakpoint.get().lgUp)
@@ -187,6 +187,7 @@ export const titleVariant = {
     scale: 1.3,
     y: -30,
     originX: 0,
+    // color: '#a4b5c0',
   },
 
   initial: {
@@ -197,10 +198,11 @@ export const titleVariant = {
 
   animate: {
     scale: 1.3,
+    color: 'var(--headline-text)',
   },
 
-  exit(arg) {
-    if (arg && arg.path === "/projects/") {
+  exit (arg) {
+    if (arg && arg.path === '/projects/') {
       const delay = arg.isTop ? arg.isTop.get() : false;
 
       return {

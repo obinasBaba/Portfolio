@@ -1,35 +1,34 @@
-import styled, { css } from "styled-components";
-import { motion } from "framer-motion";
+import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
 import {
   gridColWidth,
   gridMultiplayer,
   spacing,
-} from "../../../../styles/mixins";
+} from '../../../../styles/mixins';
 import {
   largeUp,
   mediumUp,
   xLargeUp,
   xxLargeUp,
-} from "../../../../styles/mixins/breakpoints";
+} from '../../../../styles/mixins/breakpoints';
 
 export const ProjectImg = styled(motion.div)`
   position: relative;
 
   ${gridColWidth(6, 60)}; //mobile-first
-  ${gridMultiplayer("padding", 0.5)};
-  ${gridMultiplayer("padding-left", 4)};
+  ${gridMultiplayer('padding', 0.5)};
+  ${gridMultiplayer('padding-left', 4)};
+
 
   & .effect {
     color: tomato;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -webkit-box-decoration-break: clone;
-    background-image: linear-gradient(
-      137.81deg,
-      #e7a28f 3.52%,
+    background-image: linear-gradient(137.81deg,
+    #e7a28f 3.52%,
       //#f9d6ac 41.89%,
-      #fbfefc 96.77%
-    );
+    #fbfefc 96.77%);
   }
 
   ${mediumUp(css`
@@ -37,8 +36,7 @@ export const ProjectImg = styled(motion.div)`
     margin-right: calc(100vw / 64 * 6);
     background: ${({ theme }) => theme.palette.secondary.main};
 
-    padding: calc(100vw / 64 * 0.5) calc(100vw / 64 * 0.5)
-      calc(100vw / 64 * 0.5) calc(100vw / 64 * 4);
+    padding: calc(100vw / 64 * 0.5) calc(100vw / 64 * 0.5) calc(100vw / 64 * 0.5) calc(100vw / 64 * 4);
 
     ${gridColWidth(25, 65)};
   `)};
@@ -55,6 +53,8 @@ export const InnerWrapper = styled(motion.div)`
   display: flex;
   align-items: center;
   height: 100%;
+  max-height: 40vmax;
+
 
   ${mediumUp(css`
     height: 30vmax;
@@ -104,12 +104,10 @@ export const InnerWrapper = styled(motion.div)`
       z-index: 1000;
 
       &:last-child {
-        background-image: linear-gradient(
-          137.81deg,
-          #e7a28f 3.52%,
-          #f9d6ac 41.89%,
-          #fbfefc 96.77%
-        );
+        background-image: linear-gradient(137.81deg,
+        #e7a28f 3.52%,
+        #f9d6ac 41.89%,
+        #fbfefc 96.77%);
       }
     }
 

@@ -12,9 +12,11 @@
   //@include margin();
 
   --headlineBg: #02021e;
+  --headline-text: #fbfefc;
   --contentBg: #02021e;
 
   &.containerScrolled {
+    --headline-text: #02021e;
     --headlineBg: #fbfefc;
     --contentBg: #fbfefc;
   }

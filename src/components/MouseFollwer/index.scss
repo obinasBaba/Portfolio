@@ -25,8 +25,8 @@ $mf-color-text: #fff !default;
     top: -24px;
     left: -24px;
     display: block;
-    width: 48px;
-    height: 48px;
+    height: 2.8rem;
+    width: 2.8rem;
     transform: scale(0.4);
 
 
@@ -70,13 +70,13 @@ $mf-color-text: #fff !default;
   }
 
   &.-opaque {
-    mix-blend-mode:exclusion;
+    mix-blend-mode: exclusion;
 
     &:before {
       opacity: 1;
       transform: scale(1.32);
       //background-color:invert((#f1d209));
-      background-color:invert( $cursor-blend );
+      background-color: invert($cursor-blend);
 
       //background-color:invert((#f1d209));
       //transition: background-color .45s ease-in-out;

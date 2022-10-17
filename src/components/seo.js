@@ -7,29 +7,29 @@
  * @format
  */
 
-import * as React from "react";
-import { Helmet } from "react-helmet";
-import { graphql, useStaticQuery } from "gatsby";
+import * as React from 'react';
+import { Helmet } from 'react-helmet';
+import { graphql, useStaticQuery } from 'gatsby';
 
-function Seo({ description, lang = "en", meta, titleTxt, pathname, title }) {
+function Seo ({ description, lang = 'en', meta, titleTxt, pathname, title }) {
   const { site } = useStaticQuery(
     graphql`
-      query {
-        site {
-          siteMetadata {
-            defaultTitle
-            defaultDescription
-            siteUrl
-            twitterUsername
-            thumbnail
-            titleTemplate
-            image
-            author
-            thumbnail
-          }
+        query {
+            site {
+                siteMetadata {
+                    defaultTitle
+                    defaultDescription
+                    siteUrl
+                    twitterUsername
+                    thumbnail
+                    titleTemplate
+                    image
+                    author
+                    thumbnail
+                }
+            }
         }
-      }
-    `
+    `,
   );
 
   const {
@@ -51,24 +51,24 @@ function Seo({ description, lang = "en", meta, titleTxt, pathname, title }) {
   };
 
   const schema = {
-    "@context": "schema.org",
-    "@type": "Organization",
-    "@id": "https://henzzo.com/#website",
-    name: "henzzo portfolio",
-    url: "https://henzzo.com/",
-    logo: "https://henzzo.com/favicon.svg",
+    '@context': 'schema.org',
+    '@type': 'Organization',
+    '@id': 'https://henzzo.com/#website',
+    name: 'henzzo portfolio',
+    url: 'https://henzzo.com/',
+    logo: 'https://henzzo.com/favicon.svg',
     contactPoint: [
       {
-        "@type": "ContactPoint",
-        telephone: "+251923365539",
-        contactType: "",
-        areaServed: "",
+        '@type': 'ContactPoint',
+        telephone: '+251923365539',
+        contactType: '',
+        areaServed: '',
       },
     ],
     sameAs: [
-      "https://twitter.com/@henzzo_com",
-      "https://github.com/obinasBaba/",
-      "https://www.linkedin.com/in/henok-getachew-b125b3126/",
+      'https://twitter.com/@henzzo_com',
+      'https://github.com/obinasBaba/',
+      'https://www.linkedin.com/in/henok-getachew-b125b3126/',
     ],
   };
 
@@ -164,49 +164,49 @@ function Seo({ description, lang = "en", meta, titleTxt, pathname, title }) {
   return (
     <Helmet titleTemplate={defaultTitle ? `${defaultTitle} ·  %s` : null}>
       {/* Encodings and styles */}
-      <html lang="en" />
-      <meta charSet="utf-8" />
+      <html lang='en' />
+      <meta charSet='utf-8' />
       <meta
-        content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes"
-        name="viewport"
+        content='width=device-width, initial-scale=1, minimum-scale=1 maximum-scale=1, user-scalable=yes'
+        name='viewport'
       />
 
       <meta
-        content="ui/ux design, web designer, ux designer portfolio, design and development portfolio,
+        content='ui/ux design, web designer, ux designer portfolio, design and development portfolio,
              design driven development, design and development freelancer portfolio, design consultant portfolio, ui ux designer portfolio,
               ui design expert freelancer portfolio, ux design consultancy, ui expert,
                user interface designer, ui ux designer, ui ux design freelancer, ui design portfolio, ui portfolio,
                best design portfolio, best design and development portfolio,
-               top development freelancer portfolio, reactjs development, gatsbyjs development, next.js development, websites, web development, front-end development"
-        name="keywords"
+               top development freelancer portfolio, reactjs development, gatsbyjs development, next.js development, websites, web development, front-end development'
+        name='keywords'
       />
-      <meta content={author} name="author" />
+      <meta content={author} name='author' />
       <title>{seoMapping.titleTxt}</title>
-      <meta content={seoMapping.description} name="description" />
+      <meta content={seoMapping.description} name='description' />
 
       {/* <!-- General meta -->  */}
-      <meta content={seoMapping.thumbnail} name="image" />
-      <link href="https://www.henzzo.com/" rel="canonical" />
+      <meta content={seoMapping.thumbnail} name='image' />
+      <link href='https://www.henzzo.com/' rel='canonical' />
 
       {/* <!-- Twitter meta --> */}
-      <meta content="summary_large_image" name="twitter:card" />
-      <meta content={twitterUsername} name="twitter:creator" />
-      <meta content={seoMapping.thumbnail} name="twitter:image" />
-      <meta content={defaultTitle} name="twitter:titleTxt" />
-      <meta content={defaultDescription} name="twitter:description" />
-      <meta content={siteUrl} name="twitter:url" />
+      <meta content='summary_large_image' name='twitter:card' />
+      <meta content={twitterUsername} name='twitter:creator' />
+      <meta content={seoMapping.thumbnail} name='twitter:image' />
+      <meta content={defaultTitle} name='twitter:titleTxt' />
+      <meta content={defaultDescription} name='twitter:description' />
+      <meta content={siteUrl} name='twitter:url' />
 
       {/* <!-- Facebook meta --> */}
-      <meta content={siteUrl} property="og:site_name" />
-      <meta content={defaultTitle} property="og:titleTxt" />
-      <meta content={defaultDescription} property="og:description" />
-      <meta content="website" property="og:type" />
-      <meta content={seoMapping.thumbnail} property="og:image" />
-      <meta content={siteUrl} property="og:url" />
-      <meta property="og:locale" content="en_US" />
+      <meta content={siteUrl} property='og:site_name' />
+      <meta content={defaultTitle} property='og:titleTxt' />
+      <meta content={defaultDescription} property='og:description' />
+      <meta content='website' property='og:type' />
+      <meta content={seoMapping.thumbnail} property='og:image' />
+      <meta content={siteUrl} property='og:url' />
+      <meta property='og:locale' content='en_US' />
 
       {/* Micro data */}
-      <script type="application/ld+json">{JSON.stringify(schema)}</script>
+      <script type='application/ld+json'>{JSON.stringify(schema)}</script>
     </Helmet>
   );
 }

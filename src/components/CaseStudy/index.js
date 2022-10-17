@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useLayoutEffect } from 'react';
-import styled from 'styled-components';
 import { motion, useMotionValue } from 'framer-motion';
 import { MotionValueContext } from '@contexts/MotionStateWrapper';
 import { createPortal } from 'react-dom';
@@ -22,23 +21,6 @@ import {
 } from './casestudy.module.scss';
 
 const FixedPortal = (props) => createPortal(props.children, document.body);
-
-const FixedItems = styled.div`
-  position: fixed;
-  left: 3.8%;
-  top: 29%;
-  bottom: 5%;
-  z-index: 7;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: space-between;
-
-  a {
-  }
-
-  //border: thin solid red;
-`;
 
 const containerVariants = {
   initial: {
@@ -107,9 +89,7 @@ const CaseStudy = ({
   useRefreshMouseListeners('[data-pointer]');
 
   const { locoInstance } = useLocomotiveScroll();
-  const { mainAnimationController, screenOverlayEvent } =
-    useContext(MotionValueContext);
-
+ 
   const {
     variantsUtil: { fromCaseStudy, fromProjectList },
   } = useContext(MotionValueContext);
@@ -138,9 +118,7 @@ const CaseStudy = ({
         ? ['fromProjectsAnimate']
         : ['fromProjectsSmallAnimate']
       : lup
-        ? screenOverlayEvent.get() === 'closed'
-          ? ['animate']
-          : mainAnimationController
+        ? ['animate']
         : ['smallAnimate'],
   );
 

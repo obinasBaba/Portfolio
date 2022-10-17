@@ -2,17 +2,29 @@
 
 //noinspection SassScssResolvedByNameOnly
 .container {
-  @include margin(top, 16rem);
-  //@include margin(bottom, 10rem);
+
+
+  @include margin(bottom, 12rem);
+
+  //border: 1px solid red;
+  margin: 0 auto;
+
+  max-width: 70rem;
+
+  @include media-breakpoint-down(xl) {
+    //border: 1px solid yellow;
+    max-width: 63rem;
+    //border: 1px solid red;
+  }
+
+
+  @include media-breakpoint-up(md) {
+    @include margin(top, 16rem);
+  }
 
   & :local {
 
     ul.wrapper {
-
-      .seeLive {
-        text-decoration: underline;
-      }
-
       max-width: 100%;
       display: flex;
       flex-flow: wrap;
@@ -21,11 +33,27 @@
       list-style-type: none;
       padding: 0;
       color: #02021e;
-      //margin: 0 0 0 12%;
-
-      //border: thin solid red;
       gap: 1rem;
 
+
+      .seeLive {
+        text-decoration: underline;
+      }
+
+
+      li {
+        display: flex;
+        flex-flow: column;
+        align-items: flex-start;
+        justify-content: center;
+        flex-basis: calc(50% - 1.2rem);
+
+
+        //border: 1px solid #000;
+
+        @include margin(top, 3rem);
+
+      }
 
       @include media-breakpoint-up(md) {
         max-width: 80%;
@@ -37,25 +65,14 @@
           flex-basis: 47%;
         }
       }
-
-
-      li {
-        display: flex;
-        flex-flow: column;
-        align-items: flex-start;
-        justify-content: center;
-        flex-basis: 50%;
-
-        //border: 1px solid #000;
-
-        @include margin(top, 3rem);
-
-      }
     }
 
     .desc {
-      max-width: 65ch;
       @include margin(top, 1rem);
+
+      @include media-breakpoint-up(md) {
+        max-width: 65ch;
+      }
     }
 
     .key {
@@ -68,6 +85,7 @@
       letter-spacing: 0;
       font-weight: 100;
       color: var(--dark-gray);
+      hyphens: auto;
     }
   }
 }

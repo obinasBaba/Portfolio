@@ -6,6 +6,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { Typography } from '@material-ui/core';
 import * as s from './videoplayer.module.scss';
 import { transition } from '@helpers/variants';
+import { isMobile } from 'react-device-detect';
 
 const loadingTxtVariants = {
   initial: {
@@ -51,12 +52,18 @@ const VideoPlayer = ({ vidProps }) => {
         setInView(true);
       }}
       onViewportLeave={() => {
+        // return;
         setInView(false);
 
         if (!vidRef.current) return;
 
-        vidRef.current?.pause();
+        if (!isMobile) {
+          vidRef.current?.pause();
+        }
+
         setTimeout(() => {
+          if (!vidRef.current) return;
+
           vidRef.current.currentTime = 0;
         }, 400);
       }}
@@ -66,8 +73,8 @@ const VideoPlayer = ({ vidProps }) => {
         <span />
         <span />
 
-        <AnimatePresence exitBeforeEnter>
-          {!loaded && inView && (
+        <AnimatePresence mode='wait'>
+          {!loaded && (
             <motion.div
               className={s.loading_text}
               initial='initial'

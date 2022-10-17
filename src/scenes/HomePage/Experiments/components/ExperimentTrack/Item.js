@@ -145,7 +145,11 @@ function Item ({ imgUrl, title, index, link }) {
       />
 
       <div className='video-div'>
-        <video autoPlay loop muted playsInline
+        <video autoPlay
+               preload='metadata'
+               muted
+               loop
+               playsInline={true}
                poster={`'/img/experiment-posters/exp${index + 1}.png'`}
         >
           <source src={imgUrl.webm.publicURL} type='video/webm' />

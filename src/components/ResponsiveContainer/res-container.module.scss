@@ -1,0 +1,12 @@
+@use "@style" as *;
+
+//noinspection SassScssResolvedByNameOnly
+.container {
+
+  @include media-breakpoint-down(xl) {
+    //border: 1px solid yellow;
+    max-width: 63rem;
+    //border: 1px solid red;
+  }
+
+}

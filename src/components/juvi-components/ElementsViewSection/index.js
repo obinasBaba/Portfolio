@@ -20,12 +20,12 @@ const ElementsViewSection = ({ elements }) => {
     <div className={s.container}>
       <ResponsiveContainer className={s.wrapper}>
         <div className={s.text}>
-          <Typography variant='h3' gutterBottom>
+          <Typography variant='h1'>
             elements
           </Typography>
 
           <Typography style={{ maxWidth: '77ch' }}>
-            kim drew a whopping 141 scribble- and 39 stone illustrations to use
+            I drew around 30 illustrations to use
             in all kinds of media, including the website. they portray elements
             the band personally feels close to.
           </Typography>

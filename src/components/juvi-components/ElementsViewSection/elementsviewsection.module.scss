@@ -1,24 +1,24 @@
 @use "@style" as *;
 
 //noinspection SassScssResolvedByNameOnly
-.container{
+.container {
   width: 100%;
   //display: flex;
   //background-color: var(--headlineBg);
 
 
+  @include padding(top, 10rem);
 
-   @include padding(top, 10rem);
   // @include padding(bottom, 8rem);
 
-  & :local{
+  & :local {
 
-    .wrapper{
+    .wrapper {
       display: flex;
-      //border: 1px solid #000;
+
     }
 
-    .col{
+    .col {
       display: flex;
       flex-flow: column;
       gap: 2rem;
@@ -28,24 +28,30 @@
 
       //border: 1px solid blue;
 
-      .img_wrapper{
+      .img_wrapper {
         overflow: hidden;
         //border: 1px solid red;
         box-shadow: 7px 7px 70px 2px rgba(0, 0, 0, 0.18);
 
       }
 
-     .img {
+      .img {
 
       }
 
     }
 
-    .elementImg{
+    .elementImg {
       width: 100%;
       max-width: 1400px;
-      margin: 5rem auto 0;
+      margin: f-unit(5rem) auto 0;
       gap: 2rem;
+
+      padding: 2rem;
+
+      @include media-breakpoint-down(xl) {
+        max-width: 70rem
+      }
 
       //border: 1px solid #000;
 
@@ -55,10 +61,10 @@
       //box-shadow: ;
     }
 
-    .text{
+    .text {
       //@include margin(bottom, 3rem);
 
-      h3{
+      h3 {
         font-weight: bolder;
       }
     }

@@ -1,0 +1,40 @@
+@use "@style" as *;
+
+//noinspection SassScssResolvedByNameOnly
+.container {
+  @include margin(top, 20rem);
+
+
+  & :local {
+
+    .img {
+
+      max-width: 10rem;
+      //border: 1px solid red;
+
+      @include media-breakpoint-up(md) {
+        max-width: f-unit(12rem);
+      }
+    }
+
+    .wrapper {
+      width: 100%;
+      display: flex;
+      flex-flow: wrap;
+      //z-index: 111;
+      justify-content: space-evenly;
+
+      margin-top: 2rem;
+
+
+      @include media-breakpoint-up(lg) {
+        justify-content: space-between;
+        flex-flow: nowrap;
+        margin-top: 4rem;
+
+      }
+
+    }
+  }
+
+}

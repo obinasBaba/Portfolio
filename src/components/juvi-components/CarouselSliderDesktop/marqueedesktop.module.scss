@@ -14,6 +14,14 @@
 
     .headerText {
 
+      @include margin(bottom, 7rem);
+
+      @include media-breakpoint-down(xl) {
+        //border: 1px solid yellow;
+        @include margin(bottom, 10rem);
+
+      }
+
       & > :last-child {
         max-width: 77ch;
       }
@@ -21,30 +29,39 @@
 
     .swiperContainer {
       position: relative;
-      width: 70%;
+      width: 90%;
       //max-width: 500px;
       overflow: visible;
       display: grid;
       place-items: center;
       //cursor: none;
 
+      //border: 1px solid red;
+
 
       @include margin(top, 4.5rem);
+
+      @include media-breakpoint-up(md) {
+        width: 70%;
+      }
 
 
       & :global {
         .swiper-pagination.swiper-pagination-progressbar {
           position: absolute;
           display: block;
-          bottom: -15%;
+          bottom: -25%;
           top: initial;
           left: initial;
-          width: 30%;
-          max-width: 300px;
-          border-radius: 500px;
+          width: 100%;
+          max-width: 18rem;
+          border-radius: 1rem;
           overflow: hidden;
 
-          //border: 1px solid red;
+          @include media-breakpoint-up(md) {
+            width: 60%;
+          }
+
 
           span {
             display: inline-block;
@@ -63,8 +80,12 @@
 
 
       & > :first-child {
-        margin: 0 4.6rem; //creat the spacing b/n items, (width80% does not mess things up)
+        margin: 0 1rem; //creat the spacing b/n items, (width80% does not mess things up)
         //cursor: none;
+
+        @include media-breakpoint-up(md) {
+          margin: 0 4.6rem;
+        }
 
         //border: 1px solid blue;
 

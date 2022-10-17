@@ -1,0 +1,35 @@
+@use "@style" as *;
+
+//noinspection SassScssResolvedByNameOnly
+.container {
+
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  justify-items: center;
+  //gap: .2rem;
+
+  svg {
+    max-width: 1.4rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    gap: .5rem;
+  }
+
+  & :local {
+
+    .text {
+      font-weight: 300;
+      letter-spacing: .15rem;
+
+      @include media-breakpoint-up(md) {
+        letter-spacing: 3px;
+        font-size: .7rem;
+
+      }
+
+    }
+
+  }
+}

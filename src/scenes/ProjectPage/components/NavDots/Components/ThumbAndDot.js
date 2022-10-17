@@ -1,7 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 import { spacing } from '../../../../../styles/mixins';
+import { mediumUp } from '@/styles/mixins/breakpoints';
 
 const ThumbAndDotContainer = styled.li`
   //border: thin solid lightblue;
@@ -17,18 +18,9 @@ const ThumbAndDotContainer = styled.li`
   transition: transform 0.5s cubic-bezier(0.6, 0.01, 0, 0.9),
   border 0.2s ease-in-out;
 
-    // ${spacing('height', 1.1)};
-    // ${spacing('width', 1.1)};
-
   height: 1.1rem;
   width: 1.1rem;
 
-  & :hover {
-    transform: scale(1.4);
-    border: 0.5px solid blue;
-    transition: transform 0.5s cubic-bezier(0.6, 0.01, 0, 0.9),
-    border 0.2s ease-in-out;
-  }
 
   &::after {
     //z-index: -1;
@@ -55,7 +47,12 @@ const ThumbAndDotContainer = styled.li`
       line-height: 0;
       margin: 0;
       padding: 0;
-      font-size: 1.6rem;
+      font-size: 2rem;
+
+      ${mediumUp(css`
+        font-size: 1.7rem;
+      `)};
+
     }
   }
 

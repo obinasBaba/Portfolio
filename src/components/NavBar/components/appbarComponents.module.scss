@@ -14,6 +14,11 @@
   background: transparent;
 
   max-width: 4.2rem;
+
+  @include media-breakpoint-up(sm) {
+    max-width: f-unit(3rem);
+
+  }
   //max-width: f-unit-light(5rem);
 
   //@include media-breakpoint-up(md) {
