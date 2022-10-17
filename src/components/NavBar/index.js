@@ -10,6 +10,8 @@ import NavBtn from './components/NavBtn';
 import OverlayController from '../ScreenOverlay/OverlayController';
 import { container } from './navbar.module.scss';
 import { useLocation } from '@reach/router';
+import gsap from 'gsap';
+import clsx from 'clsx';
 
 function HideOnScroll ({ children }) {
   const { currentPath } = useContext(AppStateContext);
@@ -19,11 +21,27 @@ function HideOnScroll ({ children }) {
   const { scrollDirection } = useLocomotiveScroll();
 
   useEffect(() => {
+    return;
     const deb = debounce((arg) => {
       if (!arg) return;
 
-      if (arg === 'up') setSlide(true);
-      else if (arg === 'down') setSlide(false);
+      if (arg === 'up') {
+
+        // setSlide(true)
+        gsap.to('.app-slider', {
+          y: '-100%', duration: .5,
+
+        });
+
+      } else if (arg === 'down') {
+
+        gsap.to('.app-slider', {
+          y: 0, duration: .5,
+        });
+
+        // setSlide(false);
+
+      }
     }, 350);
 
     scrollDirection.onChange(deb);
@@ -36,15 +54,13 @@ function HideOnScroll ({ children }) {
   }, [currentPath, pathname]);
 
   return (
-    <Slide appear={false} direction='down' in={slide}>
+    <div className='app-slider' appear={false} direction='down' in={slide}>
       {children}
-    </Slide>
-  );
+    </div>);
 }
 
 const appBarVariants = {
-  initial: {},
-  animate: {
+  initial: {}, animate: {
     transition: {
       delayChildren: 0.4,
     },
@@ -54,20 +70,40 @@ const appBarVariants = {
 function NavBar () {
   const { menuIsOpen } = useMotionValueContext();
 
-  const toggleMenu = () =>
-    !OverlayController.isAnimating &&
-    !window.isMenuAnimating &&
-    menuIsOpen.set(!menuIsOpen.get());
+  const toggleMenu = () => !OverlayController.isAnimating &&
+    !window.isMenuAnimating && menuIsOpen.set(!menuIsOpen.get());
 
-  return (
-    <HideOnScroll>
-      <motion.div className={container} variants={appBarVariants}>
+  const { scrollDirection } = useLocomotiveScroll();
+
+  useEffect(() => {
+
+    const deb = debounce((arg) => {
+      if (!arg) return;
+
+      gsap.to('.app-slider', {
+        y: arg === 'up' ? 0 : '-100%', duration: .2, ease: 'linear',
+      });
+
+    }, 350);
+
+    scrollDirection.onChange(deb);
+
+    return () => {};
+  }, []);
+
+  return (<>
+    <motion.div className={clsx([container])}
+    >
+
+      <motion.div variants={appBarVariants} className='app-slider'>
         <HomeLogo toggleMenu={() => menuIsOpen.get() && toggleMenu()} />
 
         <NavBtn menuIsOpen={menuIsOpen} toggleMenu={toggleMenu} />
       </motion.div>
-    </HideOnScroll>
-  );
+
+
+    </motion.div>
+  </>);
 }
 
 export default NavBar;

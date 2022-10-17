@@ -6,17 +6,24 @@
   z-index: 20;
   top: 0;
   width: 100%;
-  padding: 2rem 2rem 1.3rem;
   transition: all 0.35s ease-in-out;
   pointer-events: none;
 
-  display: flex;
-  justify-content: space-between;
 
-  @include media-breakpoint-up(md) {
-    @include padding(ver, 1rem);
-    @include padding(hor, 3rem);
+  & > :first-child {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 2rem 1.3rem;
+
+    @include media-breakpoint-up(md) {
+      @include padding(ver, 1rem);
+      @include padding(hor, 3rem);
+    }
+
+
+    //border: 1px solid red;
   }
+
 
   &::after {
     //content: '';
