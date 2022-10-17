@@ -1,15 +1,15 @@
-import React from "react";
-import { Link, navigate } from "gatsby";
-import styled, { css } from "styled-components";
-import { motion } from "framer-motion";
-import { itemVariants, transition } from "../variants";
-import { length, text } from "../../../../../styles/mixins";
-import OverlayController from "../../../../ScreenOverlay/OverlayController";
+import React from 'react';
+import { Link, navigate } from 'gatsby';
+import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
+import { itemVariants, transition } from '../variants';
+import { length, text } from '../../../../../styles/mixins';
+import OverlayController from '../../../../ScreenOverlay/OverlayController';
 import {
   largeUp,
   mediumUp,
   xxLargeUp,
-} from "../../../../../styles/mixins/breakpoints";
+} from '../../../../../styles/mixins/breakpoints';
 
 const hoverMixin = css`
   [data-circle="1"] {
@@ -86,10 +86,10 @@ const ItemContainer = styled(motion.li)`
   `)};
 
   ${({ active }) =>
-    active &&
-    css`
-      ${hoverMixin}
-    `};
+          active &&
+          css`
+            ${hoverMixin}
+          `};
 
   &:hover {
     ${hoverMixin};
@@ -109,11 +109,17 @@ const Title = styled.div`
   text-shadow: 0.1em 0.1em 0.3em #000;
   pointer-events: none;
 
-  ${text(1)};
+  font-size: 1.2rem;
+
+
+  ${mediumUp(css`
+    ${text(1)};
+  `)};
 
   ${largeUp(css`
     ${text(0.86)};
   `)};
+
 
   ${xxLargeUp(css`
     ${text(1)};
@@ -132,23 +138,23 @@ const Circle = styled(motion.div)`
   //transition: transform 0.5s;
 
   &[data-circle="1"] {
-    ${length("width", 15)};
-    ${length("height", 15)};
+    ${length('width', 23)};
+    ${length('height', 23)};
   }
 
   &[data-circle="2"] {
-    ${length("width", 11)};
-    ${length("height", 11)};
+    ${length('width', 16)};
+    ${length('height', 16)};
   }
 
   &[data-circle="3"] {
-    ${length("width", 10)};
-    ${length("height", 10)};
+    ${length('width', 14)};
+    ${length('height', 14)};
   }
 
   &[data-circle="4"] {
-    ${length("width", 13)};
-    ${length("height", 13)};
+    ${length('width', 20)};
+    ${length('height', 20)};
   }
 
   a {
@@ -272,18 +278,18 @@ const Item = ({ currentPath, link, stars, icon, index, title, onClick }) => {
   return (
     <ItemContainer
       variants={itemVariants}
-      className="nav-menu-item"
-      data-pointer={link !== currentPath && "focus"}
+      className='nav-menu-item'
+      data-pointer={link !== currentPath && 'focus'}
       transition={transition}
-      active={link === currentPath && currentPath !== "/"}
+      active={link === currentPath && currentPath !== '/'}
       key={link + index + title}
     >
       <Link to={link} onClick={(ev) => handleLinkClick(ev)}>
         <Circle data-circle={index + 1} />
 
-        <Star bgImg={stars.publicURL} className="stars" />
+        <Star bgImg={stars.publicURL} className='stars' />
 
-        <Icon bgImg={icon.publicURL} data-icon={index + 1} className="icon" />
+        <Icon bgImg={icon.publicURL} data-icon={index + 1} className='icon' />
       </Link>
 
       <Title>{title}</Title>

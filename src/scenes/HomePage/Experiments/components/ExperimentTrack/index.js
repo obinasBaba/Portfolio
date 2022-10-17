@@ -1,8 +1,10 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import { useExperimentAssets } from "../../../../../hooks/queries/useExperimentAssets";
-import Item from "./Item";
-import { mediumUp } from "../../../../../styles/mixins/breakpoints";
+import React from 'react';
+import styled, { css } from 'styled-components';
+import {
+  useExperimentAssets,
+} from '../../../../../hooks/queries/useExperimentAssets';
+import Item from './Item';
+import { mediumUp } from '../../../../../styles/mixins/breakpoints';
 
 export const Track = styled.section`
   width: 100%;
@@ -17,7 +19,7 @@ export const Track = styled.section`
   `)};
 `;
 
-function ExperimentTrack() {
+function ExperimentTrack () {
   const {
     exp1mp4,
     exp1webm,
@@ -29,12 +31,21 @@ function ExperimentTrack() {
     exp4webm,
   } = useExperimentAssets();
   const expData = [
-    { src: { mp4: exp1mp4, webm: exp1webm }, title: "Elastic Search Bar" },
-    { src: { mp4: exp2mp4, webm: exp2webm }, title: "Mouse Hover effect" },
-    { src: { mp4: exp3mp4, webm: exp3webm }, title: "Menu Icon animation" },
     {
-      src: { mp4: exp4mp4, webm: exp4webm },
-      title: "CustomTextField Interaction",
+      src: { mp4: exp1mp4.publicURL, webm: exp1webm.publicURL },
+      title: 'Elastic Search Bar',
+    },
+    {
+      src: { mp4: exp2mp4.publicURL, webm: exp2webm.publicURL },
+      title: 'Mouse Hover effect',
+    },
+    {
+      src: { mp4: exp3mp4.publicURL, webm: exp3webm.publicURL },
+      title: 'Menu Icon animation',
+    },
+    {
+      src: { mp4: exp4mp4.publicURL, webm: exp4webm.publicURL },
+      title: 'TextField Interaction',
     },
   ];
 
@@ -42,7 +53,7 @@ function ExperimentTrack() {
     <Track>
       {expData.map((item, index) => (
         <Item
-          key={item.src.mp4.publicURL + index}
+          key={item.src.mp4 + index}
           imgUrl={item.src}
           title={item.title}
           index={index}

@@ -1,4 +1,4 @@
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql, useStaticQuery } from 'gatsby';
 
 /*export const ExperimentsPreview = graphql`
   fragment ExperimentsPreview on File {
@@ -14,46 +14,59 @@ import { graphql, useStaticQuery } from "gatsby";
 
 export const useExperimentAssets = () => {
   return useStaticQuery(graphql`
-    query {
-      exp1mp4: file(relativePath: { eq: "sections/experiments/exp1.mp4" }) {
-        publicURL
-        name
-      }
+      query {
+          exp1mp4: file(relativePath: { eq: "sections/experiments/exp11.mp4" }) {
+              publicURL
+              name
+          }
 
-      exp1webm: file(relativePath: { eq: "sections/experiments/exp1.webm" }) {
-        publicURL
-        name
-      }
+          exp1webm: file(relativePath: { eq: "sections/experiments/exp11.webm" }) {
+              publicURL
+              name
+          }
 
-      exp2mp4: file(relativePath: { eq: "sections/experiments/exp2.mp4" }) {
-        publicURL
-        name
-      }
+          exp2mp4: file(relativePath: { eq: "sections/experiments/exp22.mp4" }) {
+              publicURL
+              name
+          }
 
-      exp2webm: file(relativePath: { eq: "sections/experiments/exp2.webm" }) {
-        publicURL
-        name
-      }
+          exp2webm: file(relativePath: { eq: "sections/experiments/exp22.webm" }) {
+              publicURL
+              name
+          }
 
-      exp3mp4: file(relativePath: { eq: "sections/experiments/exp3.mp4" }) {
-        publicURL
-        name
-      }
+          exp3mp4: file(relativePath: { eq: "sections/experiments/exp33.mp4" }) {
+              publicURL
+              name
+          }
 
-      exp3webm: file(relativePath: { eq: "sections/experiments/exp3.webm" }) {
-        publicURL
-        name
-      }
+          exp3webm: file(relativePath: { eq: "sections/experiments/exp33.webm" }) {
+              publicURL
+              name
+          }
 
-      exp4mp4: file(relativePath: { eq: "sections/experiments/exp4.mp4" }) {
-        publicURL
-        name
-      }
+          exp4mp4: file(relativePath: { eq: "sections/experiments/exp44.mp4" }) {
+              publicURL
+              name
+          }
 
-      exp4webm: file(relativePath: { eq: "sections/experiments/exp4.webm" }) {
-        publicURL
-        name
+          exp4webm: file(relativePath: { eq: "sections/experiments/exp44.webm" }) {
+              publicURL
+              name
+          }
+
+          exp5mp4: file(relativePath: { eq: "sections/experiments/addtocart.mp4" }) {
+              publicURL
+              name
+          }
+
+          exp5webm: file(relativePath: { eq: "sections/experiments/addtocart.webm" }) {
+              publicURL
+              name
+          }
+
+
+
       }
-    }
   `);
 };

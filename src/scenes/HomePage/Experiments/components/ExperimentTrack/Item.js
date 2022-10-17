@@ -8,6 +8,7 @@ import {
   smallDown,
   xxLargeUp,
 } from '../../../../../styles/mixins/breakpoints';
+import { useJuviCarouselDesktopVid } from '@hooks/queries/juvi/useJuviVideo';
 
 export const ExperimentItem = styled(motion.div)`
   position: relative;
@@ -31,6 +32,9 @@ export const ExperimentItem = styled(motion.div)`
 
   video {
     //border: thin solid red;
+    display: block;
+    max-width: 100%;
+
 
     width: clamp(100px, 35vw, 230px);
     height: clamp(100px, 35vw, 230px);
@@ -130,6 +134,7 @@ const InfoBar = styled.div`
 `;
 
 function Item ({ imgUrl, title, index, link }) {
+
   return (
     <ExperimentItem
       // data-scroll
@@ -152,8 +157,8 @@ function Item ({ imgUrl, title, index, link }) {
                playsInline={true}
                poster={`'/img/experiment-posters/exp${index + 1}.png'`}
         >
-          <source src={imgUrl.webm.publicURL} type='video/webm' />
-          <source src={imgUrl.mp4.publicURL} type='video/mp4' />
+          <source src={imgUrl.mp4} type='video/mp4' />
+          <source src={imgUrl.webm} type='video/webm' />
         </video>
       </div>
 
