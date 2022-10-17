@@ -88,13 +88,13 @@ function Info () {
         we face when building great web products.
       </Desc>
 
-      {/* <a href='/' target='_blank' rel="noopener noreferrer"> */}
-      <RightArrowLink
-        lineLength='75%'
-        txt='checkout my blog site.'
-        tooTipTxt='sry, my blog-site is temporarily down'
-      />
-      {/* </a> */}
+      <a href='https://blog.henzzo.com' target='_blank'
+         rel="noopener noreferrer">
+        <RightArrowLink
+          lineLength='75%'
+          txt='checkout my blog site.'
+        />
+      </a>
 
       <Link to='/blog'>
         <RightArrowLink

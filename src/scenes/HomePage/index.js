@@ -24,10 +24,6 @@ export const pageTransition = {
 };
 
 function HomePage () {
-  const { mainAnimationController, screenOverlayEvent } =
-    useContext(MotionValueContext);
-
-  useEffect(() => {}, []);
 
   return (
     <motion.main

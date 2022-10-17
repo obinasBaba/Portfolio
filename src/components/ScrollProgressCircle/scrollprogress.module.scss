@@ -3,15 +3,10 @@
 
 //noinspection SassScssResolvedByNameOnly
 .container {
-  display: none;
   position: fixed;
   z-index: 7;
   bottom: 1rem;
   right: .6rem;
-
-  @include media-breakpoint-up(sm) {
-    display: block;
-  }
 
   @include media-breakpoint-up(md) {
     bottom: 3%;
@@ -70,7 +65,13 @@
       .phone {
         grid-row: 1 / 1;
         grid-column: 1 / 1;
-        transform: scale(f-unit(.7));
+        transform: scale(.7);
+
+
+        @include media-breakpoint-up(sm) {
+          transform: scale(f-unit(.7));
+
+        }
 
         & * {
           transition: stroke 0.4s ease-in-out;

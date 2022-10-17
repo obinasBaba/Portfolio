@@ -104,10 +104,6 @@ const Tags = styled.div`
   }
 `;
 
-const DescTxt = styled(Typography)`
-
-`;
-
 function Item ({ onHoverStart, onHoverEnd, title, tags, desc, idx }) {
   return (
     <motion.li

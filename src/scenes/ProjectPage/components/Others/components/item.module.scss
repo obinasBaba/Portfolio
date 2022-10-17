@@ -6,19 +6,39 @@
   margin: 0;
   //border: thin solid red;
 
-  @include padding(2rem);
+  //@include padding(2rem);
+
+  &:not( :first-child ) {
+    margin-top: 1rem;
+  }
+
+  @include media-breakpoint-up(md) {
+
+    @include padding(2rem);
+
+    &:not( :first-child ) {
+      margin-top: 0rem;
+    }
+
+    //padding: 2rem;
+
+  }
 
 
   & :local {
 
     .titleTxt {
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      -webkit-box-decoration-break: clone;
-
-      background-image: var(--gray_gradient);
       line-height: 180%;
       font-weight: bold;
+
+      @include media-breakpoint-up(md) {
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-box-decoration-break: clone;
+
+        background-image: var(--gray_gradient);
+
+      }
 
       span {
         display: inline-block;

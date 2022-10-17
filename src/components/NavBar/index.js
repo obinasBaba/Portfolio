@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { debounce } from 'lodash';
 import { motion } from 'framer-motion';
-import { Slide } from '@material-ui/core';
 import { useLocomotiveScroll } from '@contexts/LocoMotive';
 import { useMotionValueContext } from '@contexts/MotionStateWrapper';
 import { AppStateContext } from '@contexts/AppStateContext';
@@ -12,52 +11,6 @@ import { container } from './navbar.module.scss';
 import { useLocation } from '@reach/router';
 import gsap from 'gsap';
 import clsx from 'clsx';
-
-function HideOnScroll ({ children }) {
-  const { currentPath } = useContext(AppStateContext);
-  const [slide, setSlide] = useState(true);
-  const { pathname } = useLocation();
-
-  const { scrollDirection } = useLocomotiveScroll();
-
-  useEffect(() => {
-    return;
-    const deb = debounce((arg) => {
-      if (!arg) return;
-
-      if (arg === 'up') {
-
-        // setSlide(true)
-        gsap.to('.app-slider', {
-          y: '-100%', duration: .5,
-
-        });
-
-      } else if (arg === 'down') {
-
-        gsap.to('.app-slider', {
-          y: 0, duration: .5,
-        });
-
-        // setSlide(false);
-
-      }
-    }, 350);
-
-    scrollDirection.onChange(deb);
-
-    return () => {};
-  }, []);
-
-  useEffect(() => {
-    setSlide(true);
-  }, [currentPath, pathname]);
-
-  return (
-    <div className='app-slider' appear={false} direction='down' in={slide}>
-      {children}
-    </div>);
-}
 
 const appBarVariants = {
   initial: {}, animate: {
@@ -73,7 +26,7 @@ function NavBar () {
   const toggleMenu = () => !OverlayController.isAnimating &&
     !window.isMenuAnimating && menuIsOpen.set(!menuIsOpen.get());
 
-  const { scrollDirection } = useLocomotiveScroll();
+  const { scrollDirection, yProgress } = useLocomotiveScroll();
   const { pathname } = useLocation();
   const { currentPath } = useContext(AppStateContext);
   const navBarContainer = useRef(null);
@@ -97,8 +50,15 @@ function NavBar () {
 
   useEffect(() => {
 
+    yProgress.onChange(v => {
+      if (v === 0) {
+        gsap.to(navBarContainer.current, {
+          y: 0, duration: .2, ease: 'linear',
+        });
+      }
+    });
+
     const deb = debounce((arg) => {
-      if (!arg) return;
 
       gsap.to(navBarContainer.current, {
         y: arg === 'up' ? 0 : '-100%', duration: .2, ease: 'linear',
@@ -113,7 +73,8 @@ function NavBar () {
 
   return (<motion.div className={clsx([container])}>
 
-    <motion.div variants={appBarVariants} className='app-slider'
+    <motion.div variants={appBarVariants}
+                className='app-slider'
                 ref={navBarContainer}
     >
       <HomeLogo toggleMenu={() => menuIsOpen.get() && toggleMenu()} />

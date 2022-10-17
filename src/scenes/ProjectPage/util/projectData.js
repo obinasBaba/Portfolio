@@ -1,5 +1,5 @@
-import { useAnimation } from "framer-motion";
-import useProjectsAssets from "../../../hooks/queries/useProjectsAssets";
+import { useAnimation } from 'framer-motion';
+import useProjectsAssets from '../../../hooks/queries/useProjectsAssets';
 
 export const useProjectData = () => {
   const { auth, kklLuzern, udemy, ...listAssets } = useProjectsAssets();
@@ -17,32 +17,31 @@ export const useProjectData = () => {
     vue,
     pwa,
     react,
-    angular,
     node,
   } = listAssets;
 
   const items = [
     {
       id: 1,
-      link: "/projects/juvi",
-      url: "/projects#one",
-      liveUrl: 'https://juvi.henzzo.com',
-      linkTitle: "Case Study",
+      link: '/projects/juvi',
+      url: '/projects#one',
+      liveUrl: 'https://juvi-haus.vercel.app',
+      linkTitle: 'Case Study',
       preview: preview2,
-      tags: "E-commerce, UX, UI, Api, Front-end",
-      title: "Juvi Liquor St. House",
-      alt: "Liquor distribution e-commerce website",
-      imgTitle: "Liquor distribution e-commerce website",
+      tags: 'E-commerce, UX, UI, Api, Front-end',
+      title: 'Juvi Liquor St. House',
+      alt: 'Liquor distribution e-commerce website',
+      imgTitle: 'Liquor distribution e-commerce website',
       partners: [node, react, typescript, postgres],
       controller: useAnimation(),
-      backUrl: "/projects#one",
+      backUrl: '/projects#one',
       nextProject: {
-        url: "/projects/project2",
+        url: '/projects/project2',
         thumbnailUrl: preview1.publicURL,
       },
       intro: {
         desc: {
-          title: "background",
+          title: 'background',
           text: `To win over country wide markets, Juvi-House needed to better
        communicate its brand story with a revamped website experience.
        Reinventing the brand’s website to support growth, and integrating digital 
@@ -55,7 +54,7 @@ export const useProjectData = () => {
       },
       sections: {
         collections: {
-          title: "Collections",
+          title: 'Collections',
           text: `the shop pages provide a clean overview
        of all available products. it also offers a faster purchase option for returning customers.
        thanks to an intuitive filter, a desired product can be quickly narrowed down with just a few clicks.
@@ -64,7 +63,7 @@ export const useProjectData = () => {
        `,
         },
         mobileView: {
-          title: "Products",
+          title: 'Products',
           text: `I gave each item enough space to tell its own story, each product
           page opens with and individual and inviting introduction.  various elements (images, illustrations, text, colours),
            created in collaboration with several other team members, were carefully combined to create unique compositions for each item.
@@ -74,14 +73,14 @@ export const useProjectData = () => {
     },
     {
       id: 0,
-      link: "/projects/project2",
-      url: "/projects#two",
-      linkTitle: "Case Study",
+      link: '/projects/project2',
+      url: '/projects#two',
+      linkTitle: 'Case Study',
       preview: preview1,
-      tags: "UX, UI, Illustrations, Icons",
-      title: "Gebeya",
-      alt: "Gebeya auction websit",
-      imgTitle: "",
+      tags: 'UX, UI, Illustrations, Icons',
+      title: 'Gebeya',
+      alt: 'Gebeya auction websit',
+      imgTitle: '',
       partners: [react, pwa, mongo, javascript],
       controller: useAnimation(),
       about: {
@@ -99,12 +98,12 @@ export const useProjectData = () => {
 
     {
       id: 2,
-      link: "/projects/project3",
-      url: "/projects#three",
-      linkTitle: "coming soon",
+      link: '/projects/project3',
+      url: '/projects#three',
+      linkTitle: 'coming soon',
       preview: preview3,
-      alt: "The best food delivery system",
-      imgTitle: "Glance Clock — First Smart Clock",
+      alt: 'The best food delivery system',
+      imgTitle: 'Glance Clock — First Smart Clock',
       partners: [postgres, vue, javascript, css3],
       controller: useAnimation(),
       title: 'Atgbe Food Delivery',
