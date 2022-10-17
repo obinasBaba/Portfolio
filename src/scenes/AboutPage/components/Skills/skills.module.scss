@@ -1,0 +1,57 @@
+@use "@style" as *;
+
+//noinspection SassScssResolvedByNameOnly
+.container {
+  margin-top: f-unit(10rem);
+
+  & :local {
+
+    .title {
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      // this one fixes gradient text line breaks safari bug: https://zellwk.com/blog/multi-line-gradient-links/
+      -webkit-box-decoration-break: clone;
+      background-image: var(--gray_gradient);
+      line-height: 108%;
+
+    }
+
+    .text {
+      letter-spacing: 0.07vmax;
+      color: #7b8a9b;
+
+      .contrast {
+        color: var(--medium-blue-color);
+        filter: drop-shadow(0 0 5px var(--medium-blue-color));
+      }
+
+      margin-top: 1.5rem;
+      font-size: 1.25rem;
+
+      @include media-breakpoint-up(sm) {
+        max-width: 50ch;
+      }
+
+    }
+
+    .row {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      gap: 3vmax;
+      margin-top: 3rem;
+
+      //border: 1px solid yellow;
+      padding: 0 2rem;
+
+      @include media-breakpoint-up(md) {
+        gap: 0;
+        flex-flow: row;
+        justify-content: space-evenly;
+        align-items: stretch;
+        padding: 0;
+      }
+
+    }
+  }
+}

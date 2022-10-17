@@ -20,7 +20,7 @@ const StyledCard = styled(motion.div)`
 
   ${spacing('ph', 5)};
   ${spacing('pt', 8)};
-  ${spacing('pb', 7)};
+  ${spacing('pb', 11)};
   ${spacing('mt', 8)};
 
   ${mediumUp(css`
@@ -41,13 +41,18 @@ const StyledCard = styled(motion.div)`
     z-index: 1;
     letter-spacing: -1px;
     font-weight: 900;
+    margin-top: 2rem;
 
     ${spacing('mb', 1.6)};
   }
 
   .approach-desc {
-    ${text(1)};
+    //font-size: 1rem;
     color: #1e213d;
+
+    ${mediumUp(css`
+      ${text(1)};
+    `)};
   }
 
   & svg {

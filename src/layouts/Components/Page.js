@@ -12,6 +12,7 @@ import ScreenOverlay from '@components/ScreenOverlay';
 import NavigationMenu from '@components/NavigationMenu';
 import { BottomGradient, Main, PageContainer } from './Styled';
 import Footer from '@components/Footer';
+import { isMobile } from 'react-device-detect';
 
 // import {} from '@re'
 
@@ -75,7 +76,7 @@ function Page ({ children, path }) {
         <Main id='main-container' data-scroll-section={true}>
           <AnimatePresence
             mode='wait'
-            custom={{ path, isTop, inView, /* largeUp */ breakpoint }}
+            custom={{ path, isTop, inView, /* largeUp */ breakpoint, isMobile }}
 
             onExitComplete={() => {
               setExitComplete(!exitComplete);

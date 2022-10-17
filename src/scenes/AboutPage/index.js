@@ -20,46 +20,37 @@ const AboutPageContainer = styled(motion.div)`
 const aboutContainerVariants = {
   initial: {
     // opacity: 0
-  },
-  animate: {
+  }, animate: {
     // opacity: 1,
-  },
-  exit: {
+  }, exit: {
     // exit: 0,
   },
 
   transition: {
-    duration: 1,
-    ease: [0.6, 0.01, 0, 0.9],
+    duration: 1, ease: [0.6, 0.01, 0, 0.9],
   },
 };
 
 function AboutPage () {
-  const { mainAnimationController, screenOverlayEvent } =
-    useContext(MotionValueContext);
-
-  const { onScrollCallbacks, locoInstance, isReady } = useLocomotiveScroll();
   const triggerRegister = useMotionValue(false);
 
-  return (
-    <AboutPageContainer
-      variants={aboutContainerVariants}
-      transition={aboutContainerVariants.transition}
-      initial='initial'
-      animate={'animate'}
-      exit='exit'
-      id='#about'
-    >
-      <AboutHero />
+  return (<AboutPageContainer
+    variants={aboutContainerVariants}
+    transition={aboutContainerVariants.transition}
+    initial='initial'
+    animate={'animate'}
+    exit='exit'
+    id='#about'
+  >
+    <AboutHero />
 
-      <HorizontalScrollText />
+    <HorizontalScrollText />
 
-      <Skills />
+    <Skills />
 
-      <MyProcess triggerRegister={triggerRegister} />
+    <MyProcess triggerRegister={triggerRegister} />
 
-    </AboutPageContainer>
-  );
+  </AboutPageContainer>);
 }
 
 export default AboutPage;

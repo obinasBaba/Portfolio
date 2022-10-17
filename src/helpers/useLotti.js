@@ -1,14 +1,14 @@
 /** @format */
 
-import { useEffect, useRef } from "react";
-import Lotti from "lottie-web";
+import { useEffect, useRef } from 'react';
+import Lotti from 'lottie-web';
 
 const useLotti = (
   path,
   ref,
   loopReverse = false,
   autoPlay = false,
-  inView = true
+  inView = true,
 ) => {
   const lottiRef = useRef(null);
 
@@ -20,7 +20,7 @@ const useLotti = (
     lottiRef.current = Lotti.loadAnimation({
       name: path,
       container: ref.current,
-      renderer: "svg",
+      renderer: 'svg',
       loop: loopReverse,
       autoplay: autoPlay,
       path,
@@ -29,14 +29,14 @@ const useLotti = (
     let r = 1;
     // l.addEventListener('data_ready', () => {})
     if (!loopReverse) {
-      lottiRef.current.addEventListener("complete", () => {
+      lottiRef.current.addEventListener('complete', () => {
         r === 1 ? (r = -1) : r === -1 && (r = 1);
         lottiRef.current.setDirection(r);
         lottiRef.current.play();
       });
     }
 
-    // return ( ) => Lotti.destroy(path)
+    return () => Lotti.destroy(path);
   }, [inView]);
 
   return lottiRef;

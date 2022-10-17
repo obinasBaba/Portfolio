@@ -1,12 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
-import {
-  Container,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@material-ui/core';
+import { Typography, useMediaQuery, useTheme } from '@material-ui/core';
 import gsap from 'gsap';
 import { useLottiAssets } from '@hooks/queries/useLottiAssets';
 import { processData } from './data';
@@ -27,12 +22,7 @@ const ProcessContainer = styled(motion.section)`
   width: 100%;
   //border: thin solid red;
   ${spacing('mt', 25.4)};
-  ${spacing('mb', 16)};
-`;
-
-const ProcessC = styled(Container)`
-  ${spacing('mt', 25.4)};
-  ${spacing('mb', 16)};
+  ${spacing('mb', 20)};
 `;
 
 const ProcessTitle = styled(Typography)`
@@ -114,40 +104,6 @@ const ProcessTrack = styled(motion.div)`
   `)};
 `;
 
-const Operate = styled.div`
-  display: none;
-  flex-flow: column;
-  align-self: center;
-  color: var(--medium-blue-color);
-  filter: drop-shadow(0 0 3px var(--medium-blue-color));
-
-  ${largeUp(css`
-    display: flex;
-  `)};
-`;
-const OperateTxt = styled(Typography)`
-  color: transparent;
-  font-weight: 900;
-  font-family: "Elianto-Regular", serif;
-  margin: 0 auto;
-  -webkit-text-stroke: 1.5px #5d6c7b;
-  line-height: 90%;
-
-  ${text(7)};
-
-  & > * {
-    line-height: 50%;
-    padding-bottom: 0;
-  }
-`;
-
-const Methodology = styled.div`
-  position: relative;
-  z-index: 4;
-  max-width: 45ch;
-  margin: 4rem;
-`;
-
 function MyProcess ({ triggerRegister }) {
   const { build, design, ufo, align, rocket } = useLottiAssets();
   const icons = [ufo, align, design, build, rocket];
@@ -209,7 +165,7 @@ function MyProcess ({ triggerRegister }) {
           },
         },
       });
-    }, 4000);
+    }, 3000);
 
     return () => {
       timeline.kill();

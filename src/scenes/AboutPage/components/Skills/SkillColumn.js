@@ -1,11 +1,11 @@
-import React, { useRef, useState } from "react";
-import styled, { css } from "styled-components";
-import { Typography } from "@material-ui/core";
-import { motion } from "framer-motion";
-import { length, spacing, text } from "../../../../styles/mixins";
-import useLotti from "../../../../helpers/useLotti";
-import { largeUp } from "../../../../styles/mixins/breakpoints";
-import { GradientTextStyle } from "../../../../components/GradientText";
+import React, { useRef, useState } from 'react';
+import styled, { css } from 'styled-components';
+import { Typography } from '@material-ui/core';
+import { motion } from 'framer-motion';
+import { length, spacing, text } from '../../../../styles/mixins';
+import useLotti from '../../../../helpers/useLotti';
+import { largeUp, mediumUp } from '../../../../styles/mixins/breakpoints';
+import { GradientTextStyle } from '../../../../components/GradientText';
 
 const Container = styled(motion.div)`
   //border: thin solid red;
@@ -14,10 +14,17 @@ const Container = styled(motion.div)`
   flex-flow: column;
   align-items: flex-start;
 
+  //border: 1px solid red;
   //gap: 1.5rem;
+  margin-top: 5rem;
 
-  ${spacing("mt", 6)};
-  ${length("gap", 2.3)};
+  ${length('gap', 2.3)};
+
+  ${mediumUp(css`
+    ${spacing('mt', 6)};
+
+
+  `)};
 `;
 
 const SkillTitle = styled(Typography)`
@@ -27,10 +34,15 @@ const SkillTitle = styled(Typography)`
 `;
 
 const Text = styled(Typography)`
-  max-width: 36ch;
+  //max-width: 36ch;
   color: #7b8a9b;
 
-  ${text(0.95)};
+
+  ${mediumUp(css`
+    max-width: 36ch;
+    ${text(0.95)};
+
+  `)};
 
   ${largeUp(css`
     letter-spacing: 1.05px;
@@ -46,8 +58,13 @@ const List = styled.div`
   font-weight: 300;
   color: rgba(164, 181, 192, 0.78);
 
+  & > * {
+    font-size: .8rem;
+    color: #80808e;
+  }
+
   & > :not(:first-child) {
-    ${spacing("ml", 1)};
+    ${spacing('ml', 1)};
   }
 `;
 
@@ -60,7 +77,7 @@ const Illustration = styled.div`
   margin-bottom: -2.5rem;
 `;
 
-function SkillColumn({ path, title, text, list }) {
+function SkillColumn ({ path, title, text, list }) {
   const lottiContainerRef = useRef(null);
   const [inView, setInView] = useState(false);
 
@@ -78,16 +95,14 @@ function SkillColumn({ path, title, text, list }) {
     >
       <Illustration className={title} ref={lottiContainerRef} />
 
-      <SkillTitle variant="h3">{title}</SkillTitle>
+      <SkillTitle variant='h3'>{title}</SkillTitle>
       <Text>{text}</Text>
 
       <List>
         {list.map((txt) => (
-          <Typography variant="body1">#{txt},</Typography>
-        ))}
+          <Typography variant='body1' key={txt}>#{txt},</Typography>))}
       </List>
-    </Container>
-  );
+    </Container>);
 }
 
 export default SkillColumn;

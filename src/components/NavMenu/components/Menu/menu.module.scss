@@ -28,10 +28,13 @@
       height: 55%;
       z-index: 11;
       //margin-top: 4rem;
-      //border: thin solid red;
 
       @include media-breakpoint-up(sm) {
-        width: 70%;
+        width: 50%;
+      }
+
+      @include media-breakpoint-up(md) {
+        width: 35%;
       }
 
 

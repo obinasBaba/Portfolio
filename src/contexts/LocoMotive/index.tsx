@@ -14,7 +14,7 @@ import { LocomotiveScrollOptions, Scroll } from 'locomotive-scroll';
 import useResizeObserver from 'use-resize-observer';
 import { useDebounce } from 'use-debounce';
 import 'locomotive-scroll/dist/locomotive-scroll.css';
-import { MotionValue, useMotionValue, useSpring, useTransform, useVelocity } from 'framer-motion';
+import { MotionValue, useMotionValue, useScroll, useSpring, useTransform, useVelocity } from 'framer-motion';
 
 import gsap from 'gsap';
 
@@ -99,6 +99,8 @@ export function LocomotiveScrollProvider({
   const ySmooth = useSpring(y, { damping: 50, stiffness: 400 });
   const velocity = useVelocity(ySmooth);
   const scale = useTransform(velocity, [-3000, 0, 3000], [1.01, 1, 1.01]);
+  const { scrollYProgress, scrollY } = useScroll();
+
   const yProgress = useTransform(y, [0, isReady ? yLimit.get() : 0], [0, 1], {
     clamp: true,
   });
@@ -293,7 +295,7 @@ export function LocomotiveScrollProvider({
         isReady,
         scale,
         scrollDirection,
-        yProgress,
+        yProgress: isMobile ? scrollYProgress : yProgress,
         yProgressSmooth: ySmooth,
         onScrollCallbacks,
         cursor,

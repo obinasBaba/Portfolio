@@ -1,10 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import { motion, useSpring, useTransform } from "framer-motion";
-import ImageGrid from "../../scenes/HomePage/RecentDesigns/ImageGrid";
-import { spacing } from "../../styles/mixins";
-import useHomeWorksAssets from "../../hooks/queries/useHomeWorksAssets";
-import { useLocomotiveScroll } from "@/contexts/LocoMotive";
+import React from 'react';
+import styled from 'styled-components';
+import {
+  motion, useMotionTemplate, useSpring, useTransform,
+} from 'framer-motion';
+import ImageGrid from '../../scenes/HomePage/RecentDesigns/ImageGrid';
+import { spacing } from '../../styles/mixins';
+import useHomeWorksAssets from '../../hooks/queries/useHomeWorksAssets';
+import { useLocomotiveScroll } from '@/contexts/LocoMotive';
+import { isMobile } from 'react-device-detect';
 
 const ScrollContainer = styled.section`
   position: relative;
@@ -21,7 +24,7 @@ const ScrollWrapper = styled.div`
     transform: translateX(-20%);
   }
 
-  ${spacing("mb", 13)};
+  ${spacing('mb', 13)};
 `;
 
 const ScrollTrack = styled(motion.div)`
@@ -57,40 +60,33 @@ const Gallery = () => {
     [Art, Lazy, Teampoint],
     [North],
     [Realty, Hommy, Tude],
-    [Web],
-  ];
+    [Web]];
 
-  const { yProgressSmooth, yProgress } = useLocomotiveScroll();
+  const { yProgress } = useLocomotiveScroll();
 
-  // const x = useMo();
-
-  const mapped = useTransform(yProgress, [0, 1], [0, -100]);
-
-  const x = useSpring(mapped, {
-    mass: 0.5,
-    damping: 15,
-    stiffness: 50,
+  const transform = useTransform(yProgress, [0, 1], [0, isMobile ? -600 : -100],
+    { clamp: false });
+  const x = useSpring(transform, {
+    mass: 0.5, damping: 15, stiffness: 50,
   });
 
-  return (
-    <ScrollContainer>
-      <ScrollWrapper id="image_row_container">
-        <ScrollTrack
-          className="rd-scroll-track"
-          // style={{ x: useMotionTemplate`${x}%` }}
+  return (<ScrollContainer>
+    <ScrollWrapper id='image_row_container'>
+      <ScrollTrack
+        className='rd-scroll-track'
+        // style={{ x: useMotionTemplate`${x}%` }}
 
-          data-scroll={true}
-          data-scroll-direction="horizontal"
-          data-scroll-speed="2"
-          data-scroll-delay=".05"
-        >
-          {imageList.map((item, index) => (
-            <ImageGrid images={item} idx={index} key={index} />
-          ))}
-        </ScrollTrack>
-      </ScrollWrapper>
-    </ScrollContainer>
-  );
+        // data-scroll={true}
+        // data-scroll-direction="horizontal"
+        // data-scroll-speed="2"
+        // data-scroll-delay=".05"
+        style={{ x: useMotionTemplate`calc(${x}%)` }}
+      >
+        {imageList.map((item, index) => (
+          <ImageGrid images={item} idx={index} key={index} />))}
+      </ScrollTrack>
+    </ScrollWrapper>
+  </ScrollContainer>);
 };
 
 export default Gallery;

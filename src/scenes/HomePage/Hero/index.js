@@ -19,6 +19,7 @@ import {
   mobtnWrapper,
   textContainer,
 } from './hero.module.scss';
+import { Link } from 'gatsby';
 
 function Hero () {
   const { inView } = useContext(MotionValueContext);
@@ -137,7 +138,9 @@ function Hero () {
           transition={transition}
 
         >
-          <MotionBtn text='download CV' />
+          <Link to={'/about'}>
+            <MotionBtn text='learn more' />
+          </Link>
         </motion.div>
       </motion.div>
 

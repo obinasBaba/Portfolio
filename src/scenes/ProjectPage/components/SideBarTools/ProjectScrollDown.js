@@ -95,11 +95,11 @@ function ProjectScrollDown ({ activeIndex }) {
     <ScrollDownWrapper
       variants={containerVariant}
       transition={containerVariant.transition}
-      // initial="initial"
-      // animate="animate"
-      // exit="exit"
+      initial='initial'
+      animate='animate'
+      exit='exit'
     >
-      <AnimatePresence>
+      <AnimatePresence mode='wait'>
         {show && (
           <motion.div
             variants={wrapperVariants}

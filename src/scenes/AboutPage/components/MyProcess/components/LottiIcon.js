@@ -1,19 +1,25 @@
-import React, { useEffect, useRef } from "react";
-import lotti from "lottie-web";
-import styled, { css } from "styled-components";
-import { motion, useMotionValue } from "framer-motion";
-import useOnScreen from "../../../../../hooks/useOnScreen";
-import useLotti from "../../../../../helpers/useLotti";
+import React, { useEffect, useRef } from 'react';
+import lotti from 'lottie-web';
+import styled, { css } from 'styled-components';
+import { motion, useMotionValue } from 'framer-motion';
+import useOnScreen from '../../../../../hooks/useOnScreen';
+import useLotti from '../../../../../helpers/useLotti';
+import { mediumUp } from '@/styles/mixins/breakpoints';
 
 const IllustrationContainer = styled(motion.div)`
   //z-index: -1;
   position: absolute;
   left: 4%;
-  top: -2%;
+  top: -12%;
   //margin: -50px -50px -20px -20px;
   //border: thin solid red;
   width: 100px;
   height: 100px;
+
+
+  ${mediumUp(css`
+    top: -4%;
+  `)};
 
   path {
     stroke: #1e213d;
@@ -21,23 +27,23 @@ const IllustrationContainer = styled(motion.div)`
   }
 
   ${({ design }) =>
-    design &&
-    css`
-      transform: rotate(20deg);
-    `};
+          design &&
+          css`
+            transform: rotate(20deg);
+          `};
 
   ${({ rocket }) =>
-    rocket === "true" &&
-    css`
-      transform: rotate(20deg);
+          rocket === 'true' &&
+          css`
+            transform: rotate(20deg);
 
-      path {
-        fill: rgba(55, 25, 202, 0);
-      }
-    `};
+            path {
+              fill: rgba(55, 25, 202, 0);
+            }
+          `};
 `;
 
-function LottiIcon({ path, rocket, inView }) {
+function LottiIcon ({ path, rocket, inView }) {
   const lottiContainerRef = useRef(null);
   const lottiRef = useLotti(path, lottiContainerRef);
   // const inView = useOnScreen(lottiContainerRef, 0, )

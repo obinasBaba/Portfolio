@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { debounce } from 'lodash';
 import { motion } from 'framer-motion';
 import { Slide } from '@material-ui/core';
@@ -74,13 +74,33 @@ function NavBar () {
     !window.isMenuAnimating && menuIsOpen.set(!menuIsOpen.get());
 
   const { scrollDirection } = useLocomotiveScroll();
+  const { pathname } = useLocation();
+  const { currentPath } = useContext(AppStateContext);
+  const navBarContainer = useRef(null);
+
+  useEffect(() => {
+
+    setTimeout(() => {
+      gsap.to(navBarContainer.current, {
+        y: 0, duration: .2, ease: 'linear',
+      });
+    }, 1000);
+
+    return () => {
+
+      gsap.to(navBarContainer.current, {
+        y: 0, duration: .2, ease: 'linear',
+      });
+
+    };
+  }, [pathname, currentPath]);
 
   useEffect(() => {
 
     const deb = debounce((arg) => {
       if (!arg) return;
 
-      gsap.to('.app-slider', {
+      gsap.to(navBarContainer.current, {
         y: arg === 'up' ? 0 : '-100%', duration: .2, ease: 'linear',
       });
 
@@ -91,19 +111,18 @@ function NavBar () {
     return () => {};
   }, []);
 
-  return (<>
-    <motion.div className={clsx([container])}
+  return (<motion.div className={clsx([container])}>
+
+    <motion.div variants={appBarVariants} className='app-slider'
+                ref={navBarContainer}
     >
+      <HomeLogo toggleMenu={() => menuIsOpen.get() && toggleMenu()} />
 
-      <motion.div variants={appBarVariants} className='app-slider'>
-        <HomeLogo toggleMenu={() => menuIsOpen.get() && toggleMenu()} />
-
-        <NavBtn menuIsOpen={menuIsOpen} toggleMenu={toggleMenu} />
-      </motion.div>
-
-
+      <NavBtn menuIsOpen={menuIsOpen} toggleMenu={toggleMenu} />
     </motion.div>
-  </>);
+
+
+  </motion.div>);
 }
 
 export default NavBar;
