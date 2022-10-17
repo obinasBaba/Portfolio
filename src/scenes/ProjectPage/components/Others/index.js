@@ -55,7 +55,7 @@ const titleVariants = {
 
     return {
       opacity: 0,
-      x: '-30%',
+      x: '-100%',
     };
   },
 
@@ -69,16 +69,16 @@ const titleVariants = {
 
     return {
       opacity: 1,
-      x: args?.breakpoint?.get()?.xlUp ? '30%' : 0,
+      x: args?.breakpoint?.get()?.xlUp ? '0' : 0,
       transition: {
         opacity: {
           ...transition,
-          duration: 2,
+          duration: 2.5,
         },
         x: {
           ...transition,
           ease: [0.6, 0.01, 0, 0.9],
-          duration: 1.5,
+          duration: 2.5,
         },
       },
     };
@@ -86,7 +86,7 @@ const titleVariants = {
 
   exitFp: {
     opacity: 0,
-    x: '-30%',
+    x: '-100%',
   },
 };
 

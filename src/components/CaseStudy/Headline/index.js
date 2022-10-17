@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 import {
   HeadlineContainer,
   ImageWrapper,
   InnerWrapper,
   Texts,
-} from "./Components";
-import { motion } from "framer-motion";
-import MotionBtn from "../../MotionBtn";
+} from './Components';
+import { motion } from 'framer-motion';
+import MotionBtn from '../../MotionBtn';
 
 import {
   btnVariant,
@@ -16,10 +16,10 @@ import {
   textsVariant,
   titleVariant,
   transition,
-} from "./variants";
-import Tags from "./components/Tags";
-import Title from "../../../scenes/ProjectPage/components/ProjectDescription/components/Title";
-import TestPreview from "@scenes/ProjectPage/components/ProjectImage/Bottle-Haus Thumbnail.png";
+} from './variants';
+import Tags from './components/Tags';
+import Title
+  from '../../../scenes/ProjectPage/components/ProjectDescription/components/Title';
 
 const Headline = ({ tags, title, liveUrl, media }) => (
   <HeadlineContainer variants={containerVariants}>
@@ -37,9 +37,10 @@ const Headline = ({ tags, title, liveUrl, media }) => (
       <motion.div
         variants={btnVariant}
         transition={transition}
-        style={{ color: "white" }}
+        style={{ color: 'white' }}
       >
-        <MotionBtn margin={false} text="Visit Site" to={liveUrl} external={true}/>
+        <MotionBtn margin={false} text='Visit Site' to={liveUrl}
+                   external={true} />
       </motion.div>
     </Texts>
 
