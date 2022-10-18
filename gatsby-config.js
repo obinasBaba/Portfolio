@@ -152,22 +152,22 @@ module.exports = {
         ],
       },
     },
-    /*   {
-         resolve: `gatsby-plugin-offline`,
-         options: {
-           precachePages: [
-             `/`,
-             `/projects/`,
-             `/projects/!*`,
-             `/about/`,
-             `/blog/`,
-             `/blog/!*`,
-             `/contact/`,
-             // `/thanks/`,
-             `/404/`,
-           ],
-         },
-       },*/
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [
+          `/`,
+          `/projects/`,
+          `/projects/*`,
+          `/about/`,
+          `/blog/`,
+          `/blog/!*`,
+          `/contact/`,
+          // `/thanks/`,
+          `/404/`,
+        ],
+      },
+    },
     `gatsby-plugin-gatsby-cloud`,
 
     {
