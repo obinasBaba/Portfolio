@@ -2,11 +2,16 @@
 
 //noinspection SassScssResolvedByNameOnly
 .container {
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 81rem;
+  //border: 1px solid red;
+
 
   @include media-breakpoint-down(xl) {
+    margin: 0 auto;
+    max-width: 64rem;
     //border: 1px solid yellow;
-    max-width: 63rem;
-    //border: 1px solid red;
   }
 
 }

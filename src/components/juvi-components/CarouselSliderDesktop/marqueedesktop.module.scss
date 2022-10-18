@@ -17,7 +17,6 @@
       @include margin(bottom, 7rem);
 
       @include media-breakpoint-down(xl) {
-        //border: 1px solid yellow;
         @include margin(bottom, 10rem);
 
       }

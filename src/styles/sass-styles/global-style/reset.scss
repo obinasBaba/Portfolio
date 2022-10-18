@@ -54,7 +54,7 @@ html,
 body {
   height: 100%;
 
-  @media screen and (min-width: 1920px) {
+  /*@media screen and (min-width: 1920px) {
     body {
       font-size: .84vw
     }
@@ -89,7 +89,7 @@ body {
     body {
       font-size: 3.1vw
     }
-  }
+  }*/
 
 
 }
@@ -142,7 +142,7 @@ body {
     overflow: hidden;
   }
 
-  &.darkish{
+  &.darkish {
     --stroke-top: #f9d6ac;
     --stroke-bottom: #02021e;
     --head-opacity: 1;
@@ -166,13 +166,13 @@ body {
 
 
     .mf-cursor.-opaque {
-      mix-blend-mode:exclusion;
+      mix-blend-mode: exclusion;
 
       &:before {
         opacity: 1;
         transform: scale(1.32);
         //background-color:invert((#f1d209));
-        background-color:invert( $cursor-blend );
+        background-color: invert($cursor-blend);
 
         //background-color:invert((#f1d209));
         //transition: background-color .45s ease-in-out;
