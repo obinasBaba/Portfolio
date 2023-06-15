@@ -38,89 +38,90 @@ export const homeWorksSmallImage = graphql`
 
 const useHomeWorksAssets = () => {
   return useStaticQuery(graphql`
-    query {
-      Art: file(
-        relativePath: { eq: "sections/home-works/Art-Investments-Platform.jpg" }
-      ) {
-        name
-        ...homeWorksMiddleImage
-      }
-      eScooter: file(
-        relativePath: { eq: "sections/home-works/eScooter-2.jpg" }
-      ) {
-        name
-        ...homeWorksBigImage
-      }
-      Web: file(relativePath: { eq: "sections/home-works/web-3.jpg" }) {
-        name
-        ...homeWorksBigImage
-      }
-      Hommy: file(
-        relativePath: { eq: "sections/home-works/Hommy-dashboard.jpg" }
-      ) {
-        name
-        ...homeWorksSmallImage
-      }
-      Investments: file(
-        relativePath: { eq: "sections/home-works/Realty-Web-Dasboard.jpg" }
-      ) {
-        name
-        ...homeWorksMiddleImage
-      }
-      Lazy: file(
-        relativePath: { eq: "sections/home-works/Lazy-Daisy-Mobile.jpg" }
-      ) {
-        name
-        ...homeWorksSmallImage
-      }
-      Starbank: file(
-        relativePath: { eq: "sections/home-works/starbank-2.jpg" }
-      ) {
-        name
-        ...homeWorksSmallImage
-      }
-      Teampoint: file(
-        relativePath: { eq: "sections/home-works/Teampoint.jpg" }
-      ) {
-        name
-        ...homeWorksSmallImage
-      }
-      Travel: file(relativePath: { eq: "sections/home-works/travel-2.jpg" }) {
-        name
-        ...homeWorksSmallImage
-      }
-      Tude: file(relativePath: { eq: "sections/home-works/Tude-Website.jpg" }) {
-        name
-        ...homeWorksSmallImage
-      }
-      Realty: file(
-        relativePath: { eq: "sections/home-works/Realty-Web-Dasboard.jpg" }
-      ) {
-        name
-        ...homeWorksMiddleImage
-      }
-      North: file(
-        relativePath: { eq: "sections/home-works/North-Face-Shop.jpg" }
-      ) {
-        name
-        ...homeWorksBigImage
-      }
+      query {
+          JD_1: file(
+              relativePath: { eq: "sections/home-works/juvi-desk-1.png" }
+          ) {
+              name
+              ...homeWorksMiddleImage
+          }
+          JM_1: file(
+              relativePath: { eq: "sections/home-works/juvi-mobile-1.png" }
+          ) {
+              name
+              ...homeWorksMiddleImage
+          }
+          Blog: file(
+              relativePath: { eq: "sections/home-works/blog.png" }
+          ) {
+              name
+              ...homeWorksBigImage
+          }
+          Resume: file(relativePath: { eq: "sections/home-works/resume.png" }) {
+              name
+              ...homeWorksBigImage
+          }
+          Fasraf: file(
+              relativePath: { eq: "sections/home-works/fasraf.png" }
+          ) {
+              name
+              ...homeWorksSmallImage
+          }
+          Investments: file(
+              relativePath: { eq: "sections/home-works/Realty-Web-Dasboard.jpg" }
+          ) {
+              name
+              ...homeWorksMiddleImage
+          }
+          JM_2: file(
+              relativePath: { eq: "sections/home-works/juvi-mobile-2.png" }
+          ) {
+              name
+              ...homeWorksSmallImage
+          }
+          Rahove_team: file(
+              relativePath: { eq: "sections/home-works/rahove-team.png" }
+          ) {
+              name
+              ...homeWorksSmallImage
+          }
+           
+          Travel: file(relativePath: { eq: "sections/home-works/travel-2.jpg" }) {
+              name
+              ...homeWorksSmallImage
+          }
+          Divo: file(relativePath: { eq: "sections/home-works/divo.png" }) {
+              name
+              ...homeWorksSmallImage
+          }
+          Realty: file(
+              relativePath: { eq: "sections/home-works/Realty-Web-Dasboard.jpg" }
+          ) {
+              name
+              ...homeWorksMiddleImage
+          }
+          Hero: file(
+              relativePath: { eq: "sections/home-works/Hero.png" }
+          ) {
+              name
+              ...homeWorksBigImage
+          }
 
-      p1: file(relativePath: { eq: "sections/home-gallery/2.jpg" }) {
-        name
-        ...homeWorksBigImage
-      }
+          p1: file(relativePath: { eq: "sections/home-gallery/2.jpg" }) {
+              name
+              ...homeWorksBigImage
+          }
 
-      p2: file(relativePath: { eq: "sections/home-gallery/4.jpg" }) {
-        name
-        ...homeWorksBigImage
-      }
+          p2: file(relativePath: { eq: "sections/home-gallery/4.jpg" }) {
+              name
+              ...homeWorksBigImage
+          }
 
-      p3: file(relativePath: { eq: "sections/home-gallery/6.jpg" }) {
-        name
-        ...homeWorksBigImage
+          p3: file(relativePath: { eq: "sections/home-gallery/6.jpg" }) {
+              name
+              ...homeWorksBigImage
+          }
       }
-    }
   `);
 };
 

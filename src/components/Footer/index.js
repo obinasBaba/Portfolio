@@ -85,6 +85,16 @@ function Footer ({ exitComplete }) {
 
   }, [exitComplete]);
 
+  if (pathname.includes('projects#') || pathname.includes('projects/#') ||
+    pathname.endsWith('projects/')) {
+
+    // console.log('hide footer');
+
+    setShow(false);
+    locoInstance?.scroll?.update();
+    return null;
+  }
+
   return (
     <>
 

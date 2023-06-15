@@ -38,33 +38,34 @@ const ScrollTrack = styled(motion.div)`
 
 const Gallery = () => {
   const {
-    Art,
-    eScooter,
-    Web,
+    JD_1,
+    Blog,
+    Resume,
     Hommy,
     Investments,
-    Lazy,
     Starbank,
-    Teampoint,
-    Travel,
-    Tude,
-    Realty,
-    North,
+    Divo,
+    Rahove_team,
+    Fasraf,
+    Hero,
+    JM_1,
+    JM_2,
   } = useHomeWorksAssets();
 
   const imageList = [
     // useMemo
-    [Web],
-    [Investments, Travel, Starbank],
-    [eScooter],
-    [Art, Lazy, Teampoint],
-    [North],
-    [Realty, Hommy, Tude],
-    [Web]];
+    [Resume],
+    [Fasraf, JM_2, JM_1],
+    [Blog],
+    [JD_1, JM_2, Rahove_team],
+    [Hero],
+    [JD_1, JM_2, JM_1],
+    [Divo]
+  ];
 
   const { yProgress } = useLocomotiveScroll();
 
-  const transform = useTransform(yProgress, [0, 1], [0, isMobile ? -600 : -100],
+  const transform = useTransform(yProgress, [0, 1], [0, isMobile ? -600 : -50],
     { clamp: false });
   const x = useSpring(transform, {
     mass: 0.5, damping: 15, stiffness: 50,

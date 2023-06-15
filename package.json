@@ -16,7 +16,7 @@
     "clsx": "^1.2.1",
     "fontfaceobserver": "^2.1.0",
     "formik": "^2.2.9",
-    "framer-motion": "^7.5.3",
+    "framer-motion": "^10.12.16",
     "gatsby": "^4.24.1",
     "gatsby-image": "^3.11.0",
     "gatsby-legacy-polyfills": "^2.20.0",
