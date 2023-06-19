@@ -53,16 +53,18 @@ function Title ({
 }) {
   return (
     <HeadlineTitle variants={variants.title} transition={variants.transition}>
-      {titleTxt.split(' ').map((word, idx) => (<Word key={word}>
-        {Array.from(word).map((letter, idx2) => (<Letter
-          key={idx * idx2}
-          variants={variants.letter}
-          transition={variants.transition}
-        >
-          {letter}
-        </Letter>))}
-        &#160;
-      </Word>))}
+      {titleTxt.split(' ').map((word, idx) => (
+        <Word key={idx}>
+          {Array.from(word).map((letter, idx2) => (<Letter
+            key={idx2 + 100}
+            variants={variants.letter}
+            transition={variants.transition}
+          >
+            {letter}
+          </Letter>))}
+          &#160;
+        </Word>
+      ))}
     </HeadlineTitle>);
 }
 

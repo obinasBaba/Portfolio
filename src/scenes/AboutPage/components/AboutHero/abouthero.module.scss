@@ -33,16 +33,23 @@
       }
 
       @include media-breakpoint-up(xl) {
-        font-size: 9rem;
+        font-size: calc(9rem + 2vmax);
       }
 
     }
 
     .goal {
       @include media-breakpoint-up(md) {
-        font-weight: bold;
+        //font-weight: bold;
         letter-spacing: 0.1vmax;
         margin-left: 4rem;
+        font-size: 1.3rem;
+      }
+
+      @include media-breakpoint-up(xl) {
+        letter-spacing: initial;
+        word-spacing: -1px;
+        font-size: 2.5rem;
       }
 
     }
@@ -59,6 +66,9 @@
 
       @include media-breakpoint-up(md) {
         margin-left: 5rem;
+        max-width: 50ch;
+        font-size: 1.1rem;
+        font-weight: 300;
 
       }
 

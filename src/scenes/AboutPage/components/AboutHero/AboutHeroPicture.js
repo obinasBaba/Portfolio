@@ -2,7 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
 import useAboutHeroAssets from "./useAboutHeroAssets";
-import { mediumUp } from "../../../../styles/mixins/breakpoints";
+import { mediumUp, xLargeUp } from '../../../../styles/mixins/breakpoints';
 import { gridColWidth } from "../../../../styles/mixins";
 
 const HeroPictureContainer = styled.div`
@@ -23,7 +23,10 @@ const HeroPictureContainer = styled.div`
     //position: absolute;
     width: 70%;
     height: auto;
-    padding-top: 5vmax;
+    padding-top: 10rem;
+
+    //border: 1px solid red;
+    
     //max-width: 100%;
 
     path {
@@ -37,6 +40,7 @@ const HeroPictureContainer = styled.div`
     g#mix-blend {
       mix-blend-mode: luminosity;
     }
+
     mask {
       mask-type: alpha;
     }
@@ -47,8 +51,16 @@ const HeroPictureContainer = styled.div`
     width: 60%;
     grid-row: initial;
 
+    //border: 1px solid #000;
+
     svg {
       width: 47%;
+    }
+  `)};
+
+  ${xLargeUp(css`
+    svg {
+      padding-top: 5rem;
     }
   `)};
 `;

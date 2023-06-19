@@ -119,8 +119,8 @@ function Item ({ onHoverStart, onHoverEnd, title, tags, desc, idx }) {
       </Typography>
 
       <div className={s.tags}>
-        {tags.map((tag) => (
-          <p key={desc}>{tag}</p>
+        {tags.map((tag, idx) => (
+          <p key={idx}>{tag}</p>
         ))}
       </div>
 

@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
-  motion, useMotionTemplate, useSpring, useTransform,
+  motion,
+  useMotionTemplate,
+  useSpring,
+  useTransform,
 } from 'framer-motion';
 import ImageGrid from '../../scenes/HomePage/RecentDesigns/ImageGrid';
-import { spacing } from '../../styles/mixins';
+import { spacing } from '@/styles/mixins';
 import useHomeWorksAssets from '../../hooks/queries/useHomeWorksAssets';
 import { useLocomotiveScroll } from '@/contexts/LocoMotive';
 import { isMobile } from 'react-device-detect';
@@ -41,9 +44,6 @@ const Gallery = () => {
     JD_1,
     Blog,
     Resume,
-    Hommy,
-    Investments,
-    Starbank,
     Divo,
     Rahove_team,
     Fasraf,
@@ -60,7 +60,7 @@ const Gallery = () => {
     [JD_1, JM_2, Rahove_team],
     [Hero],
     [JD_1, JM_2, JM_1],
-    [Divo]
+    [Divo],
   ];
 
   const { yProgress } = useLocomotiveScroll();

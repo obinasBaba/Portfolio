@@ -11,7 +11,7 @@ import {
 import VideoPlayer from '@/components/juvi-components/VideoPlayer';
 
 const Intro = ({ desc, subDesc, vidProps }) => {
-  console.log('viporops: ', vidProps);
+  // console.log('viporops: ', vidProps);
 
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));

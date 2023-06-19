@@ -219,7 +219,7 @@ const Star = styled(motion.div)`
   left: 50%;
   width: 19.86rem;
   height: 19.86rem;
-  background-image: url("${({ bgImg }) => bgImg}");
+  background-image: url("${({ bgimg }) => bgimg}");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -235,7 +235,7 @@ const Icon = styled(motion.div)`
   position: absolute;
   top: 50%;
   left: 50%;
-  background-image: url("${({ bgImg }) => bgImg}");
+  background-image: url("${({ bgimg }) => bgimg}");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -287,9 +287,9 @@ const Item = ({ currentPath, link, stars, icon, index, title, onClick }) => {
       <Link to={link} onClick={(ev) => handleLinkClick(ev)}>
         <Circle data-circle={index + 1} />
 
-        <Star bgImg={stars.publicURL} className='stars' />
+        <Star bgimg={stars.publicURL} className='stars' />
 
-        <Icon bgImg={icon.publicURL} data-icon={index + 1} className='icon' />
+        <Icon bgimg={icon.publicURL} data-icon={index + 1} className='icon' />
       </Link>
 
       <Title>{title}</Title>

@@ -37,10 +37,10 @@ function AboutPage () {
   return (<AboutPageContainer
     variants={aboutContainerVariants}
     transition={aboutContainerVariants.transition}
+    id='#about'
     initial='initial'
     animate={'animate'}
     exit='exit'
-    id='#about'
   >
     <AboutHero />
 

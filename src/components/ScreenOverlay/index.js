@@ -1,4 +1,4 @@
-import React, { useContext, useLayoutEffect } from "react";
+import React, { useContext, useEffect, useLayoutEffect } from 'react';
 import styled from "styled-components";
 import { motion, useAnimation } from "framer-motion";
 import { MotionValueContext } from "../../contexts/MotionStateWrapper";
@@ -84,8 +84,11 @@ function ScreenOverlay() {
   const controller = useAnimation();
   const { screenOverlayProxy } = useContext(MotionValueContext);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     controller.start({ display: "none" });
+  }, [])
+
+  useLayoutEffect(() => {
 
     const overlayController = OverlayController.getInstance("loading-overlay");
     const unsub = screenOverlayProxy.onChange((v) => {

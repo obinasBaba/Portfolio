@@ -1,9 +1,9 @@
 // noinspection JSIgnoredPromiseFromCall
 
-import React, { useContext } from "react";
-import { motion } from "framer-motion";
-import { Link } from "gatsby";
-import { MotionValueContext } from "@contexts/MotionStateWrapper";
+import React, { useContext } from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'gatsby';
+import { MotionValueContext } from '@contexts/MotionStateWrapper';
 import {
   effectVariant,
   imgContainerVariant,
@@ -12,14 +12,12 @@ import {
   imgVariant,
   innerVariant,
   transition,
-} from "./Variants";
-import { InnerWrapper, OverflowWrapper, ProjectImg } from "./components";
+} from './Variants';
+import { InnerWrapper, OverflowWrapper, ProjectImg } from './components';
 
-import TestPreview from "./Bottle-Haus Thumbnail.png";
+import StackUsed from '../StackUsed';
 
-import StackUsed from "../StackUsed";
-
-function ProjectImage({ index, exit, items }) {
+function ProjectImage ({ index, exit, items }) {
   const {
     variantsUtil: { fromProjectList },
   } = useContext(MotionValueContext);
@@ -34,7 +32,7 @@ function ProjectImage({ index, exit, items }) {
       // custom={custom}
     >
       <InnerWrapper
-        className="inner-div"
+        className='inner-div'
         variants={innerVariant}
         transition={transition}
       >
@@ -42,10 +40,10 @@ function ProjectImage({ index, exit, items }) {
           to={link}
           state={{ path: url }}
           onClick={() => fromProjectList.set(true)}
-          data-pointer="focus"
-          data-pointer-color="#3719ca"
+          data-pointer='focus'
+          data-pointer-color='#3719ca'
           data-tooltip
-          data-tooltip-text="Let me tell you a story"
+          data-tooltip-text='Let me tell you a story'
         />
 
         <motion.img
@@ -55,15 +53,15 @@ function ProjectImage({ index, exit, items }) {
           transition={transition}
         />
 
-        <motion.div className="image-over" variants={imgOverVariants}>
+        <motion.div className='image-over' variants={imgOverVariants}>
           <motion.div
-            className="image-cover cover-1"
+            className='image-cover cover-1'
             variants={imgCover}
             transition={transition}
           />
 
           <motion.div
-            className="image-cover cover-2"
+            className='image-cover cover-2'
             variants={imgCover}
             transition={transition}
           />
@@ -72,7 +70,7 @@ function ProjectImage({ index, exit, items }) {
 
       <OverflowWrapper>
         <motion.div
-          className="effect"
+          className='effect'
           variants={effectVariant}
           transition={transition}
           custom={{ exit }}

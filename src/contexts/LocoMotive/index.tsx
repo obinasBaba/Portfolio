@@ -10,7 +10,7 @@ import React, {
 } from 'react';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { LocomotiveScrollOptions, Scroll } from 'locomotive-scroll';
+import LocomotiveScroll, { LocomotiveScrollOptions, Scroll } from 'locomotive-scroll';
 import useResizeObserver from 'use-resize-observer';
 import { useDebounce } from 'use-debounce';
 import 'locomotive-scroll/dist/locomotive-scroll.css';
@@ -91,9 +91,9 @@ export function LocomotiveScrollProvider({
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
+  const scrollDirection = useMotionValue('');
   const yLimit = useMotionValue(0);
   const xLimit = useMotionValue(0);
-  const scrollDirection = useMotionValue('');
 
 
   const ySmooth = useSpring(y, { damping: 50, stiffness: 400 });
@@ -131,7 +131,7 @@ export function LocomotiveScrollProvider({
     });
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     LocomotiveScrollRef.current?.update();
 
   }, [pathname]);
@@ -166,6 +166,8 @@ export function LocomotiveScrollProvider({
         ...options,
       });
 
+      (window as any).locoInstance = LocomotiveScrollRef.current;
+
       setTimeout(() => {
         setIsReady(true);
         LocomotiveScrollRef.current?.update();
@@ -183,6 +185,8 @@ export function LocomotiveScrollProvider({
     };
   }, []);
 
+
+  // scroll-trigger
   useLayoutEffect(() => {
     if (isReady) {
       const scrollEl = document.querySelector('[data-scroll-container]');
@@ -238,6 +242,8 @@ export function LocomotiveScrollProvider({
       return;
     }
 
+    console.log('container height: ', containerHeight);
+
     yLimit.set(LocomotiveScrollRef.current?.scroll?.instance.limit.y);
     xLimit.set(LocomotiveScrollRef.current?.scroll?.instance.limit.x);
     LocomotiveScrollRef.current.update();
@@ -255,7 +261,7 @@ export function LocomotiveScrollProvider({
       return;
     }
 
-    // console.log("location change ---- -- - - - -");
+    console.log("location change ---- -- - - - -");
 
     LocomotiveScrollRef.current.update();
     yLimit.set(LocomotiveScrollRef.current?.scroll?.instance.limit.y);

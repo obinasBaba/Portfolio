@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { Container, Typography } from "@material-ui/core";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { Container, Typography } from '@material-ui/core';
 import {
   AnimatePresence,
-  AnimateSharedLayout,
+  LayoutGroup,
   motion,
   useMotionValue,
-} from "framer-motion";
-import { Form, Formik } from "formik";
-import * as yup from "yup";
-import { spacing } from "../../styles/mixins";
-import HeaderMeta from "./components/HeaderMeta";
-import WhoAreYou from "./components/WhoAreYou";
-import BottomBar from "./components/BottomBar";
-import Topic from "./components/Topic";
-import Message from "./components/Message";
-import Email from "./components/Email";
-import Check from "./components/Check";
-import ThankYou from "./components/ThankYou";
+} from 'framer-motion';
+import { Form, Formik } from 'formik';
+import * as yup from 'yup';
+import { spacing } from '@/styles/mixins';
+import HeaderMeta from './components/HeaderMeta';
+import WhoAreYou from './components/WhoAreYou';
+import BottomBar from './components/BottomBar';
+import Topic from './components/Topic';
+import Message from './components/Message';
+import Email from './components/Email';
+import Check from './components/Check';
+import ThankYou from './components/ThankYou';
 
 const ContactPageContainer = styled(motion.section)`
   //border: thin solid red;
@@ -27,14 +27,14 @@ const ContactPageContainer = styled(motion.section)`
 const ContactWrapper = styled(Container)`
   //border: thin solid lightblue;
 
-  ${spacing("mt", 15)};
-  ${spacing("ph", 4)};
+  ${spacing('mt', 15)};
+  ${spacing('ph', 4)};
 `;
 
 const ErrorMsg = styled(Typography)`
   color: #5d6c7b;
 
-  ${spacing("mt", 1)};
+  ${spacing('mt', 1)};
 
   transition: all 0.3s ease-in-out;
 `;
@@ -50,11 +50,11 @@ const basic = {
     transition: {
       opacity: {
         duration: 1.5,
-        ease: "easeIn",
+        ease: 'easeIn',
       },
       default: {
         duration: 1.1,
-        ease: "easeOut",
+        ease: 'easeOut',
       },
     },
   },
@@ -66,97 +66,91 @@ const basic = {
 
 const basicTransition = {
   duration: 1.1,
-  ease: "easeOut",
+  ease: 'easeOut',
 };
 
-function ContactPage() {
+function ContactPage () {
   const [idx, setIdx] = useState(0);
 
   const stepMotionValue = useMotionValue(1);
-  const control = useMotionValue("");
+  const control = useMotionValue('');
   const steps = [
     {
-      stepName: "",
+      stepName: '',
       schema: yup.object({
-        name: yup.string().required("Please tell me who you are"),
+        name: yup.string().required('Please tell me who you are'),
         company: yup.string().notRequired(),
       }),
-      fields: ["name", "company"],
+      fields: ['name', 'company'],
       component: (props) => <WhoAreYou {...props} />,
     },
     {
-      stepName: "",
+      stepName: '',
       schema: yup.object({
-        topic: yup.array().min(1, "Please select at least one item"),
+        topic: yup.array().min(1, 'Please select at least one item'),
       }),
-      fields: ["topic"],
+      fields: ['topic'],
       component: (props) => <Topic {...props} />,
     },
     {
-      stepName: "",
+      stepName: '',
       schema: yup.object({
-        message: yup
-          .string()
-          .min(16, "Please tell me more about your project")
-          .required("Please tell me about your project"),
+        message: yup.string().
+          min(16, 'Please tell me more about your project').
+          required('Please tell me about your project'),
       }),
-      fields: ["message"],
+      fields: ['message'],
       component: (props) => <Message {...props} />,
     },
     {
-      stepName: "",
+      stepName: '',
       schema: yup.object({
-        email: yup
-          .string()
-          .required("How can i reach you?")
-          .email("Please enter a valid address"),
-        phone: yup
-          .number()
-          .typeError("That doesn't look like a phone number")
-          .positive("A phone number can't start with a minus")
-          .integer("A phone number can't include a decimal point")
-          .min(8),
+        email: yup.string().
+          required('How can i reach you?').
+          email('Please enter a valid address'),
+        phone: yup.number().
+          typeError('That doesn\'t look like a phone number').
+          positive('A phone number can\'t start with a minus').
+          integer('A phone number can\'t include a decimal point').
+          min(8),
       }),
-      fields: ["email", "phone"],
+      fields: ['email', 'phone'],
       component: (props) => <Email {...props} />,
     },
     {
-      stepName: "check",
+      stepName: 'check',
       schema: yup.object({}),
-      fields: [""],
+      fields: [''],
       component: (props) => <Check {...props} />,
     },
     {
-      stepName: "",
+      stepName: '',
 
       schema: yup.object({}),
-      fields: [""],
+      fields: [''],
       component: (props) => <ThankYou {...props} />,
     },
   ];
 
   const nextStep = (arg) => {
-    if (steps[idx].stepName === "check") {
-      if (control.get() === "loading" || control.get().startsWith("error"))
+    if (steps[idx].stepName === 'check') {
+      if (control.get() === 'loading' || control.get().startsWith('error'))
         return control.set(`errorClick${Math.random() * Math.random()}`);
 
-      control.set("loading");
-      fetch("https://formsubmit.co/ajax/henokgetachew500@gmail.com", {
-        method: "POST",
+      control.set('loading');
+      fetch('https://formsubmit.co/ajax/henokgetachew500@gmail.com', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
         body: JSON.stringify({
           ...arg,
         }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setIdx(idx + 1);
-          stepMotionValue.set(stepMotionValue.get() + 1);
-        })
-        .catch((error) => console.error(error));
+      }).then((response) => response.json()).then((data) => {
+        setIdx(idx + 1);
+        stepMotionValue.set(stepMotionValue.get() + 1);
+      }).catch((error) => console.error(error));
     }
 
     if (idx + 1 !== steps.length) {
@@ -166,7 +160,7 @@ function ContactPage() {
   };
 
   const backStep = () => {
-    if (control.get() === "loading") return;
+    if (control.get() === 'loading') return;
 
     if (idx !== 0) {
       setIdx(idx - 1);
@@ -178,15 +172,15 @@ function ContactPage() {
     <ContactPageContainer>
       <HeaderMeta />
 
-      <ContactWrapper maxWidth="lg">
+      <ContactWrapper maxWidth='lg'>
         <Formik
           initialValues={{
-            name: "",
-            company: "",
+            name: '',
+            company: '',
             topic: [],
-            message: "",
-            email: "",
-            phone: "",
+            message: '',
+            email: '',
+            phone: '',
           }}
           validateOnMount={false}
           validateOnChange={false}
@@ -194,15 +188,15 @@ function ContactPage() {
           onSubmit={nextStep}
           render={({ values, submitForm, errors, validateField }) => (
             <Form>
-              <AnimateSharedLayout type="crossfade">
-                <AnimatePresence exitBeforeEnter>
+              <LayoutGroup type='crossfade'>
+                <AnimatePresence mode='wait'>
                   <motion.div
                     layout
                     variants={basic}
                     transition={basicTransition}
-                    initial="initial"
-                    animate="animate"
-                    exit="exit"
+                    initial='initial'
+                    animate='animate'
+                    exit='exit'
                     key={idx}
                   >
                     {steps[idx].component({ errors, values })}
@@ -211,11 +205,11 @@ function ContactPage() {
 
                 <motion.div
                   layout
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
                 >
-                  <ErrorMsg variant="body2">
+                  <ErrorMsg variant='body2'>
                     {(errors[steps[idx].fields[0]] ||
-                      errors[steps[idx].fields[1]]) ??
+                        errors[steps[idx].fields[1]]) ??
                       null}
                   </ErrorMsg>
                 </motion.div>
@@ -226,26 +220,26 @@ function ContactPage() {
                       layout
                       variants={basic}
                       transition={basicTransition}
-                      initial="initial"
-                      animate="animate"
-                      exit="exit"
+                      initial='initial'
+                      animate='animate'
+                      exit='exit'
                     >
                       <BottomBar
                         step={stepMotionValue}
                         control={control}
                         nextProps={{
-                          text: idx === steps.length - 2 ? "Send" : "Next",
+                          text: idx === steps.length - 2 ? 'Send' : 'Next',
                         }}
                         backProps={{
                           onClick: backStep,
-                          type: "button",
+                          type: 'button',
                           buttonType: 2,
                         }}
                       />
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </AnimateSharedLayout>
+              </LayoutGroup>
             </Form>
           )}
         />

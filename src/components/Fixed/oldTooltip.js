@@ -109,7 +109,7 @@ const ToolTip = ({ txt }) => {
 
   return (
     <InfoChipContainer>
-      <AnimatePresence exitBeforeEnter>
+      <AnimatePresence mode='sync'>
         {toolTip.show && (
           <ToolTipWrapper
             variants={containerVariant}

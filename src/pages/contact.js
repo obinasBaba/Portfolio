@@ -1,12 +1,10 @@
-/** @format */
-
 import React, { useContext } from 'react';
 import { motion } from 'framer-motion';
 import loadable from '@loadable/component';
 import ContactPage from '../scenes/ContactPage';
 import useToolTip from '../hooks/useToolTip';
 import Seo from '../components/seo';
-import { MotionValueContext } from '../contexts/MotionStateWrapper';
+import { MotionValueContext } from '@contexts/MotionStateWrapper';
 import useUpdatePath from '../hooks/useUpdatePath';
 
 // import Footer from '../scenes/Footer'

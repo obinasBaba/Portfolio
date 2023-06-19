@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useRef } from "react";
-import baffle from "baffle";
-import { css } from "styled-components";
-import MotionBtn from "../../../../components/MotionBtn";
+import React, { useContext, useEffect, useRef } from 'react';
+import baffle from 'baffle';
+import { css } from 'styled-components';
+import MotionBtn from '@/components/MotionBtn';
 import {
   btnTxtVariants,
   containerVariant,
@@ -9,13 +9,13 @@ import {
   tagsVariants,
   titleVariant,
   transition,
-} from "./Variants";
-import { ProjectDescriptionContainer, Tags } from "./components";
-import Title from "./components/Title";
-import OverFlowBox from "./components/OverFlowBox";
-import { MotionValueContext } from "../../../../contexts/MotionStateWrapper";
+} from './Variants';
+import { ProjectDescriptionContainer, Tags } from './components';
+import Title from './components/Title';
+import OverFlowBox from './components/OverFlowBox';
+import { MotionValueContext } from '@contexts/MotionStateWrapper';
 
-function ProjectDescription({ reversed, index, exit, items }) {
+function ProjectDescription ({ reversed, index, exit, items }) {
   const baffleRef = useRef(null);
 
   const {
@@ -26,14 +26,12 @@ function ProjectDescription({ reversed, index, exit, items }) {
 
   useEffect(() => {
     baffleRef.current = baffle(document.querySelectorAll(`.baffled-${index}`), {
-      characters: "▒█▓▒░<>/",
+      characters: '▒█▓▒░<>/',
     });
 
     baffle(document.querySelectorAll(`.baffled-${index}`), {
-      characters: "▒█▓▒░<>/",
-    })
-      .start()
-      .reveal(1000, 1400);
+      characters: '▒█▓▒░<>/',
+    }).start().reveal(1000, 1400);
   }, []);
 
   return (
@@ -48,7 +46,7 @@ function ProjectDescription({ reversed, index, exit, items }) {
           transition,
         }}
       >
-        <Tags className={`baffled-${index}`} variant="subtitle2">
+        <Tags className={`baffled-${index}`} variant='subtitle2'>
           {tags}
         </Tags>
       </OverFlowBox>
@@ -75,8 +73,8 @@ function ProjectDescription({ reversed, index, exit, items }) {
         `}
       >
         <MotionBtn
-          text="Case-Study"
-          toolTipText="explore my journey"
+          text='Case-Study'
+          toolTipText='explore my journey'
           to={link}
           state={{ path: url }}
           margin={false}

@@ -90,8 +90,8 @@ function Footer ({ exitComplete }) {
 
     // console.log('hide footer');
 
-    setShow(false);
-    locoInstance?.scroll?.update();
+    // setShow(false);
+    // locoInstance?.scroll?.update();
     return null;
   }
 

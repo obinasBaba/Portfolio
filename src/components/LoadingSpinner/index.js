@@ -199,11 +199,11 @@ function LoadingPage() {
     setTimeout(() => {
       mainAnimationController.start("animate");
       screenOverlayEvent.set("closed");
-    }, 750);
+    }, 800);
   }
 
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence mode='sync'>
       {backgroundOverlay && (
         <SpinnerContainer
           ref={containerRef}

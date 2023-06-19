@@ -244,7 +244,7 @@ function Others ({ auth, kklLuzern, udemy, active }) {
         <Typography className={s.title} variant='h2'>And Others</Typography>
       </motion.div>
 
-      <motion.ui
+      <motion.ul
         className={s.list}
         variants={{}}
         onHoverEnd={() => {
@@ -266,7 +266,7 @@ function Others ({ auth, kklLuzern, udemy, active }) {
               title={title}
               desc={desc}
               tags={tags}
-              key={desc}
+              key={idx}
               idx={idx}
               onHoverStart={onHoverStart}
               onHoverEnd={onHoverEnd}
@@ -274,7 +274,7 @@ function Others ({ auth, kklLuzern, udemy, active }) {
             />
           );
         })}
-      </motion.ui>
+      </motion.ul>
     </motion.div>
   );
 }

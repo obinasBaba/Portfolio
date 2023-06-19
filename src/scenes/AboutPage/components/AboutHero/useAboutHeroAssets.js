@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from "gatsby";
 const useAboutHeroAssets = () =>
   useStaticQuery(graphql`
     query {
-      photo: file(relativePath: { eq: "photo.png" }) {
+      photo: file(relativePath: { eq: "img.png" }) {
         publicURL
       }
     }

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from 'react';
-import { debounce } from 'lodash';
+import { debounce } from '@material-ui/core';
 import { motion } from 'framer-motion';
 import { useLocomotiveScroll } from '@contexts/LocoMotive';
 import { useMotionValueContext } from '@contexts/MotionStateWrapper';
@@ -49,6 +49,7 @@ function NavBar () {
   }, [pathname, currentPath]);
 
   useEffect(() => {
+    return ;
 
     yProgress.onChange(v => {
       if (v === 0) {

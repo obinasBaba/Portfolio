@@ -1,4 +1,10 @@
-import React, { useCallback, useContext, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { AnimatePresence, useMotionValue } from 'framer-motion';
 import { useMotionBreakPoint } from '@contexts/BreakPoint';
 import { LocomotiveScrollProvider } from '@contexts/LocoMotive';
@@ -11,8 +17,9 @@ import ProgressCircle from '@components/ScrollProgressCircle';
 import ScreenOverlay from '@components/ScreenOverlay';
 import NavigationMenu from '@components/NavigationMenu';
 import { BottomGradient, Main, PageContainer } from './Styled';
-import Footer from '@components/Footer';
 import { isMobile } from 'react-device-detect';
+import Footer from '@components/Footer';
+import LoadingSpinner from '@components/LoadingSpinner';
 
 // import {} from '@re'
 
@@ -26,10 +33,17 @@ function Page ({ children, path }) {
 
   const container = useRef(null);
   const [exitComplete, setExitComplete] = useState(false);
-  const onExitComplete = useMotionValue(false);
+  const isExitAnimComplete = useMotionValue(false);
 
   const { currentPath } = useContext(AppStateContext);
   const { breakpoint } = useMotionBreakPoint();
+
+  useEffect(() => {
+    console.log('scroll: ', window?.locoInstance);
+    setTimeout(() => {
+      window?.locoInstance?.update();
+    }, 10000);
+  }, [path]);
 
   // useCursor();
 
@@ -41,17 +55,18 @@ function Page ({ children, path }) {
         getSpeed: true,
       }}
       containerRef={container} // height change detection
-      watch={[]}
-      onLocationChange={useCallback(
-        (scroll) =>
-          scroll.scrollTo(0, {
-            duration: 0,
-            disableLerp: true,
-          }),
-        [],
-      )}
+      watch={[currentPath]}
       location={currentPath}
-      onExitComplete={onExitComplete}
+      onExitComplete={isExitAnimComplete}
+      onLocationChange={useCallback((locoInstance) => {
+        console.log('onLocationChange: ', locoInstance);
+        // scroll.init()
+        locoInstance.update();
+        locoInstance.scrollTo(0, {
+          duration: 0,
+          disableLerp: true,
+        });
+      } , [])}
     >
       <PageContainer
         id='page-container'
@@ -63,7 +78,7 @@ function Page ({ children, path }) {
         ref={container}
         data-scroll-container={true}
       >
-        {/*<LoadingSpinner />*/}
+        <LoadingSpinner />
 
         <ScreenOverlay />
 
@@ -80,7 +95,7 @@ function Page ({ children, path }) {
 
             onExitComplete={() => {
               setExitComplete(!exitComplete);
-              onExitComplete.set(true);
+              isExitAnimComplete.set(true);
               window.scrollTo(0, 0);
             }}
           >

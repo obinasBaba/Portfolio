@@ -1,10 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Typography } from '@material-ui/core';
 import { motion } from 'framer-motion';
-import {
-  gridColWidth, gridify, spacing, text,
-} from '../../../../styles/mixins';
+import { gridColWidth, gridify, spacing } from '../../../../styles/mixins';
 import { largeUp, mediumUp } from '../../../../styles/mixins/breakpoints';
 import AboutHeroPicture from './AboutHeroPicture';
 import TextWrapper from './TextContainer';
@@ -13,6 +10,8 @@ const AboutHeroContainer = styled.div`
   position: relative;
   min-height: 100vh;
   display: grid;
+  //align-items: center;  
+  //border: 1px solid red;
 
   ${gridify()};
 
@@ -52,6 +51,7 @@ const AboutHeroContainer = styled.div`
     ${mediumUp(css`
       width: 60%;
       grid-row: initial;
+      margin-bottom: 10rem;
 
       svg {
         width: 80%;
@@ -61,13 +61,15 @@ const AboutHeroContainer = styled.div`
 `;
 
 function AboutHero () {
-  return (<AboutHeroContainer maxWidth='lg'>
-    <motion.div className='text-container'>
-      <TextWrapper />
-    </motion.div>
+  return (
+    <AboutHeroContainer maxWidth='lg'>
+      <motion.div className='text-container'>
+        <TextWrapper />
+      </motion.div>
 
-    <AboutHeroPicture />
-  </AboutHeroContainer>);
+      <AboutHeroPicture />
+    </AboutHeroContainer>
+  );
 }
 
 export default AboutHero;
