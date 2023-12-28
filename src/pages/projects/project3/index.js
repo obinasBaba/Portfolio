@@ -35,7 +35,9 @@ function Project3 ({ location }) {
   ];
 
   return (<CaseStudy projectData={project3data} scrolled={scrolled}>
-    <Headline title={title} tags={tags} media={preview.publicURL} />
+    <Headline title={title} tags={tags} media={preview.publicURL}
+              liveUrl={liveUrl}
+    />
 
 
     <motion.div
