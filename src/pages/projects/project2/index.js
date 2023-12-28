@@ -32,7 +32,7 @@ function Project2 ({ location }) {
          <br/>
         Shout out to  <a target='_blank' referrerpolicy='no-referrer'  href='https://www.linkedin.com/in/filimon-mehari-64452020b/'>Filimon</a>, 
         the creative whiz behind the branding and UI that's so sleek it should be illegal, 
-        and , the backend queen(and a caffeine addict) who built the whole thing without breaking a virtual
+        and , <a target='_blank' referrerpolicy='no-referrer'  href='https://www.linkedin.com/in/ruth-tirusew-157250249'>Ruth</a>, the backend queen(and a caffeine addict) who built the whole thing without breaking a virtual
          sweat, and <a target='_blank' referrerpolicy='no-referrer'  href='https://www.linkedin.com/in/dawit-getachew/'>Dave</a>... well,
           Dave kept us caffeinated. Four months, countless lines of code,
           and one mission: to make mental health support accessible, convenient, and maybe even a little fun.
