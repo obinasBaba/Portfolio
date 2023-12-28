@@ -47,7 +47,7 @@ export interface LocomotiveScrollContextValue {
 const LocomotiveScrollContext = createContext<LocomotiveScrollContextValue>({
   scroll: null,
   isReady: false,
-  scale: new MotionValue<number>(0),
+  scale: new MotionValue<number>(),
 } as any);
 
 export interface LocomotiveScrollProviderProps {
@@ -60,7 +60,6 @@ export interface LocomotiveScrollProviderProps {
   onExitComplete: MotionValue<boolean>;
 }
 
-// const onScrollCallbacks = new Map<string, Function>();
 
 export function LocomotiveScrollProvider({
   children,
@@ -75,10 +74,6 @@ export function LocomotiveScrollProvider({
   const { height: containerHeight } = useResizeObserver<HTMLDivElement>({
     ref: containerRef,
   });
-
-  // const {  } = us;
-  const { breakpoint } = useMotionBreakPoint();
-
 
   // dec
   const [isReady, setIsReady] = useState(false);
@@ -99,16 +94,16 @@ export function LocomotiveScrollProvider({
   const ySmooth = useSpring(y, { damping: 50, stiffness: 400 });
   const velocity = useVelocity(ySmooth);
   const scale = useTransform(velocity, [-3000, 0, 3000], [1.01, 1, 1.01]);
-  const { scrollYProgress, scrollY } = useScroll();
+  const { scrollYProgress : framerYProgress } = useScroll();
 
-  const yProgress = useTransform(y, [0, isReady ? yLimit.get() : 0], [0, 1], {
+  const locoYProgress = useTransform(y, [0, isReady ? LocomotiveScrollRef.current?.scroll?.instance?.limit?.y ?? 0 : 0], [0, 1], {
     clamp: true,
   });
 
   useLayoutEffect(() => {
     const event = RouteChangeEvent.GetInstance();
 
-    event.addListener('end', () => {
+    const endCb = () => {
       cursor.current?.removeText();
       cursor.current?.removeState('-opaque');
       cursor.current?.removeState('-pointer');
@@ -128,7 +123,14 @@ export function LocomotiveScrollProvider({
 
       });
 
-    });
+    };
+
+    event.addListener('end', endCb);
+
+    return () => {
+      event.removeListener('end', endCb);
+    }
+
   }, []);
 
   useEffect(() => {
@@ -242,35 +244,34 @@ export function LocomotiveScrollProvider({
       return;
     }
 
-    console.log('container height: ', containerHeight);
-
+    // console.log('container height: ', containerHeight);
+    LocomotiveScrollRef.current?.update();
     yLimit.set(LocomotiveScrollRef.current?.scroll?.instance.limit.y);
     xLimit.set(LocomotiveScrollRef.current?.scroll?.instance.limit.x);
-    LocomotiveScrollRef.current.update();
 
     if (onUpdate) {
       onUpdate(LocomotiveScrollRef.current);
       // setIsReady;
     }
-  }, [watch, height, isReady]);
+  }, [watch, containerHeight, isReady]);
 
   // dependency change
   useEffect(() => {
     onScrollCallbacks.current.clear();
-    if (LocomotiveScrollRef.current === null || !location) {
+    if (!LocomotiveScrollRef.current || !location) {
       return;
     }
 
     console.log("location change ---- -- - - - -");
 
-    LocomotiveScrollRef.current.update();
+    LocomotiveScrollRef.current?.update();
     yLimit.set(LocomotiveScrollRef.current?.scroll?.instance.limit.y);
     xLimit.set(LocomotiveScrollRef.current?.scroll?.instance.limit.x);
 
     if (onLocationChange) {
       onLocationChange(LocomotiveScrollRef.current);
     }
-  }, [location, onLocationChange]);
+  }, [location, onLocationChange, ]);
 
   // scroll events
   useEffect(() => {
@@ -301,7 +302,7 @@ export function LocomotiveScrollProvider({
         isReady,
         scale,
         scrollDirection,
-        yProgress: isMobile ? scrollYProgress : yProgress,
+        yProgress: isMobile ? framerYProgress : locoYProgress,
         yProgressSmooth: ySmooth,
         onScrollCallbacks,
         cursor,

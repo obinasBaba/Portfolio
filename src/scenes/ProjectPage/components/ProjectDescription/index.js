@@ -3,8 +3,9 @@ import baffle from 'baffle';
 import { css } from 'styled-components';
 import MotionBtn from '@/components/MotionBtn';
 import {
-  btnTxtVariants,
+  btnContainerVariant,
   containerVariant,
+  btnVariants,
   letterVariant,
   tagsVariants,
   titleVariant,
@@ -62,7 +63,7 @@ function ProjectDescription ({ reversed, index, exit, items }) {
 
       <OverFlowBox
         variants={{
-          inner: btnTxtVariants,
+          inner: btnContainerVariant,
           transition,
         }}
         customStyle={css`
@@ -80,6 +81,15 @@ function ProjectDescription ({ reversed, index, exit, items }) {
           margin={false}
           onClick={() => {
             fromProjectList.set(true);
+          }}
+
+          variants={{}}
+          textMotionProps={{
+            animate: 'animate_',
+            initial: 'initial_',
+            exit: 'exit',
+            variants: btnVariants,
+            transition,
           }}
         />
       </OverFlowBox>

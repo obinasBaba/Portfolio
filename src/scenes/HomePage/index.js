@@ -1,6 +1,5 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { MotionValueContext } from '@contexts/MotionStateWrapper';
 import ToProjects from './ToProjects';
 import { SectionWrapper } from '@components/Container';
 import BlogPosts from '@scenes/HomePage/BlogPosts';

@@ -35,12 +35,19 @@ const Headline = ({ tags, title, liveUrl, media }) => (
       />
 
       <motion.div
-        variants={btnVariant}
-        transition={transition}
+        variants={{}}
+        // transition={transition}
         style={{ color: 'white' }}
       >
         <MotionBtn margin={false} text='Visit Site' to={liveUrl}
-                   external={true} />
+                   external={true}
+                   variants={{}}
+                   textMotionProps={{
+                     variants: btnVariant,
+                     transition: transition,
+                   }}
+
+        />
       </motion.div>
     </Texts>
 

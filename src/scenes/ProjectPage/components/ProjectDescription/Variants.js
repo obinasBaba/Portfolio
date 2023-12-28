@@ -12,23 +12,28 @@ export const containerVariant = {
   },
 };
 
-export const btnTxtVariants = {
+export const btnContainerVariant = {
   initial: {
     y: "125%",
+    opacity: 0,
   },
 
   animate: {
     y: 0,
+    opacity: 1,
   },
 
   initialFp: {
     y: "125%",
+    opacity: 0,
   },
   animateFp: {
     y: "0%",
+    opacity: 1,
   },
   exitFp: {
     y: "125%",
+    opacity: 0,
   },
 
   exit(c) {
@@ -36,6 +41,30 @@ export const btnTxtVariants = {
     return {
       y: "120%",
     };
+  },
+};
+
+export const btnVariants = {
+  initial_: {
+    opacity: 0,
+  },
+
+  animate_: {
+    opacity: 1,
+  },
+
+  initialFp: {
+    opacity: 0,
+  },
+  animateFp: {
+   opacity: 1,
+  },
+  exitFp: {
+    opacity: 0,
+  },
+
+  exit: {
+    opacity: 0,
   },
 };
 

@@ -70,62 +70,64 @@ const letterVariant = {
 };
 
 const ListItem = styled(motion.li)`
-  //border: thin solid red;
-  padding: 0;
-  margin: 0;
+    //border: thin solid red;
+    padding: 0;
+    margin: 0;
 
-  ${spacing('p', 2)};
-  //flex: 1 1 32%;
+    ${spacing('p', 2)};
+    //flex: 1 1 32%;
 
-  .titleTxt {
-    line-height: 180%;
-    font-weight: bold;
+    .titleTxt {
+        line-height: 180%;
+        font-weight: bold;
 
-    span {
-      display: inline-block;
+        span {
+            display: inline-block;
+        }
     }
-  }
 `;
 
 const Tags = styled.div`
-  display: flex;
-  align-items: center;
-  //flex-flow: column;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  line-height: 0;
+    display: flex;
+    align-items: center;
+    //flex-flow: column;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 0;
 
-  ${spacing('gap', 1)};
+    ${spacing('gap', 1)};
 
-  p {
-    ${text(0.6)};
-    font-weight: lighter;
-    opacity: 0.6;
-  }
+    p {
+        ${text(0.6)};
+        font-weight: lighter;
+        opacity: 0.6;
+    }
 `;
 
-function Item ({ onHoverStart, onHoverEnd, title, tags, desc, idx }) {
+function Item ({ onHoverStart, onHoverEnd, title, tags, desc, idx, link }) {
   return (
-    <motion.li
-      className={s.container}
-      variants={itemVariant}
-      transition={transition}
-      custom={{ idx }}
-      onHoverStart={() => onHoverStart()}
-      onHoverEnd={() => onHoverEnd()}
-    >
-      <Typography variant='h3' className={s.titleTxt}>
-        {title}
-      </Typography>
+    <a target='_blank' referrerPolicy='no-referrer' href={link} rel="noreferrer">
+      <motion.li
+        className={s.container}
+        variants={itemVariant}
+        transition={transition}
+        custom={{ idx }}
+        onHoverStart={() => onHoverStart()}
+        onHoverEnd={() => onHoverEnd()}
+      >
+        <Typography variant='h3' className={s.titleTxt}>
+          {title}
+        </Typography>
 
-      <div className={s.tags}>
-        {tags.map((tag, idx) => (
-          <p key={idx}>{tag}</p>
-        ))}
-      </div>
+        <div className={s.tags}>
+          {tags.map((tag, idx) => (
+            <p key={idx}>{tag}</p>
+          ))}
+        </div>
 
-      <Typography className={s.text}>{desc}</Typography>
-    </motion.li>
+        <Typography className={s.text}>{desc}</Typography>
+      </motion.li>
+    </a>
   );
 }
 

@@ -95,6 +95,7 @@ function MotionBtn ({
   margin = true,
   onClick,
   toolTipText,
+  textMotionProps = {},
   ...props
 }) {
   const btnRef = useRef(null);
@@ -124,13 +125,17 @@ function MotionBtn ({
 
         </>}
 
-        <Typography
-          // variant='body1'
-          className={s.btnTxt}
-          noWrap
-        >
-          {text}
-        </Typography>
+       <motion.div
+          {...textMotionProps}
+       >
+         <Typography
+           // variant='body1'
+           className={s.btnTxt}
+           noWrap
+         >
+           {text}
+         </Typography>
+       </motion.div>
       </div>
     </motion.button>);
 }

@@ -69,6 +69,23 @@ function Juvi ({ location }) {
   } = useJuviAssets();
   const colors = [amber, flame, pearl, spartan, white];
 
+  const desc = `Juvi house, A premium liquor brand, startup invented by two caring young
+      founders, was struggling to gain market share due to consumer perception
+      that their products was a low-end spirit compared to more local
+      alternatives. The brand needed a new website experience that would allow
+      them to tell the story of Juvi and communicate its exceptional quality
+      for serious liquor drinkers. I spent two months shaping this
+      minimalistic web project in close collaboration with them and am so
+      happy with the result.`;
+
+  const about = [
+    { q: 'Period -', a: 'End 2020' },
+    { q: 'Clients -', a: 'Juvi House' },
+    { q: 'Context -', a: 'Web, Front-end, E-commerce, Cms, Interaction' },
+    { q: 'tools -', a: 'figma, javascript, illustrator' },
+    { q: 'Role -', a: 'UI Design / Coding' },
+    { q: 'Build -', a: 'See It Live' }];
+
   // projectDataDefault.nextProject.thumbnailUrl = headlineImage.publicURL;
   // projectDataDefault.location = location;
 
@@ -95,7 +112,10 @@ function Juvi ({ location }) {
           }
         }}
       >
-        <MetaTxt link={liveUrl} />
+        <MetaTxt link={liveUrl}
+                 about={about}
+                 desc={desc}
+        />
       </motion.div>
 
       <RectangleView img={rectView} />

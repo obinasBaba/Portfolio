@@ -13,30 +13,30 @@ import { useLocomotiveScroll } from '@/contexts/LocoMotive';
 import { isMobile } from 'react-device-detect';
 
 const ScrollContainer = styled.section`
-  position: relative;
-  width: 100%;
-  //border: 3px solid red;
+    position: relative;
+    width: 100%;
+    //border: 3px solid red;
 `;
 
 const ScrollWrapper = styled.div`
-  position: relative;
-  padding: 1rem 0;
-  transform: translateX(-50%);
+    position: relative;
+    padding: 1rem 0;
+    transform: translateX(-50%);
 
-  &:nth-of-type(2) {
-    transform: translateX(-20%);
-  }
+    &:nth-of-type(2) {
+        transform: translateX(-20%);
+    }
 
-  ${spacing('mb', 13)};
+    ${spacing('mb', 13)};
 `;
 
 const ScrollTrack = styled(motion.div)`
-  position: relative;
-  display: flex;
-  align-items: center;
-  list-style-type: none;
-  margin: 0;
-  transition: transform cubic-bezier(0.6, 0.01, 0, 0.9);
+    position: relative;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    transition: transform cubic-bezier(0.6, 0.01, 0, 0.9);
 `;
 
 const Gallery = () => {

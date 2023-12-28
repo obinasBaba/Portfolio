@@ -1,5 +1,3 @@
-// noinspection JSIgnoredPromiseFromCall
-
 import React, { useContext } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'gatsby';

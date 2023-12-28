@@ -1,7 +1,7 @@
-import { getMousePos } from "./utils";
+import { getMousePos } from './utils';
 
 class EventUtil {
-  private static Instance: EventUtil = null;
+  private static Instance: EventUtil | null = null;
   public mousePos = {
     x: 0,
     y: 0,
@@ -16,10 +16,14 @@ class EventUtil {
     }
   }
 
+  updatePos(x: number, y: number) {
+    this.mousePos = { x, y };
+  }
+
   constructor() {
     window.addEventListener(
-      "mousemove",
-      (ev) => (this.mousePos = getMousePos(ev))
+      'mousemove',
+      (ev) => (this.mousePos = getMousePos(ev)),
     );
   }
 }

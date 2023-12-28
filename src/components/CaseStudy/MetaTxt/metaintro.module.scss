@@ -73,6 +73,12 @@
       @include media-breakpoint-up(md) {
         max-width: 65ch;
       }
+
+      a{
+        display: inline;
+        text-decoration: underline;
+        font-weight: 900;
+      }
     }
 
     .key {

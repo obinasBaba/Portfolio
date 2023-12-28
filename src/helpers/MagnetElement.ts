@@ -1,10 +1,9 @@
 // noinspection DuplicatedCode
 
-import { EventEmitter } from "events";
-import { distance, lerp } from "./utils";
-import EventUtil from "./EventUtil";
-import { object } from "prop-types";
-import gsap from "gsap";
+import { EventEmitter } from 'events';
+import { distance, lerp } from './utils';
+import EventUtil from './EventUtil';
+import gsap from 'gsap';
 
 // Calculate the viewport size
 
@@ -20,18 +19,20 @@ export default class MagnetElement extends EventEmitter {
   element: HTMLElement;
   rect: DOMRect;
 
-  distanceToStop: number;
+  distanceToStop: number = 0;
+  reqAnimationId: number | undefined = undefined;
+
   stop: number = 1;
   distance: number = 0.32;
   renderedStyles = {
     x: { previous: 0, current: 0, amt: 0.1 },
     y: { previous: 0, current: 0, amt: 0.1 },
   };
-  reqAnimationId: number = undefined;
   inView: boolean = true;
 
-  onResize: () => void;
-  scroll: { x: number; y: number };
+  onResize: () => void = () => null;
+  scroll: { x: number; y: number } = { x: 0, y: 0 };
+
   // onLeaveListener : () => void = () => {}
 
   constructor(el: MagnetType) {
@@ -40,8 +41,8 @@ export default class MagnetElement extends EventEmitter {
 
     this.events = EventUtil.getInstance();
     this.element = el.element;
-    this.stop = el.stop;
-    this.distance = el.distance;
+    this.stop = el.stop as number;
+    this.distance = el.distance as number;
     this.rect = this.element.getBoundingClientRect();
 
     // this.onLeaveListener = el.onLeave
@@ -51,9 +52,9 @@ export default class MagnetElement extends EventEmitter {
 
   initEvents() {
     this.onResize = () => this.calculateSizePosition();
-    window.addEventListener("resize", this.onResize);
+    window.addEventListener('resize', this.onResize);
 
-    this.element.addEventListener("mouseenter", (ev) => {
+    this.element.addEventListener('mouseenter', (ev) => {
       // console.log('Enter')
 
       gsap.killTweensOf(this.element);
@@ -70,7 +71,7 @@ export default class MagnetElement extends EventEmitter {
     this.rect = this.element.getBoundingClientRect();
   }
 
-  loopRender(fn?) {
+  loopRender() {
     if (!this.reqAnimationId) {
       this.reqAnimationId = requestAnimationFrame(() => this.render());
     }
@@ -82,7 +83,7 @@ export default class MagnetElement extends EventEmitter {
       this.events.mousePos.x,
       this.events.mousePos.y,
       this.rect.left + this.rect.width / 2, //center
-      this.rect.top + this.rect.height / 2 //center
+      this.rect.top + this.rect.height / 2, //center
     );
 
     if (distanceMouseButton > this.distanceToStop) {
@@ -105,10 +106,10 @@ export default class MagnetElement extends EventEmitter {
       this.distance;
 
     for (const key in this.renderedStyles) {
-      this.renderedStyles[key].previous = lerp(
-        this.renderedStyles[key].previous,
-        this.renderedStyles[key].current,
-        0.1
+      this.renderedStyles[key as keyof typeof this.renderedStyles].previous = lerp(
+        this.renderedStyles[key as keyof typeof this.renderedStyles].previous,
+        this.renderedStyles[key as keyof typeof this.renderedStyles].current,
+        0.1,
       );
     }
 
@@ -128,8 +129,8 @@ export default class MagnetElement extends EventEmitter {
         x: 0,
         y: 0,
         duration: 0.8,
-        ease: "power3",
-      }
+        ease: 'power3',
+      },
     );
   }
 
@@ -148,15 +149,15 @@ export default class MagnetElement extends EventEmitter {
   }
 
   destroy() {
-    window.removeEventListener("resize", this.onResize);
+    window.removeEventListener('resize', this.onResize);
   }
 
   private onStart() {
-    this.emit("start");
+    this.emit('start');
   }
 
   private onLeave() {
-    this.emit("leave");
+    this.emit('leave');
     // console.log('emit LEAVE')
   }
 }

@@ -138,7 +138,7 @@ function ContactPage () {
         return control.set(`errorClick${Math.random() * Math.random()}`);
 
       control.set('loading');
-      fetch('https://formsubmit.co/ajax/henokgetachew500@gmail.com', {
+      fetch('https://formsubmit.co/henokgetachew500@gmail.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

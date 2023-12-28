@@ -1,14 +1,13 @@
-// noinspection JSIgnoredPromiseFromCall
-
 import React, { useContext, useEffect, useRef } from 'react';
 import { motion, useAnimation, useMotionValue } from 'framer-motion';
 
-import one from './img/img.png';
-import two from './img/img_4.png';
-import three from './img/img_5.png';
-import four from './img/img_6.png';
+import one from './img/one.png';
+import two from './img/two.png';
+import three from './img/three.png';
+import four from './img/four.png';
+
 import Item from './components/Item';
-import { distance, lerp } from '@helpers/utils';
+import { lerp } from '@helpers/utils';
 import { MotionValueContext } from '@contexts/MotionStateWrapper';
 import data from './data';
 import * as s from './others.module.scss';
@@ -118,6 +117,16 @@ function Others ({ auth, kklLuzern, udemy, active }) {
     svgRect.current = svgRef.current.getBoundingClientRect();
   }, []);
 
+  useEffect(() => {
+
+    // track();
+
+
+    return () => {
+      // cancelAnimationFrame(cancelId.current);
+    }
+  })
+
   const track = () => {
     if (!svgRef.current) return;
 
@@ -125,7 +134,7 @@ function Others ({ auth, kklLuzern, udemy, active }) {
 
     y = lerp(y, mouseY.get(), 0.1);
 
-    svgRef.current.style.transform = `translateX(${x - window.innerWidth / 2}px)
+    svgRef.current.style.transform = `translateX(${x - window.innerWidth / 2.5}px)
        translateY(${y - window.innerHeight / 2}px)`;
     /*
 
@@ -149,94 +158,6 @@ function Others ({ auth, kklLuzern, udemy, active }) {
                 ref={containerRef}
                 variants={containerVariants}
     >
-      <motion.svg
-        ref={svgRef}
-        className='distort'
-        width='350'
-        height='450'
-        viewBox='0 0 350 450'
-        initial='initial'
-        animate={svgController}
-        exit='exit'
-
-        onViewportEnter={() => {
-          track();
-        }}
-
-        onViewportLeave={() => {
-          cancelAnimationFrame(cancelId.current);
-        }}
-      >
-        <filter id='distortionFilter'>
-          <feTurbulence
-            type='fractalNoise'
-            baseFrequency='0.01 0.003'
-            numOctaves='5'
-            seed='2'
-            stitchTiles='noStitch'
-            x='0%'
-            y='0%'
-            width='100%'
-            height='100%'
-            result='noise'
-          />
-          <feDisplacementMap
-            in='SourceGraphic'
-            in2='noise'
-            scale='0'
-            xChannelSelector='R'
-            yChannelSelector='B'
-            x='0%'
-            y='0%'
-            width='100%'
-            height='100%'
-            filterUnits='userSpaceOnUse'
-          />
-        </filter>
-        <g>
-          <motion.image
-            custom={{ hovering: () => hoverIndex.get() === 0 }}
-            variants={imgVariants}
-            className={s.distort__img}
-            x='50'
-            y='50'
-            xlinkHref={one}
-          />
-
-          <motion.image
-            custom={{ hovering: () => hoverIndex.get() === 1 }}
-            variants={imgVariants}
-            className={s.distort__img}
-            x='50'
-            y='50'
-            xlinkHref={two}
-
-          />
-
-          <motion.image
-            custom={{ hovering: () => hoverIndex.get() === 2 }}
-            variants={imgVariants}
-            className={s.distort__img}
-            x='50'
-            y='50'
-            xlinkHref={three}
-            // filter='url(#distortionFilter)'
-
-          />
-
-          <motion.image
-            custom={{ hovering: () => hoverIndex.get() === 3 }}
-            variants={imgVariants}
-            className={s.distort__img}
-            x='50'
-            y='50'
-            xlinkHref={four}
-            // filter='url(#distortionFilter)'
-
-          />
-        </g>
-      </motion.svg>
-
       <motion.div variants={titleVariants} transition={transition}
                   custom={{ breakpoint }}
 
@@ -251,7 +172,102 @@ function Others ({ auth, kklLuzern, udemy, active }) {
           svgController.start('hoverEnd');
         }}
       >
-        {data.map(({ title, tags, desc }, idx) => {
+        <motion.svg
+          ref={svgRef}
+          className='distort'
+          width='450'
+          height='550'
+          viewBox='50 111 250 250'
+          initial='initial'
+          animate={svgController}
+          exit='exit'
+          style={{
+            borderRadius: '1rem',
+            overflow: 'hidden',
+            // position: 'absolute',
+            // border: '2px solid blue'
+          }}
+
+          onViewportEnter={() => {
+            track();
+          }}
+
+          onViewportLeave={() => {
+            cancelAnimationFrame(cancelId.current);
+          }}
+        >
+          <filter id='distortionFilter'>
+            <feTurbulence
+              type='fractalNoise'
+              baseFrequency='0.01 0.003'
+              numOctaves='5'
+              seed='2'
+              stitchTiles='noStitch'
+              x='0%'
+              y='0%'
+              width='100%'
+              height='100%'
+              result='noise'
+            />
+            <feDisplacementMap
+              in='SourceGraphic'
+              in2='noise'
+              scale='0'
+              xChannelSelector='R'
+              yChannelSelector='B'
+              x='0%'
+              y='0%'
+              width='100%'
+              height='100%'
+              filterUnits='userSpaceOnUse'
+            />
+          </filter>
+          <g>
+            <motion.image
+              custom={{ hovering: () => hoverIndex.get() === 0 }}
+              variants={imgVariants}
+              className={s.distort__img}
+              x='50'
+              y='50'
+              xlinkHref={one}
+            />
+
+            <motion.image
+              custom={{ hovering: () => hoverIndex.get() === 1 }}
+              variants={imgVariants}
+              className={s.distort__img}
+              x='50'
+              y='50'
+              xlinkHref={two}
+
+            />
+
+            <motion.image
+              custom={{ hovering: () => hoverIndex.get() === 2 }}
+              variants={imgVariants}
+              className={s.distort__img}
+              x='50'
+              y='50'
+              xlinkHref={three}
+              // filter='url(#distortionFilter)'
+
+            />
+
+            <motion.image
+              custom={{ hovering: () => hoverIndex.get() === 3 }}
+              variants={imgVariants}
+              className={s.distort__img}
+              x='50'svgController
+              y='50'
+              xlinkHref={four}
+              // filter='url(#distortionFilter)'
+
+            />
+          </g>
+        </motion.svg>
+
+
+        {data.map(({ title, tags, desc, link }, idx) => {
           const onHoverStart = () => {
             hoverIndex.set(idx);
             svgController.start('hover');
@@ -268,6 +284,7 @@ function Others ({ auth, kklLuzern, udemy, active }) {
               tags={tags}
               key={idx}
               idx={idx}
+              link={link}
               onHoverStart={onHoverStart}
               onHoverEnd={onHoverEnd}
               // customData={{ hovering: () => hoverIndex.get() === idx }}

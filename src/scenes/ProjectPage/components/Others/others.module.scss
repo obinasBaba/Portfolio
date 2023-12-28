@@ -40,11 +40,14 @@
       pointer-events: none;
       //will-change: transform;
       //border: thin solid red;
+      border-radius: 11rem;
+      z-index: 10;
 
       .distort__img {
         //opacity: 0;
         z-index: -1;
         object-fit: cover;
+        width: 100%;
         //width: 400px;
         //max-width: 500px;
       }
@@ -86,7 +89,7 @@
     }
 
     .list {
-      z-index: 1;
+      //z-index: 11;
       list-style-type: none;
       padding: 0;
       margin: 0;
@@ -101,7 +104,10 @@
         grid-template-columns: 1fr 1fr;
       }
 
-      @include media-breakpoint-up(md) {
+      & > a:hover{
+        z-index: 20;
+        //backdrop-filter: blur(2px);
+
 
       }
 

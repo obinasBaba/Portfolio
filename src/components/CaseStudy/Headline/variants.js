@@ -6,9 +6,22 @@ export const transition = {
 export const containerVariants = {};
 
 export const btnVariant = {
-  initial: {},
-  animate: {},
-  exit: {},
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+
+  fromProjectsInitial: {
+    opacity: 0,
+  },
+  fromProjectsAnimate: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
 };
 
 export const imgWrapperVariant = {
@@ -25,8 +38,9 @@ export const imgWrapperVariant = {
   fromProjectsInitial: {
     ['margin-right']: 'calc(100vw / 64 * 6)',
     // background: 'transparent',
-    padding: 'calc(100vw / 64 * .5)',
-    ['padding-left']: 'calc(100vw / 64 * 4)',
+    padding: 'calc(100vw / 64 * .7)',
+    ['padding-left']: 'calc(100vw / 64 * 4.5)',
+    borderRadius: '1.5rem',
   },
 
   fromProjectsAnimate: {
@@ -35,6 +49,8 @@ export const imgWrapperVariant = {
     ['margin-right']: 'calc(100vw / 64 * 0)',
     padding: 'calc(100vw / 64 * 0)',
     ['padding-left']: 'calc(100vw / 64 * 0)',
+    borderRadius: '0',
+
   },
 
   exit (arg) {
@@ -46,8 +62,9 @@ export const imgWrapperVariant = {
           // height: '30vmax',
           // background: '#3719ca',
           ['margin-right']: 'calc(100vw / 64 * 6)',
-          padding: 'calc(100vw / 64 * .5)',
-          ['padding-left']: 'calc(100vw / 64 * 4)',
+          padding: 'calc(100vw / 64 * .7)',
+          ['padding-left']: 'calc(100vw / 64 * 4.5)',
+          borderRadius: '1.5rem',
 
           transition: {
             ...transition,
@@ -77,9 +94,11 @@ export const imgWrapperVariant = {
 export const innerVariant = {
   fromProjectsInitial: {
     height: '30vmax',
+    borderRadius: '1rem',
   },
   fromProjectsAnimate: {
     height: '100vh',
+    borderRadius: '0',
   },
 
   exit (arg) {
@@ -89,6 +108,7 @@ export const innerVariant = {
       if (arg.breakpoint && arg.breakpoint.get().lgUp)
         return {
           height: '30vmax',
+          borderRadius: '1rem',
           transition: {
             ...transition,
             delay: delay ? 0 : 1,
