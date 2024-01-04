@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import { gridColWidth, gridify, spacing } from "@/styles/mixins";
 import { largeUp, mediumUp, smallUp } from "@/styles/mixins/breakpoints";
 
+import Dots from './dots.svg';
+
+
 export const HeadlineContainer = styled(motion.div)`
   position: relative;
   z-index: 1;
@@ -106,6 +109,9 @@ export const HeadLineBG = styled(motion.div)`
   background-color: var(--contentBg);
   transition: background-color 0.8s ease-in-out;
   z-index: -1;
+
+    background-image: url(${Dots});
+    background-repeat: repeat;
 
   //display: none;
   &::after,

@@ -90,7 +90,8 @@ function Juvi ({ location }) {
   // projectDataDefault.location = location;
 
   return (
-    <CaseStudy projectData={juviData} scrolled={scrolled}>
+    <CaseStudy projectData={juviData} scrolled={scrolled}
+    >
       <Seo
         title='Juvi'
         description='case-study for one of the project i have built juve liqour store, an ecommerce site'

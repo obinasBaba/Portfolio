@@ -89,7 +89,7 @@ const CaseStudy = ({
   useRefreshMouseListeners('[data-pointer]');
 
   const { locoInstance } = useLocomotiveScroll();
- 
+
   const {
     variantsUtil: { fromCaseStudy, fromProjectList },
   } = useContext(MotionValueContext);
@@ -167,6 +167,11 @@ const CaseStudy = ({
       custom={{
         scrollTop: () => null,
       }}
+
+      style={{
+        // backgroundColor: 'red',
+      }}
+
     >
       {typeof document !== `undefined` && (
         <FixedPortal>
@@ -190,6 +195,7 @@ const CaseStudy = ({
       >
         <ReturnBtn onClick={returnClick} />
       </button>
+
 
       <HeadLineBG variants={bgVariant} transition={transition} />
 
