@@ -18,6 +18,8 @@ const BlogListTemplate = ({
 
   useToolTip("[data-tooltip-text]");
 
+  console.log('data ; ', data);
+
   // const previousPage = currentPage === 2 ? "/blog" : `/blog/${currentPage - 1}`;
   // const nextPage = `/blog/${currentPage + 1}`;
   const theme = useTheme();

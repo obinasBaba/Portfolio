@@ -53,29 +53,30 @@ const Title = styled(Typography)`
 `;
 
 const BlogListWrapper = styled(motion.div)`
-  //border: 2px dashed teal;
-  display: flex;
-  flex-flow: column;
-  width: 100%;
-  max-width: 1050px;
+    //border: 2px dashed teal;
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto;
 
-  & .title-wrapper {
-    align-self: flex-start;
+    & .title-wrapper {
+        align-self: flex-start;
 
-    ${spacing('mb', 10)};
-  }
-
-  ${largeUp(css`
-    ${spacing('ml', 7)};
-
-    .title-wrapper {
-      margin-left: -6rem;
+        ${spacing('mb', 10)};
     }
-  `)};
 
-  & > :not(:first-child) {
-    margin-left: auto;
-  }
+    ${largeUp(css`
+        ${spacing('ml', 7)};
+
+        .title-wrapper {
+            margin-left: -6rem;
+        }
+    `)};
+
+    & > :not(:first-child) {
+        margin-left: auto;
+    }
 `;
 
 const CardContainer = styled.div`
