@@ -23,7 +23,8 @@ const HeadLineTitle = styled(Typography)`
   //max-width: 20ch;
 
   span {
-    text-transform: uppercase;
+    text-transform: capitalize;
+    text-decoration: underline;
   }
 `;
 
@@ -84,7 +85,7 @@ function Topic({ values }) {
 
   return (
     <TopicContainer className="topic-container">
-      <HeadLineTitle variant="h2">
+      <HeadLineTitle variant="h3">
         nice to meet you <span>{values.name}</span>, what can i help you with?
       </HeadLineTitle>
 

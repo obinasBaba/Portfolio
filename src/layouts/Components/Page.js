@@ -78,7 +78,7 @@ function Page ({ children, path }) {
         ref={container}
         data-scroll-container={true}
       >
-        {/*<LoadingSpinner />*/}
+        <LoadingSpinner />
 
         <ScreenOverlay />
 

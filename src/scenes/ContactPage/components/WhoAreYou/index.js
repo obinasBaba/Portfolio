@@ -49,7 +49,7 @@ function WhoAreYou ({ errors, ...props }) {
       <FormContainer>
         <Field
           name='name'
-          label='what should i call you?'
+          label='what should I call you?'
           inputMode='text'
           fullWidth
           as={CustomTextField}
