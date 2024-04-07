@@ -18,13 +18,19 @@ import {
   intro,
   mobtnWrapper,
   textContainer,
+  resume_link
 } from './hero.module.scss';
 import { Link } from 'gatsby';
+import useAssets from '@hooks/queries/useLssyaAssets';
 
 function Hero () {
   const { inView } = useContext(MotionValueContext);
 
   const btmGradient = useRef();
+
+  const { resume } = useAssets();
+
+  console.log('resume  : ', resume);
 
   useEffect(() => {
     btmGradient.current = document.body.querySelector(
@@ -129,6 +135,17 @@ function Hero () {
           <Typography className='intro-txt' variant='body1'>
             I'm Web-Developer, Firmly standing on <span>S-O-L-I-D</span>{' '}
             front-end, less frame-work, more engineering patterns!
+            <span className={resume_link}>
+              <a
+                target='_blank'
+                rel='noreferrer'
+                href={resume.publicURL}
+                download={'henok-resume.pdf'}
+              >
+
+
+                Download Resume</a>
+            </span>
           </Typography>
         </motion.div>
 

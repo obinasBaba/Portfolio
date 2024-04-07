@@ -131,7 +131,49 @@
             filter: drop-shadow(0 0 5px rgba(55, 25, 202, 0.64));
           }
         }
+      }
 
+      .resume_link {
+        color: blue !important;
+        font-weight: 300 !important;
+        display: block;
+        margin-top: 1rem;
+        letter-spacing: .2px;
+        padding-left: 1rem;
+        max-width: max-content;
+
+        &:before {
+          content: '\2193';
+          font-size: 2.2rem;
+          font-weight: 900;
+          line-height: 0;
+
+          position: absolute;
+          left: -.5rem;
+          top: .8rem;
+
+
+        }
+
+        &:after {
+          content: '';
+          height: 2px;
+          width: 100%;
+          position: absolute;
+          top: 1.5rem;
+          display: block;
+          background-color: blue;
+          transition: all .3s ease-in-out;
+
+          transform: scale(0);
+          transform-origin: left;
+        }
+
+        &:hover {
+          &:after {
+            transform: scale(1);
+          }
+        }
 
       }
 

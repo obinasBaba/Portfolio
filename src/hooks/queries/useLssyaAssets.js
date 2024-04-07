@@ -30,6 +30,14 @@ const useAssets = () => {
               name
               ...homeWorksBigImage
           }
+          
+          resume: file(
+              relativePath: { eq: "sections/projects/resume.pdf" }
+          ) {
+              publicURL
+              name
+              ...homeWorksBigImage
+          }
       }
   `);
 };
